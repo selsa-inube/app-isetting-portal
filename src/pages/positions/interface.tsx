@@ -1,6 +1,4 @@
-import { Stack } from "@inubekit/inubekit";
-import { useMediaQuery } from "@inubekit/hooks";
-import { Breadcrumbs } from "@inubekit/breadcrumbs";
+import { Stack, Breadcrumbs, useMediaQuery } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { Title } from "@design/label/Title";
 import { Tabs } from "@design/feedback/tabs";

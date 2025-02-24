@@ -1,5 +1,5 @@
 import { FormikProps } from "formik";
-import { IRuleDecision } from "@isettingkit/input";
+
 import {
   Breadcrumbs,
   Button,
@@ -18,19 +18,19 @@ import { requestStatusMessage } from "@config/positionsTabs/generics/requestStat
 import { DecisionModal } from "@design/modals/decisionModal";
 import { requestPendingModal } from "@config/positionsTabs/generics/requestPendingModal";
 import { IEditPositionsTabsConfig } from "@ptypes/positions/tabs/ITabConfig/IEditDestinationTabsConfig";
-
+import { IEntry } from "@design/templates/assignmentForm/types";
 import { IRequestSteps } from "@design/feedback/requestProcess/types";
+import { Title } from "@design/label/Title";
+import { crumbsEditPosition } from "@config/positions/editPositions/navigation";
 import {
   IFormAddPosition,
   IGeneralInformationEntry,
 } from "../addPosition/types";
-import { Title } from "@design/label/Title";
-import { crumbsEditPosition } from "@config/positions/editPositions/navigation";
+
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
 
 interface IEditPositionsUI {
   editPositionTabsConfig: IEditPositionsTabsConfig;
-  creditLineDecisions: IRuleDecision[];
   generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry>>;
   initialValues: IFormAddPosition;
   isSelected: string;
@@ -42,10 +42,10 @@ interface IEditPositionsUI {
   onTabChange: (id: string) => void;
   onButtonClick: () => void;
   onReset: () => void;
-  setCreditLineDecisions: (decisions: IRuleDecision[]) => void;
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   onCloseRequestStatus: () => void;
   onClosePendingReqModal: () => void;
+  setSelectedToggle: React.Dispatch<React.SetStateAction<IEntry[] | undefined>>;
 }
 
 const EditPositionsUI = (props: IEditPositionsUI) => {
@@ -62,13 +62,14 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
     onCloseRequestStatus,
     onClosePendingReqModal,
     setIsCurrentFormValid,
+    setSelectedToggle,
     showPendingReqModal,
     requestSteps,
     onReset,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 990px)");
-
+  console.log("initialValuesEditPosition: ", initialValues);
   return (
     <Stack
       direction="column"
@@ -107,9 +108,10 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
             )}
             {isSelected === editPositionTabsConfig.selectionRoles.id && (
               <InitializerForm
+                key={isSelected}
                 dataOptionsForms={initialValues.rolesStaff.values}
                 dataOptionsValueSelect={initialValues.applicationStaff.values}
-                setSelectedToggle={() => false}
+                setSelectedToggle={setSelectedToggle}
               />
             )}
           </Stack>

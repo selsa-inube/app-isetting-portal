@@ -4,7 +4,6 @@ import { IIUseInitializerForm } from "./types";
 
 const InitializerForm = (props: IIUseInitializerForm) => {
   const {
-    FormDataOptions,
     IsLoading,
     Message,
     HandleChangeRenderForm,
@@ -16,14 +15,13 @@ const InitializerForm = (props: IIUseInitializerForm) => {
     dataOptionsValueSelect,
     setSelectedToggle,
   } = UseInitializerForm(props);
-
   return (
     <InitializerFormUI
       handleChangeInitializerForm={HandleChangeRenderForm}
       handleSubmitForm={HandleSubmitForm}
       handleReset={HandleReset}
       isLoading={IsLoading}
-      dataOptionsForms={FormDataOptions}
+      dataOptionsForms={props.dataOptionsForms}
       withSubmitButtons={props.withSubmitButtons}
       message={Message}
       onCloseSectionMessage={HandleCloseSectionMessage}

@@ -1,6 +1,4 @@
-import { Text } from "@inubekit/inubekit";
-import { Stack } from "@inubekit/inubekit";
-import { Avatar } from "@inubekit/avatar";
+import { Stack, Avatar, Text } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 
 interface IMenuUser {

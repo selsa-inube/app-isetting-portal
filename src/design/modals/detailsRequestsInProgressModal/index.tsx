@@ -1,18 +1,22 @@
 import { MdClear, MdOutlineRemoveRedEye } from "react-icons/md";
 import { createPortal } from "react-dom";
-import { Text } from "@inubekit/inubekit";
+import {
+  Text,
+  Stack,
+  Blanket,
+  Button,
+  Divider,
+  useMediaQuery,
+  Select,
+  ITagAppearance,
+  Tag,
+} from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { Stack } from "@inubekit/inubekit";
-import { Blanket } from "@inubekit/inubekit";
-import { Button } from "@inubekit/inubekit";
-import { Divider } from "@inubekit/inubekit";
-import { useMediaQuery } from "@inubekit/hooks";
+import {} from "@inubekit/hooks";
 import { IServerDomain } from "@ptypes/IServerDomain";
 import { Icon } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { IEntrys } from "@design/templates/assignmentForm/types";
-import { Select } from "@inubekit/select";
-import { ITagAppearance, Tag } from "@inubekit/tag";
 import { normalizeStatusByName } from "@utils/status/normalizeStatusByName";
 import { enviroment } from "@config/environment";
 

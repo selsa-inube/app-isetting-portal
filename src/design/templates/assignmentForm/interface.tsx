@@ -1,9 +1,8 @@
 import { MdSearch } from "react-icons/md";
-
-import { Text } from "@inubekit/text";
 import {
-  Fieldset,
-  Toggle,
+  Stack,
+  Textfield,
+  Button,
   Col,
   Colgroup,
   Table,
@@ -12,9 +11,9 @@ import {
   Tr,
   Th,
   Td,
-  Textfield,
-  Button,
-  Stack,
+  Toggle,
+  Text,
+  Fieldset,
 } from "@inubekit/inubekit";
 
 import { MultipleChoices } from "@design/navigation/MultipleChoices";
@@ -118,6 +117,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
                     <Td align="left" type="custom">
                       <StyledToggleContainer>
                         <Toggle
+                          key={entry.id}
                           checked={entry.isActive}
                           disabled={false}
                           id={`${entry.id}`}

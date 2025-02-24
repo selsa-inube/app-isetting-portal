@@ -9,7 +9,6 @@ import {
   IFormAddPosition,
   IGeneralInformationEntry,
 } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
-import { IRuleDecision } from "@isettingkit/input";
 import { IRoleForStaff } from "@ptypes/rolesForStaff";
 import { IEntry } from "@design/templates/assignmentForm/types";
 
@@ -65,9 +64,16 @@ const UseEditPositions = (
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
   const [errorFetchSaveData, setErrorFetchSaveData] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [selectedToggle, setSelectedToggle] = useState<IEntry[]>([]);
-  const [creditLineDecisions, setCreditLineDecisions] = useState<
-    IRuleDecision[]
+  const [selectedToggle, setSelectedToggle] = useState<IEntry[] | undefined>(
+    []
+  );
+
+  const [initialRoles, setInitialRoles] = useState<
+    {
+      id: string;
+      value: string;
+      isActive: boolean;
+    }[]
   >([]);
 
   const generalInformationRef =
@@ -108,7 +114,7 @@ const UseEditPositions = (
           isActive: !!active,
         };
       });
-
+      setInitialRoles(rolesInitial);
       setFormValues((prev) => ({
         ...prev,
         rolesStaff: {
@@ -167,29 +173,48 @@ const UseEditPositions = (
   };
 
   const handleReset = () => {
-    setFormValues(initialFormValues);
-
     setSelectedToggle([]);
     if (isSelected === editPositionTabsConfig.generalInformation.id) {
       generalInformationRef.current?.resetForm();
     }
-    if (isSelected === editPositionTabsConfig.selectionRoles.id) {
+    formValues.rolesStaff.values.forEach((role) => {
+      if (role.isActive) {
+        handleRoleToggle(role.id);
+      }
+    });
+    setFormValues({
+      ...initialFormValues,
+      rolesStaff: {
+        isValid: true,
+        values: initialRoles,
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (generalInformationRef.current?.values) {
       setFormValues((prev) => ({
         ...prev,
-        rolesStaff: {
-          isValid: true,
-          values: formValues.rolesStaff.values.map((role) => ({
-            id: role.id,
-            value: role.value,
-            isActive: role.isActive,
-            applicationStaff: role.applicationStaff,
-          })),
+        generalInformation: {
+          isValid: false,
+          values: generalInformationRef.current
+            ?.values as unknown as typeof formValues.generalInformation.values,
         },
       }));
     }
-  };
+  }, [generalInformationRef.current?.values]);
 
   const handleTabChange = (tabId: string) => {
+    if (generalInformationRef.current?.values) {
+      setFormValues((prev) => ({
+        ...prev,
+        generalInformation: {
+          isValid: false,
+          values: generalInformationRef.current
+            ?.values as unknown as typeof formValues.generalInformation.values,
+        },
+      }));
+    }
     setIsSelected(tabId);
   };
 
@@ -200,8 +225,8 @@ const UseEditPositions = (
 
         setSelectedToggle((prev) =>
           updatedRole.isActive
-            ? [...prev, updatedRole]
-            : prev.filter((item) => item.id !== updatedRole.id)
+            ? (prev ?? []).concat(updatedRole)
+            : (prev ?? []).filter((item) => item.id !== updatedRole.id)
         );
 
         return updatedRole;
@@ -217,12 +242,11 @@ const UseEditPositions = (
       },
     }));
   };
-  if (selectedToggle.length > 0) {
+  if (selectedToggle && selectedToggle.length > 0) {
     formValues.rolesStaff.values = selectedToggle;
   }
 
   return {
-    creditLineDecisions,
     formValues,
     generalInformationRef,
     isCurrentFormValid,
@@ -233,7 +257,6 @@ const UseEditPositions = (
     errorFetchSaveData,
     handleReset,
     onSubmit,
-    setCreditLineDecisions,
     setIsCurrentFormValid,
     handleTabChange,
     setShowRequestProcessModal,

@@ -1,9 +1,6 @@
-import { Grid } from "@inubekit/inubekit";
-import { useMediaQueries, useMediaQuery } from "@inubekit/hooks";
-import { Text } from "@inubekit/inubekit";
+import { Grid, useMediaQueries, useMediaQuery, Text } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
-
 import { StyledRadioBusinessUnit, StyledRadio, StyledImage } from "./styles";
 
 interface IRBusinessUnit {

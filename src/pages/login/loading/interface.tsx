@@ -1,5 +1,4 @@
 import { Spinner, Text, Stack } from "@inubekit/inubekit";
-
 import { basic } from "@design/tokens";
 
 const LoadingUI = () => {

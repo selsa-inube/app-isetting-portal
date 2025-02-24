@@ -1,5 +1,5 @@
-import { useMediaQuery } from "@inubekit/hooks";
 import { useState, useEffect } from "react";
+import { useMediaQuery } from "@inubekit/inubekit";
 
 const UseRequestProcessModal = (portalId: string) => {
   const isMobile = useMediaQuery("(max-width: 768px)");

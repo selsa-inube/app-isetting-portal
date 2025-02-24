@@ -1,12 +1,8 @@
 import { MdClear } from "react-icons/md";
-import { StyledContainerButton, StyledText } from "./styles";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { basic } from "@design/tokens";
-import { Icon, IIconAppearance } from "@inubekit/icon";
-import { Stack } from "@inubekit/inubekit";
-import { Text } from "@inubekit/inubekit";
-import { Button } from "@inubekit/inubekit";
-
+import { Stack, Icon, IIconAppearance, Text, Button } from "@inubekit/inubekit";
+import { StyledContainerButton, StyledText } from "./styles";
 interface IRequestStatus {
   title: string;
   actionText: string;

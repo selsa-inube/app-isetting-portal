@@ -1,9 +1,12 @@
-import { Stack } from "@inubekit/inubekit";
-import { Text } from "@inubekit/inubekit";
-import { Icon } from "@inubekit/inubekit";
-import { useMediaQuery } from "@inubekit/hooks";
 import { basic } from "@design/tokens";
-import { SkeletonIcon, SkeletonLine } from "@inubekit/inubekit";
+import {
+  SkeletonIcon,
+  SkeletonLine,
+  Stack,
+  Text,
+  Icon,
+  useMediaQuery,
+} from "@inubekit/inubekit";
 import { StyledInteractiveBox } from "./styles";
 
 interface IInteractiveBox {

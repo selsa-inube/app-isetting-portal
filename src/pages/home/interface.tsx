@@ -1,9 +1,6 @@
 import { useContext } from "react";
-
 import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
-
 import { Header, Icon } from "@inubekit/inubekit";
-
 import { nav, userMenu } from "@config/nav";
 import { Title } from "@design/label/Title";
 import { InteractiveBox } from "@design/cards/interactiveBox";

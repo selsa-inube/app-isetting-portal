@@ -1,7 +1,5 @@
 import { createPortal } from "react-dom";
-
 import { RequestStatus } from "@design/feedback/requestStatus";
-
 import { IRequestSteps } from "@design/feedback/requestProcess/types";
 import { basic } from "@design/tokens";
 

@@ -1,9 +1,7 @@
 import { MdDeleteOutline } from "react-icons/md";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { Icon } from "@inubekit/inubekit";
-import { useMediaQuery } from "@inubekit/hooks";
-import { Text } from "@inubekit/inubekit";
+import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
 import { IMessageModal } from "@ptypes/decisions/IMessageModal";
 import { StyledContainerIcon } from "./styles";
 interface IDelete {

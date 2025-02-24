@@ -1,10 +1,9 @@
 import { MdOutlineCreate } from "react-icons/md";
 import { Icon, Text, useMediaQuery } from "@inubekit/inubekit";
-
+import { ComponentAppearance } from "@ptypes/aparences.types";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { IMessageModal } from "@ptypes/decisions/IMessageModal";
 import { StyledContainerIcon } from "./styles";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 
 interface IEditRecord {
   portalId: string;

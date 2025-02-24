@@ -1,9 +1,7 @@
 import { MdSearch, MdPersonAddAlt } from "react-icons/md";
-import { Text } from "@inubekit/inubekit";
-import { Textfield } from "@inubekit/textfield";
-import { Button, Stack } from "@inubekit/inubekit";
-
 import {
+  Text,
+  Textfield,
   Col,
   Colgroup,
   Table,
@@ -14,6 +12,8 @@ import {
   Td,
   Tfoot,
   Pagination,
+  Button,
+  Stack,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { Loading } from "@pages/login/loading";

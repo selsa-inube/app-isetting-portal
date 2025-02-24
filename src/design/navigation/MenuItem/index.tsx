@@ -1,6 +1,4 @@
-import { Icon } from "@inubekit/inubekit";
-import { Text } from "@inubekit/inubekit";
-import { Stack } from "@inubekit/inubekit";
+import { Icon, Text, Stack } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 
 import { StyledMenuItemLink } from "./styles";

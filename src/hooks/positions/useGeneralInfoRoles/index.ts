@@ -1,7 +1,7 @@
 import { useEffect, useImperativeHandle } from "react";
 import { FormikProps, useFormik } from "formik";
 import { object } from "yup";
-import { useMediaQuery } from "@inubekit/hooks";
+import { useMediaQuery } from "@inubekit/inubekit";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
 import { IGeneralInformationEntry } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";

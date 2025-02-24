@@ -1,12 +1,15 @@
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
-import { Stack } from "@inubekit/inubekit";
-import { Text } from "@inubekit/inubekit";
 import { FormikValues } from "formik";
-import { Button } from "@inubekit/inubekit";
-import { Blanket } from "@inubekit/inubekit";
-import { Icon, IIconAppearance } from "@inubekit/icon";
-import { Divider } from "@inubekit/inubekit";
+import {
+  Stack,
+  Text,
+  Button,
+  Blanket,
+  Icon,
+  IIconAppearance,
+  Divider,
+} from "@inubekit/inubekit";
 import { StyledContainerButton, StyledModal } from "./styles";
 
 interface IDecisionModalUI {

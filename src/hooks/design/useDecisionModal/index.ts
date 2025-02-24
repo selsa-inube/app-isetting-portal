@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { string, object } from "yup";
 import { useFormik, FormikValues } from "formik";
-import { useMediaQuery } from "@inubekit/hooks";
-
+import { useMediaQuery } from "@inubekit/inubekit";
 import { IDecisionEntry } from "@design/modals/decisionModal/types";
 import { enviroment } from "@config/environment";
 

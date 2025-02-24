@@ -1,7 +1,6 @@
-import { Stack, Breadcrumbs, useMediaQuery } from "@inubekit/inubekit";
+import { Stack, Breadcrumbs, useMediaQuery, Tabs } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { Title } from "@design/label/Title";
-import { Tabs } from "@design/feedback/tabs";
 import { crumbsPositions } from "@config/positionsTabs/navigation";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";

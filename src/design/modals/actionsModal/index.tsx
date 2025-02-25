@@ -1,8 +1,7 @@
 import { MdClear } from "react-icons/md";
 import { IEntrys } from "@design/templates/assignmentForm/types";
-import { Stack } from "@inubekit/inubekit";
+import { Stack, Grid } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { Grid } from "@inubekit/inubekit";
 import { IActionsTable } from "@pages/positions/tabs/positionsTabs/types";
 import { StyledModal, StyledContentActions } from "./styles";
 

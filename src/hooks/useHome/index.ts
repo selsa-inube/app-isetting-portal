@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
-import { useMediaQuery } from "@inubekit/hooks";
+import { useMediaQuery } from "@inubekit/inubekit";
 import { AuthAndData } from "@context/authAndDataProvider";
 
 const UseHome = () => {

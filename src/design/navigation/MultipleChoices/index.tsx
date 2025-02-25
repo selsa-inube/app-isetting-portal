@@ -1,5 +1,4 @@
-import { Text } from "@inubekit/inubekit";
-import { Tag } from "@inubekit/inubekit";
+import { Text, Tag } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { SelectCheck } from "@design/select";
 import { IOptionItemChecked } from "@design/select/OptionItem";

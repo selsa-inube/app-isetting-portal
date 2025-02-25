@@ -1,4 +1,4 @@
-import { inube } from "@inubekit/foundations";
+import { inube } from "@inubekit/inubekit";
 
 const presente = {
   icon: {

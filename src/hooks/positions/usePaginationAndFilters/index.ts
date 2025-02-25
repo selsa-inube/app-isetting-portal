@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@inubekit/hooks";
+import { useMediaQuery } from "@inubekit/inubekit";
 import { useLocation } from "react-router-dom";
 import {
   PaginationConfig,

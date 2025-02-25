@@ -3,7 +3,6 @@ import { useCallback } from "react";
 import { Stack } from "@inubekit/inubekit";
 import { StyledMenu, StyledMenuContainer } from "./styles";
 import { IOption } from "./types";
-
 import { MenuLink } from "./MenuLink";
 import { MenuOption } from "./MenuOption";
 

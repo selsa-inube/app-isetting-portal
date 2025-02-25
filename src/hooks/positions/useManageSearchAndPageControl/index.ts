@@ -1,6 +1,6 @@
 import { useState, useMemo, useContext } from "react";
 import { IBusinessUnitsPortalStaffId } from "@ptypes/staffBusinessManagersId";
-import { useMediaQuery } from "@inubekit/hooks";
+import { useMediaQuery } from "@inubekit/inubekit";
 import { useLocation } from "react-router-dom";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { ActionRenderer } from "@design/table/actionRenderer";

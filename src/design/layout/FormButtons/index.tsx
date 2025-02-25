@@ -1,7 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import { Stack } from "@inubekit/inubekit";
-import { Button } from "@inubekit/inubekit";
-import { inube } from "@inubekit/foundations";
+import { Stack, Button, inube } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 
 interface IFormButtons {

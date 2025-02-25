@@ -1,6 +1,4 @@
-import { Stack } from "@inubekit/inubekit";
-import { Text } from "@inubekit/inubekit";
-import { Icon } from "@inubekit/inubekit";
+import { Stack, Text, Icon } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { StyledActionItemBlock } from "./styles";
 

@@ -1,5 +1,4 @@
 import { FormikProps } from "formik";
-
 import { Textarea, Input, Stack } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { getFieldState } from "@utils/forms";

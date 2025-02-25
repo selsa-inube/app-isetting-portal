@@ -1,5 +1,4 @@
-import { Stack } from "@inubekit/inubekit";
-import { Text } from "@inubekit/inubekit";
+import { Stack, Text } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { StyledLink } from "./styles";
 

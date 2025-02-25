@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { IAction, IBreakpoint, ITitle } from "@design/table/types";
-import { useMediaQuery, useMediaQueries } from "@inubekit/hooks";
+import { useMediaQuery, useMediaQueries } from "@inubekit/inubekit";
 import { IEntrys } from "@design/templates/assignmentForm/types";
 
 const UseTable = (

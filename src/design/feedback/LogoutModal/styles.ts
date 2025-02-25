@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { inube } from "@inubekit/foundations"
+import { inube } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 
 interface IStyledModal {
@@ -19,7 +19,8 @@ const StyledModal = styled.div<IStyledModal>`
   height: 100%;
   max-height: 180px;
   width: ${({ $smallScreen }) => ($smallScreen ? "312px" : "400px")};
-  border-radius: ${({ theme }) => theme?.spacing?.s100 || `{${basic.spacing.s8}}`};
+  border-radius: ${({ theme }) =>
+    theme?.spacing?.s100 || `{${basic.spacing.s8}}`};
   margin: ${({ theme }) => theme?.spacing?.s200 || `{${basic.spacing.s16}}`};
   z-index: 3;
 `;

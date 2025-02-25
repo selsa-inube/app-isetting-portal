@@ -1,5 +1,4 @@
 import { FormikProps } from "formik";
-
 import {
   Breadcrumbs,
   Button,
@@ -7,7 +6,6 @@ import {
   Tabs,
   useMediaQuery,
 } from "@inubekit/inubekit";
-
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { InitializerForm } from "@design/forms/InitializerForm";
 import { basic } from "@design/tokens";

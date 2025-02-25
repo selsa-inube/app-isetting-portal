@@ -1,4 +1,3 @@
-import { Text } from "@inubekit/inubekit";
 import {
   Colgroup,
   Pagination,
@@ -9,8 +8,8 @@ import {
   Th,
   Thead,
   Tr,
+  Text,
 } from "@inubekit/inubekit";
-
 import { IAction, IEntry, ITitle } from "./types";
 import { WidthColmnsData } from "./widthColumns";
 import { ShowActionTitle } from "./showActionTitle";

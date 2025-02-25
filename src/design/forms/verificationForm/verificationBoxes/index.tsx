@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@inubekit/hooks";
+import { useMediaQuery } from "@inubekit/inubekit";
 import { IFormAddPosition } from "../types";
 import {
   renderPersonalInfoVerification,

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 import { IRoleForStaff } from "@ptypes/rolesForStaff";
-import { useMediaQuery } from "@inubekit/hooks";
+import { useMediaQuery } from "@inubekit/inubekit";
 import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
 import { initalValuesPositions } from "@ptypes/positions/initialValues";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";

@@ -1,4 +1,3 @@
-import { appCards } from "@config/appCards";
 import { UseHome } from "@hooks/useHome";
 import { HomeUI } from "./interface";
 
@@ -14,11 +13,13 @@ const Home = () => {
     IsTablet,
     SmallScreen,
     Username,
+    optionsCards,
+    loading,
   } = UseHome();
-
+  console.log(optionsCards, "options");
   return (
     <HomeUI
-      data={appCards}
+      data={optionsCards}
       collapse={Collapse}
       setCollapse={SetCollapse}
       selectedClient={SelectedClient}
@@ -29,6 +30,7 @@ const Home = () => {
       isTablet={IsTablet}
       smallScreen={SmallScreen}
       username={Username}
+      loading={loading}
     />
   );
 };

@@ -1,21 +1,41 @@
 import { Stack, Breadcrumbs, useMediaQuery, Tabs } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { Title } from "@design/label/Title";
-import { crumbsPositions } from "@config/positionsTabs/navigation";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
+import { PageTitle } from "@design/label/PageTitle";
+import { privilegeOptionsConfig } from "@config/options/privilegeOptions";
+import { useSubOptions } from "@hooks/subMenu/useSubOptions";
 import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
 import { Positions } from "./tabs/positionsTabs";
 
 interface IPositionsUI {
   isSelected: string;
   handleTabChange: (id: string) => void;
+  catalogName: string;
 }
 
 const PositionsUI = (props: IPositionsUI) => {
-  const { isSelected, handleTabChange } = props;
+  const { isSelected, handleTabChange, catalogName } = props;
   const smallScreen = useMediaQuery("(max-width: 990px)");
   const smallScreenTab = useMediaQuery("(max-width: 450px)");
+  const { subOptions } = useSubOptions(catalogName);
+  const data = privilegeOptionsConfig(subOptions).find(
+    (item, index) => item[index]?.url === location.pathname
+  );
+  console.log(privilegeOptionsConfig(subOptions));
 
+  console.log(data, "Data");
+  // useEffect(() => {
+  //   (async () => {
+  //     const staffPortalId = "3";
+  //     const businessUnitPublicCode = "860514047";
+
+  //     const result = await getStaffPortalByBusinessManager(
+  //       staffPortalId,
+  //       businessUnitPublicCode
+  //     );
+  //     console.log(result);
+  //   })();
+  // }, []);
   return (
     <Stack
       direction="column"
@@ -28,12 +48,16 @@ const PositionsUI = (props: IPositionsUI) => {
     >
       <Stack gap={basic.spacing.s600} direction="column">
         <Stack gap={basic.spacing.s300} direction="column">
-          <Breadcrumbs crumbs={crumbsPositions} />
-          <Title
-            title="Cargos"
-            description="Gestionar todo lo relacionado con los permisos para los usuarios de la Plataforma INUBE"
-            sizeTitle="large"
-          />
+          {data && (
+            <>
+              <Breadcrumbs crumbs={data[0].crumbs} />
+              <PageTitle
+                title={data[0].label}
+                description={data[0].description}
+                navigatePage="/privileges"
+              />
+            </>
+          )}
         </Stack>
         <Stack gap={basic.spacing.s300} direction="column">
           <Tabs

@@ -2,11 +2,22 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
+import { decrypt } from "@utils/decrypt";
 
 const UseHome = () => {
-  const { appData, businessUnitsToTheStaff, setBusinessUnitSigla } =
-    useContext(AuthAndData);
-
+  const {
+    appData,
+    businessUnitsToTheStaff,
+    setBusinessUnitSigla,
+    businessUnitSigla,
+  } = useContext(AuthAndData);
+  const portalId = localStorage.getItem("portalCode");
+  const staffPortalId = portalId ? decrypt(portalId) : "";
+  const { optionsCards, loading } = useOptionsByBusinessunits(
+    staffPortalId,
+    businessUnitSigla
+  );
   const [Collapse, SetCollapse] = useState(false);
   const [SelectedClient, SetSelectedClient] = useState<string>("");
   const CollapseMenuRef = useRef<HTMLDivElement>(null);
@@ -28,7 +39,7 @@ const UseHome = () => {
   };
 
   const Username = appData.user.userName.split(" ")[0];
-
+  console.log(optionsCards, "ssss");
   return {
     Collapse,
     SetCollapse,
@@ -41,6 +52,8 @@ const UseHome = () => {
     Username,
     businessUnitsToTheStaff,
     HandleLogoClick,
+    optionsCards,
+    loading,
   };
 };
 

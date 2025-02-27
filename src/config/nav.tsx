@@ -16,9 +16,9 @@ const appsConfig = [
         isActive: false,
       },
       {
-        path: "/positions",
-        label: "Cargos",
-        id: "/positions",
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
         isActive: true,
       },
     ],

@@ -7,7 +7,7 @@ const PrivilegeOptionsConfig = [
     label: "Cargos",
     description:
       "Gestionar todo lo relacionado con los permisos para los usuarios de la Plataforma INUBE",
-    url: "/positions/positions",
+    url: "/privileges/positions",
     domain: "positions",
     crumbs: [
       {

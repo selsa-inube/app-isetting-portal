@@ -5,7 +5,7 @@ import { IPortalStaff } from "@ptypes/subMenu/types";
 import {
   normalizeOptionsByPublicCode,
   normalizesubOptionsByPublicCode,
-} from "@config/options";
+} from "@config/options/subOptions";
 
 const useOptionsByBusinessunits = (
   staffPortalId: string,
@@ -43,6 +43,7 @@ const useOptionsByBusinessunits = (
     .filter((option) => normalizeOptionsByPublicCode(option.publicCode))
     .map((option) => {
       const normalizedOption = normalizeOptionsByPublicCode(option.publicCode);
+
       return {
         id: option.publicCode,
         label: option.abbreviatedName,

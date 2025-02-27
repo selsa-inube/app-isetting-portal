@@ -5,7 +5,7 @@ const options = [
   {
     publicCode: "Privilegios",
     icon: <MdOutlineStart />,
-    url: "/positions",
+    url: "/privileges",
   },
 ];
 
@@ -23,11 +23,17 @@ const subOptions = [
         id: "/",
         isActive: false,
       },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: true,
+      },
 
       {
         path: "/privileges/positions",
         label: "Cargos",
-        id: "/privileges/positions",
+        id: "/positions",
         isActive: true,
       },
     ],

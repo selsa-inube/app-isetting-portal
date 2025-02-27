@@ -1,4 +1,4 @@
-import { MdOutlineSettings, MdOutlineStart } from "react-icons/md";
+import { MdOutlineStart } from "react-icons/md";
 import { ICardData } from "@pages/home/types";
 
 const appCards: ICardData[] = [
@@ -8,13 +8,6 @@ const appCards: ICardData[] = [
     description: "Cargos.",
     icon: <MdOutlineStart />,
     url: "/positions",
-  },
-  {
-    id: "rules",
-    label: "Reglas",
-    description: "Reglas.",
-    icon: <MdOutlineSettings />,
-    url: "/rules",
   },
 ];
 

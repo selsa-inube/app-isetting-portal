@@ -39,7 +39,7 @@ const UseHome = () => {
   };
 
   const Username = appData.user.userName.split(" ")[0];
-  console.log(optionsCards, "ssss");
+
   return {
     Collapse,
     SetCollapse,

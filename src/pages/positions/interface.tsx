@@ -21,21 +21,7 @@ const PositionsUI = (props: IPositionsUI) => {
   const data = privilegeOptionsConfig(subOptions).find(
     (item, index) => item[index]?.url === location.pathname
   );
-  console.log(privilegeOptionsConfig(subOptions));
 
-  console.log(data, "Data");
-  // useEffect(() => {
-  //   (async () => {
-  //     const staffPortalId = "3";
-  //     const businessUnitPublicCode = "860514047";
-
-  //     const result = await getStaffPortalByBusinessManager(
-  //       staffPortalId,
-  //       businessUnitPublicCode
-  //     );
-  //     console.log(result);
-  //   })();
-  // }, []);
   return (
     <Stack
       direction="column"

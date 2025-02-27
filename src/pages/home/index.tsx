@@ -16,7 +16,6 @@ const Home = () => {
     optionsCards,
     loading,
   } = UseHome();
-  console.log(optionsCards, "options");
   return (
     <HomeUI
       data={optionsCards}

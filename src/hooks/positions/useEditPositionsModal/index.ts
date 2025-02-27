@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IEntry } from "@design/table/types";
 
 const UseEditPositionsModal = (data: IEntry) => {
-  const [showModal, setShowModal] = useState(false);
-
   const navigate = useNavigate();
 
   const destinationData = {
@@ -14,10 +11,6 @@ const UseEditPositionsModal = (data: IEntry) => {
     MissionByRole: data.MissionByRole,
   };
 
-  const handleToggleModal = () => {
-    setShowModal(!showModal);
-  };
-
   const handleEdit = () => {
     navigate(`/privileges/positions/edit-destination`, {
       state: { data: destinationData },
@@ -25,8 +18,6 @@ const UseEditPositionsModal = (data: IEntry) => {
   };
 
   return {
-    showModal,
-    handleToggleModal,
     handleEdit,
   };
 };

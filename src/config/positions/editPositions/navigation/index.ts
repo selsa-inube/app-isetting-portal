@@ -6,8 +6,14 @@ const crumbsEditPosition = [
     isActive: false,
   },
   {
-    path: "/positions",
-    label: "Cargos",
+    path: "/privileges",
+    label: "Privilegios",
+    id: "positions",
+    isActive: false,
+  },
+  {
+    path: "/privileges/positions",
+    label: "Cargos Inube",
     id: "positions",
     isActive: false,
   },

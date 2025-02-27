@@ -32,7 +32,7 @@ const subOptions = [
 
       {
         path: "/privileges/positions",
-        label: "Cargos",
+        label: "Cargos Inube",
         id: "/positions",
         isActive: true,
       },

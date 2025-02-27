@@ -19,7 +19,7 @@ const UseEditPositionsModal = (data: IEntry) => {
   };
 
   const handleEdit = () => {
-    navigate(`/positions/edit-destination`, {
+    navigate(`/privileges/positions/edit-destination`, {
       state: { data: destinationData },
     });
   };

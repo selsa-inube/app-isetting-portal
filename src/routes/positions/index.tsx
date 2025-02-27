@@ -9,7 +9,7 @@ const PositionsRoutes = () => (
     <Route path="/" element={<PositionsOptions />} />
     <Route path="/positions" element={<Positions />} />
     <Route path="positions/add-position" element={<AddPosition />} />
-    <Route path="edit-destination" element={<EditPositions />} />
+    <Route path="positions/edit-destination" element={<EditPositions />} />
   </Routes>
 );
 

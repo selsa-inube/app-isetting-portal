@@ -31,7 +31,7 @@ const createPositionConfig = [
     title: "Consulta de cargos vigentes",
     description:
       "Consultar, crear, editar y eliminar los privilegios de un cargo.",
-    route: "/positions/positions/add-position",
+    route: "/privileges/positions/add-position",
     crumbs: [
       {
         path: "/",
@@ -40,21 +40,21 @@ const createPositionConfig = [
         isActive: false,
       },
       {
-        path: "/positions",
-        label: "Cargos",
-        id: "/positions",
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
         isActive: false,
       },
       {
-        path: "/positions/positions",
-        label: "Cargos",
-        id: "/positions/positions",
+        path: "/privileges/positions",
+        label: "Cargos Inube",
+        id: "/privileges/positions",
         isActive: false,
       },
       {
-        path: "/positions/positions/add-position",
+        path: "/privileges/positions/add-position",
         label: "Solicitar nuevo cargo",
-        id: "/positions/positions/add-position",
+        id: "/privileges/positions/add-position",
         isActive: true,
       },
     ],

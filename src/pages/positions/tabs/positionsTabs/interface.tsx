@@ -74,7 +74,7 @@ const PositionsUI = (props: IPositions) => {
                 iconBefore={<MdPersonAddAlt />}
                 spacing="wide"
                 type="link"
-                path="/positions/positions/add-position"
+                path="/privileges/positions/add-position"
               >
                 Solicitar nuevo cargo
               </Button>

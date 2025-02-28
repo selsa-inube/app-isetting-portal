@@ -1,17 +1,13 @@
-import {
-  MdOutlineStart,
-  MdVpnKey,
-  MdOutlineSettings,
-  MdLogout,
-} from "react-icons/md";
+import { MdOutlineStart, MdVpnKey, MdLogout } from "react-icons/md";
 
 import { INav } from "@pages/home/types";
 const appsConfig = [
   {
     id: 1,
-    label: "Cargos",
+    label: "Privilegios",
     description: "Gestionar los Cargos y sus privilegios",
     icon: <MdVpnKey />,
+    url: "/",
     crumbs: [
       {
         path: "/",
@@ -20,13 +16,12 @@ const appsConfig = [
         isActive: false,
       },
       {
-        path: "/positions",
-        label: "Cargos",
-        id: "/positions",
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
         isActive: true,
       },
     ],
-    url: "/positions",
   },
 ];
 
@@ -38,16 +33,10 @@ const nav: INav = {
         name: "",
         links: {
           positions: {
-            id: "positions",
-            label: "Cargos",
+            id: "privileges",
+            label: "Cargos Inube",
             icon: <MdOutlineStart />,
-            path: "/positions",
-          },
-          rules: {
-            id: "rules",
-            label: "Reglas",
-            icon: <MdOutlineSettings />,
-            path: "/rules",
+            path: "/privileges",
           },
         },
       },

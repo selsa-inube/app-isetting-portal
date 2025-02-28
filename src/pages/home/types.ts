@@ -28,6 +28,7 @@ interface INav {
 
 interface IHome {
   data?: ICardData[];
+  loading?: boolean;
   collapse: boolean;
   setCollapse: (value: boolean) => void;
   selectedClient: string;

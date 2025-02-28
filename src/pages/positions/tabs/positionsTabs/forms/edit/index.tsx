@@ -1,4 +1,3 @@
-import { editPositionModal } from "@config/positionsTabs/generics/editPositionModal";
 import { EditRecord } from "@design/feedback/editRecord";
 import { IEntry } from "@design/table/types";
 import { UseEditPositionsModal } from "@hooks/positions/useEditPositionsModal";
@@ -10,17 +9,8 @@ interface IEdit {
 const Edit = (props: IEdit) => {
   const { data } = props;
 
-  const { showModal, handleEdit, handleToggleModal } =
-    UseEditPositionsModal(data);
-  return (
-    <EditRecord
-      showModal={showModal}
-      portalId="portal"
-      editRecordMessage={editPositionModal}
-      onToggleModal={handleToggleModal}
-      onEdit={handleEdit}
-    />
-  );
+  const { handleEdit } = UseEditPositionsModal(data);
+  return <EditRecord onEdit={handleEdit} />;
 };
 
 export { Edit };

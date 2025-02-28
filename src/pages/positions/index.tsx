@@ -13,6 +13,7 @@ const Positions = () => {
     <PositionsUI
       isSelected={isSelected ?? positionsTabsConfig.cargos.id}
       handleTabChange={handleTabChange}
+      catalogName="Privilegios"
     />
   );
 };

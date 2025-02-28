@@ -17,7 +17,7 @@ const router = createBrowserRouter(
       <Route path="selectBusinessUnit/*" element={<UnitNavigationHandler />} />
       <Route path="/" element={<Landing />} errorElement={<ErrorPage />} />
       <Route path="/" element={<CorePageStructure />}>
-        <Route path="positions/*" element={<PositionsRoutes />} />
+        <Route path="privileges/*" element={<PositionsRoutes />} />
         <Route path="rules/*" element={<RulesRoutes />} />
       </Route>
       <Route path="logout" element={<Logout />} />

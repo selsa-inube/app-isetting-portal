@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
-import { Header, Icon } from "@inubekit/inubekit";
+import { Header, Icon, Text } from "@inubekit/inubekit";
 import { nav, userMenu } from "@config/nav";
 import { Title } from "@design/label/Title";
 import { InteractiveBox } from "@design/cards/interactiveBox";
@@ -23,6 +23,7 @@ import { IHome } from "./types";
 const HomeUI = (props: IHome) => {
   const {
     data,
+    loading,
     collapse,
     setCollapse,
     selectedClient,
@@ -36,7 +37,6 @@ const HomeUI = (props: IHome) => {
   } = props;
 
   const { appData } = useContext(AuthAndData);
-
   return (
     <>
       <StyledContainer>
@@ -88,15 +88,31 @@ const HomeUI = (props: IHome) => {
             />
           </StyledTitle>
           <StyledContainerCards $smallScreen={smallScreen}>
-            {data?.map((card) => (
-              <InteractiveBox
-                key={card.id}
-                label={card.label}
-                description={card.description}
-                icon={card.icon}
-                url={card.url}
-              />
-            ))}
+            {loading ? (
+              <>
+                <InteractiveBox isLoading={loading} />
+                <InteractiveBox isLoading={loading} />
+              </>
+            ) : (
+              <>
+                {data && data?.length > 0 ? (
+                  data?.map((card) => (
+                    <InteractiveBox
+                      key={card.id}
+                      label={card.label}
+                      description={card.description}
+                      icon={card.icon}
+                      url={card.url}
+                      isLoading={loading}
+                    />
+                  ))
+                ) : (
+                  <Text type="body" size="medium">
+                    No se encontró información
+                  </Text>
+                )}{" "}
+              </>
+            )}
           </StyledContainerCards>
         </StyledContainerSection>
         <StyledFooter>

@@ -67,7 +67,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 990px)");
-  console.log("initialValuesEditPosition: ", initialValues);
+
   return (
     <Stack
       direction="column"

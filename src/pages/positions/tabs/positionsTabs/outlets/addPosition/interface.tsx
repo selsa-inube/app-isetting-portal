@@ -54,7 +54,7 @@ const AddStaffRolesUI = ({
           <PageTitle
             title={createPositionConfig[0].title}
             description={createPositionConfig[0].description}
-            navigatePage="/positions/positions"
+            navigatePage="/privileges/positions"
           />
         </Stack>
         <Stack gap={basic.spacing.s300} direction="column">

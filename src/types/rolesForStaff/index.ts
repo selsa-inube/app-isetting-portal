@@ -1,6 +1,6 @@
 interface IAplication {
   appId: string;
-  abbreviatedName: string;
+  applicationName: string;
 }
 
 interface IUseCasesByStaffRoles {

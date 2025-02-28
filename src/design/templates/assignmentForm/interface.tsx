@@ -93,7 +93,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
           <Table>
             <Colgroup>
               <Col width="8%" />
-              <Col width="25%" />
+              <Col width="95%" />
             </Colgroup>
             <Thead>
               <Tr border="bottom">
@@ -130,7 +130,6 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
                       </StyledToggleContainer>
                     </Td>
                     <Td align="left"> {entry.value}</Td>
-                    <Td align="left"> {entry.applicationStaff}</Td>
                   </Tr>
                 ))
               )}

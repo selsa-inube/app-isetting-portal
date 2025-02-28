@@ -42,7 +42,7 @@ const UseEditPositions = (
       values:
         rolesData?.map((role) => ({
           id: role.application?.appId ?? "",
-          value: role.application?.abbreviatedName ?? "",
+          value: role.application?.applicationName ?? "",
           isActive: role.isActive ?? false,
         })) ?? [],
     },
@@ -53,7 +53,7 @@ const UseEditPositions = (
   );
   const transformedApplicationData = rolesData?.map((role) => ({
     id: role.application?.appId ?? "",
-    value: role.application?.abbreviatedName ?? "",
+    value: role.application?.applicationName ?? "",
     isActive: role.isActive ?? false,
   }));
 

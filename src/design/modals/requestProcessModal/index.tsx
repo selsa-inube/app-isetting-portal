@@ -91,12 +91,14 @@ const RequestProcessModal = (props: IRequestProcessModal) => {
               />
             ) : (
               <RequestStatus
+                portalId="portal"
                 title={
                   descriptionRequestStatus(
                     saveData.requestNumber,
                     saveData.settingRequestId
                   ).title
                 }
+                requestNumber={saveData.requestNumber}
                 description={
                   descriptionRequestStatus(
                     saveData.requestNumber,

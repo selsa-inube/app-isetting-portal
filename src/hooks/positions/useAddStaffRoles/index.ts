@@ -68,7 +68,7 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
 
       const transformedApplicationData = rolesData.map((role) => ({
         id: role.application?.appId ?? "",
-        value: role.application?.abbreviatedName ?? "",
+        value: role.application?.applicationName ?? "",
         isActive: role.isActive ?? false,
       }));
       setFormValues((prev) => ({
@@ -146,7 +146,7 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const handleSubmitClickApplication = () => {
     handleToggleModal();
     setShowModalApplicationStatus(!showRequestProcessModal);
-    navigate("/positions/positions");
+    navigate("/privileges/positions");
   };
 
   return {

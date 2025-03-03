@@ -18,11 +18,11 @@ const StyledModal = styled.div<IStyledModal>`
   box-sizing: border-box;
 `;
 
-const StyledContainerFields = styled.div`
+const StyledContainerFields = styled.div<IStyledModal>`
   display: flex;
   flex-direction: column;
   background-color: ${inube.palette.neutral.N0};
-  width: 402px;
+  width: ${(props) => (props.$smallScreen ? "300px" : "402px")};
   height: auto;
   border-radius: ${basic.spacing.s100};
   padding: ${basic.spacing.s075} ${basic.spacing.s200};

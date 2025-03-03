@@ -1,6 +1,12 @@
 import { MdSearch } from "react-icons/md";
 import { basic } from "@design/tokens";
-import { Input, Stack, Text, Button } from "@inubekit/inubekit";
+import {
+  Input,
+  Stack,
+  Text,
+  Button,
+  useMediaQueries,
+} from "@inubekit/inubekit";
 import { RadioBusinessUnit } from "@design/feedback/RadioBusinessUnit";
 import { NoResultsMessage } from "@design/text/noResultsMessage";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
@@ -36,9 +42,15 @@ const BusinessUnitsUI = ({
   handleSubmit,
 }: IBusinessUnitsUI) => {
   const filteredBusinessUnits = filterBusinessUnits(businessUnits, search);
-
+  const {
+    "(max-width: 532px)": screenMobile,
+    "(max-height: 1000px)": screenTablet,
+  }: Record<string, boolean> = useMediaQueries([
+    "(max-width: 532px)",
+    "(max-height: 1000px)",
+  ]);
   return (
-    <StyledBusinessUnits>
+    <StyledBusinessUnits $isMobile={screenMobile}>
       <Text type="title" as="h2" textAlign="center">
         Unidades de Negocios
       </Text>
@@ -62,7 +74,11 @@ const BusinessUnitsUI = ({
           {filteredBusinessUnits.length === 0 && (
             <NoResultsMessage search={search} />
           )}
-          <StyledBusinessUnitsList $scroll={businessUnits.length > 5}>
+          <StyledBusinessUnitsList
+            $scroll={businessUnits.length > 5}
+            $isMobile={screenMobile}
+            $isTablet={screenTablet}
+          >
             <Stack
               direction="column"
               padding={`${basic.spacing.s0} ${basic.spacing.s100}`}

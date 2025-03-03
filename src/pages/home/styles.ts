@@ -11,6 +11,9 @@ interface IStyledContainer {
   $smallScreen?: boolean;
   $typeTabs?: boolean;
 }
+interface IStyledFooter {
+  $isMobile: boolean;
+}
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,12 +25,12 @@ const StyledContainer = styled.div`
 const StyledContainerSection = styled.div<IStyledContainer>`
   display: flex;
   flex-direction: column;
-  height: 100vh;
   padding: ${basic.spacing.s200};
   gap: ${basic.spacing.s300};
 `;
 
 const StyledHeaderContainer = styled.div`
+  position: relative;
   & div > div {
     cursor: pointer;
   }
@@ -68,11 +71,11 @@ const StyledContainerCards = styled.div<IStyledContainer>`
       : `${basic.spacing.s0} ${basic.spacing.s1400} ${basic.spacing.s400}`};
 `;
 
-const StyledFooter = styled.footer`
+const StyledFooter = styled.footer<IStyledFooter>`
   display: flex;
   margin-top: auto;
-  padding: ${basic.spacing.s0} ${basic.spacing.s1600} ${basic.spacing.s0};
   justify-content: center;
+  padding-top: ${({ $isMobile }) => $isMobile && "50px"};
 `;
 
 const StyledCollapseIcon = styled.div<IStyledCollapseIcon>`

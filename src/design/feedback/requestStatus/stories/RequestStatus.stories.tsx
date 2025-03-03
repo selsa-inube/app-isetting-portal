@@ -1,5 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { Meta, StoryFn } from "@storybook/react";
+import { Button } from "@inubekit/inubekit";
+import { useState } from "react";
 import { IRequestStatus, RequestStatus } from "..";
 
 const meta: Meta<typeof RequestStatus> = {
@@ -15,18 +17,25 @@ const meta: Meta<typeof RequestStatus> = {
 };
 
 const Template: StoryFn<IRequestStatus> = (args) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
-      <RequestStatus {...args} />
+      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+      {showModal && (
+        <RequestStatus {...args} onCloseModal={() => setShowModal(false)} />
+      )}
     </>
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  title: "Estado de la solicitud",
+  portalId: "portal",
+  title: "Solicitud",
+  requestNumber: "123245",
   description:
-    "Hemos recibido tu solicitud, el tramite se procesar, con el número de solicitud 123245.  Ten encuenta que este proceso va hacer gestionado por responsable, puede tardar un tiempo mientras se gestiona la aprobación.",
+    "Este proceso será gestionado por Jose Perez, puede tardar algún tiempo mientras se gestiona la aprobación.",
   actionText: "Enterado",
 };
 

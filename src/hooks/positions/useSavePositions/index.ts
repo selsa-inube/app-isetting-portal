@@ -31,7 +31,7 @@ const UseSavePositions = (
   const [error, setError] = useState(false);
 
   const navigate = useNavigate();
-  const navigatePage = "/positions/positions";
+  const navigatePage = "/privileges/positions";
 
   const fetchSavePositionsData = async () => {
     setLoading(true);

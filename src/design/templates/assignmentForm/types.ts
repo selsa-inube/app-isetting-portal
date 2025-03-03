@@ -73,12 +73,6 @@ const titlesOptions = [
     priority: 1,
     value: "abbreviatedName",
   },
-  {
-    id: "value",
-    titleName: "Aplicación",
-    priority: 2,
-    value: "value",
-  },
 ];
 export { titlesOptions };
 export type { IEntry, IOptions, IAssignmentFormUI, IAssignmentForm, IEntrys };

@@ -23,9 +23,9 @@ const PrivilegeOptionsConfig = [
         isActive: false,
       },
       {
-        path: "/positions/positions",
+        path: "/privileges/positions",
         label: "Cargos",
-        id: "/positions/positions",
+        id: "/privileges/positions",
         isActive: true,
       },
     ],

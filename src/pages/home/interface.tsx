@@ -115,7 +115,7 @@ const HomeUI = (props: IHome) => {
             )}
           </StyledContainerCards>
         </StyledContainerSection>
-        <StyledFooter>
+        <StyledFooter $isMobile={smallScreen}>
           <StyledLogo src={appData.businessManager.urlBrand} />
         </StyledFooter>
       </StyledContainer>

@@ -2,19 +2,20 @@ import styled from "styled-components";
 import { basic } from "@design/tokens";
 
 interface IStyledBusinessUnitsList {
+  $isMobile: boolean;
+  $isTablet: boolean;
   $scroll?: boolean;
-  $smallScreen?: boolean;
 }
 
-interface IStyledContainer {
-  $smallScreen?: boolean;
+interface IStyledBusinessUnits {
+  $isMobile: boolean;
 }
 
-const StyledBusinessUnits = styled.div<IStyledContainer>`
+const StyledBusinessUnits = styled.div<IStyledBusinessUnits>`
   & form {
     & > div {
       margin: ${basic.spacing.s500} auto ${basic.spacing.s0};
-      width: ${(props) => (props.$smallScreen ? "auto" : "500px")};
+      width: ${({ $isMobile }) => ($isMobile ? "auto" : "500px")};
     }
   }
 
@@ -27,9 +28,9 @@ const StyledBusinessUnitsList = styled.div<IStyledBusinessUnitsList>`
   & > div {
     list-style: none;
     max-height: 330px;
-    width: ${(props) => (props.$smallScreen ? "200px" : "500px")};
+    min-height: ${({ $isTablet }) => $isTablet && "200px"};
+    width: ${({ $isMobile }) => ($isMobile ? "250px" : "500px")};
     overflow-y: auto;
-    min-height: ${(props) => (props.$smallScreen ? "auto" : "200px")};
   }
 `;
 

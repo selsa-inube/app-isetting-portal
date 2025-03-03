@@ -4,6 +4,7 @@ import { basic } from "@design/tokens";
 interface IStyledBusinessUnitsList {
   $scroll?: boolean;
   $smallScreen: boolean;
+  $smallScreenTable?: boolean;
 }
 
 const StyledBusinessUnits = styled.div<IStyledBusinessUnitsList>`
@@ -20,13 +21,15 @@ const StyledBusinessUnits = styled.div<IStyledBusinessUnitsList>`
 `;
 
 const StyledBusinessUnitsList = styled.div<IStyledBusinessUnitsList>`
-  & > div {
-    list-style: none;
-    min-height: ${({ $smallScreen }) => ($smallScreen ? "300px" : "200px")};
-    min-height: 300px;
-    max-height: 430px;
-    width: inherit;
-    overflow-y: ${({ $scroll }) => ($scroll ? "scroll" : "visible")};
+  & form {
+    & > div {
+      margin: ${basic.spacing.s500} auto ${basic.spacing.s0};
+      width: ${({ $smallScreen }) => ($smallScreen ? "auto" : "500px")};
+    }
+  }
+
+  & button {
+    margin-top: ${basic.spacing.s300};
   }
 `;
 

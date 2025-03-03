@@ -106,7 +106,7 @@ const DetailsRequestsInProgressModal = (
           {labelsOfRequest.slice(0, partLabelsOfRequest).map(
             (field, id) =>
               data[field.id] && (
-                <StyledContainerFields key={id}>
+                <StyledContainerFields key={id} $smallScreen={isMobile}>
                   <Text size="medium" type="label" weight="bold">
                     {field.titleName}
                   </Text>
@@ -124,7 +124,7 @@ const DetailsRequestsInProgressModal = (
           {labelsOfRequest.slice(partLabelsOfRequest).map(
             (field, id) =>
               data[field.id] && (
-                <StyledContainerFields key={id}>
+                <StyledContainerFields key={id} $smallScreen={isMobile}>
                   <Text size="medium" type="label" weight="bold">
                     {field.titleName}
                   </Text>
@@ -177,7 +177,7 @@ const DetailsRequestsInProgressModal = (
             {labelsOfTraceability.map(
               (field, id) =>
                 data[field.id] && (
-                  <StyledContainerFields key={id}>
+                  <StyledContainerFields key={id} $smallScreen={isMobile}>
                     <Text size="medium" type="label" weight="bold">
                       {field.titleName}
                     </Text>

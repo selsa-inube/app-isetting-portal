@@ -27,6 +27,9 @@ const Positions = () => {
     ShowActionTitle,
     searchPosition,
     handleSearchPositions,
+    handleToggleMenuInvitation,
+    handleCloseMenuInvitation,
+    showMenu,
   } = UseManageSearchAndPageControl(
     businessManagersData,
     PaginationConfig.PageRecord
@@ -35,8 +38,11 @@ const Positions = () => {
   return (
     <PositionsUI
       handleSearchPositions={handleSearchPositions}
+      handleCloseMenuInvitation={handleCloseMenuInvitation}
       searchPosition={searchPosition}
+      handleToggleMenuInvitation={handleToggleMenuInvitation}
       loading={loading}
+      showMenu={showMenu}
       data={businessManagersData}
       smallScreen={smallScreen}
       label={label}

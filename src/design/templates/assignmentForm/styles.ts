@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { basic } from "@design/tokens";
 
 const StyledForm = styled.form`
   width: 100%;
@@ -14,7 +13,8 @@ const StyledEntriesContainer = styled.div`
 `;
 
 const StyledOptionsContainer = styled.div`
-  height: ${basic.spacing.s24};
+  position: relative;
+  height: "24px";
   text-align: right;
 `;
 

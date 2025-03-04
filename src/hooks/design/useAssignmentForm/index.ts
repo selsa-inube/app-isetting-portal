@@ -17,7 +17,9 @@ const UseAssignmentForm = (
   const [filteredRows, setFilteredRows] = useState<IEntry[]>(entries);
   const [filterValue, setFilterValue] = useState("");
   const [dataValidations, setDataValidations] = useState(entries.length === 0);
-
+  const handleToggleRol = () => {
+    setShowMenu((prevShowMenu) => !prevShowMenu);
+  };
   const menuOptions = [
     {
       id: "allocate-all",
@@ -50,6 +52,10 @@ const UseAssignmentForm = (
 
   const handleFilterInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterValue(e.target.value);
+  };
+
+  const handleCloseMenuRol = () => {
+    setShowMenu(false);
   };
 
   const handleToggleEntry = (id: string) => {
@@ -171,6 +177,8 @@ const UseAssignmentForm = (
     dataValidations,
     options,
     handleSubmit,
+    handleToggleRol,
+    handleCloseMenuRol,
   };
 };
 

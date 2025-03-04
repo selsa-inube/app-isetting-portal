@@ -14,18 +14,17 @@ const StyledMenuContainer = styled.div`
   width: fit-content;
   max-width: 200px;
   min-width: 160px;
-  box-shadow: ${basic.spacing.s0} 1px ${basic.spacing.s2}
-    ${({ theme }) =>
-      theme?.color?.stroke?.light?.disabled || inube.palette.neutral.N30};
-  ${basic.spacing.s0} ${basic.spacing.s2} ${basic.spacing.s6}
-      ${basic.spacing.s2}
+  box-shadow:
+    0px 2px 6px
       ${({ theme }) =>
-    theme?.color?.stroke?.divider?.regular || inube.palette.neutral.N40};
+        theme?.palette?.neutral?.N90 || inube.palette.neutral.N90},
+    0px 2px 6px
+      ${({ theme }) =>
+        theme?.palette?.neutral?.N40 || inube.palette.neutral.N40};
   background-color: ${({ theme }) =>
-    theme?.color?.stroke?.light?.clear || inube.palette.neutral.N70};
-  border-radius: ${basic.spacing.s4};
-  background-color: #fff;
-  padding: ${basic.spacing.s4} ${basic.spacing.s2};
+    theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
+  border-radius: 4px;
+  padding: 8px 6px;
 `;
 
 export { StyledMenu, StyledMenuContainer };

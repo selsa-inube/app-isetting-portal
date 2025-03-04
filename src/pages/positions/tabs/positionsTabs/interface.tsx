@@ -1,4 +1,4 @@
-import { MdSearch, MdPersonAddAlt } from "react-icons/md";
+import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import {
   Text,
   Textfield,
@@ -14,12 +14,15 @@ import {
   Pagination,
   Button,
   Stack,
+  Icon,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { Loading } from "@pages/login/loading";
 import { actionsConfig, titlesOptions } from "@config/positions/table";
-import { StyledButtonWrapper } from "./styles";
+import { StyledButtonWrapper, StyledContainer } from "./styles";
 import { IPositions } from "./types";
+import { Menu } from "@design/navigation";
+import { menuPositionLinks } from "@config/positions/menuInvitation";
 
 const PositionsUI = (props: IPositions) => {
   const {
@@ -30,13 +33,16 @@ const PositionsUI = (props: IPositions) => {
     smallScreen,
     ShowAction,
     ShowActionTitle,
+    handleToggleMenuInvitation,
     filteredData,
     handleStartPage,
+    showMenu,
     handlePrevPage,
     handleNextPage,
     handleEndPage,
     firstEntryInPage,
     lastEntryInPage,
+    handleCloseMenuInvitation,
     paginatedData,
   } = props;
   return (
@@ -69,16 +75,34 @@ const PositionsUI = (props: IPositions) => {
                 handleSearchPositions(e)
               }
             />
-            <StyledButtonWrapper>
-              <Button
-                iconBefore={<MdPersonAddAlt />}
-                spacing="wide"
-                type="link"
-                path="/privileges/positions/add-position"
-              >
-                Solicitar nuevo cargo
-              </Button>
-            </StyledButtonWrapper>
+            {smallScreen ? (
+              <StyledContainer>
+                <Icon
+                  icon={<MdOutlineMoreHoriz />}
+                  size="24px"
+                  onClick={handleToggleMenuInvitation}
+                  cursorHover={true}
+                  appearance="dark"
+                />
+                {showMenu && (
+                  <Menu
+                    options={menuPositionLinks}
+                    handleClose={handleCloseMenuInvitation}
+                  />
+                )}
+              </StyledContainer>
+            ) : (
+              <StyledButtonWrapper>
+                <Button
+                  iconBefore={<MdPersonAddAlt />}
+                  spacing="wide"
+                  type="link"
+                  path="/privileges/positions/add-position"
+                >
+                  Solicitar nuevo cargo
+                </Button>
+              </StyledButtonWrapper>
+            )}
           </Stack>
           {loading && data.length <= 0 ? (
             <Loading />

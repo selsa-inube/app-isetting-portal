@@ -1,4 +1,4 @@
-import { MdSearch } from "react-icons/md";
+import { MdOutlineMoreHoriz, MdSearch } from "react-icons/md";
 import {
   Stack,
   Textfield,
@@ -14,12 +14,19 @@ import {
   Toggle,
   Text,
   Fieldset,
+  Icon,
+  useMediaQuery,
 } from "@inubekit/inubekit";
 
 import { MultipleChoices } from "@design/navigation/MultipleChoices";
 import { basic } from "@design/tokens";
-import { StyledForm, StyledToggleContainer } from "./styles";
+import {
+  StyledForm,
+  StyledOptionsContainer,
+  StyledToggleContainer,
+} from "./styles";
 import { IAssignmentFormUI, titlesOptions } from "./types";
+import { Menu } from "@design/navigation";
 
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const {
@@ -28,15 +35,19 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     entries,
     options,
     handleSubmit,
+    showMenu,
     handleSelectChange,
     onHandleSelectCheckChange,
     handleFilterInput,
     filterValue,
     isAssignAll,
+    menuOptions,
     filteredRows,
+    handleToggleRol,
+    handleCloseMenuRol,
     dataValidations,
   } = props;
-
+  const smallScreen = useMediaQuery("(max-width: 650px)");
   return (
     <StyledForm onSubmit={handleSubmit}>
       <Fieldset legend={title} size="small" type="title">
@@ -46,7 +57,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
           width="-webkit-fill-available"
         >
           <Stack gap={basic.spacing.s32} justifyContent="space-between">
-            <Stack gap={basic.spacing.s16} alignItems="end">
+            <Stack gap={basic.spacing.s16} direction="column">
               <MultipleChoices
                 id="Multiples-choices"
                 labelSelect="Selecciona la aplicacion"
@@ -69,25 +80,43 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
                 disabled={dataValidations}
               />
             </Stack>
-
-            <Stack gap={basic.spacing.s8} alignItems="end">
-              <Button
-                spacing="compact"
-                onClick={() => handleToggleAllEntries(false)}
-                disabled={
-                  !entries.some((entry) => entry.isActive) || dataValidations
-                }
-              >
-                Desasignar todos
-              </Button>
-              <Button
-                spacing="compact"
-                onClick={() => handleToggleAllEntries(true)}
-                disabled={isAssignAll || dataValidations}
-              >
-                Asignar todos
-              </Button>
-            </Stack>
+            {smallScreen ? (
+              <StyledOptionsContainer>
+                <Icon
+                  icon={<MdOutlineMoreHoriz />}
+                  appearance="dark"
+                  spacing="narrow"
+                  size="24px"
+                  shape="circle"
+                  onClick={handleToggleRol}
+                />
+                {showMenu && (
+                  <Menu
+                    options={menuOptions}
+                    handleClose={handleCloseMenuRol}
+                  />
+                )}
+              </StyledOptionsContainer>
+            ) : (
+              <Stack gap={basic.spacing.s8} alignItems="end">
+                <Button
+                  spacing="compact"
+                  onClick={() => handleToggleAllEntries(false)}
+                  disabled={
+                    !entries.some((entry) => entry.isActive) || dataValidations
+                  }
+                >
+                  Desasignar todos
+                </Button>
+                <Button
+                  spacing="compact"
+                  onClick={() => handleToggleAllEntries(true)}
+                  disabled={isAssignAll || dataValidations}
+                >
+                  Asignar todos
+                </Button>
+              </Stack>
+            )}
           </Stack>
 
           <Table>

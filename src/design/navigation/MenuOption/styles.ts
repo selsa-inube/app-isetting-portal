@@ -9,8 +9,6 @@ const StyledOption = styled.button`
     `${theme?.spacing?.s075} ${theme?.spacing?.s150}` ||
     `${basic.spacing.s6} ${basic.spacing.s12}`};
   border: none;
-  background-color: ${({ theme }) =>
-    theme?.color?.stroke?.light?.clear || inube.palette.neutral.N70};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) =>

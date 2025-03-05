@@ -1,21 +1,27 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { inube } from "@inubekit/inubekit";
-import { basic } from "@design/tokens";
 
 const StyledLink = styled(Link)`
+  & > div {
+    width: 170px;
+  }
+  & > div,
+  svg {
+    color: #091e42;
+  }
   text-decoration: none;
   color: ${({ theme }) =>
-    theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
+    theme?.palette?.neutral?.N300 || inube.palette.neutral.N300};
   display: inline-block;
-  padding: ${basic.spacing.s6} ${basic.spacing.s12};
+  padding: "6px 12px";
   border: none;
   background-color: ${({ theme }) =>
-    theme?.color?.stroke?.light?.clear || inube.palette.neutral.N70};
+    theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) =>
-      theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
+      theme?.palette?.neutral?.N300 || inube.palette.neutral.N300};
   }
 `;
 

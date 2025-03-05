@@ -17,16 +17,20 @@ const UseManageSearchAndPageControl = (
   const [currentPage, setCurrentPage] = useState(0);
   const totalRecords = Array.isArray(data) ? data.length : 0;
   const totalPages = Math.ceil(totalRecords / pageLength);
-
+  const [showMenu, setShowMenu] = useState(false);
   const handleStartPage = () => setCurrentPage(0);
   const handlePrevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 0));
   const handleNextPage = () =>
     setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
   const handleEndPage = () => setCurrentPage(totalPages - 1);
-
+  const handleToggleMenuInvitation = () => {
+    setShowMenu((prevShowMenu) => !prevShowMenu);
+  };
   const firstEntryInPage = currentPage * pageLength;
   const lastEntryInPage = Math.min(firstEntryInPage + pageLength, totalRecords);
-
+  const handleCloseMenuInvitation = () => {
+    setShowMenu(false);
+  };
   const filteredData = useMemo(() => {
     if (!Array.isArray(data)) {
       console.warn("Data is not an array:", data);
@@ -43,7 +47,7 @@ const UseManageSearchAndPageControl = (
     return filteredData.slice(firstEntryInPage, lastEntryInPage);
   }, [filteredData, firstEntryInPage, lastEntryInPage]);
 
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_580);
+  const smallScreen = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
   const location = useLocation();
   const label = PrivilegeOptionsConfig.find(
     (item) => item.url === location.pathname
@@ -77,6 +81,9 @@ const UseManageSearchAndPageControl = (
     ShowActionTitle,
     businessManagersData,
     handleSearchPositions,
+    handleToggleMenuInvitation,
+    handleCloseMenuInvitation,
+    showMenu,
   };
 };
 

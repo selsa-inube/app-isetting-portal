@@ -29,6 +29,8 @@ const AssignmentForm = (props: IAssignmentForm) => {
     dataValidations,
     options,
     handleSubmit,
+    handleToggleRol,
+    handleCloseMenuRol,
   } = UseAssignmentForm(
     entries,
     changeData,
@@ -40,6 +42,8 @@ const AssignmentForm = (props: IAssignmentForm) => {
 
   return (
     <AssignmentFormUI
+      handleToggleRol={handleToggleRol}
+      handleCloseMenuRol={handleCloseMenuRol}
       handleToggleAllEntries={handleToggleAllEntries}
       filter={filterValue}
       handleFilter={handleFilterChange}

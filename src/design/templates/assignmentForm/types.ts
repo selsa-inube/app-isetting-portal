@@ -41,6 +41,8 @@ interface IAssignmentFormUI {
   entries: IEntry[];
   filter: string;
   filteredRows: IEntry[];
+  handleToggleRol: () => void;
+  handleCloseMenuRol: () => void;
   filterValue: string;
   isAssignAll: boolean;
   menuOptions: IOption[];

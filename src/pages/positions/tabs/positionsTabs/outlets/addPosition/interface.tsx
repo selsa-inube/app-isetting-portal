@@ -110,15 +110,24 @@ const AddStaffRolesUI = ({
           </Stack>
           <Stack gap="16px" justifyContent="flex-end">
             <Button
-              onClick={handlePreviousStep}
+              onClick={
+                currentStep === 1
+                  ? () => generalInformationRef.current?.resetForm()
+                  : handlePreviousStep
+              }
               type="button"
-              disabled={currentStep === steps[0].id}
+              disabled={
+                currentStep === 1
+                  ? !generalInformationRef.current?.dirty
+                  : currentStep === steps[0].id
+              }
               spacing="compact"
               variant="none"
               appearance="gray"
             >
-              Atrás
+              {currentStep === 1 ? "Cancelar" : "Atrás"}
             </Button>
+
             <Button
               onClick={() =>
                 currentStep === steps.length

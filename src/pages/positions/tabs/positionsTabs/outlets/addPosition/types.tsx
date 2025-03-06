@@ -85,6 +85,7 @@ interface IAddPositionUI {
   showRequestProcessModal: boolean;
   loading: boolean;
   onCloseRequestStatus: () => void;
+  options: IOptionInitialiceEntry[];
   requestSteps: IRequestSteps[];
 }
 

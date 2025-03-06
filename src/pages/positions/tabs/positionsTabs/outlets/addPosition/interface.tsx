@@ -19,6 +19,7 @@ const AddStaffRolesUI = ({
   initialGeneralInformationValues,
   steps,
   setSelectedToggle,
+  options,
   onNextStep,
   handlePreviousStep,
   handleNextStep,
@@ -84,7 +85,7 @@ const AddStaffRolesUI = ({
             {currentStep === 2 && (
               <InitializerForm
                 dataOptionsForms={roles}
-                dataOptionsValueSelect={formValues.applicationStaff.values}
+                dataOptionsValueSelect={options}
                 setSelectedToggle={setSelectedToggle}
               />
             )}

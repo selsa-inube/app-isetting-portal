@@ -1,7 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
 import { StoryFn } from "@storybook/react";
-import { FilterFields, IFilterFields } from ".";
 import { useState } from "react";
+import { IFilterFields } from "./types";
+import { FilterFields } from ".";
 
 const story = {
   component: FilterFields,
@@ -55,16 +56,10 @@ const Template: StoryFn<IFilterFields> = (args) => {
     setShowModal(!showModal);
   };
 
-  return (
-    <FilterFields
-      {...args}
-      onCloseModal={handleToggleModal}
-      onClick={handleToggleModal}
-    />
-  );
+  return <FilterFields {...args} onClick={handleToggleModal} />;
 };
 
-export const Default = Template.bind({});
+const Default = Template.bind({});
 Default.args = {
   userData: data,
   name: "searchUser",
@@ -78,4 +73,5 @@ Default.args = {
   ],
 };
 
+export { Default };
 export default story;

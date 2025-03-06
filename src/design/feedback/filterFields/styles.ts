@@ -1,6 +1,6 @@
+import styled from "styled-components";
 import { basic } from "@design/tokens";
 import { inube } from "@inubekit/inubekit";
-import styled from "styled-components";
 
 interface IStyledSearchUserCard {
   $isActive: boolean;
@@ -21,7 +21,7 @@ const StyledFilterdUserCard = styled.div<IStyledSearchUserCard>`
   border: 1px solid
     ${({ theme }) =>
       theme.color?.stroke?.gray?.regular || inube.palette.neutral.N40};
-  padding: ${basic.spacing.s200};
+  padding: ${basic.spacing.s100};
   background-color: ${inube.palette.neutral.N30};
 `;
 export { StyledSearchUserCard, StyledFilterdUserCard };

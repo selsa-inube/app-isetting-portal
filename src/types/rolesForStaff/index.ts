@@ -11,6 +11,7 @@ interface IUseCasesByStaffRoles {
 interface IRoleForStaff {
   roleId: string;
   roleName: string;
+  applicationName?: string;
   isActive?: boolean;
   publicCode?: string;
   descriptionUse?: string;

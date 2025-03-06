@@ -16,7 +16,7 @@ const story = {
 
 const Template: StoryFn<IFilterModal> = (args) => <FilterModal {...args} />;
 
-export const Default = Template.bind({});
+const Default = Template.bind({});
 Default.args = {
   actionText: "Filtrar",
   appearance: "primary",
@@ -27,6 +27,7 @@ Default.args = {
     { label: "Aplicación 2", id: "app2", checked: false },
     { label: "Aplicación 3", id: "app3", checked: false },
   ],
+  selectedOptions: [],
 };
-
+export { Default };
 export default story;

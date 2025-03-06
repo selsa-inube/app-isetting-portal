@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Text, Tag } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { SelectCheck } from "@design/select";
@@ -24,7 +25,7 @@ const MultipleChoices = (props: IIMultipleChoices) => {
     labelSelected,
     onHandleSelectCheckChange,
     options,
-    placeholderSelect = "",
+    placeholderSelect = "Selecciona una opción",
     required = false,
     message,
     onBlur,
@@ -32,6 +33,16 @@ const MultipleChoices = (props: IIMultipleChoices) => {
 
   const { uniqueOptions, onHandleSelectCheck, onRemoveTag } =
     UseMultipleChoices(options, onHandleSelectCheckChange);
+
+  const [selectedLabels, setSelectedLabels] = useState<string>("");
+
+  useEffect(() => {
+    const selected = uniqueOptions
+      .filter((option) => option.checked)
+      .map((option) => option.label)
+      .join(", ");
+    setSelectedLabels(selected);
+  }, [uniqueOptions]);
 
   return (
     <StyledContainer>
@@ -70,7 +81,7 @@ const MultipleChoices = (props: IIMultipleChoices) => {
         name={id}
         onChangeCheck={onHandleSelectCheck}
         options={uniqueOptions}
-        placeholder={placeholderSelect}
+        placeholder={selectedLabels || placeholderSelect}
         required={required}
         value=""
         size="compact"

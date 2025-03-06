@@ -33,7 +33,7 @@ const InitializerFormUI = (props: IInitializerFormUI) => {
             title="Selecciona los roles:"
             setChangedData={setChangedData}
             changeData={changeData}
-            valueSelect={dataOptionsValueSelect}
+            options={dataOptionsValueSelect}
             setSelectedToggle={setSelectedToggle}
           />
         </FormButtons>
@@ -47,7 +47,7 @@ const InitializerFormUI = (props: IInitializerFormUI) => {
       entries={dataOptionsForms}
       title="Selecciona los roles:"
       readOnly={readOnly}
-      valueSelect={dataOptionsValueSelect}
+      options={dataOptionsValueSelect}
       setSelectedToggle={setSelectedToggle}
     />
   );

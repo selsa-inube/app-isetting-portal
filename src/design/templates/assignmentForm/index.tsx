@@ -8,10 +8,10 @@ const AssignmentForm = (props: IAssignmentForm) => {
     entries,
     title,
     readOnly,
+    options,
     setSelectedToggle,
     setChangedData = () => {},
     changeData = [],
-    valueSelect,
   } = props;
 
   const {
@@ -27,19 +27,18 @@ const AssignmentForm = (props: IAssignmentForm) => {
     setShowMenu,
     showMenu,
     dataValidations,
-    options,
     handleSubmit,
     handleToggleRol,
     handleCloseMenuRol,
+    newOptions,
   } = UseAssignmentForm(
     entries,
     changeData,
     setChangedData,
     handleChange,
     setSelectedToggle,
-    valueSelect
+    options
   );
-
   return (
     <AssignmentFormUI
       handleToggleRol={handleToggleRol}
@@ -59,7 +58,7 @@ const AssignmentForm = (props: IAssignmentForm) => {
       filteredRows={filteredRows}
       handleSubmit={handleSubmit}
       handleSelectChange={handleSelectChange}
-      options={options}
+      options={newOptions}
       filterValue={filterValue}
       onHandleSelectCheckChange={onHandleSelectCheckChange}
       dataValidations={dataValidations}

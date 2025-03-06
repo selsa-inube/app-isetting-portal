@@ -7,8 +7,9 @@ import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { UseSavePositions } from "@hooks/positions/useSavePositions";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { UseFetchAplicaionStaff } from "@hooks/positions/useAplication";
+import { IOptionInitialiceEntryApp } from "./types";
 import { AddStaffRolesUI } from "./interface";
-
 const AddPosition = () => {
   const { rolesStaff } = UseFetchRolesStaff();
   const {
@@ -47,6 +48,9 @@ const AddPosition = () => {
       setShowRequestProcessModal,
       setShowModal
     );
+
+  const { options } = UseFetchAplicaionStaff();
+
   return (
     <AddStaffRolesUI
       savePositions={savePositions as ISaveDataResponse}
@@ -77,6 +81,7 @@ const AddPosition = () => {
       onToggleApplicationStatus={handleToggleModalApplication}
       loading={loading}
       onCloseRequestStatus={handleCloseRequestStatus}
+      options={options as IOptionInitialiceEntryApp[]}
     />
   );
 };

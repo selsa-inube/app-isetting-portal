@@ -1,99 +1,67 @@
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import { MdOutlineFilterAltOff, MdOutlineFilterAlt } from "react-icons/md";
-import { ILabel } from "./types";
-import { StyledFilterdUserCard, StyledSearchUserCard } from "./styles";
-import { Button, Stack, useMediaQuery } from "@inubekit/inubekit";
-
+import { Button, Stack, Tag, useMediaQuery } from "@inubekit/inubekit";
 import { FilterModal } from "@design/modals/filterModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { IOptionItemChecked } from "@design/select/OptionItem";
+import { IFilterFields } from "./types";
+import { StyledFilterdUserCard, StyledSearchUserCard } from "./styles";
 
-interface IFilterFields {
-  id: string;
-  label: string;
-  name: string;
-  placeholder: string;
-  options: IOptionItemChecked[];
-  userData: { [key: string]: string | number }[] | Record<string, unknown>[];
-  actionText: string;
-  title: string;
-  labels?: ILabel[];
-  onUserSelect: (data: { [key: string]: string | number }) => void;
-  onReset: (field: () => void) => void;
-  onCloseModal: () => void;
-  onClick: () => void;
-  onSelectChange: (options: IOptionItemChecked[]) => void;
-  idLabel?: string;
-  nameLabel?: string;
-  selectedId?: string;
-  required?: boolean;
-  message?: string;
-  status?: string | null;
-  onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-function FilterFields(props: IFilterFields) {
-  const {
-    options,
-    actionText,
-    userData,
-    title,
-    idLabel = "userID",
-    nameLabel = "username",
-    selectedId,
-    onReset,
-    onClick,
-    onSelectChange,
-  } = props;
+const FilterFields = (props: IFilterFields) => {
+  const { options, actionText, title, onClick, onSelectChange } = props;
   const [showModal, setShowModal] = useState(false);
-
-  const [selectedUsername, setSelectedUsername] = useState(
-    String(
-      userData.find((data) => data[idLabel] === selectedId)?.[nameLabel] || ""
-    )
+  const [selectedOptions, setSelectedOptions] = useState<IOptionItemChecked[]>(
+    []
   );
+  const [tempSelectedOptions, setTempSelectedOptions] = useState<
+    IOptionItemChecked[]
+  >([]);
 
-  const [validateCardRemoved, setValidateCardRemoved] = useState(false);
-  console.log(selectedUsername);
   const smallScreen = useMediaQuery("(max-width: 970px)");
-
-  useEffect(() => {
-    setSelectedUsername(
-      String(
-        userData.find((data) => data[idLabel] === selectedId)?.[nameLabel] || ""
-      )
-    );
-  }, [idLabel, selectedId, nameLabel, userData]);
-
-  const resetSelectedUser = () => {
-    setSelectedUsername("");
-  };
-
-  useEffect(() => {
-    if (onReset) {
-      onReset(resetSelectedUser);
-    }
-  }, [onReset]);
-
-  useEffect(() => {
-    if (validateCardRemoved) {
-      setSelectedUsername("");
-    }
-  }, [validateCardRemoved]);
-
   const handleToggleModal = () => {
     setShowModal(!showModal);
-    setValidateCardRemoved(false);
+    if (!showModal) {
+      setTempSelectedOptions(selectedOptions);
+    }
   };
 
-  // const handleUserSelect = (data: { [key: string]: string | number }) => {
-  //   if (data && data[nameLabel]) {
-  //     setSelectedUsername(String(data[nameLabel]));
-  //   }
-  //   onUserSelect(data);
-  //   handleToggleModal();
-  // };
+  const handleSelectChange = (options: IOptionItemChecked[]) => {
+    setTempSelectedOptions((prev) => {
+      const newOptions = options.filter((option) => option.checked);
+      const mergedOptions = [...prev, ...newOptions].reduce<
+        IOptionItemChecked[]
+      >((acc, option) => {
+        if (!acc.some((item) => item.id === option.id)) {
+          acc.push(option);
+        }
+        return acc;
+      }, []);
+      return mergedOptions;
+    });
+  };
+
+  const handleApplyFilters = () => {
+    setShowModal(false);
+    setSelectedOptions((prev) => {
+      const mergedOptions = [...prev, ...tempSelectedOptions].reduce<
+        IOptionItemChecked[]
+      >((acc, option) => {
+        if (!acc.some((item) => item.id === option.id)) {
+          acc.push(option);
+        }
+        return acc;
+      }, []);
+      return mergedOptions;
+    });
+    onSelectChange(tempSelectedOptions);
+    onClick();
+  };
+
+  const handleClearFilters = () => {
+    setSelectedOptions([]);
+    setTempSelectedOptions([]);
+    onSelectChange(options.map((option) => ({ ...option, checked: false })));
+  };
 
   return (
     <>
@@ -102,36 +70,58 @@ function FilterFields(props: IFilterFields) {
           <StyledFilterdUserCard
             $smallScreen={smallScreen}
             $isActive={showModal}
-          ></StyledFilterdUserCard>
+          >
+            {selectedOptions.map((option) => (
+              <Tag
+                key={option.id}
+                appearance="primary"
+                label={option.label}
+                weight="normal"
+                removable
+                onClose={() =>
+                  setSelectedOptions(
+                    selectedOptions.filter((item) => item.id !== option.id)
+                  )
+                }
+              />
+            ))}
+          </StyledFilterdUserCard>
           <Stack gap="10px">
-            <Button appearance="gray" iconBefore={<MdOutlineFilterAltOff />}>
+            <Button
+              appearance="gray"
+              iconBefore={<MdOutlineFilterAltOff />}
+              onClick={handleClearFilters}
+            >
               Quitar
             </Button>
+
             <Button
               onClick={handleToggleModal}
               iconBefore={<MdOutlineFilterAlt />}
+              disabled={selectedOptions.length === options.length}
             >
               Filtrar
             </Button>
           </Stack>
         </Stack>
       </StyledSearchUserCard>
+
       {showModal && (
         <FilterModal
           actionText={actionText}
+          selectedOptions={selectedOptions}
           appearance={ComponentAppearance.PRIMARY}
           isLoading={false}
           portalId="portal"
           title={title}
           options={options}
           onCloseModal={handleToggleModal}
-          onClick={onClick}
-          onSelectChange={onSelectChange}
+          onClick={handleApplyFilters}
+          onSelectChange={handleSelectChange}
         />
       )}
     </>
   );
-}
+};
 
 export { FilterFields };
-export type { IFilterFields };

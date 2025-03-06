@@ -105,10 +105,10 @@ const UseAssignmentForm = (
     setSelectedOptions(selectedIds);
   };
 
-  const options = valueSelect.map((entry) => ({
+  const newOptions = valueSelect.map((entry) => ({
     id: entry.id,
     label: entry.value,
-    checked: filteredRows.some((row) => row.applicationStaff === entry.value),
+    checked: filteredRows.some((row) => row.applicationName === entry.value),
   }));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -175,7 +175,7 @@ const UseAssignmentForm = (
     setShowMenu,
     showMenu,
     dataValidations,
-    options,
+    newOptions,
     handleSubmit,
     handleToggleRol,
     handleCloseMenuRol,

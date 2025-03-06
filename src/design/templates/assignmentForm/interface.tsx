@@ -18,16 +18,16 @@ import {
   useMediaQuery,
 } from "@inubekit/inubekit";
 
-import { MultipleChoices } from "@design/navigation/MultipleChoices";
 import { basic } from "@design/tokens";
+
+import { Menu } from "@design/navigation";
+import { FilterFields } from "@design/feedback/filterFields";
 import {
   StyledForm,
   StyledOptionsContainer,
   StyledToggleContainer,
 } from "./styles";
 import { IAssignmentFormUI, titlesOptions } from "./types";
-import { Menu } from "@design/navigation";
-
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const {
     title,
@@ -36,7 +36,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     options,
     handleSubmit,
     showMenu,
-    handleSelectChange,
+
     onHandleSelectCheckChange,
     handleFilterInput,
     filterValue,
@@ -50,6 +50,17 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const smallScreen = useMediaQuery("(max-width: 650px)");
   return (
     <StyledForm onSubmit={handleSubmit}>
+      <FilterFields
+        name="Filtrar"
+        actionText="Filtrar"
+        title="Filtrar"
+        onClick={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        options={options}
+        onSelectChange={() => {}}
+      ></FilterFields>
+
       <Fieldset legend={title} size="small" type="title">
         <Stack
           gap={basic.spacing.s16}
@@ -58,14 +69,6 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
         >
           <Stack gap={basic.spacing.s32} justifyContent="space-between">
             <Stack gap={basic.spacing.s16} direction="column">
-              <MultipleChoices
-                id="Multiples-choices"
-                labelSelect="Selecciona la aplicacion"
-                labelSelected=""
-                onHandleSelectCheckChange={handleSelectChange}
-                options={options}
-                placeholderSelect="Seleccione una opción"
-              />
               <Textfield
                 type="search"
                 iconBefore={<MdSearch size={22} />}

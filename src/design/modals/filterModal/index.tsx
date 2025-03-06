@@ -10,13 +10,12 @@ import {
   Blanket,
   Button,
 } from "@inubekit/inubekit";
-import { StyledContainerButton, StyledModal } from "./styles";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { enviroment } from "@config/environment";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { MultipleChoices } from "@design/navigation/MultipleChoices";
-
+import { StyledContainerButton, StyledModal } from "./styles";
 interface IFilterModal {
   actionText: string;
   appearance: IIconAppearance;
@@ -24,6 +23,7 @@ interface IFilterModal {
   portalId: string;
   title: string;
   options: IOptionItemChecked[];
+  selectedOptions: IOptionItemChecked[];
   onClick: () => void;
   onCloseModal: () => void;
   onSelectChange: (options: IOptionItemChecked[]) => void;
@@ -36,6 +36,7 @@ const FilterModal = (props: IFilterModal) => {
     isLoading,
     portalId,
     title,
+    selectedOptions,
     options,
     onCloseModal,
     onClick,
@@ -51,6 +52,11 @@ const FilterModal = (props: IFilterModal) => {
       "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
     );
   }
+  const filterSelectedOptions = () => {
+    return options.filter(
+      (option) => !selectedOptions.some((selected) => selected.id === option.id)
+    );
+  };
 
   return createPortal(
     <Blanket>
@@ -85,7 +91,11 @@ const FilterModal = (props: IFilterModal) => {
           labelSelect="Aplicación"
           labelSelected=""
           onHandleSelectCheckChange={onSelectChange}
-          options={options}
+          options={
+            filterSelectedOptions().length > 0
+              ? filterSelectedOptions()
+              : options
+          }
           placeholderSelect="Seleccione opciones"
         />
 

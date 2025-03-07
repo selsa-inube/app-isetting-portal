@@ -5,7 +5,11 @@ import { FilterModal } from "@design/modals/filterModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { IFilterFields } from "./types";
-import { StyledFilterdUserCard, StyledSearchUserCard } from "./styles";
+import {
+  StyledButtonFilter,
+  StyledFilterdUserCard,
+  StyledSearchUserCard,
+} from "./styles";
 
 const FilterFields = (props: IFilterFields) => {
   const { options, actionText, title, onClick, onSelectChange } = props;
@@ -86,23 +90,25 @@ const FilterFields = (props: IFilterFields) => {
               />
             ))}
           </StyledFilterdUserCard>
-          <Stack gap="10px">
-            <Button
-              appearance="gray"
-              iconBefore={<MdOutlineFilterAltOff />}
-              onClick={handleClearFilters}
-            >
-              Quitar
-            </Button>
+          <StyledButtonFilter>
+            <Stack gap="10px">
+              <Button
+                appearance="gray"
+                iconBefore={<MdOutlineFilterAltOff />}
+                onClick={handleClearFilters}
+              >
+                Quitar
+              </Button>
 
-            <Button
-              onClick={handleToggleModal}
-              iconBefore={<MdOutlineFilterAlt />}
-              disabled={selectedOptions.length === options.length}
-            >
-              Filtrar
-            </Button>
-          </Stack>
+              <Button
+                onClick={handleToggleModal}
+                iconBefore={<MdOutlineFilterAlt />}
+                disabled={selectedOptions.length === options.length}
+              >
+                Filtrar
+              </Button>
+            </Stack>
+          </StyledButtonFilter>
         </Stack>
       </StyledSearchUserCard>
 

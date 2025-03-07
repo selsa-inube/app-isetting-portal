@@ -3,6 +3,7 @@ import {
   MdOutlineError,
   MdCheckCircle,
   MdOutlineArrowDropDown,
+  MdApps,
 } from "react-icons/md";
 import { Text, Label, Icon, Stack } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
@@ -98,6 +99,7 @@ const SelectCheckUI = forwardRef<HTMLDivElement, ISelectCheckUI>(
                 invalid={status === "invalid" && !readonly}
                 size={getTypo(size!)}
                 margin={`${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s2}`}
+                padding={`${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s150}`}
               >
                 {label}
               </Label>
@@ -110,43 +112,45 @@ const SelectCheckUI = forwardRef<HTMLDivElement, ISelectCheckUI>(
             )}
           </Stack>
         )}
-
-        <StyledInputContainer
-          disabled={disabled}
-          $focused={focused!}
-          $status={status}
-          onClick={onClick}
-          $readonly={readonly}
-        >
-          <StyledInput
-            autoComplete="off"
-            readOnly
-            value={value}
-            name={name}
-            id={id}
-            placeholder={placeholder}
+        <Stack alignItems="center" gap={basic.spacing.s4}>
+          <Icon appearance={"gray"} icon={<MdApps />}></Icon>
+          <StyledInputContainer
             disabled={disabled}
-            $required={required}
-            $size={size}
-            $status={status}
-            $fullwidth={fullwidth}
             $focused={focused!}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            onChange={onChange}
+            $status={status}
             onClick={onClick}
-          />
-
-          {!readonly && (
-            <Icon
-              appearance="dark"
-              icon={<MdOutlineArrowDropDown />}
-              size="24px"
-              spacing="narrow"
+            $readonly={readonly}
+          >
+            <StyledInput
+              autoComplete="off"
+              readOnly
+              value={value}
+              name={name}
+              id={id}
+              placeholder={placeholder}
               disabled={disabled}
+              $required={required}
+              $size={size}
+              $status={status}
+              $fullwidth={fullwidth}
+              $focused={focused!}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              onChange={onChange}
+              onClick={onClick}
             />
-          )}
-        </StyledInputContainer>
+
+            {!readonly && (
+              <Icon
+                appearance="dark"
+                icon={<MdOutlineArrowDropDown />}
+                size="24px"
+                spacing="narrow"
+                disabled={disabled}
+              />
+            )}
+          </StyledInputContainer>
+        </Stack>
 
         {status && !readonly && (
           <Message disabled={disabled} status={status} message={message} />

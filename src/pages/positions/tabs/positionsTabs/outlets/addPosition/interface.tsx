@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Stack, Breadcrumbs, Assisted, Button } from "@inubekit/inubekit";
 import { PageTitle } from "@design/label/PageTitle";
 import { InitializerForm } from "@design/forms/InitializerForm";
@@ -40,6 +41,18 @@ const AddStaffRolesUI = ({
   disabled,
   formValues,
 }: IAddPositionUI) => {
+  const [showCancelModal, setShowCancelModal] = useState(false);
+
+  const handleCancel = () => {
+    setShowCancelModal(true);
+  };
+
+  const confirmCancel = () => {
+    generalInformationRef.current?.resetForm();
+    setShowCancelModal(false);
+    navigate("/privileges/positions");
+  };
+
   return (
     <Stack
       direction="column"
@@ -112,16 +125,7 @@ const AddStaffRolesUI = ({
           </Stack>
           <Stack gap="16px" justifyContent="flex-end">
             <Button
-              onClick={
-                currentStep === 1
-                  ? () => {
-                      generalInformationRef.current?.resetForm();
-                      setTimeout(() => {
-                        navigate("/privileges/positions");
-                      }, 2000);
-                    }
-                  : handlePreviousStep
-              }
+              onClick={currentStep === 1 ? handleCancel : handlePreviousStep}
               type="button"
               disabled={
                 currentStep === 1
@@ -148,6 +152,7 @@ const AddStaffRolesUI = ({
             </Button>
           </Stack>
         </Stack>
+
         {showModal && (
           <DecisionModal
             portalId="portal"
@@ -158,6 +163,7 @@ const AddStaffRolesUI = ({
             onClick={onFinishForm}
           />
         )}
+
         {showRequestProcessModal && (
           <RequestProcessModal
             portalId="portal"
@@ -168,6 +174,17 @@ const AddStaffRolesUI = ({
             requestProcessSteps={requestSteps}
             appearance={ComponentAppearance.SUCCESS}
             onCloseRequestStatus={onCloseRequestStatus}
+          />
+        )}
+
+        {showCancelModal && (
+          <DecisionModal
+            portalId="portal"
+            title="Regresar"
+            description="Perderás el progreso, ¿Realmente deseas regresar?"
+            actionText="Regresar"
+            onCloseModal={() => setShowCancelModal(false)}
+            onClick={confirmCancel}
           />
         )}
       </Stack>

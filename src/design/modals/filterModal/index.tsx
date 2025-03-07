@@ -15,7 +15,11 @@ import { ComponentAppearance } from "@ptypes/aparences.types";
 import { enviroment } from "@config/environment";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { MultipleChoices } from "@design/navigation/MultipleChoices";
-import { StyledContainerButton, StyledModal } from "./styles";
+import {
+  StyledButtonFilter,
+  StyledContainerButton,
+  StyledModal,
+} from "./styles";
 interface IFilterModal {
   actionText: string;
   appearance: IIconAppearance;
@@ -98,27 +102,28 @@ const FilterModal = (props: IFilterModal) => {
           }
           placeholderSelect="Seleccione opciones"
         />
+        <StyledButtonFilter>
+          <Stack gap={basic.spacing.s250} justifyContent="flex-end">
+            <Button
+              spacing="wide"
+              appearance={ComponentAppearance.GRAY}
+              variant="filled"
+              onClick={onCloseModal}
+            >
+              Cancelar
+            </Button>
 
-        <Stack gap={basic.spacing.s250} justifyContent="flex-end">
-          <Button
-            spacing="wide"
-            appearance={ComponentAppearance.GRAY}
-            variant="filled"
-            onClick={onCloseModal}
-          >
-            Cancelar
-          </Button>
-
-          <Button
-            spacing="wide"
-            appearance={appearance}
-            variant="filled"
-            loading={isLoading}
-            onClick={onClick}
-          >
-            {actionText}
-          </Button>
-        </Stack>
+            <Button
+              spacing="wide"
+              appearance={appearance}
+              variant="filled"
+              loading={isLoading}
+              onClick={onClick}
+            >
+              {actionText}
+            </Button>
+          </Stack>
+        </StyledButtonFilter>
       </StyledModal>
     </Blanket>,
     node

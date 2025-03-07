@@ -47,12 +47,13 @@ const StyledContainer = styled.div<IStyledContainer>`
 const StyledInputContainer = styled.div<IStyledInputContainer>`
   display: grid;
   grid-template-columns: 1fr auto;
+  width: 100%;
   align-items: center;
   box-sizing: border-box;
   border-radius: ${basic.spacing.s8};
   user-select: none;
   border-width: 1px;
-  border-style: solid;
+  border: 1px solid ${inube.palette.neutral.N50};
   background-color: ${({ theme, $readonly }) =>
     $readonly && (theme?.palette?.neutral?.N0 || inube.palette.neutral.N0)};
 

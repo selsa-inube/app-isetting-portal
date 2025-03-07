@@ -84,6 +84,7 @@ interface IAddPositionUI {
   savePositions: ISaveDataResponse;
   showRequestProcessModal: boolean;
   loading: boolean;
+  navigate: (path: string) => void;
   onCloseRequestStatus: () => void;
   options: IOptionInitialiceEntry[];
   requestSteps: IRequestSteps[];

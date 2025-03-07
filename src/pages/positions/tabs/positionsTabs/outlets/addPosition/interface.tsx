@@ -35,6 +35,7 @@ const AddStaffRolesUI = ({
   requestSteps,
   showRequestProcessModal,
   loading,
+  navigate,
   onCloseRequestStatus,
   disabled,
   formValues,
@@ -113,7 +114,12 @@ const AddStaffRolesUI = ({
             <Button
               onClick={
                 currentStep === 1
-                  ? () => generalInformationRef.current?.resetForm()
+                  ? () => {
+                      generalInformationRef.current?.resetForm();
+                      setTimeout(() => {
+                        navigate("/privileges/positions");
+                      }, 2000);
+                    }
                   : handlePreviousStep
               }
               type="button"

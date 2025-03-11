@@ -49,12 +49,10 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const disabled = !isCurrentFormValid;
 
   const roles = formValues.rolesStaff.values.map((role) => {
-    const applicationStaff = formValues.applicationStaff.values.find(
-      (app) => app.id !== role.id
-    );
+    const applicationStaff = rolesData?.find((app) => app.roleId !== role.id);
     return {
       ...role,
-      applicationStaff: applicationStaff?.value,
+      applicationStaff: applicationStaff?.applicationName,
     };
   });
 
@@ -171,6 +169,7 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
     smallScreen,
     roles,
     setShowModal,
+    navigate,
     disabled,
     setShowRequestProcessModal,
   };

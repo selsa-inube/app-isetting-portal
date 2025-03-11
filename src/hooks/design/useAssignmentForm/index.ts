@@ -13,10 +13,63 @@ const UseAssignmentForm = (
   const [filter, setFilter] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [isAssignAll, setIsAssignAll] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<IOptionItemChecked[]>(
+    []
+  );
   const [filteredRows, setFilteredRows] = useState<IEntry[]>(entries);
   const [filterValue, setFilterValue] = useState("");
   const [dataValidations, setDataValidations] = useState(entries.length === 0);
+
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const [tempSelectedOptions, setTempSelectedOptions] = useState<
+    IOptionItemChecked[]
+  >([]);
+
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
+    if (!showModal) {
+      setTempSelectedOptions(selectedOptions);
+    }
+  };
+
+  const handleSelectChange = (options: IOptionItemChecked[]) => {
+    setTempSelectedOptions((prev) => {
+      const newOptions = options.filter((option) => option.checked);
+      const mergedOptions = [...prev, ...newOptions].reduce<
+        IOptionItemChecked[]
+      >((acc, option) => {
+        if (!acc.some((item) => item.id === option.id)) {
+          acc.push(option);
+        }
+        return acc;
+      }, []);
+
+      return mergedOptions;
+    });
+  };
+
+  const handleApplyFilters = () => {
+    setShowModal(false);
+
+    setSelectedOptions((prev) => {
+      const mergedOptions = [...prev, ...tempSelectedOptions].reduce<
+        IOptionItemChecked[]
+      >((acc, option) => {
+        if (!acc.some((item) => item.id === option.id)) {
+          acc.push(option);
+        }
+        return acc;
+      }, []);
+      return mergedOptions;
+    });
+  };
+
+  const handleClearFilters = () => {
+    setSelectedOptions([]);
+    setTempSelectedOptions([]);
+  };
+
   const handleToggleRol = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
   };
@@ -49,7 +102,6 @@ const UseAssignmentForm = (
     setFilteredRows(newFilteredEntries);
     setSelectedToggle(newEntries);
   };
-
   const handleFilterInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterValue(e.target.value);
   };
@@ -98,17 +150,22 @@ const UseAssignmentForm = (
     handleToggleEntry(id);
   };
 
-  const handleSelectChange = (options: IOptionItemChecked[]) => {
-    const selectedIds = options
-      .filter((option) => option.checked)
-      .map((option) => option.label);
-    setSelectedOptions(selectedIds);
-  };
+  useEffect(() => {
+    if (selectedOptions.length) {
+      setFilteredRows(
+        entries.filter((entry) =>
+          selectedOptions.some(
+            (option) => option.label === entry.applicationName
+          )
+        )
+      );
+    }
+  }, [selectedOptions]);
 
-  const options = valueSelect.map((entry) => ({
+  const newOptions = valueSelect.map((entry) => ({
     id: entry.id,
     label: entry.value,
-    checked: filteredRows.some((row) => row.applicationStaff === entry.value),
+    checked: filteredRows.some((row) => row.applicationName === entry.value),
   }));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -122,23 +179,19 @@ const UseAssignmentForm = (
       return;
     }
 
-    let newFilter = filteredRows;
+    let newFilter = entries;
 
     if (selectedOptions.length > 0) {
-      newFilter = entries.filter(
-        (entry) =>
-          entry.applicationStaff &&
-          selectedOptions.includes(entry.applicationStaff)
+      newFilter = newFilter.filter((entry) =>
+        selectedOptions.some(
+          (option) => option.label === entry.applicationStaff
+        )
       );
     }
 
     if (filterValue.length > 0) {
-      newFilter = newFilter.filter(
-        (entry) =>
-          entry.value.toLowerCase().includes(filterValue.toLowerCase()) ||
-          (entry.applicationStaff ?? "")
-            .toLowerCase()
-            .includes(filterValue.toLowerCase())
+      newFilter = newFilter.filter((entry) =>
+        entry.value.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
 
@@ -155,7 +208,6 @@ const UseAssignmentForm = (
         entry.value.toLowerCase().includes(filterText) ||
         (entry.applicationStaff ?? "").toLowerCase().includes(filterText)
     );
-
     setFilteredRows(newFilteredRows);
   };
 
@@ -170,15 +222,21 @@ const UseAssignmentForm = (
     handleToggleAllEntries,
     onHandleSelectCheckChange,
     handleSelectChange,
+    handleClearFilters,
+    selectedOptions,
+    setSelectedOptions,
+    handleApplyFilters,
     menuOptions,
     isAssignAll,
+    showModal,
     setShowMenu,
     showMenu,
     dataValidations,
-    options,
+    newOptions,
     handleSubmit,
     handleToggleRol,
     handleCloseMenuRol,
+    handleToggleModal,
   };
 };
 

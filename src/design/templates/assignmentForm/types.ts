@@ -6,9 +6,9 @@ interface IEntry {
   id: string;
   value: string;
   abbreviatedName?: string;
+  applicationName?: string;
   isActive: boolean;
   rolesStaff?: string;
-  applicationStaff?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
@@ -34,7 +34,7 @@ interface IAssignmentForm {
   readOnly?: boolean;
   setChangedData?: (changeData: IEntry[]) => void;
   changeData?: IEntry[];
-  valueSelect: IOptionInitialiceEntryApp[];
+  options: IOptionInitialiceEntryApp[];
 }
 
 interface IAssignmentFormUI {
@@ -46,10 +46,19 @@ interface IAssignmentFormUI {
   filterValue: string;
   isAssignAll: boolean;
   menuOptions: IOption[];
-  options: IOptions[];
+  options: IOptionItemChecked[];
   showMenu: boolean;
+  showModal: boolean;
   dataValidations: boolean;
   title: string;
+  selectedOptions: IOptionItemChecked[];
+  handleToggleModal: () => void;
+  handleClearFilters: () => void;
+  onSelectChange: (options: IOptionItemChecked[]) => void;
+  setSelectedOptions: React.Dispatch<
+    React.SetStateAction<IOptionItemChecked[]>
+  >;
+  handleClick: () => void;
   handleCloseMenuInvitation: () => void;
   handleFilter: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSelectChange: (options: IOptionItemChecked[]) => void;

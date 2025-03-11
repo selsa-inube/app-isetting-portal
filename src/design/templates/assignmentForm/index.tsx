@@ -8,26 +8,32 @@ const AssignmentForm = (props: IAssignmentForm) => {
     entries,
     title,
     readOnly,
+    options,
     setSelectedToggle,
     setChangedData = () => {},
     changeData = [],
-    valueSelect,
   } = props;
 
   const {
     filteredRows,
     filterValue,
+    selectedOptions,
     handleFilterInput,
     handleFilterChange,
     handleToggleAllEntries,
     onHandleSelectCheckChange,
     handleSelectChange,
+    handleClearFilters,
+    handleToggleModal,
+    setSelectedOptions,
     menuOptions,
     isAssignAll,
+    showModal,
     setShowMenu,
     showMenu,
     dataValidations,
-    options,
+    newOptions,
+    handleApplyFilters,
     handleSubmit,
     handleToggleRol,
     handleCloseMenuRol,
@@ -37,9 +43,8 @@ const AssignmentForm = (props: IAssignmentForm) => {
     setChangedData,
     handleChange,
     setSelectedToggle,
-    valueSelect
+    options
   );
-
   return (
     <AssignmentFormUI
       handleToggleRol={handleToggleRol}
@@ -59,10 +64,17 @@ const AssignmentForm = (props: IAssignmentForm) => {
       filteredRows={filteredRows}
       handleSubmit={handleSubmit}
       handleSelectChange={handleSelectChange}
-      options={options}
+      options={newOptions}
       filterValue={filterValue}
       onHandleSelectCheckChange={onHandleSelectCheckChange}
       dataValidations={dataValidations}
+      showModal={showModal}
+      selectedOptions={selectedOptions}
+      setSelectedOptions={setSelectedOptions}
+      handleClick={handleApplyFilters}
+      handleToggleModal={handleToggleModal}
+      handleClearFilters={handleClearFilters}
+      onSelectChange={handleSelectChange}
     />
   );
 };

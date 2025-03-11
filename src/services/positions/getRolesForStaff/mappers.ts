@@ -4,8 +4,9 @@ const mapRolesStaffApiToEntity = (rolesData: IRoleForStaff): IRoleForStaff => {
   const rolesMapped: IRoleForStaff = {
     roleId: String(rolesData.roleId),
     roleName: String(rolesData.roleName),
+    applicationName: String(rolesData.applicationName),
     isActive: false,
-    application: Object(rolesData.application),
+    useCasesByStaffRoles: Object(rolesData.useCasesByStaffRoles),
   };
   return rolesMapped;
 };

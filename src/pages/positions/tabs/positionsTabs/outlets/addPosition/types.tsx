@@ -22,8 +22,8 @@ interface IOptionInitialiceEntryApp {
 interface IPosition {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
-  public_code: string;
-  abbreviated_name: string;
+  public_code?: string;
+  abbreviated_name?: string;
   n_roles?: string[];
 }
 interface IStep {
@@ -84,7 +84,9 @@ interface IAddPositionUI {
   savePositions: ISaveDataResponse;
   showRequestProcessModal: boolean;
   loading: boolean;
+  navigate: (path: string) => void;
   onCloseRequestStatus: () => void;
+  options: IOptionInitialiceEntry[];
   requestSteps: IRequestSteps[];
 }
 

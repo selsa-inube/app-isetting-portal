@@ -19,6 +19,7 @@ const AddStaffRolesUI = ({
   initialGeneralInformationValues,
   steps,
   setSelectedToggle,
+  options,
   onNextStep,
   handlePreviousStep,
   handleNextStep,
@@ -84,7 +85,7 @@ const AddStaffRolesUI = ({
             {currentStep === 2 && (
               <InitializerForm
                 dataOptionsForms={roles}
-                dataOptionsValueSelect={formValues.applicationStaff.values}
+                dataOptionsValueSelect={options}
                 setSelectedToggle={setSelectedToggle}
               />
             )}
@@ -109,16 +110,19 @@ const AddStaffRolesUI = ({
             )}
           </Stack>
           <Stack gap="16px" justifyContent="flex-end">
-            <Button
-              onClick={handlePreviousStep}
-              type="button"
-              disabled={currentStep === steps[0].id}
-              spacing="compact"
-              variant="none"
-              appearance="gray"
-            >
-              Atrás
-            </Button>
+            {currentStep !== 1 && (
+              <Button
+                onClick={handlePreviousStep}
+                type="button"
+                disabled={currentStep === steps[0].id}
+                spacing="compact"
+                variant="none"
+                appearance="gray"
+              >
+                Atrás
+              </Button>
+            )}
+
             <Button
               onClick={() =>
                 currentStep === steps.length
@@ -132,6 +136,7 @@ const AddStaffRolesUI = ({
             </Button>
           </Stack>
         </Stack>
+
         {showModal && (
           <DecisionModal
             portalId="portal"
@@ -142,6 +147,7 @@ const AddStaffRolesUI = ({
             onClick={onFinishForm}
           />
         )}
+
         {showRequestProcessModal && (
           <RequestProcessModal
             portalId="portal"

@@ -48,8 +48,17 @@ interface IAssignmentFormUI {
   menuOptions: IOption[];
   options: IOptionItemChecked[];
   showMenu: boolean;
+  showModal: boolean;
   dataValidations: boolean;
   title: string;
+  selectedOptions: IOptionItemChecked[];
+  handleToggleModal: () => void;
+  handleClearFilters: () => void;
+  onSelectChange: (options: IOptionItemChecked[]) => void;
+  setSelectedOptions: React.Dispatch<
+    React.SetStateAction<IOptionItemChecked[]>
+  >;
+  handleClick: () => void;
   handleCloseMenuInvitation: () => void;
   handleFilter: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSelectChange: (options: IOptionItemChecked[]) => void;

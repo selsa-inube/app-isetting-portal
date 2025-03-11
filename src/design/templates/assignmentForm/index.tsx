@@ -17,20 +17,26 @@ const AssignmentForm = (props: IAssignmentForm) => {
   const {
     filteredRows,
     filterValue,
+    selectedOptions,
     handleFilterInput,
     handleFilterChange,
     handleToggleAllEntries,
     onHandleSelectCheckChange,
     handleSelectChange,
+    handleClearFilters,
+    handleToggleModal,
+    setSelectedOptions,
     menuOptions,
     isAssignAll,
+    showModal,
     setShowMenu,
     showMenu,
     dataValidations,
+    newOptions,
+    handleApplyFilters,
     handleSubmit,
     handleToggleRol,
     handleCloseMenuRol,
-    newOptions,
   } = UseAssignmentForm(
     entries,
     changeData,
@@ -62,6 +68,13 @@ const AssignmentForm = (props: IAssignmentForm) => {
       filterValue={filterValue}
       onHandleSelectCheckChange={onHandleSelectCheckChange}
       dataValidations={dataValidations}
+      showModal={showModal}
+      selectedOptions={selectedOptions}
+      setSelectedOptions={setSelectedOptions}
+      handleClick={handleApplyFilters}
+      handleToggleModal={handleToggleModal}
+      handleClearFilters={handleClearFilters}
+      onSelectChange={handleSelectChange}
     />
   );
 };

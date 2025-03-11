@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { MdOutlineFilterAltOff, MdOutlineFilterAlt } from "react-icons/md";
 import { Button, Stack, Tag, useMediaQuery } from "@inubekit/inubekit";
 import { FilterModal } from "@design/modals/filterModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { IOptionItemChecked } from "@design/select/OptionItem";
+
 import { IFilterFields } from "./types";
 import {
   StyledButtonFilter,
@@ -12,60 +11,19 @@ import {
 } from "./styles";
 
 const FilterFields = (props: IFilterFields) => {
-  const { options, actionText, title, onClick, onSelectChange } = props;
-  const [showModal, setShowModal] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<IOptionItemChecked[]>(
-    []
-  );
-  const [tempSelectedOptions, setTempSelectedOptions] = useState<
-    IOptionItemChecked[]
-  >([]);
-
+  const {
+    options,
+    actionText,
+    title,
+    showModal,
+    selectedOptions,
+    handleClearFilters,
+    setSelectedOptions,
+    onClick,
+    onSelectChange,
+    handleToggleModal,
+  } = props;
   const smallScreen = useMediaQuery("(max-width: 970px)");
-  const handleToggleModal = () => {
-    setShowModal(!showModal);
-    if (!showModal) {
-      setTempSelectedOptions(selectedOptions);
-    }
-  };
-
-  const handleSelectChange = (options: IOptionItemChecked[]) => {
-    setTempSelectedOptions((prev) => {
-      const newOptions = options.filter((option) => option.checked);
-      const mergedOptions = [...prev, ...newOptions].reduce<
-        IOptionItemChecked[]
-      >((acc, option) => {
-        if (!acc.some((item) => item.id === option.id)) {
-          acc.push(option);
-        }
-        return acc;
-      }, []);
-      return mergedOptions;
-    });
-  };
-
-  const handleApplyFilters = () => {
-    setShowModal(false);
-    setSelectedOptions((prev) => {
-      const mergedOptions = [...prev, ...tempSelectedOptions].reduce<
-        IOptionItemChecked[]
-      >((acc, option) => {
-        if (!acc.some((item) => item.id === option.id)) {
-          acc.push(option);
-        }
-        return acc;
-      }, []);
-      return mergedOptions;
-    });
-    onSelectChange(tempSelectedOptions);
-    onClick();
-  };
-
-  const handleClearFilters = () => {
-    setSelectedOptions([]);
-    setTempSelectedOptions([]);
-    onSelectChange(options.map((option) => ({ ...option, checked: false })));
-  };
 
   return (
     <>
@@ -122,8 +80,8 @@ const FilterFields = (props: IFilterFields) => {
           title={title}
           options={options}
           onCloseModal={handleToggleModal}
-          onClick={handleApplyFilters}
-          onSelectChange={handleSelectChange}
+          onClick={onClick}
+          onSelectChange={onSelectChange}
         />
       )}
     </>

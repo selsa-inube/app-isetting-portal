@@ -36,15 +36,21 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     options,
     handleSubmit,
     showMenu,
-
+    showModal,
+    selectedOptions,
     onHandleSelectCheckChange,
     handleFilterInput,
     filterValue,
     isAssignAll,
     menuOptions,
     filteredRows,
+    setSelectedOptions,
     handleToggleRol,
     handleCloseMenuRol,
+    handleToggleModal,
+    handleClick,
+    handleClearFilters,
+    onSelectChange,
     dataValidations,
   } = props;
   const smallScreen = useMediaQuery("(max-width: 650px)");
@@ -54,12 +60,15 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
         name="Filtrar"
         actionText="Filtrar"
         title="Filtrar"
-        onClick={function (): void {
-          throw new Error("Function not implemented.");
-        }}
+        onClick={handleClick}
         options={options}
-        onSelectChange={() => {}}
-      ></FilterFields>
+        onSelectChange={onSelectChange}
+        showModal={showModal}
+        selectedOptions={selectedOptions}
+        setSelectedOptions={setSelectedOptions}
+        handleToggleModal={handleToggleModal}
+        handleClearFilters={handleClearFilters}
+      />
 
       <Fieldset legend={title} size="small" type="title">
         <Stack

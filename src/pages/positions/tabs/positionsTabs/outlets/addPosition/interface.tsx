@@ -5,6 +5,7 @@ import { basic } from "@design/tokens";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
 import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
+import { DecisionModalMultipurpose } from "@design/modals/decisionModalMultipurpose";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationForm } from "@design/forms/verificationForm";
 import { createPositionConfig } from "@config/positions/addPositions/assisted";
@@ -38,6 +39,8 @@ const AddStaffRolesUI = ({
   onCloseRequestStatus,
   disabled,
   formValues,
+  showMultipurposeModal,
+  setShowMultipurposeModal,
 }: IAddPositionUI) => {
   return (
     <Stack
@@ -89,7 +92,6 @@ const AddStaffRolesUI = ({
                 setSelectedToggle={setSelectedToggle}
               />
             )}
-
             {currentStep === 3 && (
               <VerificationForm
                 updatedData={{
@@ -122,7 +124,6 @@ const AddStaffRolesUI = ({
                 Atrás
               </Button>
             )}
-
             <Button
               onClick={() =>
                 currentStep === steps.length
@@ -145,6 +146,20 @@ const AddStaffRolesUI = ({
             actionText={FinishModal.actionText}
             onCloseModal={onToggleModal}
             onClick={onFinishForm}
+          />
+        )}
+
+        {showMultipurposeModal && (
+          <DecisionModalMultipurpose
+            portalId="portal"
+            title="Atención"
+            description="Debes seleccionar al menos un rol antes de continuar."
+            actionText="Entendido"
+            appearance={ComponentAppearance.WARNING}
+            onCloseModal={() => setShowMultipurposeModal(false)}
+            onClick={() => {
+              handleNextStep();
+            }}
           />
         )}
 

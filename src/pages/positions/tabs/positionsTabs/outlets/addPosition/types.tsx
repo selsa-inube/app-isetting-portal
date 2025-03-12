@@ -86,6 +86,8 @@ interface IAddPositionUI {
   loading: boolean;
   navigate: (path: string) => void;
   onCloseRequestStatus: () => void;
+  showMultipurposeModal: boolean;
+  setShowMultipurposeModal: React.Dispatch<React.SetStateAction<boolean>>;
   options: IOptionInitialiceEntry[];
   requestSteps: IRequestSteps[];
 }

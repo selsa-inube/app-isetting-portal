@@ -90,11 +90,9 @@ const ErrorPage = (props: IErrorPage) => {
           </Text>
 
           <StyledOrderedList>
-            <StyledList>
-              {listItems.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </StyledList>
+            {listItems.map((item, index) => (
+              <StyledList key={index}>{item}</StyledList>
+            ))}
           </StyledOrderedList>
         </Stack>
         <StyledDivider $isMobile={smallScreen} />
@@ -107,9 +105,7 @@ const ErrorPage = (props: IErrorPage) => {
             ¿Cómo solucionarlo?
           </Text>
           <StyledOrderedList>
-            <StyledList>
-              <li>Confirma que estés usando la url adecuada.</li>
-            </StyledList>
+            <StyledList>Confirma que estés usando la url adecuada.</StyledList>
           </StyledOrderedList>
           <StyledButton>
             <Button onClick={onClick}>{nameButton}</Button>

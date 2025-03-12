@@ -19,6 +19,7 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
+  const [showMultipurposeModal, setShowMultipurposeModal] = useState(false);
   const [showModalApplicationStatus, setShowModalApplicationStatus] =
     useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -86,6 +87,18 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
 
   const handleNextStep = () => {
     if (currentStep < addStaffRolesSteps.length) {
+      if (
+        currentStep === 2 &&
+        rolesDataEndpoint.length === 0 &&
+        !showMultipurposeModal
+      ) {
+        setShowMultipurposeModal(true);
+        return;
+      }
+
+      if (currentStep === 2 && showMultipurposeModal) {
+        setShowMultipurposeModal(false);
+      }
       if (generalInformationRef.current) {
         setFormValues({
           ...formValues,
@@ -172,6 +185,8 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
     navigate,
     disabled,
     setShowRequestProcessModal,
+    showMultipurposeModal,
+    setShowMultipurposeModal,
   };
 };
 

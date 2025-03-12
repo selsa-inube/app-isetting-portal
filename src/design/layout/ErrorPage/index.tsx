@@ -1,6 +1,4 @@
-import { MdChevronLeft } from "react-icons/md";
 import {
-  Grid,
   Stack,
   Text,
   Button,
@@ -9,9 +7,16 @@ import {
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
-import selsaLogo from "@assets/images/selsa.png";
-import errorImage from "@assets/images/timeout.png";
-import { StyledCompanyLogo, StyledErrorImage } from "./styles";
+import errorImage from "@assets/images/errorImage.png";
+import {
+  StyledButton,
+  StyledCompanyLogo,
+  StyledContainerError,
+  StyledDivider,
+  StyledError,
+  StyledList,
+  StyledOrderedList,
+} from "./styles";
 
 interface IErrorPage {
   logo?: string;
@@ -22,72 +27,97 @@ interface IErrorPage {
   imageAlt?: string;
   nameButton?: string;
   onClick?: () => void;
+  listItems?: string[];
 }
 
 const ErrorPage = (props: IErrorPage) => {
   const {
-    logo = selsaLogo,
+    logo = errorImage,
     logoAlt = "Sistemas Enlinea",
     heading = "!Oh! Algo ha salido mal",
-    description = "El servicio no se encuentra disponible en el momento. Por favor intenta de nuevo más tarde.",
-    image = errorImage,
-    imageAlt = "Ha surgido un error. Revisa la descripción",
-    nameButton = "volver",
+    nameButton = "Regresar",
     onClick,
+    listItems = [
+      "La compañía donde trabajas NO tiene los privilegios requeridos para acceder al portal.",
+      "No estás registrado(a) o las atribuciones utilizadas no corresponden con las registradas.",
+    ],
   } = props;
 
   const mediaQueries = ["(min-width: 771px)", "(max-width: 770px)"];
   const matches = useMediaQueries(mediaQueries);
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+
   return (
     <Stack
-      padding={
-        matches["(max-width: 770px)"]
-          ? `${basic.spacing.s400}`
-          : `${basic.spacing.s1000}`
-      }
       gap={
         matches["(min-width: 771px)"]
           ? `${basic.spacing.s600}`
           : `${basic.spacing.s800}`
       }
       direction="column"
+      alignItems="center"
     >
-      <StyledCompanyLogo src={logo} alt={logoAlt} $smallScreen={smallScreen} />
-      <Grid
-        templateRows={matches["(max-width: 770px)"] ? "repeat(2, 1fr)" : "1fr"}
-        templateColumns={
-          matches["(max-width: 770px)"] ? "auto" : "repeat(2, 1fr)"
-        }
-        alignItems="center"
-        gap={
-          matches["(max-width: 770px)"]
-            ? `${basic.spacing.s0}`
-            : `${basic.spacing.s1000}`
-        }
-      >
-        <Stack gap={basic.spacing.s300} direction="column">
-          <Stack gap={basic.spacing.s300} direction="column">
-            <Text
-              type="title"
-              weight="bold"
-              size={matches["(max-width: 770px)"] ? "small" : "medium"}
-            >
-              {heading}
+      <Stack alignItems="center" direction="column" gap={basic.spacing.s200}>
+        <Stack direction="column" alignItems="center" gap={basic.spacing.s200}>
+          <Text
+            type="title"
+            weight="bold"
+            size={matches["(max-width: 770px)"] ? "small" : "large"}
+          >
+            ¡Ups! Algo salió mal...
+          </Text>
+          <StyledError>
+            <Text size={matches["(max-width: 770px)"] ? "small" : "small"}>
+              Código de error: 000
             </Text>
-            <Text
-              type="title"
-              size={matches["(max-width: 770px)"] ? "small" : "medium"}
-            >
-              {description}
-            </Text>
-          </Stack>
-          <Button iconBefore={<MdChevronLeft size={18} />} onClick={onClick}>
-            {nameButton}
-          </Button>
+          </StyledError>
         </Stack>
-        <StyledErrorImage src={image} alt={imageAlt} />
-      </Grid>
+
+        <StyledCompanyLogo
+          src={logo}
+          alt={logoAlt}
+          $smallScreen={smallScreen}
+        />
+      </Stack>
+      <StyledContainerError $isMobile={smallScreen}>
+        <Stack direction="column">
+          <Text
+            type="title"
+            weight="bold"
+            size={matches["(max-width: 770px)"] ? "small" : "large"}
+          >
+            {heading}
+          </Text>
+
+          <StyledOrderedList>
+            <StyledList>
+              {listItems.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </StyledList>
+          </StyledOrderedList>
+        </Stack>
+        <StyledDivider $isMobile={smallScreen} />
+        <Stack direction="column">
+          <Text
+            type="title"
+            weight="bold"
+            size={matches["(max-width: 770px)"] ? "small" : "large"}
+          >
+            ¿Cómo solucionarlo?
+          </Text>
+          <StyledOrderedList>
+            <StyledList>
+              <li>Confirma que estés usando la url adecuada.</li>
+            </StyledList>
+          </StyledOrderedList>
+          <StyledButton>
+            <Button onClick={onClick}>{nameButton}</Button>
+          </StyledButton>
+        </Stack>
+      </StyledContainerError>
+
+      <Text>© 2025 Inube</Text>
     </Stack>
   );
 };

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Grid, Stack, Text } from "@inubekit/inubekit";
+import { Grid, Stack, Text, useMediaQueries } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import {
   StyledWelcomeContainer,
@@ -9,16 +9,18 @@ import {
 import { ISelectBusinessUnitsUI } from "./types";
 
 const SelectBusinessUnitsUI = ({
-  screenTablet,
   imageWidth,
+  screenTablet,
   appData,
 }: ISelectBusinessUnitsUI) => {
+  const { "(max-width: 532px)": screenMobile }: Record<string, boolean> =
+    useMediaQueries(["(max-width: 532px)"]);
   return (
     <Grid
       templateColumns={screenTablet ? "1fr" : "repeat(2, 1fr)"}
       templateRows={screenTablet ? "minmax(150px, 30vh) 1fr" : "100vh"}
     >
-      <StyledWelcomeContainer>
+      <StyledWelcomeContainer $isMobile={screenMobile}>
         <Stack
           direction="column"
           justifyContent="center"
@@ -27,7 +29,7 @@ const SelectBusinessUnitsUI = ({
           gap={screenTablet ? `${basic.spacing.s200}` : `${basic.spacing.s400}`}
         >
           <Stack direction="column" alignItems="center">
-            <Text as="h1" type="headline" size="large">
+            <Text as="h1" type="headline" size="medium">
               Bienvenido a iSetting Portal
             </Text>
           </Stack>
@@ -38,7 +40,7 @@ const SelectBusinessUnitsUI = ({
           />
         </Stack>
       </StyledWelcomeContainer>
-      <StyledOutletContainer>
+      <StyledOutletContainer $isMobile={screenMobile}>
         <Stack
           alignItems="center"
           justifyContent="center"

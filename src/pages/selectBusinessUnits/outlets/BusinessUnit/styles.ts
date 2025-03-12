@@ -21,16 +21,27 @@ const StyledBusinessUnits = styled.div<IStyledBusinessUnits>`
 
   & button {
     margin-top: ${basic.spacing.s300};
+    margin-bottom: ${basic.spacing.s300};
   }
 `;
 
 const StyledBusinessUnitsList = styled.div<IStyledBusinessUnitsList>`
   & > div {
+    display: flex;
     list-style: none;
     max-height: 330px;
     min-height: ${({ $isTablet }) => $isTablet && "200px"};
-    width: ${({ $isMobile }) => ($isMobile ? "250px" : "500px")};
-    overflow-y: auto;
+    width: ${({ $isMobile }) => ($isMobile ? "auto" : "500px")};
+    overflow-y: ${({ $isMobile }) => ($isMobile ? "250px" : "auto")};
+  }
+`;
+
+const StyledBusinessUnitsText = styled.div<IStyledBusinessUnits>`
+  & > p:nth-child(1) {
+    font-size: ${({ $isMobile }) => ($isMobile ? "18px" : "25px")};
+  }
+  & > p:nth-child(2) {
+    font-size: ${({ $isMobile }) => ($isMobile ? "12px" : "18px")};
   }
 `;
 
@@ -47,4 +58,5 @@ export {
   StyledBusinessUnitsList,
   StyledNoResults,
   StyledBusinessUnitsItem,
+  StyledBusinessUnitsText,
 };

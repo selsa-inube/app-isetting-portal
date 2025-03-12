@@ -36,7 +36,7 @@ const DeleteProcess = Template.bind({});
 DeleteProcess.args = {
   portalId: "portal",
   title: "Eliminar",
-  description: "¿Realmente deseas eliminar este destino de dinero?",
+  description: "¿Realmente deseas eliminar este roles?",
   actionText: "Eliminar",
   justificationOfDecision: true,
 };
@@ -45,7 +45,7 @@ const EditProcess = Template.bind({});
 EditProcess.args = {
   portalId: "portal",
   title: "Editar",
-  description: "¿Realmente deseas editar este destino de dinero?",
+  description: "¿Realmente deseas editar este roles?",
   actionText: "Continuar",
 };
 
@@ -54,7 +54,7 @@ WithIcon.args = {
   portalId: "portal",
   title: "Atención",
   description:
-    "El destino de dinero debería tener al menos una (1) línea de crédito, en caso contrario este destino de dinero NO será utilizable.",
+    "El roles debería tener al menos una (1) línea de crédito, en caso contrario este roles NO será utilizable.",
   actionText: "Continuar aún así",
   withIcon: true,
   icon: <MdOutlineWarningAmber />,

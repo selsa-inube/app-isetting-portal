@@ -1,6 +1,6 @@
 const editPositionModal = {
   title: "Editar",
-  description: "¿Realmente deseas editar este destino de dinero?",
+  description: "¿Realmente deseas editar este roles?",
   actionText: "Continuar",
 };
 

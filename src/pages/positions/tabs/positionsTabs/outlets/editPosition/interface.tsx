@@ -81,11 +81,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
       <Stack gap={basic.spacing.s300} direction="column">
         <Stack gap={basic.spacing.s300} direction="column">
           <Breadcrumbs crumbs={crumbsEditPosition} />
-          <Title
-            title="Destinos de dinero"
-            description=" Destino del dinero para crédito."
-            sizeTitle="large"
-          />
+          <Title title="Editar " description=" posición." sizeTitle="large" />
         </Stack>
         <Stack gap={basic.spacing.s300} direction="column">
           <Tabs

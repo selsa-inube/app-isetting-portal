@@ -1,4 +1,4 @@
-import { MdClear, MdOutlineRemoveRedEye } from "react-icons/md";
+import { MdClear } from "react-icons/md";
 import { createPortal } from "react-dom";
 import {
   Text,
@@ -51,7 +51,6 @@ const DetailsRequestsInProgressModal = (
     dateOptions,
     onChange,
     onCloseModal,
-    onMoreDetails,
   } = props;
 
   const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
@@ -203,15 +202,6 @@ const DetailsRequestsInProgressModal = (
             onClick={onCloseModal}
           >
             Cerrar
-          </Button>
-          <Button
-            spacing="wide"
-            appearance={ComponentAppearance.PRIMARY}
-            variant="filled"
-            onClick={onMoreDetails}
-            iconBefore={<MdOutlineRemoveRedEye />}
-          >
-            Más detalles
           </Button>
         </Stack>
       </StyledModal>

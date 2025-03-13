@@ -23,7 +23,7 @@ const DeleteRecord = (props: IDelete) => {
     setJustificationDelete,
   } = props;
 
-  const screenTablet = useMediaQuery("(max-width: 1200px)");
+  const screenTablet = useMediaQuery("(max-width: 1000px)");
 
   return (
     <>

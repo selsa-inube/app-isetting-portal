@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Icon } from "@inubekit/inubekit";
+import { Icon, Text, useMediaQuery } from "@inubekit/inubekit";
 import { InteractiveModal } from "@design/feedback/InteractiveModal";
 import { IPosition } from "../../outlets/addPosition/types";
+import { StyledContainerIcon } from "./styles";
 
 interface IField {
   id: string;
@@ -23,16 +24,24 @@ const DetailsModal = (props: IDetailsModalProps) => {
     setShowModal(!showModal);
     handleToggleModal;
   };
+  const screenTablet = useMediaQuery("(max-width: 1000px)");
 
   return (
     <>
-      <Icon
-        icon={<MdOutlineRemoveRedEye />}
-        size="16px"
-        appearance="dark"
-        onClick={handleToggleModal}
-        cursorHover
-      />
+      <StyledContainerIcon onClick={handleToggleModal} $isTablet={screenTablet}>
+        <Icon
+          icon={<MdOutlineRemoveRedEye />}
+          size="16px"
+          appearance="dark"
+          onClick={handleToggleModal}
+          cursorHover
+        />
+        {screenTablet && (
+          <Text type="body" size="medium">
+            Detalles
+          </Text>
+        )}
+      </StyledContainerIcon>
       {showModal && data && (
         <InteractiveModal
           portalId="portal"

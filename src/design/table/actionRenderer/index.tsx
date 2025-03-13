@@ -1,12 +1,29 @@
+import { useState, useEffect } from "react";
 import { Td, Th } from "@inubekit/inubekit";
 import { IAction, IActions } from "@pages/positions/tabs/positionsTabs/types";
+import { ActionMobile } from "../actionMobile";
 
 const ActionRenderer = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1069);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1069);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const ShowAction = (actionContent: IAction[], entry: IActions) => {
-    return (
+    return isMobile ? (
+      <Td type="custom" align="center">
+        <ActionMobile actions={actionContent} entry={entry} />
+      </Td>
+    ) : (
       <>
         {actionContent.map((action) => (
-          <Td type="icon" key={`${entry.id}-${action.id}`}>
+          <Td type="custom" align="center" key={`${entry.id}-${action.id}`}>
             {action.content(entry)}
           </Td>
         ))}
@@ -15,9 +32,13 @@ const ActionRenderer = () => {
   };
 
   const ShowActionTitle = (actionTitle: IAction[]) => {
-    return actionTitle.map((action) => (
-      <Th key={`action-${action.id}`}>{action.actionName}</Th>
-    ));
+    return isMobile ? (
+      <Th key="actions-title">Acciones</Th>
+    ) : (
+      actionTitle.map((action) => (
+        <Th key={`action-${action.id}`}>{action.actionName}</Th>
+      ))
+    );
   };
 
   return { ShowAction, ShowActionTitle };

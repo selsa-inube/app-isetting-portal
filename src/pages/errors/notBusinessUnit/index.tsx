@@ -1,19 +1,25 @@
-import clientNotFound from "@assets/images/Expired.png";
-import { ErrorPage } from "@design/layout/ErrorPage";
-import { UseLogoutAndClearLocalStorage } from "@hooks/authentication/useLogoutAndClearLocalStorage";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const NotBusinessUnit = () => {
-  const { handleLogout } = UseLogoutAndClearLocalStorage();
+import { enviroment } from "@config/environment";
+import { ErrorPage } from "@design/layout/ErrorPage";
+import { UseLogout } from "@hooks/authentication/useLogout";
+
+function NotBusinessUnit() {
+  const { logout } = useAuth0();
+
+  UseLogout();
+
+  const handlelogout = () => {
+    logout({ logoutParams: { returnTo: enviroment.REDIRECT_URI } });
+  };
 
   return (
     <ErrorPage
-      image={clientNotFound}
-      imageAlt="Unidad de negocio no encontrada"
+      errorCode={1004}
       heading="No hay resultados..."
-      description="Su usuario no tiene unidades de negocio relacionados, consulte con su administrador."
-      onClick={handleLogout}
+      onClick={handlelogout}
     />
   );
-};
+}
 
 export { NotBusinessUnit };

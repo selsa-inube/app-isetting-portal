@@ -1,82 +1,80 @@
-import styled from "styled-components";
 import { basic } from "@design/tokens";
 import { inube } from "@inubekit/inubekit";
 
+import styled from "styled-components";
+
+interface IStyledContainer {
+  $isTablet: boolean;
+}
 interface IStyledCompanyLogo {
-  $smallScreen?: boolean;
-  $isMobile?: boolean;
+  $isTablet: boolean;
+}
+interface IStyledTextErrorContainer {
+  $isTablet: boolean;
 }
 
-const StyledCompanyLogo = styled.img<IStyledCompanyLogo>`
-  max-width: ${({ $smallScreen }) => ($smallScreen ? "300px" : "250px")};
-`;
-const StyledError = styled.div`
+interface IStyledDividerContainer {
+  $isTablet: boolean;
+}
+
+const StyledContainer = styled.div<IStyledContainer>`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  border-radius: 8px;
-  background-color: ${inube.palette.neutral.N30};
-  width: 130px;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 90vh;
+  padding: ${({ $isTablet }) =>
+    $isTablet
+      ? `${basic.spacing.s250} ${basic.spacing.s250} ${basic.spacing.s0}`
+      : `${basic.spacing.s400} ${basic.spacing.s1000} ${basic.spacing.s0}`};
 `;
 
-const StyledErrorImage = styled.img`
-  justify-self: center;
+const StyledCompanyLogo = styled.img<IStyledCompanyLogo>`
+  width: ${({ $isTablet }) => ($isTablet ? "40px" : "54px")};
+  margin: ${({ $isTablet }) => $isTablet && "0 auto"};
+`;
+
+const StyledErrorImage = styled.img<IStyledCompanyLogo>`
+  width: ${({ $isTablet }) => ($isTablet ? "182px" : "256px")};
+  height: ${({ $isTablet }) => ($isTablet ? "170px" : "240px")};
+  align-self: center;
   max-width: 100%;
 `;
 
-const StyledContainerError = styled.div<IStyledCompanyLogo>`
+const StyledTextErrorContainer = styled.div<IStyledTextErrorContainer>`
   display: flex;
-  flex-direction: ${({ $isMobile }) => ($isMobile ? "column" : "none")};
-  align-items: center;
-  gap: 30px;
-  width: 90%;
+  flex-direction: ${({ $isTablet }) => ($isTablet ? "column" : "row")};
+  justify-content: space-around;
+  height: auto;
+  gap: ${basic.spacing.s300};
+  padding: ${basic.spacing.s250};
   border-radius: ${basic.spacing.s100};
-  border: 1px solid
+  border: 2px solid
     ${({ theme }) =>
-      theme.color?.stroke?.gray?.regular || inube.palette.neutral.N40};
-  padding: ${basic.spacing.s300};
-  margin: 0;
-
-  & > div:nth-child(1) {
-    width: ${({ $isMobile }) => ($isMobile ? "100%" : "50%")};
-  }
-
-  & > div:nth-child(3) {
-    width: ${({ $isMobile }) => ($isMobile ? "100%" : "50%")};
-  }
-`;
-const StyledOrderedList = styled.ul`
-  padding-left: 20px;
-  margin-top: 8px;
-`;
-const StyledList = styled.li`
-  font-size: 16px;
-  margin-bottom: 4px;
-  color: ${inube.palette.neutral.N400};
+      theme.color?.stroke?.gray?.regular ?? inube.palette.neutral.N40};
 `;
 
-const StyledButton = styled.div`
-  display: flex;
-  justify-content: center;
+const StyledList = styled.ul``;
+
+const StyledItem = styled.li`
+  color: ${({ theme }) =>
+    theme.color?.text?.gray?.regular ?? inube.palette.neutral.N90};
 `;
 
-const StyledDivider = styled.div<IStyledCompanyLogo>`
-  color: ${inube.palette.neutral.N60};
-  border: 1px dashed;
-  ${({ theme }) =>
-    theme.color?.stroke?.gray?.regular || inube.palette.neutral.N40};
-  width: ${({ $isMobile }) => ($isMobile ? "100%" : "15%")};
-  transform: ${({ $isMobile }) => ($isMobile ? "none" : "rotate(90deg)")};
+const StyledDividerContainer = styled.div<IStyledDividerContainer>`
+  width: ${({ $isTablet }) => ($isTablet ? "100%" : "0%")};
+  height: ${({ $isTablet }) => ($isTablet ? "0%" : "100%")};
+  border: 1px dashed
+    ${({ color, theme }) =>
+      color ?? theme?.palette?.neutral?.N40 ?? inube.palette.neutral.N40};
+  margin: 0 auto;
 `;
 
 export {
+  StyledContainer,
   StyledCompanyLogo,
   StyledErrorImage,
-  StyledError,
-  StyledContainerError,
-  StyledOrderedList,
+  StyledTextErrorContainer,
   StyledList,
-  StyledButton,
-  StyledDivider,
+  StyledItem,
+  StyledDividerContainer,
 };

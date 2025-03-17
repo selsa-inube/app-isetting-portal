@@ -1,120 +1,147 @@
-import {
-  Stack,
-  Text,
-  Button,
-  useMediaQueries,
-  useMediaQuery,
-} from "@inubekit/inubekit";
-import { basic } from "@design/tokens";
-import { enviroment } from "@config/environment";
+import { Stack, Text, useMediaQueries, Button, Tag } from "@inubekit/inubekit";
+
+import inubeLogo from "@assets/images/logo-inube.png";
 import errorImage from "@assets/images/errorImage.png";
+
 import {
-  StyledButton,
   StyledCompanyLogo,
-  StyledContainerError,
-  StyledDivider,
-  StyledError,
+  StyledContainer,
+  StyledDividerContainer,
+  StyledErrorImage,
+  StyledItem,
   StyledList,
-  StyledOrderedList,
+  StyledTextErrorContainer,
 } from "./styles";
 
+import { basic } from "@design/tokens";
+import { ComponentAppearance } from "@ptypes/aparences.types";
+import { errorCodes } from "@config/errorCodes";
+
 interface IErrorPage {
-  logo?: string;
-  logoAlt?: string;
+  errorCode?: number;
   heading?: string;
-  description?: string;
-  image?: string;
-  imageAlt?: string;
   nameButton?: string;
   onClick?: () => void;
-  listItems?: string[];
 }
 
 const ErrorPage = (props: IErrorPage) => {
   const {
-    logo = errorImage,
-    logoAlt = "Sistemas Enlinea",
-    heading = "!Oh! Algo ha salido mal",
+    errorCode = 0,
+    heading = "¡Ups! Algo salió mal...",
     nameButton = "Regresar",
     onClick,
-    listItems = [
-      "La compañía donde trabajas NO tiene los privilegios requeridos para acceder al portal.",
-      "No estás registrado(a) o las atribuciones utilizadas no corresponden con las registradas.",
-    ],
   } = props;
 
-  const mediaQueries = ["(min-width: 771px)", "(max-width: 770px)"];
+  const mediaQueries = [
+    "(min-width: 771px)",
+    "(max-width: 770px)",
+    "(max-width: 1000px)",
+  ];
   const matches = useMediaQueries(mediaQueries);
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+
+  const DetailsErrors = errorCodes[errorCode] ?? {
+    descriptionError: ["No se proporcionó información sobre el error."],
+    solutionError: ["Intenta nuevamente más tarde."],
+  };
 
   return (
-    <Stack
-      gap={
-        matches["(min-width: 771px)"]
-          ? `${basic.spacing.s600}`
-          : `${basic.spacing.s800}`
-      }
-      direction="column"
-      alignItems="center"
-    >
-      <Stack alignItems="center" direction="column" gap={basic.spacing.s200}>
-        <Stack direction="column" alignItems="center" gap={basic.spacing.s200}>
-          <Text
-            type="title"
-            weight="bold"
-            size={matches["(max-width: 770px)"] ? "small" : "large"}
-          >
-            ¡Ups! Algo salió mal...
-          </Text>
-          <StyledError>
-            <Text size={matches["(max-width: 770px)"] ? "small" : "small"}>
-              Código de error: 000
-            </Text>
-          </StyledError>
+    <StyledContainer $isTablet={matches["(max-width: 1000px)"]}>
+      <Stack direction="column" gap={basic.spacing.s500} height="100%">
+        <Stack justifyContent="left" alignItems="start">
+          <StyledCompanyLogo
+            src={inubeLogo}
+            alt={"logo"}
+            $isTablet={matches["(max-width: 1000px)"]}
+          />
         </Stack>
-
-        <StyledCompanyLogo
-          src={logo}
-          alt={logoAlt}
-          $smallScreen={smallScreen}
-        />
-      </Stack>
-      <StyledContainerError $isMobile={smallScreen}>
-        <Stack direction="column">
+        <Stack
+          justifyContent="center"
+          alignItems="center"
+          height="100px"
+          width="100%"
+          direction="column"
+          gap={basic.spacing.s150}
+        >
           <Text
-            type="title"
+            type="headline"
             weight="bold"
-            size={matches["(max-width: 770px)"] ? "small" : "large"}
+            size={matches["(max-width: 770px)"] ? "medium" : "large"}
+            appearance={ComponentAppearance.DARK}
           >
             {heading}
           </Text>
-
-          <StyledOrderedList>
-            {listItems.map((item, index) => (
-              <StyledList key={index}>{item}</StyledList>
-            ))}
-          </StyledOrderedList>
+          <Tag
+            appearance="gray"
+            label={`Código de error: ${errorCode}`}
+            weight="strong"
+          />
         </Stack>
-        <StyledDivider $isMobile={smallScreen} />
-        <Stack direction="column">
-          <Text
-            type="title"
-            weight="bold"
-            size={matches["(max-width: 770px)"] ? "small" : "large"}
-          >
-            ¿Cómo solucionarlo?
-          </Text>
-          <StyledOrderedList>
-            <StyledList>Confirma que estés usando la url adecuada.</StyledList>
-          </StyledOrderedList>
-          <StyledButton>
-            <Button onClick={onClick}>{nameButton}</Button>
-          </StyledButton>
-        </Stack>
-      </StyledContainerError>
+        <StyledErrorImage
+          $isTablet={matches["(max-width: 770pxpx)"]}
+          src={errorImage}
+          alt="error"
+        />
+        <StyledTextErrorContainer $isTablet={matches["(max-width: 770px)"]}>
+          <Stack direction="column" gap={basic.spacing.s150} width="100%">
+            <Text
+              type="title"
+              size="large"
+              weight="bold"
+              appearance={ComponentAppearance.DARK}
+            >
+              ¿Qué salió mal?
+            </Text>
+            <StyledList>
+              {DetailsErrors.descriptionError.map((item, index) => (
+                <StyledItem key={index}>
+                  <Text
+                    type="title"
+                    size="small"
+                    appearance={ComponentAppearance.GRAY}
+                  >
+                    {item}
+                  </Text>
+                </StyledItem>
+              ))}
+            </StyledList>
+          </Stack>
 
-      <Text>© 2025 Inube</Text>
-    </Stack>
+          <StyledDividerContainer $isTablet={matches["(max-width: 1000px)"]} />
+
+          <Stack direction="column" gap={basic.spacing.s150} width="100%">
+            <Text
+              type="title"
+              size="large"
+              weight="bold"
+              appearance={ComponentAppearance.DARK}
+            >
+              ¿Cómo solucionarlo?
+            </Text>
+            <StyledList>
+              {DetailsErrors.solutionError.map((item, index) => (
+                <StyledItem key={index}>
+                  <Text
+                    type="title"
+                    size="small"
+                    appearance={ComponentAppearance.GRAY}
+                  >
+                    {item}
+                  </Text>
+                </StyledItem>
+              ))}
+            </StyledList>
+            <Stack alignContent="center" justifyContent="center">
+              <Button appearance="primary" onClick={onClick}>
+                {nameButton}
+              </Button>
+            </Stack>
+          </Stack>
+        </StyledTextErrorContainer>
+        <Text appearance="gray" textAlign="center" size="small" weight="bold">
+          © 2025 Inube
+        </Text>
+      </Stack>
+    </StyledContainer>
   );
 };
 

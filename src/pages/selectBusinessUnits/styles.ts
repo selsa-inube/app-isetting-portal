@@ -4,8 +4,11 @@ import { inube } from "@inubekit/inubekit";
 interface IStyledImage {
   width?: string;
 }
+interface IStyledBusinessUnits {
+  $isMobile: boolean;
+}
 
-const StyledWelcomeContainer = styled.div`
+const StyledWelcomeContainer = styled.div<IStyledBusinessUnits>`
   background-color: ${inube.palette.neutral.N30};
 `;
 

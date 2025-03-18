@@ -4,12 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Meta, StoryFn } from "@storybook/react";
 import { Button } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { DecisionModal } from "..";
-import { IDecisionModal } from "../types";
+import { DecisionModalMultipurpose, IDecisionModal } from "..";
 
-const meta: Meta<typeof DecisionModal> = {
-  title: "modals/DecisionModal",
-  component: DecisionModal,
+const meta: Meta<typeof DecisionModalMultipurpose> = {
+  title: "modals/DecisionModalMultipurpose",
+  component: DecisionModalMultipurpose,
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
@@ -26,13 +25,16 @@ const Template: StoryFn<IDecisionModal> = (args) => {
     <>
       <Button onClick={() => setShowModal(true)}>Show Modal</Button>
       {showModal && (
-        <DecisionModal {...args} onCloseModal={() => setShowModal(false)} />
+        <DecisionModalMultipurpose
+          {...args}
+          onCloseModal={() => setShowModal(false)}
+        />
       )}
     </>
   );
 };
 
-const DeleteProcess = Template.bind({});
+export const DeleteProcess = Template.bind({});
 DeleteProcess.args = {
   portalId: "portal",
   title: "Eliminar",
@@ -41,7 +43,7 @@ DeleteProcess.args = {
   justificationOfDecision: true,
 };
 
-const EditProcess = Template.bind({});
+export const EditProcess = Template.bind({});
 EditProcess.args = {
   portalId: "portal",
   title: "Editar",
@@ -49,7 +51,7 @@ EditProcess.args = {
   actionText: "Continuar",
 };
 
-const WithIcon = Template.bind({});
+export const WithIcon = Template.bind({});
 WithIcon.args = {
   portalId: "portal",
   title: "Atención",
@@ -61,5 +63,4 @@ WithIcon.args = {
   appearance: ComponentAppearance.WARNING,
 };
 
-export { WithIcon, EditProcess, DeleteProcess };
 export default meta;

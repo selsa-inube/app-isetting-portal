@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { inube } from "@inubekit/inubekit";
+
 interface IStyledContainer {
   $smallScreen?: boolean;
 }
-const StyledRadioBusinessUnit = styled.label`
+interface IStyledBusinessUnits {
+  $isMobile: boolean;
+}
+const StyledRadioBusinessUnit = styled.label<IStyledBusinessUnits>`
   & div {
     box-sizing: border-box;
     max-height: 58px;
@@ -13,6 +17,9 @@ const StyledRadioBusinessUnit = styled.label`
     border: 1px solid
       ${({ theme }) =>
         theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
+    width: ${({ $isMobile }) => ($isMobile ? "320px" : "auto")};
+    padding: ${({ $isMobile }) => ($isMobile ? "20px" : "auto")};
+    border-radius: ${({ $isMobile }) => ($isMobile ? "8px" : "auto")};
     cursor: pointer;
   }
 `;

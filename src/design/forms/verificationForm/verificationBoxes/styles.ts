@@ -21,4 +21,10 @@ const StyledAttribute = styled.div`
   box-sizing: border-box;
 `;
 
-export { StyledConatinerAttribute, StyledAttribute };
+const StyldTagContainer = styled.div`
+  & > div {
+    font-size: ${basic.spacing.s050};
+  }
+`;
+
+export { StyledConatinerAttribute, StyledAttribute, StyldTagContainer };

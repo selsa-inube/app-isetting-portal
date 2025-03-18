@@ -109,8 +109,9 @@ const PositionsUI = (props: IPositions) => {
           ) : (
             <Table>
               <Colgroup>
-                <Col width="80%" />
+                <Col width="75%" />
               </Colgroup>
+
               <Thead>
                 <Tr border="bottom">
                   {titlesOptions.map((title, index) => (
@@ -136,6 +137,7 @@ const PositionsUI = (props: IPositions) => {
                         {entry[title.id]}
                       </Td>
                     ))}
+
                     {ShowAction(
                       actionsConfig(() => {}),
                       { ...entry, id: entry.staffId }

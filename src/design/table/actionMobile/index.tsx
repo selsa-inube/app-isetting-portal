@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { MdOutlinePending } from "react-icons/md";
-import { Icon } from "@inubekit/inubekit";
+import { Icon, useMediaQuery } from "@inubekit/inubekit";
 import { ActionsModal } from "@design/modals/actionsModal";
 import { IAction, IEntry } from "../types";
 import { StyledContainer, StyledContainerIcon } from "./styles";
@@ -16,7 +16,7 @@ const ActionMobile = (props: IActionMobile) => {
   const { actions, entry } = props;
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-
+  const screenTablet = useMediaQuery("(max-width: 1000px)");
   useEffect(() => {
     isModalOpen = false;
   }, []);
@@ -48,7 +48,7 @@ const ActionMobile = (props: IActionMobile) => {
 
   return (
     <StyledContainer>
-      <StyledContainerIcon>
+      <StyledContainerIcon $isTablet={screenTablet}>
         <Icon
           appearance="primary"
           icon={<MdOutlinePending />}

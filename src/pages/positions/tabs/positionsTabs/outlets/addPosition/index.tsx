@@ -37,6 +37,8 @@ const AddPosition = () => {
     setShowRequestProcessModal,
     setShowModal,
     navigate,
+    setShowMultipurposeModal,
+    showMultipurposeModal,
   } = UseAddStaffRoles(rolesStaff);
 
   const { appData } = useContext(AuthAndData);
@@ -83,6 +85,8 @@ const AddPosition = () => {
       onToggleApplicationStatus={handleToggleModalApplication}
       loading={loading}
       onCloseRequestStatus={handleCloseRequestStatus}
+      showMultipurposeModal={showMultipurposeModal}
+      setShowMultipurposeModal={setShowMultipurposeModal}
       options={options as IOptionInitialiceEntryApp[]}
     />
   );

@@ -1,10 +1,12 @@
-import { Grid, Stack } from "@inubekit/inubekit";
+import { Grid, Stack, Tag } from "@inubekit/inubekit";
 import { BoxAttribute } from "@design/feedback/boxAttribute";
 import { basic } from "@design/tokens";
 import {
   IGeneralInformationEntry,
   IOptionInitialiceEntry,
 } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+import { ComponentAppearance } from "@ptypes/aparences.types";
+import { StyldTagContainer } from "./styles";
 
 const renderPersonalInfoVerification = (
   values: IGeneralInformationEntry,
@@ -28,17 +30,18 @@ const renderPersonalInfoVerification = (
 const renderStepTwoVerification = (
   values: IOptionInitialiceEntry[],
   isMobile: boolean
-) => (
-  <>
+) => {
+  const activeValues = values.filter((value) => value.isActive);
+
+  return (
     <Grid
       templateColumns={isMobile ? "1fr" : "1fr "}
       autoRows="1fr"
       gap={basic.spacing.s100}
       width="100%"
     >
-      {values
-        .filter((value) => value.isActive)
-        .map((value) => (
+      {activeValues.length > 0 ? (
+        activeValues.map((value) => (
           <Stack
             key={value.id}
             width="100%"
@@ -47,9 +50,17 @@ const renderStepTwoVerification = (
           >
             <BoxAttribute label="Fecha de creación:" value={value.value} />
           </Stack>
-        ))}
+        ))
+      ) : (
+        <StyldTagContainer>
+          <Tag
+            appearance={ComponentAppearance.DANGER}
+            label="Ninguna rol fue activado"
+          />
+        </StyldTagContainer>
+      )}
     </Grid>
-  </>
-);
+  );
+};
 
 export { renderPersonalInfoVerification, renderStepTwoVerification };

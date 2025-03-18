@@ -14,6 +14,7 @@ import {
   StyledBusinessUnits,
   StyledBusinessUnitsList,
   StyledBusinessUnitsItem,
+  StyledBusinessUnitsText,
 } from "./styles";
 import { IBusinessUnitstate } from "./types";
 
@@ -51,12 +52,14 @@ const BusinessUnitsUI = ({
   ]);
   return (
     <StyledBusinessUnits $isMobile={screenMobile}>
-      <Text type="title" as="h2" textAlign="center">
-        Unidades de Negocios
-      </Text>
-      <Text size="medium" textAlign="center">
-        Seleccione la Unidad de Negocio
-      </Text>
+      <StyledBusinessUnitsText $isMobile={screenMobile}>
+        <Text type="title" textAlign="center">
+          Unidades de Negocios
+        </Text>
+        <Text size="medium" textAlign="center">
+          Seleccione la Unidad de Negocio
+        </Text>
+      </StyledBusinessUnitsText>
       <form>
         <Stack direction="column" alignItems="center" gap={basic.spacing.s300}>
           {businessUnits.length > 5 && (

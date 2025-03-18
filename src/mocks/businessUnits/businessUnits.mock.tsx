@@ -11,7 +11,7 @@ const businessUnitDataMock = [
     abbreviatedName: "sistemasenlinea",
     descriptionUse: "Sistemas Enlínea",
     languageId: "es",
-    urlLogo: "./src/assets/images/selsa.png",
+    urlLogo: "./src/assets/images/errorImage.png",
   },
 ];
 

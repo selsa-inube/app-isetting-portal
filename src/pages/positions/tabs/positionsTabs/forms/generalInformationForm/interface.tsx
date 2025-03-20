@@ -29,7 +29,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                   <Input
                     name="namePosition"
                     id="namePosition"
-                    label="Descripción Funcional"
+                    label="Nombre del cargo"
                     placeholder="Nombre del cargo"
                     type="text"
                     size="compact"

@@ -16,10 +16,9 @@ const renderPersonalInfoVerification = (
     <Grid
       templateColumns={isMobile ? "1fr" : "1fr "}
       autoRows="1fr"
-      gap={basic.spacing.s100}
       width="100%"
     >
-      <BoxAttribute label="Nombre del destino:" value={values.namePosition} />
+      <BoxAttribute label="Nombre del Cargo:" value={values.namePosition} />
     </Grid>
     <Stack width="100%" direction="column" gap={basic.spacing.s100}>
       <BoxAttribute label="Descripción:" value={values.descriptionPosition} />

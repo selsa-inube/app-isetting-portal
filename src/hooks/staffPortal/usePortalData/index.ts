@@ -9,21 +9,25 @@ const UsePortalData = (portalCode: string | null) => {
     {} as IStaffPortalByBusinessManager
   );
   const [hasError, setHasError] = useState(false);
+  const [errorCode, setErrorCode] = useState<number>(0);
 
   useEffect(() => {
     const fetchPortalData = async () => {
       try {
         if (!portalCode) {
           setHasError(true);
+          setErrorCode(1000);
           return;
         }
         if (portalCode !== enviroment.IPORTAL_CODE) {
           setHasError(true);
+          setErrorCode(1002);
           return;
         }
         const StaffPortalData = await staffPortalByBusinessManager(portalCode);
         if (!StaffPortalData) {
           setHasError(true);
+          setErrorCode(1001);
           return;
         }
         const encryptedParamValue = encrypt(portalCode);
@@ -32,13 +36,14 @@ const UsePortalData = (portalCode: string | null) => {
       } catch (error) {
         console.info(error);
         setHasError(true);
+        setErrorCode(500);
       }
     };
 
     fetchPortalData();
   }, [portalCode]);
 
-  return { portalData, hasError };
+  return { portalData, hasError, errorCode };
 };
 
 export { UsePortalData };

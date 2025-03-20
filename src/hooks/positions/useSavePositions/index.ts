@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
@@ -12,7 +12,7 @@ import { statusCloseModal } from "@config/status/statusCloseModal";
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
 import { interventionHumanMessage } from "@config/positionsTabs/generics/interventionHumanMessage";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
-
+import { ChangeToRequestTab } from "@context/changeToRequestTab";
 const UseSavePositions = (
   bussinesUnits: string,
   userAccount: string,
@@ -29,7 +29,7 @@ const UseSavePositions = (
   const [requestSteps, setRequestSteps] =
     useState<IRequestSteps[]>(requestStepsInitial);
   const [error, setError] = useState(false);
-
+  const { setChangeTab } = useContext(ChangeToRequestTab);
   const navigate = useNavigate();
   const navigatePage = "/privileges/positions";
 
@@ -133,6 +133,7 @@ const UseSavePositions = (
     setTimeout(() => {
       if (isStatusIntAutomatic(savePositions?.requestStatus)) {
         if (isStatusCloseModal()) {
+          setChangeTab(true);
           navigate(navigatePage);
           addFlag({
             title: flowAutomaticMessages.errorCreateRequest.title,
@@ -207,6 +208,7 @@ const UseSavePositions = (
   }, [savePositions, statusRequest]);
 
   const handleCloseRequestStatus = () => {
+    setChangeTab(true);
     setSendData(false);
     navigate(navigatePage);
     addFlag({
@@ -225,6 +227,7 @@ const UseSavePositions = (
   }, [statusRequest]);
 
   const handleClosePendingReqModal = () => {
+    setChangeTab(true);
     setShowPendingReqModal(false);
     navigate(navigatePage);
   };

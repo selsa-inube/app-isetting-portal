@@ -8,6 +8,7 @@ import { GlobalStyles } from "./styles/global";
 import { ThemeProviderWrapper } from "./context/ThemeContext";
 import { UseAppData } from "@hooks/staffPortal/usePortalManage";
 import { IUser } from "@ptypes/authAndPortalDataProvider/IUser";
+import { ChangeToRequestTabProvider } from "@context/changeToRequestTab";
 
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
@@ -46,7 +47,9 @@ const App = (props: IApp) => {
       <ThemeProviderWrapper>
         <FlagProvider>
           <AuthAndDataProvider>
-            <RouterProvider router={router} />
+            <ChangeToRequestTabProvider>
+              <RouterProvider router={router} />
+            </ChangeToRequestTabProvider>
           </AuthAndDataProvider>
         </FlagProvider>
       </ThemeProviderWrapper>

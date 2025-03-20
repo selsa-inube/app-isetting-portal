@@ -1,4 +1,4 @@
-import { MdClear } from "react-icons/md";
+import { MdClear, MdOutlineFilterAltOff } from "react-icons/md";
 import { createPortal } from "react-dom";
 import {
   Stack,
@@ -9,6 +9,7 @@ import {
   useMediaQuery,
   Blanket,
   Button,
+  Tag,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
@@ -18,8 +19,10 @@ import { MultipleChoices } from "@design/navigation/MultipleChoices";
 import {
   StyledButtonFilter,
   StyledContainerButton,
+  StyledFilterdUserCard,
   StyledModal,
 } from "./styles";
+
 interface IFilterModal {
   actionText: string;
   appearance: IIconAppearance;
@@ -31,6 +34,9 @@ interface IFilterModal {
   onClick: () => void;
   onCloseModal: () => void;
   onSelectChange: (options: IOptionItemChecked[]) => void;
+  setSelectedOptions: React.Dispatch<
+    React.SetStateAction<IOptionItemChecked[]>
+  >;
 }
 
 const FilterModal = (props: IFilterModal) => {
@@ -45,6 +51,7 @@ const FilterModal = (props: IFilterModal) => {
     onCloseModal,
     onClick,
     onSelectChange,
+    setSelectedOptions,
   } = props;
 
   const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
@@ -61,6 +68,15 @@ const FilterModal = (props: IFilterModal) => {
       (option) => !selectedOptions.some((selected) => selected.id === option.id)
     );
   };
+
+  const isSmallScreen = useMediaQuery("(max-width: 580px)");
+  const handleClearFilters = () => {
+    setSelectedOptions([]);
+  };
+
+  // const handleSelectChange = (newOptions: IOptionItemChecked[]) => {
+  //   setSelectedOptions(newOptions); // Asegurar que el estado se actualiza
+  // };
 
   return createPortal(
     <Blanket>
@@ -87,6 +103,29 @@ const FilterModal = (props: IFilterModal) => {
               </Button>
             </StyledContainerButton>
           </Stack>
+
+          {isSmallScreen && (
+            <StyledFilterdUserCard
+              $smallScreen={isSmallScreen}
+              $isActive={isMobile}
+            >
+              {selectedOptions.map((option) => (
+                <Tag
+                  key={option.id}
+                  appearance="primary"
+                  label={option.label}
+                  weight="normal"
+                  removable
+                  onClose={() =>
+                    setSelectedOptions(
+                      selectedOptions.filter((item) => item.id !== option.id)
+                    )
+                  }
+                />
+              ))}
+            </StyledFilterdUserCard>
+          )}
+
           <Divider />
         </Stack>
 
@@ -102,15 +141,17 @@ const FilterModal = (props: IFilterModal) => {
           }
           placeholderSelect="Seleccione opciones"
         />
+
         <StyledButtonFilter>
           <Stack gap={basic.spacing.s250} justifyContent="flex-end">
             <Button
               spacing="wide"
               appearance={ComponentAppearance.GRAY}
               variant="filled"
-              onClick={onCloseModal}
+              onClick={isSmallScreen ? handleClearFilters : onCloseModal}
+              iconBefore={isSmallScreen ? <MdOutlineFilterAltOff /> : undefined}
             >
-              Cancelar
+              {isSmallScreen ? "Quitar" : "Cancelar"}
             </Button>
 
             <Button

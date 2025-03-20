@@ -5,6 +5,12 @@ import { basic } from "@design/tokens";
 interface IStyledModal {
   $smallScreen: boolean;
 }
+
+interface IStyledSearchUserCard {
+  $isActive: boolean;
+  $smallScreen: boolean;
+}
+
 const StyledButtonFilter = styled.div`
   button:nth-child(1) {
     background-color: ${inube.palette.neutral.N10};
@@ -32,4 +38,23 @@ const StyledContainerButton = styled.div`
   }
 `;
 
-export { StyledModal, StyledContainerButton, StyledButtonFilter };
+const StyledFilterdUserCard = styled.div<IStyledSearchUserCard>`
+  display: flex;
+  gap: ${basic.spacing.s100};
+  border-radius: ${basic.spacing.s100};
+  border: 1px solid
+    ${({ theme }) =>
+      theme.color?.stroke?.gray?.regular || inube.palette.neutral.N40};
+  padding: ${basic.spacing.s100};
+  background-color: ${inube.palette.neutral.N30};
+  & > * {
+    cursor: pointer;
+  }
+`;
+
+export {
+  StyledModal,
+  StyledContainerButton,
+  StyledButtonFilter,
+  StyledFilterdUserCard,
+};

@@ -1,5 +1,8 @@
-import { MdOutlineStart } from "react-icons/md";
-import { TfiMenuAlt } from "react-icons/tfi";
+import {
+  MdGroup,
+  MdOutlineBusinessCenter,
+  MdOutlineStart,
+} from "react-icons/md";
 
 const options = [
   {
@@ -12,8 +15,36 @@ const options = [
 const subOptions = [
   {
     publicCode: "Privilegios",
+    publicCodeOption: "users",
+    icon: <MdOutlineBusinessCenter />,
+    url: "/privileges/users",
+    domain: "catalogs",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: true,
+      },
+
+      {
+        path: "/privileges/users",
+        label: "Usuarios",
+        id: "/users",
+        isActive: true,
+      },
+    ],
+  },
+  {
+    publicCode: "Privilegios",
     publicCodeOption: "Cargos Inube",
-    icon: <TfiMenuAlt size={"20px"} />,
+    icon: <MdGroup />,
     url: "/privileges/positions",
     domain: "catalogs",
     crumbs: [

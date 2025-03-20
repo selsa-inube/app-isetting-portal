@@ -1,5 +1,5 @@
 import { MdOutlineFilterAltOff, MdOutlineFilterAlt } from "react-icons/md";
-import { Button, Stack, Tag, useMediaQuery } from "@inubekit/inubekit";
+import { Button, Icon, Stack, Tag, useMediaQuery } from "@inubekit/inubekit";
 import { FilterModal } from "@design/modals/filterModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 
@@ -23,52 +23,63 @@ const FilterFields = (props: IFilterFields) => {
     onSelectChange,
     handleToggleModal,
   } = props;
-  const smallScreen = useMediaQuery("(max-width: 970px)");
+  const isSmallScreen = useMediaQuery("(max-width: 580px)");
 
   return (
     <>
-      <StyledSearchUserCard $smallScreen={smallScreen} $isActive={showModal}>
-        <Stack gap="20px">
-          <StyledFilterdUserCard
-            $smallScreen={smallScreen}
-            $isActive={showModal}
-          >
-            {selectedOptions.map((option) => (
-              <Tag
-                key={option.id}
-                appearance="primary"
-                label={option.label}
-                weight="normal"
-                removable
-                onClose={() =>
-                  setSelectedOptions(
-                    selectedOptions.filter((item) => item.id !== option.id)
-                  )
-                }
-              />
-            ))}
-          </StyledFilterdUserCard>
-          <StyledButtonFilter>
-            <Stack gap="10px">
-              <Button
-                appearance="gray"
-                iconBefore={<MdOutlineFilterAltOff />}
-                onClick={handleClearFilters}
-              >
-                Quitar
-              </Button>
+      {isSmallScreen ? (
+        <Icon
+          appearance={"primary"}
+          icon={<MdOutlineFilterAlt />}
+          onClick={handleToggleModal}
+        />
+      ) : (
+        <StyledSearchUserCard
+          $smallScreen={isSmallScreen}
+          $isActive={showModal}
+        >
+          <Stack gap="20px">
+            <StyledFilterdUserCard
+              $smallScreen={isSmallScreen}
+              $isActive={showModal}
+            >
+              {selectedOptions.map((option) => (
+                <Tag
+                  key={option.id}
+                  appearance="primary"
+                  label={option.label}
+                  weight="normal"
+                  removable
+                  onClose={() =>
+                    setSelectedOptions(
+                      selectedOptions.filter((item) => item.id !== option.id)
+                    )
+                  }
+                />
+              ))}
+            </StyledFilterdUserCard>
+            <StyledButtonFilter>
+              <Stack gap="10px">
+                <Button
+                  appearance="gray"
+                  iconBefore={<MdOutlineFilterAltOff />}
+                  onClick={handleClearFilters}
+                >
+                  Quitar
+                </Button>
 
-              <Button
-                onClick={handleToggleModal}
-                iconBefore={<MdOutlineFilterAlt />}
-                disabled={selectedOptions.length === options.length}
-              >
-                Filtrar
-              </Button>
-            </Stack>
-          </StyledButtonFilter>
-        </Stack>
-      </StyledSearchUserCard>
+                <Button
+                  onClick={handleToggleModal}
+                  iconBefore={<MdOutlineFilterAlt />}
+                  disabled={selectedOptions.length === options.length}
+                >
+                  Filtrar
+                </Button>
+              </Stack>
+            </StyledButtonFilter>
+          </Stack>
+        </StyledSearchUserCard>
+      )}
 
       {showModal && (
         <FilterModal
@@ -82,6 +93,7 @@ const FilterFields = (props: IFilterFields) => {
           onCloseModal={handleToggleModal}
           onClick={onClick}
           onSelectChange={onSelectChange}
+          setSelectedOptions={setSelectedOptions}
         />
       )}
     </>

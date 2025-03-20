@@ -14,6 +14,7 @@ const StyledSearchUserCard = styled.div<IStyledSearchUserCard>`
       theme.color?.stroke?.gray?.regular || inube.palette.neutral.N40};
   padding: ${basic.spacing.s300};
 `;
+
 const StyledButtonFilter = styled.div`
   display: flex;
   justify-content: center;
@@ -42,7 +43,7 @@ const StyledButtonFilter = styled.div`
 const StyledFilterdUserCard = styled.div<IStyledSearchUserCard>`
   display: flex;
   gap: ${basic.spacing.s100};
-  width: 80%;
+  width: 100%;
   border-radius: ${basic.spacing.s100};
   border: 1px solid
     ${({ theme }) =>

@@ -1,6 +1,5 @@
 import { MdSearch, MdPersonAddAlt, MdOutlineMoreHoriz } from "react-icons/md";
 import {
-  Text,
   Textfield,
   Col,
   Colgroup,
@@ -46,21 +45,8 @@ const PositionsUI = (props: IPositions) => {
     paginatedData,
   } = props;
   return (
-    <Stack
-      direction="column"
-      width="-webkit-fill-available"
-      padding={
-        smallScreen
-          ? `{${basic.spacing.s24}}`
-          : `${basic.spacing.s32} ${basic.spacing.s64}`
-      }
-    >
+    <Stack direction="column" width="-webkit-fill-available">
       <Stack gap={basic.spacing.s48} direction="column">
-        <Stack>
-          <Text type="title" size={smallScreen ? "medium" : "large"}>
-            Consulta de Cargos vigentes ({filteredData.length})
-          </Text>
-        </Stack>
         <Stack gap={basic.spacing.s32} direction="column">
           <Stack justifyContent="space-between" alignItems="center">
             <Textfield

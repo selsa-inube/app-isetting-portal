@@ -86,7 +86,7 @@ const UseAssignmentForm = (
     },
     {
       id: "allocate-rol",
-      label: "Filtrar ",
+      label: `Filtrar (${selectedOptions.length})`,
       handleClick: handleToggleModal,
     },
   ];

@@ -26,6 +26,12 @@ const DetailsModal = (props: IDetailsModalProps) => {
   };
   const screenTablet = useMediaQuery("(max-width: 1000px)");
 
+  const dataTable = data?.MissionByRole.map((item: { roleName: string }) => {
+    return {
+      roles: item.roleName,
+    };
+  });
+
   return (
     <>
       <StyledContainerIcon onClick={handleToggleModal} $isTablet={screenTablet}>
@@ -50,6 +56,7 @@ const DetailsModal = (props: IDetailsModalProps) => {
           infoTitle=""
           labels={labelsOptions}
           closeModal={handleToggleModal}
+          dataTable={dataTable ?? []}
         />
       )}
     </>

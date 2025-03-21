@@ -50,7 +50,7 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const disabled = !isCurrentFormValid;
 
   const roles = formValues.rolesStaff.values.map((role) => {
-    const applicationStaff = rolesData?.find((app) => app.roleId !== role.id);
+    const applicationStaff = rolesData?.find((app) => app.roleId === role.id);
     return {
       ...role,
       applicationStaff: applicationStaff?.applicationName,

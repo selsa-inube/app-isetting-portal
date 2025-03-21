@@ -13,6 +13,7 @@ const StyledSearchUserCard = styled.div<IStyledSearchUserCard>`
     ${({ theme }) =>
       theme.color?.stroke?.gray?.regular || inube.palette.neutral.N40};
   padding: ${basic.spacing.s300};
+  display: ${({ $smallScreen }) => ($smallScreen ? "none" : "block")};
 `;
 
 const StyledButtonFilter = styled.div`

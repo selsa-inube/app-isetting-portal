@@ -5,4 +5,14 @@ interface ITabConfig {
   notificationIndicators?: number;
 }
 
-export type { ITabConfig };
+interface IPositionsUI {
+  isSelected: string;
+  handleTabChange: (id: string) => void;
+  smallScreenTab: boolean;
+  smallScreen: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data?: any;
+  catalogName?: string;
+}
+
+export type { ITabConfig, IPositionsUI };

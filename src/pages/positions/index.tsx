@@ -1,32 +1,18 @@
-import { useContext, useEffect, useState } from "react";
-import { positionsTabsConfig } from "@config/positionsTabs/tabs";
-import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
 import { PositionsUI } from "./interface";
 
 const Positions = () => {
-  const [isSelected, setIsSelected] = useState<string>();
+  const { isSelected, handleTabChange, smallScreen, smallScreenTab, data } =
+    UsePositionsTabs();
 
-  const handleTabChange = (tabId: string) => {
-    setIsSelected(tabId);
-  };
-  const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);
-  useEffect(() => {
-    if (changeTab) {
-      setIsSelected(positionsTabsConfig.requestsInProgress.id);
-    }
-  }, [changeTab]);
-
-  useEffect(() => {
-    if (isSelected === positionsTabsConfig.requestsInProgress.id) {
-      setChangeTab(false);
-      setIsSelected(positionsTabsConfig.requestsInProgress.id);
-    }
-  }, [isSelected]);
   return (
     <PositionsUI
-      isSelected={isSelected ?? positionsTabsConfig.cargos.id}
+      isSelected={isSelected}
       handleTabChange={handleTabChange}
       catalogName="Privilegios"
+      smallScreen={smallScreen}
+      smallScreenTab={smallScreenTab}
+      data={data}
     />
   );
 };

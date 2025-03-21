@@ -6,14 +6,14 @@ interface IChangeToRequestTab {
 }
 
 const ChangeToRequestTab = createContext<IChangeToRequestTab>(
-  {} as IChangeToRequestTab,
+  {} as IChangeToRequestTab
 );
 
-interface ChangeToRequestTabProviderProps {
+interface IChangeToRequestTabProvider {
   children: ReactNode;
 }
 
-const ChangeToRequestTabProvider = (props: ChangeToRequestTabProviderProps) => {
+const ChangeToRequestTabProvider = (props: IChangeToRequestTabProvider) => {
   const { children } = props;
   const [changeTab, setChangeTab] = useState<boolean>(false);
 
@@ -22,7 +22,7 @@ const ChangeToRequestTabProvider = (props: ChangeToRequestTabProviderProps) => {
       changeTab,
       setChangeTab,
     }),
-    [changeTab, setChangeTab],
+    [changeTab, setChangeTab]
   );
 
   return (

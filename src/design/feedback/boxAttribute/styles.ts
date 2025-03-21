@@ -19,8 +19,6 @@ const StyledBoxAttribute = styled.div<IStyledBoxAttribute>`
   white-space: normal;
   min-width: 0;
   background-color: ${inube.palette.neutral.N10};
-  & > div {
-  }
 `;
 
 export { StyledBoxAttribute };

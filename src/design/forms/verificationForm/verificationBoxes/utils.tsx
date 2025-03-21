@@ -7,6 +7,7 @@ import {
 } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { StyldTagContainer } from "./styles";
+import { labels } from "@config/verificationTitles";
 
 const renderPersonalInfoVerification = (
   values: IGeneralInformationEntry,
@@ -18,10 +19,13 @@ const renderPersonalInfoVerification = (
       autoRows="1fr"
       width="100%"
     >
-      <BoxAttribute label="Nombre del Cargo:" value={values.namePosition} />
+      <BoxAttribute label={labels.namePosition} value={values.namePosition} />
     </Grid>
     <Stack width="100%" direction="column" gap={basic.spacing.s100}>
-      <BoxAttribute label="Descripción:" value={values.descriptionPosition} />
+      <BoxAttribute
+        label={labels.descriptionPosition}
+        value={values.descriptionPosition}
+      />
     </Stack>
   </>
 );
@@ -47,14 +51,14 @@ const renderStepTwoVerification = (
             direction="column"
             gap={basic.spacing.s100}
           >
-            <BoxAttribute label="Fecha de creación:" value={value.value} />
+            <BoxAttribute label={labels.creationDate} value={value.value} />
           </Stack>
         ))
       ) : (
         <StyldTagContainer>
           <Tag
             appearance={ComponentAppearance.DANGER}
-            label="Ninguna rol fue activado"
+            label={labels.modificationDate}
           />
         </StyldTagContainer>
       )}

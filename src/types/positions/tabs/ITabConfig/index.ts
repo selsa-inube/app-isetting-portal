@@ -1,3 +1,5 @@
+import { IActions } from "@pages/positions/tabs/positionsTabs/types";
+
 interface ITabConfig {
   id: string;
   isDisabled: boolean;
@@ -10,8 +12,7 @@ interface IPositionsUI {
   handleTabChange: (id: string) => void;
   smallScreenTab: boolean;
   smallScreen: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data?: any;
+  data?: IActions;
   catalogName?: string;
 }
 

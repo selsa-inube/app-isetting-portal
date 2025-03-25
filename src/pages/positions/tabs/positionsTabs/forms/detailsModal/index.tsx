@@ -1,40 +1,18 @@
-import { useState } from "react";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Icon, Text, useMediaQuery } from "@inubekit/inubekit";
+import { Icon, Text } from "@inubekit/inubekit";
 import { InteractiveModal } from "@design/feedback/InteractiveModal";
-import { IPosition } from "../../outlets/addPosition/types";
+import { UseDetailsModal } from "@hooks/positions/useDetailsModal";
+import { IDetailsModalProps } from "@ptypes/positions/details";
 import { StyledContainerIcon } from "./styles";
-
-interface IField {
-  id: string;
-  labelName: string;
-}
-
-interface IDetailsModalProps {
-  data?: IPosition;
-  labelsOptions: IField[];
-}
 
 const DetailsModal = (props: IDetailsModalProps) => {
   const { data, labelsOptions } = props;
-
-  const [showModal, setShowModal] = useState<boolean>(false);
-
-  const handleToggleModal = () => {
-    setShowModal(!showModal);
-    handleToggleModal;
-  };
-  const screenTablet = useMediaQuery("(max-width: 1000px)");
-
-  const dataTable = data?.MissionByRole.map((item: { roleName: string }) => {
-    return {
-      roles: item.roleName,
-    };
-  });
+  const { showModal, handleToggleModal, screenTablet, dataTable } =
+    UseDetailsModal(data);
 
   return (
     <>
-      <StyledContainerIcon onClick={handleToggleModal} $isTablet={screenTablet}>
+      <StyledContainerIcon $isTablet={screenTablet}>
         <Icon
           icon={<MdOutlineRemoveRedEye />}
           size="16px"

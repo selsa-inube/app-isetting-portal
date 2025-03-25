@@ -4,6 +4,7 @@ import { basic } from "@design/tokens";
 import { getFieldState } from "@utils/forms";
 import { StyledContainer, StyledContainerFields } from "./styles";
 import { IGeneralInformationEntry } from "../../outlets/addPosition/types";
+import { labels } from "@config/positions/assistedText";
 
 interface IGeneralInformationFormUI {
   formik: FormikProps<IGeneralInformationEntry>;
@@ -29,8 +30,8 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                   <Input
                     name="namePosition"
                     id="namePosition"
-                    label="Nombre del cargo"
-                    placeholder="Nombre del cargo"
+                    label={labels.namePosition}
+                    placeholder={labels.descriptionNamePosition}
                     type="text"
                     size="compact"
                     value={formik.values.namePosition}
@@ -44,8 +45,8 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
               </Stack>
 
               <Textarea
-                label="Descripción Funcional"
-                placeholder="Agregue una breve descripción"
+                label={labels.descriptionPosition}
+                placeholder={labels.placeholderPosition}
                 name="descriptionPosition"
                 id="descriptionPosition"
                 value={formik.values.descriptionPosition}

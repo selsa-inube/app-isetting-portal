@@ -17,7 +17,6 @@ import { enviroment } from "@config/environment";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { MultipleChoices } from "@design/navigation/MultipleChoices";
 import {
-  StyledButtonFilter,
   StyledContainerButton,
   StyledFilterdUserCard,
   StyledModal,
@@ -73,10 +72,6 @@ const FilterModal = (props: IFilterModal) => {
   const handleClearFilters = () => {
     setSelectedOptions([]);
   };
-
-  // const handleSelectChange = (newOptions: IOptionItemChecked[]) => {
-  //   setSelectedOptions(newOptions); // Asegurar que el estado se actualiza
-  // };
 
   return createPortal(
     <Blanket>
@@ -142,29 +137,27 @@ const FilterModal = (props: IFilterModal) => {
           placeholderSelect="Seleccione opciones"
         />
 
-        <StyledButtonFilter>
-          <Stack gap={basic.spacing.s250} justifyContent="flex-end">
-            <Button
-              spacing="wide"
-              appearance={ComponentAppearance.GRAY}
-              variant="filled"
-              onClick={isSmallScreen ? handleClearFilters : onCloseModal}
-              iconBefore={isSmallScreen ? <MdOutlineFilterAltOff /> : undefined}
-            >
-              {isSmallScreen ? "Quitar" : "Cancelar"}
-            </Button>
+        <Stack gap={basic.spacing.s250} justifyContent="flex-end">
+          <Button
+            spacing="wide"
+            appearance={ComponentAppearance.GRAY}
+            variant="filled"
+            onClick={isSmallScreen ? handleClearFilters : onCloseModal}
+            iconBefore={isSmallScreen ? <MdOutlineFilterAltOff /> : undefined}
+          >
+            {isSmallScreen ? "Quitar" : "Cancelar"}
+          </Button>
 
-            <Button
-              spacing="wide"
-              appearance={appearance}
-              variant="filled"
-              loading={isLoading}
-              onClick={onClick}
-            >
-              {actionText}
-            </Button>
-          </Stack>
-        </StyledButtonFilter>
+          <Button
+            spacing="wide"
+            appearance={appearance}
+            variant="filled"
+            loading={isLoading}
+            onClick={onClick}
+          >
+            {actionText}
+          </Button>
+        </Stack>
       </StyledModal>
     </Blanket>,
     node

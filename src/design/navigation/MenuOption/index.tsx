@@ -9,7 +9,7 @@ interface IMenuOption {
 }
 
 const MenuOption = ({ label, icon, handleClick }: IMenuOption) => (
-  <StyledOption onClick={handleClick} type="button">
+  <StyledOption onClick={handleClick}>
     <Stack gap={basic.spacing.s12} alignItems="center">
       {icon}
       <Text size="small">{label}</Text>

@@ -26,7 +26,7 @@ const StyledMenuContainer = styled.div`
   border-radius: 4px;
   padding: 8px 6px;
 
-  & > div > button {
+  & > div {
     background-color: ${({ theme }) =>
       theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
   }

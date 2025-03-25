@@ -11,13 +11,6 @@ interface IStyledSearchUserCard {
   $smallScreen: boolean;
 }
 
-const StyledButtonFilter = styled.div`
-  button:nth-child(1) {
-    background-color: ${inube.palette.neutral.N10};
-    color: ${inube.palette.blue.B400};
-    border: 1px solid ${inube.palette.neutral.N40};
-  }
-`;
 const StyledModal = styled.div<IStyledModal>`
   display: flex;
   flex-direction: column;
@@ -47,14 +40,6 @@ const StyledFilterdUserCard = styled.div<IStyledSearchUserCard>`
       theme.color?.stroke?.gray?.regular || inube.palette.neutral.N40};
   padding: ${basic.spacing.s100};
   background-color: ${inube.palette.neutral.N30};
-  & > * {
-    cursor: pointer;
-  }
 `;
 
-export {
-  StyledModal,
-  StyledContainerButton,
-  StyledButtonFilter,
-  StyledFilterdUserCard,
-};
+export { StyledModal, StyledContainerButton, StyledFilterdUserCard };

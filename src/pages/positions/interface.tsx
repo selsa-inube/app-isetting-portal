@@ -1,26 +1,13 @@
-import { Stack, Breadcrumbs, useMediaQuery, Tabs } from "@inubekit/inubekit";
+import { Stack, Breadcrumbs, Tabs } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { PageTitle } from "@design/label/PageTitle";
-import { privilegeOptionsConfig } from "@config/options/privilegeOptions";
-import { useSubOptions } from "@hooks/subMenu/useSubOptions";
-import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
 import { Positions } from "./tabs/positionsTabs";
-
-interface IPositionsUI {
-  isSelected: string;
-  handleTabChange: (id: string) => void;
-  catalogName: string;
-}
-
+import { IPositionsUI } from "@ptypes/positions/tabs/ITabConfig";
+import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
 const PositionsUI = (props: IPositionsUI) => {
-  const { isSelected, handleTabChange, catalogName } = props;
-  const smallScreen = useMediaQuery("(max-width: 990px)");
-  const smallScreenTab = useMediaQuery("(max-width: 450px)");
-  const { subOptions } = useSubOptions(catalogName);
-  const data = privilegeOptionsConfig(subOptions).find(
-    (item, index) => item[index]?.url === location.pathname
-  );
+  const { isSelected, handleTabChange, smallScreenTab, data, smallScreen } =
+    props;
 
   return (
     <Stack
@@ -36,10 +23,10 @@ const PositionsUI = (props: IPositionsUI) => {
         <Stack gap={basic.spacing.s300} direction="column">
           {data && (
             <>
-              <Breadcrumbs crumbs={data[0].crumbs} />
+              <Breadcrumbs crumbs={data?.crumbs ?? []} />
               <PageTitle
-                title={data[0].label}
-                description={data[0].description}
+                title={data.label}
+                description={data.description}
                 navigatePage="/privileges"
               />
             </>

@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { positionsTabsConfig } from "@config/positionsTabs/tabs";
+import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
 import { PositionsUI } from "./interface";
+import { IActions } from "./tabs/positionsTabs/types";
 
 const Positions = () => {
-  const [isSelected, setIsSelected] = useState<string>();
-
-  const handleTabChange = (tabId: string) => {
-    setIsSelected(tabId);
-  };
+  const { isSelected, handleTabChange, smallScreen, smallScreenTab, data } =
+    UsePositionsTabs();
 
   return (
     <PositionsUI
-      isSelected={isSelected ?? positionsTabsConfig.cargos.id}
+      isSelected={isSelected}
       handleTabChange={handleTabChange}
       catalogName="Privilegios"
+      smallScreen={smallScreen}
+      smallScreenTab={smallScreenTab}
+      data={data as IActions}
     />
   );
 };

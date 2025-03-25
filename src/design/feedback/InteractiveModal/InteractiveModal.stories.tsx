@@ -11,13 +11,18 @@ const story = {
 };
 
 const data = {
-  id: 10,
-  userID: "45645",
-  username: "David Leonardo Garzón",
-  mail: "lgarzon@gmail.com",
-  invitationDate: "11/JUN/2022",
-  status: "Sent",
+  missionId: "123",
+  descriptionUse: "description",
 };
+
+const dataTable = [
+  {
+    missionId: "123",
+  },
+  {
+    missionId: "456",
+  },
+];
 
 const Default = (args: InteractiveModalProps) => {
   const [showModal, setShowModal] = useState(false);
@@ -38,6 +43,7 @@ Default.args = {
   infoData: data,
   infoTitle: "Información",
   actionsTitle: "Acciones",
+  dataTable,
 };
 export { Default };
 export default story;

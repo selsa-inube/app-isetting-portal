@@ -9,7 +9,7 @@ import { DecisionModal } from "@design/modals/decisionModal";
 interface IPageTitle {
   title: string;
   icon?: React.ReactNode;
-  description: string;
+  description?: string;
   navigatePage?: string;
 }
 

@@ -23,19 +23,14 @@ const positionsBreakPointsConfig = [
 
 const labelsOptions = [
   {
-    id: "publicCode",
+    id: "missionId",
     labelName: "Código",
-    type: "text",
+    type: "table",
   },
   {
-    id: "abbreviatedName",
+    id: "descriptionUse",
     labelName: "Descripción Funcional",
     type: "text",
-  },
-  {
-    id: "missionId",
-    labelName: "Roles",
-    type: "table",
   },
 ];
 const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {

@@ -1,3 +1,4 @@
+import { IEntry } from "@design/table/types";
 import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 
 type ModalTypes = "fields" | "search";
@@ -28,6 +29,7 @@ interface InteractiveModalProps {
   id?: string;
   idLabel?: string;
   infoTitle?: string;
+  dataTable?: IEntry[];
   label?: string;
   labels?: IField[];
   name?: string;

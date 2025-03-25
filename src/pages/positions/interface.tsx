@@ -1,23 +1,13 @@
-import { Stack, Breadcrumbs, useMediaQuery, Tabs } from "@inubekit/inubekit";
+import { Stack, Breadcrumbs, Tabs } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { PageTitle } from "@design/label/PageTitle";
-import { useSubOptions } from "@hooks/subMenu/useSubOptions";
-import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
 import { Positions } from "./tabs/positionsTabs";
-
-interface IPositionsUI {
-  isSelected: string;
-  handleTabChange: (id: string) => void;
-  catalogName: string;
-}
-
+import { IPositionsUI } from "@ptypes/positions/tabs/ITabConfig";
+import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
 const PositionsUI = (props: IPositionsUI) => {
-  const { isSelected, handleTabChange, catalogName } = props;
-  const smallScreen = useMediaQuery("(max-width: 990px)");
-  const smallScreenTab = useMediaQuery("(max-width: 450px)");
-  const { subOptions } = useSubOptions(catalogName);
-  const data = subOptions.find((item) => item.url === location.pathname);
+  const { isSelected, handleTabChange, smallScreenTab, data, smallScreen } =
+    props;
 
   return (
     <Stack

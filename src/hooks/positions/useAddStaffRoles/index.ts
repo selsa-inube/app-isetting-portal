@@ -132,7 +132,7 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
     .filter((role) => role.isActive)
     .map((role) => ({
       missionId: role.id,
-      abbreviatedName: role.value,
+      roleName: role.value,
     }));
   const handleSubmitClick = () => {
     handleToggleModal();
@@ -146,10 +146,10 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
       requestDate: formatDate(new Date()),
       useCaseName: "AddMission",
       configurationRequestData: {
-        abbreviatedName: formValues.generalInformation.values.namePosition,
+        missionName: formValues.generalInformation.values.namePosition,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
-        businessManagerStaffMissionByRole: rolesDataEndpoint,
+        MissionByRole: rolesDataEndpoint,
       },
     });
   };

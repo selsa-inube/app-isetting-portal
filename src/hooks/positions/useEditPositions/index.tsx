@@ -80,10 +80,11 @@ const UseEditPositions = (
     useRef<FormikProps<IGeneralInformationEntry>>(null);
 
   const rolesDataEndpoint = formValues.rolesStaff.values
-    .filter((role) => role.isActive)
+    .filter((role) => role.isActive !== undefined)
     .map((role) => ({
       missionId: role.id,
-      abbreviatedName: role.value,
+      roleName: role.value,
+      transactionOperation: role.isActive ? "Insert" : "Delete",
     }));
 
   useEffect(() => {
@@ -163,10 +164,10 @@ const UseEditPositions = (
 
       configurationRequestData: {
         missionId: data.missionId,
-        abbreviatedName: formValues.generalInformation.values.namePosition,
+        missionName: formValues.generalInformation.values.namePosition,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
-        businessManagerStaffMissionByRole: rolesDataEndpoint,
+        MissionByRole: rolesDataEndpoint,
       },
     });
     setShowRequestProcessModal(true);

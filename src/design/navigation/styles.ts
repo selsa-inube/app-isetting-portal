@@ -25,6 +25,11 @@ const StyledMenuContainer = styled.div`
     theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
   border-radius: 4px;
   padding: 8px 6px;
+
+  & > div {
+    background-color: ${({ theme }) =>
+      theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
+  }
 `;
 
 export { StyledMenu, StyledMenuContainer };

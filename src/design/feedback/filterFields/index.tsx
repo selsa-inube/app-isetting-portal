@@ -23,14 +23,14 @@ const FilterFields = (props: IFilterFields) => {
     onSelectChange,
     handleToggleModal,
   } = props;
-  const smallScreen = useMediaQuery("(max-width: 970px)");
+  const isSmallScreen = useMediaQuery("(max-width: 580px)");
 
   return (
     <>
-      <StyledSearchUserCard $smallScreen={smallScreen} $isActive={showModal}>
+      <StyledSearchUserCard $smallScreen={isSmallScreen} $isActive={showModal}>
         <Stack gap="20px">
           <StyledFilterdUserCard
-            $smallScreen={smallScreen}
+            $smallScreen={isSmallScreen}
             $isActive={showModal}
           >
             {selectedOptions.map((option) => (
@@ -82,6 +82,7 @@ const FilterFields = (props: IFilterFields) => {
           onCloseModal={handleToggleModal}
           onClick={onClick}
           onSelectChange={onSelectChange}
+          setSelectedOptions={setSelectedOptions}
         />
       )}
     </>

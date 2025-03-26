@@ -84,6 +84,11 @@ const UseAssignmentForm = (
       label: "Desasignar todos",
       handleClick: () => handleToggleAllEntries(false),
     },
+    {
+      id: "allocate-rol",
+      label: `Filtrar (${selectedOptions.length})`,
+      handleClick: handleToggleModal,
+    },
   ];
 
   const handleToggleAllEntries = (allocate: boolean) => {

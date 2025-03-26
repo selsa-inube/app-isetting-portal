@@ -13,36 +13,20 @@ const StyledSearchUserCard = styled.div<IStyledSearchUserCard>`
     ${({ theme }) =>
       theme.color?.stroke?.gray?.regular || inube.palette.neutral.N40};
   padding: ${basic.spacing.s300};
+  display: ${({ $smallScreen }) => ($smallScreen ? "none" : "block")};
 `;
+
 const StyledButtonFilter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  button:nth-child(1) {
-    background-color: ${inube.palette.neutral.N10};
-    color: ${inube.palette.blue.B400};
-    border: 1px solid ${inube.palette.neutral.N40};
-  }
-  button:nth-child(2) {
-    background-color: ${inube.palette.neutral.N10};
-    color: ${inube.palette.blue.B400};
-    border: 1px solid ${inube.palette.blue.B400};
-  }
-  button:nth-child(2) p {
-    background-color: ${inube.palette.neutral.N10};
-    color: ${inube.palette.blue.B400};
-  }
-
-  button:nth-child(2) svg {
-    color: ${inube.palette.blue.B400};
-  }
 `;
 
 const StyledFilterdUserCard = styled.div<IStyledSearchUserCard>`
   display: flex;
   gap: ${basic.spacing.s100};
-  width: 80%;
+  width: 100%;
   border-radius: ${basic.spacing.s100};
   border: 1px solid
     ${({ theme }) =>

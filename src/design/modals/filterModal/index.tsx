@@ -1,4 +1,4 @@
-import { MdClear } from "react-icons/md";
+import { MdClear, MdOutlineFilterAltOff } from "react-icons/md";
 import { createPortal } from "react-dom";
 import {
   Stack,
@@ -9,6 +9,7 @@ import {
   useMediaQuery,
   Blanket,
   Button,
+  Tag,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
@@ -16,10 +17,11 @@ import { enviroment } from "@config/environment";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { MultipleChoices } from "@design/navigation/MultipleChoices";
 import {
-  StyledButtonFilter,
   StyledContainerButton,
+  StyledFilterdUserCard,
   StyledModal,
 } from "./styles";
+
 interface IFilterModal {
   actionText: string;
   appearance: IIconAppearance;
@@ -31,6 +33,9 @@ interface IFilterModal {
   onClick: () => void;
   onCloseModal: () => void;
   onSelectChange: (options: IOptionItemChecked[]) => void;
+  setSelectedOptions: React.Dispatch<
+    React.SetStateAction<IOptionItemChecked[]>
+  >;
 }
 
 const FilterModal = (props: IFilterModal) => {
@@ -45,6 +50,7 @@ const FilterModal = (props: IFilterModal) => {
     onCloseModal,
     onClick,
     onSelectChange,
+    setSelectedOptions,
   } = props;
 
   const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
@@ -60,6 +66,11 @@ const FilterModal = (props: IFilterModal) => {
     return options.filter(
       (option) => !selectedOptions.some((selected) => selected.id === option.id)
     );
+  };
+
+  const isSmallScreen = useMediaQuery("(max-width: 580px)");
+  const handleClearFilters = () => {
+    setSelectedOptions([]);
   };
 
   return createPortal(
@@ -87,6 +98,29 @@ const FilterModal = (props: IFilterModal) => {
               </Button>
             </StyledContainerButton>
           </Stack>
+
+          {isSmallScreen && (
+            <StyledFilterdUserCard
+              $smallScreen={isSmallScreen}
+              $isActive={isMobile}
+            >
+              {selectedOptions.map((option) => (
+                <Tag
+                  key={option.id}
+                  appearance="primary"
+                  label={option.label}
+                  weight="normal"
+                  removable
+                  onClose={() =>
+                    setSelectedOptions(
+                      selectedOptions.filter((item) => item.id !== option.id)
+                    )
+                  }
+                />
+              ))}
+            </StyledFilterdUserCard>
+          )}
+
           <Divider />
         </Stack>
 
@@ -102,28 +136,28 @@ const FilterModal = (props: IFilterModal) => {
           }
           placeholderSelect="Seleccione opciones"
         />
-        <StyledButtonFilter>
-          <Stack gap={basic.spacing.s250} justifyContent="flex-end">
-            <Button
-              spacing="wide"
-              appearance={ComponentAppearance.GRAY}
-              variant="filled"
-              onClick={onCloseModal}
-            >
-              Cancelar
-            </Button>
 
-            <Button
-              spacing="wide"
-              appearance={appearance}
-              variant="filled"
-              loading={isLoading}
-              onClick={onClick}
-            >
-              {actionText}
-            </Button>
-          </Stack>
-        </StyledButtonFilter>
+        <Stack gap={basic.spacing.s250} justifyContent="flex-end">
+          <Button
+            spacing="wide"
+            appearance={ComponentAppearance.GRAY}
+            variant="filled"
+            onClick={isSmallScreen ? handleClearFilters : onCloseModal}
+            iconBefore={isSmallScreen ? <MdOutlineFilterAltOff /> : undefined}
+          >
+            {isSmallScreen ? "Quitar" : "Cancelar"}
+          </Button>
+
+          <Button
+            spacing="wide"
+            appearance={appearance}
+            variant="filled"
+            loading={isLoading}
+            onClick={onClick}
+          >
+            {actionText}
+          </Button>
+        </Stack>
       </StyledModal>
     </Blanket>,
     node

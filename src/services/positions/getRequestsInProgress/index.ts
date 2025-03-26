@@ -9,7 +9,7 @@ const getRequestsInProgress = async (
 ): Promise<IRequestsInProgress[]> => {
   const config: AxiosRequestConfig = {
     headers: {
-      "X-Action": "SearchAllPendingConfiguartionByBusinessUnit",
+      "X-Action": "SearchPendingConfigurationRequest",
       "X-Business-unit": bussinesUnits,
     },
   };

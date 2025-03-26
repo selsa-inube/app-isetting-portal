@@ -53,7 +53,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     onSelectChange,
     dataValidations,
   } = props;
-  const smallScreen = useMediaQuery("(max-width: 650px)");
+  const smallScreen = useMediaQuery("(max-width: 1001px)");
   return (
     <StyledForm onSubmit={handleSubmit}>
       <FilterFields
@@ -77,7 +77,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
           width="-webkit-fill-available"
         >
           <Stack gap={basic.spacing.s32} justifyContent="space-between">
-            <Stack gap={basic.spacing.s16} direction="column">
+            <Stack gap={basic.spacing.s16} direction="column" width="100%">
               <Textfield
                 type="search"
                 iconBefore={<MdSearch size={22} />}
@@ -88,6 +88,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   handleFilterInput(e)
                 }
+                fullwidth={smallScreen ? true : false}
                 value={filterValue}
                 disabled={dataValidations}
               />
@@ -156,7 +157,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
                 filteredRows.map((entry, rowIndex) => (
                   <Tr key={rowIndex} border="bottom">
                     <Td align="left" type="custom">
-                      <StyledToggleContainer>
+                      <StyledToggleContainer $smallScreen={smallScreen}>
                         <Toggle
                           key={entry.id}
                           checked={entry.isActive}
@@ -170,7 +171,9 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
                         />
                       </StyledToggleContainer>
                     </Td>
-                    <Td align="left"> {entry.value}</Td>
+                    <StyledToggleContainer $smallScreen={smallScreen}>
+                      <Td align="right"> {entry.value}</Td>
+                    </StyledToggleContainer>
                   </Tr>
                 ))
               )}

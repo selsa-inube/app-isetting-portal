@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface IStyledComponent {
+  $smallScreen: boolean;
+}
+
 const StyledForm = styled.form`
   width: 100%;
   margin-bottom: 50px;
@@ -18,7 +22,8 @@ const StyledOptionsContainer = styled.div`
   text-align: right;
 `;
 
-const StyledToggleContainer = styled.div`
+const StyledToggleContainer = styled.div<IStyledComponent>`
+  margin: ${({ $smallScreen }) => ($smallScreen ? "10px" : "0px")};
   & > div {
     justify-content: center;
   }

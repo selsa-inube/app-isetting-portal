@@ -10,8 +10,7 @@ const UseDetailsModal = (data?: IPosition) => {
     setShowModal((prev) => !prev);
   };
   const dataTable = Array.isArray(data?.MissionByRole)
-    ? data.MissionByRole.map((item: { roleName: string }, index: number) => ({
-        id: index.toString(),
+    ? data.MissionByRole.map((item: { roleName: string }) => ({
         roles: item.roleName,
       }))
     : [];

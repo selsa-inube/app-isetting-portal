@@ -30,6 +30,7 @@ const UseSavePositions = (
     useState<IRequestSteps[]>(requestStepsInitial);
   const [error, setError] = useState(false);
   const { setChangeTab } = useContext(ChangeToRequestTab);
+
   const navigate = useNavigate();
   const navigatePage = "/privileges/positions";
 
@@ -134,6 +135,7 @@ const UseSavePositions = (
       if (isStatusIntAutomatic(savePositions?.requestStatus)) {
         if (isStatusCloseModal()) {
           setChangeTab(true);
+          console.log("entro");
           navigate(navigatePage);
           addFlag({
             title: flowAutomaticMessages.errorCreateRequest.title,
@@ -190,6 +192,7 @@ const UseSavePositions = (
       const timeout = setTimeout(() => {
         clearInterval(timer);
         setSendData(false);
+        setChangeTab(true);
         navigate(navigatePage);
         addFlag({
           title: flowAutomaticMessages.requestInQueue.title,
@@ -231,7 +234,6 @@ const UseSavePositions = (
     setShowPendingReqModal(false);
     navigate(navigatePage);
   };
-
   return {
     savePositions,
     requestSteps,

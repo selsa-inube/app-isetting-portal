@@ -44,6 +44,7 @@ const PositionsUI = (props: IPositions) => {
     handleCloseMenuInvitation,
     paginatedData,
   } = props;
+
   return (
     <Stack direction="column" width="-webkit-fill-available">
       <Stack gap={basic.spacing.s48} direction="column">

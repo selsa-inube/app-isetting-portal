@@ -29,7 +29,7 @@ const UsePositionsTabs = () => {
   }, [isSelected]);
 
   return {
-    isSelected: isSelected ?? positionsTabsConfig.cargos.id,
+    isSelected,
     handleTabChange,
     smallScreen,
     smallScreenTab,

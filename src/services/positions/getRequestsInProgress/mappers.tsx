@@ -1,6 +1,6 @@
-import { RequestStatus } from "@design/feedback/requestStatus";
 import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
 import { formatDateTable } from "@utils/formatDateTable";
+import { RequestStatus } from "src/enum/requestStatus";
 
 const mapRequestsInProgressToEntity = (
   data: IRequestsInProgress

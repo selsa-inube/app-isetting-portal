@@ -1,5 +1,6 @@
 import { Stack } from "@inubekit/inubekit";
 import { UseTable } from "@hooks/generic/useTable";
+import { UseApplicationsInProcess } from "@hooks/positions/useApplicationsInProcess";
 import { TableUI } from "./interface";
 import { StyledContainerTable } from "./styles";
 import { IAction, IBreakpoint, IEntry, ITitle } from "./types";
@@ -28,12 +29,12 @@ const Table = (props: ITable) => {
     filter = "",
     isLoading,
     mobileTitle,
-    pageLength = 4,
     breakpoints,
     widthPercentageTotalColumns,
     columnWidths,
   } = props;
 
+  const pageLength = UseApplicationsInProcess();
   const {
     mediaActionOpen,
     numberActions,

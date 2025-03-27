@@ -1,6 +1,7 @@
 import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
 import { PositionsUI } from "./interface";
 import { IActions } from "./tabs/positionsTabs/types";
+import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 
 const Positions = () => {
   const { isSelected, handleTabChange, smallScreen, smallScreenTab, data } =
@@ -8,7 +9,7 @@ const Positions = () => {
 
   return (
     <PositionsUI
-      isSelected={isSelected}
+      isSelected={isSelected ?? positionsTabsConfig.cargos.id}
       handleTabChange={handleTabChange}
       catalogName="Privilegios"
       smallScreen={smallScreen}

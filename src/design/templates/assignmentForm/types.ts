@@ -48,6 +48,7 @@ interface IAssignmentFormUI {
   menuOptions: IOption[];
   options: IOptionItemChecked[];
   showMenu: boolean;
+  smallScreen: boolean;
   showModal: boolean;
   dataValidations: boolean;
   title: string;

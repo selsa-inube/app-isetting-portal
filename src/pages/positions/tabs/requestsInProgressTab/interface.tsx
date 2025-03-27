@@ -27,7 +27,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 690px)");
-  const widthFirstColumn = smallScreen ? 60 : 10;
+  const widthFirstColumn = smallScreen ? 70 : 12;
 
   return (
     <StyledContainer $smallScreen={smallScreen}>

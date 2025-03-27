@@ -1,15 +1,11 @@
-interface IStaffByBusinessUnitAndRole {
-  staffId: string;
-  roleName: string;
-  businessUnitCode: string;
-  BusinessUnitName: string;
-}
+import { IStaffByBusinessUnitAndRole } from "../IStaffByBusinessUnitAndRole";
+
 interface IUsers {
   staffId: string;
   staffName: string;
   biologicalSex: string;
   identificationTypeNaturalPerson: string;
-  identificationNumber: string;
+  identificationDocumentNumber: string;
   birthDay: string;
   principalEmail: string;
   principalPhone: string;
@@ -20,4 +16,4 @@ interface IUsers {
   staffByBusinessUnitAndRole: IStaffByBusinessUnitAndRole[];
 }
 
-export type { IUsers, IStaffByBusinessUnitAndRole };
+export type { IUsers };

@@ -14,10 +14,7 @@ const StyledAppPage = styled.div`
 const StyledContainer = styled.div`
   display: inherit;
   overflow: hidden;
-  & > div > nav {
-    display: flex;
-    width: 100%;
-  }
+
   & > p {
     white-space: nowrap;
   }

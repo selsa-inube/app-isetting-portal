@@ -15,7 +15,6 @@ import {
   Text,
   Fieldset,
   Icon,
-  useMediaQuery,
 } from "@inubekit/inubekit";
 
 import { basic } from "@design/tokens";
@@ -45,6 +44,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     menuOptions,
     filteredRows,
     setSelectedOptions,
+    smallScreen,
     handleToggleRol,
     handleCloseMenuRol,
     handleToggleModal,
@@ -53,7 +53,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     onSelectChange,
     dataValidations,
   } = props;
-  const smallScreen = useMediaQuery("(max-width: 1001px)");
+
   return (
     <StyledForm onSubmit={handleSubmit}>
       <FilterFields

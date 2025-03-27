@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { IEntry } from "@design/templates/assignmentForm/types";
+import { useMediaQuery } from "@inubekit/inubekit";
 
 const UseAssignmentForm = (
   entries: IEntry[],
@@ -21,7 +22,7 @@ const UseAssignmentForm = (
   const [dataValidations, setDataValidations] = useState(entries.length === 0);
 
   const [showModal, setShowModal] = useState<boolean>(false);
-
+  const smallScreen = useMediaQuery("(max-width: 1001px)");
   const [tempSelectedOptions, setTempSelectedOptions] = useState<
     IOptionItemChecked[]
   >([]);
@@ -242,6 +243,7 @@ const UseAssignmentForm = (
     handleToggleRol,
     handleCloseMenuRol,
     handleToggleModal,
+    smallScreen,
   };
 };
 

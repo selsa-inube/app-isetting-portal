@@ -22,6 +22,9 @@ import { StyledButtonWrapper, StyledContainer } from "./styles";
 import { IPositions } from "./types";
 import { Menu } from "@design/navigation";
 import { menuPositionLinks } from "@config/positions/menuInvitation";
+import { useContext, useEffect } from "react";
+import { AuthAndData } from "@context/authAndDataProvider";
+import { getIportalStaffUsers } from "@services/users/getIportalStaffUsers";
 
 const PositionsUI = (props: IPositions) => {
   const {
@@ -44,7 +47,16 @@ const PositionsUI = (props: IPositions) => {
     handleCloseMenuInvitation,
     paginatedData,
   } = props;
+  const { appData } = useContext(AuthAndData);
 
+  useEffect(() => {
+    (async () => {
+      const resultaaa = await getIportalStaffUsers(
+        appData.businessManager.publicCode
+      );
+      console.log(resultaaa, "success");
+    })();
+  }, []);
   return (
     <Stack direction="column" width="-webkit-fill-available">
       <Stack gap={basic.spacing.s48} direction="column">

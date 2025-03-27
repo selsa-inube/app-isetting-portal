@@ -1,4 +1,4 @@
-import { IUsers } from "@ptypes/users/usersTable";
+import { IUsers } from "@ptypes/users/usersTable/IUsers";
 
 const mapUsersPortalStaffEntities = (usersData: IUsers[]): IUsers[] => {
   return usersData.map((user) => ({
@@ -8,7 +8,7 @@ const mapUsersPortalStaffEntities = (usersData: IUsers[]): IUsers[] => {
     identificationTypeNaturalPerson: String(
       user.identificationTypeNaturalPerson
     ),
-    identificationNumber: String(user.identificationNumber),
+    identificationDocumentNumber: String(user.identificationDocumentNumber),
     birthDay: String(user.birthDay),
     principalEmail: String(user.principalEmail),
     principalPhone: String(user.principalPhone),

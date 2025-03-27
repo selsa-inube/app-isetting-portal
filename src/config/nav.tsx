@@ -34,7 +34,7 @@ const nav: INav = {
         links: {
           positions: {
             id: "privileges",
-            label: "Cargos Inube",
+            label: "Privilegios",
             icon: <MdOutlineStart />,
             path: "/privileges",
           },

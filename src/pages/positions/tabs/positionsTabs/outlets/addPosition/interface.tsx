@@ -1,3 +1,4 @@
+import { MdOutlineWarningAmber } from "react-icons/md";
 import { Stack, Breadcrumbs, Assisted, Button } from "@inubekit/inubekit";
 import { PageTitle } from "@design/label/PageTitle";
 import { InitializerForm } from "@design/forms/InitializerForm";
@@ -5,7 +6,6 @@ import { basic } from "@design/tokens";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
 import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
-import { DecisionModalMultipurpose } from "@design/modals/decisionModalMultipurpose";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationForm } from "@design/forms/verificationForm";
 import { createPositionConfig } from "@config/positions/addPositions/assisted";
@@ -150,19 +150,20 @@ const AddStaffRolesUI = ({
         )}
 
         {showMultipurposeModal && (
-          <DecisionModalMultipurpose
+          <DecisionModal
             portalId="portal"
             title="Atención"
-            description="Debes seleccionar al menos un rol antes de continuar."
+            description="Esta seguro de no activar ningun  el rol debería tener al menos una (1) rol, en caso contrario este rol NO será utilizable."
             actionText="Entendido"
+            icon={<MdOutlineWarningAmber />}
             appearance={ComponentAppearance.WARNING}
             onCloseModal={() => setShowMultipurposeModal(false)}
             onClick={() => {
               handleNextStep();
             }}
+            withIcon
           />
         )}
-
         {showRequestProcessModal && (
           <RequestProcessModal
             portalId="portal"

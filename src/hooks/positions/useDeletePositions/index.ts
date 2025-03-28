@@ -25,7 +25,7 @@ const UseDeletePositions = (data: IEntrys, appData: IAppData) => {
       useCaseName: "DeleteMission",
       configurationRequestData: {
         missionId: data.missionId,
-        abbreviatedName: data.namePosition,
+        missionName: data.namePosition,
         justification: `La eliminación del cargo ${appData.user.userAccount}`,
       },
     });

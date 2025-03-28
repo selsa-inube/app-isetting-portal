@@ -22,7 +22,7 @@ import { SubjectSearchCard } from "@design/cards/SubjectSearchCard";
 import { StyledModal, StyledDivider, StyledConatinerInput } from "./styles";
 import { InteractiveModalProps } from "./types";
 
-const InteractiveModal = ({
+const InteractiveModalDeatailsUsers = ({
   closeModal,
   divider,
   infoData,
@@ -67,7 +67,7 @@ const InteractiveModal = ({
           direction="column"
           gap={basic.spacing.s24}
           width="876px"
-          height="880pxpx"
+          height={smallScreen ? "100%" : "88p0x"}
         >
           <Stack direction="column" gap={basic.spacing.s20}>
             <Stack alignItems="center" justifyContent="space-between">
@@ -88,7 +88,7 @@ const InteractiveModal = ({
             {searchData && Object.values(searchData).map(renderCard)}
             {divider && <StyledDivider $smallScreen={smallScreen} />}
           </Stack>
-          <StyledConatinerInput>
+          <StyledConatinerInput $smallScreen={smallScreen}>
             {(labels.length ? labels : Object.keys(infoData)).map((field) => {
               const { id, labelName } =
                 typeof field === "string"
@@ -153,4 +153,4 @@ const InteractiveModal = ({
   );
 };
 
-export { InteractiveModal };
+export { InteractiveModalDeatailsUsers };

@@ -9,6 +9,11 @@ interface IEntry {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
+interface IEntrys {
+  id?: string | number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+}
 
 interface IAction {
   id: string;
@@ -23,4 +28,4 @@ interface IBreakpoint {
   totalColumns: number;
 }
 
-export type { ITitle, IAction, IEntry, IBreakpoint };
+export type { ITitle, IAction, IEntry, IBreakpoint, IEntrys };

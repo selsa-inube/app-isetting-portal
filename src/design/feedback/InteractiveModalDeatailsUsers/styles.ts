@@ -28,10 +28,14 @@ const StyledModal = styled.div<IStyledRespondInvitation>`
     `}
   }
 `;
-const StyledConatinerInput = styled.div`
+const StyledConatinerInput = styled.div<IStyledRespondInvitation>`
   display: grid;
   gap: ${basic.spacing.s16};
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: ${({ $smallScreen }) =>
+    $smallScreen
+      ? "repeat(auto-fit, minmax(800px, 1fr))"
+      : "repeat(auto-fit, minmax(300px, 1fr))"};
+  width: 100%;
 `;
 
 const StyledDivider = styled.div<IStyledRespondInvitation>`

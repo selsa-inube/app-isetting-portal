@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import { Button } from "@inubekit/inubekit";
 
-import { InteractiveModal } from ".";
 import { InteractiveModalProps } from "./types";
+import { InteractiveModalDeatailsUsers } from ".";
 
 const story = {
   title: "Components/Feedback/InteractiveModalDeatailsUsers",
-  component: InteractiveModal,
+  component: InteractiveModalDeatailsUsers,
 };
 
 const data = {
@@ -39,7 +39,10 @@ const Default = (args: InteractiveModalProps) => {
     <>
       <Button onClick={() => setShowModal(true)}>Show Modal</Button>
       {showModal && (
-        <InteractiveModal {...args} closeModal={() => setShowModal(false)} />
+        <InteractiveModalDeatailsUsers
+          {...args}
+          closeModal={() => setShowModal(false)}
+        />
       )}
     </>
   );

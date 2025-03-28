@@ -28,6 +28,11 @@ const StyledModal = styled.div<IStyledRespondInvitation>`
     `}
   }
 `;
+const StyledConatinerInput = styled.div`
+  display: grid;
+  gap: ${basic.spacing.s16};
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+`;
 
 const StyledDivider = styled.div<IStyledRespondInvitation>`
   border-radius: ${basic.spacing.s0};
@@ -36,4 +41,4 @@ const StyledDivider = styled.div<IStyledRespondInvitation>`
       theme?.color?.stroke?.divider?.regular || inube.palette.neutral.N40};
 `;
 
-export { StyledModal, StyledDivider };
+export { StyledModal, StyledDivider, StyledConatinerInput };

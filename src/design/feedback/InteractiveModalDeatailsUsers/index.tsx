@@ -2,30 +2,27 @@ import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
 import {
   Button,
-  Table,
-  Thead,
-  Tr,
-  Td,
-  Th,
-  Tbody,
   Stack,
   Text,
   Blanket,
   useMediaQuery,
   Icon,
   Input,
-  Textarea,
+  Table,
+  Tr,
+  Tbody,
+  Thead,
+  Th,
+  Td,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
 import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { SubjectSearchCard } from "@design/cards/SubjectSearchCard";
-import { StyledModal, StyledDivider } from "./styles";
+import { StyledModal, StyledDivider, StyledConatinerInput } from "./styles";
 import { InteractiveModalProps } from "./types";
 
 const InteractiveModal = ({
-  actions = [],
-  actionsTitle,
   closeModal,
   divider,
   infoData,
@@ -37,12 +34,10 @@ const InteractiveModal = ({
   searchData,
   selectedItem,
   title,
-  type = "fields",
   dataTable,
+  type = "fields",
 }: InteractiveModalProps) => {
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_580);
-  const hasLabels = labels.length > 0;
-  const hasActions = actions.length > 0;
   const node = document.getElementById(portalId);
 
   const renderCard = (data: { [key: string]: string }) => {
@@ -64,10 +59,16 @@ const InteractiveModal = ({
       "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
     );
   }
+
   return createPortal(
     <Blanket>
       <StyledModal $smallScreen={smallScreen} type={type}>
-        <Stack direction="column" gap={basic.spacing.s24}>
+        <Stack
+          direction="column"
+          gap={basic.spacing.s24}
+          width="876px"
+          height="880pxpx"
+        >
           <Stack direction="column" gap={basic.spacing.s20}>
             <Stack alignItems="center" justifyContent="space-between">
               <Text type="headline" size="small" appearance="dark">
@@ -82,130 +83,66 @@ const InteractiveModal = ({
                 onClick={closeModal}
               />
             </Stack>
-            {<StyledDivider $smallScreen={smallScreen} />}
-            {infoTitle && (
-              <Text type="body" size="medium" appearance="gray">
-                {infoTitle}
-              </Text>
-            )}
+            <StyledDivider $smallScreen={smallScreen} />
+
             {searchData && Object.values(searchData).map(renderCard)}
             {divider && <StyledDivider $smallScreen={smallScreen} />}
           </Stack>
+          <StyledConatinerInput>
+            {(labels.length ? labels : Object.keys(infoData)).map((field) => {
+              const { id, labelName } =
+                typeof field === "string"
+                  ? { id: field, labelName: field }
+                  : field;
+              const fieldValue = infoData[id as keyof IPosition];
 
-          {hasLabels
-            ? labels.map((field, index) => {
-                const fieldValue = infoData[field.id as keyof IPosition];
-                if (Array.isArray(fieldValue) && field.type === "table") {
-                  return (
-                    <Table tableLayout="auto" key={field.id}>
-                      <Thead>
-                        <Tr>
-                          <Th align="left">{field.labelName}</Th>
-                        </Tr>
-                      </Thead>
-                      <Tbody>
-                        {fieldValue.map((row, rowIndex) => (
-                          <Tr key={`${rowIndex}`}>
-                            <Td align="left">{row}</Td>
-                          </Tr>
-                        ))}
-                      </Tbody>
-                    </Table>
-                  );
-                } else {
-                  return (
-                    fieldValue &&
-                    (index === 0 ? (
-                      <Input
-                        key={field.id}
-                        label={field.labelName}
-                        name={field.id}
-                        id={field.id}
-                        placeholder={field.labelName}
-                        value={fieldValue}
-                        fullwidth={true}
-                        type="text"
-                        size="compact"
-                      />
-                    ) : (
-                      <Textarea
-                        key={field.id}
-                        label={field.labelName}
-                        name={field.id}
-                        id={field.id}
-                        placeholder={field.labelName}
-                        value={fieldValue}
-                        fullwidth={true}
-                      />
-                    ))
-                  );
-                }
-              })
-            : Object.keys(infoData).map((index, i) =>
-                i === 0 ? (
-                  <Input
-                    key={index}
-                    label={index}
-                    name={index}
-                    id={index}
-                    placeholder={index}
-                    value={infoData[index]}
-                    fullwidth={true}
-                    type="text"
-                    size="compact"
-                  />
-                ) : (
-                  <Textarea
-                    key={index}
-                    label={index}
-                    name={index}
-                    id={index}
-                    placeholder={index}
-                    value={infoData[index]}
-                    fullwidth={true}
-                  />
-                )
-              )}
-
-          {hasActions && (
-            <Stack direction="column" gap={basic.spacing.s16}>
-              <Text type="title" size="medium" appearance="dark">
-                {actionsTitle}
+              return fieldValue ? (
+                <Input
+                  key={id}
+                  label={labelName}
+                  name={id}
+                  id={id}
+                  placeholder={labelName}
+                  value={fieldValue}
+                  fullwidth
+                  type="text"
+                  size="compact"
+                />
+              ) : null;
+            })}
+          </StyledConatinerInput>
+          <Stack direction="column" gap={basic.spacing.s16}>
+            {infoTitle && (
+              <Text type="body" size="medium">
+                {infoTitle}
               </Text>
-              {actions.map((action) => (
-                <Stack key={action.id} gap={basic.spacing.s10}>
-                  {typeof action.content === "function"
-                    ? action.content(infoData)
-                    : action.content}
-                </Stack>
-              ))}
-            </Stack>
-          )}
-
-          {dataTable && (
-            <Table tableLayout="auto">
-              <Thead>
-                <Tr>
-                  {Object.keys(dataTable[0]).map((key) => (
-                    <Th key={key} align="left">
-                      {key}
-                    </Th>
-                  ))}
-                </Tr>
-              </Thead>
-              <Tbody>
-                {dataTable.map((row, rowIndex) => (
-                  <Tr key={`${rowIndex}`}>
-                    {Object.values(row).map((value, colIndex) => (
-                      <Td key={colIndex} align="left">
-                        {value}
-                      </Td>
+            )}
+            {dataTable && (
+              <Table tableLayout="auto">
+                <Thead>
+                  <Tr>
+                    {Object.keys(dataTable[0]).map((key) => (
+                      <Th key={key} align="left">
+                        {key}
+                      </Th>
                     ))}
                   </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          )}
+                </Thead>
+                <Tbody>
+                  {dataTable.map((row, rowIndex) => (
+                    <Tr key={`${rowIndex}`}>
+                      {Object.values(row).map((value, colIndex) => (
+                        <Td key={colIndex} align="left">
+                          {value}
+                        </Td>
+                      ))}
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            )}
+          </Stack>
+
           <Stack justifyContent="right">
             <Button onClick={closeModal}>Cerrar</Button>
           </Stack>

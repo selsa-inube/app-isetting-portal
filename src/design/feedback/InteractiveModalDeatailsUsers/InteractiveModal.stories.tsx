@@ -13,14 +13,22 @@ const story = {
 const data = {
   missionId: "Pruebas",
   descriptionUse: "description",
+  descriptiosnUse: "description",
+  userID: "123",
+  username: "John Doe",
+  email: "johndoe@example.com",
+  phone: "1234567890",
+  position: "Software Engineer",
 };
 
 const dataTable = [
   {
     missionId: "123",
+    descriptionUse: "description",
   },
   {
     missionId: "456",
+    descriptionUse: "description",
   },
 ];
 
@@ -41,7 +49,7 @@ Default.args = {
   portalId: "portal",
   title: "User Information",
   infoData: data,
-  infoTitle: "Información",
+  infoTitle: "Unidades de negocio asignadas al funcionario",
   actionsTitle: "Acciones",
   dataTable,
 };

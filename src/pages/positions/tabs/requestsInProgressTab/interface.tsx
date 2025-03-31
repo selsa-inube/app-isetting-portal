@@ -1,21 +1,14 @@
 import { basic } from "@design/tokens";
-import { Stack, useMediaQuery, Input } from "@inubekit/inubekit";
+import { Stack, Input } from "@inubekit/inubekit";
 import { Table } from "@design/table";
 import {
   actionsConfig,
   breakPoints,
   titles,
 } from "@config/positionsTabs/table";
-import { IEntrys } from "@design/templates/assignmentForm/types";
+import { DecisionModalLabel } from "@config/positions/decisionModalText";
+import { IRequestsInProgressTabUI } from "@config/requestsInProgressTab/table/IRequestsInProgressTabUI";
 import { StyledContainer } from "./styles";
-
-interface IRequestsInProgressTabUI {
-  entries: IEntrys[];
-  loading: boolean;
-  searchrequestProgress: string;
-  setEntryDeleted: (value: string | number) => void;
-  onSearchrequestProgress: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
 
 const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
   const {
@@ -24,10 +17,9 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
     loading,
     setEntryDeleted,
     onSearchrequestProgress,
+    widthFirstColumn,
+    smallScreen,
   } = props;
-
-  const smallScreen = useMediaQuery("(max-width: 690px)");
-  const widthFirstColumn = smallScreen ? 70 : 12;
 
   return (
     <StyledContainer $smallScreen={smallScreen}>
@@ -62,7 +54,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
           </Stack>
 
           <Table
-            id="portal"
+            id={DecisionModalLabel.portalId}
             titles={titles}
             entries={entries}
             actions={actionsConfig(setEntryDeleted)}

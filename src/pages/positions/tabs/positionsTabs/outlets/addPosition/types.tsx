@@ -1,7 +1,7 @@
 import React from "react";
 import { FormikProps } from "formik";
 import { IAssistedStep } from "@inubekit/inubekit";
-import { IEntry } from "@design/templates/assignmentForm/types";
+import { IFormEntry } from "@design/templates/assignmentForm/types";
 import { IAssignmentFormEntry } from "@ptypes/positions/forms";
 import { IRequestSteps } from "@design/feedback/requestProcess/types";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
@@ -68,9 +68,11 @@ interface IAddPositionUI {
   onToggleModal: () => void;
   onToggleApplicationStatus: () => void;
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedToggle: IEntry[];
+  selectedToggle: IFormEntry[];
   setCurrentStep: (step: number) => void;
-  setSelectedToggle: React.Dispatch<React.SetStateAction<IEntry[] | undefined>>;
+  setSelectedToggle: React.Dispatch<
+    React.SetStateAction<IFormEntry[] | undefined>
+  >;
   handlePreviousStep: () => void;
   handleNextStep: () => void;
   formValues: IFormAddPosition;

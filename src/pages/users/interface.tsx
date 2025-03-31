@@ -5,7 +5,6 @@ import { Table } from "@design/table";
 import { actionsConfig, breakPoints, titles } from "@config/users/table";
 import { PageTitle } from "@design/label/PageTitle";
 import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
-import { StyledButtonWrapper } from "./styles";
 
 const UsersUI = (props: IUsersUI) => {
   const {
@@ -15,8 +14,9 @@ const UsersUI = (props: IUsersUI) => {
     searchPosition,
     entries,
     loading,
+    widthFirstColumn,
   } = props;
-  const widthFirstColumn = smallScreen ? 60 : 20;
+
   return (
     <Stack
       direction="column"
@@ -57,16 +57,14 @@ const UsersUI = (props: IUsersUI) => {
           }
         />
 
-        <StyledButtonWrapper>
-          <Button
-            iconBefore={<MdPersonAddAlt />}
-            spacing="wide"
-            type="link"
-            path="/privileges"
-          >
-            Invitar usuario
-          </Button>
-        </StyledButtonWrapper>
+        <Button
+          iconBefore={<MdPersonAddAlt />}
+          spacing="wide"
+          type="link"
+          path="/privileges/users"
+        >
+          Invitar usuario
+        </Button>
       </Stack>
       <Table
         id="portal"

@@ -1,4 +1,4 @@
-import { IActions } from "@pages/positions/tabs/positionsTabs/types";
+import { IEntry } from "@design/table/types";
 
 interface ITabConfig {
   id: string;
@@ -12,7 +12,7 @@ interface IPositionsUI {
   handleTabChange: (id: string) => void;
   smallScreenTab: boolean;
   smallScreen: boolean;
-  data?: IActions;
+  data?: IEntry;
   catalogName?: string;
 }
 

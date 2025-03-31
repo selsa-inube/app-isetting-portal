@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Td, Th } from "@inubekit/inubekit";
-import { IAction, IActions } from "@pages/positions/tabs/positionsTabs/types";
+import { IAction } from "@pages/positions/tabs/positionsTabs/types";
 import { ActionMobile } from "../actionMobile";
+import { IEntry } from "../types";
+import { IFormEntry } from "@design/templates/assignmentForm/types";
 
 const ActionRenderer = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1069);
@@ -15,10 +17,10 @@ const ActionRenderer = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const ShowAction = (actionContent: IAction[], entry: IActions) => {
+  const ShowAction = (actionContent: IAction[], entry: IEntry) => {
     return isMobile ? (
       <Td type="custom" align="center">
-        <ActionMobile actions={actionContent} entry={entry} />
+        <ActionMobile actions={actionContent} entry={entry as IFormEntry} />
       </Td>
     ) : (
       <>

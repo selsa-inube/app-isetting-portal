@@ -1,4 +1,4 @@
-import { IEntry } from "@design/templates/assignmentForm/types";
+import { IFormEntry } from "@design/templates/assignmentForm/types";
 import { IOptionInitialiceEntryApp } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { IAssignmentFormEntry, IMessageState } from "@ptypes/positions/forms";
 
@@ -15,7 +15,9 @@ interface IInitializerFormUI {
   message: IMessageState;
   onCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IAssignmentFormEntry[]) => boolean;
-  setSelectedToggle: React.Dispatch<React.SetStateAction<IEntry[] | undefined>>;
+  setSelectedToggle: React.Dispatch<
+    React.SetStateAction<IFormEntry[] | undefined>
+  >;
   readOnly?: boolean;
   setChangedData?: (changeData: IAssignmentFormEntry[]) => void;
   changeData?: IAssignmentFormEntry[];
@@ -23,7 +25,9 @@ interface IInitializerFormUI {
 
 interface IIUseInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];
-  setSelectedToggle: React.Dispatch<React.SetStateAction<IEntry[] | undefined>>;
+  setSelectedToggle: React.Dispatch<
+    React.SetStateAction<IFormEntry[] | undefined>
+  >;
   id?: string;
   keyData?: string;
   nameDB?: string;

@@ -10,7 +10,7 @@ import {
   IGeneralInformationEntry,
 } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { IRoleForStaff } from "@ptypes/rolesForStaff";
-import { IEntry } from "@design/templates/assignmentForm/types";
+import { IFormEntry } from "@design/templates/assignmentForm/types";
 
 const UseEditPositions = (
   data: {
@@ -64,9 +64,9 @@ const UseEditPositions = (
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
   const [errorFetchSaveData, setErrorFetchSaveData] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [selectedToggle, setSelectedToggle] = useState<IEntry[] | undefined>(
-    []
-  );
+  const [selectedToggle, setSelectedToggle] = useState<
+    IFormEntry[] | undefined
+  >([]);
 
   const [initialRoles, setInitialRoles] = useState<
     {

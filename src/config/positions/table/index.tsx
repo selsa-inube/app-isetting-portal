@@ -1,6 +1,6 @@
 import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { DetailsModal } from "@pages/positions/tabs/positionsTabs/forms/detailsModal";
-import { IAction, IActions } from "@pages/positions/tabs/positionsTabs/types";
+import { IAction } from "@pages/positions/tabs/positionsTabs/types";
 import { Edit } from "@pages/positions/tabs/positionsTabs/forms/edit";
 import { IEntry } from "@design/table/types";
 import { Delete } from "@pages/positions/tabs/positionsTabs/forms/delete";
@@ -38,7 +38,7 @@ const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
     {
       id: "details",
       actionName: "Detalle",
-      content: (data: IActions) => (
+      content: (data: IEntry) => (
         <DetailsModal
           data={data as unknown as IPosition}
           labelsOptions={labelsOptions}
@@ -48,12 +48,12 @@ const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
     {
       id: "edit",
       actionName: "Editar",
-      content: (entry: IActions) => <Edit data={entry as IEntry} />,
+      content: (entry: IEntry) => <Edit data={entry as IEntry} />,
     },
     {
       id: "delete",
       actionName: "Eliminar",
-      content: (entry: IActions) => (
+      content: (entry: IEntry) => (
         <Delete data={entry} setEntryDeleted={setEntryDeleted} />
       ),
     },

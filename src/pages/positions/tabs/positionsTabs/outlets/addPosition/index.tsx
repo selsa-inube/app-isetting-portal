@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UseFetchRolesStaff } from "@hooks/positions/useFetchRolesStaff";
-import { IEntry } from "@design/templates/assignmentForm/types";
+import { IFormEntry } from "@design/templates/assignmentForm/types";
 import { UseAddStaffRoles } from "@hooks/positions/useAddStaffRoles";
 import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
@@ -76,7 +76,7 @@ const AddPosition = () => {
       handlePreviousStep={handlePreviousStep}
       handleNextStep={handleNextStep}
       formValues={formValues}
-      selectedToggle={selectedToggle as IEntry[]}
+      selectedToggle={selectedToggle as IFormEntry[]}
       setSelectedToggle={setSelectedToggle}
       smallScreen={smallScreen}
       roles={roles}

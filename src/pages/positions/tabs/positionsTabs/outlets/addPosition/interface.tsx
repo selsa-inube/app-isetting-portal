@@ -6,6 +6,7 @@ import { basic } from "@design/tokens";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
 import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
+import { DecisionModalLabel } from "@config/positions/decisionModalText";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationForm } from "@design/forms/verificationForm";
 import { createPositionConfig } from "@config/positions/addPositions/assisted";
@@ -140,7 +141,7 @@ const AddStaffRolesUI = ({
 
         {showModal && (
           <DecisionModal
-            portalId="portal"
+            portalId={DecisionModalLabel.portalId}
             title={FinishModal.title}
             description={FinishModal.description}
             actionText={FinishModal.actionText}
@@ -151,10 +152,10 @@ const AddStaffRolesUI = ({
 
         {showMultipurposeModal && (
           <DecisionModal
-            portalId="portal"
-            title="Atención"
-            description="Esta seguro de no activar ningun  el rol debería tener al menos una (1) rol, en caso contrario este rol NO será utilizable."
-            actionText="Entendido"
+            portalId={DecisionModalLabel.portalId}
+            title={DecisionModalLabel.titleSecondaStep}
+            description={DecisionModalLabel.descriptionSecondaStep}
+            actionText={DecisionModalLabel.actionTextSecondaStep}
             icon={<MdOutlineWarningAmber />}
             appearance={ComponentAppearance.WARNING}
             onCloseModal={() => setShowMultipurposeModal(false)}
@@ -166,7 +167,7 @@ const AddStaffRolesUI = ({
         )}
         {showRequestProcessModal && (
           <RequestProcessModal
-            portalId="portal"
+            portalId={DecisionModalLabel.portalId}
             saveData={savePositions}
             descriptionRequestProcess={requestProcessMessage}
             descriptionRequestStatus={requestStatusMessage}

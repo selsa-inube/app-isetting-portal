@@ -2,19 +2,13 @@ import { IOption } from "@design/navigation/types";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { IOptionInitialiceEntryApp } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 
-interface IEntry {
+interface IFormEntry {
   id: string;
   value: string;
   abbreviatedName?: string;
   applicationName?: string;
   isActive: boolean;
   rolesStaff?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
-}
-
-interface IEntrys {
-  id: string | number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
@@ -27,20 +21,22 @@ interface IOptions {
 }
 
 interface IAssignmentForm {
-  handleChange: (entries: IEntry[]) => void;
-  entries: IEntry[];
+  handleChange: (entries: IFormEntry[]) => void;
+  entries: IFormEntry[];
   title: string;
-  setSelectedToggle: React.Dispatch<React.SetStateAction<IEntry[] | undefined>>;
+  setSelectedToggle: React.Dispatch<
+    React.SetStateAction<IFormEntry[] | undefined>
+  >;
   readOnly?: boolean;
-  setChangedData?: (changeData: IEntry[]) => void;
-  changeData?: IEntry[];
+  setChangedData?: (changeData: IFormEntry[]) => void;
+  changeData?: IFormEntry[];
   options: IOptionInitialiceEntryApp[];
 }
 
 interface IAssignmentFormUI {
-  entries: IEntry[];
+  entries: IFormEntry[];
   filter: string;
-  filteredRows: IEntry[];
+  filteredRows: IFormEntry[];
   handleToggleRol: () => void;
   handleCloseMenuRol: () => void;
   filterValue: string;
@@ -87,4 +83,4 @@ const titlesOptions = [
   },
 ];
 export { titlesOptions };
-export type { IEntry, IOptions, IAssignmentFormUI, IAssignmentForm, IEntrys };
+export type { IFormEntry, IOptions, IAssignmentFormUI, IAssignmentForm };

@@ -2,10 +2,11 @@ import { useState } from "react";
 
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { formatDate } from "@utils/date/formatDate";
-import { IEntrys } from "@design/templates/assignmentForm/types";
-import { IAppData } from "@context/authAndDataProvider/types";
 
-const UseDeletePositions = (data: IEntrys, appData: IAppData) => {
+import { IAppData } from "@context/authAndDataProvider/types";
+import { IEntry } from "@design/table/types";
+
+const UseDeletePositions = (data: IEntry, appData: IAppData) => {
   const [showModal, setShowModal] = useState(false);
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [saveData, setSaveData] = useState<ISaveDataRequest>();

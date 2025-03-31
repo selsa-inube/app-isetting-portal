@@ -1,10 +1,11 @@
 import { deleteRequestInProgress } from "@config/positionsTabs/generics/deleteRequestInProgress";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
-import { IEntrys } from "@design/templates/assignmentForm/types";
+import { IEntry } from "@design/table/types";
+
 import { UseDeleteRequestInProgress } from "@hooks/positions/useDeleteRequestInProgress";
 
 interface IDelete {
-  data: IEntrys;
+  data: IEntry;
   setEntryDeleted: (id: string | number) => void;
 }
 

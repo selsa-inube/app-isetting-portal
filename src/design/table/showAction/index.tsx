@@ -1,11 +1,11 @@
 import { Td } from "@inubekit/inubekit";
-import { IEntrys } from "@design/templates/assignmentForm/types";
+
 import { ActionMobile } from "../actionMobile";
-import { IAction } from "../types";
+import { IAction, IEntry } from "../types";
 
 const ShowAction = (
   actionContent: IAction[],
-  entry: IEntrys,
+  entry: IEntry,
   mediaQuery: boolean
 ) => {
   return mediaQuery ? (

@@ -19,28 +19,7 @@ const StyledModal = styled.div<IStyledRespondInvitation>`
   & > div {
     padding: ${({ $smallScreen }) =>
       $smallScreen ? basic.spacing.s16 : basic.spacing.s24};
-    ${({ type }) =>
-      type !== "fields" &&
-      `
-      & > div > div > div > label  {
-        margin: ${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s20} ${basic.spacing.s0};
-      }
-    `}
   }
 `;
-const StyledConatinerInput = styled.div<IStyledRespondInvitation>`
-  display: grid;
-  gap: ${basic.spacing.s16};
-  grid-template-columns: ${({ $smallScreen }) =>
-    $smallScreen ? "auto" : "repeat(auto-fit, minmax(300px, 1fr))"};
-  width: 100%;
-`;
 
-const StyledDivider = styled.div<IStyledRespondInvitation>`
-  border-radius: ${basic.spacing.s0};
-  border: 1px dashed
-    ${({ theme }) =>
-      theme?.color?.stroke?.divider?.regular || inube.palette.neutral.N40};
-`;
-
-export { StyledModal, StyledDivider, StyledConatinerInput };
+export { StyledModal };

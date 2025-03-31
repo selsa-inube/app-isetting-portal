@@ -89,7 +89,7 @@ const TableUI = (props: ITableUI) => {
                   {TitleColumns.map((title) => (
                     <Td
                       key={`e-${entry[title.id]}`}
-                      align={entry.action ? "center" : "center"}
+                      align={entry.action ? "left" : "center"}
                       type="custom"
                     >
                       {typeof entry[title.id] !== "string" ? (

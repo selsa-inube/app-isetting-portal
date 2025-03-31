@@ -19,6 +19,7 @@ const Users = () => {
     showMenu,
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
+    widthFirstColumn,
   } = UsePositionsTabs();
 
   const { searchPosition, handleSearchPositions, loading, requestsInProgress } =
@@ -38,6 +39,7 @@ const Users = () => {
       loading={loading}
       handleToggleMenuInvitation={handleToggleMenuInvitation}
       handleCloseMenuInvitation={handleCloseMenuInvitation}
+      widthFirstColumn={widthFirstColumn}
     />
   );
 };

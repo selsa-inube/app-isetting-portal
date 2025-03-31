@@ -135,7 +135,6 @@ const UseSavePositions = (
       if (isStatusIntAutomatic(savePositions?.requestStatus)) {
         if (isStatusCloseModal()) {
           setChangeTab(true);
-          console.log("entro");
           navigate(navigatePage);
           addFlag({
             title: flowAutomaticMessages.errorCreateRequest.title,

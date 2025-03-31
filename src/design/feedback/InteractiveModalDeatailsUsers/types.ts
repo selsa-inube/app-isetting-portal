@@ -18,7 +18,7 @@ interface IAction {
       }) => React.ReactNode);
 }
 
-interface InteractiveModalProps {
+interface IInteractiveModal {
   closeModal: () => void;
   infoData: IPosition;
   portalId: string;
@@ -44,4 +44,4 @@ interface InteractiveModalProps {
   type?: ModalTypes;
 }
 
-export type { IField, IAction, InteractiveModalProps, ModalTypes };
+export type { IField, IAction, IInteractiveModal, ModalTypes };

@@ -13,6 +13,7 @@ interface IUsersUI {
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
   handleCloseMenuInvitation: () => void;
+  widthFirstColumn: number;
   data?: IActions;
   catalogName?: string;
 }

@@ -5,9 +5,9 @@ interface IField {
   labelName: string;
 }
 
-interface IDetailsModalProps {
+interface IDetailsModal {
   data?: IPosition;
   labelsOptions: IField[];
 }
 
-export type { IDetailsModalProps, IField };
+export type { IDetailsModal, IField };

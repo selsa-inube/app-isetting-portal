@@ -11,7 +11,7 @@ import { Table } from "@design/table";
 import { actionsConfig, breakPoints, titles } from "@config/users/table";
 import { PageTitle } from "@design/label/PageTitle";
 import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
-import { StyledButtonWrapper, StyledContainer } from "./styles";
+import { StyledContainer } from "./styles";
 import { Menu } from "@design/navigation";
 import { menuUserLinks } from "@config/users/menuInvitation";
 
@@ -26,8 +26,9 @@ const UsersUI = (props: IUsersUI) => {
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
     loading,
+    widthFirstColumn,
   } = props;
-  const widthFirstColumn = smallScreen ? 60 : 20;
+
   return (
     <Stack
       direction="column"
@@ -85,16 +86,14 @@ const UsersUI = (props: IUsersUI) => {
             )}
           </StyledContainer>
         ) : (
-          <StyledButtonWrapper>
-            <Button
-              iconBefore={<MdPersonAddAlt />}
-              spacing="wide"
-              type="link"
-              path="/privileges"
-            >
-              Invitar usuario
-            </Button>
-          </StyledButtonWrapper>
+          <Button
+            iconBefore={<MdPersonAddAlt />}
+            spacing="wide"
+            type="link"
+            path="/privileges/users"
+          >
+            Invitar usuario
+          </Button>
         )}
       </Stack>
       <Table

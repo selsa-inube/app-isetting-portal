@@ -14,13 +14,15 @@ import {
   Thead,
   Th,
   Td,
+  Grid,
+  Divider,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
 import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { SubjectSearchCard } from "@design/cards/SubjectSearchCard";
-import { StyledModal, StyledDivider, StyledConatinerInput } from "./styles";
-import { InteractiveModalProps } from "./types";
+import { StyledModal } from "./styles";
+import { IInteractiveModal } from "./types";
 
 const InteractiveModalDeatailsUsers = ({
   closeModal,
@@ -36,7 +38,7 @@ const InteractiveModalDeatailsUsers = ({
   title,
   dataTable,
   type = "fields",
-}: InteractiveModalProps) => {
+}: IInteractiveModal) => {
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
   const node = document.getElementById(portalId);
 
@@ -83,12 +85,20 @@ const InteractiveModalDeatailsUsers = ({
                 onClick={closeModal}
               />
             </Stack>
-            <StyledDivider $smallScreen={smallScreen} />
+            <Divider dashed />
 
             {searchData && Object.values(searchData).map(renderCard)}
-            {divider && <StyledDivider $smallScreen={smallScreen} />}
+            {divider && <Divider dashed />}
           </Stack>
-          <StyledConatinerInput $smallScreen={smallScreen}>
+
+          <Grid
+            templateColumns={
+              smallScreen ? "auto" : "repeat(auto-fit, minmax(300px, 1fr))"
+            }
+            gap={basic.spacing.s16}
+            autoRows="auto"
+            justifyContent="normal"
+          >
             {(labels.length ? labels : Object.keys(infoData)).map((field) => {
               const { id, labelName } =
                 typeof field === "string"
@@ -110,7 +120,8 @@ const InteractiveModalDeatailsUsers = ({
                 />
               ) : null;
             })}
-          </StyledConatinerInput>
+          </Grid>
+
           <Stack direction="column" gap={basic.spacing.s16}>
             {infoTitle && (
               <Text type="body" size="medium">

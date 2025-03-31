@@ -1,11 +1,19 @@
-import { MdPersonAddAlt, MdSearch } from "react-icons/md";
-import { Stack, Breadcrumbs, Textfield, Button } from "@inubekit/inubekit";
+import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import {
+  Stack,
+  Breadcrumbs,
+  Textfield,
+  Button,
+  Icon,
+} from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { Table } from "@design/table";
 import { actionsConfig, breakPoints, titles } from "@config/users/table";
 import { PageTitle } from "@design/label/PageTitle";
 import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
-import { StyledButtonWrapper } from "./styles";
+import { StyledButtonWrapper, StyledContainer } from "./styles";
+import { Menu } from "@design/navigation";
+import { menuUserLinks } from "@config/users/menuInvitation";
 
 const UsersUI = (props: IUsersUI) => {
   const {
@@ -14,6 +22,9 @@ const UsersUI = (props: IUsersUI) => {
     handleSearchPositions,
     searchPosition,
     entries,
+    showMenu,
+    handleToggleMenuInvitation,
+    handleCloseMenuInvitation,
     loading,
   } = props;
   const widthFirstColumn = smallScreen ? 60 : 20;
@@ -57,16 +68,34 @@ const UsersUI = (props: IUsersUI) => {
           }
         />
 
-        <StyledButtonWrapper>
-          <Button
-            iconBefore={<MdPersonAddAlt />}
-            spacing="wide"
-            type="link"
-            path="/privileges"
-          >
-            Invitar usuario
-          </Button>
-        </StyledButtonWrapper>
+        {smallScreen ? (
+          <StyledContainer>
+            <Icon
+              icon={<MdOutlineMoreHoriz />}
+              size="24px"
+              onClick={handleToggleMenuInvitation}
+              cursorHover={true}
+              appearance="dark"
+            />
+            {showMenu && (
+              <Menu
+                options={menuUserLinks}
+                handleClose={handleCloseMenuInvitation}
+              />
+            )}
+          </StyledContainer>
+        ) : (
+          <StyledButtonWrapper>
+            <Button
+              iconBefore={<MdPersonAddAlt />}
+              spacing="wide"
+              type="link"
+              path="/privileges"
+            >
+              Invitar usuario
+            </Button>
+          </StyledButtonWrapper>
+        )}
       </Stack>
       <Table
         id="portal"

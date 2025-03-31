@@ -32,9 +32,7 @@ const StyledConatinerInput = styled.div<IStyledRespondInvitation>`
   display: grid;
   gap: ${basic.spacing.s16};
   grid-template-columns: ${({ $smallScreen }) =>
-    $smallScreen
-      ? "repeat(auto-fit, minmax(800px, 1fr))"
-      : "repeat(auto-fit, minmax(300px, 1fr))"};
+    $smallScreen ? "auto" : "repeat(auto-fit, minmax(300px, 1fr))"};
   width: 100%;
 `;
 

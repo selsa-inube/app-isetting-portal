@@ -10,8 +10,16 @@ import { AuthAndData } from "@context/authAndDataProvider";
 
 const Users = () => {
   const { appData } = useContext(AuthAndData);
-  const { isSelected, handleTabChange, smallScreen, smallScreenTab, data } =
-    UsePositionsTabs();
+  const {
+    isSelected,
+    handleTabChange,
+    smallScreen,
+    smallScreenTab,
+    data,
+    showMenu,
+    handleToggleMenuInvitation,
+    handleCloseMenuInvitation,
+  } = UsePositionsTabs();
 
   const { searchPosition, handleSearchPositions, loading, requestsInProgress } =
     UseManageUsersSearchAndPageControl(appData.businessManager.publicCode);
@@ -24,9 +32,12 @@ const Users = () => {
       catalogName="Privilegios"
       smallScreen={smallScreen}
       smallScreenTab={smallScreenTab}
+      showMenu={showMenu}
       data={data as IActions}
       entries={requestsInProgress as unknown as IEntrys[]}
       loading={loading}
+      handleToggleMenuInvitation={handleToggleMenuInvitation}
+      handleCloseMenuInvitation={handleCloseMenuInvitation}
     />
   );
 };

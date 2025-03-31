@@ -10,6 +10,9 @@ interface IUsersUI {
   loading: boolean;
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
   entries: IEntrys[];
+  showMenu: boolean;
+  handleToggleMenuInvitation: () => void;
+  handleCloseMenuInvitation: () => void;
   data?: IActions;
   catalogName?: string;
 }

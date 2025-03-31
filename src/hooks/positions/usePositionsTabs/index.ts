@@ -8,6 +8,7 @@ const UsePositionsTabs = () => {
   const [isSelected, setIsSelected] = useState<string>();
   const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);
   const smallScreen = useMediaQuery("(max-width: 990px)");
+  const [showMenu, setShowMenu] = useState(false);
   const smallScreenTab = useMediaQuery("(max-width: 450px)");
   const { subOptions } = useSubOptions("Privilegios");
   const data = subOptions.find((item) => item.url === location.pathname);
@@ -15,6 +16,13 @@ const UsePositionsTabs = () => {
     setIsSelected(tabId);
   };
 
+  const handleToggleMenuInvitation = () => {
+    setShowMenu((prevShowMenu) => !prevShowMenu);
+  };
+
+  const handleCloseMenuInvitation = () => {
+    setShowMenu(false);
+  };
   useEffect(() => {
     if (changeTab) {
       setIsSelected(positionsTabsConfig.requestsInProgress.id);
@@ -34,6 +42,9 @@ const UsePositionsTabs = () => {
     smallScreen,
     smallScreenTab,
     data,
+    showMenu,
+    handleToggleMenuInvitation,
+    handleCloseMenuInvitation,
   };
 };
 

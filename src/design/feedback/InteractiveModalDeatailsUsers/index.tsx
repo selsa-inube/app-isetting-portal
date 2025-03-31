@@ -37,7 +37,7 @@ const InteractiveModalDeatailsUsers = ({
   dataTable,
   type = "fields",
 }: InteractiveModalProps) => {
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_580);
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
   const node = document.getElementById(portalId);
 
   const renderCard = (data: { [key: string]: string }) => {
@@ -66,8 +66,8 @@ const InteractiveModalDeatailsUsers = ({
         <Stack
           direction="column"
           gap={basic.spacing.s24}
-          width="876px"
-          height={smallScreen ? "100%" : "88p0x"}
+          width={smallScreen ? "auto" : "876px"}
+          height={smallScreen ? "100%" : "auto"}
         >
           <Stack direction="column" gap={basic.spacing.s20}>
             <Stack alignItems="center" justifyContent="space-between">

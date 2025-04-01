@@ -12,7 +12,7 @@ import {
   IFormAddPosition,
   IGeneralInformationEntry,
 } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
-import { IFormEntry } from "@design/templates/assignmentForm/types";
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 
 const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const { appData } = useContext(AuthAndData);

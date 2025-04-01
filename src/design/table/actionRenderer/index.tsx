@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Td, Th } from "@inubekit/inubekit";
-import { IAction } from "@pages/positions/tabs/positionsTabs/types";
+import { IAction } from "@ptypes/table/IAction";
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IEntry } from "@ptypes/table/IEntry";
 import { ActionMobile } from "../actionMobile";
-import { IEntry } from "../types";
-import { IFormEntry } from "@design/templates/assignmentForm/types";
 
 const ActionRenderer = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1069);

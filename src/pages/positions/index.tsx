@@ -1,6 +1,6 @@
 import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
-import { IEntry } from "@design/table/types";
+import { IEntry } from "@ptypes/table/IEntry";
 import { PositionsUI } from "./interface";
 
 const Positions = () => {

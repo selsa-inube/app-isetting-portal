@@ -1,5 +1,5 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { IEntry } from "@design/table/types";
+import { IEntry } from "@ptypes/table/IEntry";
 import { IServerDomain } from "@ptypes/IServerDomain";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";

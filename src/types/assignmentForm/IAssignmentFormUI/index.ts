@@ -1,37 +1,6 @@
 import { IOption } from "@design/navigation/types";
 import { IOptionItemChecked } from "@design/select/OptionItem";
-import { IOptionInitialiceEntryApp } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
-
-interface IFormEntry {
-  id: string;
-  value: string;
-  abbreviatedName?: string;
-  applicationName?: string;
-  isActive: boolean;
-  rolesStaff?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
-}
-
-interface IOptions {
-  id: string;
-  label: string;
-  checked?: boolean;
-  onchange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-interface IAssignmentForm {
-  handleChange: (entries: IFormEntry[]) => void;
-  entries: IFormEntry[];
-  title: string;
-  setSelectedToggle: React.Dispatch<
-    React.SetStateAction<IFormEntry[] | undefined>
-  >;
-  readOnly?: boolean;
-  setChangedData?: (changeData: IFormEntry[]) => void;
-  changeData?: IFormEntry[];
-  options: IOptionInitialiceEntryApp[];
-}
+import { IFormEntry } from "../IFormEntry";
 
 interface IAssignmentFormUI {
   entries: IFormEntry[];
@@ -67,20 +36,4 @@ interface IAssignmentFormUI {
   readOnly?: boolean;
 }
 
-const titlesOptions = [
-  {
-    id: "id",
-    titleName: "",
-    priority: 0,
-    value: "isActive",
-    type: "toggle",
-  },
-  {
-    id: "abbreviatedName",
-    titleName: "Rol",
-    priority: 1,
-    value: "abbreviatedName",
-  },
-];
-export { titlesOptions };
-export type { IFormEntry, IOptions, IAssignmentFormUI, IAssignmentForm };
+export type { IAssignmentFormUI };

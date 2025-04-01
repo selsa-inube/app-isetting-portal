@@ -1,4 +1,4 @@
-import { IEntry } from "@design/table/types";
+import { IEntry } from "@ptypes/table/IEntry";
 
 interface IRequestsInProgressTabUI {
   entries: IEntry[];

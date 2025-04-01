@@ -10,7 +10,7 @@ import {
   IGeneralInformationEntry,
 } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { IRoleForStaff } from "@ptypes/rolesForStaff";
-import { IFormEntry } from "@design/templates/assignmentForm/types";
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 
 const UseEditPositions = (
   data: {

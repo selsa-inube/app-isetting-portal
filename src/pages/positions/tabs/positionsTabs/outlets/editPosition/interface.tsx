@@ -15,8 +15,8 @@ import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessa
 import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { requestPendingModal } from "@config/positionsTabs/generics/requestPendingModal";
-import { IEditPositionsTabsConfig } from "@ptypes/positions/tabs/ITabConfig/IEditDestinationTabsConfig";
-import { IFormEntry } from "@design/templates/assignmentForm/types";
+import { IEditPositionsTabsConfig } from "@ptypes/positions/tabs/IEditDestinationTabsConfig";
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IRequestSteps } from "@design/feedback/requestProcess/types";
 import { Title } from "@design/label/Title";
 import { crumbsEditPosition } from "@config/positions/editPositions/navigation";

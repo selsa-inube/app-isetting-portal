@@ -5,8 +5,9 @@ import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { UseManageUsersSearchAndPageControl } from "@hooks/users/useManageSearchAndPageControl";
 
 import { AuthAndData } from "@context/authAndDataProvider";
-import { IEntry } from "@design/table/types";
+
 import { UsersUI } from "./interface";
+import { IEntry } from "@ptypes/table/IEntry";
 const Users = () => {
   const { appData } = useContext(AuthAndData);
   const {

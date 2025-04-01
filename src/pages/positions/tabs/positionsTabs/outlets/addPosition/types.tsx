@@ -1,10 +1,11 @@
 import React from "react";
 import { FormikProps } from "formik";
 import { IAssistedStep } from "@inubekit/inubekit";
-import { IFormEntry } from "@design/templates/assignmentForm/types";
+
 import { IAssignmentFormEntry } from "@ptypes/positions/forms";
 import { IRequestSteps } from "@design/feedback/requestProcess/types";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 
 const titleButtonTextAssited = {
   before: "Atrás",

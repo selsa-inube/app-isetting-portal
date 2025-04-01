@@ -1,6 +1,6 @@
 import { FormButtons } from "@design/layout/FormButtons";
 import { AssignmentForm } from "@design/templates/assignmentForm";
-import { IInitializerFormUI } from "./types";
+import { IInitializerFormUI } from "@ptypes/initializerForm/IInitializerFormUI";
 
 const InitializerFormUI = (props: IInitializerFormUI) => {
   const {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IServerDomain } from "@ptypes/IServerDomain";
 import { IConfigurationRequestsTraceability } from "@ptypes/positions/requestsInProgress/IConfigRequestsTraceability";
 import { formatDateTable } from "@utils/date/formatDateTable";
-import { IEntry } from "@design/table/types";
+import { IEntry } from "@ptypes/table/IEntry";
 
 const UseDetailsRequestInProgress = (data: IEntry) => {
   const [showModal, setShowModal] = useState(false);

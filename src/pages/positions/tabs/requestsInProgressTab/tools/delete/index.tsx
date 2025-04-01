@@ -1,8 +1,8 @@
 import { deleteRequestInProgress } from "@config/positionsTabs/generics/deleteRequestInProgress";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
-import { IEntry } from "@design/table/types";
 
 import { UseDeleteRequestInProgress } from "@hooks/positions/useDeleteRequestInProgress";
+import { IEntry } from "@ptypes/table/IEntry";
 
 interface IDelete {
   data: IEntry;

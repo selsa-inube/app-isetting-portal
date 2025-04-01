@@ -17,7 +17,7 @@ import { IServerDomain } from "@ptypes/IServerDomain";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { normalizeStatusByName } from "@utils/status/normalizeStatusByName";
 import { enviroment } from "@config/environment";
-import { IEntry } from "@design/table/types";
+
 import {
   StyledContainerButton,
   StyledContainerFields,
@@ -25,6 +25,7 @@ import {
 } from "./styles";
 
 import { ILabel } from "./types";
+import { IEntry } from "@ptypes/table/IEntry";
 
 interface IDetailsRequestsInProgressModal {
   data: IEntry;

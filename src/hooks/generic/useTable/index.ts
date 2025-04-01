@@ -1,6 +1,9 @@
 import { useMemo, useState } from "react";
-import { IAction, IBreakpoint, IEntry, ITitle } from "@design/table/types";
 import { useMediaQuery, useMediaQueries } from "@inubekit/inubekit";
+import { IEntry } from "@ptypes/table/IEntry";
+import { IBreakpoint } from "@ptypes/table/IBreakpoint";
+import { ITitle } from "@ptypes/table/ITitle";
+import { IAction } from "@ptypes/table/IAction";
 
 const UseTable = (
   entries: IEntry[],

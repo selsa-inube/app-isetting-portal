@@ -1,4 +1,6 @@
-import { IAction, IEntry, ITitle } from "@design/table/types";
+import { IAction } from "@ptypes/table/IAction";
+import { IEntry } from "@ptypes/table/IEntry";
+import { ITitle } from "@ptypes/table/ITitle";
 import {
   MdDeleteOutline,
   MdOutlineCreate,

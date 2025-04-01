@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { IOptionItemChecked } from "@design/select/OptionItem";
-
 import { useMediaQuery } from "@inubekit/inubekit";
-import { IFormEntry } from "@design/templates/assignmentForm/types";
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 
 const UseAssignmentForm = (
   entries: IFormEntry[],

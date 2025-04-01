@@ -12,7 +12,7 @@ import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessa
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { requestPendingModal } from "@config/positionsTabs/generics/requestPendingModal";
 import { UseDeletePositions } from "@hooks/positions/useDeletePositions";
-import { IEntry } from "@design/table/types";
+import { IEntry } from "@ptypes/table/IEntry";
 
 interface IDelete {
   data: IEntry;

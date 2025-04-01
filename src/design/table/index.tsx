@@ -3,7 +3,10 @@ import { UseTable } from "@hooks/generic/useTable";
 import { UseApplicationsInProcess } from "@hooks/positions/useApplicationsInProcess";
 import { TableUI } from "./interface";
 import { StyledContainerTable } from "./styles";
-import { IAction, IBreakpoint, IEntry, ITitle } from "./types";
+import { IEntry } from "@ptypes/table/IEntry";
+import { IAction } from "@ptypes/table/IAction";
+import { IBreakpoint } from "@ptypes/table/IBreakpoint";
+import { ITitle } from "@ptypes/table/ITitle";
 
 interface ITable {
   entries: IEntry[];

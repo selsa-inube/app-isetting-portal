@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { UseRequestsInProgress } from "@hooks/positions/useRequestsInProgress";
-
+import { IEntry } from "@ptypes/table/IEntry";
 import { RequestsInProgressTabUI } from "./interface";
-import { IEntry } from "@design/table/types";
+
 const RequestsInProgressTab = () => {
   const { appData } = useContext(AuthAndData);
   const {

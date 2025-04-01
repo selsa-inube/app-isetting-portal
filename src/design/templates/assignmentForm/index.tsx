@@ -1,6 +1,6 @@
 import { UseAssignmentForm } from "@hooks/design/useAssignmentForm";
+import { IAssignmentForm } from "@ptypes/assignmentForm/IAssignmentForm";
 import { AssignmentFormUI } from "./interface";
-import { IAssignmentForm } from "./types";
 
 const AssignmentForm = (props: IAssignmentForm) => {
   const {

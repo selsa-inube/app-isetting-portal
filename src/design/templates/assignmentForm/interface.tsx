@@ -16,17 +16,18 @@ import {
   Fieldset,
   Icon,
 } from "@inubekit/inubekit";
-
 import { basic } from "@design/tokens";
-
+import { IAssignmentFormUI } from "@ptypes/assignmentForm/IAssignmentFormUI";
 import { Menu } from "@design/navigation";
 import { FilterFields } from "@design/feedback/filterFields";
+import { titlesOptions } from "@config/options/titlesOptions";
+
 import {
   StyledForm,
   StyledOptionsContainer,
   StyledToggleContainer,
 } from "./styles";
-import { IAssignmentFormUI, titlesOptions } from "./types";
+
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const {
     title,
@@ -88,7 +89,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   handleFilterInput(e)
                 }
-                fullwidth={smallScreen ? true : false}
+                fullwidth={smallScreen}
                 value={filterValue}
                 disabled={dataValidations}
               />

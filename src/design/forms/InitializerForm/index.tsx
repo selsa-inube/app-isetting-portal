@@ -1,6 +1,6 @@
 import { UseInitializerForm } from "@hooks/design/useInitializerForm";
+import { IIUseInitializerForm } from "@ptypes/initializerForm/IIUseInitializerForm";
 import { InitializerFormUI } from "./interface";
-import { IIUseInitializerForm } from "./types";
 
 const InitializerForm = (props: IIUseInitializerForm) => {
   const {

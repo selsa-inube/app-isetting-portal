@@ -1,7 +1,7 @@
 import { Td } from "@inubekit/inubekit";
-
+import { IEntry } from "@ptypes/table/IEntry";
+import { IAction } from "@ptypes/table/IAction";
 import { ActionMobile } from "../actionMobile";
-import { IAction, IEntry } from "../types";
 
 const ShowAction = (
   actionContent: IAction[],

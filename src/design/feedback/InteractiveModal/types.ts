@@ -1,5 +1,5 @@
-import { IEntry } from "@design/table/types";
 import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+import { IEntry } from "@ptypes/table/IEntry";
 
 type ModalTypes = "fields" | "search";
 

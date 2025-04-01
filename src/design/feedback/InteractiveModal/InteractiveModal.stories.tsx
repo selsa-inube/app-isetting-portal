@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import { Button } from "@inubekit/inubekit";
+import { InteractiveModalProps } from "@ptypes/interactiveModal/InteractiveModalProps";
 
 import { InteractiveModal } from ".";
-import { InteractiveModalProps } from "./types";
 
 const story = {
   title: "Components/Feedback/InteractiveModal",

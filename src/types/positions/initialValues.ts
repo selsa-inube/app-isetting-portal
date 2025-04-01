@@ -1,4 +1,4 @@
-import { IGeneralInformationEntry } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 
 const generalInformation: IGeneralInformationEntry = {
   namePosition: "",

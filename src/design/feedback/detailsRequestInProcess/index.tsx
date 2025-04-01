@@ -1,5 +1,5 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { IEntrys } from "@design/templates/assignmentForm/types";
+import { IEntry } from "@ptypes/table/IEntry";
 import { IServerDomain } from "@ptypes/IServerDomain";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
@@ -9,7 +9,7 @@ import { labelsOfTraceability } from "@config/requestsInProgressTab/details/labe
 import { StyledContainerIcon } from "./styles";
 
 interface IDetails {
-  data: IEntrys;
+  data: IEntry;
   showModal: boolean;
   form: { name: string; dateTraceability: string };
   dateOptions: IServerDomain[];

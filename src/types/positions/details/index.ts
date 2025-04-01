@@ -1,4 +1,4 @@
-import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+import { IPosition } from "../assisted/IPosition";
 
 interface IField {
   id: string;

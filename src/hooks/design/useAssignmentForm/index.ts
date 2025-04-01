@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { IOptionItemChecked } from "@design/select/OptionItem";
-import { IEntry } from "@design/templates/assignmentForm/types";
 import { useMediaQuery } from "@inubekit/inubekit";
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 
 const UseAssignmentForm = (
-  entries: IEntry[],
-  changeData: IEntry[],
-  setChangedData: (changeData: IEntry[]) => void,
-  handleChange: (entries: IEntry[]) => void,
-  setSelectedToggle: React.Dispatch<React.SetStateAction<IEntry[] | undefined>>,
+  entries: IFormEntry[],
+  changeData: IFormEntry[],
+  setChangedData: (changeData: IFormEntry[]) => void,
+  handleChange: (entries: IFormEntry[]) => void,
+  setSelectedToggle: React.Dispatch<
+    React.SetStateAction<IFormEntry[] | undefined>
+  >,
   valueSelect: { id: string; value: string }[]
 ) => {
   const [filter, setFilter] = useState("");
@@ -17,7 +19,7 @@ const UseAssignmentForm = (
   const [selectedOptions, setSelectedOptions] = useState<IOptionItemChecked[]>(
     []
   );
-  const [filteredRows, setFilteredRows] = useState<IEntry[]>(entries);
+  const [filteredRows, setFilteredRows] = useState<IFormEntry[]>(entries);
   const [filterValue, setFilterValue] = useState("");
   const [dataValidations, setDataValidations] = useState(entries.length === 0);
 

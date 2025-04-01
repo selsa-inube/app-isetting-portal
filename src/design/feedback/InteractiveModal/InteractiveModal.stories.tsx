@@ -1,9 +1,8 @@
 import { useState } from "react";
 
 import { Button } from "@inubekit/inubekit";
-
+import { IInteractiveModal } from "@ptypes/interactiveModal/InteractiveModalProps";
 import { InteractiveModal } from ".";
-import { InteractiveModalProps } from "./types";
 
 const story = {
   title: "Components/Feedback/InteractiveModal",
@@ -24,7 +23,7 @@ const dataTable = [
   },
 ];
 
-const Default = (args: InteractiveModalProps) => {
+const Default = (args: IInteractiveModal) => {
   const [showModal, setShowModal] = useState(false);
 
   return (

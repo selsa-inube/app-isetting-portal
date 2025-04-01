@@ -11,8 +11,9 @@ const UsePositionsTabs = () => {
   const [showMenu, setShowMenu] = useState(false);
   const smallScreenTab = useMediaQuery("(max-width: 450px)");
   const { subOptions } = useSubOptions("Privilegios");
-  const data = subOptions.find((item) => item.url === location.pathname);
   const widthFirstColumn = smallScreen ? 60 : 20;
+  const data = subOptions.find((item) => item.url === location.pathname);
+
   const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);
   };

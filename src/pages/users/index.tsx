@@ -1,12 +1,12 @@
+import { useContext } from "react";
 import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
-import { UsersUI } from "./interface";
 
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
-import { IActions } from "@pages/positions/tabs/positionsTabs/types";
 import { UseManageUsersSearchAndPageControl } from "@hooks/users/useManageSearchAndPageControl";
-import { IEntrys } from "@design/templates/assignmentForm/types";
-import { useContext } from "react";
+import { IEntry } from "@ptypes/table/IEntry";
 import { AuthAndData } from "@context/authAndDataProvider";
+
+import { UsersUI } from "./interface";
 
 const Users = () => {
   const { appData } = useContext(AuthAndData);
@@ -34,11 +34,11 @@ const Users = () => {
       smallScreen={smallScreen}
       smallScreenTab={smallScreenTab}
       showMenu={showMenu}
-      data={data as IActions}
-      entries={requestsInProgress as unknown as IEntrys[]}
       loading={loading}
       handleToggleMenuInvitation={handleToggleMenuInvitation}
       handleCloseMenuInvitation={handleCloseMenuInvitation}
+      data={data as IEntry}
+      entries={requestsInProgress as unknown as IEntry[]}
       widthFirstColumn={widthFirstColumn}
     />
   );

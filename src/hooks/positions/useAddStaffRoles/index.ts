@@ -8,11 +8,10 @@ import { initalValuesPositions } from "@ptypes/positions/initialValues";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
-import {
-  IFormAddPosition,
-  IGeneralInformationEntry,
-} from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
-import { IEntry } from "@design/templates/assignmentForm/types";
+
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
+import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 
 const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const { appData } = useContext(AuthAndData);
@@ -23,7 +22,7 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const [showModalApplicationStatus, setShowModalApplicationStatus] =
     useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [selectedToggle, setSelectedToggle] = useState<IEntry[]>();
+  const [selectedToggle, setSelectedToggle] = useState<IFormEntry[]>();
   const [formValues, setFormValues] = useState<IFormAddPosition>({
     generalInformation: {
       isValid: false,

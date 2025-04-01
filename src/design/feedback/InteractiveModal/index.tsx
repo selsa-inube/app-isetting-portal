@@ -18,10 +18,10 @@ import {
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
-import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+import { IPosition } from "@ptypes/positions/assisted/IPosition";
 import { SubjectSearchCard } from "@design/cards/SubjectSearchCard";
+import { IInteractiveModal } from "@ptypes/interactiveModal/InteractiveModalProps";
 import { StyledModal, StyledDivider } from "./styles";
-import { InteractiveModalProps } from "./types";
 
 const InteractiveModal = ({
   actions = [],
@@ -39,7 +39,7 @@ const InteractiveModal = ({
   title,
   type = "fields",
   dataTable,
-}: InteractiveModalProps) => {
+}: IInteractiveModal) => {
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_580);
   const hasLabels = labels.length > 0;
   const hasActions = actions.length > 0;

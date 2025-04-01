@@ -1,5 +1,4 @@
-import { IEntrys } from "@design/templates/assignmentForm/types";
-import { IActions } from "@pages/positions/tabs/positionsTabs/types";
+import { IEntry } from "@ptypes/table/IEntry";
 
 interface IUsersUI {
   isSelected: string;
@@ -9,12 +8,13 @@ interface IUsersUI {
   searchPosition: string;
   loading: boolean;
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  entries: IEntrys[];
   showMenu: boolean;
   handleToggleMenuInvitation: () => void;
   handleCloseMenuInvitation: () => void;
+  entries: IEntry[];
   widthFirstColumn: number;
-  data?: IActions;
+  data?: IEntry;
+
   catalogName?: string;
 }
 

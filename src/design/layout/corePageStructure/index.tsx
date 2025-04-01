@@ -6,7 +6,14 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
 import { nav, userMenu } from "@config/nav";
 import { actionsConfig } from "@config/mainActionLogout";
-import { Nav, Header, Icon, Grid, useMediaQuery } from "@inubekit/inubekit";
+import {
+  Nav,
+  Header,
+  Icon,
+  Grid,
+  useMediaQuery,
+  Stack,
+} from "@inubekit/inubekit";
 import { BusinessUnitChange } from "@design/inputs/BusinessUnitChange";
 import {
   StyledAppPage,
@@ -56,7 +63,7 @@ const CorePageStructure = () => {
 
   return (
     <StyledAppPage>
-      <Grid templateRows="auto 1fr" height="100vh" justifyContent="unset">
+      <Grid templateRows="auto 1fr" justifyContent="unset">
         <StyledHeaderContainer>
           <Header
             portalId="portal"
@@ -101,8 +108,11 @@ const CorePageStructure = () => {
             alignContent="unset"
           >
             {!isTablet && (
-              <Nav navigation={nav.items} actions={actionsConfig(logout)} />
+              <Stack height="100%">
+                <Nav navigation={nav.items} actions={actionsConfig(logout)} />
+              </Stack>
             )}
+
             <StyledMain $isMobile={isTabletMain}>
               <Outlet />
             </StyledMain>

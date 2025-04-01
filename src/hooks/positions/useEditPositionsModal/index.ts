@@ -1,5 +1,5 @@
+import { IEntry } from "@ptypes/table/IEntry";
 import { useNavigate } from "react-router-dom";
-import { IEntry } from "@design/table/types";
 
 const UseEditPositionsModal = (data: IEntry) => {
   const navigate = useNavigate();

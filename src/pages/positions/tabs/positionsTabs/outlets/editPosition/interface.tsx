@@ -15,15 +15,13 @@ import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessa
 import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { requestPendingModal } from "@config/positionsTabs/generics/requestPendingModal";
-import { IEditPositionsTabsConfig } from "@ptypes/positions/tabs/ITabConfig/IEditDestinationTabsConfig";
-import { IEntry } from "@design/templates/assignmentForm/types";
+import { IEditPositionsTabsConfig } from "@ptypes/positions/tabs/IEditDestinationTabsConfig";
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IRequestSteps } from "@design/feedback/requestProcess/types";
 import { Title } from "@design/label/Title";
 import { crumbsEditPosition } from "@config/positions/editPositions/navigation";
-import {
-  IFormAddPosition,
-  IGeneralInformationEntry,
-} from "../addPosition/types";
+import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
+import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
 
@@ -43,7 +41,9 @@ interface IEditPositionsUI {
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   onCloseRequestStatus: () => void;
   onClosePendingReqModal: () => void;
-  setSelectedToggle: React.Dispatch<React.SetStateAction<IEntry[] | undefined>>;
+  setSelectedToggle: React.Dispatch<
+    React.SetStateAction<IFormEntry[] | undefined>
+  >;
 }
 
 const EditPositionsUI = (props: IEditPositionsUI) => {

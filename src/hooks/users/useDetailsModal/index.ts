@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+import { IPosition } from "@ptypes/positions/assisted/IPosition";
 
 const UseDetailsModal = (data?: IPosition) => {
   const [showModal, setShowModal] = useState<boolean>(false);

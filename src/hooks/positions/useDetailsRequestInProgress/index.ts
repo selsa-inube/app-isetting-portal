@@ -2,9 +2,9 @@ import { useState } from "react";
 import { IServerDomain } from "@ptypes/IServerDomain";
 import { IConfigurationRequestsTraceability } from "@ptypes/positions/requestsInProgress/IConfigRequestsTraceability";
 import { formatDateTable } from "@utils/date/formatDateTable";
-import { IEntrys } from "@design/templates/assignmentForm/types";
+import { IEntry } from "@ptypes/table/IEntry";
 
-const UseDetailsRequestInProgress = (data: IEntrys) => {
+const UseDetailsRequestInProgress = (data: IEntry) => {
   const [showModal, setShowModal] = useState(false);
 
   const dateOptions = data.configurationRequestsTraceability.map(

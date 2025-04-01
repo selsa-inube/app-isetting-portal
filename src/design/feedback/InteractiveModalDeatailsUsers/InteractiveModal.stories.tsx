@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button } from "@inubekit/inubekit";
 
 import { InteractiveModalDeatailsUsers } from ".";
-import { IInteractiveModal } from "./types";
+import { IInteractiveModal } from "@ptypes/interactiveModal/InteractiveModalProps";
 
 const story = {
   title: "Components/Feedback/InteractiveModalDeatailsUsers",

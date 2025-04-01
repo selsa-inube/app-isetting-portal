@@ -1,6 +1,8 @@
-import { IAction, IEntry, ITitle } from "@design/table/types";
-import { IActions } from "@pages/positions/tabs/positionsTabs/types";
 import { DetailsModal } from "@pages/users/forms/detailsModal";
+import { IAction } from "@ptypes/table/IAction";
+
+import { IEntry } from "@ptypes/table/IEntry";
+import { ITitle } from "@ptypes/table/ITitle";
 import { MdDeleteOutline, MdOutlineCreate } from "react-icons/md";
 
 const titles: ITitle[] = [
@@ -63,8 +65,7 @@ const actionsConfig = () => {
   const actions: IAction[] = [
     {
       id: "details",
-      actionName: "Detalle",
-      content: (data: IActions) => (
+      content: (data: IEntry) => (
         <DetailsModal data={data} labelsOptions={labelsOptions} />
       ),
     },

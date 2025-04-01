@@ -2,10 +2,11 @@ import { useState } from "react";
 
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { formatDate } from "@utils/date/formatDate";
-import { IEntrys } from "@design/templates/assignmentForm/types";
-import { IAppData } from "@context/authAndDataProvider/types";
 
-const UseDeletePositions = (data: IEntrys, appData: IAppData) => {
+import { IAppData } from "@context/authAndDataProvider/types";
+import { IEntry } from "@ptypes/table/IEntry";
+
+const UseDeletePositions = (data: IEntry, appData: IAppData) => {
   const [showModal, setShowModal] = useState(false);
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
@@ -25,7 +26,7 @@ const UseDeletePositions = (data: IEntrys, appData: IAppData) => {
       useCaseName: "DeleteMission",
       configurationRequestData: {
         missionId: data.missionId,
-        abbreviatedName: data.namePosition,
+        missionName: data.namePosition,
         justification: `La eliminación del cargo ${appData.user.userAccount}`,
       },
     });

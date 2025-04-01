@@ -1,3 +1,4 @@
+import { MdOutlineWarningAmber } from "react-icons/md";
 import { Stack, Breadcrumbs, Assisted, Button } from "@inubekit/inubekit";
 import { PageTitle } from "@design/label/PageTitle";
 import { InitializerForm } from "@design/forms/InitializerForm";
@@ -6,14 +7,16 @@ import { DecisionModal } from "@design/modals/decisionModal";
 import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
 import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
 
+import { DecisionModalLabel } from "@config/positions/decisionModalText";
+
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationForm } from "@design/forms/verificationForm";
 import { createPositionConfig } from "@config/positions/addPositions/assisted";
 import { RequestProcessModal } from "@design/modals/requestProcessModal";
 import { FinishModal } from "@config/positions/verificationForm";
-import { IAddPositionUI } from "./types";
+
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
-import { MdOutlineWarningAmber } from "react-icons/md";
+import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
 
 const AddStaffRolesUI = ({
   currentStep,
@@ -141,7 +144,7 @@ const AddStaffRolesUI = ({
 
         {showModal && (
           <DecisionModal
-            portalId="portal"
+            portalId={DecisionModalLabel.portalId}
             title={FinishModal.title}
             description={FinishModal.description}
             actionText={FinishModal.actionText}
@@ -152,10 +155,10 @@ const AddStaffRolesUI = ({
 
         {showMultipurposeModal && (
           <DecisionModal
-            portalId="portal"
-            title="Atención"
-            description="Esta seguro de no activar ningun  el rol debería tener al menos una (1) rol, en caso contrario este role NO será utilizable."
-            actionText="Entendido"
+            portalId={DecisionModalLabel.portalId}
+            title={DecisionModalLabel.titleSecondaStep}
+            description={DecisionModalLabel.descriptionSecondaStep}
+            actionText={DecisionModalLabel.actionTextSecondaStep}
             icon={<MdOutlineWarningAmber />}
             appearance={ComponentAppearance.WARNING}
             onCloseModal={() => setShowMultipurposeModal(false)}
@@ -165,10 +168,9 @@ const AddStaffRolesUI = ({
             withIcon
           />
         )}
-
         {showRequestProcessModal && (
           <RequestProcessModal
-            portalId="portal"
+            portalId={DecisionModalLabel.portalId}
             saveData={savePositions}
             descriptionRequestProcess={requestProcessMessage}
             descriptionRequestStatus={requestStatusMessage}

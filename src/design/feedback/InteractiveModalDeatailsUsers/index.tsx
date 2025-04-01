@@ -19,10 +19,11 @@ import {
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
-import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+
 import { SubjectSearchCard } from "@design/cards/SubjectSearchCard";
+import { IInteractiveModal } from "@ptypes/interactiveModal/InteractiveModalProps";
 import { StyledModal } from "./styles";
-import { IInteractiveModal } from "./types";
+import { IPosition } from "@ptypes/positions/assisted/IPosition";
 
 const InteractiveModalDeatailsUsers = ({
   closeModal,

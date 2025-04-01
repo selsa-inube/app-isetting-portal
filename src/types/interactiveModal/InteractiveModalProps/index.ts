@@ -1,23 +1,8 @@
-import { IEntrys } from "@design/table/types";
-import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
-
+import { IField } from "../IField";
+import { IAction } from "../IAction";
+import { IEntry } from "@ptypes/table/IEntry";
+import { IPosition } from "@ptypes/positions/assisted/IPosition";
 type ModalTypes = "fields" | "search";
-
-interface IField {
-  id: string;
-  labelName: string;
-  type?: string;
-}
-
-interface IAction {
-  id: string;
-  content:
-    | string
-    | ((data: {
-        [key: string]: string | number | boolean | React.ReactNode;
-      }) => React.ReactNode);
-}
-
 interface IInteractiveModal {
   closeModal: () => void;
   infoData: IPosition;
@@ -29,7 +14,7 @@ interface IInteractiveModal {
   id?: string;
   idLabel?: string;
   infoTitle?: string;
-  dataTable?: IEntrys[];
+  dataTable?: IEntry[];
   label?: string;
   labels?: IField[];
   name?: string;
@@ -44,4 +29,4 @@ interface IInteractiveModal {
   type?: ModalTypes;
 }
 
-export type { IField, IAction, IInteractiveModal, ModalTypes };
+export type { IInteractiveModal };

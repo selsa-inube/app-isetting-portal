@@ -1,8 +1,8 @@
+import { IEntry } from "@ptypes/table/IEntry";
 import { useState } from "react";
-import { IEntrys } from "@design/templates/assignmentForm/types";
 
 const UseDeleteRequestInProgress = (
-  data: IEntrys,
+  data: IEntry,
   setEntryDeleted: (value: string | number) => void
 ) => {
   const [showModal, setShowModal] = useState(false);
@@ -14,7 +14,7 @@ const UseDeleteRequestInProgress = (
 
   const handleClick = () => {
     setShowModal(!showModal);
-    setEntryDeleted(data.id);
+    setEntryDeleted(data.id as string);
   };
 
   return {

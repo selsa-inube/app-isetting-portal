@@ -10,7 +10,9 @@ import {
   Tr,
   Text,
 } from "@inubekit/inubekit";
-import { IAction, IEntry, ITitle } from "./types";
+import { ITitle } from "@ptypes/table/ITitle";
+import { IEntry } from "@ptypes/table/IEntry";
+import { IAction } from "@ptypes/table/IAction";
 import { WidthColmnsData } from "./widthColumns";
 import { ShowActionTitle } from "./showActionTitle";
 import { ShowAction } from "./showAction";

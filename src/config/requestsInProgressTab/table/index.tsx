@@ -1,6 +1,7 @@
-import { IAction, ITitle } from "@design/table/types";
 import { Delete } from "@pages/positions/tabs/requestsInProgressTab/tools/delete";
 import { Details } from "@pages/positions/tabs/requestsInProgressTab/tools/details";
+import { IAction } from "@ptypes/table/IAction";
+import { ITitle } from "@ptypes/table/ITitle";
 
 const titles: ITitle[] = [
   {

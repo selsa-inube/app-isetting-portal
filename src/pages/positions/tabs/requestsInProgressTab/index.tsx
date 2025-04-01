@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { UseRequestsInProgress } from "@hooks/positions/useRequestsInProgress";
-import { IEntrys } from "@design/templates/assignmentForm/types";
+import { IEntry } from "@ptypes/table/IEntry";
 import { RequestsInProgressTabUI } from "./interface";
+
 const RequestsInProgressTab = () => {
   const { appData } = useContext(AuthAndData);
   const {
@@ -11,15 +12,19 @@ const RequestsInProgressTab = () => {
     loading,
     handleSearchRequestsInProgress,
     setEntryDeleted,
+    widthFirstColumn,
+    smallScreen,
   } = UseRequestsInProgress(appData.businessUnit.publicCode);
 
   return (
     <RequestsInProgressTabUI
-      entries={requestsInProgress as IEntrys[]}
+      entries={requestsInProgress as IEntry[]}
       loading={loading}
       searchrequestProgress={searchRequestsInProgress}
       onSearchrequestProgress={handleSearchRequestsInProgress}
       setEntryDeleted={setEntryDeleted}
+      widthFirstColumn={widthFirstColumn}
+      smallScreen={smallScreen}
     />
   );
 };

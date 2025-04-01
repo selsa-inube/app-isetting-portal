@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+import { IPosition } from "@ptypes/positions/assisted/IPosition";
 
 const UseDetailsModal = (data?: IPosition) => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -10,8 +10,7 @@ const UseDetailsModal = (data?: IPosition) => {
     setShowModal((prev) => !prev);
   };
   const dataTable = Array.isArray(data?.MissionByRole)
-    ? data.MissionByRole.map((item: { roleName: string }, index: number) => ({
-        id: index.toString(),
+    ? data.MissionByRole.map((item: { roleName: string }) => ({
         roles: item.roleName,
       }))
     : [];

@@ -1,7 +1,7 @@
 import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
-import { PositionsUI } from "./interface";
-import { IActions } from "./tabs/positionsTabs/types";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
+import { IEntry } from "@ptypes/table/IEntry";
+import { PositionsUI } from "./interface";
 
 const Positions = () => {
   const { isSelected, handleTabChange, smallScreen, smallScreenTab, data } =
@@ -14,7 +14,7 @@ const Positions = () => {
       catalogName="Privilegios"
       smallScreen={smallScreen}
       smallScreenTab={smallScreenTab}
-      data={data as IActions}
+      data={data as IEntry}
     />
   );
 };

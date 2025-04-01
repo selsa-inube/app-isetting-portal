@@ -1,13 +1,14 @@
 import { MdClear } from "react-icons/md";
-import { IEntrys } from "@design/templates/assignmentForm/types";
+import { IEntry } from "@ptypes/table/IEntry";
 import { Stack, Grid } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { IActionsTable } from "@pages/positions/tabs/positionsTabs/types";
+import { IActionsTable } from "@ptypes/positions/table/IActionsTable";
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { StyledModal, StyledContentActions } from "./styles";
 
 interface IActionsModal {
   actions: IActionsTable[];
-  entry: IEntrys;
+  entry: IFormEntry | IEntry;
   onClose: () => void;
 }
 

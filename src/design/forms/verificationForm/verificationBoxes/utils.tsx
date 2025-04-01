@@ -1,13 +1,12 @@
 import { Grid, Stack, Tag } from "@inubekit/inubekit";
 import { BoxAttribute } from "@design/feedback/boxAttribute";
 import { basic } from "@design/tokens";
-import {
-  IGeneralInformationEntry,
-  IOptionInitialiceEntry,
-} from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { StyldTagContainer } from "./styles";
 import { labels } from "@config/verificationTitles";
+import { IOptionInitialiceEntry } from "@ptypes/positions/assisted/IOptionInitialiceEntry";
+import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 
 const renderPersonalInfoVerification = (
   values: IGeneralInformationEntry,

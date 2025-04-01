@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
-import { IAction, IBreakpoint, ITitle } from "@design/table/types";
 import { useMediaQuery, useMediaQueries } from "@inubekit/inubekit";
-import { IEntrys } from "@design/templates/assignmentForm/types";
+import { IEntry } from "@ptypes/table/IEntry";
+import { IBreakpoint } from "@ptypes/table/IBreakpoint";
+import { ITitle } from "@ptypes/table/ITitle";
+import { IAction } from "@ptypes/table/IAction";
 
 const UseTable = (
-  entries: IEntrys[],
+  entries: IEntry[],
   pageLength: number,
   titles: ITitle[],
   breakpoints: IBreakpoint[],

@@ -11,9 +11,9 @@ import { Table } from "@design/table";
 import { actionsConfig, breakPoints, titles } from "@config/users/table";
 import { PageTitle } from "@design/label/PageTitle";
 import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
-import { StyledContainer } from "./styles";
 import { Menu } from "@design/navigation";
 import { menuUserLinks } from "@config/users/menuInvitation";
+import { StyledContainer } from "./styles";
 
 const UsersUI = (props: IUsersUI) => {
   const {

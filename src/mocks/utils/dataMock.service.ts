@@ -1,5 +1,5 @@
+import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import localforage from "localforage";
-import { IGeneralInformationEntry } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 
 const buildData = <T>(data: T[]) => {
   const dataMock = data.map((optionData) => {

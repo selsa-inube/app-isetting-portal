@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
 import { getRequestsInProgress } from "@services/positions/getRequestsInProgress";
+import { useMediaQuery } from "@inubekit/inubekit";
 
 const UseRequestsInProgress = (bussinesUnits: string) => {
   const [requestsInProgress, setRequestsInProgress] = useState<
@@ -11,7 +12,8 @@ const UseRequestsInProgress = (bussinesUnits: string) => {
     useState<string>("");
   const [loading, setLoading] = useState(true);
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
-
+  const smallScreen = useMediaQuery("(max-width: 690px)");
+  const widthFirstColumn = smallScreen ? 70 : 12;
   useEffect(() => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
@@ -50,6 +52,8 @@ const UseRequestsInProgress = (bussinesUnits: string) => {
     loading,
     handleSearchRequestsInProgress,
     setEntryDeleted,
+    smallScreen,
+    widthFirstColumn,
   };
 };
 

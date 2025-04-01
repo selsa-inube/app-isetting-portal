@@ -15,7 +15,6 @@ import {
 import { basic } from "@design/tokens";
 import { IServerDomain } from "@ptypes/IServerDomain";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { IEntrys } from "@design/templates/assignmentForm/types";
 import { normalizeStatusByName } from "@utils/status/normalizeStatusByName";
 import { enviroment } from "@config/environment";
 
@@ -26,9 +25,10 @@ import {
 } from "./styles";
 
 import { ILabel } from "./types";
+import { IEntry } from "@ptypes/table/IEntry";
 
 interface IDetailsRequestsInProgressModal {
-  data: IEntrys;
+  data: IEntry;
   labelsOfRequest: ILabel[];
   labelsOfTraceability: ILabel[];
   portalId: string;

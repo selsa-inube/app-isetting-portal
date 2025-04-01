@@ -18,10 +18,10 @@ import {
 import { basic } from "@design/tokens";
 import { Loading } from "@pages/login/loading";
 import { actionsConfig, titlesOptions } from "@config/positions/table";
-import { StyledButtonWrapper, StyledContainer } from "./styles";
-import { IPositions } from "./types";
 import { Menu } from "@design/navigation";
 import { menuPositionLinks } from "@config/positions/menuInvitation";
+import { IPositions } from "@ptypes/positions/table/IPositions";
+import { StyledButtonWrapper, StyledContainer } from "./styles";
 
 const PositionsUI = (props: IPositions) => {
   const {
@@ -44,6 +44,7 @@ const PositionsUI = (props: IPositions) => {
     handleCloseMenuInvitation,
     paginatedData,
   } = props;
+
   return (
     <Stack direction="column" width="-webkit-fill-available">
       <Stack gap={basic.spacing.s48} direction="column">

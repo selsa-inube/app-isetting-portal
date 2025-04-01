@@ -2,9 +2,10 @@ import { Stack, Breadcrumbs, Tabs } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { PageTitle } from "@design/label/PageTitle";
-import { Positions } from "./tabs/positionsTabs";
-import { IPositionsUI } from "@ptypes/positions/tabs/ITabConfig";
+import { IPositionsUI } from "@ptypes/positions/tabs/IPositionsUI";
 import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
+import { Positions } from "./tabs/positionsTabs";
+
 const PositionsUI = (props: IPositionsUI) => {
   const { isSelected, handleTabChange, smallScreenTab, data, smallScreen } =
     props;

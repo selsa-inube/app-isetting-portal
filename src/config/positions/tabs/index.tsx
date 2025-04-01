@@ -33,7 +33,7 @@ const PrivilegeOptionsConfig = [
 ];
 
 const PaginationConfig = {
-  PageRecord: 10,
+  PageRecord: 1,
 };
 
 export { PrivilegeOptionsConfig, PaginationConfig };

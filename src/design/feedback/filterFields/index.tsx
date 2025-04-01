@@ -23,7 +23,7 @@ const FilterFields = (props: IFilterFields) => {
     onSelectChange,
     handleToggleModal,
   } = props;
-  const isSmallScreen = useMediaQuery("(max-width: 580px)");
+  const isSmallScreen = useMediaQuery("(max-width: 1001px)");
 
   return (
     <>

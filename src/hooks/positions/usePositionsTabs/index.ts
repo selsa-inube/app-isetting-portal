@@ -10,6 +10,7 @@ const UsePositionsTabs = () => {
   const smallScreen = useMediaQuery("(max-width: 990px)");
   const smallScreenTab = useMediaQuery("(max-width: 450px)");
   const { subOptions } = useSubOptions("Privilegios");
+  const widthFirstColumn = smallScreen ? 60 : 20;
   const data = subOptions.find((item) => item.url === location.pathname);
   const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);
@@ -29,11 +30,12 @@ const UsePositionsTabs = () => {
   }, [isSelected]);
 
   return {
-    isSelected: isSelected ?? positionsTabsConfig.cargos.id,
+    isSelected,
     handleTabChange,
     smallScreen,
     smallScreenTab,
     data,
+    widthFirstColumn,
   };
 };
 

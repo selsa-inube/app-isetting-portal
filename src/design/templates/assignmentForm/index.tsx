@@ -1,6 +1,6 @@
 import { UseAssignmentForm } from "@hooks/design/useAssignmentForm";
+import { IAssignmentForm } from "@ptypes/assignmentForm/IAssignmentForm";
 import { AssignmentFormUI } from "./interface";
-import { IAssignmentForm } from "./types";
 
 const AssignmentForm = (props: IAssignmentForm) => {
   const {
@@ -37,6 +37,7 @@ const AssignmentForm = (props: IAssignmentForm) => {
     handleSubmit,
     handleToggleRol,
     handleCloseMenuRol,
+    smallScreen,
   } = UseAssignmentForm(
     entries,
     changeData,
@@ -56,6 +57,7 @@ const AssignmentForm = (props: IAssignmentForm) => {
       entries={entries}
       title={title}
       showMenu={showMenu}
+      smallScreen={smallScreen}
       handleToggleMenuInvitation={() => setShowMenu((prev) => !prev)}
       handleCloseMenuInvitation={() => setShowMenu(false)}
       menuOptions={menuOptions}

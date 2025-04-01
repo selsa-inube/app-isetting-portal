@@ -1,4 +1,4 @@
-import { ITabConfig } from "..";
+import { ITabConfig } from "../ITabConfig";
 
 interface IEditPositionsTabsConfig {
   generalInformation: ITabConfig;

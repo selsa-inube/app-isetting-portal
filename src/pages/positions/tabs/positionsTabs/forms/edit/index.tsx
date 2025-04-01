@@ -1,6 +1,7 @@
 import { EditRecord } from "@design/feedback/editRecord";
-import { IEntry } from "@design/table/types";
+
 import { UseEditPositionsModal } from "@hooks/positions/useEditPositionsModal";
+import { IEntry } from "@ptypes/table/IEntry";
 
 interface IEdit {
   data: IEntry;

@@ -2,7 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { MdOutlinePending } from "react-icons/md";
 import { Icon, useMediaQuery } from "@inubekit/inubekit";
 import { ActionsModal } from "@design/modals/actionsModal";
-import { IAction, IEntry } from "../types";
+import { IAction } from "@ptypes/table/IAction";
+import { IEntry } from "@ptypes/table/IEntry";
 import { StyledContainer, StyledContainerIcon } from "./styles";
 
 interface IActionMobile {

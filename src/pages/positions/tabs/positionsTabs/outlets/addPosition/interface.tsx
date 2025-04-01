@@ -1,3 +1,4 @@
+import { MdOutlineWarningAmber } from "react-icons/md";
 import { Stack, Breadcrumbs, Assisted, Button } from "@inubekit/inubekit";
 import { PageTitle } from "@design/label/PageTitle";
 import { InitializerForm } from "@design/forms/InitializerForm";
@@ -5,7 +6,7 @@ import { basic } from "@design/tokens";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
 import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
-import { DecisionModalMultipurpose } from "@design/modals/decisionModalMultipurpose";
+import { DecisionModalLabel } from "@config/positions/decisionModalText";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationForm } from "@design/forms/verificationForm";
 import { createPositionConfig } from "@config/positions/addPositions/assisted";
@@ -140,7 +141,7 @@ const AddStaffRolesUI = ({
 
         {showModal && (
           <DecisionModal
-            portalId="portal"
+            portalId={DecisionModalLabel.portalId}
             title={FinishModal.title}
             description={FinishModal.description}
             actionText={FinishModal.actionText}
@@ -150,22 +151,23 @@ const AddStaffRolesUI = ({
         )}
 
         {showMultipurposeModal && (
-          <DecisionModalMultipurpose
-            portalId="portal"
-            title="Atención"
-            description="Debes seleccionar al menos un rol antes de continuar."
-            actionText="Entendido"
+          <DecisionModal
+            portalId={DecisionModalLabel.portalId}
+            title={DecisionModalLabel.titleSecondaStep}
+            description={DecisionModalLabel.descriptionSecondaStep}
+            actionText={DecisionModalLabel.actionTextSecondaStep}
+            icon={<MdOutlineWarningAmber />}
             appearance={ComponentAppearance.WARNING}
             onCloseModal={() => setShowMultipurposeModal(false)}
             onClick={() => {
               handleNextStep();
             }}
+            withIcon
           />
         )}
-
         {showRequestProcessModal && (
           <RequestProcessModal
-            portalId="portal"
+            portalId={DecisionModalLabel.portalId}
             saveData={savePositions}
             descriptionRequestProcess={requestProcessMessage}
             descriptionRequestStatus={requestStatusMessage}

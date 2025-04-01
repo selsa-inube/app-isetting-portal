@@ -10,7 +10,9 @@ import {
   Tr,
   Text,
 } from "@inubekit/inubekit";
-import { IAction, IEntry, ITitle } from "./types";
+import { ITitle } from "@ptypes/table/ITitle";
+import { IEntry } from "@ptypes/table/IEntry";
+import { IAction } from "@ptypes/table/IAction";
 import { WidthColmnsData } from "./widthColumns";
 import { ShowActionTitle } from "./showActionTitle";
 import { ShowAction } from "./showAction";
@@ -89,7 +91,7 @@ const TableUI = (props: ITableUI) => {
                   {TitleColumns.map((title) => (
                     <Td
                       key={`e-${entry[title.id]}`}
-                      align={entry.action ? "center" : "left"}
+                      align={entry.action ? "left" : "center"}
                       type="custom"
                     >
                       {typeof entry[title.id] !== "string" ? (

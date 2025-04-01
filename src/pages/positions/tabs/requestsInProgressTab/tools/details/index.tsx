@@ -1,9 +1,10 @@
 import { DetailsRequestInProcess } from "@design/feedback/detailsRequestInProcess";
-import { IEntrys } from "@design/templates/assignmentForm/types";
+
 import { UseDetailsRequestInProgress } from "@hooks/positions/useDetailsRequestInProgress";
+import { IEntry } from "@ptypes/table/IEntry";
 
 interface IDetails {
-  data: IEntrys;
+  data: IEntry;
 }
 
 const Details = (props: IDetails) => {

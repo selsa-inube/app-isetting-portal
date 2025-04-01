@@ -1,6 +1,6 @@
 import { SkeletonLine, Td, Tr } from "@inubekit/inubekit";
+import { ITitle } from "@ptypes/table/ITitle";
 import { ActionsLoading } from "../actionsLoading";
-import { ITitle } from "../types";
 
 const DataLoading = (titleColumns: ITitle[], numberActions: number) => {
   const rowsLoading = [];

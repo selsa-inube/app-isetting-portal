@@ -20,8 +20,8 @@ import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
 import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { SubjectSearchCard } from "@design/cards/SubjectSearchCard";
+import { InteractiveModalProps } from "@ptypes/interactiveModal/InteractiveModalProps";
 import { StyledModal, StyledDivider } from "./styles";
-import { InteractiveModalProps } from "./types";
 
 const InteractiveModal = ({
   actions = [],

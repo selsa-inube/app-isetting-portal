@@ -15,19 +15,19 @@ import {
   Text,
   Fieldset,
   Icon,
-  useMediaQuery,
 } from "@inubekit/inubekit";
-
 import { basic } from "@design/tokens";
-
+import { IAssignmentFormUI } from "@ptypes/assignmentForm/IAssignmentFormUI";
 import { Menu } from "@design/navigation";
 import { FilterFields } from "@design/feedback/filterFields";
+import { titlesOptions } from "@config/options/titlesOptions";
+
 import {
   StyledForm,
   StyledOptionsContainer,
   StyledToggleContainer,
 } from "./styles";
-import { IAssignmentFormUI, titlesOptions } from "./types";
+
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const {
     title,
@@ -45,6 +45,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     menuOptions,
     filteredRows,
     setSelectedOptions,
+    smallScreen,
     handleToggleRol,
     handleCloseMenuRol,
     handleToggleModal,
@@ -53,7 +54,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     onSelectChange,
     dataValidations,
   } = props;
-  const smallScreen = useMediaQuery("(max-width: 650px)");
+
   return (
     <StyledForm onSubmit={handleSubmit}>
       <FilterFields
@@ -77,7 +78,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
           width="-webkit-fill-available"
         >
           <Stack gap={basic.spacing.s32} justifyContent="space-between">
-            <Stack gap={basic.spacing.s16} direction="column">
+            <Stack gap={basic.spacing.s16} direction="column" width="100%">
               <Textfield
                 type="search"
                 iconBefore={<MdSearch size={22} />}
@@ -88,6 +89,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   handleFilterInput(e)
                 }
+                fullwidth={smallScreen}
                 value={filterValue}
                 disabled={dataValidations}
               />
@@ -156,7 +158,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
                 filteredRows.map((entry, rowIndex) => (
                   <Tr key={rowIndex} border="bottom">
                     <Td align="left" type="custom">
-                      <StyledToggleContainer>
+                      <StyledToggleContainer $smallScreen={smallScreen}>
                         <Toggle
                           key={entry.id}
                           checked={entry.isActive}
@@ -170,7 +172,9 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
                         />
                       </StyledToggleContainer>
                     </Td>
-                    <Td align="left"> {entry.value}</Td>
+                    <StyledToggleContainer $smallScreen={smallScreen}>
+                      <Td align="right"> {entry.value}</Td>
+                    </StyledToggleContainer>
                   </Tr>
                 ))
               )}

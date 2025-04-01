@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { RequestProcessModal } from "@design/modals/requestProcessModal";
 import { DecisionModal } from "@design/modals/decisionModal";
-import { IEntrys } from "@design/templates/assignmentForm/types";
+
 import { AuthAndData } from "@context/authAndDataProvider";
 import { UseSavePositions } from "@hooks/positions/useSavePositions";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
@@ -12,9 +12,10 @@ import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessa
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { requestPendingModal } from "@config/positionsTabs/generics/requestPendingModal";
 import { UseDeletePositions } from "@hooks/positions/useDeletePositions";
+import { IEntry } from "@ptypes/table/IEntry";
 
 interface IDelete {
-  data: IEntrys;
+  data: IEntry;
   setEntryDeleted: (id: string | number) => void;
 }
 

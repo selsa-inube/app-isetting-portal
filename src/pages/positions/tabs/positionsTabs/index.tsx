@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { UseManageSearchAndPageControl } from "@hooks/positions/useManageSearchAndPageControl";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { UseBusinessManagersId } from "@hooks/positions/useBusinessManageresId";
-import { PaginationConfig } from "@config/positions/tabs";
 import { PositionsUI } from "./interface";
+import { UseMissionsUsePageRecord } from "@hooks/positions/useMissionsUsePageRecord";
 
 const Positions = () => {
   const loading = false;
@@ -11,6 +11,8 @@ const Positions = () => {
   const { businessManagersData } = UseBusinessManagersId(
     appData.businessManager.publicCode
   );
+
+  const pageRecord = UseMissionsUsePageRecord();
 
   const {
     filteredData,
@@ -30,10 +32,7 @@ const Positions = () => {
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
     showMenu,
-  } = UseManageSearchAndPageControl(
-    businessManagersData,
-    PaginationConfig.PageRecord
-  );
+  } = UseManageSearchAndPageControl(businessManagersData, pageRecord);
 
   return (
     <PositionsUI

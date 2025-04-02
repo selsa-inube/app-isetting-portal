@@ -12,12 +12,11 @@ const DetailsModal = (props: IDetailsModal) => {
 
   return (
     <>
-      <StyledContainerIcon $isTablet={screenTablet}>
+      <StyledContainerIcon $isTablet={screenTablet} onClick={handleToggleModal}>
         <Icon
           icon={<MdOutlineRemoveRedEye />}
           size="16px"
           appearance="dark"
-          onClick={handleToggleModal}
           cursorHover
         />
         {screenTablet && (

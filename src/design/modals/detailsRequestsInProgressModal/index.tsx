@@ -7,179 +7,180 @@ import {
   Button,
   Divider,
   useMediaQuery,
-  Select,
-  ITagAppearance,
-  Tag,
   Icon,
+  Grid,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { IServerDomain } from "@ptypes/IServerDomain";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { normalizeStatusByName } from "@utils/status/normalizeStatusByName";
+
 import { enviroment } from "@config/environment";
+import { IEntry } from "@ptypes/table/IEntry";
+import { IPosition } from "@ptypes/positions/assisted/IPosition";
 
 import {
   StyledContainerButton,
-  StyledContainerFields,
+  StyledContainerData,
+  StyledContainerDataTraceability,
+  StyledContainerDataTraceabilitydos,
   StyledModal,
+  StyledModalConatiner,
+  StyledModalTraceability,
 } from "./styles";
-
 import { ILabel } from "./types";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IField } from "@ptypes/interactiveModal/IField";
 
 interface IDetailsRequestsInProgressModal {
   data: IEntry;
-  labelsOfRequest: ILabel[];
+  dataTraceability?: IEntry;
   labelsOfTraceability: ILabel[];
+  labelsOfTraceabilityDate: ILabel[];
+  labelsData: ILabel[];
+  labels?: IField[];
+  infoData: IPosition;
   portalId: string;
   dateSelected: string;
-  dateOptions: IServerDomain[];
+  dateOptions?: IServerDomain[];
   onCloseModal: () => void;
   onChange: (name: string, value: string) => void;
   onMoreDetails: () => void;
 }
-
-const DetailsRequestsInProgressModal = (
-  props: IDetailsRequestsInProgressModal
-) => {
-  const {
-    data,
-    portalId,
-    labelsOfRequest,
-    labelsOfTraceability,
-    dateSelected,
-    dateOptions,
-    onChange,
-    onCloseModal,
-  } = props;
-
-  const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
-
-  const node = document.getElementById(portalId);
-
-  const partLabelsOfRequest = labelsOfRequest.length - 1;
-
-  if (!node) {
-    throw new Error(
-      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
-    );
-  }
-
-  return createPortal(
-    <Blanket>
-      <StyledModal $smallScreen={isMobile}>
-        <Stack direction="column" gap={basic.spacing.s300}>
-          <Stack alignItems="center" justifyContent="space-between">
-            <Text type="headline" size="small" appearance="dark">
-              Detalles
-            </Text>
-            <StyledContainerButton>
-              <Button
-                spacing="compact"
-                appearance={ComponentAppearance.DARK}
-                variant="none"
-                onClick={onCloseModal}
-                iconAfter={
-                  <Icon
-                    appearance={ComponentAppearance.DARK}
-                    icon={<MdClear />}
-                  />
-                }
-              >
-                Cerrar
-              </Button>
-            </StyledContainerButton>
-          </Stack>
-          <Divider />
-        </Stack>
-        <Stack
-          gap={basic.spacing.s100}
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Text type="label" size="large" weight="bold">
-            Solicitud {data.request}
-          </Text>
-
-          {labelsOfRequest.slice(0, partLabelsOfRequest).map(
-            (field, id) =>
-              data[field.id] && (
-                <StyledContainerFields key={id} $smallScreen={isMobile}>
-                  <Text size="medium" type="label" weight="bold">
-                    {field.titleName}
-                  </Text>
+const renderTraceabilityFields = (
+  fields: ILabel[],
+  data: IEntry,
+  applyRedBackground?: boolean
+) =>
+  Array.isArray(data)
+    ? data.map((entry, entryIndex) =>
+        fields
+          .filter((field) => entry[field.id])
+          .map((field, index) => (
+            <StyledContainerDataTraceability key={`${entryIndex}-${field.id}`}>
+              <Text size="medium" type="label" weight="bold">
+                {field.titleName}
+              </Text>
+              {applyRedBackground && index === 1 ? (
+                <StyledContainerDataTraceabilitydos>
                   <Text
                     size="small"
                     type="body"
                     appearance={ComponentAppearance.GRAY}
                   >
-                    {data[field.id]}
+                    {entry[field.id]}
                   </Text>
-                </StyledContainerFields>
-              )
-          )}
+                </StyledContainerDataTraceabilitydos>
+              ) : (
+                <Text
+                  size="small"
+                  type="body"
+                  appearance={ComponentAppearance.GRAY}
+                >
+                  {entry[field.id]}
+                </Text>
+              )}
+            </StyledContainerDataTraceability>
+          ))
+      )
+    : null;
 
-          {labelsOfRequest.slice(partLabelsOfRequest).map(
-            (field, id) =>
-              data[field.id] && (
-                <StyledContainerFields key={id} $smallScreen={isMobile}>
-                  <Text size="medium" type="label" weight="bold">
-                    {field.titleName}
-                  </Text>
-                  <Stack>
-                    <Tag
-                      appearance={
-                        (normalizeStatusByName(data[field.id])
-                          ?.appearance as ITagAppearance) || "light"
-                      }
-                      label={
-                        normalizeStatusByName(data[field.id])?.status || ""
-                      }
+const TraceabilitySection = ({
+  labelsOfTraceability,
+  labelsOfTraceabilityDate,
+  dataTraceability,
+}: {
+  labelsOfTraceability: ILabel[];
+  labelsOfTraceabilityDate: ILabel[];
+  dataTraceability: IEntry;
+  data: IEntry;
+}) => {
+  const applyRedBackground = true;
+  const smallScreen = useMediaQuery("(max-width: 532px)");
+  return (
+    <StyledModalTraceability $smallScreen={smallScreen}>
+      <Stack
+        gap={basic.spacing.s200}
+        width="100%"
+        direction={smallScreen ? "column" : "row"}
+      >
+        {renderTraceabilityFields(
+          labelsOfTraceability,
+          dataTraceability,
+          applyRedBackground
+        )}
+      </Stack>
+      <Stack direction="column" gap={basic.spacing.s100} width="100%">
+        {renderTraceabilityFields(labelsOfTraceabilityDate, dataTraceability)}
+      </Stack>
+    </StyledModalTraceability>
+  );
+};
+
+const DetailsRequestsInProgressModal = ({
+  data,
+  portalId,
+  labelsOfTraceability,
+  labelsOfTraceabilityDate,
+  labelsData,
+  onCloseModal,
+}: IDetailsRequestsInProgressModal) => {
+  const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
+  const node = document.getElementById(portalId);
+  if (!node) {
+    throw new Error(
+      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
+    );
+  }
+  return createPortal(
+    <Blanket>
+      <StyledModal $smallScreen={isMobile}>
+        <Stack direction="column" gap={basic.spacing.s200}>
+          <Stack direction="column" gap={basic.spacing.s300}>
+            <Stack alignItems="center" justifyContent="space-between">
+              <Text type="headline" size="small" appearance="dark">
+                Detalles de solicitud
+              </Text>
+              <StyledContainerButton>
+                <Button
+                  spacing="compact"
+                  appearance={ComponentAppearance.DARK}
+                  variant="none"
+                  onClick={onCloseModal}
+                  iconAfter={
+                    <Icon
+                      appearance={ComponentAppearance.DARK}
+                      icon={<MdClear />}
                     />
-                  </Stack>
-                </StyledContainerFields>
-              )
-          )}
+                  }
+                >
+                  Cerrar
+                </Button>
+              </StyledContainerButton>
+            </Stack>
+            <Divider />
+          </Stack>
         </Stack>
-
-        <Divider dashed />
-
-        <Stack
-          gap={basic.spacing.s250}
-          direction="column"
-          justifyContent="center"
-        >
+        <StyledModalConatiner>
           <Stack
+            gap={basic.spacing.s100}
             direction="column"
             justifyContent="center"
             alignItems="center"
-            gap={basic.spacing.s100}
           >
             <Text type="label" size="large" weight="bold">
-              Trazabilidad
+              {data.request}
             </Text>
+          </Stack>
+          <Divider dashed />
 
-            <Select
-              disabled={false}
-              fullwidth={true}
-              id="dateTraceability"
-              name="dateTraceability"
-              label="Fecha"
-              onChange={onChange}
-              options={dateOptions}
-              required={false}
-              size="compact"
-              value={dateSelected}
-            />
-
-            {labelsOfTraceability.map(
-              (field, id) =>
+          <Grid templateColumns="1fr 1fr" gap={basic.spacing.s300} width="100%">
+            {labelsData.map(
+              (field) =>
                 data[field.id] && (
-                  <StyledContainerFields key={id} $smallScreen={isMobile}>
-                    <Text size="medium" type="label" weight="bold">
+                  <StyledContainerData key={field.id}>
+                    <Text size="medium" type="label">
                       {field.titleName}
                     </Text>
+
                     <Text
                       size="small"
                       type="body"
@@ -187,13 +188,26 @@ const DetailsRequestsInProgressModal = (
                     >
                       {data[field.id]}
                     </Text>
-                  </StyledContainerFields>
+                  </StyledContainerData>
                 )
             )}
+          </Grid>
+          <Text type="label" size="large" weight="bold">
+            Trazabilidad
+          </Text>
+          <Stack
+            gap={basic.spacing.s250}
+            direction="column"
+            justifyContent="center"
+          >
+            <TraceabilitySection
+              labelsOfTraceability={labelsOfTraceability}
+              labelsOfTraceabilityDate={labelsOfTraceabilityDate}
+              data={data}
+              dataTraceability={data.configurationRequestsTraceability}
+            />
           </Stack>
-        </Stack>
-        <Divider />
-
+        </StyledModalConatiner>
         <Stack gap={basic.spacing.s250} justifyContent="flex-end">
           <Button
             spacing="wide"

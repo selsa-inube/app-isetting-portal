@@ -7,6 +7,7 @@ import { DetailsRequestsInProgressModal } from "@design/modals/detailsRequestsIn
 import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
 import { labelsOfTraceability } from "@config/requestsInProgressTab/details/labelsOfTraceability";
 import { StyledContainerIcon } from "./styles";
+import { labelsOfTraceabilityDate } from "@config/requestsInProgressTab/details/labelsOfTraceabilityDate";
 
 interface IDetails {
   data: IEntry;
@@ -44,14 +45,16 @@ const DetailsRequestInProcess = (props: IDetails) => {
           data={data}
           portalId="portal"
           dateOptions={dateOptions}
-          labelsOfRequest={labelsOfRequest}
-          labelsOfTraceability={labelsOfTraceability}
           dateSelected={form.dateTraceability}
           onCloseModal={onToggleModal}
           onChange={onChange}
           onMoreDetails={() => {
             console.log("");
           }}
+          labelsOfTraceability={labelsOfTraceability}
+          labelsOfTraceabilityDate={labelsOfTraceabilityDate}
+          labelsData={labelsOfRequest}
+          infoData={data}
         />
       )}
     </>

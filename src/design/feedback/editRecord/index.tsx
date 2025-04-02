@@ -10,7 +10,7 @@ interface IEditRecord {
 const EditRecord = (props: IEditRecord) => {
   const { onEdit } = props;
 
-  const screenTablet = useMediaQuery("(max-width: 1000px)");
+  const screenTablet = useMediaQuery("(max-width: 1068px)");
 
   return (
     <>

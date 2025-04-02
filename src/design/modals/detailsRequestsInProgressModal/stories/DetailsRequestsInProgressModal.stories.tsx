@@ -20,7 +20,7 @@ const meta: Meta<typeof DetailsRequestsInProgressModal> = {
   ],
 };
 
-const labelsOfRequest = [
+const labelsData = [
   {
     id: "date",
     titleName: "Fecha de solicitud:",
@@ -28,10 +28,6 @@ const labelsOfRequest = [
   {
     id: "responsible",
     titleName: "Responsable:",
-  },
-  {
-    id: "state",
-    titleName: "Estado:",
   },
 ];
 
@@ -42,13 +38,29 @@ const labelsOfTraceability = [
   },
 ];
 
+const labelsOfTraceabilityDate = [
+  {
+    id: "date",
+    titleName: "Fecha:",
+  },
+];
+
 const data = {
   id: "1",
-  request: "destino de vacaciones",
+  request: "Solicitud de creación Servicio Generación de cobro x cliente.",
   date: "19/Oct/2024",
   responsible: "Marcela María González Suarez",
-  state: "Procesada",
-  observation: "Solicitud procesada con éxito.",
+  observation: "Solicitud ",
+  configurationRequestsTraceability: [
+    {
+      date: "Solicitud aprobada",
+      observation: "Solicitud ",
+    },
+    {
+      date: "Solicitud revisada",
+      observation: "Solicitud ",
+    },
+  ],
 };
 
 const Template: StoryFn<IDetailsRequestsInProgressModal> = (args) => {
@@ -56,7 +68,7 @@ const Template: StoryFn<IDetailsRequestsInProgressModal> = (args) => {
 
   return (
     <>
-      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+      <Button onClick={() => setShowModal(true)}>Mostrar Modal</Button>
       {showModal && (
         <DetailsRequestsInProgressModal
           {...args}
@@ -70,9 +82,11 @@ const Template: StoryFn<IDetailsRequestsInProgressModal> = (args) => {
 const Default = Template.bind({});
 Default.args = {
   portalId: "portal",
-  labelsOfRequest,
+  labelsData,
   labelsOfTraceability,
-  dateSelected: "19/Oct/2024",
+  labelsOfTraceabilityDate,
+  data,
 };
+
 export { Default };
-export default { meta, data };
+export default meta;

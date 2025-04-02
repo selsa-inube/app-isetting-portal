@@ -4,7 +4,6 @@ import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
-import { IRequestSteps } from "@design/feedback/requestProcess/types";
 import { requestStepsInitial } from "@config/positions/addPositions/requestSteps";
 import { flowAutomaticMessages } from "@config/positionsTabs/generics/flowAutomaticMessages";
 import { getRequestInProgressById } from "@services/positions/getRequestInProgressById";
@@ -13,6 +12,7 @@ import { statusRequestFinished } from "@config/status/statusRequestFinished";
 import { interventionHumanMessage } from "@config/positionsTabs/generics/interventionHumanMessage";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 const UseSavePositions = (
   bussinesUnits: string,
   userAccount: string,

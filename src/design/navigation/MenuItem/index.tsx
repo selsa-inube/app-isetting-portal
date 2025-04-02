@@ -1,8 +1,7 @@
 import { Icon, Text, Stack } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-
+import { MenuItemSpacingType } from "@ptypes/navigation/menuItem/ImenuItemSpacing";
 import { StyledMenuItemLink } from "./styles";
-import { MenuItemSpacingType } from "./types";
 
 interface IMenuItem {
   title: string;

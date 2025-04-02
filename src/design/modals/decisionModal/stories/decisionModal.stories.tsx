@@ -4,8 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Meta, StoryFn } from "@storybook/react";
 import { Button } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
+import { IDecisionModal } from "@ptypes/modals/decisionModal/IDecisionModal";
 import { DecisionModal } from "..";
-import { IDecisionModal } from "../types";
 
 const meta: Meta<typeof DecisionModal> = {
   title: "modals/DecisionModal",

@@ -1,5 +1,5 @@
 import { useMediaQuery } from "@inubekit/inubekit";
-import { IFormAddPosition } from "../types";
+import { IFormAddPosition } from "@ptypes/forms/verificationForm/IFormAddPosition";
 import {
   renderPersonalInfoVerification,
   renderStepTwoVerification,

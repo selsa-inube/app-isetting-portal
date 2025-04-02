@@ -1,6 +1,5 @@
 import { MdOutlineStart, MdVpnKey, MdLogout } from "react-icons/md";
-
-import { INav } from "@pages/home/types";
+import { INav } from "@ptypes/home/INav";
 const appsConfig = [
   {
     id: 1,

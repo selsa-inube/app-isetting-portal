@@ -1,4 +1,4 @@
-import { IRequestSteps } from "./types";
+import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 
 const countVerifiedRequests = (requests: IRequestSteps[]) => {
   const countVerified = requests.filter(

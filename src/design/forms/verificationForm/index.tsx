@@ -2,11 +2,11 @@ import { MdOutlineArrowBack } from "react-icons/md";
 import { Stack, useMediaQuery, Button } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { Accordion } from "@design/data/acordion";
-import { IRequestSteps } from "@design/feedback/requestProcess/types";
+import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import { AddPositionsStepsConfig } from "@config/positions/assisted";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationBoxes } from "./verificationBoxes";
-import { IFormAddPosition } from "./types";
+import { IFormAddPosition } from "@ptypes/forms/verificationForm/IFormAddPosition";
 
 interface IVerificationForm {
   requestSteps: IRequestSteps[];

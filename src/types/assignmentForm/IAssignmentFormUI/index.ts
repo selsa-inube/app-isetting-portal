@@ -1,5 +1,6 @@
-import { IOption } from "@design/navigation/types";
 import { IOptionItemChecked } from "@design/select/OptionItem";
+import { IOption } from "@ptypes/navigation/IOption";
+
 import { IFormEntry } from "../IFormEntry";
 
 interface IAssignmentFormUI {

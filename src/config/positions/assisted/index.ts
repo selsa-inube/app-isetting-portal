@@ -24,4 +24,10 @@ const AddPositionsStepsConfig = (NameDescription: string) => {
   return AddPositionsSteps;
 };
 
-export { AddPositionsStepsConfig };
+const titleButtonTextAssited = {
+  before: "Atrás",
+  after: "Siguiente",
+  finish: "Enviar",
+};
+
+export { AddPositionsStepsConfig, titleButtonTextAssited };

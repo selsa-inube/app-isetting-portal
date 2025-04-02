@@ -18,7 +18,7 @@ import {
   StyledLogo,
   StyledTitle,
 } from "./styles";
-import { IHome } from "./types";
+import { IHome } from "@ptypes/home/IHome";
 
 const HomeUI = (props: IHome) => {
   const {

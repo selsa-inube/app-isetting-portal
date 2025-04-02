@@ -1,11 +1,11 @@
 import { FormikProps } from "formik";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
+import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
+import { IAssistedStep } from "@inubekit/inubekit";
 import { IFormAddPosition } from "../IFormAddPosition";
 import { IOptionInitialiceEntry } from "../IOptionInitialiceEntry";
 import { IOptionInitialiceEntryApp } from "../IOptionInitialiceEntryApp";
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
-import { IRequestSteps } from "@design/feedback/requestProcess/types";
-import { IAssistedStep } from "@inubekit/inubekit";
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
 
 interface IAddPositionUI {

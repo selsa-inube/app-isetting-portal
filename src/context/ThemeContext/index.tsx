@@ -1,7 +1,8 @@
 import { useState, useEffect, ReactNode } from "react";
 import { ThemeProvider } from "styled-components";
 import { tokensWithReference } from "@design/tokens/tokensWithReference";
-import { ThemeContext, ThemeName } from "./themeContext";
+import { ThemeName } from "@ptypes/positions/themeContext";
+import { ThemeContext } from "./themeContext";
 
 interface IThemeProviderWrapper {
   children: ReactNode;

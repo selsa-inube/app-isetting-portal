@@ -1,6 +1,6 @@
 import { IActionItemBlock } from "@design/cards/actionItemBlock";
 import { ContentFramework } from "@design/layout/contentFramework";
-import { IRoute } from "@design/layout/contentFramework/types";
+import { IRoute } from "@ptypes/layout/contentFramework/IRoute";
 import { ContentFrameworkGrid } from "@design/layout/optionGrid";
 
 interface IRulesOptions {

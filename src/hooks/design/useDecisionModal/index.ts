@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { string, object } from "yup";
 import { useFormik, FormikValues } from "formik";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { IDecisionEntry } from "@design/modals/decisionModal/types";
 import { enviroment } from "@config/environment";
+import { IDecisionEntry } from "@ptypes/modals/decisionModal/IDecisionEntry";
 
 const validationSchema = object({
   justification: string(),

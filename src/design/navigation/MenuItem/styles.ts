@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { inube } from "@inubekit/inubekit";
-import { MenuItemSpacingType } from "./types";
+import { MenuItemSpacingType } from "@ptypes/navigation/menuItem/ImenuItemSpacing";
 
 interface IStyledMenuItemLink {
   spacing: MenuItemSpacingType;

@@ -2,8 +2,8 @@ import { MdCancel, MdCheckCircle } from "react-icons/md";
 import { Stack, Icon, IIconAppearance, Text } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
+import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import { StyledBar, StyledContainerBar } from "./styles";
-import { IRequestSteps } from "./types";
 import { countVerifiedRequests, verifiedErrorRequest } from "./utils";
 
 interface IRequestProcess {

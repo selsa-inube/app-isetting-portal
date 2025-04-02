@@ -1,8 +1,7 @@
 import { createPortal } from "react-dom";
 import { RequestStatus } from "@design/feedback/requestStatus";
-import { IRequestSteps } from "@design/feedback/requestProcess/types";
 import { basic } from "@design/tokens";
-
+import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import {
   Blanket,
   Text,
@@ -16,6 +15,7 @@ import { RequestProcess } from "@design/feedback/requestProcess";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
 import { StyledModal } from "./styles";
+
 interface IRequestProcessModal {
   descriptionRequestProcess: {
     title: string;

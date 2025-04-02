@@ -2,8 +2,9 @@ import { Stack } from "@inubekit/inubekit";
 import { Divider } from "@design/layout/Divider";
 import { basic } from "@design/tokens";
 import { MenuHeading } from "../MenuHeading";
-import { ISection } from "./types";
-import { MenuItemSpacingType } from "../MenuItem/types";
+import { ISection } from "@ptypes/navigation/menuSection/ISection";
+import { MenuItemSpacingType } from "@ptypes/navigation/menuItem/ImenuItemSpacing";
+
 import { MenuItem } from "../MenuItem";
 
 interface IMenuSection {

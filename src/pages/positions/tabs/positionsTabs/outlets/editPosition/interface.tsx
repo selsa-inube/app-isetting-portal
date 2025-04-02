@@ -17,13 +17,14 @@ import { DecisionModal } from "@design/modals/decisionModal";
 import { requestPendingModal } from "@config/positionsTabs/generics/requestPendingModal";
 import { IEditPositionsTabsConfig } from "@ptypes/positions/tabs/IEditDestinationTabsConfig";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
-import { IRequestSteps } from "@design/feedback/requestProcess/types";
+
 import { Title } from "@design/label/Title";
 import { crumbsEditPosition } from "@config/positions/editPositions/navigation";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
+import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 
 interface IEditPositionsUI {
   editPositionTabsConfig: IEditPositionsTabsConfig;

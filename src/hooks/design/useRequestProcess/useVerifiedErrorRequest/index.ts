@@ -1,4 +1,4 @@
-import { IRequestSteps } from "@design/feedback/requestProcess/types";
+import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 
 const UseVerifiedErrorRequest = (requests: IRequestSteps[]): boolean => {
   return requests.find((request) => request.status === "error") ? true : false;

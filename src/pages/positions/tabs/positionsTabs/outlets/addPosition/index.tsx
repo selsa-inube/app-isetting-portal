@@ -8,9 +8,10 @@ import { UseSavePositions } from "@hooks/positions/useSavePositions";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { UseFetchAplicaionStaff } from "@hooks/positions/useAplication";
-import { IOptionInitialiceEntryApp } from "./types";
+
 import { AddStaffRolesUI } from "./interface";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
 const AddPosition = () => {
   const { rolesStaff } = UseFetchRolesStaff();
   const {

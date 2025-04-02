@@ -4,14 +4,20 @@ const UseApplicationsInProcess = () => {
   const [pageLength, setPageLength] = useState(1);
 
   useEffect(() => {
-    const updatePageLength = () => {
-      setPageLength(window.innerWidth > 1600 ? 10 : 1);
+    const updatePageRecord = () => {
+      if (window.innerWidth < 1600) {
+        setPageLength(2);
+      } else if (window.innerWidth > 1600) {
+        setPageLength(7);
+      } else {
+        setPageLength(1);
+      }
     };
 
-    updatePageLength();
-    window.addEventListener("resize", updatePageLength);
+    updatePageRecord();
+    window.addEventListener("resize", updatePageRecord);
 
-    return () => window.removeEventListener("resize", updatePageLength);
+    return () => window.removeEventListener("resize", updatePageRecord);
   }, []);
 
   return pageLength;

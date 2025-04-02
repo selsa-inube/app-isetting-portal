@@ -1,5 +1,5 @@
-import { IOptionInitialiceEntryApp } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
 import { IAssignmentFormEntry, IMessageState } from "@ptypes/positions/forms";
 
 interface IInitializerFormUI {

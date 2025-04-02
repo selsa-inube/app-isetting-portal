@@ -1,4 +1,3 @@
-import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { DetailsModal } from "@pages/positions/tabs/positionsTabs/forms/detailsModal";
 
 import { Edit } from "@pages/positions/tabs/positionsTabs/forms/edit";
@@ -6,6 +5,7 @@ import { Edit } from "@pages/positions/tabs/positionsTabs/forms/edit";
 import { Delete } from "@pages/positions/tabs/positionsTabs/forms/delete";
 import { IEntry } from "@ptypes/table/IEntry";
 import { IAction } from "@ptypes/table/IAction";
+import { IPosition } from "@ptypes/positions/assisted/IPosition";
 
 const titlesOptions = [
   {

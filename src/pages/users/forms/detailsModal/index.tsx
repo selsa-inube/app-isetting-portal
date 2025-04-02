@@ -1,9 +1,9 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { Icon, Text } from "@inubekit/inubekit";
-import { InteractiveModal } from "@design/feedback/InteractiveModal";
-import { UseDetailsModal } from "@hooks/positions/useDetailsModal";
+import { Icon, Stack, Text } from "@inubekit/inubekit";
+import { InteractiveModalDeatailsUsers } from "@design/feedback/InteractiveModalDeatailsUsers";
+import { UseDetailsModal } from "@hooks/users/useDetailsModal";
 import { IDetailsModal } from "@ptypes/positions/details";
-import { StyledContainerIcon } from "./styles";
+import { basic } from "@design/tokens";
 
 const DetailsModal = (props: IDetailsModal) => {
   const { data, labelsOptions } = props;
@@ -12,28 +12,27 @@ const DetailsModal = (props: IDetailsModal) => {
 
   return (
     <>
-      <StyledContainerIcon $isTablet={screenTablet}>
+      <Stack gap={basic.spacing.s8} justifyContent="center">
         <Icon
           icon={<MdOutlineRemoveRedEye />}
           size="16px"
           appearance="dark"
-          onClick={handleToggleModal}
           cursorHover
+          onClick={handleToggleModal}
         />
         {screenTablet && (
-          <Text type="body" size="medium">
+          <Text type="body" size="medium" onClick={handleToggleModal}>
             Detalles
           </Text>
         )}
-      </StyledContainerIcon>
+      </Stack>
       {showModal && data && (
-        <InteractiveModal
-          portalId="portal"
-          title="Detalles de cargo"
-          infoData={data}
-          infoTitle=""
-          labels={labelsOptions}
+        <InteractiveModalDeatailsUsers
           closeModal={handleToggleModal}
+          infoData={data}
+          labels={labelsOptions}
+          portalId="portal"
+          title="Detalles del usuario"
           dataTable={dataTable ?? []}
         />
       )}

@@ -1,9 +1,9 @@
-import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
 import { IField } from "../IField";
 import { IAction } from "../IAction";
 import { IEntry } from "@ptypes/table/IEntry";
+import { IPosition } from "@ptypes/positions/assisted/IPosition";
 type ModalTypes = "fields" | "search";
-interface InteractiveModalProps {
+interface IInteractiveModal {
   closeModal: () => void;
   infoData: IPosition;
   portalId: string;
@@ -29,4 +29,4 @@ interface InteractiveModalProps {
   type?: ModalTypes;
 }
 
-export type { InteractiveModalProps };
+export type { IInteractiveModal };

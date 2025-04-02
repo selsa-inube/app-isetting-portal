@@ -3,7 +3,7 @@ import { Textarea, Input, Stack } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { getFieldState } from "@utils/forms";
 import { StyledContainer, StyledContainerFields } from "./styles";
-import { IGeneralInformationEntry } from "../../outlets/addPosition/types";
+import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { labels } from "@config/positions/assistedText";
 
 interface IGeneralInformationFormUI {

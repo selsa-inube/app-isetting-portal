@@ -20,10 +20,8 @@ import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IRequestSteps } from "@design/feedback/requestProcess/types";
 import { Title } from "@design/label/Title";
 import { crumbsEditPosition } from "@config/positions/editPositions/navigation";
-import {
-  IFormAddPosition,
-  IGeneralInformationEntry,
-} from "../addPosition/types";
+import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
+import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
 

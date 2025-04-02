@@ -1,10 +1,19 @@
-import { MdPersonAddAlt, MdSearch } from "react-icons/md";
-import { Stack, Breadcrumbs, Textfield, Button } from "@inubekit/inubekit";
+import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
+import {
+  Stack,
+  Breadcrumbs,
+  Textfield,
+  Button,
+  Icon,
+} from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { Table } from "@design/table";
 import { actionsConfig, breakPoints, titles } from "@config/users/table";
 import { PageTitle } from "@design/label/PageTitle";
 import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
+import { Menu } from "@design/navigation";
+import { menuUserLinks } from "@config/users/menuInvitation";
+import { StyledContainer } from "./styles";
 
 const UsersUI = (props: IUsersUI) => {
   const {
@@ -13,6 +22,9 @@ const UsersUI = (props: IUsersUI) => {
     handleSearchPositions,
     searchPosition,
     entries,
+    showMenu,
+    handleToggleMenuInvitation,
+    handleCloseMenuInvitation,
     loading,
     widthFirstColumn,
   } = props;
@@ -57,14 +69,32 @@ const UsersUI = (props: IUsersUI) => {
           }
         />
 
-        <Button
-          iconBefore={<MdPersonAddAlt />}
-          spacing="wide"
-          type="link"
-          path="/privileges/users"
-        >
-          Invitar usuario
-        </Button>
+        {smallScreen ? (
+          <StyledContainer>
+            <Icon
+              icon={<MdOutlineMoreHoriz />}
+              size="24px"
+              onClick={handleToggleMenuInvitation}
+              cursorHover={true}
+              appearance="dark"
+            />
+            {showMenu && (
+              <Menu
+                options={menuUserLinks}
+                handleClose={handleCloseMenuInvitation}
+              />
+            )}
+          </StyledContainer>
+        ) : (
+          <Button
+            iconBefore={<MdPersonAddAlt />}
+            spacing="wide"
+            type="link"
+            path="/privileges/users"
+          >
+            Invitar usuario
+          </Button>
+        )}
       </Stack>
       <Table
         id="portal"

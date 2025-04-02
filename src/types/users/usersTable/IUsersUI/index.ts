@@ -8,9 +8,13 @@ interface IUsersUI {
   searchPosition: string;
   loading: boolean;
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  showMenu: boolean;
+  handleToggleMenuInvitation: () => void;
+  handleCloseMenuInvitation: () => void;
   entries: IEntry[];
   widthFirstColumn: number;
   data?: IEntry;
+
   catalogName?: string;
 }
 

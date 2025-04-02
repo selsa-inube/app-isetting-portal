@@ -5,12 +5,11 @@ import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { formatDate } from "@utils/date/formatDate";
 import { IAppData } from "@ptypes/authAndPortalDataProvider/IAppData";
 import { editPositionTabsConfig } from "@config/positions/editPositions/tabs";
-import {
-  IFormAddPosition,
-  IGeneralInformationEntry,
-} from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+
 import { IRoleForStaff } from "@ptypes/rolesForStaff";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
+import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 
 const UseEditPositions = (
   data: {

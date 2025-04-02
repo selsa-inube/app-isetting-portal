@@ -3,11 +3,11 @@ import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
 
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { UseManageUsersSearchAndPageControl } from "@hooks/users/useManageSearchAndPageControl";
-
+import { IEntry } from "@ptypes/table/IEntry";
 import { AuthAndData } from "@context/authAndDataProvider";
 
 import { UsersUI } from "./interface";
-import { IEntry } from "@ptypes/table/IEntry";
+
 const Users = () => {
   const { appData } = useContext(AuthAndData);
   const {
@@ -16,6 +16,9 @@ const Users = () => {
     smallScreen,
     smallScreenTab,
     data,
+    showMenu,
+    handleToggleMenuInvitation,
+    handleCloseMenuInvitation,
     widthFirstColumn,
   } = UsePositionsTabs();
 
@@ -30,9 +33,12 @@ const Users = () => {
       catalogName="Privilegios"
       smallScreen={smallScreen}
       smallScreenTab={smallScreenTab}
+      showMenu={showMenu}
+      loading={loading}
+      handleToggleMenuInvitation={handleToggleMenuInvitation}
+      handleCloseMenuInvitation={handleCloseMenuInvitation}
       data={data as IEntry}
       entries={requestsInProgress as unknown as IEntry[]}
-      loading={loading}
       widthFirstColumn={widthFirstColumn}
     />
   );

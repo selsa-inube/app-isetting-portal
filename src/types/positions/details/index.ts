@@ -1,13 +1,13 @@
-import { IPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+import { IPosition } from "../assisted/IPosition";
 
 interface IField {
   id: string;
   labelName: string;
 }
 
-interface IDetailsModalProps {
+interface IDetailsModal {
   data?: IPosition;
   labelsOptions: IField[];
 }
 
-export type { IDetailsModalProps, IField };
+export type { IDetailsModal, IField };

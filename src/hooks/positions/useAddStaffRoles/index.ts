@@ -8,11 +8,10 @@ import { initalValuesPositions } from "@ptypes/positions/initialValues";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
-import {
-  IFormAddPosition,
-  IGeneralInformationEntry,
-} from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
+import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 
 const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const { appData } = useContext(AuthAndData);

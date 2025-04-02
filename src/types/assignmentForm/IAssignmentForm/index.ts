@@ -1,4 +1,4 @@
-import { IOptionInitialiceEntryApp } from "@pages/positions/tabs/positionsTabs/outlets/addPosition/types";
+import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
 import { IFormEntry } from "../IFormEntry";
 
 interface IAssignmentForm {

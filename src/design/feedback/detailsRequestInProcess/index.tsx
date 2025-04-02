@@ -5,7 +5,10 @@ import { ComponentAppearance } from "@ptypes/aparences.types";
 import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
 import { DetailsRequestsInProgressModal } from "@design/modals/detailsRequestsInProgressModal";
 import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
-import { labelsOfTraceability } from "@config/requestsInProgressTab/details/labelsOfTraceability";
+import {
+  iLabel,
+  labelsOfTraceability,
+} from "@config/requestsInProgressTab/details/labelsOfTraceability";
 import { StyledContainerIcon } from "./styles";
 import { labelsOfTraceabilityDate } from "@config/requestsInProgressTab/details/labelsOfTraceabilityDate";
 
@@ -42,6 +45,7 @@ const DetailsRequestInProcess = (props: IDetails) => {
 
       {showModal && (
         <DetailsRequestsInProgressModal
+          title={iLabel.titleName}
           data={data}
           portalId="portal"
           dateOptions={dateOptions}

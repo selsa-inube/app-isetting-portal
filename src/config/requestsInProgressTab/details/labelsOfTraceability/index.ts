@@ -9,4 +9,8 @@ const labelsOfTraceability = [
   },
 ];
 
-export { labelsOfTraceability };
+const iLabel = {
+  titleName: "Detalles de la solicitud",
+};
+
+export { labelsOfTraceability, iLabel };

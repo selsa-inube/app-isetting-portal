@@ -13,11 +13,11 @@ import {
 import { basic } from "@design/tokens";
 import { IServerDomain } from "@ptypes/IServerDomain";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-
+import { ILabel } from "@ptypes/details/ILabel";
 import { enviroment } from "@config/environment";
 import { IEntry } from "@ptypes/table/IEntry";
 import { IPosition } from "@ptypes/positions/assisted/IPosition";
-
+import { IField } from "@ptypes/interactiveModal/IField";
 import {
   StyledContainerButton,
   StyledContainerData,
@@ -27,8 +27,6 @@ import {
   StyledModalConatiner,
   StyledModalTraceability,
 } from "./styles";
-import { ILabel } from "./types";
-import { IField } from "@ptypes/interactiveModal/IField";
 
 interface IDetailsRequestsInProgressModal {
   data: IEntry;
@@ -42,6 +40,7 @@ interface IDetailsRequestsInProgressModal {
   dateSelected: string;
   dateOptions?: IServerDomain[];
   onCloseModal: () => void;
+  title: string;
   onChange: (name: string, value: string) => void;
   onMoreDetails: () => void;
 }
@@ -122,6 +121,7 @@ const DetailsRequestsInProgressModal = ({
   labelsOfTraceabilityDate,
   labelsData,
   onCloseModal,
+  title,
 }: IDetailsRequestsInProgressModal) => {
   const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
   const node = document.getElementById(portalId);
@@ -137,7 +137,7 @@ const DetailsRequestsInProgressModal = ({
           <Stack direction="column" gap={basic.spacing.s300}>
             <Stack alignItems="center" justifyContent="space-between">
               <Text type="headline" size="small" appearance="dark">
-                Detalles de solicitud
+                {title}
               </Text>
               <StyledContainerButton>
                 <Button

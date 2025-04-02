@@ -81,6 +81,7 @@ const Template: StoryFn<IDetailsRequestsInProgressModal> = (args) => {
 
 const Default = Template.bind({});
 Default.args = {
+  title: "Detalles de la solicitud",
   portalId: "portal",
   labelsData,
   labelsOfTraceability,

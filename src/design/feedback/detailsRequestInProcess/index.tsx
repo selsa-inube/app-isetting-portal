@@ -3,7 +3,7 @@ import { IEntry } from "@ptypes/table/IEntry";
 import { IServerDomain } from "@ptypes/IServerDomain";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
-import { DetailsRequestsInProgressModal } from "@design/modals/detailsRequestsInProgressModal";
+
 import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
 import {
   iLabel,
@@ -11,6 +11,7 @@ import {
 } from "@config/requestsInProgressTab/details/labelsOfTraceability";
 import { StyledContainerIcon } from "./styles";
 import { labelsOfTraceabilityDate } from "@config/requestsInProgressTab/details/labelsOfTraceabilityDate";
+import { DetailsRequestsInProgressModal } from "@design/modals/detailsRequestsInProgressModal";
 
 interface IDetails {
   data: IEntry;
@@ -52,9 +53,6 @@ const DetailsRequestInProcess = (props: IDetails) => {
           dateSelected={form.dateTraceability}
           onCloseModal={onToggleModal}
           onChange={onChange}
-          onMoreDetails={() => {
-            console.log("");
-          }}
           labelsOfTraceability={labelsOfTraceability}
           labelsOfTraceabilityDate={labelsOfTraceabilityDate}
           labelsData={labelsOfRequest}

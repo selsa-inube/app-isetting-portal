@@ -71,6 +71,7 @@ const InteractiveModalDeatailsUsers = ({
           gap={basic.spacing.s24}
           width={smallScreen ? "auto" : "876px"}
           height={smallScreen ? "100%" : "auto"}
+          padding={smallScreen ? basic.spacing.s16 : basic.spacing.s24}
         >
           <Stack direction="column" gap={basic.spacing.s20}>
             <Stack alignItems="center" justifyContent="space-between">

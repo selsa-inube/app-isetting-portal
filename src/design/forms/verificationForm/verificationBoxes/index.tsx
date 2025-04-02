@@ -1,9 +1,7 @@
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IFormAddPosition } from "@ptypes/forms/verificationForm/IFormAddPosition";
-import {
-  renderPersonalInfoVerification,
-  renderStepTwoVerification,
-} from "./utils";
+import renderPersonalInfoVerification from "./renderPersonalInfoVerification";
+import renderStepTwoVerification from "./renderStepTwoVerification";
 
 interface IVerificationBoxes {
   updatedData: IFormAddPosition;

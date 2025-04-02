@@ -16,10 +16,10 @@ const StyledModal = styled.div<IStyledRespondInvitation>`
   border-radius: ${({ $smallScreen }) =>
     $smallScreen ? basic.spacing.s0 : basic.spacing.s8};
 
-  & > div {
+  /* & > div {
     padding: ${({ $smallScreen }) =>
-      $smallScreen ? basic.spacing.s16 : basic.spacing.s24};
-  }
+    $smallScreen ? basic.spacing.s16 : basic.spacing.s24};
+  } */
 `;
 
 export { StyledModal };

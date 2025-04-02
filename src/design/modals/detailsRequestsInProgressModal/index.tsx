@@ -17,102 +17,27 @@ import { ILabel } from "@ptypes/details/ILabel";
 import { enviroment } from "@config/environment";
 import { IEntry } from "@ptypes/table/IEntry";
 import { IPosition } from "@ptypes/positions/assisted/IPosition";
-import { IField } from "@ptypes/interactiveModal/IField";
 import {
   StyledContainerButton,
   StyledContainerData,
-  StyledContainerDataTraceability,
-  StyledContainerDataTraceabilitydos,
   StyledModal,
   StyledModalConatiner,
-  StyledModalTraceability,
 } from "./styles";
+import { TraceabilitySection } from "../traceabilitySection";
 
 interface IDetailsRequestsInProgressModal {
   data: IEntry;
-  dataTraceability?: IEntry;
   labelsOfTraceability: ILabel[];
   labelsOfTraceabilityDate: ILabel[];
   labelsData: ILabel[];
-  labels?: IField[];
-  infoData: IPosition;
   portalId: string;
-  dateSelected: string;
-  dateOptions?: IServerDomain[];
   onCloseModal: () => void;
   title: string;
+  dateOptions?: IServerDomain[];
+  dateSelected: string;
   onChange: (name: string, value: string) => void;
-  onMoreDetails: () => void;
+  infoData: IPosition;
 }
-const renderTraceabilityFields = (
-  fields: ILabel[],
-  data: IEntry,
-  applyRedBackground?: boolean
-) =>
-  Array.isArray(data)
-    ? data.map((entry, entryIndex) =>
-        fields
-          .filter((field) => entry[field.id])
-          .map((field, index) => (
-            <StyledContainerDataTraceability key={`${entryIndex}-${field.id}`}>
-              <Text size="medium" type="label" weight="bold">
-                {field.titleName}
-              </Text>
-              {applyRedBackground && index === 1 ? (
-                <StyledContainerDataTraceabilitydos>
-                  <Text
-                    size="small"
-                    type="body"
-                    appearance={ComponentAppearance.GRAY}
-                  >
-                    {entry[field.id]}
-                  </Text>
-                </StyledContainerDataTraceabilitydos>
-              ) : (
-                <Text
-                  size="small"
-                  type="body"
-                  appearance={ComponentAppearance.GRAY}
-                >
-                  {entry[field.id]}
-                </Text>
-              )}
-            </StyledContainerDataTraceability>
-          ))
-      )
-    : null;
-
-const TraceabilitySection = ({
-  labelsOfTraceability,
-  labelsOfTraceabilityDate,
-  dataTraceability,
-}: {
-  labelsOfTraceability: ILabel[];
-  labelsOfTraceabilityDate: ILabel[];
-  dataTraceability: IEntry;
-  data: IEntry;
-}) => {
-  const applyRedBackground = true;
-  const smallScreen = useMediaQuery("(max-width: 532px)");
-  return (
-    <StyledModalTraceability $smallScreen={smallScreen}>
-      <Stack
-        gap={basic.spacing.s200}
-        width="100%"
-        direction={smallScreen ? "column" : "row"}
-      >
-        {renderTraceabilityFields(
-          labelsOfTraceability,
-          dataTraceability,
-          applyRedBackground
-        )}
-      </Stack>
-      <Stack direction="column" gap={basic.spacing.s100} width="100%">
-        {renderTraceabilityFields(labelsOfTraceabilityDate, dataTraceability)}
-      </Stack>
-    </StyledModalTraceability>
-  );
-};
 
 const DetailsRequestsInProgressModal = ({
   data,
@@ -122,6 +47,10 @@ const DetailsRequestsInProgressModal = ({
   labelsData,
   onCloseModal,
   title,
+  dateOptions,
+  dateSelected,
+  onChange,
+  infoData,
 }: IDetailsRequestsInProgressModal) => {
   const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
   const node = document.getElementById(portalId);
@@ -171,7 +100,6 @@ const DetailsRequestsInProgressModal = ({
             </Text>
           </Stack>
           <Divider dashed />
-
           <Grid templateColumns="1fr 1fr" gap={basic.spacing.s300} width="100%">
             {labelsData.map(
               (field) =>
@@ -180,7 +108,6 @@ const DetailsRequestsInProgressModal = ({
                     <Text size="medium" type="label">
                       {field.titleName}
                     </Text>
-
                     <Text
                       size="small"
                       type="body"
@@ -203,8 +130,11 @@ const DetailsRequestsInProgressModal = ({
             <TraceabilitySection
               labelsOfTraceability={labelsOfTraceability}
               labelsOfTraceabilityDate={labelsOfTraceabilityDate}
-              data={data}
               dataTraceability={data.configurationRequestsTraceability}
+              dateOptions={dateOptions}
+              dateSelected={dateSelected}
+              onChange={onChange}
+              infoData={infoData}
             />
           </Stack>
         </StyledModalConatiner>

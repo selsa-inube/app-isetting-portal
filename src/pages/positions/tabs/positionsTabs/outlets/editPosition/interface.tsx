@@ -1,11 +1,5 @@
 import { FormikProps } from "formik";
-import {
-  Breadcrumbs,
-  Button,
-  Stack,
-  Tabs,
-  useMediaQuery,
-} from "@inubekit/inubekit";
+import { Breadcrumbs, Button, Stack, Tabs } from "@inubekit/inubekit";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { InitializerForm } from "@design/forms/InitializerForm";
 import { basic } from "@design/tokens";
@@ -42,6 +36,7 @@ interface IEditPositionsUI {
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   onCloseRequestStatus: () => void;
   onClosePendingReqModal: () => void;
+  smallScreen: boolean;
   setSelectedToggle: React.Dispatch<
     React.SetStateAction<IFormEntry[] | undefined>
   >;
@@ -64,10 +59,9 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
     setSelectedToggle,
     showPendingReqModal,
     requestSteps,
+    smallScreen,
     onReset,
   } = props;
-
-  const smallScreen = useMediaQuery("(max-width: 990px)");
 
   return (
     <Stack

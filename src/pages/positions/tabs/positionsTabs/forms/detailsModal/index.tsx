@@ -2,7 +2,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Icon, Text } from "@inubekit/inubekit";
 import { InteractiveModal } from "@design/feedback/InteractiveModal";
 import { UseDetailsModal } from "@hooks/positions/useDetailsModal";
-import { IDetailsModal } from "@ptypes/positions/details";
+import { IDetailsModal } from "@ptypes/positions/details/IDetailsModal";
 import { StyledContainerIcon } from "./styles";
 
 const DetailsModal = (props: IDetailsModal) => {

@@ -1,4 +1,4 @@
-import { Text, Stack, useMediaQuery } from "@inubekit/inubekit";
+import { Text, Stack, useMediaQuery, Button } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { ILabel } from "@ptypes/details/ILabel";
@@ -7,14 +7,13 @@ import { IPosition } from "@ptypes/positions/assisted/IPosition";
 import { IServerDomain } from "@ptypes/IServerDomain";
 import {
   StyledContainerDataTraceability,
-  StyledContainerDataTraceabilitydos,
   StyledModalTraceability,
 } from "./styles";
 
 const renderTraceabilityFields = (
   fields: ILabel[],
   data: IEntry,
-  applyRedBackground?: boolean
+  applyBackground?: boolean
 ) =>
   Array.isArray(data)
     ? data.map((entry, entryIndex) =>
@@ -25,8 +24,8 @@ const renderTraceabilityFields = (
               <Text size="medium" type="label" weight="bold">
                 {field.titleName}
               </Text>
-              {applyRedBackground && index === 1 ? (
-                <StyledContainerDataTraceabilitydos>
+              {applyBackground && index === 1 ? (
+                <Button appearance="gray">
                   <Text
                     size="small"
                     type="body"
@@ -34,7 +33,7 @@ const renderTraceabilityFields = (
                   >
                     {entry[field.id]}
                   </Text>
-                </StyledContainerDataTraceabilitydos>
+                </Button>
               ) : (
                 <Text
                   size="small"

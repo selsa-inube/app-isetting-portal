@@ -31,16 +31,4 @@ const StyledContainerDataTraceability = styled.div`
   box-sizing: border-box;
 `;
 
-const StyledContainerDataTraceabilitydos = styled.div`
-  width: 107px;
-  border: 1px solid ${inube.palette.neutral.N30};
-  padding: ${basic.spacing.s025} ${basic.spacing.s10};
-  background-color: ${inube.palette.neutral.N30};
-  border-radius: 4px;
-`;
-
-export {
-  StyledContainerDataTraceability,
-  StyledContainerDataTraceabilitydos,
-  StyledModalTraceability,
-};
+export { StyledContainerDataTraceability, StyledModalTraceability };

@@ -36,6 +36,7 @@ const EditPositions = () => {
     showPendingReqModal,
     handleCloseRequestStatus,
     handleClosePendingReqModal,
+    smallScreen,
   } = UseSavePositions(
     appData.businessUnit.publicCode,
     appData.user.userAccount,
@@ -62,6 +63,7 @@ const EditPositions = () => {
       onButtonClick={onSubmit}
       onReset={handleReset}
       setSelectedToggle={setSelectedToggle || []}
+      smallScreen={smallScreen}
     />
   );
 };

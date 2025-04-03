@@ -18,7 +18,6 @@ import { enviroment } from "@config/environment";
 import { IEntry } from "@ptypes/table/IEntry";
 import { IPosition } from "@ptypes/positions/assisted/IPosition";
 import {
-  StyledContainerButton,
   StyledContainerData,
   StyledModal,
   StyledModalConatiner,
@@ -68,22 +67,21 @@ const DetailsRequestsInProgressModal = ({
               <Text type="headline" size="small" appearance="dark">
                 {title}
               </Text>
-              <StyledContainerButton>
-                <Button
-                  spacing="compact"
-                  appearance={ComponentAppearance.DARK}
-                  variant="none"
-                  onClick={onCloseModal}
-                  iconAfter={
-                    <Icon
-                      appearance={ComponentAppearance.DARK}
-                      icon={<MdClear />}
-                    />
-                  }
-                >
-                  Cerrar
-                </Button>
-              </StyledContainerButton>
+
+              <Button
+                spacing="compact"
+                appearance={ComponentAppearance.DARK}
+                variant="none"
+                onClick={onCloseModal}
+                iconAfter={
+                  <Icon
+                    appearance={ComponentAppearance.DARK}
+                    icon={<MdClear />}
+                  />
+                }
+              >
+                Cerrar
+              </Button>
             </Stack>
             <Divider />
           </Stack>

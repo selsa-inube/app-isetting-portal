@@ -9,8 +9,8 @@ const labelsOfTraceability = [
   },
 ];
 
-const iLabel = {
-  titleName: "Detalles de la solicitud",
+const labelTraceability = {
+  titleName: "Solicitud de creación Servicio Generación de cobro x cliente.",
 };
 
-export { labelsOfTraceability, iLabel };
+export { labelsOfTraceability, labelTraceability };

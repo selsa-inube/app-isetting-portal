@@ -10,4 +10,8 @@ const labelsOfRequest = [
   },
 ];
 
-export { labelsOfRequest };
+const iLabel = {
+  titleName: "Detalles de la solicitud",
+};
+
+export { labelsOfRequest, iLabel };

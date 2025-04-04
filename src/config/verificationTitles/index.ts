@@ -3,6 +3,7 @@ const labels: Record<string, string> = {
   descriptionPosition: "Descripción:",
   creationDate: "Rol:",
   modificationDate: "Ninguna rol fue activado",
+  renderStepButton: "Regresar a este paso",
 };
 
 export { labels };

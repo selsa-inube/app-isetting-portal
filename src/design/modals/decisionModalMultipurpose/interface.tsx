@@ -9,15 +9,13 @@ import {
   Divider,
   useMediaQuery,
   Blanket,
-  Textarea,
   Button,
 } from "@inubekit/inubekit";
 
-import { StyledContainerButton, StyledModal, StyledTextarea } from "./styles";
 import { enviroment } from "@config/environment";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { basic } from "@design/tokens";
-
+import { StyledContainerButton, StyledModal } from "./styles";
 interface IDecisionModalUI {
   actionText: string;
   appearance: IIconAppearance;
@@ -44,7 +42,7 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
     formik,
     isLoading,
     icon,
-    justificationOfDecision,
+
     portalId,
     title,
     withIcon,
@@ -54,12 +52,6 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
   } = props;
 
   const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
-  const isMobileTextarea = useMediaQuery("(max-width: 490px)");
-
-  const getFieldState = (formik: FormikValues, fieldName: string) => {
-    if (formik.errors[fieldName]) return "invalid";
-  };
-
   const node = document.getElementById(portalId);
 
   if (!node) {
@@ -105,24 +97,6 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
         <Text appearance={ComponentAppearance.GRAY} type="body" size="medium">
           {description}
         </Text>
-
-        {justificationOfDecision && (
-          <StyledTextarea $smallScreen={isMobileTextarea}>
-            <Textarea
-              label=""
-              name="justification"
-              id="justification"
-              placeholder="Indique la razón por la que desea realizar esta acción"
-              value={formik.values.justification}
-              message={formik.errors.justification}
-              fullwidth
-              maxLength={130}
-              status={getFieldState(formik, "justification")}
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-            />
-          </StyledTextarea>
-        )}
 
         <Stack gap={basic.spacing.s250} justifyContent="flex-end">
           {withCancelButton && (

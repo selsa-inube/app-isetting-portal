@@ -1,4 +1,4 @@
-import { DetailsModal } from "@pages/users/forms/detailsModal";
+import { DetailsModal } from "@pages/users/tools/detailsModal";
 import { IAction } from "@ptypes/table/IAction";
 
 import { IEntry } from "@ptypes/table/IEntry";

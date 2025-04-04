@@ -1,9 +1,9 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Icon, Stack, Text } from "@inubekit/inubekit";
-import { InteractiveModalDeatailsUsers } from "@design/feedback/InteractiveModalDeatailsUsers";
 import { UseDetailsModal } from "@hooks/users/useDetailsModal";
 import { IDetailsModal } from "@ptypes/positions/details/IDetailsModal";
 import { basic } from "@design/tokens";
+import { DetailsUsersModal } from "./detailsUsersModal";
 
 const DetailsModal = (props: IDetailsModal) => {
   const { data, labelsOptions } = props;
@@ -27,13 +27,12 @@ const DetailsModal = (props: IDetailsModal) => {
         )}
       </Stack>
       {showModal && data && (
-        <InteractiveModalDeatailsUsers
-          closeModal={handleToggleModal}
+        <DetailsUsersModal
+          onClose={handleToggleModal}
           infoData={data}
           labels={labelsOptions}
-          portalId="portal"
-          title="Detalles del usuario"
           dataTable={dataTable ?? []}
+          smallScreen={screenTablet}
         />
       )}
     </>

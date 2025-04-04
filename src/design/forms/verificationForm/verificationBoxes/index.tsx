@@ -1,14 +1,16 @@
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IFormAddPosition } from "@ptypes/forms/verificationForm/IFormAddPosition";
-import renderPersonalInfoVerification from "./renderPersonalInfoVerification";
-import renderStepTwoVerification from "./renderStepTwoVerification";
+import { renderPersonalInfoVerification } from "@utils/forms/renderPersonalInfoVerification";
+import { renderStepTwoVerification } from "@utils/forms/renderStepTwoVerification";
 
 interface IVerificationBoxes {
   updatedData: IFormAddPosition;
   stepKey: number;
 }
 
-const VerificationBoxes = ({ updatedData, stepKey }: IVerificationBoxes) => {
+const VerificationBoxes = (props: IVerificationBoxes) => {
+  const { updatedData, stepKey } = props;
+
   const isMobile = useMediaQuery("(max-width: 990px)");
 
   return (

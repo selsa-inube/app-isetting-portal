@@ -4,7 +4,7 @@ import { basic } from "@design/tokens";
 import { labels } from "@config/verificationTitles";
 import { IOptionInitialiceEntry } from "@ptypes/positions/assisted/IOptionInitialiceEntry";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { StyldTagContainer } from "../styles";
+import { StyldTagContainer } from "@design/forms/verificationForm/verificationBoxes/styles";
 
 const renderStepTwoVerification = (
   values: IOptionInitialiceEntry[],
@@ -42,4 +42,4 @@ const renderStepTwoVerification = (
   );
 };
 
-export default renderStepTwoVerification;
+export { renderStepTwoVerification };

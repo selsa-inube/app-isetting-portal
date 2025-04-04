@@ -1,5 +1,4 @@
 import { IStackAlignContent } from "@ptypes/modals/borderStack/IStackAlignContent";
-
 import { IStackAlignItem } from "@ptypes/modals/borderStack/IStackAlignItem";
 import { IStackJustifyContent } from "@ptypes/modals/borderStack/IStackJustifyContent";
 import { IStackDirectionAlignment } from "@ptypes/modals/borderStack/StackDirectionAlignment";
@@ -25,7 +24,6 @@ interface IStack {
   padding?: string;
   boxSizing?: string;
 }
-
 const BorderStack = (props: IStack) => {
   const {
     children,
@@ -68,7 +66,5 @@ const BorderStack = (props: IStack) => {
     </StyledFlex>
   );
 };
-
 export { BorderStack };
-
 export type { IStack };

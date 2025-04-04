@@ -13,6 +13,8 @@ interface IStyledFlex {
   $border?: string;
   $borderRadius?: string;
   $boxSizing?: string;
+  $boxShadow?: string;
+  $overflowY?: string;
 }
 
 export type { IStyledFlex };

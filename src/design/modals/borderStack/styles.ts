@@ -14,8 +14,10 @@ const StyledFlex = styled.div<IStyledFlex>`
   margin: ${({ $margin }) => $margin};
   padding: ${({ $padding }) => $padding};
   background: ${({ $background }) => $background};
-  border: ${({ $border }) => $border};
+  border: ${({ $border }) => `1px solid ${$border}`};
   border-radius: ${({ $borderRadius }) => $borderRadius};
   box-sizing: ${({ $boxSizing }) => $boxSizing};
+  box-shadow: ${({ $boxShadow }) => $boxShadow};
+  overflow-y: ${({ $overflowY }) => $overflowY};
 `;
 export { StyledFlex };

@@ -1,32 +1,22 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IEntry } from "@ptypes/table/IEntry";
-import { IServerDomain } from "@ptypes/IServerDomain";
+
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
-import { labelsOfTraceabilityDate } from "@config/requestsInProgressTab/details/labelsOfTraceabilityDate";
-import { DetailsRequestsInProgressModal } from "@design/modals/detailsRequestsInProgressModal";
 
-import {
-  iLabel,
-  labelsOfRequest,
-} from "@config/requestsInProgressTab/details/labelsOfRequest";
-import {
-  labelsOfTraceability,
-  labelTraceability,
-} from "@config/requestsInProgressTab/details/labelsOfTraceability";
+import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
+import { labelsOfTraceability } from "@config/requestsInProgressTab/details/labelsOfTraceability";
 import { StyledContainerIcon } from "./styles";
+import { RequestsInProcess } from "../requestsInProcess";
 
 interface IDetails {
   data: IEntry;
   showModal: boolean;
-  form: { name: string; dateTraceability: string };
-  dateOptions: IServerDomain[];
   onToggleModal: () => void;
-  onChange: (name: string, newValue: string) => void;
 }
 
 const DetailsRequestInProcess = (props: IDetails) => {
-  const { data, showModal, form, dateOptions, onToggleModal, onChange } = props;
+  const { data, showModal, onToggleModal } = props;
 
   const screenTablet = useMediaQuery("(max-width: 1200px)");
 
@@ -48,19 +38,13 @@ const DetailsRequestInProcess = (props: IDetails) => {
       </StyledContainerIcon>
 
       {showModal && (
-        <DetailsRequestsInProgressModal
-          title={iLabel.titleName}
+        <RequestsInProcess
           data={data}
-          portalId="portal"
-          dateOptions={dateOptions}
-          dateSelected={form.dateTraceability}
           onCloseModal={onToggleModal}
-          onChange={onChange}
           labelsOfTraceability={labelsOfTraceability}
-          labelsOfTraceabilityDate={labelsOfTraceabilityDate}
-          labelsData={labelsOfRequest}
-          infoData={data}
-          request={labelTraceability.titleName}
+          labelsOfRequest={labelsOfRequest}
+          isMobile={screenTablet}
+          onClick={() => console.log("click")}
         />
       )}
     </>

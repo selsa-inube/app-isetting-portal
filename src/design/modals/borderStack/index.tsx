@@ -23,6 +23,8 @@ interface IStack {
   margin?: string;
   padding?: string;
   boxSizing?: string;
+  boxShadow?: string;
+  overflowY?: string;
 }
 const BorderStack = (props: IStack) => {
   const {
@@ -42,6 +44,8 @@ const BorderStack = (props: IStack) => {
     margin = "0px",
     padding = "0px",
     boxSizing,
+    boxShadow,
+    overflowY,
   } = props;
 
   return (
@@ -61,6 +65,8 @@ const BorderStack = (props: IStack) => {
       $padding={padding}
       $borderRadius={borderRadius}
       $boxSizing={boxSizing}
+      $boxShadow={boxShadow}
+      $overflowY={overflowY}
     >
       {children}
     </StyledFlex>

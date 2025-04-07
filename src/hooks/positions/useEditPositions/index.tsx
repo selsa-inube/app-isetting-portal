@@ -74,7 +74,13 @@ const UseEditPositions = (
       isActive: boolean;
     }[]
   >([]);
-
+  const roles = formValues.rolesStaff.values.map((role) => {
+    const applicationStaff = rolesData?.find((app) => app.roleId === role.id);
+    return {
+      ...role,
+      applicationStaff: applicationStaff?.applicationName,
+    };
+  });
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationEntry>>(null);
 
@@ -264,6 +270,7 @@ const UseEditPositions = (
     setShowModal,
     setSelectedToggle,
     handleRoleToggle,
+    roles,
   };
 };
 

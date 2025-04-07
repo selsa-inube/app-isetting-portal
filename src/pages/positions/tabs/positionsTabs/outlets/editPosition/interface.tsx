@@ -19,6 +19,8 @@ import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
 import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
+import { IOptionInitialiceEntry } from "@ptypes/positions/assisted/IOptionInitialiceEntry";
+import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
 
 interface IEditPositionsUI {
   editPositionTabsConfig: IEditPositionsTabsConfig;
@@ -37,9 +39,11 @@ interface IEditPositionsUI {
   onCloseRequestStatus: () => void;
   onClosePendingReqModal: () => void;
   smallScreen: boolean;
+  options: IOptionInitialiceEntry[];
   setSelectedToggle: React.Dispatch<
     React.SetStateAction<IFormEntry[] | undefined>
   >;
+  roles: IOptionInitialiceEntryApp[];
 }
 
 const EditPositionsUI = (props: IEditPositionsUI) => {
@@ -61,6 +65,8 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
     requestSteps,
     smallScreen,
     onReset,
+    options,
+    roles,
   } = props;
 
   return (
@@ -98,8 +104,8 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
             {isSelected === editPositionTabsConfig.selectionRoles.id && (
               <InitializerForm
                 key={isSelected}
-                dataOptionsForms={initialValues.rolesStaff.values}
-                dataOptionsValueSelect={initialValues.applicationStaff.values}
+                dataOptionsForms={roles}
+                dataOptionsValueSelect={options}
                 setSelectedToggle={setSelectedToggle}
               />
             )}

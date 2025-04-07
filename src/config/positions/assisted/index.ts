@@ -1,6 +1,5 @@
 import { IAssistedStep } from "@inubekit/inubekit";
 
-// const AddPositionsStepsConfig = (NameDescription: string) => {
 const AddPositionsSteps: IAssistedStep[] = [
   {
     id: 1,
@@ -21,8 +20,6 @@ const AddPositionsSteps: IAssistedStep[] = [
     description: "Confirma la información diligenciada en pasos anteriores.",
   },
 ];
-//   return AddPositionsSteps;
-// };
 
 const titleButtonTextAssited = {
   before: "Atrás",

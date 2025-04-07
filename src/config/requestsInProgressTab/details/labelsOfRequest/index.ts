@@ -6,7 +6,7 @@ const labelsOfRequest = [
 
   {
     id: "requestNumber",
-    titleName: "No. de solicituds",
+    titleName: "No. de solicitudes",
   },
 ];
 

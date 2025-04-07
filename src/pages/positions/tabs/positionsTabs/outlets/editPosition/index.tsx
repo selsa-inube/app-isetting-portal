@@ -8,6 +8,8 @@ import { editPositionTabsConfig } from "@config/positions/editPositions/tabs";
 import { UseEditPositions } from "@hooks/positions/useEditPositions";
 import { UseFetchRolesStaff } from "@hooks/positions/useFetchRolesStaff";
 import { EditPositionsUI } from "./interface";
+import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
+import { UseFetchAplicaionStaff } from "@hooks/positions/useAplication";
 
 const EditPositions = () => {
   const location = useLocation();
@@ -27,6 +29,7 @@ const EditPositions = () => {
     handleTabChange,
     setShowModal,
     setSelectedToggle,
+    roles,
   } = UseEditPositions(data, appData, rolesStaff);
 
   const {
@@ -44,7 +47,7 @@ const EditPositions = () => {
     saveData as ISaveDataRequest,
     setShowModal
   );
-
+  const { options } = UseFetchAplicaionStaff();
   return (
     <EditPositionsUI
       editPositionTabsConfig={editPositionTabsConfig}
@@ -64,6 +67,8 @@ const EditPositions = () => {
       onReset={handleReset}
       setSelectedToggle={setSelectedToggle || []}
       smallScreen={smallScreen}
+      roles={roles}
+      options={options as IOptionInitialiceEntryApp[]}
     />
   );
 };

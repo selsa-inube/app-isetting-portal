@@ -17,7 +17,7 @@ interface IRequestsInProcess {
   onClick: () => void;
 }
 
-function RequestsInProcess(props: IRequestsInProcess) {
+const RequestsInProcess = (props: IRequestsInProcess) => {
   const {
     data,
     labelsOfRequest,
@@ -73,6 +73,7 @@ function RequestsInProcess(props: IRequestsInProcess) {
             <Divider dashed />
           </Stack>
         </Stack>
+
         <BorderStack
           background={inube.palette.neutral.N0}
           overflowY="auto"
@@ -146,7 +147,7 @@ function RequestsInProcess(props: IRequestsInProcess) {
       </BorderStack>
     </ModalWrapper>
   );
-}
+};
 
 export { RequestsInProcess };
 export type { IRequestsInProcess };

@@ -7,7 +7,7 @@ import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInf
 const renderPersonalInfoVerification = (
   values: IGeneralInformationEntry,
   isMobile: boolean
-) => {
+) => (
   <>
     <Grid
       templateColumns={isMobile ? "1fr" : "1fr "}
@@ -22,7 +22,7 @@ const renderPersonalInfoVerification = (
         value={values.descriptionPosition}
       />
     </Stack>
-  </>;
-};
+  </>
+);
 
 export { renderPersonalInfoVerification };

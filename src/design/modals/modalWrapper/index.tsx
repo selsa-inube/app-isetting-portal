@@ -28,7 +28,7 @@ interface IModalWrapper {
   onCloseModal?: () => void;
 }
 
-function ModalWrapper(props: IModalWrapper) {
+const ModalWrapper = (props: IModalWrapper) => {
   const {
     children,
     height = "auto",
@@ -107,7 +107,6 @@ function ModalWrapper(props: IModalWrapper) {
     </Blanket>,
     node
   );
-}
-
+};
 export { ModalWrapper };
 export type { IModalWrapper };

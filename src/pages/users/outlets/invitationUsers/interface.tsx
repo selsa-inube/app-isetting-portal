@@ -1,9 +1,9 @@
 import { Stack, Breadcrumbs, Assisted } from "@inubekit/inubekit";
-import { PageTitle } from "@design/label/PageTitle";
-import { basic } from "@design/tokens";
 import { createUserInvitationConfig } from "@config/users/addUsersInvitation/assisted";
 import { IAddUsersInvitationUI } from "@ptypes/users/assisted/IAddUsersInvitationUI";
 import { GeneralInformationForm } from "@pages/users/forms/generalInformationForm";
+import { PageTitle } from "@design/label/PageTitle";
+import { basic } from "@design/tokens";
 
 const AddUsersInvitationUI = (props: IAddUsersInvitationUI) => {
   const {

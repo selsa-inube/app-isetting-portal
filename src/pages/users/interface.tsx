@@ -90,7 +90,7 @@ const UsersUI = (props: IUsersUI) => {
             iconBefore={<MdPersonAddAlt />}
             spacing="wide"
             type="link"
-            path="/privileges/users"
+            path="/privileges/users/invitation-users"
           >
             Invitar usuario
           </Button>

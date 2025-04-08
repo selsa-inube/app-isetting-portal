@@ -3,6 +3,7 @@ import { AddPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosi
 import { EditPositions } from "@pages/positions/tabs/positionsTabs/outlets/editPosition";
 import { PositionsOptions } from "@pages/positions/tabs/positionsTabs/outlets/options";
 import { Users } from "@pages/users";
+import { AddUsersInvitation } from "@pages/users/outlets/invitationUsers";
 import { Route, Routes } from "react-router-dom";
 
 const PositionsRoutes = () => (
@@ -10,6 +11,7 @@ const PositionsRoutes = () => (
     <Route path="/" element={<PositionsOptions />} />
     <Route path="/positions" element={<Positions />} />
     <Route path="/users" element={<Users />} />
+    <Route path="users/invitation-users" element={<AddUsersInvitation />} />
     <Route path="positions/add-position" element={<AddPosition />} />
     <Route path="positions/edit-destination" element={<EditPositions />} />
   </Routes>

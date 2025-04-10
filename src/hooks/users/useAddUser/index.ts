@@ -48,7 +48,6 @@ const UseAddUser = () => {
     setShowModal(!showModal);
   };
   const disabled = !isCurrentFormValid;
-  console.log(isCurrentFormValid);
   return {
     smallScreen,
     currentStep,

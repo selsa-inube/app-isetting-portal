@@ -9,7 +9,7 @@ const GeneralInformationForm = forwardRef<
   FormikProps<IGeneralInformationEntry>,
   IGeneralInformationForm
 >(({ initialValues, onFormValid, onSubmit, handleNextStep, loading }, ref) => {
-  const { formik, isMobile } = UseGeneralInfoUsersForm(
+  const { formik, isMobile, handleChange } = UseGeneralInfoUsersForm(
     initialValues,
     ref,
     onSubmit,
@@ -22,6 +22,7 @@ const GeneralInformationForm = forwardRef<
       formik={formik}
       onNextStep={handleNextStep}
       isMobile={isMobile}
+      handleChange={handleChange}
     />
   );
 });

@@ -13,7 +13,9 @@ const StyledOptionList = styled.ul<IStyledOptionList>`
   position: absolute;
   z-index: 1;
   border-radius: ${basic.spacing.s4};
-  background: ${0 || inube.palette.neutral.N0};
+  background: ${({ theme }) => {
+    return theme?.palette?.neutral?.N0 || inube.palette.neutral.N0;
+  }};
   box-shadow:
     0px 1px 2px rgba(0, 0, 0, 0.3),
     0px 2px 6px 2px rgba(0, 0, 0, 0.15);

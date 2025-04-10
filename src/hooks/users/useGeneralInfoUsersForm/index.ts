@@ -15,6 +15,12 @@ const UseGeneralInfoUsersForm = (
   const createValidationSchema = () =>
     object().shape({
       nameUser: validationRules.string.required(validationMessages.required),
+      identificationNumber: validationRules.string.required(
+        validationMessages.required
+      ),
+      biologicalSex: validationRules.string.required(
+        validationMessages.required
+      ),
     });
 
   const validationSchema = createValidationSchema();
@@ -38,10 +44,17 @@ const UseGeneralInfoUsersForm = (
   }, [formik.values, onFormValid]);
 
   const isMobile = useMediaQuery("(max-width: 990px)");
-
+  const handleChange = (name: string, value: string) => {
+    formik.setFieldValue(name, value).then(() => {
+      formik.validateForm().then((errors) => {
+        formik.setErrors(errors);
+      });
+    });
+  };
   return {
     formik,
     isMobile,
+    handleChange,
   };
 };
 

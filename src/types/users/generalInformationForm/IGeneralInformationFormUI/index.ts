@@ -3,6 +3,7 @@ import { IGeneralInformationEntry } from "@ptypes/users/assisted/IGeneralInforma
 
 interface IGeneralInformationFormUI {
   formik: FormikProps<IGeneralInformationEntry>;
+  handleChange: (name: string, value: string) => void;
   onNextStep: () => void;
   isMobile: boolean;
   loading?: boolean;

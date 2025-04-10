@@ -12,7 +12,8 @@ const StyledContainer = styled.div`
   align-items: stretch;
   width: 100%;
   max-height: 385px;
-  border: 1px solid ${inube.palette.neutral.N40};
+  border: 1px solid
+    ${({ theme }) => theme?.palette?.neutral?.N40 || inube.palette.neutral.N40};
 `;
 
 const StyledHead = styled.div`

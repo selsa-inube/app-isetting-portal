@@ -9,7 +9,8 @@ interface IStyledSearchUserCard {
 
 const StyledSearchUserCard = styled.div<IStyledSearchUserCard>`
   border-radius: ${basic.spacing.s100};
-  border: 1px solid ${inube.palette.neutral.N40};
+  border: 1px solid
+    ${({ theme }) => theme?.palette?.neutral?.N40 || inube.palette.neutral.N40};
   padding: ${basic.spacing.s300};
   display: ${({ $smallScreen }) => ($smallScreen ? "none" : "block")};
 `;
@@ -26,7 +27,8 @@ const StyledFilterdUserCard = styled.div<IStyledSearchUserCard>`
   gap: ${basic.spacing.s100};
   width: 100%;
   border-radius: ${basic.spacing.s100};
-  border: 1px solid ${inube.palette.neutral.N40};
+  border: 1px solid
+    ${({ theme }) => theme?.palette?.neutral?.N40 || inube.palette.neutral.N40};
   padding: ${basic.spacing.s100};
   background-color: ${inube.palette.neutral.N30};
   & > * {

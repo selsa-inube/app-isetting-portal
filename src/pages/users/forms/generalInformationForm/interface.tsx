@@ -4,7 +4,7 @@ import { Userlabels } from "@config/users/addUsersInvitation/assisted/assistedTe
 import { IGeneralInformationFormUI } from "@ptypes/users/generalInformationForm/IGeneralInformationFormUI";
 import { getFieldState } from "@utils/forms";
 const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
-  const { formik } = props;
+  const { formik, handleChange } = props;
 
   return (
     <Grid
@@ -29,24 +29,58 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
 
       <Select
         name="biologicalSex"
+        id="biologicalSex"
+        onChange={handleChange}
+        options={[
+          { id: "1", label: "Masculino", value: "male" },
+          { id: "2", label: "Femenino", value: "female" },
+          { id: "3", label: "Otro", value: "other" },
+        ]}
+        label={Userlabels.biologicalSex}
+        placeholder={Userlabels.placeholderBiologicalSex}
+        value={formik.values.biologicalSex}
+        onBlur={formik.handleBlur}
+        message={formik.errors.biologicalSex}
+        required
+        fullwidth
+        size="wide"
+      />
+      <Select
+        id="typeOfIdentification"
+        name="typeOfIdentification"
         onChange={function (): void {
           throw new Error("Function not implemented.");
         }}
         options={[]}
-        label={Userlabels.biologicalSex}
+        label={Userlabels.typeOfIdentification}
+        placeholder={Userlabels.placeholderTypeOfIdentification}
         value={""}
         fullwidth
         size="wide"
       />
-
       <Date
-        name="biologicalSex"
+        id="birthdate"
+        name="birthdate"
         onChange={function (): void {
           throw new Error("Function not implemented.");
         }}
-        id={""}
+        label={Userlabels.birthdate}
         fullwidth
         size="wide"
+      />
+      <Textfield
+        name="identificationNumber"
+        id="identificationNumber"
+        label={Userlabels.identificationNumber}
+        placeholder={Userlabels.placeholderIdentificationNumber}
+        type="text"
+        size="wide"
+        value={formik.values.identificationNumber}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        status={getFieldState(formik, "identificationNumber")}
+        message={formik.errors.identificationNumber}
+        fullwidth
       />
     </Grid>
   );

@@ -35,7 +35,8 @@ const StyledFilterdUserCard = styled.div<IStyledSearchUserCard>`
   display: flex;
   gap: ${basic.spacing.s100};
   border-radius: ${basic.spacing.s100};
-  border: 1px solid ${inube.palette.neutral.N40};
+  border: 1px solid
+    ${({ theme }) => theme.palette?.neutral?.N40 || inube.palette.neutral.N40};
   padding: ${basic.spacing.s100};
   background-color: ${inube.palette.neutral.N30};
 `;

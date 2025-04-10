@@ -8,7 +8,8 @@ interface IStyledRespondInvitation {
 }
 
 const StyledModal = styled.div<IStyledRespondInvitation>`
-  background-color: ${inube.palette.neutral.N10};
+  background-color: ${({ theme }) =>
+    theme?.palette?.neutral?.N10 || inube.palette.neutral.N10};
   min-width: ${({ $smallScreen }) => ($smallScreen ? "100%" : "450px")};
   min-height: ${({ $smallScreen }) => ($smallScreen ? "100vh" : "auto")};
   height: auto;

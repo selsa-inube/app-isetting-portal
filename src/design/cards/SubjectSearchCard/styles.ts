@@ -16,13 +16,20 @@ const StyledSubjectSearchCard = styled.div<IStyledSubjectSearchCard>`
   height: ${({ $smallScreen }) => ($smallScreen ? "56px" : "auto")};
   box-sizing: border-box;
   border-radius: ${basic.spacing.s8};
-  border: 1px solid ${inube.palette.neutral.N30};
+  border: 1px solid
+    ${({ theme }) => theme?.palette?.neutral?.N30 || inube.palette.neutral.N30};
   cursor: pointer;
-  background-color: ${inube.palette.neutral.N30 || inube.palette.neutral.N0};
+  background-color: ${({ theme, $isActive }) =>
+    $isActive
+      ? theme?.palette?.neutral?.N30 || inube.palette.neutral.N30
+      : theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
 
-  box-shadow: ${`0px 1px 3px 1px ${inube.palette.neutralAlpha.N40A}, 0px 1px 2px 0px ${
-    inube.palette.neutralAlpha.N60A
-  }`};
+  box-shadow: ${({ theme }) =>
+    `0px 1px 3px 1px ${
+      theme?.palette?.neutral?.N40 || inube.palette.neutralAlpha.N40A
+    }, 0px 1px 2px 0px ${
+      theme?.palette?.neutral?.N60 || inube.palette.neutralAlpha.N60A
+    }`};
 `;
 
 export { StyledSubjectSearchCard, StyledSubjectSearchCardText };

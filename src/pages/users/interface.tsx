@@ -14,6 +14,8 @@ import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
 import { Menu } from "@design/navigation";
 import { menuUserLinks } from "@config/users/menuInvitation";
 import { StyledContainer } from "./styles";
+import { useEffect } from "react";
+import { getEnumerators } from "@services/users/getEnumerators/getBiologicalSex";
 
 const UsersUI = (props: IUsersUI) => {
   const {
@@ -28,6 +30,12 @@ const UsersUI = (props: IUsersUI) => {
     loading,
     widthFirstColumn,
   } = props;
+  useEffect(() => {
+    (async () => {
+      const result = await getEnumerators("biologicalsex", "Colombia");
+      console.log(result);
+    })();
+  }, []);
 
   return (
     <Stack

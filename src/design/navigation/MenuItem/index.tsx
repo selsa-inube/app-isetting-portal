@@ -14,16 +14,17 @@ interface IMenuItem {
   onClick?: () => void;
 }
 
-const MenuItem = ({
-  title,
-  description,
-  spacing = "wide",
-  iconBefore,
-  iconAfter,
-  isDisabled = false,
-  path = "#",
-  onClick,
-}: IMenuItem) => {
+const MenuItem = (props: IMenuItem) => {
+  const {
+    title,
+    description,
+    spacing = "wide",
+    iconBefore,
+    iconAfter,
+    isDisabled = false,
+    path = "#",
+    onClick,
+  } = props;
   return (
     <StyledMenuItemLink
       spacing={spacing}

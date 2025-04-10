@@ -4,7 +4,7 @@ import { IStackJustifyContent } from "@ptypes/modals/borderStack/IStackJustifyCo
 import { IStackDirectionAlignment } from "@ptypes/modals/borderStack/StackDirectionAlignment";
 import { IStackStructure } from "@ptypes/modals/borderStack/IStackStructure";
 import { IStackWrapControl } from "@ptypes/modals/borderStack/IStackWrapControl";
-import { StyledFlex } from "./styles";
+import { StyledBorderFlex } from "./styles";
 
 interface IStack {
   children?: React.ReactNode;
@@ -49,7 +49,7 @@ const BorderStack = (props: IStack) => {
   } = props;
 
   return (
-    <StyledFlex
+    <StyledBorderFlex
       as={as}
       $direction={direction}
       $justifyContent={justifyContent}
@@ -69,7 +69,7 @@ const BorderStack = (props: IStack) => {
       $overflowY={overflowY}
     >
       {children}
-    </StyledFlex>
+    </StyledBorderFlex>
   );
 };
 export { BorderStack };

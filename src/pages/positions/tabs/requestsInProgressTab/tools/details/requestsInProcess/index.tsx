@@ -7,6 +7,8 @@ import { RequestType } from "src/enum/requestType";
 import { TraceabilityCard } from "@design/feedback/traceabilityCard";
 import { ILabel } from "@ptypes/details/ILabel";
 import { BorderStack } from "@design/modals/borderStack";
+import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
+import { DetailBox } from "@design/feedback/detailBox";
 
 interface IRequestsInProcess {
   data: IEntry;
@@ -32,7 +34,11 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
       portalId="portal"
       width={isMobile ? "335px" : "600px"}
       isMobile={isMobile}
-      title="Detalles de solicitud"
+      labelActionButton={detailsRequestInProgressModal.labelActionButton}
+      labelCloseButton={detailsRequestInProgressModal.labelCloseButton}
+      labelCloseModal={detailsRequestInProgressModal.labelCloseModal}
+      iconBeforeButton={detailsRequestInProgressModal.iconBeforeButton}
+      title={detailsRequestInProgressModal.title}
       withCancelButton={true}
       onCloseModal={onCloseModal}
       onClick={onClick}
@@ -66,9 +72,10 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
               weight="bold"
               appearance={ComponentAppearance.GRAY}
             >
-              Solicitud{" "}
-              {RequestType[data.request as keyof typeof RequestType] ??
-                data.request}
+              {`${detailsRequestInProgressModal.labelRequest} ${
+                RequestType[data.request as keyof typeof RequestType] ??
+                data.request
+              }`}
             </Text>
             <Divider dashed />
           </Stack>
@@ -89,28 +96,18 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
             {labelsOfRequest.map(
               (field, id) =>
                 data[field.id] && (
-                  <BorderStack
+                  <DetailBox
                     key={id}
-                    direction="column"
-                    width={isMobile ? "253px" : "240px"}
-                    height="52px"
-                    background={inube.palette.neutral.N10}
+                    field={field}
+                    data={data}
+                    id={id}
+                    backgroundColor={inube.palette.neutral.N10}
                     borderRadius={basic.spacing.s100}
-                    border={inube.palette.neutral.N40}
-                    boxSizing="border-box"
                     padding={`${basic.spacing.s075} ${basic.spacing.s150}`}
-                  >
-                    <Text size="medium" type="label" weight="bold">
-                      {field.titleName}
-                    </Text>
-                    <Text
-                      size="small"
-                      appearance={ComponentAppearance.GRAY}
-                      ellipsis
-                    >
-                      {data[field.id]}
-                    </Text>
-                  </BorderStack>
+                    width={isMobile ? "253px" : "240px"}
+                    borderColor={inube.palette.neutral.N40}
+                    ellipsis
+                  />
                 )
             )}
           </Stack>

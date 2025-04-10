@@ -1,7 +1,7 @@
 import { IStyledFlex } from "@ptypes/modals/borderStack/IStyledFlex";
 import styled from "styled-components";
 
-const StyledFlex = styled.div<IStyledFlex>`
+const StyledBorderFlex = styled.div<IStyledFlex>`
   display: flex;
   justify-content: ${({ $justifyContent }) => $justifyContent};
   align-items: ${({ $alignItems }) => $alignItems};
@@ -20,4 +20,4 @@ const StyledFlex = styled.div<IStyledFlex>`
   box-shadow: ${({ $boxShadow }) => $boxShadow};
   overflow-y: ${({ $overflowY }) => $overflowY};
 `;
-export { StyledFlex };
+export { StyledBorderFlex };

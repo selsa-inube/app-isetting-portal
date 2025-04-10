@@ -4,6 +4,7 @@ import { UseDetailsModal } from "@hooks/users/useDetailsModal";
 import { IDetailsModal } from "@ptypes/positions/details/IDetailsModal";
 import { basic } from "@design/tokens";
 import { DetailsUsersModal } from "./detailsUsersModal";
+import { UserbuttonText } from "@config/users/addUsers/assisted/buttonText";
 
 const DetailsModal = (props: IDetailsModal) => {
   const { data, labelsOptions } = props;
@@ -22,7 +23,7 @@ const DetailsModal = (props: IDetailsModal) => {
         />
         {screenTablet && (
           <Text type="body" size="medium" onClick={handleToggleModal}>
-            Detalles
+            {UserbuttonText.textDetails}
           </Text>
         )}
       </Stack>

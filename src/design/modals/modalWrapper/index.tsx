@@ -4,19 +4,22 @@ import {
   Blanket,
   Button,
   Divider,
+  Grid,
   Icon,
   inube,
   Stack,
   Text,
 } from "@inubekit/inubekit";
-import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-
+import { basic } from "@design/tokens";
 import { BorderStack } from "../borderStack";
 
 interface IModalWrapper {
   children: React.ReactNode;
   isMobile: boolean;
+  labelActionButton: string;
+  labelCloseButton: string;
+  labelCloseModal: string;
   portalId: string;
   title: string;
   onClick: () => void;
@@ -28,15 +31,21 @@ interface IModalWrapper {
   onCloseModal?: () => void;
 }
 
-const ModalWrapper = (props: IModalWrapper) => {
+function ModalWrapper(props: IModalWrapper) {
   const {
+    appearanceButton,
     children,
     height = "auto",
+    iconBeforeButton,
     isMobile,
+    labelActionButton,
+    labelCloseButton,
+    labelCloseModal,
     portalId,
     title,
     width = "auto",
     withCancelButton,
+    onClick,
     onCloseModal,
   } = props;
 
@@ -60,32 +69,24 @@ const ModalWrapper = (props: IModalWrapper) => {
         gap={isMobile ? `${basic.spacing.s150}` : `${basic.spacing.s300}`}
         boxSizing="border-box"
       >
-        <Stack
-          direction="column"
-          gap={isMobile ? basic.spacing.s200 : basic.spacing.s200}
-        >
-          <Stack alignItems="center" justifyContent="space-between">
-            <Text type="headline" size="small" appearance="dark">
-              {title}
-            </Text>
+        <Grid templateColumns="1fr auto" templateRows="1fr">
+          <Text type="headline" size="small" appearance="dark">
+            {title}
+          </Text>
 
-            <Button
-              spacing="compact"
-              appearance={ComponentAppearance.DARK}
-              variant="none"
-              onClick={onCloseModal}
-              iconAfter={
-                <Icon
-                  appearance={ComponentAppearance.DARK}
-                  icon={<MdClear />}
-                />
-              }
-            >
-              Cerrar
-            </Button>
-          </Stack>
-          <Divider />
-        </Stack>
+          <Button
+            spacing="compact"
+            appearance={ComponentAppearance.DARK}
+            variant="none"
+            onClick={onCloseModal}
+            iconAfter={
+              <Icon appearance={ComponentAppearance.DARK} icon={<MdClear />} />
+            }
+          >
+            {labelCloseModal}
+          </Button>
+        </Grid>
+        <Divider />
 
         <Stack height="100%" width="100%">
           {children}
@@ -99,14 +100,25 @@ const ModalWrapper = (props: IModalWrapper) => {
               variant="filled"
               onClick={onCloseModal}
             >
-              Cerrar
+              {labelCloseButton}
             </Button>
           )}
+
+          <Button
+            spacing="wide"
+            appearance={appearanceButton ?? ComponentAppearance.PRIMARY}
+            variant="filled"
+            onClick={onClick}
+            iconBefore={iconBeforeButton ?? <></>}
+          >
+            {labelActionButton}
+          </Button>
         </Stack>
       </BorderStack>
     </Blanket>,
     node
   );
-};
+}
+
 export { ModalWrapper };
 export type { IModalWrapper };

@@ -14,6 +14,7 @@ import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
 import { Menu } from "@design/navigation";
 import { menuUserLinks } from "@config/users/menuInvitation";
 import { StyledContainer } from "./styles";
+import { UserbuttonText } from "@config/users/addUsers/assisted/buttonText";
 
 const UsersUI = (props: IUsersUI) => {
   const {
@@ -92,7 +93,7 @@ const UsersUI = (props: IUsersUI) => {
             type="link"
             path="/privileges/users"
           >
-            Invitar usuario
+            {UserbuttonText.buttonAddUsers}
           </Button>
         )}
       </Stack>

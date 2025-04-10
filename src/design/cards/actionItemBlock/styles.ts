@@ -10,16 +10,13 @@ const StyledActionItemBlock = styled(Link)`
   width: 191px;
   height: 140px;
   text-decoration: none;
-  color: ${({ theme }) =>
-    theme?.color?.stroke.dark.regular || inube.palette.neutral.N900};
+  color: ${inube.palette.neutral.N900};
   :hover {
     & svg {
-      color: ${({ theme }) =>
-        theme?.color?.stroke.primary.regular || inube.palette.blue.B400};
+      color: ${inube.palette.blue.B400};
     }
     & picture {
-      background-color: ${({ theme }) =>
-        theme?.color?.surface.gray.regular || inube.palette.neutral.N30};
+      background-color: ${inube.palette.neutral.N30};
     }
   }
 

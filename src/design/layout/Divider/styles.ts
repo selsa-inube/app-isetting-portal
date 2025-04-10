@@ -12,7 +12,6 @@ const StyledDivider = styled.hr<IStyledDivider>`
   height: 0px;
   border: none;
   border-top: 0.5px ${({ $dashed }) => ($dashed ? "dashed" : "solid")};
-  border-top-color: ${({ theme }) =>
-    theme.color?.stroke?.divider?.regular || inube.palette.neutral.N40};
+  border-top-color: ${inube.palette.neutral.N40};
 `;
 export { StyledDivider };

@@ -8,8 +8,7 @@ interface IStyledRespondInvitation {
 }
 
 const StyledModal = styled.div<IStyledRespondInvitation>`
-  background-color: ${({ theme }) =>
-    theme?.color?.stroke?.light?.regular || inube.palette.neutral.N10};
+  background-color: ${inube.palette.neutral.N10};
   min-width: ${({ $smallScreen }) => ($smallScreen ? "100%" : "450px")};
   min-height: ${({ $smallScreen }) => ($smallScreen ? "100vh" : "auto")};
   height: auto;
@@ -31,9 +30,7 @@ const StyledModal = styled.div<IStyledRespondInvitation>`
 
 const StyledDivider = styled.div<IStyledRespondInvitation>`
   border-radius: ${basic.spacing.s0};
-  border: 1px dashed
-    ${({ theme }) =>
-      theme?.color?.stroke?.divider?.regular || inube.palette.neutral.N40};
+  border: 1px dashed ${inube.palette.neutral.N40};
 `;
 
 export { StyledModal, StyledDivider };

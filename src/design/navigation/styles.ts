@@ -15,20 +15,14 @@ const StyledMenuContainer = styled.div`
   max-width: 200px;
   min-width: 160px;
   box-shadow:
-    0px 2px 6px
-      ${({ theme }) =>
-        theme?.palette?.neutral?.N90 || inube.palette.neutral.N90},
-    0px 2px 6px
-      ${({ theme }) =>
-        theme?.palette?.neutral?.N40 || inube.palette.neutral.N40};
-  background-color: ${({ theme }) =>
-    theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
+    0px 2px 6px ${inube.palette.neutral.N90},
+    0px 2px 6px ${inube.palette.neutral.N40};
+  background-color: ${inube.palette.neutral.N0};
   border-radius: 4px;
   padding: 8px 6px;
 
   & > div {
-    background-color: ${({ theme }) =>
-      theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
+    background-color: ${inube.palette.neutral.N0};
   }
 `;
 

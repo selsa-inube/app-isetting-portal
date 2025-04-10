@@ -66,8 +66,6 @@ const CorePageStructure = () => {
       <Grid templateRows="auto 1fr" justifyContent="unset">
         <StyledHeaderContainer>
           <Header
-            portalId="portal"
-            navigation={nav}
             user={{
               username: appData.user.userName,
               breakpoint: "848px",

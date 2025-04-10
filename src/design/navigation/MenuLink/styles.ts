@@ -11,17 +11,14 @@ const StyledLink = styled(Link)`
     color: #091e42;
   }
   text-decoration: none;
-  color: ${({ theme }) =>
-    theme?.palette?.neutral?.N300 || inube.palette.neutral.N300};
+  color: ${inube.palette.neutral.N300};
   display: inline-block;
   padding: "6px 12px";
   border: none;
-  background-color: ${({ theme }) =>
-    theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
+  background-color: ${inube.palette.neutral.N0};
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) =>
-      theme?.palette?.neutral?.N300 || inube.palette.neutral.N300};
+    background-color: ${inube.palette.neutral.N300};
   }
 `;
 

@@ -48,24 +48,19 @@ const StyledTextErrorContainer = styled.div<IStyledTextErrorContainer>`
   gap: ${basic.spacing.s300};
   padding: ${basic.spacing.s250};
   border-radius: ${basic.spacing.s100};
-  border: 2px solid
-    ${({ theme }) =>
-      theme.color?.stroke?.gray?.regular ?? inube.palette.neutral.N40};
+  border: 2px solid ${inube.palette.neutral.N40};
 `;
 
 const StyledList = styled.ul``;
 
 const StyledItem = styled.li`
-  color: ${({ theme }) =>
-    theme.color?.text?.gray?.regular ?? inube.palette.neutral.N90};
+  color: ${inube.palette.neutral.N90};
 `;
 
 const StyledDividerContainer = styled.div<IStyledDividerContainer>`
   width: ${({ $isTablet }) => ($isTablet ? "100%" : "0%")};
   height: ${({ $isTablet }) => ($isTablet ? "0%" : "100%")};
-  border: 1px dashed
-    ${({ color, theme }) =>
-      color ?? theme?.palette?.neutral?.N40 ?? inube.palette.neutral.N40};
+  border: 1px dashed ${inube.palette.neutral.N40};
   margin: 0 auto;
 `;
 

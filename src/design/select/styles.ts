@@ -54,9 +54,7 @@ const StyledInputContainer = styled.div<IStyledInputContainer>`
   user-select: none;
   border-width: 1px;
   border: 1px solid ${inube.palette.neutral.N50};
-  background-color: ${({ theme, $readonly }) =>
-    $readonly && (theme?.palette?.neutral?.N0 || inube.palette.neutral.N0)};
-
+  background-color: ${inube.palette.neutral.N0};
   opacity: ${({ disabled }) => (disabled ? "0.5" : "none")};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;
@@ -66,26 +64,18 @@ const StyledInput = styled.input<IStyledInput>`
   padding-right: ${basic.spacing.s12};
   padding-left: ${basic.spacing.s16};
   border-style: none;
-  font-family: ${({ theme }) =>
-    theme?.typography?.body?.large?.font || inube.typography.body.large.font};
-  font-size: ${({ theme }) =>
-    theme?.typography?.body?.large?.font || inube.typography.body.large.size};
-  line-height: ${({ theme }) =>
-    theme?.typography?.body?.large?.font ||
-    inube.typography.body.large.lineHeight};
-  letter-spacing: ${({ theme }) =>
-    theme?.typography?.body?.large?.font ||
-    inube.typography.body.large.tracking};
+  font-family: ${inube.typography.body.large.font};
+  font-size: ${inube.typography.body.large.size};
+  line-height: ${inube.typography.body.large.lineHeight};
+  letter-spacing: ${inube.typography.body.large.tracking};
   color: ${({ disabled }) => UseInputColor(disabled)};
-  background-color: ${({ theme }) =>
-    theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
+  background-color: ${inube.palette.neutral.N0};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   ${({ $size }) => sizeOptions[$size!]};
 
   ::placeholder {
-    color: ${({ theme }) =>
-      theme?.palette?.neutral?.N20 || inube.palette.neutral.N20};
+    color: ${inube.palette.neutral.N20};
   }
 
   &:focus {

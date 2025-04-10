@@ -11,12 +11,8 @@ const StyledRadioBusinessUnit = styled.label<IStyledBusinessUnits>`
   & div {
     box-sizing: border-box;
     max-height: 58px;
-    box-shadow: 1px 2px 2px 1px
-      ${({ theme }) =>
-        theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
-    border: 1px solid
-      ${({ theme }) =>
-        theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
+    box-shadow: 1px 2px 2px 1px ${inube.palette.neutral.N30};
+    border: 1px solid ${inube.palette.neutral.N30};
     width: ${({ $isMobile }) => ($isMobile ? "320px" : "auto")};
     padding: ${({ $isMobile }) => ($isMobile ? "20px" : "auto")};
     border-radius: ${({ $isMobile }) => ($isMobile ? "8px" : "auto")};

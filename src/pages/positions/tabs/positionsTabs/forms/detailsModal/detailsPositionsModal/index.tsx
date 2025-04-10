@@ -1,20 +1,8 @@
-import { IAction } from "@ptypes/interactiveModal/IAction";
-import { IField } from "@ptypes/interactiveModal/IField";
-import { IPosition } from "@ptypes/positions/assisted/IPosition";
-import { IEntry } from "@ptypes/table/IEntry";
+import { UseModalLabelsAndActions } from "@hooks/positions/useModalLabelsAndActions";
 import { DetailsPositionsModalUI } from "./interface";
+import { IFeedbackModal } from "@ptypes/positions/details/IFeedbackModal";
 
-interface FeedbackModalProps {
-  onClose: () => void;
-  smallScreen: boolean;
-  labels: IField[];
-  infoData: IPosition;
-  actions?: IAction[];
-  dataTable?: IEntry[];
-  actionsTitle?: string;
-}
-
-const DetailsPositionsModal = (props: FeedbackModalProps) => {
+const DetailsPositionsModal = (props: IFeedbackModal) => {
   const {
     onClose,
     smallScreen,
@@ -25,8 +13,7 @@ const DetailsPositionsModal = (props: FeedbackModalProps) => {
     actionsTitle,
   } = props;
 
-  const hasLabels = labels.length > 0;
-  const hasActions = (actions?.length ?? 0) > 0;
+  const { hasLabels, hasActions } = UseModalLabelsAndActions(labels, actions);
 
   return (
     <DetailsPositionsModalUI

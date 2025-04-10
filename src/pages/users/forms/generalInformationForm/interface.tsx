@@ -1,16 +1,28 @@
-import { Grid, Select, Textfield, Date } from "@inubekit/inubekit";
+import {
+  Grid,
+  Select,
+  Textfield,
+  Date,
+} from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { Userlabels } from "@config/users/addUsersInvitation/assisted/assistedText";
 import { IGeneralInformationFormUI } from "@ptypes/users/generalInformationForm/IGeneralInformationFormUI";
 import { getFieldState } from "@utils/forms";
 const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
-  const { formik, handleChange } = props;
+  const {
+    formik,
+    handleChange,
+    optionsUser,
+    optionsIdentificationtypenatura,
+    smallScreen,
+  } = props;
 
   return (
     <Grid
-      gap={basic.spacing.s300}
-      templateColumns="repeat(2, 1fr)"
-      templateRows="repeat(3, 1fr)"
+      gap={smallScreen ? `${basic.spacing.s1600}` : `${basic.spacing.s300}`}
+      templateColumns={smallScreen ? "1fr" : "repeat(2, 1fr)"}
+      templateRows={smallScreen ? "none" : "repeat(3, 1fr)"}
+      margin={`${basic.spacing.s0} ${basic.spacing.s0}  ${basic.spacing.s400}  ${basic.spacing.s0}`}
     >
       <Textfield
         name="nameUser"
@@ -31,11 +43,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
         name="biologicalSex"
         id="biologicalSex"
         onChange={handleChange}
-        options={[
-          { id: "1", label: "Masculino", value: "male" },
-          { id: "2", label: "Femenino", value: "female" },
-          { id: "3", label: "Otro", value: "other" },
-        ]}
+        options={optionsUser}
         label={Userlabels.biologicalSex}
         placeholder={Userlabels.placeholderBiologicalSex}
         value={formik.values.biologicalSex}
@@ -48,23 +56,26 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
       <Select
         id="typeOfIdentification"
         name="typeOfIdentification"
-        onChange={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-        options={[]}
+        onChange={handleChange}
+        options={optionsIdentificationtypenatura}
         label={Userlabels.typeOfIdentification}
         placeholder={Userlabels.placeholderTypeOfIdentification}
-        value={""}
+        value={formik.values.typeOfIdentification}
+        onBlur={formik.handleBlur}
+        message={formik.errors.typeOfIdentification}
+        required
         fullwidth
         size="wide"
       />
       <Date
         id="birthdate"
         name="birthdate"
-        onChange={function (): void {
-          throw new Error("Function not implemented.");
-        }}
         label={Userlabels.birthdate}
+        value={formik.values.birthdate}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        status={getFieldState(formik, "birthdate")}
+        message={formik.errors.birthdate}
         fullwidth
         size="wide"
       />

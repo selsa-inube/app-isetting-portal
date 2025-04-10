@@ -27,6 +27,8 @@ const AddUsers = () => {
       generalInformationRef={generalInformationRef}
       initialGeneralInformationValues={formValues.generalInformation.values}
       setIsCurrentFormValid={setIsCurrentFormValid}
+      handlePreviousStep={handlePreviousStep}
+      handleNextStep={handleNextStep}
     />
   );
 };

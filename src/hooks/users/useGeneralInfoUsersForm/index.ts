@@ -5,6 +5,11 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { IGeneralInformationEntry } from "@ptypes/users/assisted/IGeneralInformationEntry";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
+import { IServerDomain } from "@ptypes/IServerDomain";
+import { normalizeNameUsers } from "@utils/enumerators/normalizeNameUsers";
+import { enviroment } from "@config/environment";
+import { normalizeIdentification } from "@utils/enumerators/normalizeIdentificationtypenaturalperson";
+import { UseEnumerators } from "../useEnumerators";
 
 const UseGeneralInfoUsersForm = (
   initialValues: IGeneralInformationEntry,
@@ -18,13 +23,17 @@ const UseGeneralInfoUsersForm = (
       identificationNumber: validationRules.string.required(
         validationMessages.required
       ),
+      typeOfIdentification: validationRules.string.required(
+        validationMessages.required
+      ),
+      birthdate: validationRules.string.required(validationMessages.required),
       biologicalSex: validationRules.string.required(
         validationMessages.required
       ),
     });
 
   const validationSchema = createValidationSchema();
-
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_743);
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -51,10 +60,38 @@ const UseGeneralInfoUsersForm = (
       });
     });
   };
+
+  const { enumData } = UseEnumerators("biologicalsex", "Colombia");
+  const { enumData: identificationtypenaturalperson } = UseEnumerators(
+    "identificationtypenaturalperson",
+    "Colombia"
+  );
+  const optionsUser: IServerDomain[] = enumData.map((item) => {
+    const name = normalizeNameUsers(item.code)?.name as unknown as string;
+    return {
+      id: item.code,
+      label: name,
+      value: name,
+    };
+  });
+
+  const optionsIdentificationtypenatura: IServerDomain[] =
+    identificationtypenaturalperson.map((item) => {
+      const name = normalizeIdentification(item.code)
+        ?.name as unknown as string;
+      return {
+        id: item.code,
+        label: name,
+        value: name,
+      };
+    });
   return {
     formik,
     isMobile,
     handleChange,
+    optionsUser,
+    optionsIdentificationtypenatura,
+    smallScreen,
   };
 };
 

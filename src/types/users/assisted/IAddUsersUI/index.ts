@@ -1,5 +1,5 @@
-import { IAssistedStep } from "@inubekit/inubekit";
 import { FormikProps } from "formik";
+import { IAssistedStep } from "@inubekit/inubekit";
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
 
 interface IAddUsersUI {
@@ -13,6 +13,8 @@ interface IAddUsersUI {
   generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry>>;
   initialGeneralInformationValues: IGeneralInformationEntry;
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
+  handlePreviousStep: () => void;
+  handleNextStep: () => void;
 }
 
 export type { IAddUsersUI };

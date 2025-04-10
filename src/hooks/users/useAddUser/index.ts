@@ -5,6 +5,7 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { IFormAddUsers } from "@ptypes/users/assisted/IFormAddUsers";
 import { IGeneralInformationEntry } from "@ptypes/users/assisted/IGeneralInformationEntry";
 import { initalValuesUsers } from "@ptypes/users/initialValues";
+import { enviroment } from "@config/environment";
 
 const UseAddUser = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -19,7 +20,7 @@ const UseAddUser = () => {
       values: initalValuesUsers.generalInformation,
     },
   });
-  const smallScreen = useMediaQuery("(max-width: 990px)");
+ const smallScreen = useMediaQuery(enviroment.IS_MOBILE_743);
   const handlePreviousStep = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);

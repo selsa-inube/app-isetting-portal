@@ -1,9 +1,10 @@
-import { Stack, Breadcrumbs, Assisted } from "@inubekit/inubekit";
+import { Stack, Breadcrumbs, Assisted, Button } from "@inubekit/inubekit";
 import { PageTitle } from "@design/label/PageTitle";
 import { basic } from "@design/tokens";
 import { IAddUsersUI } from "@ptypes/users/assisted/IAddUsersUI";
 import { GeneralInformationForm } from "@pages/users/forms/generalInformationForm";
 import { createUserConfig } from "@config/users/addUsersInvitation/assisted";
+import { UserbuttonText } from "@config/users/addUsersInvitation/assisted/buttonText";
 
 const AddUsersUI = (props: IAddUsersUI) => {
   const {
@@ -17,11 +18,15 @@ const AddUsersUI = (props: IAddUsersUI) => {
     generalInformationRef,
     initialGeneralInformationValues,
     setIsCurrentFormValid,
+    handlePreviousStep,
+    handleNextStep,
   } = props;
   return (
     <Stack
       direction="column"
-      padding={`${basic.spacing.s400} ${basic.spacing.s800}`}
+      padding={
+        smallScreen ? "auto" : `${basic.spacing.s400} ${basic.spacing.s800}`
+      }
       gap={basic.spacing.s600}
     >
       <Stack gap={basic.spacing.s300} direction="column">
@@ -56,6 +61,40 @@ const AddUsersUI = (props: IAddUsersUI) => {
           handleNextStep={onNextStep}
         />
       )}
+
+      <Stack
+        gap={basic.spacing.s100}
+        justifyContent="flex-end"
+        margin={
+          smallScreen
+            ? `${basic.spacing.s800} ${basic.spacing.s0}  ${basic.spacing.s0}  ${basic.spacing.s0}`
+            : "nobe"
+        }
+      >
+        {currentStep !== 1 && (
+          <Button
+            onClick={handlePreviousStep}
+            type="button"
+            disabled={currentStep === steps[0].id}
+            spacing="wide"
+            variant="none"
+            appearance="gray"
+          >
+            {UserbuttonText.buttonHandlePrevious}
+          </Button>
+        )}
+        <Button
+          onClick={() =>
+            currentStep === steps.length ? onToggleModal() : handleNextStep()
+          }
+          spacing="wide"
+          disabled={disabled}
+        >
+          {currentStep === steps.length
+            ? `${UserbuttonText.buttonHandleSubmit}`
+            : `${UserbuttonText.buttonHandleNext}`}
+        </Button>
+      </Stack>
     </Stack>
   );
 };

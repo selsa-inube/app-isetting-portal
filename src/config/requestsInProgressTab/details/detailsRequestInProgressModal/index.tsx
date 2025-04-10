@@ -7,7 +7,7 @@ const detailsRequestInProgressModal = {
   labelCloseModal: "Cerrar",
   iconBeforeButton: <MdOutlineRemoveRedEye />,
   labelRequest: "Solicitud",
-  labelsTraceability: "Trazabilidad",
+  labelsTraceability: "Trazabilidadaa",
 };
 
 export { detailsRequestInProgressModal };

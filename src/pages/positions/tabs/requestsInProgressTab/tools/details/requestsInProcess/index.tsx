@@ -54,31 +54,19 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
         gap={basic.spacing.s200}
         padding={isMobile ? `${basic.spacing.s150}` : `${basic.spacing.s200}`}
       >
-        <Stack
-          gap={basic.spacing.s200}
-          direction="column"
-          alignItems="center"
-          width="100%"
-        >
-          <Stack
-            direction="column"
-            justifyContent="left"
-            width="100%"
-            gap={basic.spacing.s100}
+        <Stack direction="column" width="100%" gap={basic.spacing.s100}>
+          <Text
+            type="title"
+            size="medium"
+            weight="bold"
+            appearance={ComponentAppearance.GRAY}
           >
-            <Text
-              type="title"
-              size="medium"
-              weight="bold"
-              appearance={ComponentAppearance.GRAY}
-            >
-              {`${detailsRequestInProgressModal.labelRequest} ${
-                RequestType[data.request as keyof typeof RequestType] ??
-                data.request
-              }`}
-            </Text>
-            <Divider dashed />
-          </Stack>
+            {`${detailsRequestInProgressModal.labelRequest} ${
+              RequestType[data.request as keyof typeof RequestType] ??
+              data.request
+            }`}
+          </Text>
+          <Divider dashed />
         </Stack>
 
         <BorderStack
@@ -121,7 +109,7 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
             gap={basic.spacing.s150}
           >
             <Text type="label" size="large" weight="bold">
-              Trazabilidad
+              {detailsRequestInProgressModal.labelsTraceability}
             </Text>
 
             <Stack

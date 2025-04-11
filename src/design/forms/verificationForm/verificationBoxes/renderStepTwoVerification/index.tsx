@@ -2,16 +2,14 @@ import { Grid, Stack, Tag } from "@inubekit/inubekit";
 import { BoxAttribute } from "@design/feedback/boxAttribute";
 import { basic } from "@design/tokens";
 import { labels } from "@config/verificationTitles";
-import { IOptionInitialiceEntry } from "@ptypes/positions/assisted/IOptionInitialiceEntry";
+
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { StyldTagContainer } from "@design/forms/verificationForm/verificationBoxes/styles";
+import { IRenderPersonal } from "@ptypes/verification/IRenderPersonal";
 
-const renderStepTwoVerification = (
-  values: IOptionInitialiceEntry[],
-  isMobile: boolean
-) => {
+const renderStepTwoVerification = (props: IRenderPersonal) => {
+  const { values, isMobile } = props;
   const activeValues = values.filter((value) => value.isActive);
-
   return (
     <Grid
       templateColumns={isMobile ? "1fr" : "1fr "}

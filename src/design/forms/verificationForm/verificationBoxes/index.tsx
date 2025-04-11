@@ -1,27 +1,24 @@
 import { useMediaQuery } from "@inubekit/inubekit";
-import { IFormAddPosition } from "@ptypes/forms/verificationForm/IFormAddPosition";
-import { renderPersonalInfoVerification } from "@utils/forms/renderPersonalInfoVerification";
-import { renderStepTwoVerification } from "@utils/forms/renderStepTwoVerification";
-
-interface IVerificationBoxes {
-  updatedData: IFormAddPosition;
-  stepKey: number;
-}
+import { IVerificationBoxes } from "@ptypes/verification/IVerificationBoxes";
+import { renderPersonalInfoVerification } from "./renderPersonalInfoVerification";
+import { renderStepTwoVerification } from "./renderStepTwoVerification";
 
 const VerificationBoxes = (props: IVerificationBoxes) => {
   const { updatedData, stepKey } = props;
-
   const isMobile = useMediaQuery("(max-width: 990px)");
 
   return (
     <>
       {stepKey === 1 &&
-        renderPersonalInfoVerification(
-          updatedData.generalInformation.values,
-          isMobile
-        )}
+        renderPersonalInfoVerification({
+          values: updatedData.generalInformation.values,
+          isMobile: isMobile,
+        })}
       {stepKey === 2 &&
-        renderStepTwoVerification(updatedData.rolesStaff.values, isMobile)}
+        renderStepTwoVerification({
+          values: updatedData.rolesStaff.values,
+          isMobile: isMobile,
+        })}
     </>
   );
 };

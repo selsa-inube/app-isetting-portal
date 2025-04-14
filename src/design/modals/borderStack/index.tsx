@@ -1,35 +1,17 @@
-import { IStackAlignContent } from "@ptypes/modals/borderStack/IStackAlignContent";
-import { IStackAlignItem } from "@ptypes/modals/borderStack/IStackAlignItem";
-import { IStackJustifyContent } from "@ptypes/modals/borderStack/IStackJustifyContent";
-import { IStackDirectionAlignment } from "@ptypes/modals/borderStack/StackDirectionAlignment";
-import { IStackStructure } from "@ptypes/modals/borderStack/IStackStructure";
-import { IStackWrapControl } from "@ptypes/modals/borderStack/IStackWrapControl";
+import { IStack } from "@inubekit/inubekit";
 import { StyledBorderFlex } from "./styles";
 
-interface IStack {
-  children?: React.ReactNode;
-  as?: IStackStructure;
-  wrap?: IStackWrapControl;
-  direction?: IStackDirectionAlignment;
-  justifyContent?: IStackJustifyContent;
-  alignItems?: IStackAlignItem;
-  alignContent?: IStackAlignContent;
+interface IBorderStack extends IStack {
   background?: string;
   border?: string;
   borderRadius?: string;
-  height?: string;
-  width?: string;
-  gap?: string;
-  margin?: string;
-  padding?: string;
   boxSizing?: string;
   boxShadow?: string;
   overflowY?: string;
 }
-const BorderStack = (props: IStack) => {
+const BorderStack = (props: IBorderStack) => {
   const {
     children,
-    as = "div",
     wrap,
     direction,
     justifyContent,
@@ -50,7 +32,6 @@ const BorderStack = (props: IStack) => {
 
   return (
     <StyledBorderFlex
-      as={as}
       $direction={direction}
       $justifyContent={justifyContent}
       $alignItems={alignItems}

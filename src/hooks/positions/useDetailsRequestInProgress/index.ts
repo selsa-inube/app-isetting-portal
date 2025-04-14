@@ -24,7 +24,6 @@ const UseDetailsRequestInProgress = (data: IEntry) => {
       })
     ),
   };
-  console.log(data);
   return {
     showModal,
     handleToggleModal,

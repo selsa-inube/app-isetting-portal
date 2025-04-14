@@ -22,13 +22,13 @@ interface IModalWrapper {
   labelCloseModal: string;
   portalId: string;
   title: string;
-  onClick: () => void;
   appearanceButton?: ComponentAppearance;
   iconBeforeButton?: React.ReactElement;
   height?: string;
   width?: string;
   withCancelButton?: boolean;
   onCloseModal?: () => void;
+  onClick?: () => void;
 }
 
 function ModalWrapper(props: IModalWrapper) {

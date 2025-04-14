@@ -1,6 +1,6 @@
 import { UseLabelsInfo } from "@hooks/positions/useLabelsInfo";
-import { Input, Textarea } from "@inubekit/inubekit";
 import { ILabelsInfo } from "@ptypes/positions/details/ILabelsInfo";
+import { LabelsFieldRenderer } from "./labelsFieldRenderer";
 
 const LabelsInfo = (props: ILabelsInfo) => {
   const { labels, infoData, hasLabels } = props;
@@ -8,30 +8,15 @@ const LabelsInfo = (props: ILabelsInfo) => {
 
   return (
     <>
-      {fieldsToRender.map((item, index) => {
-        return (
-          item.value &&
-          (index === 0 ? (
-            <Input
-              id={item.id}
-              key={item.id}
-              label={item.labelName}
-              value={item.value}
-              fullwidth
-              type="text"
-              size="compact"
-            />
-          ) : (
-            <Textarea
-              id={item.id}
-              key={item.id}
-              label={item.labelName}
-              value={item.value}
-              fullwidth
-            />
-          ))
-        );
-      })}
+      {fieldsToRender.map((item, index) =>
+        item.value ? (
+          <LabelsFieldRenderer
+            key={item.id}
+            item={item}
+            isFirst={index === 0}
+          />
+        ) : null
+      )}
     </>
   );
 };

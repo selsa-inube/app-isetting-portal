@@ -9,13 +9,14 @@ import {
 import { RadioBusinessUnit } from "@design/feedback/RadioBusinessUnit";
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
+import { IBusinessUnitsPortalStaff } from "@ptypes/select/selectbusinessUnit/IBusinessUnitsPortalStaff";
+import { IBusinessUnitstate } from "@ptypes/select/selectbusinessUnit/IBusinessUnitstate";
 import {
   StyledBusinessUnits,
   StyledBusinessUnitsList,
   StyledNoResults,
   StyledBusinessUnitsItem,
 } from "./styles";
-import { IBusinessUnitsPortalStaff, IBusinessUnitstate } from "./types";
 
 interface IBusinessUnitsUI {
   businessUnits: IBusinessUnitsPortalStaff[];

@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { NavigateFunction } from "react-router-dom";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
-import { IBusinessUnitstate } from "@design/select/SelectbusinessUnit/types";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { IBusinessUnitstate } from "@ptypes/select/selectbusinessUnit/IBusinessUnitstate";
 
 const UseBusinessUnit = (businessUnits: IBusinessUnitsPortalStaff[]) => {
   const { setBusinessUnitSigla } = useContext(AuthAndData);

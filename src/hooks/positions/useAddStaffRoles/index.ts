@@ -12,6 +12,7 @@ import { formatDate } from "@utils/date/formatDate";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
+import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAssignmentFormEntry";
 
 const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const { appData } = useContext(AuthAndData);
@@ -47,7 +48,14 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
     useRef<FormikProps<IGeneralInformationEntry>>(null);
 
   const disabled = !isCurrentFormValid;
-
+  const dataToAssignmentFormEntry = (props: IDataToAssignmentFormEntry) => {
+    const { dataOptions, idLabel, valueLabel, isActiveLabel } = props;
+    return dataOptions.map((dataOption) => ({
+      value: String(dataOption[valueLabel]),
+      isActive: Boolean(dataOption[isActiveLabel] === "Y"),
+      id: String(dataOption[idLabel]),
+    }));
+  };
   const roles = formValues.rolesStaff.values.map((role) => {
     const applicationStaff = rolesData?.find((app) => app.roleId === role.id);
     return {
@@ -186,6 +194,7 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
     setShowRequestProcessModal,
     showMultipurposeModal,
     setShowMultipurposeModal,
+    dataToAssignmentFormEntry,
   };
 };
 

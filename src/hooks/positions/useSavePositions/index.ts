@@ -3,8 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
-import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
-import { IRequestSteps } from "@design/feedback/requestProcess/types";
+import { IFlagAppearance, useFlag, useMediaQuery } from "@inubekit/inubekit";
 import { requestStepsInitial } from "@config/positions/addPositions/requestSteps";
 import { flowAutomaticMessages } from "@config/positionsTabs/generics/flowAutomaticMessages";
 import { getRequestInProgressById } from "@services/positions/getRequestInProgressById";
@@ -13,6 +12,7 @@ import { statusRequestFinished } from "@config/status/statusRequestFinished";
 import { interventionHumanMessage } from "@config/positionsTabs/generics/interventionHumanMessage";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 const UseSavePositions = (
   bussinesUnits: string,
   userAccount: string,
@@ -25,6 +25,7 @@ const UseSavePositions = (
   const [showPendingReqModal, setShowPendingReqModal] = useState(false);
   const [statusRequest, setStatusRequest] = useState<string>();
   const [loading, setLoading] = useState(false);
+  const smallScreen = useMediaQuery("(max-width: 990px)");
   const { addFlag } = useFlag();
   const [requestSteps, setRequestSteps] =
     useState<IRequestSteps[]>(requestStepsInitial);
@@ -240,6 +241,7 @@ const UseSavePositions = (
     handleCloseRequestStatus,
     handleClosePendingReqModal,
     showPendingReqModal,
+    smallScreen,
   };
 };
 

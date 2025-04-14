@@ -1,7 +1,7 @@
 import { IActionItemBlock } from "@design/cards/actionItemBlock";
 import { ContentFramework } from "@design/layout/contentFramework";
-import { IRoute } from "@design/layout/contentFramework/types";
 import { ContentFrameworkGrid } from "@design/layout/optionGrid";
+import { IRoute } from "@ptypes/layout/contentFramework/IRoute";
 
 interface IPositionsOptionsUI {
   appName: string;

@@ -2,8 +2,7 @@ import { MdOutlineFilterAltOff, MdOutlineFilterAlt } from "react-icons/md";
 import { Button, Stack, Tag, useMediaQuery } from "@inubekit/inubekit";
 import { FilterModal } from "@design/modals/filterModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-
-import { IFilterFields } from "./types";
+import { IFilterFields } from "@ptypes/feedback/filterFields/IFilterFields";
 import {
   StyledButtonFilter,
   StyledFilterdUserCard,

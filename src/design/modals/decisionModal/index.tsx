@@ -1,7 +1,7 @@
 import { UseDecisionModal } from "@hooks/design/useDecisionModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
+import { IDecisionModal } from "@ptypes/modals/decisionModal/IDecisionModal";
 import { DecisionModalUI } from "./interface";
-import { IDecisionModal } from "./types";
 
 const DecisionModal = (props: IDecisionModal) => {
   const {

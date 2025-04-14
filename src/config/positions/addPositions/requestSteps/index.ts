@@ -1,4 +1,4 @@
-import { IRequestSteps } from "@design/feedback/requestProcess/types";
+import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 
 const requestStepsInitial: IRequestSteps[] = [
   { name: "Solicitud radicada", status: "pending" },

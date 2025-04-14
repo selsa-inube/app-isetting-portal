@@ -1,9 +1,9 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Icon, Text } from "@inubekit/inubekit";
-import { InteractiveModal } from "@design/feedback/InteractiveModal";
 import { UseDetailsModal } from "@hooks/positions/useDetailsModal";
-import { IDetailsModal } from "@ptypes/positions/details";
+import { IDetailsModal } from "@ptypes/positions/details/IDetailsModal";
 import { StyledContainerIcon } from "./styles";
+import { DetailsPositionsModal } from "./detailsPositionsModal";
 
 const DetailsModal = (props: IDetailsModal) => {
   const { data, labelsOptions } = props;
@@ -12,12 +12,11 @@ const DetailsModal = (props: IDetailsModal) => {
 
   return (
     <>
-      <StyledContainerIcon $isTablet={screenTablet}>
+      <StyledContainerIcon $isTablet={screenTablet} onClick={handleToggleModal}>
         <Icon
           icon={<MdOutlineRemoveRedEye />}
           size="16px"
           appearance="dark"
-          onClick={handleToggleModal}
           cursorHover
         />
         {screenTablet && (
@@ -27,14 +26,12 @@ const DetailsModal = (props: IDetailsModal) => {
         )}
       </StyledContainerIcon>
       {showModal && data && (
-        <InteractiveModal
-          portalId="portal"
-          title="Detalles de cargo"
+        <DetailsPositionsModal
           infoData={data}
-          infoTitle=""
           labels={labelsOptions}
-          closeModal={handleToggleModal}
           dataTable={dataTable ?? []}
+          onClose={handleToggleModal}
+          smallScreen={screenTablet}
         />
       )}
     </>

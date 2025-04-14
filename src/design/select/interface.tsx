@@ -7,9 +7,9 @@ import {
 } from "react-icons/md";
 import { Text, Label, Icon, Stack } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
+import { Size } from "@ptypes/select/selectbusinessUnit/Istatus";
 import { OptionItemChecked } from "./OptionItem";
 import { OptionList } from "./OptionList";
-import { Size } from "./types";
 import { StyledContainer, StyledInputContainer, StyledInput } from "./styles";
 import { ISelectCheck } from ".";
 

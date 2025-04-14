@@ -1,7 +1,7 @@
 import { Text, Stack, useMediaQuery } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
+import { IBoxAttribute } from "@ptypes/feedback/boxAttribute/IBoxAttribute";
 import { StyledBoxAttribute } from "./styles";
-import { IBoxAttribute } from "./types";
 import { ButtonAttribute } from "./buttonAttribute";
 
 const BoxAttribute = (props: IBoxAttribute) => {

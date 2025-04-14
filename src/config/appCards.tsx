@@ -1,5 +1,5 @@
+import { ICardData } from "@ptypes/home/ICardData";
 import { MdOutlineStart } from "react-icons/md";
-import { ICardData } from "@pages/home/types";
 
 const appCards: ICardData[] = [
   {

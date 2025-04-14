@@ -2,10 +2,9 @@ import { string, object } from "yup";
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { IIconAppearance } from "@inubekit/inubekit";
-
-import { DecisionModalUI } from "./interface";
-import { IDecisionEntry } from "./types";
 import { ComponentAppearance } from "@ptypes/aparences.types";
+import { IDecisionEntry } from "@ptypes/modals/decisionModal/IDecisionEntry";
+import { DecisionModalUI } from "./interface";
 
 const validationSchema = object({
   justification: string(),

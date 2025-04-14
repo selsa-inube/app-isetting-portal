@@ -1,8 +1,8 @@
 import { Stack, Breadcrumbs } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { PageTitle } from "@design/label/PageTitle";
+import { IRoute } from "@ptypes/layout/contentFramework/IRoute";
 import { StyledContentFramework } from "./styles";
-import { IRoute } from "./types";
 
 interface IContentFramework {
   appName: string;

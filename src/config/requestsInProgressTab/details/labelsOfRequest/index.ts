@@ -1,16 +1,17 @@
 const labelsOfRequest = [
   {
-    id: "requestDate",
-    titleName: "Fecha de solicitud:",
-  },
-  {
     id: "responsable",
-    titleName: "Responsable:",
+    titleName: "Responsable",
   },
+
   {
-    id: "status",
-    titleName: "Estado:",
+    id: "requestNumber",
+    titleName: "No. de solicitudes",
   },
 ];
 
-export { labelsOfRequest };
+const iLabel = {
+  titleName: "Detalles de la solicitud",
+};
+
+export { labelsOfRequest, iLabel };

@@ -88,9 +88,9 @@ function ModalWrapper(props: IModalWrapper) {
         </Grid>
         <Divider />
 
-        <Stack height="100%" width="100%">
+        <BorderStack height="100%" width="100%" overflowY="auto">
           {children}
-        </Stack>
+        </BorderStack>
 
         <Stack gap={basic.spacing.s250} justifyContent="flex-end">
           {withCancelButton && (

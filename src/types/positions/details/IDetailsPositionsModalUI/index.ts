@@ -9,6 +9,7 @@ interface IDetailsPositionsModalUI {
   infoData: IPosition;
   hasLabels: boolean;
   hasActions: boolean;
+  isMobile: boolean;
   actions?: IAction[];
   dataTable?: IEntry[];
   actionsTitle?: string;

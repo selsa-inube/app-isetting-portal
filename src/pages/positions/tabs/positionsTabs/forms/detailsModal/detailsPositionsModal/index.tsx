@@ -13,7 +13,10 @@ const DetailsPositionsModal = (props: IFeedbackModal) => {
     actionsTitle,
   } = props;
 
-  const { hasLabels, hasActions } = UseModalLabelsAndActions(labels, actions);
+  const { hasLabels, hasActions, isMobile } = UseModalLabelsAndActions(
+    labels,
+    actions
+  );
 
   return (
     <DetailsPositionsModalUI
@@ -26,6 +29,7 @@ const DetailsPositionsModal = (props: IFeedbackModal) => {
       actions={actions}
       dataTable={dataTable}
       actionsTitle={actionsTitle}
+      isMobile={isMobile}
     />
   );
 };

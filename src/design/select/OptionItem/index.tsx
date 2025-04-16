@@ -1,19 +1,15 @@
-import { Stack, Label } from "@inubekit/inubekit";
-import { StyledOptionItemChecked } from "./styles";
+import { Stack, Text } from "@inubekit/inubekit";
+import { basic } from "@design/tokens";
 
-interface IOptionItemChecked {
-  id: string;
-  label: string;
-  checked?: boolean;
-  onchange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { StyledOptionItemChecked } from "./styles";
+import { IOptionItemChecked } from "@ptypes/navigation/IOptionItemChecked";
 
 const OptionItemChecked = (props: IOptionItemChecked) => {
   const { id, label, checked = false, onchange } = props;
 
   return (
     <StyledOptionItemChecked>
-      <Stack>
+      <Stack gap={basic.spacing.s4}>
         <input
           readOnly
           type="checkbox"
@@ -22,7 +18,9 @@ const OptionItemChecked = (props: IOptionItemChecked) => {
           onChange={onchange}
           checked={checked}
         />
-        <Label htmlFor={id}>{label}</Label>
+        <Text size="medium" weight="bold" type="body">
+          {label}
+        </Text>
       </Stack>
     </StyledOptionItemChecked>
   );

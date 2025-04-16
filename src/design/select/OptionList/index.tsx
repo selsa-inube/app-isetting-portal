@@ -1,8 +1,5 @@
+import { IOptionList } from "@ptypes/navigation/IOptionList";
 import { StyledOptionList } from "./styles";
-interface IOptionList {
-  children: React.ReactNode;
-  onClick?: React.ChangeEventHandler<HTMLInputElement>;
-}
 
 const OptionList = (props: IOptionList) => {
   const { children, onClick } = props;

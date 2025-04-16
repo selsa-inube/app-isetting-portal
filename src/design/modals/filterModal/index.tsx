@@ -121,7 +121,7 @@ const FilterModal = (props: IFilterModal) => {
             </StyledFilterdUserCard>
           )}
 
-          <Divider />
+          <Divider dashed={isMobile} />
         </Stack>
 
         <MultipleChoices

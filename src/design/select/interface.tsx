@@ -12,11 +12,9 @@ import { OptionItemChecked } from "./OptionItem";
 import { OptionList } from "./OptionList";
 import { StyledContainer, StyledInputContainer, StyledInput } from "./styles";
 import { ISelectCheck } from ".";
-
-interface ISelectCheckUI extends ISelectCheck {
-  displayList: boolean;
-  focused?: boolean;
-}
+import { BorderStack } from "@design/modals/borderStack";
+import { ComponentAppearance } from "@ptypes/aparences.types";
+import { ISelectCheckUI } from "@ptypes/navigation/ISelectCheckUI";
 
 const getTypo = (size: Size) => {
   if (size === "compact") {
@@ -91,6 +89,17 @@ const SelectCheckUI = forwardRef<HTMLDivElement, ISelectCheckUI>(
             padding={`${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s16}`}
             gap={basic.spacing.s4}
           >
+            {required && !disabled && (
+              <Text type="body" size="small" appearance="dark">
+                (Requerido)
+              </Text>
+            )}
+          </Stack>
+        )}
+        <BorderStack width="100%" direction="column">
+          <Stack
+            padding={`${basic.spacing.s0} ${basic.spacing.s16} ${basic.spacing.s0} ${basic.spacing.s400}`}
+          >
             {label && (
               <Label
                 htmlFor={id}
@@ -104,70 +113,69 @@ const SelectCheckUI = forwardRef<HTMLDivElement, ISelectCheckUI>(
                 {label}
               </Label>
             )}
-
-            {required && !disabled && (
-              <Text type="body" size="small" appearance="dark">
-                (Requerido)
-              </Text>
-            )}
           </Stack>
-        )}
-        <Stack alignItems="center" gap={basic.spacing.s4}>
-          <Icon appearance={"gray"} icon={<MdApps />}></Icon>
-          <StyledInputContainer
-            disabled={disabled}
-            $focused={focused!}
-            $status={status}
-            onClick={onClick}
-            $readonly={readonly}
-          >
-            <StyledInput
-              autoComplete="off"
-              readOnly
-              value={value}
-              name={name}
-              id={id}
-              placeholder={placeholder}
-              disabled={disabled}
-              $required={required}
-              $size={size}
-              $status={status}
-              $fullwidth={fullwidth}
-              $focused={focused!}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              onChange={onChange}
-              onClick={onClick}
-            />
-
-            {!readonly && (
+          <Stack width="100%">
+            <Stack alignItems="center" gap={basic.spacing.s4} width="10%">
               <Icon
-                appearance="dark"
-                icon={<MdOutlineArrowDropDown />}
-                size="24px"
-                spacing="narrow"
+                appearance={ComponentAppearance.PRIMARY}
+                icon={<MdApps />}
+              ></Icon>
+            </Stack>
+            <StyledInputContainer
+              disabled={disabled}
+              $focused={focused!}
+              $status={status}
+              onClick={onClick}
+              $readonly={readonly}
+            >
+              <StyledInput
+                autoComplete="off"
+                readOnly
+                value={value}
+                name={name}
+                id={id}
+                placeholder={placeholder}
                 disabled={disabled}
+                $required={required}
+                $size={size}
+                $status={status}
+                $fullwidth={fullwidth}
+                $focused={focused!}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                onChange={onChange}
+                onClick={onClick}
               />
-            )}
-          </StyledInputContainer>
-        </Stack>
 
+              {!readonly && (
+                <Icon
+                  appearance="dark"
+                  icon={<MdOutlineArrowDropDown />}
+                  size="24px"
+                  spacing="narrow"
+                  disabled={disabled}
+                />
+              )}
+
+              {displayList && !disabled && (
+                <OptionList onClick={onChangeCheck}>
+                  {options &&
+                    options.map((optionItem) => (
+                      <OptionItemChecked
+                        key={optionItem.id}
+                        id={optionItem.id}
+                        label={optionItem.label}
+                        checked={optionItem.checked}
+                        onchange={onChangeCheck}
+                      />
+                    ))}
+                </OptionList>
+              )}
+            </StyledInputContainer>
+          </Stack>
+        </BorderStack>
         {status && !readonly && (
           <Message disabled={disabled} status={status} message={message} />
-        )}
-        {displayList && !disabled && (
-          <OptionList onClick={onChangeCheck}>
-            {options &&
-              options.map((optionItem) => (
-                <OptionItemChecked
-                  key={optionItem.id}
-                  id={optionItem.id}
-                  label={optionItem.label}
-                  checked={optionItem.checked}
-                  onchange={onChangeCheck}
-                />
-              ))}
-          </OptionList>
         )}
       </StyledContainer>
     );

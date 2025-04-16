@@ -40,14 +40,13 @@ interface IStyledContainer {
 
 const StyledContainer = styled.div<IStyledContainer>`
   position: relative;
+  width: 100%;
   cursor: ${({ disabled }) => disabled && "not-allowed"};
-  width: ${({ $fullwidth }) => ($fullwidth ? "100%" : "300px")};
 `;
 
 const StyledInputContainer = styled.div<IStyledInputContainer>`
   display: grid;
   grid-template-columns: 1fr auto;
-  width: 100%;
   align-items: center;
   box-sizing: border-box;
   border-radius: ${basic.spacing.s8};
@@ -56,7 +55,7 @@ const StyledInputContainer = styled.div<IStyledInputContainer>`
   border: 1px solid ${inube.palette.neutral.N50};
   background-color: ${({ theme, $readonly }) =>
     $readonly && (theme?.palette?.neutral?.N0 || inube.palette.neutral.N0)};
-
+  width: 100%;
   opacity: ${({ disabled }) => (disabled ? "0.5" : "none")};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
 import { Header, Icon, Text } from "@inubekit/inubekit";
-import { nav, userMenu } from "@config/nav";
+import { useNavigationConfig, userMenu } from "@config/nav";
 import { Title } from "@design/label/Title";
 import { InteractiveBox } from "@design/cards/interactiveBox";
 import { BusinessUnitChange } from "@design/inputs/BusinessUnitChange";
@@ -42,8 +42,7 @@ const HomeUI = (props: IHome) => {
       <StyledContainer>
         <StyledHeaderContainer>
           <Header
-            portalId="portal"
-            navigation={nav}
+            navigation={useNavigationConfig()}
             logoURL={renderLogo(appData.businessUnit.urlLogo)}
             user={{
               username: appData.user.userName,

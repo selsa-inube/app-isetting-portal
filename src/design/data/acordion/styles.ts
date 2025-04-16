@@ -13,8 +13,7 @@ const StyledContainer = styled.div`
   width: 100%;
   max-height: 385px;
   border: 1px solid
-    ${({ theme }) =>
-      theme.color?.stroke?.gray?.regular || inube.palette.neutral.N40};
+    ${({ theme }) => theme?.palette?.neutral?.N40 || inube.palette.neutral.N40};
 `;
 
 const StyledHead = styled.div`

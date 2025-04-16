@@ -11,15 +11,15 @@ const StyledActionItemBlock = styled(Link)`
   height: 140px;
   text-decoration: none;
   color: ${({ theme }) =>
-    theme?.color?.stroke.dark.regular || inube.palette.neutral.N900};
+    theme?.palette?.neutral?.N900 || inube.palette.neutral.N900};
   :hover {
     & svg {
       color: ${({ theme }) =>
-        theme?.color?.stroke.primary.regular || inube.palette.blue.B400};
+        theme?.palette?.blue?.B400 || inube.palette.blue.B400};
     }
     & picture {
       background-color: ${({ theme }) =>
-        theme?.color?.surface.gray.regular || inube.palette.neutral.N30};
+        theme?.palette?.neutral?.N30 || inube.palette.neutral.N30};
     }
   }
 

@@ -4,7 +4,7 @@ import { MdOutlineChevronRight } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
-import { nav, userMenu } from "@config/nav";
+import { nav, useNavigationConfig, userMenu } from "@config/nav";
 import { actionsConfig } from "@config/mainActionLogout";
 import {
   Nav,
@@ -66,8 +66,7 @@ const CorePageStructure = () => {
       <Grid templateRows="auto 1fr" justifyContent="unset">
         <StyledHeaderContainer>
           <Header
-            portalId="portal"
-            navigation={nav}
+            navigation={useNavigationConfig()}
             user={{
               username: appData.user.userName,
               breakpoint: "848px",

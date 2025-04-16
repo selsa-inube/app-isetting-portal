@@ -1,5 +1,4 @@
-import { ThemeProvider } from "styled-components";
-import { Stack, Button, inube } from "@inubekit/inubekit";
+import { Stack, Button } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 
 interface IFormButtons {
@@ -37,25 +36,23 @@ const FormButtons = ({
     <Stack direction="column" gap={basic.spacing.s24}>
       <Stack direction="column">{children}</Stack>
       <Stack justifyContent="flex-end" gap={basic.spacing.s8}>
-        <ThemeProvider theme={inube}>
-          <Button
-            appearance="gray"
-            disabled={disableCancel}
-            onClick={handleReset}
-            type="reset"
-          >
-            {cancelButtonText}
-          </Button>
-          <Button
-            appearance="primary"
-            onClick={handleSubmit}
-            loading={loading}
-            disabled={withDisabledButtons}
-            type="button"
-          >
-            {submitButtonText}
-          </Button>
-        </ThemeProvider>
+        <Button
+          appearance="gray"
+          disabled={disableCancel}
+          onClick={handleReset}
+          type="reset"
+        >
+          {cancelButtonText}
+        </Button>
+        <Button
+          appearance="primary"
+          onClick={handleSubmit}
+          loading={loading}
+          disabled={withDisabledButtons}
+          type="button"
+        >
+          {submitButtonText}
+        </Button>
       </Stack>
     </Stack>
   );

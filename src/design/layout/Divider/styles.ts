@@ -13,6 +13,6 @@ const StyledDivider = styled.hr<IStyledDivider>`
   border: none;
   border-top: 0.5px ${({ $dashed }) => ($dashed ? "dashed" : "solid")};
   border-top-color: ${({ theme }) =>
-    theme.color?.stroke?.divider?.regular || inube.palette.neutral.N40};
+    theme.palette?.neutral?.N40 || inube.palette.neutral.N40};
 `;
 export { StyledDivider };

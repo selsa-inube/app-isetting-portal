@@ -45,7 +45,6 @@ function ModalWrapper(props: IModalWrapper) {
     title,
     width = "auto",
     withCancelButton,
-    onClick,
     onCloseModal,
   } = props;
 
@@ -88,9 +87,9 @@ function ModalWrapper(props: IModalWrapper) {
         </Grid>
         <Divider />
 
-        <Stack height="100%" width="100%">
+        <BorderStack height="100%" width="100%" overflowY="auto">
           {children}
-        </Stack>
+        </BorderStack>
 
         <Stack gap={basic.spacing.s250} justifyContent="flex-end">
           {withCancelButton && (
@@ -108,7 +107,7 @@ function ModalWrapper(props: IModalWrapper) {
             spacing="wide"
             appearance={appearanceButton ?? ComponentAppearance.PRIMARY}
             variant="filled"
-            onClick={onClick}
+            onClick={onCloseModal}
             iconBefore={iconBeforeButton ?? <></>}
           >
             {labelActionButton}

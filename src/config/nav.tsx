@@ -1,7 +1,6 @@
 import { MdOutlineStart } from "react-icons/md";
 import { INavLink } from "@inubekit/inubekit";
 import { ICardData } from "@ptypes/home/ICardData";
-
 const createNavLink = (
   option: ICardData,
   defaultIcon: React.ReactNode,
@@ -13,7 +12,6 @@ const createNavLink = (
   path: option?.url ?? "",
   isActive: location ? location.pathname === option?.url : false,
 });
-
 const mainNavigation = (optionsCards: ICardData[], location?: Location) => {
   const linkNav = optionsCards.reduce<Record<string, INavLink>>(
     (acc, option) => {

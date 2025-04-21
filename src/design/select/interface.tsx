@@ -1,58 +1,16 @@
 import { forwardRef } from "react";
-import {
-  MdOutlineError,
-  MdCheckCircle,
-  MdOutlineArrowDropDown,
-  MdApps,
-} from "react-icons/md";
+import { MdOutlineArrowDropDown, MdApps } from "react-icons/md";
 import { Text, Label, Icon, Stack } from "@inubekit/inubekit";
-import { basic } from "@design/tokens";
-import { Size } from "@ptypes/select/selectbusinessUnit/Istatus";
-import { OptionItemChecked } from "./OptionItem";
-import { OptionList } from "./OptionList";
-import { StyledContainer, StyledInputContainer, StyledInput } from "./styles";
-import { ISelectCheck } from ".";
 import { BorderStack } from "@design/modals/borderStack";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { ISelectCheckUI } from "@ptypes/navigation/ISelectCheckUI";
+import { basic } from "@design/tokens";
+import { OptionItemChecked } from "./OptionItem";
+import { OptionList } from "./OptionList";
+import { StyledContainer, StyledInputContainer, StyledInput } from "./styles";
 
-const getTypo = (size: Size) => {
-  if (size === "compact") {
-    return "medium";
-  }
-  return "large";
-};
-
-const Message = (
-  props: Pick<ISelectCheck, "disabled" | "status"> & { message?: string }
-) => {
-  const { disabled, status, message } = props;
-
-  return (
-    status !== "pending" && (
-      <Stack
-        alignItems="center"
-        gap={basic.spacing.s4}
-        margin={`${basic.spacing.s4} ${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s16}`}
-      >
-        <Icon
-          appearance={status === "invalid" ? "danger" : "success"}
-          disabled={disabled}
-          icon={status === "invalid" ? <MdOutlineError /> : <MdCheckCircle />}
-          size="14px"
-        />
-        <Text
-          type="body"
-          size="small"
-          appearance={status === "invalid" ? "danger" : "success"}
-          disabled={disabled}
-        >
-          {message && `${message}`}
-        </Text>
-      </Stack>
-    )
-  );
-};
+import { Message } from "./message";
+import { getTypo } from "@utils/sizeToTypography";
 
 const SelectCheckUI = forwardRef<HTMLDivElement, ISelectCheckUI>(
   (props: ISelectCheckUI, ref) => {

@@ -124,7 +124,10 @@ const CorePageStructure = () => {
           >
             {!isTablet && (
               <Stack height="100%">
-                <Nav navigation={nav.items} actions={actionsConfig(logout)} />
+                <Nav
+                  navigation={nav(optionsCards as ICardData[]).items}
+                  actions={actionsConfig(logout)}
+                />
               </Stack>
             )}
 

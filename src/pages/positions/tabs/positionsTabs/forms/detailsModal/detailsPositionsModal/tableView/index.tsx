@@ -14,7 +14,7 @@ const TableView = (props: ITabllePositions) => {
 
   return (
     <Fieldset legend={DetailsPosition.rol} size="small" type="title">
-      <BorderStack direction="column" gap="8px" width="100%">
+      <BorderStack direction="column" gap={basic.spacing.s100} width="100%">
         {rows.map((row, rowIndex) =>
           row.map(({ key, value }) => (
             <BorderStack

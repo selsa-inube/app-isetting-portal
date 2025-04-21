@@ -45,7 +45,6 @@ function ModalWrapper(props: IModalWrapper) {
     title,
     width = "auto",
     withCancelButton,
-    onClick,
     onCloseModal,
   } = props;
 
@@ -108,7 +107,7 @@ function ModalWrapper(props: IModalWrapper) {
             spacing="wide"
             appearance={appearanceButton ?? ComponentAppearance.PRIMARY}
             variant="filled"
-            onClick={onClick}
+            onClick={onCloseModal}
             iconBefore={iconBeforeButton ?? <></>}
           >
             {labelActionButton}

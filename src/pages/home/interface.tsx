@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
 import { Header, Icon, Text } from "@inubekit/inubekit";
-import { useNavigationConfig, userMenu } from "@config/nav";
 import { Title } from "@design/label/Title";
 import { InteractiveBox } from "@design/cards/interactiveBox";
 import { BusinessUnitChange } from "@design/inputs/BusinessUnitChange";
 import { renderLogo } from "@design/layout/renderLogo/logoUtils";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { IHome } from "@ptypes/home/IHome";
+import { userMenu } from "@config/menuMainConfiguration";
+import { mainNavigation } from "@config/nav";
 import {
   StyledCollapse,
   StyledCollapseIcon,
@@ -18,8 +20,6 @@ import {
   StyledLogo,
   StyledTitle,
 } from "./styles";
-import { IHome } from "@ptypes/home/IHome";
-
 const HomeUI = (props: IHome) => {
   const {
     data,
@@ -35,14 +35,13 @@ const HomeUI = (props: IHome) => {
     smallScreen,
     username,
   } = props;
-
   const { appData } = useContext(AuthAndData);
   return (
     <>
       <StyledContainer>
         <StyledHeaderContainer>
           <Header
-            navigation={useNavigationConfig()}
+            navigation={mainNavigation(data)}
             logoURL={renderLogo(appData.businessUnit.urlLogo)}
             user={{
               username: appData.user.userName,

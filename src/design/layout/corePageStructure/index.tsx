@@ -4,8 +4,13 @@ import { MdOutlineChevronRight } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
-import { nav, useNavigationConfig, userMenu } from "@config/nav";
+import { mainNavigation } from "@config/nav";
+import { userMenu } from "@config/menuMainConfiguration";
+import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
+import { decrypt } from "@utils/decrypt";
+import { ICardData } from "@ptypes/home/ICardData";
 import { actionsConfig } from "@config/mainActionLogout";
+import { nav } from "@config/mainNav";
 import {
   Nav,
   Header,
@@ -35,8 +40,12 @@ const renderLogo = (imgUrl: string) => {
 };
 
 const CorePageStructure = () => {
-  const { appData, businessUnitsToTheStaff, setBusinessUnitSigla } =
-    useContext(AuthAndData);
+  const {
+    appData,
+    businessUnitsToTheStaff,
+    setBusinessUnitSigla,
+    businessUnitSigla,
+  } = useContext(AuthAndData);
   const { logout } = useAuth0();
   const [collapse, setCollapse] = useState(false);
   const collapseMenuRef = useRef<HTMLDivElement>(null);
@@ -60,13 +69,20 @@ const CorePageStructure = () => {
     setCollapse(false);
     navigate("/");
   };
+  const portalId = localStorage.getItem("portalCode");
+  const staffPortalId = portalId ? decrypt(portalId) : "";
+
+  const { optionsCards } = useOptionsByBusinessunits(
+    staffPortalId,
+    businessUnitSigla
+  );
 
   return (
     <StyledAppPage>
       <Grid templateRows="auto 1fr" justifyContent="unset">
         <StyledHeaderContainer>
           <Header
-            navigation={useNavigationConfig()}
+            navigation={mainNavigation(optionsCards as ICardData[])}
             user={{
               username: appData.user.userName,
               breakpoint: "848px",

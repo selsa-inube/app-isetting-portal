@@ -1,8 +1,7 @@
 import { ICardData } from "../ICardData";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
 interface IHome {
-  data?: ICardData[];
-  loading?: boolean;
+  data: ICardData[];
   collapse: boolean;
   setCollapse: (value: boolean) => void;
   selectedClient: string;
@@ -13,6 +12,7 @@ interface IHome {
   isTablet: boolean;
   smallScreen: boolean;
   username: string;
+  loading?: boolean;
 }
 
 export type { IHome };

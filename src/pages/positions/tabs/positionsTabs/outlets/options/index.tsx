@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { appsConfig } from "@config/nav";
+import { appsConfig } from "@pages/rules/config/rules.config";
+
 import { useSubOptions } from "@hooks/subMenu/useSubOptions";
 import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
 import { decrypt } from "@utils/decrypt";

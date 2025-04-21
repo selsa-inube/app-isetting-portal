@@ -1,5 +1,6 @@
 import { UseHome } from "@hooks/useHome";
 import { HomeUI } from "./interface";
+import { ICardData } from "@ptypes/home/ICardData";
 
 const Home = () => {
   const {
@@ -18,7 +19,7 @@ const Home = () => {
   } = UseHome();
   return (
     <HomeUI
-      data={optionsCards}
+      data={optionsCards as ICardData[]}
       collapse={Collapse}
       setCollapse={SetCollapse}
       selectedClient={SelectedClient}

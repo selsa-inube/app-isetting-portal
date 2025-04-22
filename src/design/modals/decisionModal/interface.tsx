@@ -1,42 +1,17 @@
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
-import { FormikValues } from "formik";
 import {
   Stack,
   Text,
   Button,
   Blanket,
   Icon,
-  IIconAppearance,
   Divider,
 } from "@inubekit/inubekit";
+import { IDecisionModal } from "@ptypes/IDecisionModal";
 import { StyledContainerButton, StyledModal } from "./styles";
 
-interface IDecisionModalUI {
-  actionText: string;
-  appearance: IIconAppearance;
-  comparisonData: boolean;
-  description: string;
-  formik: FormikValues;
-  icon: React.JSX.Element;
-  isLoading: boolean;
-  justificationOfDecision: boolean;
-  portalId: string;
-  title: string;
-  withIcon: boolean;
-  onClick: () => void;
-  onCloseModal: () => void;
-  isMobile: boolean;
-  isMobileTextarea: boolean;
-  getFieldState: (
-    formik: FormikValues,
-    fieldName: string
-  ) => "invalid" | "pending" | undefined;
-  showCancelButton?: boolean;
-  withCancelButton: boolean;
-}
-
-const DecisionModalUI = (props: IDecisionModalUI) => {
+const DecisionModalUI = (props: IDecisionModal) => {
   const {
     actionText,
     appearance,
@@ -49,8 +24,8 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
     onClick,
     onCloseModal,
     isMobile,
-    withCancelButton,
     showCancelButton = true,
+    cancelButton,
   } = props;
 
   const node = document.getElementById(portalId);
@@ -67,17 +42,13 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
               {title}
             </Text>
             <StyledContainerButton>
-              {withCancelButton && (
-                <Button
-                  spacing="compact"
-                  appearance="dark"
-                  variant="none"
-                  onClick={onCloseModal}
-                  iconAfter={<Icon appearance="dark" icon={<MdClear />} />}
-                >
-                  Cerrar
-                </Button>
-              )}
+              <Button
+                spacing="compact"
+                appearance="dark"
+                variant="none"
+                onClick={onCloseModal}
+                iconAfter={<Icon appearance="dark" icon={<MdClear />} />}
+              />
             </StyledContainerButton>
           </Stack>
           <Divider />
@@ -101,7 +72,7 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
               variant="filled"
               onClick={onCloseModal}
             >
-              Cancelar
+              {cancelButton}
             </Button>
           )}
           <Button
@@ -110,7 +81,6 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
             variant="filled"
             loading={isLoading}
             onClick={onClick}
-            disabled={false}
           >
             {actionText}
           </Button>
@@ -122,4 +92,4 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
 };
 
 export { DecisionModalUI };
-export type { IDecisionModalUI };
+export type { IDecisionModal };

@@ -9,9 +9,9 @@ const UseDetailsModal = (data?: IPosition) => {
   const handleToggleModal = () => {
     setShowModal((prev) => !prev);
   };
-  const dataTable = Array.isArray(data?.missionByRole)
-    ? data.missionByRole.map((item: { roleName: string }) => ({
-        roleName: item.roleName,
+  const dataTable = Array.isArray(data?.MissionByRole)
+    ? data.MissionByRole.map((item: { roleName: string }) => ({
+        Roles: item.roleName,
       }))
     : [];
 

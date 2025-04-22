@@ -8,7 +8,7 @@ interface IBusinessUnitsPortalStaffId {
   missionName: string;
   descriptionUse: string;
   businessManagerCode: string;
-  missionByRole: IBusinessManagerStaffMissionByRole[];
+  MissionByRole: IBusinessManagerStaffMissionByRole[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }

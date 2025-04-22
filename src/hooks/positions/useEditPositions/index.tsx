@@ -87,7 +87,6 @@ const UseEditPositions = (
   const rolesDataEndpoint = formValues.rolesStaff.values
     .filter((role) => role.isActive !== undefined)
     .map((role) => ({
-      missionId: role.id,
       roleName: role.value,
       transactionOperation: role.isActive ? "Insert" : "Delete",
     }));

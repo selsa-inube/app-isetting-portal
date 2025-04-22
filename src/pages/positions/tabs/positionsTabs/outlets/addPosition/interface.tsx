@@ -15,6 +15,7 @@ import { VerificationForm } from "@design/forms/verificationForm";
 import { createPositionConfig } from "@config/positions/addPositions/assisted";
 import { FinishModal } from "@config/positions/verificationForm";
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
+import { postionsButtonText } from "@config/positions/assisted/buttonText";
 
 const AddStaffRolesUI = (props: IAddPositionUI) => {
   const {
@@ -121,11 +122,11 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
                 onClick={handlePreviousStep}
                 type="button"
                 disabled={currentStep === steps[0].id}
-                spacing="compact"
+                spacing="wide"
                 variant="none"
                 appearance="gray"
               >
-                Atrás
+                {postionsButtonText.buttonHandlePrevious}
               </Button>
             )}
             <Button
@@ -134,10 +135,12 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
                   ? onToggleModal()
                   : handleNextStep()
               }
-              spacing="compact"
+              spacing="wide"
               disabled={disabled}
             >
-              {currentStep === steps.length ? "Enviar" : "Siguiente"}
+              {currentStep === steps.length
+                ? postionsButtonText.buttonHandleSubmit
+                : postionsButtonText.buttonHandleNext}
             </Button>
           </Stack>
         </Stack>

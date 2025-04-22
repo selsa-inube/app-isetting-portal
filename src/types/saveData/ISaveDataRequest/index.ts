@@ -12,7 +12,7 @@ interface ISaveDataRequest {
     | string[]
     | Record<string, string>
     | IRuleDecision[]
-    | { missionId: string; roleName: string }[]
+    | { roleName: string }[]
   >;
   description: string;
   entityName: string;

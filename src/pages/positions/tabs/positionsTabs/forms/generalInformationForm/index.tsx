@@ -2,16 +2,8 @@ import { forwardRef } from "react";
 import { FormikProps } from "formik";
 import { UseGeneralInfoCreditLineForm } from "@hooks/positions/useGeneralInfoRoles";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
+import { IGeneralInformationForm } from "@ptypes/positions/generalInformation/IGeneralInformationForm";
 import { GeneralInformationFormUI } from "./interface";
-
-interface IGeneralInformationForm {
-  initialValues: IGeneralInformationEntry;
-  loading?: boolean;
-  handleNextStep: () => void;
-  onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
-  onSubmit?: (values: IGeneralInformationEntry) => void;
-  editDataOption?: boolean;
-}
 
 const GeneralInformationForm = forwardRef<
   FormikProps<IGeneralInformationEntry>,

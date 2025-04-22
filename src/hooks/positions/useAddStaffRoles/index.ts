@@ -138,9 +138,9 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const rolesDataEndpoint = formValues.rolesStaff.values
     .filter((role) => role.isActive)
     .map((role) => ({
-      missionId: role.id,
       roleName: role.value,
     }));
+
   const handleSubmitClick = () => {
     handleToggleModal();
     setShowRequestProcessModal(!showRequestProcessModal);

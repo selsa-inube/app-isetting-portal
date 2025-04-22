@@ -4,7 +4,6 @@ import {
   Blanket,
   Button,
   Divider,
-  Grid,
   Icon,
   inube,
   Stack,
@@ -21,7 +20,6 @@ const ModalWrapper = (props: IModalWrapper) => {
     children,
     height = "auto",
     iconBeforeButton,
-    isMobile,
     labelActionButton,
     labelCloseButton,
     labelCloseModal,
@@ -50,29 +48,47 @@ const ModalWrapper = (props: IModalWrapper) => {
         background={inube.palette.neutral.N0}
         borderRadius={basic.spacing.s100}
         padding={basic.spacing.s300}
-        gap={isMobile ? `${basic.spacing.s150}` : `${basic.spacing.s300}`}
         boxSizing="border-box"
       >
-        <Grid templateColumns="1fr auto" templateRows="1fr">
-          <Text type="headline" size="small" appearance="dark">
+        <Stack
+          direction="row"
+          gap={basic.spacing.s300}
+          justifyContent="space-between"
+          margin={`${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s16} ${basic.spacing.s0}`}
+        >
+          <Text type="headline" size="small" appearance="dark" weight="normal">
             {title}
           </Text>
-
-          <Button
-            spacing="compact"
-            appearance={ComponentAppearance.DARK}
-            variant="none"
-            onClick={onCloseModal}
-            iconAfter={
-              <Icon appearance={ComponentAppearance.DARK} icon={<MdClear />} />
-            }
+          <Stack
+            justifyContent="center"
+            alignItems="center"
+            gap={basic.spacing.s8}
           >
-            {labelCloseModal}
-          </Button>
-        </Grid>
+            <Text
+              type="body"
+              size="large"
+              appearance="dark"
+              cursorHover
+              onClick={onCloseModal}
+            >
+              {labelCloseModal}
+            </Text>
+            <Icon
+              appearance={ComponentAppearance.DARK}
+              icon={<MdClear />}
+              cursorHover
+              onClick={onCloseModal}
+            />
+          </Stack>
+        </Stack>
         <Divider />
 
-        <BorderStack height="100%" width="100%" overflowY="auto">
+        <BorderStack
+          height="100%"
+          width="100%"
+          overflowY="auto"
+          margin={`${basic.spacing.s300} ${basic.spacing.s0}`}
+        >
           {children}
         </BorderStack>
 

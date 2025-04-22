@@ -14,6 +14,8 @@ root.render(
       authorizationParams={{
         redirect_uri,
       }}
+      cacheLocation="localstorage"
+      useRefreshTokens={true}
     >
       <App />
     </Auth0Provider>

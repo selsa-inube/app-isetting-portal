@@ -13,7 +13,6 @@ import {
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { enviroment } from "@config/environment";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { MultipleChoices } from "@design/navigation/MultipleChoices";
 import {
@@ -53,7 +52,8 @@ const FilterModal = (props: IFilterModal) => {
     setSelectedOptions,
   } = props;
 
-  const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
+  const isMobile = useMediaQuery("(max-width: 1001px)");
+  const isSmallScreen = useMediaQuery("(max-width: 1001px)");
 
   const node = document.getElementById(portalId);
 
@@ -62,15 +62,24 @@ const FilterModal = (props: IFilterModal) => {
       "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
     );
   }
+
   const filterSelectedOptions = () => {
     return options.filter(
       (option) => !selectedOptions.some((selected) => selected.id === option.id)
     );
   };
 
-  const isSmallScreen = useMediaQuery("(max-width: 580px)");
   const handleClearFilters = () => {
     setSelectedOptions([]);
+  };
+
+  const handleSelectChange = (updatedOptions: IOptionItemChecked[]) => {
+    if (isMobile) {
+      const selected = updatedOptions.filter((option) => option.checked);
+      setSelectedOptions(selected);
+    } else {
+      onSelectChange(updatedOptions);
+    }
   };
 
   return createPortal(
@@ -86,7 +95,10 @@ const FilterModal = (props: IFilterModal) => {
                 spacing="compact"
                 appearance={ComponentAppearance.DARK}
                 variant="none"
-                onClick={onCloseModal}
+                onClick={() => {
+                  handleClearFilters();
+                  onCloseModal();
+                }}
                 iconAfter={
                   <Icon
                     appearance={ComponentAppearance.DARK}
@@ -104,20 +116,27 @@ const FilterModal = (props: IFilterModal) => {
               $smallScreen={isSmallScreen}
               $isActive={isMobile}
             >
-              {selectedOptions.map((option) => (
-                <Tag
-                  key={option.id}
-                  appearance="primary"
-                  label={option.label}
-                  weight="normal"
-                  removable
-                  onClose={() =>
-                    setSelectedOptions(
-                      selectedOptions.filter((item) => item.id !== option.id)
-                    )
-                  }
-                />
-              ))}
+              {selectedOptions
+                .filter((option) => option.checked)
+                .map((option) => (
+                  <Tag
+                    key={option.id}
+                    appearance="primary"
+                    label={option.label}
+                    weight="normal"
+                    removable
+                    onClose={() => {
+                      setSelectedOptions(
+                        selectedOptions.map((item) =>
+                          item.id === option.id
+                            ? { ...item, checked: false }
+                            : item
+                        )
+                      );
+                      handleClearFilters();
+                    }}
+                  />
+                ))}
             </StyledFilterdUserCard>
           )}
 
@@ -128,11 +147,13 @@ const FilterModal = (props: IFilterModal) => {
           id="Multiples-choices"
           labelSelect="Aplicación"
           labelSelected=""
-          onHandleSelectCheckChange={onSelectChange}
+          onHandleSelectCheckChange={handleSelectChange}
           options={
-            filterSelectedOptions().length > 0
-              ? filterSelectedOptions()
-              : options
+            isMobile
+              ? options
+              : filterSelectedOptions().length > 0
+                ? filterSelectedOptions()
+                : options
           }
           placeholderSelect="Seleccione opciones"
         />
@@ -142,7 +163,10 @@ const FilterModal = (props: IFilterModal) => {
             spacing="wide"
             appearance={ComponentAppearance.GRAY}
             variant="filled"
-            onClick={isSmallScreen ? handleClearFilters : onCloseModal}
+            onClick={() => {
+              handleClearFilters();
+              onCloseModal();
+            }}
             iconBefore={isSmallScreen ? <MdOutlineFilterAltOff /> : undefined}
           >
             {isSmallScreen ? "Quitar" : "Cancelar"}

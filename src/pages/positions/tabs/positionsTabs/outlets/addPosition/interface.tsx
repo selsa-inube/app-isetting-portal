@@ -6,17 +6,14 @@ import { basic } from "@design/tokens";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
 import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
-
 import { DecisionModalLabel } from "@config/positions/decisionModalText";
-
+import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationForm } from "@design/forms/verificationForm";
 import { createPositionConfig } from "@config/positions/addPositions/assisted";
 import { RequestProcessModal } from "@design/modals/requestProcessModal";
 import { FinishModal } from "@config/positions/verificationForm";
-
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
-import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
 
 const AddStaffRolesUI = ({
   currentStep,
@@ -121,7 +118,7 @@ const AddStaffRolesUI = ({
                 onClick={handlePreviousStep}
                 type="button"
                 disabled={currentStep === steps[0].id}
-                spacing="compact"
+                spacing="wide"
                 variant="none"
                 appearance="gray"
               >
@@ -134,7 +131,7 @@ const AddStaffRolesUI = ({
                   ? onToggleModal()
                   : handleNextStep()
               }
-              spacing="compact"
+              spacing="wide"
               disabled={disabled}
             >
               {currentStep === steps.length ? "Enviar" : "Siguiente"}

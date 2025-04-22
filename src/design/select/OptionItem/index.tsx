@@ -1,17 +1,30 @@
+import { useRef } from "react";
 import { Stack, Text } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-
-import { StyledOptionItemChecked } from "./styles";
 import { IOptionItemChecked } from "@ptypes/navigation/IOptionItemChecked";
+import { StyledOptionItemChecked } from "./styles";
 
-const OptionItemChecked = (props: IOptionItemChecked) => {
-  const { id, label, checked = false, onchange } = props;
+const OptionItemChecked = ({
+  id,
+  label,
+  checked = false,
+  onchange,
+}: IOptionItemChecked) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    if (e.target !== inputRef.current) {
+      inputRef.current?.click();
+    }
+  };
 
   return (
-    <StyledOptionItemChecked>
+    <StyledOptionItemChecked onClick={handleClick} checked={checked}>
       <Stack gap={basic.spacing.s4}>
         <input
-          readOnly
+          ref={inputRef}
           type="checkbox"
           id={id}
           name={id}

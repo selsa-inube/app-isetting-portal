@@ -33,12 +33,14 @@ const StyledContainerButton = styled.div`
 
 const StyledFilterdUserCard = styled.div<IStyledSearchUserCard>`
   display: flex;
+  flex-wrap: wrap;
   gap: ${basic.spacing.s100};
   border-radius: ${basic.spacing.s100};
   border: 1px solid
     ${({ theme }) => theme.palette?.neutral?.N40 || inube.palette.neutral.N40};
   padding: ${basic.spacing.s100};
   background-color: ${inube.palette.neutral.N30};
+  max-width: 100%;
 `;
 
 export { StyledModal, StyledContainerButton, StyledFilterdUserCard };

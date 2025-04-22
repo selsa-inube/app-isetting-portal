@@ -1,37 +1,18 @@
 import { createPortal } from "react-dom";
 import { RequestStatus } from "@design/feedback/requestStatus";
 import { basic } from "@design/tokens";
-import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import {
   Blanket,
   Text,
   Stack,
   Spinner,
   useMediaQuery,
-  ISpinnerAppearance,
 } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { RequestProcess } from "@design/feedback/requestProcess";
-import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
+import { IRequestProcessModal } from "@ptypes/IRequestProcessModal";
 import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
 import { StyledModal } from "./styles";
-
-interface IRequestProcessModal {
-  descriptionRequestProcess: {
-    title: string;
-    description: string;
-  };
-  portalId: string;
-  loading: boolean;
-  requestProcessSteps: IRequestSteps[];
-  descriptionRequestStatus: (
-    requestNumber: string,
-    responsible: string
-  ) => { actionText: string; description: string; title: string };
-  onCloseRequestStatus: () => void;
-  saveData?: ISaveDataResponse;
-  appearance?: ISpinnerAppearance;
-}
 
 const RequestProcessModal = (props: IRequestProcessModal) => {
   const {

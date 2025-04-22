@@ -8,7 +8,7 @@ const mapBusinessUnitsPortalStaffToEntities = (
     missionName: String(role.missionName),
     descriptionUse: String(role.descriptionUse),
     businessManagerCode: String(role.businessManagerCode),
-    MissionByRole: Object(role.MissionByRole),
+    missionByRole: Object(role.missionByRole),
   }));
 };
 

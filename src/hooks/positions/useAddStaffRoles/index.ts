@@ -156,7 +156,7 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
         missionName: formValues.generalInformation.values.namePosition,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
-        MissionByRole: rolesDataEndpoint,
+        missionByRole: rolesDataEndpoint,
       },
     });
   };

@@ -16,7 +16,7 @@ const UseEditPositions = (
     missionId: string;
     missionName: string;
     descriptionUse: string;
-    MissionByRole: IRoleForStaff[];
+    missionByRole: IRoleForStaff[];
   },
   appData: IAppData,
   rolesData: IRoleForStaff[] | undefined
@@ -111,8 +111,8 @@ const UseEditPositions = (
 
       const rolesInitial = roles?.map((role) => {
         const active =
-          Array.isArray(data.MissionByRole) &&
-          data.MissionByRole.find((app) => app.roleName === role.value);
+          Array.isArray(data.missionByRole) &&
+          data.missionByRole.find((app) => app.roleName === role.value);
 
         return {
           ...role,
@@ -171,7 +171,7 @@ const UseEditPositions = (
         missionName: formValues.generalInformation.values.namePosition,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
-        MissionByRole: rolesDataEndpoint,
+        missionByRole: rolesDataEndpoint,
       },
     });
     setShowRequestProcessModal(true);

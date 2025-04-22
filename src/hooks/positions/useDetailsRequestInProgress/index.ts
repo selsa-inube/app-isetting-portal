@@ -29,8 +29,8 @@ const UseDetailsRequestInProgress = (data: IEntry) => {
       })
     ),
   };
-  const dataTable = Array.isArray(data?.configurationRequestData.MissionByRole)
-    ? data.configurationRequestData.MissionByRole.map(
+  const dataTable = Array.isArray(data?.configurationRequestData.missionByRole)
+    ? data.configurationRequestData.missionByRole.map(
         (item: { roleName: string }) => ({
           Roles: item.roleName,
         })

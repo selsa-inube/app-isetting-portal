@@ -12,26 +12,10 @@ import {
 } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { basic } from "@design/tokens";
+import { IModalWrapper } from "@ptypes/modals/IModalWrapper";
 import { BorderStack } from "../borderStack";
 
-interface IModalWrapper {
-  children: React.ReactNode;
-  isMobile: boolean;
-  labelActionButton: string;
-  labelCloseButton: string;
-  labelCloseModal: string;
-  portalId: string;
-  title: string;
-  appearanceButton?: ComponentAppearance;
-  iconBeforeButton?: React.ReactElement;
-  height?: string;
-  width?: string;
-  withCancelButton?: boolean;
-  onCloseModal?: () => void;
-  onClick?: () => void;
-}
-
-function ModalWrapper(props: IModalWrapper) {
+const ModalWrapper = (props: IModalWrapper) => {
   const {
     appearanceButton,
     children,
@@ -46,6 +30,7 @@ function ModalWrapper(props: IModalWrapper) {
     width = "auto",
     withCancelButton,
     onCloseModal,
+    onClick,
   } = props;
 
   const node = document.getElementById(portalId);
@@ -107,7 +92,7 @@ function ModalWrapper(props: IModalWrapper) {
             spacing="wide"
             appearance={appearanceButton ?? ComponentAppearance.PRIMARY}
             variant="filled"
-            onClick={onCloseModal}
+            onClick={onClick}
             iconBefore={iconBeforeButton ?? <></>}
           >
             {labelActionButton}
@@ -117,7 +102,7 @@ function ModalWrapper(props: IModalWrapper) {
     </Blanket>,
     node
   );
-}
+};
 
 export { ModalWrapper };
 export type { IModalWrapper };

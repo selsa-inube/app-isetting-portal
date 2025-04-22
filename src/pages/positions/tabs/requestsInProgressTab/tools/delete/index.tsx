@@ -1,30 +1,37 @@
-import { deleteRequestInProgress } from "@config/positionsTabs/generics/deleteRequestInProgress";
-import { DeleteRecord } from "@design/feedback/deleteRecord";
-
-import { UseDeleteRequestInProgress } from "@hooks/positions/useDeleteRequestInProgress";
+import { cancelRequestInProgressModal } from "@config/positionsTabs/requestProcessMessage/cancelRequestInProgressModal";
+import { AuthAndData } from "@context/authAndDataProvider";
+import { CancelRecord } from "@design/feedback/cancelRecord";
+import { useCancelRequestInProgress } from "@hooks/positions/useCancelRequestInProgress";
 import { IEntry } from "@ptypes/table/IEntry";
+import { useContext } from "react";
 
-interface IDelete {
+interface ICancel {
   data: IEntry;
-  setEntryDeleted: (id: string | number) => void;
+  setEntryCanceled: (id: string | number) => void;
 }
 
-const Delete = (props: IDelete) => {
-  const { data, setEntryDeleted } = props;
+const Cancel = (props: ICancel) => {
+  const { data, setEntryCanceled } = props;
+  const { appData } = useContext(AuthAndData);
 
-  const { showModal, handleToggleModal, handleClick, setJustificationDelete } =
-    UseDeleteRequestInProgress(data, setEntryDeleted);
+  const { showModal, loading, handleToggleModal, handleClick } =
+    useCancelRequestInProgress(
+      appData.businessUnit.publicCode,
+      data,
+      appData.user.userAccount,
+      setEntryCanceled
+    );
 
   return (
-    <DeleteRecord
-      messageDelete={deleteRequestInProgress}
+    <CancelRecord
+      messageCancel={cancelRequestInProgressModal}
       showModal={showModal}
       onToggleModal={handleToggleModal}
       onClick={handleClick}
-      setJustificationDelete={setJustificationDelete}
-      loading={false}
+      loading={loading}
+      status={data.requestStatus}
     />
   );
 };
 
-export { Delete };
+export { Cancel };

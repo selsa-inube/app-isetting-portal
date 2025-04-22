@@ -15,6 +15,7 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
     labelsOfTraceability,
     isMobile,
     onCloseModal,
+    onClick,
   } = props;
   return (
     <ModalWrapper
@@ -28,6 +29,7 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
       title={detailsRequestInProgressModal.title}
       withCancelButton
       onCloseModal={onCloseModal}
+      onClick={onClick}
     >
       <BorderStack
         direction="column"

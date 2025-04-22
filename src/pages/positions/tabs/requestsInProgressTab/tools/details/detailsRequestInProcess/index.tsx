@@ -4,11 +4,10 @@ import { Icon, useMediaQuery, Text, inube } from "@inubekit/inubekit";
 import { IDetails } from "@ptypes/traceabilityCard/IDetails";
 import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
 import { labelsOfTraceability } from "@config/requestsInProgressTab/details/labelsOfTraceability";
-import { DetailsPosition } from "@config/positions/details";
 import { LabelsInfo } from "@pages/positions/tabs/positionsTabs/forms/detailsModal/detailsPositionsModal/labelsInfo";
 import { UseModalLabelsAndActions } from "@hooks/positions/useModalLabelsAndActions";
 import { ModalWrapper } from "@design/modals/modalWrapper";
-import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
+import { detailsMoreDetails } from "@config/requestsInProgressTab/details/detailsRequestInProgressModalMoreDetails";
 import { BorderStack } from "@design/modals/borderStack";
 import { TableView } from "@pages/positions/tabs/positionsTabs/forms/detailsModal/detailsPositionsModal/tableView";
 import { basic } from "@design/tokens";
@@ -62,10 +61,10 @@ const DetailsRequestInProcess = (props: IDetails) => {
           portalId="portal"
           width={isMobile ? "335px" : "600px"}
           isMobile={isMobile}
-          labelActionButton={detailsRequestInProgressModal.labelCloseButton}
-          labelCloseButton={detailsRequestInProgressModal.labelCloseButton}
-          labelCloseModal={detailsRequestInProgressModal.labelCloseModal}
-          title={detailsRequestInProgressModal.title}
+          labelActionButton={detailsMoreDetails.labelCloseButton}
+          labelCloseButton={detailsMoreDetails.labelCloseButton}
+          labelCloseModal={detailsMoreDetails.labelCloseModal}
+          title={detailsMoreDetails.title}
           onCloseModal={onToggleMoreDetailsModal}
           onClick={onToggleMoreDetailsModal}
         >
@@ -80,9 +79,7 @@ const DetailsRequestInProcess = (props: IDetails) => {
             gap={basic.spacing.s200}
             padding={isMobile ? basic.spacing.s150 : basic.spacing.s200}
           >
-            <RequestTitleSection
-              requestType={DetailsPosition.detailsPositions}
-            />
+            <RequestTitleSection requestType={detailsMoreDetails.title} />
             <LabelsInfo
               labels={labels}
               infoData={infoData.configurationRequestData}

@@ -1,23 +1,17 @@
 import { useContext } from "react";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
-import { RequestProcessModal } from "@design/modals/requestProcessModal";
-import { DecisionModal } from "@design/modals/decisionModal";
-
 import { AuthAndData } from "@context/authAndDataProvider";
 import { UseSavePositions } from "@hooks/positions/useSavePositions";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
 import { deleteRequestInProgress } from "@config/positionsTabs/generics/deleteRequestInProgress";
-import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
 import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { requestPendingModal } from "@config/positionsTabs/generics/requestPendingModal";
 import { UseDeletePositions } from "@hooks/positions/useDeletePositions";
-import { IEntry } from "@ptypes/table/IEntry";
-
-interface IDelete {
-  data: IEntry;
-  setEntryDeleted: (id: string | number) => void;
-}
+import { RequestProcess } from "@design/feedback/requestProcess";
+import { RequestStatusModal } from "@design/modals/requestStatusModal";
+import { requestStatusMessage } from "@config/positions/requestStatusMessage";
+import { DecisionModalLabel } from "@config/positions/decisionModalText";
+import { IDelete } from "@ptypes/positions/actions/IDelete";
 
 const Delete = (props: IDelete) => {
   const { data } = props;
@@ -38,8 +32,8 @@ const Delete = (props: IDelete) => {
     requestSteps,
     showPendingReqModal,
     loading,
-    handleCloseRequestStatus,
     handleClosePendingReqModal,
+    handleCloseRequestStatus,
   } = UseSavePositions(
     appData.businessUnit.publicCode,
     appData.user.userAccount,
@@ -59,30 +53,32 @@ const Delete = (props: IDelete) => {
         loading={loading}
       />
       {showRequestProcessModal && savePositions && (
-        <RequestProcessModal
-          portalId="portal"
+        <RequestProcess
+          portalId={DecisionModalLabel.portalId}
           saveData={savePositions}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
-          loading={loading}
           requestProcessSteps={requestSteps}
           appearance={ComponentAppearance.SUCCESS}
           onCloseRequestStatus={handleCloseRequestStatus}
         />
       )}
+
       {showPendingReqModal && savePositions?.requestNumber && (
-        <DecisionModal
+        <RequestStatusModal
           portalId="portal"
-          title={requestPendingModal(savePositions?.requestNumber).title}
+          title={requestStatusMessage(savePositions.responsible).title}
           description={
-            requestPendingModal(savePositions.requestNumber).description
+            requestStatusMessage(savePositions.responsible).description
           }
-          actionText={
-            requestPendingModal(savePositions.requestNumber).actionText
-          }
-          onCloseModal={handleClosePendingReqModal}
+          requestNumber={savePositions.requestNumber}
           onClick={handleClosePendingReqModal}
-          withCancelButton={false}
+          onCloseModal={handleClosePendingReqModal}
+          isLoading={false}
+          actionText={
+            requestStatusMessage(savePositions.responsible).actionText
+          }
+          appearance={ComponentAppearance.PRIMARY}
         />
       )}
     </>

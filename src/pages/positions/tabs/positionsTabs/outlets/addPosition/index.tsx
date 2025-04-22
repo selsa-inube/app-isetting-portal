@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { UseFetchRolesStaff } from "@hooks/positions/useFetchRolesStaff";
-
 import { UseAddStaffRoles } from "@hooks/positions/useAddStaffRoles";
 import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
@@ -8,10 +7,9 @@ import { UseSavePositions } from "@hooks/positions/useSavePositions";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { UseFetchAplicaionStaff } from "@hooks/positions/useAplication";
-
-import { AddStaffRolesUI } from "./interface";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
+import { AddStaffRolesUI } from "./interface";
 const AddPosition = () => {
   const { rolesStaff } = UseFetchRolesStaff();
   const {
@@ -44,15 +42,21 @@ const AddPosition = () => {
   } = UseAddStaffRoles(rolesStaff);
 
   const { appData } = useContext(AuthAndData);
-  const { savePositions, requestSteps, loading, handleCloseRequestStatus } =
-    UseSavePositions(
-      appData.businessUnit.publicCode,
-      appData.user.userAccount,
-      showRequestProcessModal,
-      saveData as ISaveDataRequest,
-      setShowRequestProcessModal,
-      setShowModal
-    );
+  const {
+    savePositions,
+    requestSteps,
+    loading,
+    handleCloseRequestStatus,
+    handleClosePendingReqModal,
+    showPendingReqModal,
+  } = UseSavePositions(
+    appData.businessUnit.publicCode,
+    appData.user.userAccount,
+    showRequestProcessModal,
+    saveData as ISaveDataRequest,
+    setShowRequestProcessModal,
+    setShowModal
+  );
 
   const { options } = UseFetchAplicaionStaff();
 
@@ -90,6 +94,8 @@ const AddPosition = () => {
       showMultipurposeModal={showMultipurposeModal}
       setShowMultipurposeModal={setShowMultipurposeModal}
       options={options as IOptionInitialiceEntryApp[]}
+      showPendingReqModal={showPendingReqModal}
+      onClosePendingReqModal={handleClosePendingReqModal}
     />
   );
 };

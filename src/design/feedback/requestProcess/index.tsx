@@ -17,6 +17,7 @@ const RequestProcess = (props: IRequestProcess) => {
   } = props;
 
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const shouldShowModal = saveData && saveData.requestStatus !== "";
 
   return (
     <Stack
@@ -25,8 +26,7 @@ const RequestProcess = (props: IRequestProcess) => {
       justifyContent="center"
       alignContent="center"
     >
-      {saveData &&
-        saveData.requestStatus !== "" &&
+      {shouldShowModal &&
         (statusFlowAutomatic.includes(saveData.requestStatus) ? (
           <RequestProcessModal
             portalId={portalId}

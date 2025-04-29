@@ -1,4 +1,4 @@
-import { RequestStatus } from "src/enum/requestStatus";
+import { RequestStatus } from "@enum/requestStatus";
 
 const notCancelStatus = [
   RequestStatus.RequestCanceled,

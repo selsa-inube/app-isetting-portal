@@ -5,6 +5,7 @@ import {
   Button,
   Divider,
   Icon,
+  inube,
   Stack,
   Text,
   useMediaQuery,
@@ -12,7 +13,7 @@ import {
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { basic } from "@design/tokens";
 import { IRequestStatusModal } from "@ptypes/requestsInProgress/IRequestStatusModal";
-import { StyledModal } from "./styles";
+import { BorderStack } from "../borderStack";
 
 const RequestStatusModal = (props: IRequestStatusModal) => {
   const {
@@ -39,10 +40,24 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
 
   return createPortal(
     <Blanket>
-      <StyledModal $smallScreen={isMobile}>
+      <BorderStack
+        direction="column"
+        background={inube.palette.neutral.N0}
+        width={isMobile ? "320px" : "450px"}
+        height={isMobile ? "350px" : "374px"}
+        borderRadius={basic.spacing.s100}
+        padding={isMobile ? basic.spacing.s150 : basic.spacing.s300}
+        boxSizing="border-box"
+        gap={basic.spacing.s300}
+      >
         <Stack direction="column" gap={basic.spacing.s200}>
           <Stack alignItems="center" justifyContent="space-between">
-            <Text type="headline" size="small" weight="bold" appearance="dark">
+            <Text
+              type="headline"
+              size="small"
+              weight="bold"
+              appearance={ComponentAppearance.DARK}
+            >
               {title}
             </Text>
 
@@ -101,7 +116,7 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
             {actionText}
           </Button>
         </Stack>
-      </StyledModal>
+      </BorderStack>
     </Blanket>,
     node
   );

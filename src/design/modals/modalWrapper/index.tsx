@@ -56,7 +56,12 @@ const ModalWrapper = (props: IModalWrapper) => {
           justifyContent="space-between"
           margin={`${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s16} ${basic.spacing.s0}`}
         >
-          <Text type="headline" size="small" appearance="dark" weight="normal">
+          <Text
+            type="headline"
+            size="small"
+            appearance={ComponentAppearance.DARK}
+            weight="normal"
+          >
             {title}
           </Text>
           <Stack
@@ -67,7 +72,7 @@ const ModalWrapper = (props: IModalWrapper) => {
             <Text
               type="body"
               size="large"
-              appearance="dark"
+              appearance={ComponentAppearance.DARK}
               cursorHover
               onClick={onCloseModal}
             >

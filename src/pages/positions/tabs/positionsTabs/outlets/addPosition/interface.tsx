@@ -38,15 +38,17 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
     showModal,
     savePositions,
     requestSteps,
-    showRequestProcessModal,
-    showPendingReqModal,
     onCloseRequestStatus,
     disabled,
     formValues,
     showMultipurposeModal,
     setShowMultipurposeModal,
     onClosePendingReqModal,
+    buttonText,
+    shouldShowRequestProcessModal,
+    showPendingReqModals,
   } = props;
+
   return (
     <Stack
       direction="column"
@@ -124,7 +126,7 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
                 disabled={currentStep === steps[0].id}
                 spacing="wide"
                 variant="none"
-                appearance="gray"
+                appearance={ComponentAppearance.GRAY}
               >
                 {postionsButtonText.buttonHandlePrevious}
               </Button>
@@ -138,9 +140,7 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
               spacing="wide"
               disabled={disabled}
             >
-              {currentStep === steps.length
-                ? postionsButtonText.buttonHandleSubmit
-                : postionsButtonText.buttonHandleNext}
+              {buttonText}
             </Button>
           </Stack>
         </Stack>
@@ -171,7 +171,7 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
             withIcon
           />
         )}
-        {showRequestProcessModal && savePositions && (
+        {shouldShowRequestProcessModal && (
           <RequestProcess
             portalId={DecisionModalLabel.portalId}
             saveData={savePositions}
@@ -183,7 +183,7 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
           />
         )}
 
-        {showPendingReqModal && savePositions.requestNumber && (
+        {showPendingReqModals && (
           <RequestStatusModal
             portalId="portal"
             title={requestStatusMessage(savePositions.responsible).title}

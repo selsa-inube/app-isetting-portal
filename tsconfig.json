@@ -34,7 +34,8 @@
       "@mocks/*": ["./src/mocks/*"],
       "@ptypes/*": ["./src/types/*"],
       "@api/*": ["./src/api/*"],
-      "@forms/*": ["./src/shared/forms/*"]
+      "@forms/*": ["./src/shared/forms/*"],
+      "@enum/*": ["./src/enum/*"]
     },
     "types": ["vite/client", "rollup"]
   },

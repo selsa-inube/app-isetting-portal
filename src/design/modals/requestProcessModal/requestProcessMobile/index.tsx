@@ -10,15 +10,15 @@ import { StyledContainerProgressBar } from "../styles";
 
 const RequestProcessMobile = (props: IRequestProcessMobile) => {
   const { requestSteps, sizeIcon, appearance } = props;
-
+  const hasMultipleSteps = requestSteps && requestSteps.length > 1;
+  const hasSteps = requestSteps && requestSteps.length > 0;
   return (
     <Stack direction="column" gap={basic.spacing.s100}>
       <Stack
         justifyContent={requestSteps.length === 1 ? "center" : "space-between"}
         padding={`${basic.spacing.s0} ${basic.spacing.s150}`}
       >
-        {requestSteps &&
-          requestSteps.length > 0 &&
+        {hasSteps &&
           requestSteps.map((item, index) =>
             item.status === "error" ? (
               <Icon
@@ -46,7 +46,7 @@ const RequestProcessMobile = (props: IRequestProcessMobile) => {
         justifyContent="center"
         padding={`${basic.spacing.s100} ${basic.spacing.s0}`}
       >
-        {requestSteps && requestSteps.length > 1 && (
+        {hasMultipleSteps && (
           <StyledContainerProgressBar
             $appearance={ComponentAppearance.GRAY}
             $height="8px"
@@ -66,8 +66,7 @@ const RequestProcessMobile = (props: IRequestProcessMobile) => {
       <Stack
         justifyContent={requestSteps.length === 1 ? "center" : "space-between"}
       >
-        {requestSteps &&
-          requestSteps.length > 0 &&
+        {hasSteps &&
           requestSteps.map((item, index) => (
             <Stack key={index} width="58px">
               <Text

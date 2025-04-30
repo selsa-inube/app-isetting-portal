@@ -1,5 +1,9 @@
-import { MdOutlineFilterAltOff, MdOutlineFilterAlt } from "react-icons/md";
-import { Button, Stack, Tag, useMediaQuery } from "@inubekit/inubekit";
+import {
+  MdOutlineFilterAltOff,
+  MdOutlineFilterAlt,
+  MdApps,
+} from "react-icons/md";
+import { Button, inube, Stack, useMediaQuery } from "@inubekit/inubekit";
 import { FilterModal } from "@design/modals/filterModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { IFilterFields } from "@ptypes/feedback/filterFields/IFilterFields";
@@ -8,6 +12,7 @@ import {
   StyledFilterdUserCard,
   StyledSearchUserCard,
 } from "./styles";
+import { TagsFilter } from "@design/modals/tagsFilter";
 
 const FilterFields = (props: IFilterFields) => {
   const {
@@ -33,9 +38,9 @@ const FilterFields = (props: IFilterFields) => {
             $isActive={showModal}
           >
             {selectedOptions.map((option) => (
-              <Tag
+              <TagsFilter
                 key={option.id}
-                appearance="primary"
+                appearance="light"
                 label={option.label}
                 weight="normal"
                 removable
@@ -44,6 +49,8 @@ const FilterFields = (props: IFilterFields) => {
                     selectedOptions.filter((item) => item.id !== option.id)
                   )
                 }
+                background={inube.palette.blue.B400}
+                icon={<MdApps />}
               />
             ))}
           </StyledFilterdUserCard>

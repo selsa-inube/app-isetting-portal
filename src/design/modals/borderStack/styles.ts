@@ -19,5 +19,10 @@ const StyledBorderFlex = styled.div<IStyledFlex>`
   box-sizing: ${({ $boxSizing }) => $boxSizing};
   box-shadow: ${({ $boxShadow }) => $boxShadow};
   overflow-y: ${({ $overflowY }) => $overflowY};
+  position: ${({ $position }) => $position};
+  z-index: ${({ $zIndex }) => $zIndex};
+  top: ${({ $top }) => $top};
+  right: ${({ $right }) => $right};
+  min-width: ${({ $minWidth }) => $minWidth};
 `;
 export { StyledBorderFlex };

@@ -10,7 +10,6 @@ interface IStyledSearchUserCard {
   $isActive: boolean;
   $smallScreen: boolean;
 }
-
 const StyledModal = styled.div<IStyledModal>`
   display: flex;
   flex-direction: column;
@@ -41,6 +40,8 @@ const StyledFilterdUserCard = styled.div<IStyledSearchUserCard>`
   padding: ${basic.spacing.s100};
   background-color: ${inube.palette.neutral.N30};
   max-width: 100%;
+  width: 90%;
+  position: relative;
 `;
 
 export { StyledModal, StyledContainerButton, StyledFilterdUserCard };

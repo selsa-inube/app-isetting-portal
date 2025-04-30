@@ -15,6 +15,11 @@ interface IStyledFlex {
   $boxSizing?: string;
   $boxShadow?: string;
   $overflowY?: string;
+  $position?: string;
+  $zIndex?: string;
+  $top?: string;
+  $right?: string;
+  $minWidth?: string;
 }
 
 export type { IStyledFlex };

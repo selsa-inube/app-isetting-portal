@@ -8,6 +8,11 @@ interface IBorderStack extends IStack {
   boxSizing?: string;
   boxShadow?: string;
   overflowY?: string;
+  position?: string;
+  zIndex?: string;
+  top?: string;
+  right?: string;
+  minWidth?: string;
 }
 const BorderStack = (props: IBorderStack) => {
   const {
@@ -28,6 +33,11 @@ const BorderStack = (props: IBorderStack) => {
     boxSizing,
     boxShadow,
     overflowY,
+    position,
+    zIndex,
+    top,
+    right,
+    minWidth,
   } = props;
 
   return (
@@ -48,6 +58,11 @@ const BorderStack = (props: IBorderStack) => {
       $boxSizing={boxSizing}
       $boxShadow={boxShadow}
       $overflowY={overflowY}
+      $position={position}
+      $zIndex={zIndex}
+      $top={top}
+      $right={right}
+      $minWidth={minWidth}
     >
       {children}
     </StyledBorderFlex>

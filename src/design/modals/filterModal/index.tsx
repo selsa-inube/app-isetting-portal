@@ -1,5 +1,12 @@
-import { MdClear, MdOutlineFilterAltOff } from "react-icons/md";
+import {
+  MdApps,
+  MdClear,
+  MdClose,
+  MdOutlineFilterAlt,
+  MdOutlineFilterAltOff,
+} from "react-icons/md";
 import { createPortal } from "react-dom";
+import { useState } from "react";
 import {
   Stack,
   Text,
@@ -9,7 +16,7 @@ import {
   useMediaQuery,
   Blanket,
   Button,
-  Tag,
+  inube,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
@@ -20,6 +27,9 @@ import {
   StyledFilterdUserCard,
   StyledModal,
 } from "./styles";
+
+import { TagsFilter } from "../tagsFilter";
+import { BorderStack } from "../borderStack";
 
 interface IFilterModal {
   actionText: string;
@@ -56,7 +66,7 @@ const FilterModal = (props: IFilterModal) => {
   const isSmallScreen = useMediaQuery("(max-width: 1001px)");
 
   const node = document.getElementById(portalId);
-
+  const [showHidden, setShowHidden] = useState(false);
   if (!node) {
     throw new Error(
       "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
@@ -80,6 +90,14 @@ const FilterModal = (props: IFilterModal) => {
     } else {
       onSelectChange(updatedOptions);
     }
+  };
+
+  const hiddenTags = selectedOptions.filter((opt) => opt.checked).slice(2);
+
+  const onRemove = (id: string) => {
+    setSelectedOptions((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, checked: false } : item))
+    );
   };
 
   return createPortal(
@@ -110,36 +128,100 @@ const FilterModal = (props: IFilterModal) => {
               </Button>
             </StyledContainerButton>
           </Stack>
+          <Stack alignItems="center" gap={basic.spacing.s8}>
+            {isSmallScreen && (
+              <Icon
+                appearance={ComponentAppearance.GRAY}
+                icon={<MdOutlineFilterAlt />}
+                size="16px"
+              />
+            )}
 
-          {isSmallScreen && (
-            <StyledFilterdUserCard
-              $smallScreen={isSmallScreen}
-              $isActive={isMobile}
-            >
-              {selectedOptions
-                .filter((option) => option.checked)
-                .map((option) => (
-                  <Tag
-                    key={option.id}
-                    appearance="primary"
-                    label={option.label}
-                    weight="normal"
-                    removable
-                    onClose={() => {
-                      setSelectedOptions(
-                        selectedOptions.map((item) =>
-                          item.id === option.id
-                            ? { ...item, checked: false }
-                            : item
-                        )
-                      );
-                      handleClearFilters();
-                    }}
-                  />
-                ))}
-            </StyledFilterdUserCard>
-          )}
+            {isSmallScreen && (
+              <StyledFilterdUserCard
+                $smallScreen={isSmallScreen}
+                $isActive={isMobile}
+              >
+                {selectedOptions
+                  .filter((option) => option.checked)
+                  .slice(0, 2)
+                  .map((option) => (
+                    <TagsFilter
+                      key={option.id}
+                      appearance="light"
+                      label={option.label}
+                      weight="normal"
+                      removable
+                      onClose={() => {
+                        setSelectedOptions(
+                          selectedOptions.map((item) =>
+                            item.id === option.id
+                              ? { ...item, checked: false }
+                              : item
+                          )
+                        );
+                        handleClearFilters();
+                      }}
+                      background={inube.palette.blue.B400}
+                      icon={<MdApps />}
+                    />
+                  ))}
 
+                {hiddenTags.length > 0 && (
+                  <>
+                    <TagsFilter
+                      appearance="light"
+                      label="..."
+                      weight="normal"
+                      removable={false}
+                      onClick={() => setShowHidden((prev) => !prev)}
+                      background={inube.palette.blue.B400}
+                    />
+                    {showHidden && (
+                      <BorderStack
+                        position="absolute"
+                        zIndex="1"
+                        top="90%"
+                        right="0px"
+                        background={inube.palette.neutral.N0}
+                        borderRadius={basic.spacing.s8}
+                        boxShadow="0px 2px 6px 1px"
+                        padding={basic.spacing.s100}
+                        gap={basic.spacing.s100}
+                        minWidth="175px"
+                        direction="column"
+                      >
+                        {hiddenTags.map((tag) => (
+                          <Stack
+                            justifyContent="space-between"
+                            alignItems="center"
+                            padding="8px 12px"
+                            key={tag.id}
+                          >
+                            <Stack gap="4px" alignItems="center">
+                              <Icon
+                                appearance="primary"
+                                icon={<MdApps />}
+                                size="14px"
+                              />
+                              <Text size="small">{tag.label}</Text>
+                            </Stack>
+                            <Icon
+                              appearance="dark"
+                              icon={<MdClose />}
+                              cursorHover={true}
+                              size="16px"
+                              onClick={() => onRemove(tag.id)}
+                            />
+                          </Stack>
+                        ))}
+                      </BorderStack>
+                    )}
+                  </>
+                )}
+              </StyledFilterdUserCard>
+            )}
+          </Stack>
           <Divider dashed={isMobile} />
         </Stack>
 

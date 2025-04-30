@@ -18,6 +18,8 @@ const DetailsPositionsModal = (props: IFeedbackModal) => {
     actions
   );
 
+  const shouldRenderTableView =
+    Array.isArray(dataTable) && dataTable.length > 0;
   return (
     <DetailsPositionsModalUI
       onClose={onClose}
@@ -30,6 +32,7 @@ const DetailsPositionsModal = (props: IFeedbackModal) => {
       dataTable={dataTable}
       actionsTitle={actionsTitle}
       isMobile={isMobile}
+      shouldRenderTableView={shouldRenderTableView}
     />
   );
 };

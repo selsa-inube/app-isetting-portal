@@ -10,8 +10,6 @@ const TableView = (props: ITabllePositions) => {
   const { dataTable } = props;
   const { rows } = UseTableData(dataTable);
 
-  if (!rows || rows.length === 0) return null;
-
   return (
     <Fieldset legend={DetailsPosition.rol} size="small" type="title">
       <BorderStack direction="column" gap={basic.spacing.s100} width="100%">

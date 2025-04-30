@@ -9,7 +9,15 @@ import { basic } from "@design/tokens";
 import RequestTitleSection from "@pages/positions/tabs/requestsInProgressTab/tools/details/requestsInProcess/requestTitleSection";
 
 const DetailsPositionsModalUI = (props: IDetailsPositionsModalUI) => {
-  const { onClose, labels, infoData, hasLabels, dataTable, isMobile } = props;
+  const {
+    onClose,
+    labels,
+    infoData,
+    hasLabels,
+    dataTable,
+    isMobile,
+    shouldRenderTableView,
+  } = props;
 
   return (
     <ModalWrapper
@@ -36,7 +44,7 @@ const DetailsPositionsModalUI = (props: IDetailsPositionsModalUI) => {
       >
         <RequestTitleSection requestType={DetailsPosition.detailsPositions} />
         <LabelsInfo labels={labels} infoData={infoData} hasLabels={hasLabels} />
-        {dataTable && <TableView dataTable={dataTable} />}
+        {shouldRenderTableView && <TableView dataTable={dataTable!} />}
       </BorderStack>
     </ModalWrapper>
   );

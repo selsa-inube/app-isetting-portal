@@ -13,6 +13,7 @@ interface IDetailsPositionsModalUI {
   actions?: IAction[];
   dataTable?: IEntry[];
   actionsTitle?: string;
+  shouldRenderTableView: boolean;
 }
 
 export type { IDetailsPositionsModalUI };

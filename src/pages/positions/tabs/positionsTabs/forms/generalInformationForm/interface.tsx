@@ -1,18 +1,8 @@
-import { FormikProps } from "formik";
-import { Textarea, Input, Stack } from "@inubekit/inubekit";
-import { basic } from "@design/tokens";
-import { getFieldState } from "@utils/forms";
-import { StyledContainer, StyledContainerFields } from "./styles";
-import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { labels } from "@config/positions/assistedText";
-
-interface IGeneralInformationFormUI {
-  formik: FormikProps<IGeneralInformationEntry>;
-  onNextStep: () => void;
-  loading?: boolean;
-  isMobile: boolean;
-}
-
+import { IGeneralInformationFormUI } from "@ptypes/positions/generalInformation/IGeneralInformationFormUI";
+import { basic } from "@design/tokens";
+import { Input, Stack, Textarea } from "@inubekit/inubekit";
+import { StyledContainer, StyledContainerFields } from "./styles";
 const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
   const { formik, loading, isMobile } = props;
 
@@ -37,8 +27,17 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                     value={formik.values.namePosition}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    status={getFieldState(formik, "namePosition")}
-                    message={formik.errors.namePosition}
+                    status={
+                      formik.touched.namePosition && formik.errors.namePosition
+                        ? "invalid"
+                        : undefined
+                    }
+                    message={
+                      formik.touched.namePosition
+                        ? formik.errors.namePosition
+                        : ""
+                    }
+                    required
                     fullwidth
                   />
                 </Stack>
@@ -52,9 +51,19 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                 value={formik.values.descriptionPosition}
                 maxLength={100}
                 disabled={loading}
-                status={getFieldState(formik, "descriptionPosition")}
-                message={formik.errors.descriptionPosition}
+                status={
+                  formik.touched.descriptionPosition &&
+                  formik.errors.descriptionPosition
+                    ? "invalid"
+                    : undefined
+                }
+                message={
+                  formik.touched.descriptionPosition
+                    ? formik.errors.descriptionPosition
+                    : ""
+                }
                 fullwidth
+                required
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />

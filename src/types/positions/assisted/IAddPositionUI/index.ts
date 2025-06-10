@@ -1,5 +1,5 @@
 import { FormikProps } from "formik";
-import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
+import { ISaveDataResponse } from "@ptypes/requestsInProgress/saveData/ISaveDataResponse";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import { IAssistedStep } from "@inubekit/inubekit";
@@ -36,13 +36,18 @@ interface IAddPositionUI {
   showModalApplicationStatus: boolean;
   savePositions: ISaveDataResponse;
   showRequestProcessModal: boolean;
+  showPendingReqModal: boolean;
   loading: boolean;
   navigate: (path: string) => void;
   onCloseRequestStatus: () => void;
   showMultipurposeModal: boolean;
   setShowMultipurposeModal: React.Dispatch<React.SetStateAction<boolean>>;
+  onClosePendingReqModal: () => void;
   options: IOptionInitialiceEntry[];
   requestSteps: IRequestSteps[];
+  buttonText: string;
+  shouldShowRequestProcessModal: ISaveDataResponse;
+  showPendingReqModals: boolean;
 }
 
 export type { IAddPositionUI };

@@ -5,47 +5,50 @@ import { InitializerForm } from "@design/forms/InitializerForm";
 import { basic } from "@design/tokens";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
-import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
-
 import { DecisionModalLabel } from "@config/positions/decisionModalText";
-
+import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
+import { RequestProcess } from "@design/feedback/requestProcess";
+import { requestStatusMessage } from "@config/positions/requestStatusMessage";
+import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationForm } from "@design/forms/verificationForm";
 import { createPositionConfig } from "@config/positions/addPositions/assisted";
-import { RequestProcessModal } from "@design/modals/requestProcessModal";
 import { FinishModal } from "@config/positions/verificationForm";
-
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
-import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
+import { postionsButtonText } from "@config/positions/assisted/buttonText";
 
-const AddStaffRolesUI = ({
-  currentStep,
-  generalInformationRef,
-  initialGeneralInformationValues,
-  steps,
-  setSelectedToggle,
-  options,
-  onNextStep,
-  handlePreviousStep,
-  handleNextStep,
-  onToggleModal,
-  onPreviousStep,
-  setIsCurrentFormValid,
-  setCurrentStep,
-  smallScreen,
-  roles,
-  onFinishForm,
-  showModal,
-  savePositions,
-  requestSteps,
-  showRequestProcessModal,
-  loading,
-  onCloseRequestStatus,
-  disabled,
-  formValues,
-  showMultipurposeModal,
-  setShowMultipurposeModal,
-}: IAddPositionUI) => {
+const AddStaffRolesUI = (props: IAddPositionUI) => {
+  const {
+    currentStep,
+    generalInformationRef,
+    initialGeneralInformationValues,
+    steps,
+    setSelectedToggle,
+    options,
+    onNextStep,
+    handlePreviousStep,
+    handleNextStep,
+    onToggleModal,
+    onPreviousStep,
+    setIsCurrentFormValid,
+    setCurrentStep,
+    smallScreen,
+    roles,
+    onFinishForm,
+    showModal,
+    savePositions,
+    requestSteps,
+    onCloseRequestStatus,
+    disabled,
+    formValues,
+    showMultipurposeModal,
+    setShowMultipurposeModal,
+    onClosePendingReqModal,
+    buttonText,
+    shouldShowRequestProcessModal,
+    showPendingReqModals,
+  } = props;
+
   return (
     <Stack
       direction="column"
@@ -121,11 +124,11 @@ const AddStaffRolesUI = ({
                 onClick={handlePreviousStep}
                 type="button"
                 disabled={currentStep === steps[0].id}
-                spacing="compact"
+                spacing="wide"
                 variant="none"
-                appearance="gray"
+                appearance={ComponentAppearance.GRAY}
               >
-                Atrás
+                {postionsButtonText.buttonHandlePrevious}
               </Button>
             )}
             <Button
@@ -134,10 +137,10 @@ const AddStaffRolesUI = ({
                   ? onToggleModal()
                   : handleNextStep()
               }
-              spacing="compact"
+              spacing="wide"
               disabled={disabled}
             >
-              {currentStep === steps.length ? "Enviar" : "Siguiente"}
+              {buttonText}
             </Button>
           </Stack>
         </Stack>
@@ -168,16 +171,33 @@ const AddStaffRolesUI = ({
             withIcon
           />
         )}
-        {showRequestProcessModal && (
-          <RequestProcessModal
+        {shouldShowRequestProcessModal && (
+          <RequestProcess
             portalId={DecisionModalLabel.portalId}
             saveData={savePositions}
             descriptionRequestProcess={requestProcessMessage}
             descriptionRequestStatus={requestStatusMessage}
-            loading={loading}
             requestProcessSteps={requestSteps}
             appearance={ComponentAppearance.SUCCESS}
             onCloseRequestStatus={onCloseRequestStatus}
+          />
+        )}
+
+        {showPendingReqModals && (
+          <RequestStatusModal
+            portalId="portal"
+            title={requestStatusMessage(savePositions.responsible).title}
+            description={
+              requestStatusMessage(savePositions.responsible).description
+            }
+            requestNumber={savePositions.requestNumber}
+            onClick={onClosePendingReqModal}
+            onCloseModal={onClosePendingReqModal}
+            isLoading={false}
+            actionText={
+              requestStatusMessage(savePositions.responsible).actionText
+            }
+            appearance={ComponentAppearance.PRIMARY}
           />
         )}
       </Stack>

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
-import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFlagAppearance, useFlag, useMediaQuery } from "@inubekit/inubekit";
 import { requestStepsInitial } from "@config/positions/addPositions/requestSteps";
@@ -13,12 +12,14 @@ import { interventionHumanMessage } from "@config/positionsTabs/generics/interve
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
+import { ISaveDataResponse } from "@ptypes/requestsInProgress/saveData/ISaveDataResponse";
 const UseSavePositions = (
   bussinesUnits: string,
   userAccount: string,
   sendData: boolean,
   data: ISaveDataRequest,
   setSendData: React.Dispatch<React.SetStateAction<boolean>>,
+  setShowPendingReq?: React.Dispatch<React.SetStateAction<boolean>>,
   setShowModal?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const [savePositions, setSavePositions] = useState<ISaveDataResponse>();
@@ -29,7 +30,7 @@ const UseSavePositions = (
   const { addFlag } = useFlag();
   const [requestSteps, setRequestSteps] =
     useState<IRequestSteps[]>(requestStepsInitial);
-  const [error, setError] = useState(false);
+
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
@@ -67,7 +68,6 @@ const UseSavePositions = (
       setStatusRequest(data.requestStatus);
     } catch (error) {
       console.info(error);
-      setError(true);
       addFlag({
         title: flowAutomaticMessages.errorQueryingData.title,
         description: flowAutomaticMessages.errorQueryingData.description,
@@ -174,12 +174,11 @@ const UseSavePositions = (
 
       const timer = setInterval(() => {
         const checkRequestStatus = async () => {
-          if (isStatusCloseModal() || isStatusRequestFinished() || error) {
+          if (isStatusCloseModal() || isStatusRequestFinished()) {
             changeRequestSteps();
             clearInterval(timer);
             setTimeout(() => {
               setSendData(false);
-              setShowPendingReqModal(true);
             }, 1500);
           } else {
             await fetchRequestInProgressData();
@@ -192,15 +191,10 @@ const UseSavePositions = (
       const timeout = setTimeout(() => {
         clearInterval(timer);
         setSendData(false);
-        setChangeTab(true);
-        navigate(navigatePage);
-        addFlag({
-          title: flowAutomaticMessages.requestInQueue.title,
-          description: flowAutomaticMessages.requestInQueue.description,
-          appearance: flowAutomaticMessages.requestInQueue
-            .appearance as IFlagAppearance,
-          duration: flowAutomaticMessages.requestInQueue.duration,
-        });
+        setShowPendingReqModal(true);
+        if (setShowPendingReq) {
+          setShowPendingReq(!showPendingReqModal);
+        }
       }, 60000);
 
       return () => {

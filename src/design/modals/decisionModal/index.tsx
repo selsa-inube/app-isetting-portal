@@ -1,6 +1,7 @@
 import { UseDecisionModal } from "@hooks/design/useDecisionModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { IDecisionModal } from "@ptypes/modals/decisionModal/IDecisionModal";
+import { detailsModal } from "@config/details";
 import { DecisionModalUI } from "./interface";
 
 const DecisionModal = (props: IDecisionModal) => {
@@ -54,6 +55,8 @@ const DecisionModal = (props: IDecisionModal) => {
       getFieldState={getFieldState}
       showCancelButton={showCancelButton}
       withCancelButton={withCancelButton}
+      cancelButton={detailsModal.buttonCancel}
+      withButton={detailsModal.buttonClear}
     />
   );
 };

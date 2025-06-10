@@ -1,51 +1,23 @@
 import { createPortal } from "react-dom";
-import { RequestStatus } from "@design/feedback/requestStatus";
+import { Stack, Text, Blanket, Divider } from "@inubekit/inubekit";
+import { lastCompletedIndex } from "@utils/lastCompletedIndex";
 import { basic } from "@design/tokens";
-import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
-import {
-  Blanket,
-  Text,
-  Stack,
-  Spinner,
-  useMediaQuery,
-  ISpinnerAppearance,
-} from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { RequestProcess } from "@design/feedback/requestProcess";
-import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
-import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
+import { IRequestProcessModal } from "@ptypes/requestsInProgress/IRequestProcessModal";
+import { RequestProcessMobile } from "./requestProcessMobile";
 import { StyledModal } from "./styles";
-
-interface IRequestProcessModal {
-  descriptionRequestProcess: {
-    title: string;
-    description: string;
-  };
-  portalId: string;
-  loading: boolean;
-  requestProcessSteps: IRequestSteps[];
-  descriptionRequestStatus: (
-    requestNumber: string,
-    responsible: string
-  ) => { actionText: string; description: string; title: string };
-  onCloseRequestStatus: () => void;
-  saveData?: ISaveDataResponse;
-  appearance?: ISpinnerAppearance;
-}
+import { RequestProcessDesktop } from "./requestProcessDesktop";
 
 const RequestProcessModal = (props: IRequestProcessModal) => {
   const {
-    descriptionRequestProcess,
     portalId,
-    requestProcessSteps,
-    loading,
-    appearance = "primary",
-    saveData,
-    descriptionRequestStatus,
-    onCloseRequestStatus,
+    appearance,
+    sizeIcon = "28px",
+    requestSteps,
+    isMobile,
+    description,
+    title,
   } = props;
-
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const node = document.getElementById(portalId);
 
@@ -55,68 +27,40 @@ const RequestProcessModal = (props: IRequestProcessModal) => {
     );
   }
 
+  const stepCurrentIndex = lastCompletedIndex(requestSteps);
+  const stepCurrent = stepCurrentIndex + 1;
+
   return createPortal(
     <Blanket>
       <StyledModal $smallScreen={isMobile}>
-        <Stack direction="column" gap={basic.spacing.s300}>
-          {loading ? (
-            <Stack
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-              alignContent="center"
-              gap={basic.spacing.s300}
+        <Stack direction="column" gap={basic.spacing.s200} width="100%">
+          <Stack direction="column" gap={basic.spacing.s100}>
+            <Text type="title" size="medium" weight="bold">
+              {title}
+            </Text>
+            <Divider />
+          </Stack>
+          <Stack direction="column" justifyContent="center" alignItems="center">
+            <Text
+              size={isMobile ? "small" : "medium"}
+              appearance={ComponentAppearance.GRAY}
             >
-              <Spinner
-                size="large"
-                appearance={appearance}
-                transparent={false}
-              />
-              <Text type="body" size="medium" weight="bold" appearance="dark">
-                Espere un momento por favor
-              </Text>
-            </Stack>
+              {description}
+            </Text>
+          </Stack>
+          {isMobile ? (
+            <RequestProcessMobile
+              requestSteps={requestSteps}
+              sizeIcon={sizeIcon}
+              appearance={appearance}
+            />
           ) : (
-            saveData &&
-            saveData.requestStatus !== "" &&
-            saveData.requestNumber !== "" &&
-            (statusFlowAutomatic.includes(saveData.requestStatus) ? (
-              <RequestProcess
-                title={descriptionRequestProcess.title}
-                description={descriptionRequestProcess.description}
-                appearance={ComponentAppearance.SUCCESS}
-                requestSteps={requestProcessSteps}
-                isMobile={isMobile}
-                sizeIcon={isMobile ? "20px " : "32px"}
-              />
-            ) : (
-              <RequestStatus
-                portalId="portal"
-                title={
-                  descriptionRequestStatus(
-                    saveData.requestNumber,
-                    saveData.settingRequestId
-                  ).title
-                }
-                requestNumber={saveData.requestNumber}
-                description={
-                  descriptionRequestStatus(
-                    saveData.requestNumber,
-                    saveData.settingRequestId
-                  ).description
-                }
-                onClick={onCloseRequestStatus}
-                onCloseModal={onCloseRequestStatus}
-                isLoading={false}
-                actionText={
-                  descriptionRequestStatus(
-                    saveData.requestNumber,
-                    saveData.settingRequestId
-                  ).actionText
-                }
-                appearance={ComponentAppearance.PRIMARY}
-              />
-            ))
+            <RequestProcessDesktop
+              requestSteps={requestSteps}
+              sizeIcon={sizeIcon}
+              stepCurrent={stepCurrent}
+              stepCurrentIndex={stepCurrentIndex}
+            />
           )}
         </Stack>
       </StyledModal>

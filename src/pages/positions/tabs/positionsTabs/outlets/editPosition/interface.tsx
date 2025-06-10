@@ -1,51 +1,16 @@
-import { FormikProps } from "formik";
 import { Breadcrumbs, Button, Stack, Tabs } from "@inubekit/inubekit";
-import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { InitializerForm } from "@design/forms/InitializerForm";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { RequestProcessModal } from "@design/modals/requestProcessModal";
 import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
-import { requestStatusMessage } from "@config/positionsTabs/generics/requestStatusMessage";
-import { DecisionModal } from "@design/modals/decisionModal";
-import { requestPendingModal } from "@config/positionsTabs/generics/requestPendingModal";
-import { IEditPositionsTabsConfig } from "@ptypes/positions/tabs/IEditDestinationTabsConfig";
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
-
 import { Title } from "@design/label/Title";
 import { crumbsEditPosition } from "@config/positions/editPositions/navigation";
-import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
-import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
-
+import { RequestProcess } from "@design/feedback/requestProcess";
+import { DecisionModalLabel } from "@config/positions/decisionModalText";
+import { requestStatusMessage } from "@config/positions/requestStatusMessage";
+import { RequestStatusModal } from "@design/modals/requestStatusModal";
+import { IEditPositionsUI } from "@ptypes/positions/actions/IEditPositionsUI";
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
-import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
-import { IOptionInitialiceEntry } from "@ptypes/positions/assisted/IOptionInitialiceEntry";
-import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
-
-interface IEditPositionsUI {
-  editPositionTabsConfig: IEditPositionsTabsConfig;
-  generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry>>;
-  initialValues: IFormAddPosition;
-  isSelected: string;
-  requestSteps: IRequestSteps[];
-  loading: boolean;
-  showPendingReqModal: boolean;
-  showRequestProcessModal: boolean;
-  savePositions: ISaveDataResponse;
-  onTabChange: (id: string) => void;
-  onButtonClick: () => void;
-  onReset: () => void;
-  setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
-  onCloseRequestStatus: () => void;
-  onClosePendingReqModal: () => void;
-  smallScreen: boolean;
-  options: IOptionInitialiceEntry[];
-  setSelectedToggle: React.Dispatch<
-    React.SetStateAction<IFormEntry[] | undefined>
-  >;
-  roles: IOptionInitialiceEntryApp[];
-}
-
 const EditPositionsUI = (props: IEditPositionsUI) => {
   const {
     editPositionTabsConfig,
@@ -133,30 +98,32 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
         </Button>
       </Stack>
       {showRequestProcessModal && savePositions && (
-        <RequestProcessModal
-          portalId="portal"
+        <RequestProcess
+          portalId={DecisionModalLabel.portalId}
           saveData={savePositions}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
-          loading={loading}
           requestProcessSteps={requestSteps}
           appearance={ComponentAppearance.SUCCESS}
           onCloseRequestStatus={onCloseRequestStatus}
         />
       )}
+
       {showPendingReqModal && savePositions.requestNumber && (
-        <DecisionModal
+        <RequestStatusModal
           portalId="portal"
-          title={requestPendingModal(savePositions.requestNumber).title}
+          title={requestStatusMessage(savePositions.responsible).title}
           description={
-            requestPendingModal(savePositions.requestNumber).description
+            requestStatusMessage(savePositions.responsible).description
           }
-          actionText={
-            requestPendingModal(savePositions.requestNumber).actionText
-          }
-          onCloseModal={onClosePendingReqModal}
+          requestNumber={savePositions.requestNumber}
           onClick={onClosePendingReqModal}
-          withCancelButton={false}
+          onCloseModal={onClosePendingReqModal}
+          isLoading={false}
+          actionText={
+            requestStatusMessage(savePositions.responsible).actionText
+          }
+          appearance={ComponentAppearance.PRIMARY}
         />
       )}
     </Stack>

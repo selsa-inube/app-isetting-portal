@@ -8,7 +8,7 @@ const UseEditPositionsModal = (data: IEntry) => {
     missionId: data.missionId,
     missionName: data.missionName,
     descriptionUse: data.descriptionUse,
-    MissionByRole: data.MissionByRole,
+    missionByRole: data.missionByRole,
   };
 
   const handleEdit = () => {

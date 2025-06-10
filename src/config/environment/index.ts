@@ -1,6 +1,6 @@
 const IS_PRODUCTION = import.meta.env.PROD;
 const AUTH_REDIRECT_URI = import.meta.env.VITE_AUTH0_REDIRECT_URI;
-
+const maxRetriesDelete = 1;
 const enviroment = {
   CLIENT_ID: import.meta.env.VITE_AUTH0_CLIENT_ID,
   CLIENT_SECRET: import.meta.env.VITE_AUTH0_CLIENT_SECRET,
@@ -36,4 +36,4 @@ const enviroment = {
   IS_MOBILE_970: import.meta.env.VITE_IS_MOBILE_970,
 };
 
-export { enviroment };
+export { enviroment, maxRetriesDelete };

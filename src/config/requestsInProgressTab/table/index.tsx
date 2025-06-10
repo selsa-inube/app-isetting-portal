@@ -1,4 +1,4 @@
-import { Delete } from "@pages/positions/tabs/requestsInProgressTab/tools/delete";
+import { Cancel } from "@pages/positions/tabs/requestsInProgressTab/tools/delete";
 import { Details } from "@pages/positions/tabs/requestsInProgressTab/tools/details";
 import { IAction } from "@ptypes/table/IAction";
 import { ITitle } from "@ptypes/table/ITitle";
@@ -21,7 +21,7 @@ const titles: ITitle[] = [
   },
 ];
 
-const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
+const actionsConfig = (setEntryCanceled: (value: string | number) => void) => {
   const actions: IAction[] = [
     {
       id: "Details",
@@ -31,7 +31,7 @@ const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
     {
       id: "delete",
       content: (entry) => (
-        <Delete data={entry} setEntryDeleted={setEntryDeleted} />
+        <Cancel data={entry} setEntryCanceled={setEntryCanceled} />
       ),
     },
   ];

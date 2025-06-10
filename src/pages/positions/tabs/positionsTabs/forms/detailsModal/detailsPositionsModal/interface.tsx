@@ -20,6 +20,7 @@ const DetailsPositionsModalUI = (props: IDetailsPositionsModalUI) => {
       labelCloseModal={DetailsPosition.detailsPositionsInfoText}
       title={DetailsPosition.detailsPositions}
       onCloseModal={onClose}
+      onClick={onClose}
       width={isMobile ? "335px" : "700px"}
       height={isMobile ? "auto" : "100%"}
     >

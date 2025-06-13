@@ -1,4 +1,4 @@
-import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
+import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { IAppData } from "../IAppData";
 
 interface IAuthDataContainer {

@@ -2,6 +2,7 @@ import { IUsers } from "@ptypes/users/usersTable/IUsers";
 
 const mapUsersPortalStaffEntities = (usersData: IUsers[]): IUsers[] => {
   return usersData.map((user) => ({
+    id: String(user.staffId),
     staffId: String(user.staffId),
     staffName: String(user.staffName),
     biologicalSex: String(user.biologicalSex),

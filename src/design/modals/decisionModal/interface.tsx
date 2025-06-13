@@ -22,6 +22,7 @@ const DecisionModalUI = (props: IDecisionModal) => {
     portalId,
     title,
     withIcon,
+    subtitle,
     onClick,
     onCloseModal,
     isMobile,
@@ -69,6 +70,16 @@ const DecisionModalUI = (props: IDecisionModal) => {
             <Icon icon={icon} appearance={appearance} size="60px" />
           </Stack>
         )}
+        {subtitle && (
+          <Text
+            appearance={ComponentAppearance.DARK}
+            type="body"
+            size="large"
+            weight="bold"
+          >
+            {subtitle}
+          </Text>
+        )}
 
         <Text appearance={ComponentAppearance.GRAY} type="body" size="medium">
           {description}
@@ -102,4 +113,3 @@ const DecisionModalUI = (props: IDecisionModal) => {
 };
 
 export { DecisionModalUI };
-export type { IDecisionModal };

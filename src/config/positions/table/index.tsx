@@ -63,9 +63,16 @@ const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
   return actions;
 };
 
+const breakPoints = [
+  { breakpoint: "(min-width: 745px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 744px)", totalColumns: 1 },
+];
+
+
 export {
   actionsConfig,
   labelsOptions,
   titlesOptions,
   positionsBreakPointsConfig,
+  breakPoints
 };

@@ -3,6 +3,7 @@ import { Button, Stack, Tag, useMediaQuery } from "@inubekit/inubekit";
 import { FilterModal } from "@design/modals/filterModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { IFilterFields } from "@ptypes/feedback/filterFields/IFilterFields";
+import { filterFieldsLabels } from "@config/filterFieldsLabels";
 import {
   StyledButtonFilter,
   StyledFilterdUserCard,
@@ -37,7 +38,7 @@ const FilterFields = (props: IFilterFields) => {
                 key={option.id}
                 appearance="primary"
                 label={option.label}
-                weight="normal"
+                displayIcon={false}
                 removable
                 onClose={() =>
                   setSelectedOptions(
@@ -54,7 +55,7 @@ const FilterFields = (props: IFilterFields) => {
                 iconBefore={<MdOutlineFilterAltOff />}
                 onClick={handleClearFilters}
               >
-                Quitar
+                {filterFieldsLabels.remove}
               </Button>
 
               <Button
@@ -62,7 +63,7 @@ const FilterFields = (props: IFilterFields) => {
                 iconBefore={<MdOutlineFilterAlt />}
                 disabled={selectedOptions.length === options.length}
               >
-                Filtrar
+                {filterFieldsLabels.filter}
               </Button>
             </Stack>
           </StyledButtonFilter>

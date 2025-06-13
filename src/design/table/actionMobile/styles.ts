@@ -1,12 +1,7 @@
-import { basic } from "@design/tokens";
 import styled from "styled-components";
-interface IStyledContainerIcon {
-  $isTablet?: boolean;
-}
-const StyledContainerIcon = styled.div<IStyledContainerIcon>`
-  padding: ${({ $isTablet }) =>
-    $isTablet ? `${basic.spacing.s400} ` : `${basic.spacing.s0}`};
-  transform: translateX(20px);
+
+const StyledContainerIcon = styled.div`
+  transform: rotate(90deg);
 `;
 
 const StyledContainer = styled.div`

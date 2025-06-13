@@ -4,6 +4,7 @@ const mapBusinessUnitsPortalStaffToEntities = (
   rolesData: IBusinessUnitsPortalStaffId[]
 ): IBusinessUnitsPortalStaffId[] => {
   return rolesData.map((role) => ({
+    id: String(role.missionId),
     missionId: String(role.missionId),
     missionName: String(role.missionName),
     descriptionUse: String(role.descriptionUse),

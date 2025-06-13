@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from "axios";
-import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
+import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { axiosInstance } from "@api/iportalStaff";
 import { getWithRetries } from "@services/core/getWithRetries";
 import { mapBusinessUnitsPortalStaffToEntities } from "./mappers";

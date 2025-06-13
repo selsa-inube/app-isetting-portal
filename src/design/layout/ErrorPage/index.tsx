@@ -16,13 +16,7 @@ import {
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { errorCodes } from "@config/errorCodes";
-
-interface IErrorPage {
-  errorCode?: number;
-  heading?: string;
-  nameButton?: string;
-  onClick?: () => void;
-}
+import { IErrorPage } from "@ptypes/design/IErrorPage";
 
 const ErrorPage = (props: IErrorPage) => {
   const {
@@ -73,7 +67,7 @@ const ErrorPage = (props: IErrorPage) => {
           <Tag
             appearance="gray"
             label={`Código de error: ${errorCode}`}
-            weight="strong"
+            displayIcon={false}
           />
         </Stack>
         <StyledErrorImage

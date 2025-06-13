@@ -4,11 +4,9 @@ import { FormikProps } from "formik";
 import { IRoleForStaff } from "@ptypes/rolesForStaff";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
-import { initalValuesPositions } from "@ptypes/positions/initialValues";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
-
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
@@ -17,6 +15,20 @@ import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAs
 const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
   const { appData } = useContext(AuthAndData);
   const [currentStep, setCurrentStep] = useState(1);
+
+  const initalValuesPositions = {
+    generalInformation: {
+      namePosition: "",
+      descriptionPosition: "",
+    },
+    rolesStaff: {
+      values: [],
+    },
+    applicationStaff: {
+      values: [],
+    },
+  };
+
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [showMultipurposeModal, setShowMultipurposeModal] = useState(false);
@@ -31,11 +43,11 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
     },
     rolesStaff: {
       isValid: false,
-      values: [],
+      values: initalValuesPositions.rolesStaff.values,
     },
     applicationStaff: {
       isValid: false,
-      values: [],
+      values: initalValuesPositions.applicationStaff.values,
     },
   });
 

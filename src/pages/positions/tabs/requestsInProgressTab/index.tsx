@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { UseRequestsInProgress } from "@hooks/positions/useRequestsInProgress";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 import { RequestsInProgressTabUI } from "./interface";
 
 const RequestsInProgressTab = () => {

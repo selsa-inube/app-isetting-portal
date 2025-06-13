@@ -1,6 +1,6 @@
 import { Divider, Stack, Text } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { RequestMission } from "src/enum/requestMission";
+import { RequestMission } from "@enum/requestMission";
 import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
 import { IRequestTitleSection } from "@ptypes/requestsInProgress/IRequestTitleSection";
 

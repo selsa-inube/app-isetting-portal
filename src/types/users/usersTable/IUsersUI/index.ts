@@ -1,4 +1,4 @@
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 interface IUsersUI {
   isSelected: string;
@@ -13,8 +13,6 @@ interface IUsersUI {
   handleCloseMenuInvitation: () => void;
   entries: IEntry[];
   widthFirstColumn: number;
-  data?: IEntry;
-
   catalogName?: string;
 }
 

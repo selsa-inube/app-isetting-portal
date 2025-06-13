@@ -1,58 +1,67 @@
 import { useEffect, useState, useRef } from "react";
-import { MdOutlinePending } from "react-icons/md";
-import { Icon, useMediaQuery } from "@inubekit/inubekit";
+import { MdPending } from "react-icons/md";
+import { Icon } from "@inubekit/inubekit";
+
+import { eventBus } from "@events/eventBus";
 import { ActionsModal } from "@design/modals/actionsModal";
-import { IAction } from "@ptypes/table/IAction";
-import { IEntry } from "@ptypes/table/IEntry";
+import { useOutsideClick } from "@hooks/useOutsideClick";
+import { IActionMobile } from "@ptypes/design/IActionMobile";
+import { ComponentAppearance } from "@ptypes/aparences.types";
 import { StyledContainer, StyledContainerIcon } from "./styles";
-
-interface IActionMobile {
-  actions: IAction[];
-  entry: IEntry;
-}
-
-let isModalOpen = false;
 
 const ActionMobile = (props: IActionMobile) => {
   const { actions, entry } = props;
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const screenTablet = useMediaQuery("(max-width: 1000px)");
-  useEffect(() => {
-    isModalOpen = false;
-  }, []);
-
-  const handleToggleModal = () => {
-    if (!isModalOpen) {
-      setShowModal(true);
-      isModalOpen = true;
-    }
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    isModalOpen = false;
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-      handleCloseModal();
-    }
-  };
+  const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
+  const [isThirdModalOpen, setIsThirdModalOpen] = useState(false);
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    const handleSecondModalState = (data: unknown) => {
+      if (typeof data === "boolean") {
+        setIsSecondModalOpen(data);
+      }
+    };
+
+    const handleThirdModalState = (data: unknown) => {
+      if (typeof data === "boolean") {
+        setIsThirdModalOpen(data);
+      }
+    };
+
+    eventBus.on("secondModalState", handleSecondModalState);
+    eventBus.on("thirdModalState", handleThirdModalState);
+
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      eventBus.off("secondModalState", handleSecondModalState);
+      eventBus.off("thirdModalState", handleThirdModalState);
     };
   }, []);
 
+  const handleToggleModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
+  useOutsideClick({
+    primaryRef: modalRef,
+    isSecondModalOpen: isSecondModalOpen,
+    isThirdModalOpen: isThirdModalOpen,
+    callback: () => {
+      if (!isSecondModalOpen) {
+        handleCloseModal();
+      }
+
+      if (!isThirdModalOpen) {
+        handleCloseModal();
+      }
+    },
+  });
+
   return (
     <StyledContainer>
-      <StyledContainerIcon $isTablet={screenTablet}>
+      <StyledContainerIcon>
         <Icon
-          appearance="primary"
-          icon={<MdOutlinePending />}
+          appearance={ComponentAppearance.PRIMARY}
+          icon={<MdPending />}
           size="20px"
           onClick={handleToggleModal}
           cursorHover
@@ -72,4 +81,3 @@ const ActionMobile = (props: IActionMobile) => {
 };
 
 export { ActionMobile };
-export type { IActionMobile };

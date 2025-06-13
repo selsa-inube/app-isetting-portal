@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { UseManageSearchAndPageControl } from "@hooks/positions/useManageSearchAndPageControl";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { UseBusinessManagersId } from "@hooks/positions/useBusinessManageresId";
-import { PositionsUI } from "./interface";
-import { UseMissionsUsePageRecord } from "@hooks/positions/useMissionsUsePageRecord";
+import { PositionsTabUI } from "./interface";
 
 const Positions = () => {
   const loading = false;
@@ -12,49 +11,23 @@ const Positions = () => {
     appData.businessManager.publicCode
   );
 
-  const pageRecord = UseMissionsUsePageRecord();
-
   const {
-    filteredData,
-    handleStartPage,
-    handlePrevPage,
-    handleNextPage,
-    handleEndPage,
-    firstEntryInPage,
-    lastEntryInPage,
-    paginatedData,
     smallScreen,
     label,
-    ShowAction,
-    ShowActionTitle,
     searchPosition,
+    setEntryDeleted,
     handleSearchPositions,
-    handleToggleMenuInvitation,
-    handleCloseMenuInvitation,
-    showMenu,
-  } = UseManageSearchAndPageControl(businessManagersData, pageRecord);
+  } = UseManageSearchAndPageControl();
 
   return (
-    <PositionsUI
+    <PositionsTabUI
       handleSearchPositions={handleSearchPositions}
-      handleCloseMenuInvitation={handleCloseMenuInvitation}
       searchPosition={searchPosition}
-      handleToggleMenuInvitation={handleToggleMenuInvitation}
       loading={loading}
-      showMenu={showMenu}
       data={businessManagersData}
       smallScreen={smallScreen}
       label={label}
-      ShowAction={ShowAction}
-      ShowActionTitle={ShowActionTitle}
-      filteredData={filteredData}
-      handleStartPage={handleStartPage}
-      handlePrevPage={handlePrevPage}
-      handleNextPage={handleNextPage}
-      handleEndPage={handleEndPage}
-      firstEntryInPage={firstEntryInPage}
-      lastEntryInPage={lastEntryInPage}
-      paginatedData={paginatedData}
+      setEntryDeleted={setEntryDeleted}
     />
   );
 };

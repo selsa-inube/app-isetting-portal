@@ -15,10 +15,11 @@ import { Menu } from "@design/navigation";
 import { menuUserLinks } from "@config/users/menuInvitation";
 import { StyledContainer } from "./styles";
 import { UserbuttonText } from "@config/users/addUsers/assisted/buttonText";
+import { crumbsUsers } from "@config/users/navigation";
+import { usersTitle } from "@config/users/usersTitle";
 
 const UsersUI = (props: IUsersUI) => {
   const {
-    data,
     smallScreen,
     handleSearchPositions,
     searchPosition,
@@ -43,16 +44,12 @@ const UsersUI = (props: IUsersUI) => {
     >
       <Stack gap={basic.spacing.s600} direction="column">
         <Stack gap={basic.spacing.s300} direction="column">
-          {data && (
-            <>
-              <Breadcrumbs crumbs={data?.crumbs ?? []} />
+              <Breadcrumbs crumbs={crumbsUsers} />
               <PageTitle
-                title={data.label}
-                description={data.description}
+                title={usersTitle.title}
+                description={usersTitle.description}
                 navigatePage="/privileges"
               />
-            </>
-          )}
         </Stack>
       </Stack>
 
@@ -104,7 +101,7 @@ const UsersUI = (props: IUsersUI) => {
         actions={actionsConfig()}
         breakpoints={breakPoints}
         filter={(() => "")()}
-        isLoading={loading}
+        loading={loading}
         columnWidths={[widthFirstColumn, 55, 23]}
       />
     </Stack>

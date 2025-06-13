@@ -1,5 +1,5 @@
 import { IMessageModal } from "@ptypes/decisions/IMessageModal";
-import { RequestStatus } from "src/enum/requestStatus";
+import { RequestStatus } from "@enum/requestStatus";
 
 interface ICancelRecord {
   showModal: boolean;

@@ -60,7 +60,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
             actions={actionsConfig(setEntryDeleted)}
             breakpoints={breakPoints}
             filter={searchrequestProgress}
-            isLoading={loading}
+            loading={loading}
             columnWidths={[widthFirstColumn, 55, 23]}
           />
         </Stack>

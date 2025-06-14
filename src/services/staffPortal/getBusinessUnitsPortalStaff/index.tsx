@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from "axios";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { axiosInstance } from "@api/iportalStaff";
 import { getWithRetries } from "@services/core/getWithRetries";
-import { mapBusinessUnitsPortalStaffToEntities } from "./mappers";
+import { mapBusUnitsPortalStaffEntities } from "./mappers/mapBusUnitsPortalStaffEntities";
 
 const getBusinessUnitsPortalStaff = async (
   portalPublicCode: string,
@@ -20,7 +20,7 @@ const getBusinessUnitsPortalStaff = async (
     `/business-units-portal-staff/${userAccount}/${portalPublicCode}`,
     config
   );
-  return Array.isArray(data) ? mapBusinessUnitsPortalStaffToEntities(data) : [];
+  return Array.isArray(data) ? mapBusUnitsPortalStaffEntities(data) : [];
 };
 
 export { getBusinessUnitsPortalStaff };

@@ -12,10 +12,6 @@ const mapRolesStaffApiToEntity = (rolesData: IRoleForStaff): IRoleForStaff => {
   return rolesMapped;
 };
 
-const mapRolesStaffApiToEntities = (
-  roles: IRoleForStaff[]
-): IRoleForStaff[] => {
-  return roles.map(mapRolesStaffApiToEntity);
-};
 
-export { mapRolesStaffApiToEntity, mapRolesStaffApiToEntities };
+
+export { mapRolesStaffApiToEntity };

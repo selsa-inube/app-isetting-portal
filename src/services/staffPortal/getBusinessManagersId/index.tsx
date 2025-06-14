@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from "axios";
 import { IBusinessUnitsPortalStaffId } from "@ptypes/staffBusinessManagersId";
 import { getWithRetries } from "@services/core/getWithRetries";
 import { axiosInstance } from "@api/iportalStaff";
-import { mapBusinessUnitsPortalStaffToEntities } from "./mappers";
+import { mapBusinessManagersIdEntities } from "./mappers/mapBusinessManagersIdEntities";
 
 const getBusinessManagersId = async (): Promise<
   IBusinessUnitsPortalStaffId[]
@@ -15,7 +15,7 @@ const getBusinessManagersId = async (): Promise<
   const data: IBusinessUnitsPortalStaffId[] = await getWithRetries<
     IBusinessUnitsPortalStaffId[]
   >(axiosInstance, `/missions`, config);
-  return Array.isArray(data) ? mapBusinessUnitsPortalStaffToEntities(data) : [];
+  return Array.isArray(data) ? mapBusinessManagersIdEntities(data) : [];
 };
 
 export { getBusinessManagersId };

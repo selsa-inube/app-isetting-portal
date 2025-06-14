@@ -21,8 +21,5 @@ const mapUsersPortalStaffEntities = (usersData: IUsers[]): IUsers[] => {
   }));
 };
 
-const mapUserStaffApiToEntities = (users: IUsers[][]): IUsers[][] => {
-  return users.map(mapUsersPortalStaffEntities);
-};
 
-export { mapUsersPortalStaffEntities, mapUserStaffApiToEntities };
+export { mapUsersPortalStaffEntities };

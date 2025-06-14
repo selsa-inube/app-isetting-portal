@@ -14,12 +14,4 @@ const mapBusinessUnitsPortalStaffApiToEntity = (
   return businessUnitData;
 };
 
-const mapBusinessUnitsPortalStaffToEntities = (
-  resend: IBusinessUnitsPortalStaff[]
-): IBusinessUnitsPortalStaff[] => {
-  return resend.map(mapBusinessUnitsPortalStaffApiToEntity);
-};
-export {
-  mapBusinessUnitsPortalStaffToEntities,
-  mapBusinessUnitsPortalStaffApiToEntity,
-};
+export {mapBusinessUnitsPortalStaffApiToEntity}

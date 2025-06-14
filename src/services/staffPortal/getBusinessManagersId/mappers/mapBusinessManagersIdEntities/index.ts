@@ -1,6 +1,6 @@
 import { IBusinessUnitsPortalStaffId } from "@ptypes/staffBusinessManagersId";
 
-const mapBusinessUnitsPortalStaffToEntities = (
+const mapBusinessManagersIdEntities = (
   rolesData: IBusinessUnitsPortalStaffId[]
 ): IBusinessUnitsPortalStaffId[] => {
   return rolesData.map((role) => ({
@@ -13,10 +13,4 @@ const mapBusinessUnitsPortalStaffToEntities = (
   }));
 };
 
-const mapRolesStaffApiToEntities = (
-  roles: IBusinessUnitsPortalStaffId[][]
-): IBusinessUnitsPortalStaffId[][] => {
-  return roles.map(mapBusinessUnitsPortalStaffToEntities);
-};
-
-export { mapBusinessUnitsPortalStaffToEntities, mapRolesStaffApiToEntities };
+export { mapBusinessManagersIdEntities };

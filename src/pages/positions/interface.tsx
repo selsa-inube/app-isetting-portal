@@ -4,7 +4,7 @@ import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { PageTitle } from "@design/label/PageTitle";
 import { IPositionsUI } from "@ptypes/positions/tabs/IPositionsUI";
 import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
-import { Positions } from "./tabs/positionsTabs";
+import { PositionsTab } from "./tabs/positionsTabs";
 import { StyledMenuContainer } from "@design/navigation/styles";
 import { MenuAddButton } from "@design/feedback/menuAddButton";
 import { positionTitle } from "@config/positionsTabs/positionsTabLabels";
@@ -29,6 +29,7 @@ const PositionsUI = (props: IPositionsUI) => {
     optionsUnits,
     comparisonData,
     selectedUnit,
+    businessUnitSigla,
     onChange,
     onClickUnits,
     onCloseModalUnits,
@@ -53,7 +54,7 @@ const PositionsUI = (props: IPositionsUI) => {
         />
       )}
 
-      {selectedUnit && (
+      {businessUnitSigla && (
         <Stack
           direction="column"
           width="-webkit-fill-available"
@@ -104,7 +105,7 @@ const PositionsUI = (props: IPositionsUI) => {
                 scroll={smallScreenTab ? true : false}
               />
 
-              {isSelected === positionsTabsConfig.cargos.id && <Positions />}
+              {isSelected === positionsTabsConfig.cargos.id && <PositionsTab businessUnitCode={selectedUnit} />}
               {isSelected === positionsTabsConfig.requestsInProgress.id && (
                 <RequestsInProgressTab />
               )}

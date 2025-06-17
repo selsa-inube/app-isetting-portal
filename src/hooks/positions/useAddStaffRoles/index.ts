@@ -160,10 +160,10 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
       applicationName: "istaff",
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
-      description: "Solicitud de agregar un cargo",
-      entityName: "Mission",
+      description: "Solicitud de agregar un cargo de unidades de negocio",
+      entityName: "Position",
       requestDate: formatDate(new Date()),
-      useCaseName: "AddMission",
+      useCaseName: "AddPosition",
       configurationRequestData: {
         missionName: formValues.generalInformation.values.namePosition,
         descriptionUse:

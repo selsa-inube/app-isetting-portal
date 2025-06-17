@@ -9,10 +9,10 @@ import { IPosition } from "@ptypes/positions/assisted/IPosition";
 
 const titlesOptions = [
   {
-    id: "missionName",
-    titleName: "Cargos",
+    id: "positionName",
+    titleName: "Cargos de la Unidad de Negocio",
     action: false,
-    priority: 1,
+    priority: 0,
   },
 ];
 
@@ -25,7 +25,7 @@ const positionsBreakPointsConfig = [
 
 const labelsOptions = [
   {
-    id: "missionId",
+    id: "positionId",
     labelName: "Código",
     type: "table",
   },

@@ -1,15 +1,17 @@
-import { IBusinessUnitsPortalStaffId } from "@ptypes/staffBusinessManagersId";
+import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPortalStaff";
+
 
 const mapBusinessManagersIdEntities = (
-  rolesData: IBusinessUnitsPortalStaffId[]
-): IBusinessUnitsPortalStaffId[] => {
+  rolesData: IBusinessUnitsPortalStaff[]
+): IBusinessUnitsPortalStaff[] => {
   return rolesData.map((role) => ({
-    id: String(role.missionId),
-    missionId: String(role.missionId),
-    missionName: String(role.missionName),
+    id: String(role.positionId),
+    positionId: String(role.positionId),
+    businessUnitCode: String(role.businessUnitCode),
+    businessUnitName: String(role.businessUnitName),
     descriptionUse: String(role.descriptionUse),
-    businessManagerCode: String(role.businessManagerCode),
-    MissionByRole: Object(role.MissionByRole),
+    positionName: String(role.positionName),
+    positionStaffByRoles: Object(role.positionStaffByRoles),
   }));
 };
 

@@ -18,6 +18,7 @@ const UseManageSearchAndPageControl = () => {
 
   const { appData } = useContext(AuthAndData);
   const { businessManagersData } = UseBusinessManagersId(
+    
     appData.businessManager.publicCode
   );
 

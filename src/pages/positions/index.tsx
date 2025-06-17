@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { menuPositionLinks } from "@config/positions/menuInvitation";
-import { PositionsUI } from "./interface";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { PositionsUI } from "./interface";
 
 const Positions =() => {
 
-   const { businessUnitSigla } =
+   const { businessUnitSigla, appData } =
     useContext(AuthAndData);
     const {
       isSelected,
@@ -48,7 +48,8 @@ const Positions =() => {
         onCloseModalUnits={handleCloseModalUnits}
         comparisonData={comparisonData}
         onChange={handleChange}
-        selectedUnit={businessUnitSigla}
+        businessUnitSigla={businessUnitSigla}
+        selectedUnit={appData.businessUnit.publicCode}
       />
     );
   }

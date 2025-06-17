@@ -12,6 +12,7 @@ interface IPositionsUI {
   showInfoModal: boolean;
   options: IMenuOptions[];
   selectedUnit: string;
+  businessUnitSigla: string;
   comparisonData: boolean;
   onToggleInfoModal: () => void;
   onCloseMenu: () => void;

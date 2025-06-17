@@ -1,10 +1,10 @@
 import { PrivilegeOptionsConfig } from "@config/positions/tabs";
 
-import { IBusinessUnitsPortalStaffId } from "@ptypes/staffBusinessManagersId";
+import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPortalStaff";
 interface IPositionsTabUI {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
   searchPosition: string;
-  data: IBusinessUnitsPortalStaffId[];
+  data: IBusinessUnitsPortalStaff[];
   loading: boolean;
   smallScreen: boolean;
   label: (typeof PrivilegeOptionsConfig)[number] | undefined;

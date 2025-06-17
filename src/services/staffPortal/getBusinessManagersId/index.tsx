@@ -21,6 +21,7 @@ const getBusinessManagersId = async (
   const data: IBusinessUnitsPortalStaff[] = await getWithRetries<
     IBusinessUnitsPortalStaff[]
   >(axiosInstance, `/positions-staff?${queryParams.toString()}`, config);
+
   return Array.isArray(data) ? mapBusinessManagersIdEntities(data) : [];
 };
 

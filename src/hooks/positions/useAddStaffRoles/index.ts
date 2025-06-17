@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
-import { IRoleForStaff } from "@ptypes/rolesForStaff";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
@@ -11,8 +10,11 @@ import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAssignmentFormEntry";
+import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
 
-const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
+const UseAddStaffRoles = (props: IUseAddStaffRoles ) => {
+
+  const { rolesData } = props;
   const { appData } = useContext(AuthAndData);
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -165,10 +167,10 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
       requestDate: formatDate(new Date()),
       useCaseName: "AddPosition",
       configurationRequestData: {
-        missionName: formValues.generalInformation.values.namePosition,
+        positionName: formValues.generalInformation.values.namePosition,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
-        missionByRole: rolesDataEndpoint,
+        positionByRole: rolesDataEndpoint,
       },
     });
   };

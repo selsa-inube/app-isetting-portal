@@ -7,7 +7,7 @@ import { PositionsUI } from "./interface";
 
 const Positions =() => {
 
-   const { businessUnitSigla, appData } =
+   const { businessUnitSigla } =
     useContext(AuthAndData);
     const {
       isSelected,
@@ -20,6 +20,7 @@ const Positions =() => {
       formik,
       optionsUnits,
       comparisonData,
+      unit,
       handleClickUnits,
       handleCloseModalUnits,
       onToggleInfoModal,
@@ -49,7 +50,7 @@ const Positions =() => {
         comparisonData={comparisonData}
         onChange={handleChange}
         businessUnitSigla={businessUnitSigla}
-        selectedUnit={appData.businessUnit.publicCode}
+        selectedUnit={unit}
       />
     );
   }

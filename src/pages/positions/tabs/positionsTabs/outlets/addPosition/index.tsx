@@ -41,7 +41,7 @@ const AddPosition = () => {
     navigate,
     setShowMultipurposeModal,
     showMultipurposeModal,
-  } = UseAddStaffRoles(rolesStaff);
+  } = UseAddStaffRoles({rolesData:rolesStaff});
 
   const { appData } = useContext(AuthAndData);
   const {

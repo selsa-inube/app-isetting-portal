@@ -17,6 +17,7 @@ const UsePositionsTabs = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModalUnits, setShowModalUnits] = useState(false);
+  const [unit, setUnit] = useState<string>("");
   const [showInfoModal, setShowInfoModal] = useState(false);
   const smallScreenTab = useMediaQuery("(max-width: 450px)");
   const widthFirstColumn = smallScreen ? 60 : 20;
@@ -98,6 +99,7 @@ const UsePositionsTabs = () => {
     const selectJSON = JSON.stringify(dataBusinessUnit);
     setBusinessUnitSigla(selectJSON);
     setShowModalUnits(!showModalUnits);
+    setUnit(dataBusinessUnit?.publicCode || "");
   };
 
   const handleTabChange = (tabId: string) => {
@@ -159,6 +161,7 @@ const UsePositionsTabs = () => {
     handleChange,
     widthFirstColumn,
     comparisonData,
+    unit,
   };
 };
 

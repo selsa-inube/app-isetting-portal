@@ -105,7 +105,9 @@ const PositionsUI = (props: IPositionsUI) => {
                 scroll={smallScreenTab ? true : false}
               />
 
-              {isSelected === positionsTabsConfig.cargos.id && <PositionsTab businessUnitCode={selectedUnit} />}
+              {isSelected === positionsTabsConfig.cargos.id && (
+                <PositionsTab businessUnitCode={selectedUnit} />
+              )}
               {isSelected === positionsTabsConfig.requestsInProgress.id && (
                 <RequestsInProgressTab />
               )}

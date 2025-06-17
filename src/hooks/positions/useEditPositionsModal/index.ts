@@ -5,10 +5,10 @@ const UseEditPositionsModal = (data: IEntry) => {
   const navigate = useNavigate();
 
   const destinationData = {
-    missionId: data.missionId,
-    missionName: data.missionName,
+    positionId: data.positionId,
+    positionName: data.positionName,
     descriptionUse: data.descriptionUse,
-    missionByRole: data.missionByRole,
+    positionByRole: data.positionByRole,
   };
 
   const handleEdit = () => {

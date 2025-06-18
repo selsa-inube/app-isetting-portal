@@ -25,6 +25,8 @@ const FilterFields = (props: IFilterFields) => {
   } = props;
   const isSmallScreen = useMediaQuery("(max-width: 1001px)");
 
+  const disabledButton= selectedOptions.length === options.length
+
   return (
     <>
       <StyledSearchUserCard $smallScreen={isSmallScreen} $isActive={showModal}>
@@ -61,7 +63,7 @@ const FilterFields = (props: IFilterFields) => {
               <Button
                 onClick={handleToggleModal}
                 iconBefore={<MdOutlineFilterAlt />}
-                disabled={selectedOptions.length === options.length}
+                disabled={disabledButton}
               >
                 {filterFieldsLabels.filter}
               </Button>

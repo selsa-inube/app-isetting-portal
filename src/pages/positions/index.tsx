@@ -3,6 +3,7 @@ import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { menuPositionLinks } from "@config/positions/menuInvitation";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { catalogName } from "@config/positions/catalogName/inde";
 import { PositionsUI } from "./interface";
 
 const Positions =() => {
@@ -33,7 +34,7 @@ const Positions =() => {
       <PositionsUI
         isSelected={isSelected ?? positionsTabsConfig.cargos.id}
         handleTabChange={handleTabChange}
-        catalogName="Privilegios"
+        catalogName={catalogName}
         smallScreen={smallScreen}
         smallScreenTab={smallScreenTab}
         showModal={showModal}

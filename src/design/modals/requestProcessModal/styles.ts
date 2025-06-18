@@ -18,9 +18,10 @@ interface IStyledStepIndicator {
 const StyledModal = styled.div<IStyledModal>`
   display: flex;
   flex-direction: column;
+  gap: ${basic.spacing.s200};
   background-color: ${inube.palette.neutral.N0};
   width: ${(props) => (props.$smallScreen ? "335px" : "550px")};
-  height: ${(props) => (props.$smallScreen ? "226px" : "270px")};
+  height: auto;
   border-radius: ${basic.spacing.s100};
   padding: ${(props) =>
     props.$smallScreen ? `${basic.spacing.s150}` : `${basic.spacing.s300}`};

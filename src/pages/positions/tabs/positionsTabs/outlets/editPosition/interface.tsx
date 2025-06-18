@@ -2,7 +2,7 @@ import { Breadcrumbs, Button, Stack, Tabs } from "@inubekit/inubekit";
 import { InitializerForm } from "@design/forms/InitializerForm";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
+import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { Title } from "@design/label/Title";
 import { crumbsEditPosition } from "@config/positions/editPositions/navigation";
 import { RequestProcess } from "@design/feedback/requestProcess";
@@ -11,6 +11,7 @@ import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { IEditPositionsUI } from "@ptypes/positions/actions/IEditPositionsUI";
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
+import { modalsLabels } from "@config/modalsLabels";
 const EditPositionsUI = (props: IEditPositionsUI) => {
   const {
     editPositionTabsConfig,
@@ -84,7 +85,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
           appearance={ComponentAppearance.GRAY}
           disabled={false}
         >
-          Cancelar
+          {modalsLabels.cancel}
         </Button>
 
         <Button
@@ -94,7 +95,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
           loading={loading}
           appearance={ComponentAppearance.PRIMARY}
         >
-          Guardar
+         {modalsLabels.save}
         </Button>
       </Stack>
       {showRequestProcessModal && savePositions && (
@@ -106,6 +107,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
           requestProcessSteps={requestSteps}
           appearance={ComponentAppearance.SUCCESS}
           onCloseRequestStatus={onCloseRequestStatus}
+          onCloseProcess={() => {}}
         />
       )}
 
@@ -119,7 +121,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
           requestNumber={savePositions.requestNumber}
           onClick={onClosePendingReqModal}
           onCloseModal={onClosePendingReqModal}
-          isLoading={false}
+          loading={false}
           actionText={
             requestStatusMessage(savePositions.responsible).actionText
           }

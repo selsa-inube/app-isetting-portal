@@ -2,6 +2,7 @@ import {
   MdGroup,
   MdOutlineBusinessCenter,
   MdOutlineStart,
+  MdSupervisedUserCircle,
 } from "react-icons/md";
 
 const options = [
@@ -43,7 +44,7 @@ const subOptions = [
   },
   {
     publicCode: "Privilegios",
-    publicCodeOption: "Cargos Inube",
+    publicCodeOption: "Cargos de las unidades de negocio",
     icon: <MdGroup />,
     url: "/privileges/positions",
     domain: "catalogs",
@@ -63,8 +64,36 @@ const subOptions = [
 
       {
         path: "/privileges/positions",
-        label: "Cargos Inube",
+        label: "Cargos de las unidades de negocio",
         id: "/positions",
+        isActive: true,
+      },
+    ],
+  },
+   {
+    publicCode: "Privilegios",
+    publicCodeOption: "Cargos de los operadores",
+    icon: <MdSupervisedUserCircle />,
+    url: "/privileges/missions",
+    domain: "catalogs",
+    crumbs: [
+      {
+        path: "/",
+        label: "Inicio",
+        id: "/",
+        isActive: false,
+      },
+      {
+        path: "/privileges",
+        label: "Privilegios",
+        id: "/privileges",
+        isActive: true,
+      },
+
+      {
+        path: "/privileges/missions",
+        label: "Cargos de los operadores",
+        id: "/missions",
         isActive: true,
       },
     ],

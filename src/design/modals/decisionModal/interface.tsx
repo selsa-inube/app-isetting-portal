@@ -8,11 +8,12 @@ import {
   Icon,
   Divider,
 } from "@inubekit/inubekit";
-import { IDecisionModal } from "@ptypes/IDecisionModal";
-import { StyledContainerButton, StyledModal } from "./styles";
+import { IDecisionModalUI } from "@ptypes/IDecisionModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
+import { basic } from "@design/tokens";
+import { StyledContainerButton, StyledModal } from "./styles";
 
-const DecisionModalUI = (props: IDecisionModal) => {
+const DecisionModalUI = (props: IDecisionModalUI) => {
   const {
     actionText,
     appearance,
@@ -22,6 +23,7 @@ const DecisionModalUI = (props: IDecisionModal) => {
     portalId,
     title,
     withIcon,
+    subtitle,
     onClick,
     onCloseModal,
     isMobile,
@@ -69,12 +71,22 @@ const DecisionModalUI = (props: IDecisionModal) => {
             <Icon icon={icon} appearance={appearance} size="60px" />
           </Stack>
         )}
+        {subtitle && (
+          <Text
+            appearance={ComponentAppearance.DARK}
+            type="body"
+            size="large"
+            weight="bold"
+          >
+            {subtitle}
+          </Text>
+        )}
 
         <Text appearance={ComponentAppearance.GRAY} type="body" size="medium">
           {description}
         </Text>
 
-        <Stack gap="s250" justifyContent="flex-end">
+        <Stack gap={basic.spacing.s10} justifyContent="flex-end">
           {showCancelButton && (
             <Button
               spacing="wide"
@@ -102,4 +114,3 @@ const DecisionModalUI = (props: IDecisionModal) => {
 };
 
 export { DecisionModalUI };
-export type { IDecisionModal };

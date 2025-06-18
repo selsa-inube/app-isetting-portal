@@ -3,7 +3,8 @@ import { Meta, StoryFn } from "@storybook/react";
 import { useState } from "react";
 import { Button } from "@inubekit/inubekit";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
-import { IRequestProcess, RequestProcess } from "..";
+import { RequestProcess } from "..";
+import { IRequestProcessContent } from "@ptypes/design/IRequestProcessContent";
 
 const meta: Meta<typeof RequestProcess> = {
   title: "feedback/RequestProcess",
@@ -29,7 +30,7 @@ const InterventionHumanData = {
   requestStatus: "PendingApproval",
 };
 
-const Template: StoryFn<IRequestProcess> = (args) => {
+const Template: StoryFn<IRequestProcessContent> = (args) => {
   const [showModal, setShowModal] = useState(false);
 
   return (

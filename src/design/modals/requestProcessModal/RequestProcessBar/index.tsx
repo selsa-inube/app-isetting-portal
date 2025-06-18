@@ -2,18 +2,33 @@ import { MdCheckCircle } from "react-icons/md";
 import { Icon, ProgressBar, Stack, Text } from "@inubekit/inubekit";
 import { countVerifiedRequests } from "@utils/countVerifiedRequests";
 import { verifiedErrorRequest } from "@utils/verifiedErrorRequest";
-import { lastCompletedIndex } from "@utils/lastCompletedIndex";
 import { basic } from "@design/tokens";
-import { IRequestProcessDesktop } from "@ptypes/requestsInProgress/IRequestProcessDesktop";
 import { ComponentAppearance } from "@ptypes/aparences.types";
+import { IRequestProcess } from "@ptypes/design/IRequestProcess";
 import {
   StyledContainerFields,
   StyledContainerProgressBar,
   StyledStepIndicator,
 } from "../styles";
 
-const RequestProcessDesktop = (props: IRequestProcessDesktop) => {
-  const { requestSteps, sizeIcon, stepCurrent, stepCurrentIndex } = props;
+const RequestProcessBar = (props: IRequestProcess) => {
+  const { requestSteps, percentage, sizeIcon, stepCurrent, stepCurrentIndex } =
+    props;
+
+  const appearance =
+    requestSteps[stepCurrentIndex].status === "error"
+      ? ComponentAppearance.DANGER
+      : ComponentAppearance.SUCCESS;
+
+  const isError = requestSteps[stepCurrentIndex].status === "error";
+
+  const appearanceProgressBar = verifiedErrorRequest(requestSteps)
+    ? ComponentAppearance.DANGER
+    : ComponentAppearance.SUCCESS;
+
+  const numberOfSteps = `${stepCurrent}/${requestSteps.length}`;
+
+  const Showicon = stepCurrent === requestSteps.length;
 
   return (
     <StyledContainerFields>
@@ -24,29 +39,18 @@ const RequestProcessDesktop = (props: IRequestProcessDesktop) => {
         alignItems="center"
       >
         <Stack gap={basic.spacing.s100} alignItems="center" width="100%">
-          {stepCurrent === requestSteps.length ? (
+          {Showicon ? (
             <Icon
               icon={<MdCheckCircle />}
               size={sizeIcon}
-              appearance={
-                requestSteps[lastCompletedIndex(requestSteps)].status ===
-                "error"
-                  ? ComponentAppearance.DANGER
-                  : ComponentAppearance.SUCCESS
-              }
+              appearance={appearance}
             />
           ) : (
-            <StyledStepIndicator
-              $statusError={requestSteps[stepCurrentIndex].status === "error"}
-            >
+            <StyledStepIndicator $statusError={isError}>
               <Text
                 type="label"
                 size="medium"
-                appearance={
-                  requestSteps[stepCurrentIndex].status === "error"
-                    ? ComponentAppearance.DANGER
-                    : ComponentAppearance.SUCCESS
-                }
+                appearance={appearance}
                 weight="bold"
               >
                 {stepCurrent}
@@ -70,28 +74,20 @@ const RequestProcessDesktop = (props: IRequestProcessDesktop) => {
           >
             <ProgressBar
               height="8px"
-              appearance={
-                verifiedErrorRequest(requestSteps)
-                  ? ComponentAppearance.DANGER
-                  : ComponentAppearance.SUCCESS
-              }
+              appearance={appearanceProgressBar}
               progress={countVerifiedRequests(requestSteps)}
             />
           </StyledContainerProgressBar>
-          <Text
-            type="label"
-            size="medium"
-            weight="bold"
-          >{`${stepCurrent}/${requestSteps.length}`}</Text>
+          <Text type="label" size="medium" weight="bold">
+            {numberOfSteps}
+          </Text>
         </Stack>
-        <Text
-          type="label"
-          size="large"
-          appearance={ComponentAppearance.GRAY}
-        >{`${countVerifiedRequests(requestSteps).toFixed()}%`}</Text>
+        <Text type="label" size="large" appearance={ComponentAppearance.GRAY}>
+          {percentage}
+        </Text>
       </Stack>
     </StyledContainerFields>
   );
 };
 
-export { RequestProcessDesktop };
+export { RequestProcessBar };

@@ -1,34 +1,41 @@
 import { createPortal } from "react-dom";
-import { Stack, Text, Blanket, Divider } from "@inubekit/inubekit";
+import { Stack, Text, Blanket, Divider, Button } from "@inubekit/inubekit";
+
 import { lastCompletedIndex } from "@utils/lastCompletedIndex";
+import { requestProcessLabels } from "@config/requestProcessLabels";
+import { percentage } from "@utils/percentage";
+import { percTotalNumber } from "@config/percentageNumber";
+import { StyledModal } from "./styles";
+import { RequestProcessBar } from "./RequestProcessBar";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { IRequestProcessModal } from "@ptypes/requestsInProgress/IRequestProcessModal";
-import { RequestProcessMobile } from "./requestProcessMobile";
-import { StyledModal } from "./styles";
-import { RequestProcessDesktop } from "./requestProcessDesktop";
+import { IRequestProcessModal } from "@ptypes/IRequestProcessModal";
 
 const RequestProcessModal = (props: IRequestProcessModal) => {
   const {
     portalId,
-    appearance,
     sizeIcon = "28px",
     requestSteps,
     isMobile,
     description,
     title,
+    onClose,
   } = props;
 
   const node = document.getElementById(portalId);
 
   if (!node) {
     throw new Error(
-      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
+      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly.",
     );
   }
 
   const stepCurrentIndex = lastCompletedIndex(requestSteps);
   const stepCurrent = stepCurrentIndex + 1;
+
+  const percentageNumber = Number(percentage(requestSteps).split("%")[0]);
+
+  const showButton = percentageNumber === percTotalNumber;
 
   return createPortal(
     <Blanket>
@@ -48,24 +55,29 @@ const RequestProcessModal = (props: IRequestProcessModal) => {
               {description}
             </Text>
           </Stack>
-          {isMobile ? (
-            <RequestProcessMobile
-              requestSteps={requestSteps}
-              sizeIcon={sizeIcon}
-              appearance={appearance}
-            />
-          ) : (
-            <RequestProcessDesktop
-              requestSteps={requestSteps}
-              sizeIcon={sizeIcon}
-              stepCurrent={stepCurrent}
-              stepCurrentIndex={stepCurrentIndex}
-            />
-          )}
+
+          <RequestProcessBar
+            requestSteps={requestSteps}
+            sizeIcon={sizeIcon}
+            stepCurrent={stepCurrent}
+            stepCurrentIndex={stepCurrentIndex}
+            percentage={percentage(requestSteps)}
+          />
         </Stack>
+        {showButton && (
+          <Stack justifyContent="end">
+            <Button
+              spacing="wide"
+              appearance={ComponentAppearance.SUCCESS}
+              onClick={onClose}
+            >
+              {requestProcessLabels.labelButton}
+            </Button>
+          </Stack>
+        )}
       </StyledModal>
     </Blanket>,
-    node
+    node,
   );
 };
 

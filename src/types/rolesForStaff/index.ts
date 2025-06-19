@@ -17,5 +17,6 @@ interface IRoleForStaff {
   descriptionUse?: string;
   application?: IAplication;
   useCasesByStaffRoles?: IUseCasesByStaffRoles[];
+  id?: string | number;
 }
 export type { IRoleForStaff };

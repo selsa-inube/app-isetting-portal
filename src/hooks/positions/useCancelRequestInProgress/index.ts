@@ -4,7 +4,7 @@ import { IEntry } from "@ptypes/table/IEntry";
 import { ICancelReqInProcRequest } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
 import { cancelRequestInProgMessage } from "@config/positionsTabs/requestProcessMessage/cancelRequestInProgMessage";
 import { cancelRequestInProgress } from "@services/positions/cancelRequestInProgress";
-import { eventBus } from "src/events/eventBus";
+import { eventBus } from "@events/eventBus";
 
 const useCancelRequestInProgress = (
   businessUnit: string,

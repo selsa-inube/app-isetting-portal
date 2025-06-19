@@ -24,6 +24,8 @@ export default defineConfig({
       "@routes": path.resolve(__dirname, "./src/routes"),
       "@types": path.resolve(__dirname, "./src/types"),
       "@enum": path.resolve(__dirname, "./src/enum"),
+      "@events": path.resolve(__dirname, "./src/events"),
+
     },
   },
 });

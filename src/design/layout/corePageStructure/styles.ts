@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { basic } from "@design/tokens";
 interface IStyledCollapseIcon {
   $collapse: boolean;
   $isTablet: boolean;
@@ -28,18 +26,10 @@ const StyledMain = styled.main<IStyledMain>`
   box-sizing: border-box;
   height: calc(100vh - 54px);
   overflow-y: auto;
-  padding: ${({ $isMobile }) => $isMobile && `${basic.spacing.s300}`};
 `;
 
 const StyledHeaderContainer = styled.div`
   position: relative;
-`;
-const StyledContentImg = styled(Link)`
-  width: 100px;
-`;
-
-const StyledLogo = styled.img`
-  max-width: 100px;
 `;
 
 const StyledCollapseIcon = styled.div<IStyledCollapseIcon>`
@@ -52,18 +42,10 @@ const StyledCollapseIcon = styled.div<IStyledCollapseIcon>`
   left: ${({ $isTablet }) => ($isTablet ? "150px" : "142px")};
 `;
 
-const StyledCollapse = styled.div`
-  position: absolute;
-  margin-top: 55px;
-`;
-
 export {
   StyledAppPage,
   StyledContainer,
   StyledHeaderContainer,
-  StyledContentImg,
-  StyledLogo,
   StyledMain,
   StyledCollapseIcon,
-  StyledCollapse,
 };

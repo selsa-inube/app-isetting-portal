@@ -43,7 +43,7 @@ const subOptions = [
   },
   {
     publicCode: "Privilegios",
-    publicCodeOption: "Cargos Inube",
+    publicCodeOption: "Cargos de las unidades de negocio",
     icon: <MdGroup />,
     url: "/privileges/positions",
     domain: "catalogs",

@@ -14,6 +14,7 @@ interface IUsers {
   missionName: string;
   userAccount: string;
   staffByBusinessUnitAndRole: IStaffByBusinessUnitAndRole[];
+  id?: string | number;
 }
 
 export type { IUsers };

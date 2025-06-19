@@ -9,8 +9,9 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { UseFetchAplicaionStaff } from "@hooks/positions/useAplication";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
-import { AddStaffRolesUI } from "./interface";
 import { postionsButtonText } from "@config/positions/assisted/buttonText";
+import { AddPositionUI } from "./interface";
+
 const AddPosition = () => {
   const { rolesStaff } = UseFetchRolesStaff();
   const {
@@ -40,7 +41,7 @@ const AddPosition = () => {
     navigate,
     setShowMultipurposeModal,
     showMultipurposeModal,
-  } = UseAddStaffRoles(rolesStaff);
+  } = UseAddStaffRoles({rolesData:rolesStaff});
 
   const { appData } = useContext(AuthAndData);
   const {
@@ -73,7 +74,7 @@ const AddPosition = () => {
   );
 
   return (
-    <AddStaffRolesUI
+    <AddPositionUI
       navigate={navigate}
       savePositions={savePositions as ISaveDataResponse}
       showModalApplicationStatus={showModalApplicationStatus}
@@ -85,7 +86,7 @@ const AddPosition = () => {
       currentStep={currentStep}
       setCurrentStep={setCurrentStep}
       generalInformationRef={generalInformationRef}
-      initialGeneralInformationValues={formValues.generalInformation.values}
+      initialValues={formValues}
       isCurrentFormValid={isCurrentFormValid}
       onNextStep={handleNextStep}
       onPreviousStep={handlePreviousStep}

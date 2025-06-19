@@ -2,23 +2,11 @@ import { useState, useEffect } from "react";
 import { Text, Tag } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { SelectCheck } from "@design/select";
-import { IOptionItemChecked } from "@design/select/OptionItem";
 import { UseMultipleChoices } from "@hooks/design/useMultipleChoices";
 import { StyledContainer, StyledSelection } from "./styles";
+import { IMultipleChoices } from "@ptypes/design/IMultipleChoices";
 
-interface IIMultipleChoices {
-  id: string;
-  labelSelect: string;
-  labelSelected: string;
-  onHandleSelectCheckChange: (options: IOptionItemChecked[]) => void;
-  options: IOptionItemChecked[];
-  placeholderSelect?: string;
-  required?: boolean;
-  message?: string;
-  onBlur?: () => void;
-}
-
-const MultipleChoices = (props: IIMultipleChoices) => {
+const MultipleChoices = (props: IMultipleChoices) => {
   const {
     id,
     labelSelect,
@@ -66,7 +54,7 @@ const MultipleChoices = (props: IIMultipleChoices) => {
                     key={option.id}
                     appearance="primary"
                     label={option.label}
-                    weight="strong"
+                    displayIcon={false}
                     removable
                     onClose={() => onRemoveTag(option.id)}
                   />
@@ -94,4 +82,3 @@ const MultipleChoices = (props: IIMultipleChoices) => {
 };
 
 export { MultipleChoices };
-export type { IIMultipleChoices };

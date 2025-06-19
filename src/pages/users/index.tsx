@@ -3,7 +3,7 @@ import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
 
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { UseManageUsersSearchAndPageControl } from "@hooks/users/useManageSearchAndPageControl";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 import { AuthAndData } from "@context/authAndDataProvider";
 
 import { UsersUI } from "./interface";
@@ -15,11 +15,10 @@ const Users = () => {
     handleTabChange,
     smallScreen,
     smallScreenTab,
-    data,
     showMenu,
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
-    widthFirstColumn,
+    columnWidths,
   } = UsePositionsTabs();
 
   const { searchPosition, handleSearchPositions, loading, requestsInProgress } =
@@ -37,9 +36,8 @@ const Users = () => {
       loading={loading}
       handleToggleMenuInvitation={handleToggleMenuInvitation}
       handleCloseMenuInvitation={handleCloseMenuInvitation}
-      data={data as IEntry}
-      entries={requestsInProgress as unknown as IEntry[]}
-      widthFirstColumn={widthFirstColumn}
+      entries={requestsInProgress as IEntry[]}
+      columnWidths={columnWidths}
     />
   );
 };

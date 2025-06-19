@@ -1,27 +1,15 @@
 import { PrivilegeOptionsConfig } from "@config/positions/tabs";
-import { ActionRenderer } from "@design/table/actionRenderer";
-import { IBusinessUnitsPortalStaffId } from "@ptypes/staffBusinessManagersId";
 
-interface IPositions {
+import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPortalStaff";
+interface IPositionsTabUI {
   handleSearchPositions: (e: React.ChangeEvent<HTMLInputElement>) => void;
   searchPosition: string;
-  data: IBusinessUnitsPortalStaffId[];
+  data: IBusinessUnitsPortalStaff[];
   loading: boolean;
   smallScreen: boolean;
+  columnWidths: number[];
   label: (typeof PrivilegeOptionsConfig)[number] | undefined;
-  ShowAction: ReturnType<typeof ActionRenderer>["ShowAction"];
-  handleToggleMenuInvitation: () => void;
-  ShowActionTitle: ReturnType<typeof ActionRenderer>["ShowActionTitle"];
-  filteredData: IBusinessUnitsPortalStaffId[];
-  handleStartPage: () => void;
-  showMenu: boolean;
-  handlePrevPage: () => void;
-  handleNextPage: () => void;
-  handleEndPage: () => void;
-  handleCloseMenuInvitation: () => void;
-  firstEntryInPage: number;
-  lastEntryInPage: number;
-  paginatedData: IBusinessUnitsPortalStaffId[];
+  setEntryDeleted: (id: string | number) => void;
 }
 
-export type { IPositions };
+export type { IPositionsTabUI };

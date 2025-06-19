@@ -1,4 +1,4 @@
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 interface IRequestsInProgressTabUI {
   entries: IEntry[];
@@ -6,7 +6,7 @@ interface IRequestsInProgressTabUI {
   searchrequestProgress: string;
   setEntryDeleted: (value: string | number) => void;
   onSearchrequestProgress: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  widthFirstColumn: number;
+  columnWidths: number[];
   smallScreen: boolean;
 }
 

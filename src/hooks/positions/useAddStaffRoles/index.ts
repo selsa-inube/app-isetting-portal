@@ -1,22 +1,37 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
-import { IRoleForStaff } from "@ptypes/rolesForStaff";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
-import { initalValuesPositions } from "@ptypes/positions/initialValues";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
-
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAssignmentFormEntry";
+import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
+import { saveDataLabels } from "@config/positions/assisted/saveDataLabels";
 
-const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
+const UseAddStaffRoles = (props: IUseAddStaffRoles ) => {
+
+  const { rolesData } = props;
   const { appData } = useContext(AuthAndData);
   const [currentStep, setCurrentStep] = useState(1);
+
+  const initalValuesPositions = {
+    generalInformation: {
+      namePosition: "",
+      descriptionPosition: "",
+    },
+    rolesStaff: {
+      values: [],
+    },
+    applicationStaff: {
+      values: [],
+    },
+  };
+
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [showMultipurposeModal, setShowMultipurposeModal] = useState(false);
@@ -31,11 +46,11 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
     },
     rolesStaff: {
       isValid: false,
-      values: [],
+      values: initalValuesPositions.rolesStaff.values,
     },
     applicationStaff: {
       isValid: false,
-      values: [],
+      values: initalValuesPositions.applicationStaff.values,
     },
   });
 
@@ -148,15 +163,15 @@ const UseAddStaffRoles = (rolesData: IRoleForStaff[] | undefined) => {
       applicationName: "istaff",
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
-      description: "Solicitud de agregar un cargo",
-      entityName: "Mission",
+      description:saveDataLabels.description,
+      entityName: "Position",
       requestDate: formatDate(new Date()),
-      useCaseName: "AddMission",
+      useCaseName: "AddPosition",
       configurationRequestData: {
-        missionName: formValues.generalInformation.values.namePosition,
+        positionName: formValues.generalInformation.values.namePosition,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
-        missionByRole: rolesDataEndpoint,
+        positionByRole: rolesDataEndpoint,
       },
     });
   };

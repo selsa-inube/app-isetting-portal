@@ -1,8 +1,10 @@
 import { SkeletonLine, Td, Tr } from "@inubekit/inubekit";
-import { ITitle } from "@ptypes/table/ITitle";
+
+import { IDataLoading } from "@ptypes/design/IDataLoading";
 import { ActionsLoading } from "../actionsLoading";
 
-const DataLoading = (titleColumns: ITitle[], numberActions: number) => {
+const DataLoading = (props: IDataLoading) => {
+  const { titleColumns, numberActions } = props;
   const rowsLoading = [];
   for (let rows = 0; rows < 4; rows++) {
     rowsLoading.push(
@@ -12,11 +14,11 @@ const DataLoading = (titleColumns: ITitle[], numberActions: number) => {
             <SkeletonLine animated />
           </Td>
         ))}
-        {ActionsLoading(numberActions)}
-      </Tr>
+        <ActionsLoading numberActions={numberActions} />
+      </Tr>,
     );
   }
   return rowsLoading;
 };
 
-export { DataLoading };
+export { DataLoading };  

@@ -1,5 +1,23 @@
-import { IStyledFlex } from "@ptypes/modals/borderStack/IStyledFlex";
 import styled from "styled-components";
+
+interface IStyledFlex {
+  $justifyContent?: string;
+  $alignItems?: string;
+  $alignContent?: string;
+  $direction?: string;
+  $wrap?: string;
+  $height?: string;
+  $width?: string;
+  $gap?: string;
+  $margin?: string;
+  $padding?: string;
+  $background?: string;
+  $border?: string;
+  $borderRadius?: string;
+  $boxSizing?: string;
+  $boxShadow?: string;
+  $overflowY?: string;
+}
 
 const StyledBorderFlex = styled.div<IStyledFlex>`
   display: flex;
@@ -13,7 +31,7 @@ const StyledBorderFlex = styled.div<IStyledFlex>`
   gap: ${({ $gap }) => $gap};
   margin: ${({ $margin }) => $margin};
   padding: ${({ $padding }) => $padding};
-  background: ${({ $background }) => $background};
+  background: ${({ $background, theme }) => $background  ?? theme.palette.neutral.N0};
   border: ${({ $border }) => `1px solid ${$border}`};
   border-radius: ${({ $borderRadius }) => $borderRadius};
   box-sizing: ${({ $boxSizing }) => $boxSizing};

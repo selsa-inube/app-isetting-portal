@@ -13,13 +13,13 @@ const crumbsEditPosition = [
   },
   {
     path: "/privileges/positions",
-    label: "Cargos Inube",
+    label: "Cargos de las unidades de negocio",
     id: "positions",
     isActive: false,
   },
   {
     path: "/positions/add-position",
-    label: "Seleccion de roles",
+    label: "Editar cargo",
     id: "status",
     isActive: true,
   },

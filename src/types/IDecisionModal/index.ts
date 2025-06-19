@@ -24,6 +24,7 @@ interface IDecisionModal {
   showCancelButton?: boolean;
   withCancelButton: boolean;
   cancelButton: string;
+  subtitle?: string;
   withButton: string;
 }
 

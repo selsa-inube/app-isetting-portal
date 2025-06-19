@@ -1,27 +1,19 @@
-import { Stack } from "@inubekit/inubekit";
-import { UseTable } from "@hooks/generic/useTable";
-import { IEntry } from "@ptypes/table/IEntry";
-import { IAction } from "@ptypes/table/IAction";
-import { IBreakpoint } from "@ptypes/table/IBreakpoint";
-import { ITitle } from "@ptypes/table/ITitle";
-import { UseApplicationsInProcess } from "@hooks/positions/useApplicationsInProcess";
+import { Stack, useMediaQueries, useMediaQuery } from "@inubekit/inubekit";
+
+import { useMemo, useState } from "react";
+import { filterEntries } from "@utils/table/filterEntries";
+import { nextPage } from "@utils/table/pagination/nextPage";
+import { prevPage } from "@utils/table/pagination/prevPage";
+import { getPagination } from "@utils/table/pagination/getPagination";
+import { goToFirstPage } from "@utils/table/pagination/goToFirstPage";
+import { goToEndPage } from "@utils/table/pagination/goToEndPage";
+import { getPageEntries } from "@utils/table/pagination/getPageEntries";
+import { useTitleColumns } from "@hooks/titleColumns";
+import { findCurrentMediaQuery } from "@utils/table/findCurrentMediaQuery";
+import { ITable } from "@ptypes/design/table/ITable";
 import { TableUI } from "./interface";
 import { StyledContainerTable } from "./styles";
-
-interface ITable {
-  entries: IEntry[];
-  id: string;
-  isLoading: boolean;
-  titles: ITitle[];
-  actions: IAction[];
-  breakpoints: IBreakpoint[];
-  filter?: string;
-  infoTitle?: string;
-  mobileTitle?: string;
-  pageLength?: number;
-  widthPercentageTotalColumns?: number;
-  columnWidths?: number[];
-}
+import { useGetQueriesArray } from "@hooks/useGetQueriesArray";
 
 const Table = (props: ITable) => {
   const {
@@ -30,28 +22,42 @@ const Table = (props: ITable) => {
     actions,
     entries,
     filter = "",
-    isLoading,
+    loading,
     mobileTitle,
+    pageLength = 10,
     breakpoints,
+    tableLayout = "fixed",
     widthPercentageTotalColumns,
     columnWidths,
+    emptyDataMessage,
+    withActionsTitles,
+    ellipsisCell = true,
+    withActionMobile = true,
+    withGeneralizedTitle = false,
   } = props;
 
-  const pageLength = UseApplicationsInProcess();
-  const {
-    mediaActionOpen,
-    numberActions,
-    TitleColumns,
-    lastEntryInPage,
-    filteredEntries,
-    firstEntryInPage,
-    screenTablet,
-    getPageEntries,
-    goToFirstPage,
-    goToEndPage,
-    nextPage,
-    prevPage,
-  } = UseTable(entries, pageLength, titles, breakpoints, actions, filter);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const mediaQueries = useMediaQueries(useGetQueriesArray(breakpoints));
+  const mediaActionOpen = useMediaQuery("(max-width: 1200px)");
+  const screenTablet = useMediaQuery("(max-width: 1200px)");
+
+  const media = useMediaQueries(useGetQueriesArray(breakpoints) || []);
+
+  const filteredEntries = useMemo(
+    () => filterEntries(entries, filter, titles),
+    [entries, filter, titles],
+  );
+
+  const { totalPages, firstEntry, lastEntry } = getPagination(
+    currentPage,
+    pageLength,
+    filteredEntries.length,
+  );
+
+  const numberActions = actions ? actions.length : 1;
+
+  const findCurrentMedia = findCurrentMediaQuery(media);
 
   return (
     <StyledContainerTable
@@ -64,22 +70,34 @@ const Table = (props: ITable) => {
         <TableUI
           titles={titles}
           actions={actions}
-          entries={getPageEntries()}
-          isLoading={isLoading}
+          entriesLength={entries.length}
+          entries={getPageEntries(filteredEntries, firstEntry, lastEntry)}
+          loading={loading}
           mediaActionOpen={mediaActionOpen}
           numberActions={numberActions}
-          TitleColumns={TitleColumns}
+          TitleColumns={useTitleColumns(
+            titles,
+            breakpoints,
+            mediaQueries,
+            findCurrentMedia,
+          )}
           mobileTitle={mobileTitle}
           pageLength={pageLength}
-          firstEntryInPage={firstEntryInPage}
-          lastEntryInPage={lastEntryInPage}
-          goToFirstPage={goToFirstPage}
-          prevPage={prevPage}
-          nextPage={nextPage}
-          goToEndPage={goToEndPage}
+          firstEntryInPage={firstEntry}
+          lastEntryInPage={lastEntry}
+          goToFirstPage={() => goToFirstPage(setCurrentPage)}
+          prevPage={() => prevPage(currentPage, setCurrentPage)}
+          nextPage={() => nextPage(currentPage, totalPages, setCurrentPage)}
+          goToEndPage={() => goToEndPage(setCurrentPage, totalPages)}
           filteredEntries={filteredEntries}
           widthPercentageTotalColumns={widthPercentageTotalColumns}
           columnWidths={columnWidths}
+          emptyDataMessage={emptyDataMessage}
+          withActionsTitles={withActionsTitles}
+          tableLayout={tableLayout}
+          ellipsisCell={ellipsisCell}
+          withActionMobile={withActionMobile}
+          withGeneralizedTitle={withGeneralizedTitle}
         />
       </Stack>
     </StyledContainerTable>
@@ -87,4 +105,3 @@ const Table = (props: ITable) => {
 };
 
 export { Table };
-export type { ITable };

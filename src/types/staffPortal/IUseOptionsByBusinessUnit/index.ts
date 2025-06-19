@@ -1,7 +1,6 @@
 interface IUseOptionsByBusinessUnit {
-  businessUnit: string;
-  staffPortalId: string;
-  optionName?: string;
+  publicCode: string;
+  userAccount: string;
 }
 
 export type { IUseOptionsByBusinessUnit };

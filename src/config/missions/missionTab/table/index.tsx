@@ -8,9 +8,9 @@ import { DetailsModal } from "@pages/missions/tools/detailsModal";
 const titlesOptions = [
   {
     id: "missionName",
-    titleName: "Cargos",
+    titleName: "Cargos de los operadores",
     action: false,
-    priority: 1,
+    priority: 0,
   },
 ];
 

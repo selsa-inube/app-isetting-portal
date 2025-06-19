@@ -25,7 +25,7 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
-  } = UseDeletePositions(data, appData);
+  } = UseDeletePositions({data, appData});
 
   const {
     savePositions,

@@ -9,7 +9,6 @@ import { ComponentAppearance } from "@ptypes/aparences.types";
 import { Table } from "@design/table";
 import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
 import { missionsTabLabels } from "@config/missions/missionTab/missionsTabLabels";
-import { IEntry } from "@ptypes/table/IEntry";
 import { StyledButtonWrapper } from "./styles";
 
 const MissionsTabUI = (props: IMissionsTabUI) => {
@@ -89,11 +88,11 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
           <Table
             id="portal"
             titles={titlesOptions}
-            entries={data as IEntry[]}
+            entries={data ?? []}
             actions={actionsConfig(setEntryDeleted)}
             breakpoints={breakPoints}
             filter={searchMission}
-            isLoading={loading}
+            loading={loading}
             columnWidths={[75]}
           />
         </Stack>

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef } from "react";
-import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
+import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
@@ -40,6 +40,10 @@ const UseHome = () => {
 
   const Username = appData.user.userName.split(" ")[0];
 
+  const hasData = optionsCards && optionsCards?.length > 0
+
+  const multipleBusinessUnits = businessUnitsToTheStaff.length > 1
+
   return {
     Collapse,
     SetCollapse,
@@ -54,6 +58,8 @@ const UseHome = () => {
     HandleLogoClick,
     optionsCards,
     loading,
+    hasData,
+    multipleBusinessUnits
   };
 };
 

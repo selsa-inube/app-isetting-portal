@@ -12,16 +12,17 @@ import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationForm } from "@design/forms/verificationForm";
-import { createPositionConfig } from "@config/positions/addPositions/assisted";
 import { FinishModal } from "@config/positions/verificationForm";
-import { GeneralInformationForm } from "../../forms/generalInformationForm";
 import { postionsButtonText } from "@config/positions/assisted/buttonText";
+import { crumbsAddPosition } from "@config/positions/addPositions/navigation";
+import { addPositionTitle } from "@config/positions/addPositions/addPositionTitle";
+import { GeneralInformationForm } from "../../forms/generalInformationForm";
 
-const AddStaffRolesUI = (props: IAddPositionUI) => {
+const AddPositionUI = (props: IAddPositionUI) => {
   const {
     currentStep,
     generalInformationRef,
-    initialGeneralInformationValues,
+    initialValues,
     steps,
     setSelectedToggle,
     options,
@@ -61,10 +62,10 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
     >
       <Stack gap={basic.spacing.s300} direction="column">
         <Stack gap={basic.spacing.s300} direction="column">
-          <Breadcrumbs crumbs={createPositionConfig[0].crumbs} />
+          <Breadcrumbs crumbs={crumbsAddPosition} />
           <PageTitle
-            title={createPositionConfig[0].title}
-            description={createPositionConfig[0].description}
+            title={addPositionTitle.title}
+            description={addPositionTitle.description}
             navigatePage="/privileges/positions"
           />
         </Stack>
@@ -87,7 +88,7 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
             {currentStep === 1 && (
               <GeneralInformationForm
                 ref={generalInformationRef}
-                initialValues={initialGeneralInformationValues}
+                initialValues={initialValues.generalInformation.values}
                 onFormValid={setIsCurrentFormValid}
                 handleNextStep={onNextStep}
               />
@@ -104,7 +105,7 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
                 updatedData={{
                   generalInformation: {
                     isValid: true,
-                    values: initialGeneralInformationValues,
+                    values: formValues.generalInformation.values,
                   },
                   rolesStaff: {
                     isValid: true,
@@ -206,4 +207,4 @@ const AddStaffRolesUI = (props: IAddPositionUI) => {
   );
 };
 
-export { AddStaffRolesUI };
+export { AddPositionUI };

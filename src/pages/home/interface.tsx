@@ -3,14 +3,12 @@ import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
 import { Header, Icon, Text } from "@inubekit/inubekit";
 import { Title } from "@design/label/Title";
 import { InteractiveBox } from "@design/cards/interactiveBox";
-import { BusinessUnitChange } from "@design/inputs/BusinessUnitChange";
 import { renderLogo } from "@design/layout/renderLogo/logoUtils";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { IHome } from "@ptypes/home/IHome";
 import { userMenu } from "@config/menuMainConfiguration";
 import { mainNavigation } from "@config/nav";
 import {
-  StyledCollapse,
   StyledCollapseIcon,
   StyledContainer,
   StyledContainerCards,
@@ -20,22 +18,24 @@ import {
   StyledLogo,
   StyledTitle,
 } from "./styles";
+import { homeLabel } from "@config/homeLabel";
+
 const HomeUI = (props: IHome) => {
   const {
     data,
     loading,
     collapse,
     setCollapse,
-    selectedClient,
-    businessUnitsToTheStaff,
-    handleLogoClick,
     collapseMenuRef,
-    businessUnitChangeRef,
     isTablet,
     smallScreen,
     username,
+    hasData,
+    multipleBusinessUnits
   } = props;
+
   const { appData } = useContext(AuthAndData);
+  
   return (
     <>
       <StyledContainer>
@@ -49,7 +49,7 @@ const HomeUI = (props: IHome) => {
             }}
             menu={userMenu}
           />
-          {businessUnitsToTheStaff.length > 1 && (
+          { multipleBusinessUnits && (
             <>
               <StyledCollapseIcon
                 $collapse={collapse}
@@ -64,15 +64,6 @@ const HomeUI = (props: IHome) => {
                   cursorHover
                 />
               </StyledCollapseIcon>
-              {collapse && (
-                <StyledCollapse ref={businessUnitChangeRef}>
-                  <BusinessUnitChange
-                    businessUnits={businessUnitsToTheStaff}
-                    onLogoClick={handleLogoClick}
-                    selectedClient={selectedClient}
-                  />
-                </StyledCollapse>
-              )}
             </>
           )}
         </StyledHeaderContainer>
@@ -93,7 +84,7 @@ const HomeUI = (props: IHome) => {
               </>
             ) : (
               <>
-                {data && data?.length > 0 ? (
+                { hasData ? (
                   data?.map((card) => (
                     <InteractiveBox
                       key={card.id}
@@ -106,7 +97,7 @@ const HomeUI = (props: IHome) => {
                   ))
                 ) : (
                   <Text type="body" size="medium">
-                    No se encontró información
+                    {homeLabel.noInfo}
                   </Text>
                 )}{" "}
               </>

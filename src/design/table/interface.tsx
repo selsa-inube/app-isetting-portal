@@ -1,4 +1,5 @@
 import {
+  Text,
   Colgroup,
   Pagination,
   Table,
@@ -8,44 +9,24 @@ import {
   Th,
   Thead,
   Tr,
-  Text,
 } from "@inubekit/inubekit";
-import { ITitle } from "@ptypes/table/ITitle";
-import { IEntry } from "@ptypes/table/IEntry";
-import { IAction } from "@ptypes/table/IAction";
+import { getAlignment } from "@utils/getAlignment/index.";
+import { ITableUI } from "@ptypes/design/table/ITableUI";
+import { tableLabels } from "@config/tableLabels";
 import { WidthColmnsData } from "./widthColumns";
 import { ShowActionTitle } from "./showActionTitle";
 import { ShowAction } from "./showAction";
 import { DataLoading } from "./dataLoading";
-
-interface ITableUI {
-  actions: IAction[];
-  entries: IEntry[];
-  filteredEntries: IEntry[];
-  firstEntryInPage: number;
-  isLoading: boolean;
-  lastEntryInPage: number;
-  pageLength: number;
-  titles: ITitle[];
-  mobileTitle?: string;
-  widthPercentageTotalColumns?: number;
-  columnWidths?: number[];
-  goToEndPage: () => void;
-  goToFirstPage: () => void;
-  nextPage: () => void;
-  prevPage: () => void;
-  mediaActionOpen: boolean;
-  numberActions: number;
-  TitleColumns: ITitle[];
-}
+import { ComponentAppearance } from "@ptypes/aparences.types";
 
 const TableUI = (props: ITableUI) => {
   const {
     actions,
     entries,
+    entriesLength,
     filteredEntries,
     firstEntryInPage,
-    isLoading,
+    loading,
     lastEntryInPage,
     pageLength,
     titles,
@@ -54,6 +35,12 @@ const TableUI = (props: ITableUI) => {
     mediaActionOpen,
     numberActions,
     TitleColumns,
+    emptyDataMessage,
+    withActionsTitles,
+    tableLayout,
+    ellipsisCell,
+    withActionMobile,
+    withGeneralizedTitle,
     goToEndPage,
     goToFirstPage,
     nextPage,
@@ -61,13 +48,13 @@ const TableUI = (props: ITableUI) => {
   } = props;
 
   return (
-    <Table tableLayout={mediaActionOpen ? "auto" : "fixed"}>
+    <Table tableLayout={tableLayout}>
       <Colgroup>
-        {WidthColmnsData(
-          TitleColumns,
+        {WidthColmnsData({
+          titleColumns: TitleColumns,
           widthPercentageTotalColumns,
-          columnWidths
-        )}
+          columnWidths,
+        })}
       </Colgroup>
 
       <Thead>
@@ -77,43 +64,74 @@ const TableUI = (props: ITableUI) => {
               {title.titleName}
             </Th>
           ))}
-          {ShowActionTitle(numberActions, mediaActionOpen)}
+          {ShowActionTitle({
+            numberActions,
+            mediaQuery: mediaActionOpen,
+            actionTitle: actions,
+            title: withActionsTitles,
+            withGeneralizedTitle,
+          })}
         </Tr>
       </Thead>
       <Tbody>
-        {isLoading ? (
-          DataLoading(TitleColumns, numberActions)
+        {loading ? (
+          DataLoading({ titleColumns: TitleColumns, numberActions })
         ) : (
           <>
-            {entries.length > 0 ? (
-              entries.map((entry, index) => (
-                <Tr key={index} zebra={index % 2 === 1}>
-                  {TitleColumns.map((title) => (
-                    <Td
-                      key={`e-${entry[title.id]}`}
-                      align={entry.action ? "left" : "left"}
-                      type="custom"
-                    >
-                      {typeof entry[title.id] !== "string" ? (
-                        entry[title.id]
-                      ) : (
-                        <Text type="body" size="small" ellipsis>
-                          {entry[title.id]}
-                        </Text>
-                      )}
-                    </Td>
-                  ))}
-                  {ShowAction(actions, entry, mediaActionOpen)}
-                </Tr>
-              ))
-            ) : (
+            {entriesLength === 0 ? (
               <Tr>
                 <Td type="custom" colSpan={titles.length + actions.length}>
-                  <Text type="body" size="small" appearance="dark" ellipsis>
-                    No se encontró información
+                  <Text
+                    type="label"
+                    size={mediaActionOpen ? "medium" : "large"}
+                    appearance={ComponentAppearance.DARK}
+                    ellipsis
+                  >
+                    {emptyDataMessage
+                      ? `${emptyDataMessage}`
+                      : tableLabels.emptyData}
                   </Text>
                 </Td>
               </Tr>
+            ) : (
+              <>
+                {entries.length > 0 ? (
+                  entries.map((entry, index) => (
+                    <Tr key={index} zebra={index % 2 === 1}>
+                      {TitleColumns.map((title, index) => (
+                        <Td
+                          key={`${index}-${entry[title.id]}`}
+                          align={getAlignment(title.id, entry[title.id])}
+                          type="custom"
+                        >
+                          <Text size="small" ellipsis={ellipsisCell}>
+                            {entry[title.id]}
+                          </Text>
+                        </Td>
+                      ))}
+                      {ShowAction({
+                        actionContent: actions,
+                        entry,
+                        mediaQuery: mediaActionOpen,
+                        withActionMobile,
+                      })}
+                    </Tr>
+                  ))
+                ) : (
+                  <Tr>
+                    <Td type="custom" colSpan={titles.length + actions.length}>
+                      <Text
+                        type="label"
+                        size="large"
+                        appearance={ComponentAppearance.DARK}
+                        ellipsis
+                      >
+                        {tableLabels.emptySearch}
+                      </Text>
+                    </Td>
+                  </Tr>
+                )}
+              </>
             )}
           </>
         )}

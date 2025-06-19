@@ -1,20 +1,18 @@
-import { StyledNoResults } from "@design/select/SelectbusinessUnit/styles";
-import { Text } from "@inubekit/inubekit";
-
-interface INoResultsMessage {
-  search: string;
-}
+import { Stack, Text } from "@inubekit/inubekit";
+import { noResultLabels } from "@config/noResultLabels";
+import { basic } from "@design/tokens";
+import { INoResultsMessage } from "@ptypes/design/INoResultsMessage";
 
 const NoResultsMessage = ({ search }: INoResultsMessage) => {
   return (
-    <StyledNoResults>
+    <Stack margin={`${basic.spacing.s12} ${basic.spacing.s0}`}>
       <Text size="medium">
-        No se encontraron resultados para &quot;{search}&quot;.
+        {noResultLabels(search).noData}
       </Text>
       <Text size="medium">
-        Por favor, intenta modificando los parámetros de búsqueda.
+        {noResultLabels().tryAgainLater}
       </Text>
-    </StyledNoResults>
+    </Stack>
   );
 };
 

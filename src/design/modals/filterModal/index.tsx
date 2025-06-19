@@ -4,7 +4,6 @@ import {
   Stack,
   Text,
   Icon,
-  IIconAppearance,
   Divider,
   useMediaQuery,
   Blanket,
@@ -14,29 +13,13 @@ import {
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { enviroment } from "@config/environment";
-import { IOptionItemChecked } from "@design/select/OptionItem";
 import { MultipleChoices } from "@design/navigation/MultipleChoices";
+import { IFilterModal } from "@ptypes/design/IFilterModal";
 import {
   StyledContainerButton,
   StyledFilterdUserCard,
   StyledModal,
 } from "./styles";
-
-interface IFilterModal {
-  actionText: string;
-  appearance: IIconAppearance;
-  isLoading: boolean;
-  portalId: string;
-  title: string;
-  options: IOptionItemChecked[];
-  selectedOptions: IOptionItemChecked[];
-  onClick: () => void;
-  onCloseModal: () => void;
-  onSelectChange: (options: IOptionItemChecked[]) => void;
-  setSelectedOptions: React.Dispatch<
-    React.SetStateAction<IOptionItemChecked[]>
-  >;
-}
 
 const FilterModal = (props: IFilterModal) => {
   const {
@@ -109,7 +92,7 @@ const FilterModal = (props: IFilterModal) => {
                   key={option.id}
                   appearance="primary"
                   label={option.label}
-                  weight="normal"
+                  displayIcon={false}
                   removable
                   onClose={() =>
                     setSelectedOptions(

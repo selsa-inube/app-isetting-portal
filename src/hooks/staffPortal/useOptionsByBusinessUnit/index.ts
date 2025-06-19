@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { IOption } from "@inubekit/inubekit";
 import { IUseOptionsByBusinessUnit } from "@ptypes/staffPortal/IUseOptionsByBusinessUnit";
 import { getBusinessUnitsPortalStaff } from "@services/staffPortal/getBusinessUnitsPortalStaff";
-import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
-
+import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 
 const useOptionsByBusinessUnit = (props: IUseOptionsByBusinessUnit) => {
   const { publicCode, userAccount } = props;

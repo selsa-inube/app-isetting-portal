@@ -1,16 +1,9 @@
 import { MdClear } from "react-icons/md";
-import { IEntry } from "@ptypes/table/IEntry";
-import { Stack, Grid } from "@inubekit/inubekit";
-import { basic } from "@design/tokens";
-import { IActionsTable } from "@ptypes/positions/table/IActionsTable";
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
-import { StyledModal, StyledContentActions } from "./styles";
+import { Grid, Stack } from "@inubekit/inubekit";
 
-interface IActionsModal {
-  actions: IActionsTable[];
-  entry: IFormEntry | IEntry;
-  onClose: () => void;
-}
+import { basic } from "@design/tokens";
+import { IActionsModal } from "@ptypes/design/IActionsModal";
+import { StyledModal, StyledContentActions } from "./styles";
 
 const ActionsModal = (props: IActionsModal) => {
   const { actions, entry, onClose } = props;
@@ -29,9 +22,7 @@ const ActionsModal = (props: IActionsModal) => {
               key={index}
               onClick={(e) => e.stopPropagation()}
             >
-              <div onClick={(e) => e.stopPropagation()}>
-                {action.content(entry)}
-              </div>
+              {action.content(entry)}
             </StyledContentActions>
           ))}
         </Stack>
@@ -41,5 +32,5 @@ const ActionsModal = (props: IActionsModal) => {
   );
 };
 
-export { ActionsModal };
 export type { IActionsModal };
+export { ActionsModal };

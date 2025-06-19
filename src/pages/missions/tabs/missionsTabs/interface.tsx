@@ -1,11 +1,9 @@
 import { MdPersonAddAlt } from "react-icons/md";
 import { basic } from "@design/tokens";
 import { Button, Searchfield, Stack, Text } from "@inubekit/inubekit";
-import {
-  actionsConfig,
-  titlesOptions,
-  breakPoints,
-} from "@config/missions/missionTab/table";
+import { actionsConfig } from "@config/missions/missionTab/table/actionsConfig";
+import { breakPoints } from "@config/missions/missionTab/table/breakPoints";
+import { titlesOptions } from "@config/missions/missionTab/table/titlesoptions";
 import { tabLabels } from "@config/tabLabels";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { Table } from "@design/table";
@@ -17,7 +15,7 @@ import { StyledButtonWrapper } from "./styles";
 const MissionsTabUI = (props: IMissionsTabUI) => {
   const {
     handleSearchMissions,
-    searchMission, 
+    searchMission,
     loading,
     data,
     smallScreen,
@@ -26,10 +24,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
 
   return (
     <Stack direction="column" width="-webkit-fill-available">
-      <Stack
-        direction="column"
-        gap={basic.spacing.s150}
-      >
+      <Stack direction="column" gap={basic.spacing.s150}>
         {smallScreen && (
           <Stack>
             <Text
@@ -98,7 +93,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
             actions={actionsConfig(setEntryDeleted)}
             breakpoints={breakPoints}
             filter={searchMission}
-           isLoading={loading}
+            isLoading={loading}
             columnWidths={[75]}
           />
         </Stack>

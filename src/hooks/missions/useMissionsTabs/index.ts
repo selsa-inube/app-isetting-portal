@@ -6,7 +6,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { missionsTabsConfig } from "@config/missions/tabs";
 
 const UseMissionsTabs = () => {
-  const [isSelected, setIsSelected] = useState<string>();
+  const [isSelected, setIsSelected] = useState<string>(missionsTabsConfig.roles.id);
   const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);
   const smallScreen = useMediaQuery("(max-width: 990px)");
   const [showMenu, setShowMenu] = useState(false);

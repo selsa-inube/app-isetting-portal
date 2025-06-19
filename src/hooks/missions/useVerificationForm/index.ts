@@ -2,6 +2,7 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { assistedSteps } from "@config/missions/missionTab/assisted/assistedSteps";
 import { verificationLabels } from "@config/missions/missionTab/assisted/verification";
 import { IUseVerification } from "@ptypes/missions/IUseVerification";
+import { basic } from "@design/tokens";
 
 const useVerification = (props: IUseVerification) => {
   const {
@@ -22,7 +23,7 @@ const useVerification = (props: IUseVerification) => {
   const steps = assistedSteps.filter((step) => 
  step.name.toLowerCase() !== verificationLabels.verification)
       
-
+const gapStack = isTablet ? basic.spacing.s150 : basic.spacing.s200
 
   return {
     steps,
@@ -30,6 +31,7 @@ const useVerification = (props: IUseVerification) => {
     isMobile,
     canShowRequestProcess,
     canShowPendingRequest,
+    gapStack,
   };
 };
 

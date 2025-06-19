@@ -8,6 +8,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
 import { IFormAddMission } from "@ptypes/missions/assisted/IFormAddMission";
 import { IGeneralInformationEntry } from "@ptypes/missions/assisted/IGeneralInformationEntry";
+import { saveDataLabels } from "@config/missions/missionTab/assisted/saveDataLabels";
 
 const useAddMission = () => {
   const initialValues = {
@@ -76,7 +77,7 @@ const useAddMission = () => {
       applicationName: "istaff",
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
-      description: "Solicitud de agregar un cargo de operador",
+      description: saveDataLabels.description,
       entityName: "Mission",
       requestDate: formatDate(new Date()),
       useCaseName: "AddMission",

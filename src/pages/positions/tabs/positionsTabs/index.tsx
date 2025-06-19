@@ -18,6 +18,7 @@ const PositionsTab = (props: IPositionTab) => {
     smallScreen,
     label,
     searchPosition,
+    columnWidths,
     setEntryDeleted,
     handleSearchPositions,
   } = UseManageSearchAndPageControl();
@@ -31,6 +32,7 @@ const PositionsTab = (props: IPositionTab) => {
       smallScreen={smallScreen}
       label={label}
       setEntryDeleted={setEntryDeleted}
+      columnWidths={columnWidths} 
     />
   );
 };

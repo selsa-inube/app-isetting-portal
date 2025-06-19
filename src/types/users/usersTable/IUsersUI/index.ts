@@ -12,7 +12,7 @@ interface IUsersUI {
   handleToggleMenuInvitation: () => void;
   handleCloseMenuInvitation: () => void;
   entries: IEntry[];
-  widthFirstColumn: number;
+  columnWidths: number[];
   catalogName?: string;
 }
 

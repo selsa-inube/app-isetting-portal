@@ -28,7 +28,7 @@ const UsersUI = (props: IUsersUI) => {
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
     loading,
-    widthFirstColumn,
+    columnWidths,
   } = props;
 
   return (
@@ -102,7 +102,7 @@ const UsersUI = (props: IUsersUI) => {
         breakpoints={breakPoints}
         filter={(() => "")()}
         loading={loading}
-        columnWidths={[widthFirstColumn, 55, 23]}
+        columnWidths={columnWidths}
       />
     </Stack>
   );

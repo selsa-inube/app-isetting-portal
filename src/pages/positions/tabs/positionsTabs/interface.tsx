@@ -21,6 +21,7 @@ const PositionsTabUI = (props: IPositionsTabUI) => {
     loading,
     data,
     smallScreen,
+    columnWidths, 
     setEntryDeleted,
   } = props;
 
@@ -99,7 +100,7 @@ const PositionsTabUI = (props: IPositionsTabUI) => {
             breakpoints={breakPoints}
             filter={searchPosition}
             loading={loading}
-            columnWidths={[75]}
+            columnWidths={columnWidths}
           />
         </Stack>
       </Stack>

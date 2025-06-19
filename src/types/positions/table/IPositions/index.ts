@@ -7,6 +7,7 @@ interface IPositionsTabUI {
   data: IBusinessUnitsPortalStaff[];
   loading: boolean;
   smallScreen: boolean;
+  columnWidths: number[];
   label: (typeof PrivilegeOptionsConfig)[number] | undefined;
   setEntryDeleted: (id: string | number) => void;
 }

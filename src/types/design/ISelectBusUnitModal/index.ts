@@ -12,6 +12,7 @@ interface ISelectBusUnitModal {
   labelCloseButton: string;
   labelCloseModal: string;
   comparisonData: boolean;
+  placeholder: string;
   onChange: (name: string, value: string) => void;
   onClick: () => void;
   onCloseModal: () => void;

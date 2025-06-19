@@ -12,7 +12,7 @@ const RequestsInProgressTab = () => {
     loading,
     handleSearchRequestsInProgress,
     setEntryDeleted,
-    widthFirstColumn,
+    columnWidths,
     smallScreen,
   } = UseRequestsInProgress(appData.businessUnit.publicCode);
 
@@ -23,7 +23,7 @@ const RequestsInProgressTab = () => {
       searchrequestProgress={searchRequestsInProgress}
       onSearchrequestProgress={handleSearchRequestsInProgress}
       setEntryDeleted={setEntryDeleted}
-      widthFirstColumn={widthFirstColumn}
+      columnWidths={columnWidths}
       smallScreen={smallScreen}
     />
   );

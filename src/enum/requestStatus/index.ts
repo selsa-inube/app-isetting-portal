@@ -1,4 +1,4 @@
-enum RequestStatus {
+enum ERequestStatus {
   RequestProcessed = "Solicitud procesada",
   RequestCanceled = "Solicitud cancelada",
   RequestProcessedWithError = "Solicitud procesada con error",
@@ -9,4 +9,4 @@ enum RequestStatus {
   RejectedRequest = "Solicitud rechazada",
 }
 
-export { RequestStatus };
+export { ERequestStatus };

@@ -19,7 +19,7 @@ const crumbsEditPosition = [
   },
   {
     path: "/positions/add-position",
-    label: "Seleccion de roles",
+    label: "Editar cargo",
     id: "status",
     isActive: true,
   },

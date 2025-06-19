@@ -1,6 +1,6 @@
 import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
 import { formatDateTable } from "@utils/formatDateTable";
-import { RequestStatus } from "@enum/requestStatus";
+import { ERequestStatus } from "@enum/requestStatus";
 
 const mapRequestsInProgressToEntity = (
   data: IRequestsInProgress
@@ -19,7 +19,7 @@ const mapRequestsInProgressToEntity = (
     requestDate: formatDateTable(new Date(String(data.requestDate))),
     requestNumber: String(data.requestNumber),
     requestStatus:
-      RequestStatus[data.requestStatus as keyof typeof RequestStatus],
+      ERequestStatus[data.requestStatus as keyof typeof ERequestStatus],
     settingRequestId: String(data.settingRequestId),
     useCaseName: String(data.useCaseName),
     userManagingConfigurationRequests: Object(

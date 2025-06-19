@@ -11,6 +11,7 @@ import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInf
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAssignmentFormEntry";
 import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
+import { saveDataLabels } from "@config/positions/assisted/saveDataLabels";
 
 const UseAddStaffRoles = (props: IUseAddStaffRoles ) => {
 
@@ -162,7 +163,7 @@ const UseAddStaffRoles = (props: IUseAddStaffRoles ) => {
       applicationName: "istaff",
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
-      description: "Solicitud de agregar un cargo de unidades de negocio",
+      description:saveDataLabels.description,
       entityName: "Position",
       requestDate: formatDate(new Date()),
       useCaseName: "AddPosition",

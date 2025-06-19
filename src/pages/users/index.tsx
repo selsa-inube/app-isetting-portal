@@ -18,7 +18,7 @@ const Users = () => {
     showMenu,
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
-    widthFirstColumn,
+    columnWidths,
   } = UsePositionsTabs();
 
   const { searchPosition, handleSearchPositions, loading, requestsInProgress } =
@@ -37,7 +37,7 @@ const Users = () => {
       handleToggleMenuInvitation={handleToggleMenuInvitation}
       handleCloseMenuInvitation={handleCloseMenuInvitation}
       entries={requestsInProgress as IEntry[]}
-      widthFirstColumn={widthFirstColumn}
+      columnWidths={columnWidths}
     />
   );
 };

@@ -3,6 +3,7 @@ const selectBusUnitsLabels = {
     labelActionButton: "Confirmar",
     labelCloseButton: "Cerrar",
     labelCloseModal: "Cerrar",
+     placeholder:"Seleccione una opción"
 }
 
 export { selectBusUnitsLabels };

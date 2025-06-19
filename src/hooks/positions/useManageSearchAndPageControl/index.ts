@@ -26,12 +26,15 @@ const UseManageSearchAndPageControl = () => {
     setSearchPosition(e.target.value);
   };
 
+  const columnWidths = [75]
+
   return {
     searchPosition,
     smallScreen,
     label,
     businessManagersData,
     entryDeleted,
+    columnWidths,
     setEntryDeleted,
     handleSearchPositions,
   };

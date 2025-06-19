@@ -1,6 +1,5 @@
 import { Stack, Breadcrumbs, Tabs, Grid } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { PageTitle } from "@design/label/PageTitle";
 import { IPositionsUI } from "@ptypes/positions/tabs/IPositionsUI";
 import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
@@ -30,6 +29,9 @@ const PositionsUI = (props: IPositionsUI) => {
     comparisonData,
     selectedUnit,
     businessUnitSigla,
+    positionTab, 
+    showPositionsTab,
+    showReqInProgTab,
     onChange,
     onClickUnits,
     onCloseModalUnits,
@@ -48,6 +50,7 @@ const PositionsUI = (props: IPositionsUI) => {
           labelCloseButton={selectBusUnitsLabels.labelCloseButton}
           labelCloseModal={selectBusUnitsLabels.labelCloseModal}
           description={selectBusUnitsLabels.description}
+          placeholder={selectBusUnitsLabels.placeholder}
           smallScreen={smallScreen}
           comparisonData={comparisonData}
           onChange={onChange}
@@ -99,16 +102,16 @@ const PositionsUI = (props: IPositionsUI) => {
             </Stack>
             <Stack gap={basic.spacing.s300} direction="column">
               <Tabs
-                tabs={Object.values(positionsTabsConfig)}
+                tabs={positionTab}
                 selectedTab={isSelected}
                 onChange={handleTabChange}
-                scroll={smallScreenTab ? true : false}
+                scroll={smallScreenTab}
               />
 
-              {isSelected === positionsTabsConfig.cargos.id && (
+              {showPositionsTab && (
                 <PositionsTab businessUnitCode={selectedUnit} />
               )}
-              {isSelected === positionsTabsConfig.requestsInProgress.id && (
+              { showReqInProgTab && (
                 <RequestsInProgressTab />
               )}
             </Stack>

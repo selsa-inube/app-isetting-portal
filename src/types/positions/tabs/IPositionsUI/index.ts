@@ -1,5 +1,5 @@
 import { FormikProps } from "formik";
-import { IOption } from "@inubekit/inubekit";
+import { IOption, ITab } from "@inubekit/inubekit";
 import { IMenuOptions } from "@ptypes/design/IMenuOptions";
 import { ISelectBusUnitEntry } from "@ptypes/positions/tabs/ISelectBusUnitEntry";
 
@@ -14,6 +14,9 @@ interface IPositionsUI {
   selectedUnit: string;
   businessUnitSigla: string;
   comparisonData: boolean;
+  positionTab:  ITab[];
+  showPositionsTab: boolean;
+  showReqInProgTab: boolean;
   onToggleInfoModal: () => void;
   onCloseMenu: () => void;
   onToggleModal: () => void;

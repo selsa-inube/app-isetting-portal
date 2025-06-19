@@ -22,6 +22,9 @@ const Positions =() => {
       optionsUnits,
       comparisonData,
       unit,
+      positionTab,
+      showPositionsTab,
+      showReqInProgTab,
       handleClickUnits,
       handleCloseModalUnits,
       onToggleInfoModal,
@@ -52,6 +55,9 @@ const Positions =() => {
         onChange={handleChange}
         businessUnitSigla={businessUnitSigla}
         selectedUnit={unit}
+        positionTab={positionTab}
+        showPositionsTab={showPositionsTab}
+        showReqInProgTab={showReqInProgTab}
       />
     );
   }

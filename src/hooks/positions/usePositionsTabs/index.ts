@@ -11,7 +11,9 @@ import { useOptionsByBusinessUnit } from "@hooks/staffPortal/useOptionsByBusines
 import { AuthAndData } from "@context/authAndDataProvider";
 
 const UsePositionsTabs = () => {
-  const [isSelected, setIsSelected] = useState<string>();
+  const [isSelected, setIsSelected] = useState<string>(
+    positionsTabsConfig.cargos.id
+  );
   const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);
   const smallScreen = useMediaQuery("(max-width: 990px)");
   const [showMenu, setShowMenu] = useState(false);
@@ -22,13 +24,11 @@ const UsePositionsTabs = () => {
   const smallScreenTab = useMediaQuery("(max-width: 450px)");
   const widthFirstColumn = smallScreen ? 60 : 20;
 
-  const { appData, setBusinessUnitSigla } =
-    useContext(AuthAndData);
+  const { appData, setBusinessUnitSigla } = useContext(AuthAndData);
 
-    useEffect(() => {
+  useEffect(() => {
     setBusinessUnitSigla("");
-  }
-  , []);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -138,6 +138,15 @@ const UsePositionsTabs = () => {
     }
   }, [isSelected]);
 
+  const positionTab = Object.values(positionsTabsConfig);
+
+  const showPositionsTab = isSelected === positionsTabsConfig.cargos.id;
+
+  const showReqInProgTab =
+    isSelected === positionsTabsConfig.requestsInProgress.id;
+
+  const columnWidths = [widthFirstColumn, 55, 23];
+
   return {
     isSelected,
     handleTabChange,
@@ -151,6 +160,9 @@ const UsePositionsTabs = () => {
     optionsUnits,
     optionsBusinessUnit,
     loading,
+    positionTab,
+    showPositionsTab,
+    showReqInProgTab,
     handleClickUnits,
     handleCloseModalUnits,
     onToggleInfoModal,
@@ -159,7 +171,7 @@ const UsePositionsTabs = () => {
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
     handleChange,
-    widthFirstColumn,
+    columnWidths,
     comparisonData,
     unit,
   };

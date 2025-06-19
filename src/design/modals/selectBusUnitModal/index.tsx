@@ -5,7 +5,6 @@ import {
   Button,
   Divider,
   Icon,
-  inube,
   Select,
   Stack,
 } from "@inubekit/inubekit";
@@ -26,10 +25,13 @@ const SelectBusUnitModal = (props: ISelectBusUnitModal) => {
     labelActionButton,
     labelCloseButton,
     comparisonData,
+    placeholder,
     onChange,
     onClick,
     onCloseModal,
   } = props;
+
+  const disabledButton = formik.values.businessUnits === "" || comparisonData
 
   const node = document.getElementById(portalId);
 
@@ -47,7 +49,6 @@ const SelectBusUnitModal = (props: ISelectBusUnitModal) => {
         direction="column"
         padding={basic.spacing.s300}
         gap={basic.spacing.s300}
-        background={inube.palette.neutral.N0}
         borderRadius={basic.spacing.s100}
         boxSizing="border-box"
       >
@@ -81,7 +82,7 @@ const SelectBusUnitModal = (props: ISelectBusUnitModal) => {
             id="businessUnits"
             name="businessUnits"
             label={description}
-            placeholder="Seleccione una opción"
+            placeholder={placeholder}
             onChange={onChange}
             onBlur={formik.handleBlur}
             options={options}
@@ -108,7 +109,7 @@ const SelectBusUnitModal = (props: ISelectBusUnitModal) => {
             appearance={ComponentAppearance.PRIMARY}
             variant="filled"
             onClick={onClick}
-            disabled={formik.values.businessUnits === "" || comparisonData}
+            disabled={disabledButton}
           >
             {labelActionButton}
           </Button>

@@ -1,17 +1,14 @@
 import { ICardData } from "../ICardData";
-import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortalBusiness.types";
 interface IHome {
   data: ICardData[];
   collapse: boolean;
   setCollapse: (value: boolean) => void;
-  selectedClient: string;
-  businessUnitsToTheStaff: IBusinessUnitsPortalStaff[];
-  handleLogoClick: (businessUnit: IBusinessUnitsPortalStaff) => void;
   collapseMenuRef: React.RefObject<HTMLDivElement>;
-  businessUnitChangeRef: React.RefObject<HTMLDivElement>;
+  hasData: boolean;
   isTablet: boolean;
   smallScreen: boolean;
   username: string;
+  multipleBusinessUnits: boolean;
   loading?: boolean;
 }
 

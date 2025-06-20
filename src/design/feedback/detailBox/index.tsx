@@ -1,20 +1,7 @@
 import { BorderStack } from "@design/modals/borderStack";
 import { Stack, Tag, Text } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { IEntry } from "@ptypes/table/IEntry";
-
-interface IDetailBox {
-  field: { id: string; titleName: string };
-  data: IEntry;
-  id: number;
-  width: string;
-  backgroundColor: string;
-  borderRadius?: string;
-  padding?: string;
-  borderColor?: string;
-  withTag?: boolean;
-  ellipsis?: boolean;
-}
+import { IDetailBox } from "@ptypes/design/IDetailBox";
 
 const DetailBox = (props: IDetailBox) => {
   const {
@@ -49,7 +36,7 @@ const DetailBox = (props: IDetailBox) => {
           <Tag
             appearance={ComponentAppearance.GRAY}
             label={data[field.id]}
-            weight="strong"
+            displayIcon={false}
           />
         </Stack>
       ) : (

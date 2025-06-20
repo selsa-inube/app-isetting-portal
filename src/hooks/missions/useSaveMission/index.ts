@@ -6,11 +6,11 @@ import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { statusCloseModal } from "@config/status/statusCloseModal";
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
-import { RequestStepsStatus } from "@enum/requestStepsStatus";
+import { ERequestStepsStatus } from "@enum/requestStepsStatus";
 import { requestStepsInitial } from "@config/requestSteps";
 import { operationTypes } from "@config/useCase";
 import { requestStepsNames } from "@config/requestStepsNames";
-import { UseCase } from "@enum/useCase";
+import { EUseCase } from "@enum/useCase";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { IUseSaveMission } from "@ptypes/hooks/missions/IUseSaveMission";
 import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
@@ -76,7 +76,7 @@ const useSaveMission = (props: IUseSaveMission) => {
   const updateRequestSteps = (
     steps: IRequestSteps[],
     stepName: string,
-    newStatus: "pending" | "completed" | "error"
+    newStatus: ERequestStepsStatus,
   ): IRequestSteps[] => {
     return steps.map((step) => {
       if (step.name === stepName) {
@@ -106,8 +106,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.requestFiled,
-            RequestStepsStatus.ERROR
-          )
+            ERequestStepsStatus.ERROR,
+          ),
         );
         setSendData(false);
       } else {
@@ -115,8 +115,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.requestFiled,
-            RequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
       }
     }, 1000);
@@ -126,8 +126,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            RequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
       }
 
@@ -136,15 +136,15 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            RequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
             requestStepsNames.requestAdded,
-            RequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
       }
 
@@ -153,8 +153,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            RequestStepsStatus.ERROR
-          )
+           ERequestStepsStatus.ERROR,
+          ),
         );
       }
     }, 2000);
@@ -197,7 +197,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     if (isStatusCloseModal() || isStatusRequestFinished()) {
       handleStatusChange();
     }
-    if (useCase !== UseCase.DELETE) {
+    if (useCase !== EUseCase.DELETE) {
       setTimeout(() => {
         navigate(navigatePage);
       }, 3000);

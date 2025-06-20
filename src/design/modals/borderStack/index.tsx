@@ -1,14 +1,6 @@
-import { IStack } from "@inubekit/inubekit";
+import { IBorderStack } from "@ptypes/design/IBorderStack";
 import { StyledBorderFlex } from "./styles";
 
-interface IBorderStack extends IStack {
-  background?: string;
-  border?: string;
-  borderRadius?: string;
-  boxSizing?: string;
-  boxShadow?: string;
-  overflowY?: string;
-}
 const BorderStack = (props: IBorderStack) => {
   const {
     children,
@@ -54,4 +46,3 @@ const BorderStack = (props: IBorderStack) => {
   );
 };
 export { BorderStack };
-export type { IStack };

@@ -30,7 +30,7 @@ const EditPositions = () => {
     setShowModal,
     setSelectedToggle,
     roles,
-  } = UseEditPositions(data, appData, rolesStaff);
+  } = UseEditPositions({data, appData, rolesData: rolesStaff});
 
   const {
     savePositions,

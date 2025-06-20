@@ -45,6 +45,8 @@ const UseRequestsInProgress = (bussinesUnits: string) => {
     setSearchRequestsInProgress(e.target.value);
   };
 
+  const columnWidths=[widthFirstColumn, 55, 23]
+
   return {
     requestsInProgress,
     hasError,
@@ -53,7 +55,7 @@ const UseRequestsInProgress = (bussinesUnits: string) => {
     handleSearchRequestsInProgress,
     setEntryDeleted,
     smallScreen,
-    widthFirstColumn,
+    columnWidths,
   };
 };
 

@@ -3,27 +3,19 @@ import { FormikProps } from "formik";
 
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { formatDate } from "@utils/date/formatDate";
-import { IAppData } from "@ptypes/authAndPortalDataProvider/IAppData";
 import { editPositionTabsConfig } from "@config/positions/editPositions/tabs";
 
-import { IRoleForStaff } from "@ptypes/rolesForStaff";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
+import { IUseEditPositions } from "@ptypes/hooks/IUseEditPositions";
 
-const UseEditPositions = (
-  data: {
-    missionId: string;
-    missionName: string;
-    descriptionUse: string;
-    missionByRole: IRoleForStaff[];
-  },
-  appData: IAppData,
-  rolesData: IRoleForStaff[] | undefined
-) => {
+const UseEditPositions = (props: IUseEditPositions) => {
+  const { data, appData, rolesData } = props;
+
   const normalizeGeneralData = {
-    missionId: data.missionId,
-    namePosition: data.missionName,
+    positionId: data.positionId,
+    namePosition: data.positionName,
     descriptionPosition: data.descriptionUse,
   };
 
@@ -111,8 +103,8 @@ const UseEditPositions = (
 
       const rolesInitial = roles?.map((role) => {
         const active =
-          Array.isArray(data.missionByRole) &&
-          data.missionByRole.find((app) => app.roleName === role.value);
+          Array.isArray(data.positionByRole) &&
+          data.positionByRole.find((app) => app.roleName === role.value);
 
         return {
           ...role,
@@ -137,17 +129,17 @@ const UseEditPositions = (
 
   const onSubmit = () => {
     const configurationRequestData: {
-      missionId: string;
+      positionId: string;
       abbreviatedName?: string;
       descriptionUse?: string;
     } = {
-      missionId: data.missionId,
+      positionId: data.positionId,
     };
 
     if (
       generalInformationRef.current?.values.namePosition !== undefined &&
       (generalInformationRef.current?.values.namePosition !==
-        data.missionName ||
+        data.positionName ||
         generalInformationRef.current?.values.descriptionPosition !==
           data.descriptionUse)
     ) {
@@ -167,11 +159,11 @@ const UseEditPositions = (
       useCaseName: "ModifyMission",
 
       configurationRequestData: {
-        missionId: data.missionId,
-        missionName: formValues.generalInformation.values.namePosition,
+        positionId: data.positionId,
+        positionName: formValues.generalInformation.values.namePosition,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
-        missionByRole: rolesDataEndpoint,
+        positionByRole: rolesDataEndpoint,
       },
     });
     setShowRequestProcessModal(true);

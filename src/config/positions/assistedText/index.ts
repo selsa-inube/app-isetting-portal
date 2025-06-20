@@ -5,6 +5,8 @@ const labels: Record<string, string> = {
   placeholderPosition: "Agregue una breve descripción",
   creationDate: "Rol:",
   modificationDate: "Ninguna rol fue activado",
+  businessUnit: "Unidad de Negocio",
+  placeholderselectBusUnit: "Seleccione una de la lista",
 };
 
 export { labels };

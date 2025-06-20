@@ -9,10 +9,10 @@ import { IPosition } from "@ptypes/positions/assisted/IPosition";
 
 const titlesOptions = [
   {
-    id: "missionName",
-    titleName: "Cargos",
+    id: "positionName",
+    titleName: "Cargos de la Unidad de Negocio",
     action: false,
-    priority: 1,
+    priority: 0,
   },
 ];
 
@@ -25,7 +25,7 @@ const positionsBreakPointsConfig = [
 
 const labelsOptions = [
   {
-    id: "missionId",
+    id: "positionId",
     labelName: "Código",
     type: "table",
   },
@@ -63,9 +63,16 @@ const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
   return actions;
 };
 
+const breakPoints = [
+  { breakpoint: "(min-width: 745px)", totalColumns: 2 },
+  { breakpoint: "(max-width: 744px)", totalColumns: 1 },
+];
+
+
 export {
   actionsConfig,
   labelsOptions,
   titlesOptions,
   positionsBreakPointsConfig,
+  breakPoints
 };

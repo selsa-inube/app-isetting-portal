@@ -35,7 +35,8 @@
       "@ptypes/*": ["./src/types/*"],
       "@api/*": ["./src/api/*"],
       "@forms/*": ["./src/shared/forms/*"],
-      "@enum/*": ["./src/enum/*"]
+      "@enum/*": ["./src/enum/*"],
+      "@events/*": ["./src/events/*"]
     },
     "types": ["vite/client", "rollup"]
   },

@@ -15,7 +15,7 @@ interface IRequestsInProgress {
   settingRequestId: string;
   useCaseName: string;
   userManagingConfigurationRequests: IUserManagingConfigRequests[];
-  id?: string;
+  id?: string | number;
 }
 
 export type { IRequestsInProgress };

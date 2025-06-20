@@ -7,7 +7,7 @@ interface IMisionData {
   businessManagerCode: string;
   businessManagerName: string;
   MissionByRole: IMissionByRole[];
-  id?: string | number; 
+  id: string | number; 
  
 }
 

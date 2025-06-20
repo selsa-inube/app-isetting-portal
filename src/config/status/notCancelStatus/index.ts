@@ -1,11 +1,11 @@
-import { RequestStatus } from "@enum/requestStatus";
+import { ERequestStatus } from "@enum/requestStatus";
 
 const notCancelStatus = [
-  RequestStatus.RequestCanceled,
-  RequestStatus.RequestProcessedWithError,
-  RequestStatus.RejectedRequest,
-  RequestStatus.RequestProcessed,
-  RequestStatus.ProcessingRequest,
+  ERequestStatus.RequestCanceled,
+  ERequestStatus.RequestProcessedWithError,
+  ERequestStatus.RejectedRequest,
+  ERequestStatus.RequestProcessed,
+  ERequestStatus.ProcessingRequest,
 ];
 
 export { notCancelStatus };

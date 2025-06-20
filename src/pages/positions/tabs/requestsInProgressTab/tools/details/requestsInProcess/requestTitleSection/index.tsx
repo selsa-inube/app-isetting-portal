@@ -1,8 +1,8 @@
 import { Divider, Stack, Text } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { RequestMission } from "src/enum/requestMission";
 import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
 import { IRequestTitleSection } from "@ptypes/requestsInProgress/IRequestTitleSection";
+import { ERequestMission } from "@enum/requestMission";
 
 const RequestTitleSection = (props: IRequestTitleSection) => {
   const { requestType } = props;
@@ -15,7 +15,7 @@ const RequestTitleSection = (props: IRequestTitleSection) => {
         appearance={ComponentAppearance.GRAY}
       >
         {`${detailsRequestInProgressModal.labelRequest} ${
-          RequestMission[requestType as keyof typeof RequestMission] ??
+          ERequestMission[requestType as keyof typeof ERequestMission] ??
           requestType
         }`}
       </Text>

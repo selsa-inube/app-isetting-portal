@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useSaveMission } from "@hooks/missions/useSaveMission";
-import { UseCase } from "@enum/useCase";
+import { EUseCase } from "@enum/useCase";
 import { UseEditMission } from "@hooks/missions/useEditMission";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { editMissionTabsConfig } from "@config/missions/missionTab/edit/tabs";
@@ -44,7 +44,7 @@ const EditMission = () => {
     handleCloseProcess,
     showPendingReqModal,
   } = useSaveMission({
-    useCase: UseCase.EDIT,
+    useCase: EUseCase.EDIT,
     bussinesUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,

@@ -1,23 +1,20 @@
 import { MdPersonAddAlt } from "react-icons/md";
 import { basic } from "@design/tokens";
 import { Button, Searchfield, Stack, Text } from "@inubekit/inubekit";
-import {
-  actionsConfig,
-  titlesOptions,
-  breakPoints,
-} from "@config/missions/missionTab/table";
+import { actionsConfig } from "@config/missions/missionTab/table/actionsConfig";
+import { breakPoints } from "@config/missions/missionTab/table/breakPoints";
+import { titlesOptions } from "@config/missions/missionTab/table/titlesoptions";
 import { tabLabels } from "@config/tabLabels";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { Table } from "@design/table";
 import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
 import { missionsTabLabels } from "@config/missions/missionTab/missionsTabLabels";
-import { IEntry } from "@ptypes/table/IEntry";
 import { StyledButtonWrapper } from "./styles";
 
 const MissionsTabUI = (props: IMissionsTabUI) => {
   const {
     handleSearchMissions,
-    searchMission, 
+    searchMission,
     loading,
     data,
     smallScreen,
@@ -26,10 +23,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
 
   return (
     <Stack direction="column" width="-webkit-fill-available">
-      <Stack
-        direction="column"
-        gap={basic.spacing.s150}
-      >
+      <Stack direction="column" gap={basic.spacing.s150}>
         {smallScreen && (
           <Stack>
             <Text
@@ -94,11 +88,11 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
           <Table
             id="portal"
             titles={titlesOptions}
-            entries={data as IEntry[]}
+            entries={data ?? []}
             actions={actionsConfig(setEntryDeleted)}
             breakpoints={breakPoints}
             filter={searchMission}
-           isLoading={loading}
+            loading={loading}
             columnWidths={[75]}
           />
         </Stack>

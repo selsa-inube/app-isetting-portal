@@ -36,7 +36,7 @@ const VerificationForm = (props: IVerificationForm) => {
 
   const {
     steps,
-    isTablet,
+    gapStack,
     isMobile,
     canShowRequestProcess,
     canShowPendingRequest,
@@ -54,7 +54,7 @@ const VerificationForm = (props: IVerificationForm) => {
             direction="column"
             width="100%"
             alignItems="flex-end"
-            gap={isTablet ? basic.spacing.s150 : basic.spacing.s200}
+            gap={gapStack}
           >
             <VerificationBoxes
               updatedData={updatedData}

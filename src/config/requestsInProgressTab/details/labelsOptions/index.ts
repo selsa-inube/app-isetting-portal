@@ -1,6 +1,6 @@
 const labelsOptions = [
   {
-    id: "missionName",
+    id: "positionName",
     labelName: "Código",
     type: "text",
   },

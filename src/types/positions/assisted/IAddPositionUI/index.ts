@@ -7,11 +7,10 @@ import { IFormAddPosition } from "../IFormAddPosition";
 import { IOptionInitialiceEntry } from "../IOptionInitialiceEntry";
 import { IOptionInitialiceEntryApp } from "../IOptionInitialiceEntryApp";
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
-
 interface IAddPositionUI {
   currentStep: number;
   generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry>>;
-  initialGeneralInformationValues: IGeneralInformationEntry;
+  initialValues: IFormAddPosition;
   isCurrentFormValid: boolean;
   steps: IAssistedStep[];
   onNextStep: () => void;

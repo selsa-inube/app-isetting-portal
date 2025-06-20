@@ -6,7 +6,7 @@ import { useAddMission } from "@hooks/missions/useAddMission";
 import { assistedSteps } from "@config/missions/missionTab/assisted/assistedSteps";
 import { AddMissionUI } from "./interface";
 import { useSaveMission } from "@hooks/missions/useSaveMission";
-import { UseCase } from "@enum/useCase";
+import { EUseCase } from "@enum/useCase";
 
 const AddMission = () => {
 
@@ -42,7 +42,7 @@ const AddMission = () => {
     handleClosePendingReqModal,
     showPendingReqModal,
   } = useSaveMission({
-      useCase: UseCase.ADD,
+      useCase: EUseCase.ADD,
     bussinesUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,

@@ -1,11 +1,11 @@
 import { MdInfoOutline, MdOutlineClear } from "react-icons/md";
 import { Icon, Stack, Text } from "@inubekit/inubekit";
 
+import { StyledMenuItemLink } from "./styles";
 import { basic } from "@design/tokens";
 import { IMenuItem } from "@ptypes/design/IMenuItem";
 import { BorderStack } from "@design/modals/borderStack";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { StyledMenuItemLink } from "./styles";
 
 const MenuItem = (props: IMenuItem) => {
   const {

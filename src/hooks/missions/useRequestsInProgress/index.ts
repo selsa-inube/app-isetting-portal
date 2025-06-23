@@ -48,10 +48,10 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   };
 
   const smallScreen = useMediaQuery("(max-width: 690px)");
-  const widthFirstColumn = smallScreen ? 45 : 60;
+  const widthFirstColumn = 70;
 
   const columnWidths = smallScreen
-    ? [widthFirstColumn, 28]
+    ? [widthFirstColumn, 25]
     : [widthFirstColumn, 28];
 
   return {

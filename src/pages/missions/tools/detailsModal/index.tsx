@@ -6,8 +6,8 @@ import { StyledContainerIcon } from "./styles";
 import { DetailsMissionModal } from "./detailsMissionModal";
 
 const DetailsModal = (props: IDetailsModal) => {
-  const { data, labelsOptions } = props;
-  const { showModal, handleToggleModal, screenTablet, dataTable } =
+  const { data, title, labelsOptions } = props;
+  const { handleToggleModal, screenTablet, showDetailsMission } =
     UseDetailsModal(data);
 
   return (
@@ -21,15 +21,14 @@ const DetailsModal = (props: IDetailsModal) => {
         />
         {screenTablet && (
           <Text type="body" size="medium">
-            Detalles
+           {title}
           </Text>
         )}
       </StyledContainerIcon>
-      {showModal && data && (
+      {showDetailsMission && (
         <DetailsMissionModal
-          infoData={data}
+          infoData={data ?? {}}
           labels={labelsOptions}
-          dataTable={dataTable ?? []}
           onClose={handleToggleModal}
           smallScreen={screenTablet}
         />

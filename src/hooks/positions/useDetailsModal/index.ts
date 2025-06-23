@@ -7,7 +7,7 @@ const UseDetailsModal = (data?: IPosition) => {
   const screenTablet = useMediaQuery("(max-width: 1068px)");
 
   const handleToggleModal = () => {
-    setShowModal((prev) => !prev);
+    setShowModal(!showModal);
   };
   const dataTable = Array.isArray(data?.MissionByRole)
     ? data.MissionByRole.map((item: { roleName: string }) => ({
@@ -15,11 +15,14 @@ const UseDetailsModal = (data?: IPosition) => {
       }))
     : [];
 
+  const showDetailsMission = Boolean(data && showModal);
+
   return {
     showModal,
     handleToggleModal,
     screenTablet,
     dataTable,
+    showDetailsMission,
   };
 };
 

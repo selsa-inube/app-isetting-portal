@@ -11,6 +11,7 @@ const DetailsMissionModal = (props: IFeedbackModal) => {
     dataTable,
     actions,
     actionsTitle,
+    title,
   } = props;
 
   const { hasLabels, hasActions, isMobile } = UseModalLabelsAndActions(
@@ -30,6 +31,7 @@ const DetailsMissionModal = (props: IFeedbackModal) => {
       dataTable={dataTable}
       actionsTitle={actionsTitle}
       isMobile={isMobile}
+      title={title}
     />
   );
 };

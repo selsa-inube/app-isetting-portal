@@ -6,7 +6,7 @@ import { IMission } from "@ptypes/missions/assisted/IMission";
 import { DetailsModal } from "@pages/missions/tools/detailsModal";
 import { labelsOptions } from "../labelsOptions";
 
-const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
+const actionsConfig = (setEntryDeleted: (value: string | number) => void, title: string) => {
   const actions: IAction[] = [
     {
       id: "details",
@@ -15,6 +15,7 @@ const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
         <DetailsModal
           data={data as unknown as IMission}
           labelsOptions={labelsOptions}
+          title={title}
         />
       ),
     },

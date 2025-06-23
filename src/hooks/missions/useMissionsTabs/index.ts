@@ -6,7 +6,9 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { missionsTabsConfig } from "@config/missions/tabs";
 
 const UseMissionsTabs = () => {
-  const [isSelected, setIsSelected] = useState<string>(missionsTabsConfig.roles.id);
+  const [isSelected, setIsSelected] = useState<string>(
+    missionsTabsConfig.roles.id
+  );
   const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);
   const smallScreen = useMediaQuery("(max-width: 990px)");
   const [showMenu, setShowMenu] = useState(false);
@@ -15,15 +17,13 @@ const UseMissionsTabs = () => {
   const smallScreenTab = useMediaQuery("(max-width: 450px)");
   const widthFirstColumn = smallScreen ? 60 : 20;
 
-  const { setBusinessUnitSigla } =
-    useContext(AuthAndData);
+  const { setBusinessUnitSigla } = useContext(AuthAndData);
 
-    useEffect(() => {
+  useEffect(() => {
     setBusinessUnitSigla("");
-  }
-  , []);
+  }, []);
 
-    const handleTabChange = (tabId: string) => {
+  const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);
   };
 
@@ -59,7 +59,10 @@ const UseMissionsTabs = () => {
     }
   }, [isSelected]);
 
-  const showMissionTab = isSelected === missionsTabsConfig.roles.id 
+  const showMissionTab = isSelected === missionsTabsConfig.roles.id;
+
+  const showRequestTab =
+    isSelected === missionsTabsConfig.requestsInProgress.id;
 
   return {
     isSelected,
@@ -76,6 +79,7 @@ const UseMissionsTabs = () => {
     handleCloseMenuInvitation,
     widthFirstColumn,
     showMissionTab,
+    showRequestTab,
   };
 };
 

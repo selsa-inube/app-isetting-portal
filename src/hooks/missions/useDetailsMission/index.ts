@@ -1,0 +1,70 @@
+import { useEffect, useState } from "react";
+import { useMediaQuery } from "@inubekit/inubekit";
+
+import { ERequestType } from "@enum/requestType";
+import { eventBus } from "@events/eventBus";
+import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
+import { enviroment } from "@config/environment";
+import { IUseDetailsMission } from "@ptypes/missions/requestTab/IUseDetailsMission";
+import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
+
+const useDetailsMission = (props: IUseDetailsMission) => {
+  const { data, showModalReq } = props;
+
+  const [isSelected, setIsSelected] = useState<string>();
+  const [showModal, setShowModal] = useState(false);
+  const isMobile = useMediaQuery(enviroment.IS_MOBILE_743);
+
+  const normalizeData = {
+    id: data.id,
+    missionName: data.configurationRequestData.missionName,
+    descriptionUse: data.configurationRequestData.descriptionUse,
+
+    
+  };
+
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const handleTabChange = (tabId: string) => {
+    setIsSelected(tabId);
+  };
+
+   const labelsOfRequestDetails = labelsOfRequest.filter(
+    (field) => data[field.id],
+  );
+
+   const title = `${detailsRequestInProgressModal.labelRequest} ${
+    ERequestType[data.request as keyof typeof ERequestType] ?? data.request
+  }`;
+
+  const screenTablet = useMediaQuery("(max-width: 1200px)");
+
+  useEffect(() => {
+    const emitEvent = (eventName: string) => {
+      eventBus.emit(eventName, showModal);
+    };
+    if (showModalReq && !showModal) {
+      emitEvent("secondModalState");
+    } else if (!showModalReq && !showModal) {
+      emitEvent("secondModalState");
+    } else if (!showModalReq && showModal) {
+      emitEvent("thirdModalState");
+    }
+  }, [showModal]);
+
+  return {
+    showModal,
+    normalizeData,
+    isSelected,
+    isMobile,
+    title,
+    screenTablet,
+    labelsOfRequestDetails,
+    handleTabChange,
+    handleToggleModal,
+  };
+};
+
+export { useDetailsMission };

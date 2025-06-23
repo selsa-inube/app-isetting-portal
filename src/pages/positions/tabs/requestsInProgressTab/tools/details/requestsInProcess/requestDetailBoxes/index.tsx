@@ -16,7 +16,6 @@ const RequestDetailBoxes = (props: IRequestDetailBoxes) => {
               field={field}
               data={data}
               id={id}
-              backgroundColor={inube.palette.neutral.N10}
               borderRadius={basic.spacing.s100}
               padding={`${basic.spacing.s075} ${basic.spacing.s150}`}
               width={isMobile ? "253px" : "240px"}

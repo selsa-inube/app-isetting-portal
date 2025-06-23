@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from "axios";
 import { ICancelReqInProcResponse } from "@ptypes/requestsInProgress/ICancelReqInProcResponse";
 import { ICancelReqInProcRequest } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
 import { deleteWithRetries } from "@services/core/deleteWithRetries";
-import { axiosInstance } from "@api/isaasPersistence";
+import { isaasPerAxiosInstance } from "@api/isaasPersistence";
 import { mapCancelRequestInProgressToApi } from "./mappers";
 
 const cancelRequestInProgress = async (
@@ -20,7 +20,7 @@ const cancelRequestInProgress = async (
     `/requests`,
     config,
     mapCancelRequestInProgressToApi(data) as unknown as string[],
-    axiosInstance
+    isaasPerAxiosInstance
   );
 
   return deleteData;

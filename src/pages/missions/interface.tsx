@@ -6,7 +6,6 @@ import { MenuAddButton } from "@design/feedback/menuAddButton";
 import { IMissionsUI } from "@ptypes/missions/IMissionsUI";
 import { missionTitle } from "@config/missions/missionTab/missionTitle";
 import { crumbMissions } from "@config/missions/navigation";
-import { missionsTabsConfig } from "@config/missions/tabs";
 import { MissionsTab } from "./tabs/missionsTabs";
 import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
 
@@ -23,7 +22,8 @@ const MissionsUI = (props: IMissionsUI) => {
     smallScreenTab,
     smallScreen,
     showMissionTab,
-    showRequestTab
+    showRequestTab,
+    missionsTabs,
   } = props;
 
   return (
@@ -72,7 +72,7 @@ const MissionsUI = (props: IMissionsUI) => {
           </Stack>
           <Stack gap={basic.spacing.s300} direction="column">
             <Tabs
-              tabs={Object.values(missionsTabsConfig)}
+              tabs={missionsTabs}
               selectedTab={isSelected}
               onChange={handleTabChange}
               scroll={smallScreenTab ? true : false}

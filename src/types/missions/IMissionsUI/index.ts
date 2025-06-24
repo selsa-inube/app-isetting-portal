@@ -1,3 +1,4 @@
+import { ITab } from "@inubekit/inubekit";
 import { IMenuOptions } from "@ptypes/design/IMenuOptions";
 
 interface IMissionsUI {
@@ -9,6 +10,7 @@ isSelected: string;
   showInfoModal: boolean;
   options: IMenuOptions[];
   showMissionTab: boolean;
+  missionsTabs: ITab[];
   onToggleInfoModal: () => void;
   onCloseMenu: () => void;
   onToggleModal: () => void;

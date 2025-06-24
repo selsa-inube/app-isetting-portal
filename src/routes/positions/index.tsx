@@ -5,6 +5,7 @@ import { AddPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosi
 import { EditPositions } from "@pages/positions/tabs/positionsTabs/outlets/editPosition";
 import { PositionsOptions } from "@pages/positions/tabs/positionsTabs/outlets/options";
 import { AddMission } from "@pages/missions/tabs/missionsTabs/addMission";
+import { EditMission } from "@pages/missions/tabs/missionsTabs/editMission";
 import { Users } from "@pages/users";
 
 const PositionsRoutes = () => (
@@ -17,6 +18,8 @@ const PositionsRoutes = () => (
     <Route path="positions/add-position" element={<AddPosition />} />
     <Route path="positions/edit-destination" element={<EditPositions />} />
     <Route path="missions/add-mission" element={<AddMission />} />
+    <Route path="missions/edit-mission" element={<EditMission />} />
+
 
   </Routes>
 );

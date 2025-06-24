@@ -31,8 +31,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     setEntryDeleted,
   } = props;
 
-  const [saveMission, setsaveMission] =
-    useState<ISaveDataResponse>();
+  const [saveMission, setsaveMission] = useState<ISaveDataResponse>();
   const [statusRequest, setStatusRequest] = useState<string>();
   const { addFlag } = useFlag();
   const [requestSteps, setRequestSteps] =
@@ -176,14 +175,18 @@ const useSaveMission = (props: IUseSaveMission) => {
 
       if (isStatusRequestFinished()) {
         addFlag({
-          title: flowAutomaticMessages(operationTypes[useCase as keyof typeof operationTypes])
-            .SuccessfulCreateRequest.title,
-          description: flowAutomaticMessages(operationTypes[useCase as keyof typeof operationTypes])
-            .SuccessfulCreateRequest.description,
-          appearance: flowAutomaticMessages(operationTypes[useCase as keyof typeof operationTypes])
-            .SuccessfulCreateRequest.appearance as IFlagAppearance,
-          duration: flowAutomaticMessages(operationTypes[useCase as keyof typeof operationTypes])
-            .SuccessfulCreateRequest.duration,
+          title: flowAutomaticMessages(
+            operationTypes[useCase as keyof typeof operationTypes]
+          ).SuccessfulCreateRequest.title,
+          description: flowAutomaticMessages(
+            operationTypes[useCase as keyof typeof operationTypes]
+          ).SuccessfulCreateRequest.description,
+          appearance: flowAutomaticMessages(
+            operationTypes[useCase as keyof typeof operationTypes]
+          ).SuccessfulCreateRequest.appearance as IFlagAppearance,
+          duration: flowAutomaticMessages(
+            operationTypes[useCase as keyof typeof operationTypes]
+          ).SuccessfulCreateRequest.duration,
         });
       }
     }
@@ -206,8 +209,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     ) {
       setTimeout(() => {
         setEntryDeleted(
-          data.configurationRequestData
-            .payrollForDeductionAgreementId as string,
+          data.configurationRequestData.payrollForDeductionAgreementId as string
         );
       }, 3000);
     }
@@ -220,7 +222,7 @@ const useSaveMission = (props: IUseSaveMission) => {
 
   useEffect(() => {
     if (isStatusIntAutomatic(saveMission?.requestStatus)) {
-      setStatusRequest("")
+      setStatusRequest("");
     }
   }, [saveMission]);
 

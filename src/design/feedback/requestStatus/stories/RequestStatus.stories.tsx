@@ -5,7 +5,7 @@ import { useState } from "react";
 import { IRequestStatus, RequestStatus } from "..";
 
 const meta: Meta<typeof RequestStatus> = {
-  title: "modals/RequestStatusModal",
+  title: "modals/RequestStatus",
   component: RequestStatus,
   decorators: [
     (Story: StoryFn) => (

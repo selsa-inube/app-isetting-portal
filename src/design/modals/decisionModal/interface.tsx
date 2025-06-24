@@ -8,11 +8,12 @@ import {
   Icon,
   Divider,
 } from "@inubekit/inubekit";
-import { IDecisionModal } from "@ptypes/IDecisionModal";
-import { StyledContainerButton, StyledModal } from "./styles";
+import { IDecisionModalUI } from "@ptypes/IDecisionModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
+import { basic } from "@design/tokens";
+import { StyledContainerButton, StyledModal } from "./styles";
 
-const DecisionModalUI = (props: IDecisionModal) => {
+const DecisionModalUI = (props: IDecisionModalUI) => {
   const {
     actionText,
     appearance,
@@ -85,7 +86,7 @@ const DecisionModalUI = (props: IDecisionModal) => {
           {description}
         </Text>
 
-        <Stack gap="s250" justifyContent="flex-end">
+        <Stack gap={basic.spacing.s10} justifyContent="flex-end">
           {showCancelButton && (
             <Button
               spacing="wide"

@@ -4,7 +4,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { UseSavePositions } from "@hooks/positions/useSavePositions";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
 import { deleteRequestInProgress } from "@config/positionsTabs/generics/deleteRequestInProgress";
-import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
+import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { UseDeletePositions } from "@hooks/positions/useDeletePositions";
 import { RequestProcess } from "@design/feedback/requestProcess";
@@ -43,6 +43,10 @@ const Delete = (props: IDelete) => {
     setShowModal
   );
 
+  const showRequestProcess = showRequestProcessModal && savePositions;
+
+  const showReuestStatus = showPendingReqModal && savePositions?.requestNumber;
+
   return (
     <>
       <DeleteRecord
@@ -52,7 +56,7 @@ const Delete = (props: IDelete) => {
         onClick={handleClick}
         loading={loading}
       />
-      {showRequestProcessModal && savePositions && (
+      {showRequestProcess && (
         <RequestProcess
           portalId={DecisionModalLabel.portalId}
           saveData={savePositions}
@@ -61,10 +65,11 @@ const Delete = (props: IDelete) => {
           requestProcessSteps={requestSteps}
           appearance={ComponentAppearance.SUCCESS}
           onCloseRequestStatus={handleCloseRequestStatus}
+          onCloseProcess={() => {}}
         />
       )}
 
-      {showPendingReqModal && savePositions?.requestNumber && (
+      {showReuestStatus && (
         <RequestStatusModal
           portalId="portal"
           title={requestStatusMessage(savePositions.responsible).title}
@@ -74,7 +79,7 @@ const Delete = (props: IDelete) => {
           requestNumber={savePositions.requestNumber}
           onClick={handleClosePendingReqModal}
           onCloseModal={handleClosePendingReqModal}
-          isLoading={false}
+          loading={false}
           actionText={
             requestStatusMessage(savePositions.responsible).actionText
           }

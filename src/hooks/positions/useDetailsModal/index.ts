@@ -15,11 +15,14 @@ const UseDetailsModal = (data?: IPosition) => {
       }))
     : [];
 
+  const showDetailsMission = data && showModal;
+
   return {
     showModal,
     handleToggleModal,
     screenTablet,
     dataTable,
+    showDetailsMission,
   };
 };
 

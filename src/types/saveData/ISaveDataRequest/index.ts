@@ -1,19 +1,9 @@
-import { IRuleDecision } from "@pages/rules/types";
 
 interface ISaveDataRequest {
   applicationName: string;
   businessManagerCode: string;
-  businessUnitCode: string;
-  configurationRequestData: Record<
-    string,
-    | string
-    | number
-    | boolean
-    | string[]
-    | Record<string, string>
-    | IRuleDecision[]
-    | { roleName: string }[]
-  >;
+  businessUnitCode?: string;
+  configurationRequestData: Record<string, unknown>;
   description: string;
   entityName: string;
   requestDate: string;

@@ -1,21 +1,13 @@
-import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
-import { ISpinnerAppearance } from "@inubekit/inubekit";
-import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
+import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
 
 interface IRequestProcessModal {
-  descriptionRequestProcess: {
-    title: string;
-    description: string;
-  };
   portalId: string;
-  loading: boolean;
-  requestProcessSteps: IRequestSteps[];
-  descriptionRequestStatus: (
-    requestNumber: string,
-    responsible: string
-  ) => { actionText: string; description: string; title: string };
-  onCloseRequestStatus: () => void;
-  saveData?: ISaveDataResponse;
-  appearance?: ISpinnerAppearance;
+  requestSteps: IRequestSteps[];
+  isMobile: boolean;
+  title: string;
+  description: string;
+  onClose: () => void;
+  sizeIcon?: string;
 }
+
 export type { IRequestProcessModal };

@@ -5,15 +5,15 @@ import {
   Button,
   Divider,
   Icon,
-  inube,
   Stack,
   Text,
   useMediaQuery,
 } from "@inubekit/inubekit";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { basic } from "@design/tokens";
-import { IRequestStatusModal } from "@ptypes/requestsInProgress/IRequestStatusModal";
-import { BorderStack } from "../borderStack";
+import { ComponentAppearance } from "@ptypes/aparences.types";
+import { StyledModal } from "./styles";
+import { IRequestStatusModal } from "@ptypes/design/IRequestStatusModal";
+import { modalsLabels } from "@config/modalsLabels";
 
 const RequestStatusModal = (props: IRequestStatusModal) => {
   const {
@@ -22,7 +22,7 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
     title,
     appearance,
     description,
-    isLoading,
+    loading,
     requestNumber,
     onClick,
     onCloseModal,
@@ -34,30 +34,16 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
 
   if (!node) {
     throw new Error(
-      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
+      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly.",
     );
   }
 
   return createPortal(
     <Blanket>
-      <BorderStack
-        direction="column"
-        background={inube.palette.neutral.N0}
-        width={isMobile ? "320px" : "450px"}
-        height={isMobile ? "350px" : "374px"}
-        borderRadius={basic.spacing.s100}
-        padding={isMobile ? basic.spacing.s150 : basic.spacing.s300}
-        boxSizing="border-box"
-        gap={basic.spacing.s300}
-      >
+      <StyledModal $smallScreen={isMobile}>
         <Stack direction="column" gap={basic.spacing.s200}>
           <Stack alignItems="center" justifyContent="space-between">
-            <Text
-              type="headline"
-              size="small"
-              weight="bold"
-              appearance={ComponentAppearance.DARK}
-            >
+            <Text type="headline" size="small" weight="bold" appearance="dark">
               {title}
             </Text>
 
@@ -73,7 +59,7 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
                 />
               }
             >
-              Cerrar
+              {modalsLabels.close}
             </Button>
           </Stack>
           <Divider />
@@ -109,18 +95,17 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
             spacing="wide"
             appearance={appearance}
             variant="filled"
-            loading={isLoading}
+            loading={loading}
             onClick={onClick}
             fullwidth={isMobile ? true : false}
           >
             {actionText}
           </Button>
         </Stack>
-      </BorderStack>
+      </StyledModal>
     </Blanket>,
-    node
+    node,
   );
 };
 
 export { RequestStatusModal };
-export type { IRequestStatusModal };

@@ -11,9 +11,8 @@ const StyledBoxAttribute = styled.div<IStyledBoxAttribute>`
   flex-direction: column;
   gap: ${basic.spacing.s100};
   overflow: hidden;
-  margin: ${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s0}
-    ${basic.spacing.s0};
-  padding: ${basic.spacing.s10};
+  margin: ${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s0};
+  padding: ${basic.spacing.s8};
   border-radius: ${basic.spacing.s8};
   word-wrap: break-word;
   white-space: normal;

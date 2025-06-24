@@ -4,7 +4,7 @@ import { PageTitle } from "@design/label/PageTitle";
 import { InitializerForm } from "@design/forms/InitializerForm";
 import { basic } from "@design/tokens";
 import { DecisionModal } from "@design/modals/decisionModal";
-import { requestProcessMessage } from "@config/positionsTabs/requestProcessMessage";
+import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { DecisionModalLabel } from "@config/positions/decisionModalText";
 import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
 import { RequestProcess } from "@design/feedback/requestProcess";
@@ -181,6 +181,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
             requestProcessSteps={requestSteps}
             appearance={ComponentAppearance.SUCCESS}
             onCloseRequestStatus={onCloseRequestStatus}
+            onCloseProcess={()=>{}}
           />
         )}
 
@@ -194,7 +195,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
             requestNumber={savePositions.requestNumber}
             onClick={onClosePendingReqModal}
             onCloseModal={onClosePendingReqModal}
-            isLoading={false}
+            loading={false}
             actionText={
               requestStatusMessage(savePositions.responsible).actionText
             }

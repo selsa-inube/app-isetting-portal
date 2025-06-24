@@ -3,7 +3,8 @@ import { Meta, StoryFn } from "@storybook/react";
 import { Button } from "@inubekit/inubekit";
 import { useState } from "react";
 
-import { IRequestStatusModal, RequestStatusModal } from "..";
+import { RequestStatusModal } from "..";
+import { IRequestStatusModal } from "@ptypes/design/IRequestStatusModal"
 
 const meta: Meta<typeof RequestStatusModal> = {
   title: "modals/RequestStatusModal",

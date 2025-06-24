@@ -77,7 +77,6 @@ const MissionsUI = (props: IMissionsUI) => {
               onChange={handleTabChange}
               scroll={smallScreenTab ? true : false}
             />
-
             {showMissionTab && <MissionsTab />}
             {showRequestTab  && <RequestsInProgressTab />}
           </Stack>

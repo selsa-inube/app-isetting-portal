@@ -19,6 +19,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
     loading,
     data,
     smallScreen,
+    columnWidths,
     setEntryDeleted,
   } = props;
 
@@ -94,7 +95,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
             breakpoints={breakPoints}
             filter={searchMission}
             loading={loading}
-            columnWidths={[75]}
+            columnWidths={columnWidths}
           />
         </Stack>
       </Stack>

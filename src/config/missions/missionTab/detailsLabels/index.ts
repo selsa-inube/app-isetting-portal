@@ -1,6 +1,6 @@
-const detailsLables = {
+const detailsLabels = {
   titleDetails: "Detalles",
     titleMoreDetails: "Más detalles",
 };
 
-export { detailsLables };
+export { detailsLabels };

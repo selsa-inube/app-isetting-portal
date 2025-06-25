@@ -6,6 +6,8 @@ import { eventBus } from "@events/eventBus";
 import { ICancelReqInProcRequest } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
 import { cancelRequestInProgMessage } from "@config/request/cancelRequestInProgMessage";
 import { IUseCancelRequestInProgress } from "@ptypes/hooks/IUseCancelRequestInProgress";
+import { cancelLabels } from "@config/missions/requestTab/cancelLabels";
+import { EModalState } from "@enum/modalState";
 
 const useCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
   const { businessUnit, data, userAccount, setEntryCanceled } = props;
@@ -44,7 +46,7 @@ const useCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
 
   const handleClick = () => {
     fetchCancelRequestData({
-      removalJustification: `La cancelación de la solicitud  es requerida por ${userAccount}`,
+      removalJustification: cancelLabels(userAccount).removalJustification,
       requestNumber: data.requestNumber,
       settingRequestId: data.settingRequestId,
     });
@@ -55,7 +57,7 @@ const useCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
   };
 
   useEffect(() => {
-    eventBus.emit("secondModalState", showModal);
+    eventBus.emit(EModalState.secondModalState, showModal);
   }, [showModal]);
 
   return {

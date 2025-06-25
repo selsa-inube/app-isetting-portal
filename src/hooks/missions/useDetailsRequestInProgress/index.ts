@@ -6,6 +6,7 @@ import { formatDateTable } from "@utils/date/formatDateTable";
 import { IEntry } from "@ptypes/design/table/IEntry";
 import { IUseDetailsRequestInProgress } from "@ptypes/missions/requestTab/IUseDetailsRequest";
 import { enviroment } from "@config/environment";
+import { EModalState } from "@enum/modalState";
 
 const useDetailsRequestInProgress = (props: IUseDetailsRequestInProgress) => {
   const { data } = props;
@@ -33,7 +34,7 @@ const useDetailsRequestInProgress = (props: IUseDetailsRequestInProgress) => {
   };
 
   useEffect(() => {
-    eventBus.emit("secondModalState", showModal);
+    eventBus.emit(EModalState.secondModalState, showModal);
   }, [showModal]);
 
   const screenTablet = useMediaQuery("(max-width: 1200px)");

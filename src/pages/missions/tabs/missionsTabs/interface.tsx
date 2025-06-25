@@ -10,7 +10,7 @@ import { Table } from "@design/table";
 import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
 import { missionsTabLabels } from "@config/missions/missionTab/missionsTabLabels";
 import { StyledButtonWrapper } from "./styles";
-import { detailsLables } from "@config/missions/missionTab/detailsLables";
+import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
 
 const MissionsTabUI = (props: IMissionsTabUI) => {
   const {
@@ -91,7 +91,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
             id="portal"
             titles={titlesOptions}
             entries={data ?? []}
-            actions={actionsConfig(setEntryDeleted, detailsLables.titleDetails )}
+            actions={actionsConfig(setEntryDeleted, detailsLabels.titleDetails )}
             breakpoints={breakPoints}
             filter={searchMission}
             loading={loading}

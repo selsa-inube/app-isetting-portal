@@ -9,7 +9,7 @@ import { titles } from "@config/missions/requestTab/table/titles";
 import { breakPoints } from "@config/missions/missionTab/table/breakPoints";
 import { IRequestsInProgressTabUI } from "@ptypes/requestsInProgress/IRequestsInProgressTabUI";
 import { actionsConfig } from "@config/missions/requestTab/table/actionsConfig";
-import { detailsLables } from "@config/missions/missionTab/detailsLables";
+import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
 
 const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
   const {
@@ -101,7 +101,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
             tableLayout="auto"
             titles={titles}
             entries={entries}
-            actions={actionsConfig(setEntryCanceled, detailsLables.titleMoreDetails)}
+            actions={actionsConfig(setEntryCanceled, detailsLabels.titleMoreDetails)}
             breakpoints={breakPoints}
             filter={searchrequestProgress}
             loading={loading}

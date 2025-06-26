@@ -1,4 +1,3 @@
-
 import { ERequestStatus } from "@enum/requestStatus";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { formatDateTable } from "@utils/date/formatDateTable";
@@ -32,10 +31,4 @@ const mapRequestsInProgressToEntity = (
   return request;
 };
 
-const mapRequestsInProgressToEntities = (
-  enums: IRequestsInProgress[],
-): IRequestsInProgress[] => {
-  return enums.map(mapRequestsInProgressToEntity);
-};
-
-export { mapRequestsInProgressToEntity, mapRequestsInProgressToEntities };
+export { mapRequestsInProgressToEntity };

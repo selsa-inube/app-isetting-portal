@@ -4,7 +4,7 @@ import { useDetailsMission } from "@hooks/missions/useDetailsMission";
 import { useDetailsRequestInProgress } from "@hooks/missions/useDetailsRequestInProgress";
 
 const Details = (props: IDetails) => {
-  const { data, titleMoreDet } = props;
+  const { data, titleMoreDetails } = props;
 
   const { showModal, screenTablet, normalizeData, handleToggleModal } =
     useDetailsRequestInProgress({ data });
@@ -36,7 +36,7 @@ const Details = (props: IDetails) => {
       normalizeDataMoreDetails={normalizeDataMoreDetails}
       labelsOfRequestDetails={labelsOfRequestDetails}
       title={title}
-      titleMoreDet={titleMoreDet}
+      titleMoreDetails={titleMoreDetails}
       handleMoreDetails={onToggleMoreDetailsModal}    
  />
   );

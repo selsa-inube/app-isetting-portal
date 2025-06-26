@@ -3,7 +3,7 @@ import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
 
 import { cancelRequestInProgress } from "@services/requestInProgress/cancelRequestInProgress";
 import { eventBus } from "@events/eventBus";
-import { ICancelReqInProcRequest } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
+import { ICancelRequestInProgress } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
 import { cancelRequestInProgMessage } from "@config/request/cancelRequestInProgMessage";
 import { IUseCancelRequestInProgress } from "@ptypes/hooks/IUseCancelRequestInProgress";
 import { cancelLabels } from "@config/missions/requestTab/cancelLabels";
@@ -16,7 +16,7 @@ const useCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
   const [hasError, setHasError] = useState(false);
   const { addFlag } = useFlag();
 
-  const fetchCancelRequestData = async (data: ICancelReqInProcRequest) => {
+  const fetchCancelRequestData = async (data: ICancelRequestInProgress) => {
     setLoading(true);
     try {
       await cancelRequestInProgress(businessUnit, data);
@@ -57,7 +57,7 @@ const useCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
   };
 
   useEffect(() => {
-    eventBus.emit(EModalState.secondModalState, showModal);
+    eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
 
   return {

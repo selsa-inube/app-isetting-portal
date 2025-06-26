@@ -12,7 +12,7 @@ interface IDetailsUI {
   normalizeDataMoreDetails: IEntry;
   labelsOfRequestDetails: ILabel[];
   title: string;
-  titleMoreDet?: string;
+  titleMoreDetails?: string;
   handleMoreDetails: () => void;
   onTabChange: (id: string) => void;
   onToggleModal: () => void;

@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from "axios";
 import { getWithRetries } from "@services/core/getWithRetries";
 import { queryProcessAxiosInstance } from "@api/isettingProcess";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
-import { mapRequestsInProgressToEntities } from "./mappers";
+import { mapRequestsInProgressToEntities } from "./mappers/mapRequestsToEntities";
 
 const getRequestsInProgress = async (
   bussinesUnits: string,

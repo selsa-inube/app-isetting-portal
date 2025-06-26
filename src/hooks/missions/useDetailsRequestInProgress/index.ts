@@ -34,10 +34,10 @@ const useDetailsRequestInProgress = (props: IUseDetailsRequestInProgress) => {
   };
 
   useEffect(() => {
-    eventBus.emit(EModalState.secondModalState, showModal);
+    eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
 
-  const screenTablet = useMediaQuery("(max-width: 1200px)");
+  const screenTablet = useMediaQuery(enviroment.IS_MOBILE_1200);
   const isMobile = useMediaQuery(enviroment.IS_MOBILE_743);
 
   return {

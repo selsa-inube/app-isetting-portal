@@ -14,13 +14,13 @@ import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
 const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
   const {
     entries,
-    searchrequestProgress,
+    searchRequestProgress,
     loading,
     smallScreen,
     columnWidths,
     pageLength,
     setEntryCanceled,
-    onSearchrequestProgress,
+    onSearchRequestProgress,
   } = props;
 
   return (
@@ -69,15 +69,15 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
               width={smallScreen ? "100%" : "auto"}
             >
               <Searchfield
-                name="searchrequestProgress"
-                id="searchrequestProgress"
+                name="searchRequestProgress"
+                id="searchRequestProgress"
                 label={smallScreen ? "" : tabLabels.search}
                 placeholder={tabLabels.placeholderSearch}
                 type="search"
                 size="compact"
-                value={searchrequestProgress}
+                value={searchRequestProgress}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  onSearchrequestProgress(e)
+                  onSearchRequestProgress(e)
                 }
                 fullwidth={smallScreen}
               />
@@ -103,7 +103,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
             entries={entries}
             actions={actionsConfig(setEntryCanceled, detailsLabels.titleMoreDetails)}
             breakpoints={breakPoints}
-            filter={searchrequestProgress}
+            filter={searchRequestProgress}
             loading={loading}
             columnWidths={columnWidths}
             pageLength={pageLength}

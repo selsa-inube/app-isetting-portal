@@ -1,7 +1,7 @@
 import { IConfigurationRequestsTraceability } from "@ptypes/positions/requestsInProgress/IConfigRequestsTraceability";
 import { IUserManConfigRequests } from "../IUserManConfigRequests";
 
-interface ICancelReqInProcResponse {
+interface ICancelRequestResponse {
   applicationName: string;
   businessManagerCode: string;
   businessUnitCode: string;
@@ -21,4 +21,4 @@ interface ICancelReqInProcResponse {
   userManagingConfigurationRequests: IUserManConfigRequests[];
 }
 
-export type { ICancelReqInProcResponse };
+export type { ICancelRequestResponse };

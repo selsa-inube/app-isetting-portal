@@ -1,14 +1,14 @@
 import { AxiosRequestConfig } from "axios";
-import { ICancelReqInProcResponse } from "@ptypes/requestsInProgress/ICancelReqInProcResponse";
-import { ICancelReqInProcRequest } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
+import { ICancelRequestResponse } from "@ptypes/requestsInProgress/ICancelReqInProcResponse";
+import { ICancelRequestInProgress } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
 import { deleteWithRetries } from "@services/core/deleteWithRetries";
 import { isaasPerAxiosInstance } from "@api/isaasPersistence";
 import { mapCancelRequestInProgressToApi } from "./mappers";
 
 const cancelRequestInProgress = async (
   businessUnit: string,
-  data: ICancelReqInProcRequest
-): Promise<ICancelReqInProcResponse> => {
+  data: ICancelRequestInProgress
+): Promise<ICancelRequestResponse> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "RemoveSettingRequest",
@@ -16,7 +16,7 @@ const cancelRequestInProgress = async (
     },
   };
 
-  const deleteData = await deleteWithRetries<ICancelReqInProcResponse>(
+  const deleteData = await deleteWithRetries<ICancelRequestResponse>(
     `/requests`,
     config,
     mapCancelRequestInProgressToApi(data) as unknown as string[],

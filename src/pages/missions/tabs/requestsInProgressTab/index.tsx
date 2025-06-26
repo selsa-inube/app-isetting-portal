@@ -24,8 +24,8 @@ const RequestsInProgressTab = () => {
     <RequestsInProgressTabUI
       entries={requestsInProgress as IEntry[]}
       loading={loading}
-      searchrequestProgress={searchRequestsInProgress}
-      onSearchrequestProgress={handleSearchRequestsInProgress}
+      searchRequestProgress={searchRequestsInProgress}
+      onSearchRequestProgress={handleSearchRequestsInProgress}
       setEntryCanceled={setEntryCanceled}
       smallScreen={smallScreen}
       columnWidths={columnWidths}

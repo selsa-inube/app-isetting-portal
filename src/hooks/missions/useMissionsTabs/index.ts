@@ -57,8 +57,8 @@ const UseMissionsTabs = () => {
     const fetchRequestsInProgressData = async () => {
       try {
         const data = await getRequestsInProgress(
-          ERequestMission.Test,
-          ERequestMission.Missions
+          ERequestMission.TEST,
+          ERequestMission.MISSIONS
         );
         setRequestsInProgress(data);
       } catch (error) {
@@ -83,7 +83,7 @@ const UseMissionsTabs = () => {
   }, [isSelected]);
 
   const filteredTabsConfig = Object.keys(missionsTabsConfig).reduce(
-    (acc, key) => {
+    (filteredtabs, key) => {
       const tab = missionsTabsConfig[key as keyof typeof missionsTabsConfig];
 
       if (
@@ -91,13 +91,13 @@ const UseMissionsTabs = () => {
         requestsInProgress &&
         requestsInProgress.length === 0
       ) {
-        return acc;
+        return filteredtabs;
       }
 
       if (tab !== undefined) {
-        acc[key as keyof IMissionTabsConfig] = tab;
+        filteredtabs[key as keyof IMissionTabsConfig] = tab;
       }
-      return acc;
+      return filteredtabs;
     },
     {} as IMissionTabsConfig
   );

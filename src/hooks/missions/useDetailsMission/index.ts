@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 
-import { ERequestType } from "@enum/requestType";
 import { eventBus } from "@events/eventBus";
 import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
 import { enviroment } from "@config/environment";
 import { IUseDetailsMission } from "@ptypes/missions/requestTab/IUseDetailsMission";
 import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
+import { requestType } from "@config/requestType";
+import { EModalState } from "@enum/modalState";
 
 const useDetailsMission = (props: IUseDetailsMission) => {
   const { data, showModalReq } = props;
@@ -36,21 +37,22 @@ const useDetailsMission = (props: IUseDetailsMission) => {
   );
 
    const title = `${detailsRequestInProgressModal.labelRequest} ${
-    ERequestType[data.request as keyof typeof ERequestType] ?? data.request
+    requestType[data.request as keyof typeof requestType] ?? data.request
   }`;
 
-  const screenTablet = useMediaQuery("(max-width: 1200px)");
+  const screenTablet = useMediaQuery(enviroment.IS_MOBILE_1200);
 
+  const emitEvent = (eventName: string) => {
+    eventBus.emit(eventName, showModal);
+  };
+  
   useEffect(() => {
-    const emitEvent = (eventName: string) => {
-      eventBus.emit(eventName, showModal);
-    };
     if (showModalReq && !showModal) {
-      emitEvent("secondModalState");
+      emitEvent(EModalState.SECOND_MODAL_STATE);
     } else if (!showModalReq && !showModal) {
-      emitEvent("secondModalState");
+      emitEvent(EModalState.SECOND_MODAL_STATE);
     } else if (!showModalReq && showModal) {
-      emitEvent("thirdModalState");
+      emitEvent(EModalState.THIRD_MODAL_STATE);
     }
   }, [showModal]);
 

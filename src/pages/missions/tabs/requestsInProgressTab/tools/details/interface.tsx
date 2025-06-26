@@ -20,7 +20,7 @@ const DetailsUI = (props: IDetailsUI) => {
     labelsOfRequestDetails,
     normalizeDataMoreDetails,
     title,
-    titleMoreDet,
+    titleMoreDetails,
     handleMoreDetails,
     onToggleModal,
   } = props;
@@ -60,7 +60,7 @@ const DetailsUI = (props: IDetailsUI) => {
           labels={labelsOptions}
           onClose={handleMoreDetails}
           smallScreen={screenTablet}
-          title={titleMoreDet}
+          title={titleMoreDetails}
         />
       )}
     </>

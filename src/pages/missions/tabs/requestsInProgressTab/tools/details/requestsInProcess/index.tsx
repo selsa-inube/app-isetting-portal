@@ -6,9 +6,9 @@ import { DetailBox } from "@design/feedback/detailBox";
 import { IEntry } from "@ptypes/design/table/IEntry";
 import { basic } from "@design/tokens";
 import { BorderStack } from "@design/modals/borderStack";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
 import { IRequestsInProcess } from "@ptypes/requestsInProgress/IRequestsInProcess";
+import { EComponentAppearance } from "@enum/appearances";
 
 const RequestsInProcess = (props: IRequestsInProcess) => {
   const {
@@ -61,7 +61,7 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
               type="title"
               size="medium"
               weight="bold"
-              appearance={ComponentAppearance.GRAY}
+              appearance={EComponentAppearance.GRAY}
             >
               {title}
             </Text>

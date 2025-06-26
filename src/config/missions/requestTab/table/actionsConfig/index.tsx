@@ -6,7 +6,7 @@ const actionsConfig = (setEntryCanceled: (value: string | number) => void, title
   const actions: IAction[] = [
     {
       id: "Details",
-      content: (entry) => <Details data={entry}  titleMoreDet={title}/>,
+      content: (entry) => <Details data={entry}  titleMoreDetails={title}/>,
     },
 
     {

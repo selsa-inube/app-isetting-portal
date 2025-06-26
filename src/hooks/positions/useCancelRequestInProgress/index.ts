@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
 import { IEntry } from "@ptypes/table/IEntry";
-import { ICancelReqInProcRequest } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
+import { ICancelRequestInProgress } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
 import { cancelRequestInProgMessage } from "@config/positionsTabs/requestProcessMessage/cancelRequestInProgMessage";
 import { cancelRequestInProgress } from "@services/positions/cancelRequestInProgress";
 import { eventBus } from "@events/eventBus";
@@ -17,7 +17,7 @@ const useCancelRequestInProgress = (
   const [hasError, setHasError] = useState(false);
   const { addFlag } = useFlag();
 
-  const fetchCancelRequestData = async (data: ICancelReqInProcRequest) => {
+  const fetchCancelRequestData = async (data: ICancelRequestInProgress) => {
     setLoading(true);
     try {
       await cancelRequestInProgress(businessUnit, data);

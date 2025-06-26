@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/missions/requestTab/IRequestsInProgress";
+import { enviroment } from "@config/environment";
+import { ERequestInProgress } from "@enum/requestInProgress";
 
 const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   const { bussinesUnits } = props;
@@ -20,7 +22,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        const data = await getRequestsInProgress(bussinesUnits, "Mission");
+        const data = await getRequestsInProgress(bussinesUnits, ERequestInProgress.MISSIONS);
         setRequestsInProgress(data);
       } catch (error) {
         console.info(error);
@@ -47,7 +49,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     setSearchRequestsInProgress(e.target.value);
   };
 
-  const smallScreen = useMediaQuery("(max-width: 690px)");
+  const smallScreen = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
   const widthFirstColumn = smallScreen ? 70 : 10;
 
   const columnWidths = smallScreen

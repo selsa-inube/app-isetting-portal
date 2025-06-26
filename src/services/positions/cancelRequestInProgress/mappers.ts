@@ -1,7 +1,7 @@
-import { ICancelReqInProcRequest } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
+import { ICancelRequestInProgress } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
 
 const mapCancelRequestInProgressToApi = (
-  process: ICancelReqInProcRequest
+  process: ICancelRequestInProgress
 ): Record<string, string | number | object> => {
   return {
     removeSettingRequest: [

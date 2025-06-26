@@ -7,6 +7,7 @@ const enviroment = {
   REALM: import.meta.env.VITE_AUTH_REALM,
   PROVIDER: import.meta.env.VITE_AUTH_PROVIDER,
   REDIRECT_URI: IS_PRODUCTION ? window.location.origin : AUTH_REDIRECT_URI,
+  PORTAL_CATALOG_ID: import.meta.env.VITE_PORTAL_CATALOG_ID,
   ICLIENT_API_URL_QUERY: import.meta.env.VITE_ICLIENT_API_URL_QUERY,
   IPORTAL_CODE: import.meta.env.VITE_PORTAL_CODE,
   ICLIENT_API_URL_QUERY_PROCESS: import.meta.env

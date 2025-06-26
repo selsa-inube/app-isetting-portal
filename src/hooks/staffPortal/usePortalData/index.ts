@@ -19,17 +19,23 @@ const UsePortalData = (portalCode: string | null) => {
           setErrorCode(1000);
           return;
         }
-        if (portalCode !== enviroment.IPORTAL_CODE) {
-          setHasError(true);
-          setErrorCode(1002);
-          return;
-        }
+
         const StaffPortalData = await staffPortalByBusinessManager(portalCode);
         if (!StaffPortalData) {
           setHasError(true);
           setErrorCode(1001);
           return;
         }
+
+         if (
+          StaffPortalData[0].staffPortalCatalogId !==
+          enviroment.PORTAL_CATALOG_ID
+        ) {
+          setHasError(true);
+          setErrorCode(1002);
+          return;
+        }
+        
         const encryptedParamValue = encrypt(portalCode);
         localStorage.setItem("portalCode", encryptedParamValue);
         setPortalData(StaffPortalData[0]);

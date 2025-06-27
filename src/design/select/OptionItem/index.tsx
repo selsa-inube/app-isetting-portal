@@ -1,6 +1,4 @@
-import { Label } from "@inubekit/label";
-import { Stack } from "@inubekit/stack";
-
+import { Stack, Label } from "@inubekit/inubekit";
 import { StyledOptionItemChecked } from "./styles";
 
 interface IOptionItemChecked {

@@ -1,8 +1,5 @@
 import { MdOutlineRemoveRedEye, MdOutlineDelete } from "react-icons/md";
-import { Stack } from "@inubekit/stack";
-import { Icon } from "@inubekit/icon";
-import { Divider } from "@inubekit/divider";
-
+import { Stack, Icon, Divider } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { StyledCard, StyledContainer } from "./styles";
 

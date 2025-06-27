@@ -1,9 +1,7 @@
 import { createContext, useMemo, useState } from "react";
-import {
-  IOptionInitialiceEntry,
-  IPosition,
-} from "@pages/privileges/outlets/positions/add-position/types";
-import { IPositionsContext } from "./types";
+import { IPosition } from "@ptypes/positions/assisted/IPosition";
+import { IOptionInitialiceEntry } from "@ptypes/positions/assisted/IOptionInitialiceEntry";
+import { IPositionsContext } from "@ptypes/positions/positionsContext";
 
 const PositionsContext = createContext<IPositionsContext>(
   {} as IPositionsContext

@@ -1,0 +1,19 @@
+import { ComponentAppearance } from "@ptypes/aparences.types";
+
+const cancelRequestInProgMessage = {
+  success: {
+    title: "Solicitud cancelada",
+    description: "La solicitud se canceló correctamente.",
+    appearance: ComponentAppearance.SUCCESS,
+    duration: 3000,
+  },
+  error: {
+    title: "Error al cancelar la solicitud",
+    description:
+      "No fue posible cancelar la solicitud por favor intenta más tarde",
+    appearance: ComponentAppearance.DANGER,
+    duration: 3000,
+  },
+};
+
+export { cancelRequestInProgMessage };

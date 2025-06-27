@@ -1,18 +1,14 @@
 import { useContext } from "react";
-
 import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
-import { Header } from "@inubekit/header";
-import { Icon } from "@inubekit/icon";
-
-import { useHomeLogic } from "@hooks/useHomeLogic";
-import { nav, userMenu } from "@config/nav";
+import { Header, Icon, Text } from "@inubekit/inubekit";
 import { Title } from "@design/label/Title";
 import { InteractiveBox } from "@design/cards/interactiveBox";
-import { BusinessUnitChange } from "@design/inputs/BusinessUnitChange";
-import { renderLogo } from "@hooks/renderLogo/logoUtils";
+import { renderLogo } from "@design/layout/renderLogo/logoUtils";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { IHome } from "@ptypes/home/IHome";
+import { userMenu } from "@config/menuMainConfiguration";
+import { mainNavigation } from "@config/nav";
 import {
-  StyledCollapse,
   StyledCollapseIcon,
   StyledContainer,
   StyledContainerCards,
@@ -22,36 +18,30 @@ import {
   StyledLogo,
   StyledTitle,
 } from "./styles";
-import { ICardData } from "./types";
-
-interface IHome {
-  data?: ICardData[];
-}
+import { homeLabel } from "@config/homeLabel";
 
 const HomeUI = (props: IHome) => {
-  const { data } = props;
-  const { appData } = useContext(AuthAndData);
-
   const {
+    data,
+    loading,
     collapse,
     setCollapse,
-    selectedClient,
-    businessUnitsToTheStaff,
-    handleLogoClick,
     collapseMenuRef,
-    businessUnitChangeRef,
     isTablet,
     smallScreen,
     username,
-  } = useHomeLogic();
+    hasData,
+    multipleBusinessUnits
+  } = props;
 
+  const { appData } = useContext(AuthAndData);
+  
   return (
     <>
       <StyledContainer>
         <StyledHeaderContainer>
           <Header
-            portalId="portal"
-            navigation={nav}
+            navigation={mainNavigation(data)}
             logoURL={renderLogo(appData.businessUnit.urlLogo)}
             user={{
               username: appData.user.userName,
@@ -59,7 +49,7 @@ const HomeUI = (props: IHome) => {
             }}
             menu={userMenu}
           />
-          {businessUnitsToTheStaff.length > 1 && (
+          { multipleBusinessUnits && (
             <>
               <StyledCollapseIcon
                 $collapse={collapse}
@@ -74,15 +64,6 @@ const HomeUI = (props: IHome) => {
                   cursorHover
                 />
               </StyledCollapseIcon>
-              {collapse && (
-                <StyledCollapse ref={businessUnitChangeRef}>
-                  <BusinessUnitChange
-                    businessUnits={businessUnitsToTheStaff}
-                    onLogoClick={handleLogoClick}
-                    selectedClient={selectedClient}
-                  />
-                </StyledCollapse>
-              )}
             </>
           )}
         </StyledHeaderContainer>
@@ -96,18 +77,34 @@ const HomeUI = (props: IHome) => {
             />
           </StyledTitle>
           <StyledContainerCards $smallScreen={smallScreen}>
-            {data?.map((card) => (
-              <InteractiveBox
-                key={card.id}
-                label={card.label}
-                description={card.description}
-                icon={card.icon}
-                url={card.url}
-              />
-            ))}
+            {loading ? (
+              <>
+                <InteractiveBox isLoading={loading} />
+                <InteractiveBox isLoading={loading} />
+              </>
+            ) : (
+              <>
+                { hasData ? (
+                  data?.map((card) => (
+                    <InteractiveBox
+                      key={card.id}
+                      label={card.label}
+                      description={card.description}
+                      icon={card.icon}
+                      url={card.url}
+                      isLoading={loading}
+                    />
+                  ))
+                ) : (
+                  <Text type="body" size="medium">
+                    {homeLabel.noInfo}
+                  </Text>
+                )}{" "}
+              </>
+            )}
           </StyledContainerCards>
         </StyledContainerSection>
-        <StyledFooter>
+        <StyledFooter $isMobile={smallScreen}>
           <StyledLogo src={appData.businessManager.urlBrand} />
         </StyledFooter>
       </StyledContainer>

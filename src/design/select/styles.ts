@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { inube } from "@inubekit/foundations";
+import { inube } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { useBorderColor } from "@hooks/useInputStyles";
-import { useInputColor } from "@hooks/useSelectCheck";
+import { UseInputColor } from "@hooks/design/useSelectCheck";
 import { ISelectCheck } from ".";
 
 interface IStyledInputContainer {
@@ -48,17 +47,15 @@ const StyledContainer = styled.div<IStyledContainer>`
 const StyledInputContainer = styled.div<IStyledInputContainer>`
   display: grid;
   grid-template-columns: 1fr auto;
+  width: 100%;
   align-items: center;
   box-sizing: border-box;
   border-radius: ${basic.spacing.s8};
   user-select: none;
   border-width: 1px;
-  border-style: solid;
+  border: 1px solid ${inube.palette.neutral.N50};
   background-color: ${({ theme, $readonly }) =>
     $readonly && (theme?.palette?.neutral?.N0 || inube.palette.neutral.N0)};
-
-  border-color: ${({ disabled, $readonly, $status, $focused }) =>
-    useBorderColor(disabled!, $readonly, $status, $focused)};
 
   opacity: ${({ disabled }) => (disabled ? "0.5" : "none")};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
@@ -79,7 +76,7 @@ const StyledInput = styled.input<IStyledInput>`
   letter-spacing: ${({ theme }) =>
     theme?.typography?.body?.large?.font ||
     inube.typography.body.large.tracking};
-  color: ${({ disabled }) => useInputColor(disabled)};
+  color: ${({ disabled }) => UseInputColor(disabled)};
   background-color: ${({ theme }) =>
     theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};

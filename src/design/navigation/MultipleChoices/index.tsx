@@ -1,66 +1,41 @@
-import { useState } from "react";
-
-import { Tag } from "@inubekit/tag";
-import { Text } from "@inubekit/text";
-
+import { useState, useEffect } from "react";
+import { Text, Tag } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { IOptionItemChecked } from "@design/select/OptionItem";
 import { SelectCheck } from "@design/select";
+import { UseMultipleChoices } from "@hooks/design/useMultipleChoices";
 import { StyledContainer, StyledSelection } from "./styles";
+import { IMultipleChoices } from "@ptypes/design/IMultipleChoices";
 
-interface IIMultipleChoices {
-  id: string;
-  labelSelect: string;
-  labelSelected: string;
-  onHandleSelectCheckChange: (options: IOptionItemChecked[]) => void;
-  options: IOptionItemChecked[];
-  placeholderSelect?: string;
-  required?: boolean;
-  message?: string;
-  onBlur?: () => void;
-}
-
-const MultipleChoices = (props: IIMultipleChoices) => {
+const MultipleChoices = (props: IMultipleChoices) => {
   const {
     id,
     labelSelect,
     labelSelected,
     onHandleSelectCheckChange,
     options,
-    placeholderSelect = "",
+    placeholderSelect = "Selecciona una opción",
     required = false,
     message,
     onBlur,
   } = props;
 
-  const [optionsSelect, setOptionsSelect] = useState(options);
+  const { uniqueOptions, onHandleSelectCheck, onRemoveTag } =
+    UseMultipleChoices(options, onHandleSelectCheckChange);
 
-  const onHandleSelectCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked, id } = event.target;
-    const newOptions = optionsSelect.map((option) => {
-      if (option.id === id) {
-        return { ...option, checked };
-      }
-      return option;
-    });
-    setOptionsSelect(newOptions);
-    onHandleSelectCheckChange(newOptions);
-  };
+  const [selectedLabels, setSelectedLabels] = useState<string>("");
 
-  const onRemoveTag = (id: string) => {
-    const newOptions = optionsSelect.map((option) => {
-      if (option.id === id) {
-        return { ...option, checked: false };
-      }
-      return option;
-    });
-    setOptionsSelect(newOptions);
-  };
+  useEffect(() => {
+    const selected = uniqueOptions
+      .filter((option) => option.checked)
+      .map((option) => option.label)
+      .join(", ");
+    setSelectedLabels(selected);
+  }, [uniqueOptions]);
 
   return (
     <StyledContainer>
-      {optionsSelect.length > 0 &&
-        optionsSelect.some((option) => option.checked) && (
+      {uniqueOptions.length > 0 &&
+        uniqueOptions.some((option) => option.checked) && (
           <>
             <Text
               margin={`${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s4} ${basic.spacing.s0}`}
@@ -72,18 +47,16 @@ const MultipleChoices = (props: IIMultipleChoices) => {
               {labelSelected}
             </Text>
             <StyledSelection>
-              {optionsSelect
+              {uniqueOptions
                 .filter((option) => option.checked)
                 .map((option) => (
                   <Tag
                     key={option.id}
                     appearance="primary"
                     label={option.label}
-                    weight="strong"
+                    displayIcon={false}
                     removable
-                    onClose={() => {
-                      onRemoveTag(option.id);
-                    }}
+                    onClose={() => onRemoveTag(option.id)}
                   />
                 ))}
             </StyledSelection>
@@ -95,8 +68,8 @@ const MultipleChoices = (props: IIMultipleChoices) => {
         label={labelSelect}
         name={id}
         onChangeCheck={onHandleSelectCheck}
-        options={optionsSelect}
-        placeholder={placeholderSelect}
+        options={uniqueOptions}
+        placeholder={selectedLabels || placeholderSelect}
         required={required}
         value=""
         size="compact"
@@ -109,5 +82,3 @@ const MultipleChoices = (props: IIMultipleChoices) => {
 };
 
 export { MultipleChoices };
-
-export type { IIMultipleChoices };

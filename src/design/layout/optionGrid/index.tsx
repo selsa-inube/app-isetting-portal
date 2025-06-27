@@ -1,11 +1,11 @@
-import { Grid } from "@inubekit/grid";
-import { useMediaQuery } from "@inubekit/hooks";
-import { isMobile580 } from "@config/environment";
+import { Grid, useMediaQuery } from "@inubekit/inubekit";
+
 import { basic } from "@design/tokens";
 import {
   ActionItemBlock,
   IActionItemBlock,
 } from "@design/cards/actionItemBlock";
+import { enviroment } from "@config/environment";
 
 interface IContentFrameworkGrid {
   appOptions: IActionItemBlock[];
@@ -14,7 +14,7 @@ interface IContentFrameworkGrid {
 const ContentFrameworkGrid = (props: IContentFrameworkGrid) => {
   const { appOptions } = props;
 
-  const screenMovil = useMediaQuery(isMobile580);
+  const screenMovil = useMediaQuery(enviroment.IS_MOBILE_580);
 
   return (
     <Grid

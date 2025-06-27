@@ -1,25 +1,37 @@
 import { useState } from "react";
 
-import { Button } from "@inubekit/button";
-
+import { Button } from "@inubekit/inubekit";
+import { IInteractiveModal } from "@ptypes/interactiveModal/InteractiveModalProps";
 import { InteractiveModal } from ".";
-import { InteractiveModalProps } from "./types";
 
 const story = {
-  title: "Components/Feedback/InteractiveModal",
+  title: "Components/Feedback/InteractiveModalDetailsUsers",
   component: InteractiveModal,
 };
 
 const data = {
-  id: 10,
-  userID: "45645",
-  username: "David Leonardo Garzón",
-  mail: "lgarzon@gmail.com",
-  invitationDate: "11/JUN/2022",
-  status: "Sent",
+  missionId: "Pruebas",
+  descriptionUse: "description",
+  descriptiosnUse: "description",
+  userID: "123",
+  username: "John Doe",
+  email: "johndoe@example.com",
+  phone: "1234567890",
+  position: "Software Engineer",
 };
 
-const Default = (args: InteractiveModalProps) => {
+const dataTable = [
+  {
+    missionId: "123",
+    descriptionUse: "description",
+  },
+  {
+    missionId: "456",
+    descriptionUse: "description",
+  },
+];
+
+const Default = (args: IInteractiveModal) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -36,8 +48,10 @@ Default.args = {
   portalId: "portal",
   title: "User Information",
   infoData: data,
-  infoTitle: "Información",
+  infoTitle: "Unidades de negocio asignadas al funcionario",
+  infoText: "Cerrar",
   actionsTitle: "Acciones",
+  dataTable,
 };
 export { Default };
 export default story;

@@ -1,8 +1,6 @@
-import { Grid } from "@inubekit/grid";
-import { useMediaQueries, useMediaQuery } from "@inubekit/hooks";
-import { Text } from "@inubekit/text";
+import { Grid, useMediaQueries, useMediaQuery, Text } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { isMobile580 } from "@config/environment";
+
 import { StyledRadioBusinessUnit, StyledRadio, StyledImage } from "./styles";
 
 interface IRBusinessUnit {
@@ -16,12 +14,12 @@ interface IRBusinessUnit {
 
 const RadioBusinessUnit = (props: IRBusinessUnit) => {
   const { name, id, value, label, logo, handleChange } = props;
-  const smallScreen = useMediaQuery(isMobile580);
+  const smallScreen = useMediaQuery("(max-width: 532px)");
   const mediaQueries = ["(max-width: 532px)", "(max-width: 460px)"];
   const matches = useMediaQueries(mediaQueries);
 
   return (
-    <StyledRadioBusinessUnit>
+    <StyledRadioBusinessUnit $isMobile={smallScreen}>
       <Grid
         templateColumns={
           matches["(max-width: 532px)"] ? "auto 1fr" : "auto 1fr 130px"

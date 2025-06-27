@@ -1,80 +1,50 @@
-import {
-  MdOutlineStart,
-  MdVpnKey,
-  MdOutlineSettings,
-  MdLogout,
-} from "react-icons/md";
+import { MdOutlineStart } from "react-icons/md";
+import { INavLink } from "@inubekit/inubekit";
+import { ICardData } from "@ptypes/home/ICardData";
 
-import { INav } from "@pages/home/types";
-const appsConfig = [
-  {
-    id: 1,
-    label: "Privilegios",
-    description: "Gestionar los Cargos y sus privilegios",
-    icon: <MdVpnKey />,
-    crumbs: [
-      {
-        path: "/",
-        label: "Inicio",
-        id: "/",
-        isActive: false,
-      },
-      {
-        path: "/privileges",
-        label: "Privilegios",
-        id: "/privileges",
-        isActive: true,
-      },
-    ],
-    url: "/privileges",
-  },
-];
+const createNavLink = (
+  option: ICardData,
+  defaultIcon: React.ReactNode,
+  location?: Location
+) => ({
+  id: option?.id ?? "",
+  label: option?.label ?? "",
+  icon: option?.icon ?? defaultIcon,
+  path: option?.url ?? "",
+  isActive: location ? location.pathname === option?.url : false,
+});
 
-const nav: INav = {
-  items: {
-    title: "MENU",
-    sections: {
-      administrate: {
-        name: "",
-        links: {
-          privileges: {
-            id: "privileges",
-            label: "Privilegios",
-            icon: <MdOutlineStart />,
-            path: "/privileges",
+const mainNavigation = (optionsCards: ICardData[], location?: Location) => {
+  const linkNav = optionsCards.reduce<Record<string, INavLink>>(
+    (acc, option) => {
+      const navLink = createNavLink(option, <MdOutlineStart />, location);
+      acc[navLink.id] = navLink;
+      return acc;
+    },
+    {}
+  );
+
+  return {
+    nav: {
+      reactPortalId: "portal",
+      title: "MENU",
+      sections: [
+        {
+          subtitle: "",
+          links: Object.values(linkNav),
+
+          isOpen: false,
+          onClose: () => {
+            console.log();
           },
-          rules: {
-            id: "rules",
-            label: "Reglas",
-            icon: <MdOutlineSettings />,
-            path: "/rules",
+          onToggle: () => {
+            console.log();
           },
         },
-      },
+      ],
     },
-  },
-  breakpoint: "848px",
+    breakpoint: "848px",
+  };
 };
 
-const userMenu = [
-  {
-    id: "section",
-    title: "",
-    links: [
-      {
-        id: "logout",
-        title: "Cerrar sesión",
-        path: "/logout",
-        iconBefore: <MdLogout />,
-      },
-    ],
-    divider: true,
-  },
-];
-
-const logoutConfig = {
-  logoutPath: "/logout",
-  logoutTitle: "Cerrar sesión",
-};
-
-export { appsConfig, nav, logoutConfig, userMenu };
+export { mainNavigation };

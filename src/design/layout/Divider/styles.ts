@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { inube } from "@inubekit/foundations";
+import { inube } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 
 interface IStyledDivider {
@@ -13,7 +13,6 @@ const StyledDivider = styled.hr<IStyledDivider>`
   border: none;
   border-top: 0.5px ${({ $dashed }) => ($dashed ? "dashed" : "solid")};
   border-top-color: ${({ theme }) =>
-    theme.color?.stroke?.divider?.regular ||
-    inube.palette.neutral.N40};
+    theme.palette?.neutral?.N40 || inube.palette.neutral.N40};
 `;
 export { StyledDivider };

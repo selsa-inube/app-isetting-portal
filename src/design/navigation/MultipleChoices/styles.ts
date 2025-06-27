@@ -14,6 +14,7 @@ const StyledSelection = styled.div`
   padding: ${basic.spacing.s10} ${basic.spacing.s12};
   border: 1px solid #e0e0e0;
   border-radius: ${basic.spacing.s10};
+  width: 100%;
 `;
 
 export { StyledContainer, StyledSelection };

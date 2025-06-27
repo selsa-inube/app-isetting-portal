@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
-import { PrivilegesOptions } from "@pages/privileges/outlets/options";
-import { Positions } from "@pages/privileges/outlets/positions";
-import { AddPosition } from "@pages/privileges/outlets/positions/add-position";
 import { PositionsProvider } from "@context/positionsContext";
 import { ErrorPage } from "@design/layout/ErrorPage";
+import { AddPosition } from "@pages/positions/tabs/positionsTabs/outlets/addPosition";
+import { PositionsOptions } from "@pages/positions/tabs/positionsTabs/outlets/options";
+import { Positions } from "@pages/positions";
 
-const PrivilegesRoutes = () => {
+const PositionsRoutes = () => {
   return (
     <PositionsProvider>
       <Routes>
-        <Route path="/" element={<PrivilegesOptions />} />
+        <Route path="/" element={<PositionsOptions />} />
         <Route path="/positions" element={<Positions />} />
         <Route path="positions/add-position" element={<AddPosition />} />
         <Route path="/*" element={<ErrorPage />} />
@@ -18,4 +18,4 @@ const PrivilegesRoutes = () => {
   );
 };
 
-export { PrivilegesRoutes };
+export { PositionsRoutes };

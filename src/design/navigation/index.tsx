@@ -1,9 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useCallback } from "react";
-import { Stack } from "@inubekit/stack";
+import { Stack } from "@inubekit/inubekit";
+import { IOption } from "@ptypes/navigation/IOption";
 import { StyledMenu, StyledMenuContainer } from "./styles";
-import { IOption } from "./types";
-
 import { MenuLink } from "./MenuLink";
 import { MenuOption } from "./MenuOption";
 

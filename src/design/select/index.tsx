@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
-import { Size, Status } from "./types";
+import { Size, Status } from "@ptypes/select/selectbusinessUnit/Istatus";
 import { SelectCheckUI } from "./interface";
 import { IOptionItemChecked } from "./OptionItem";
 

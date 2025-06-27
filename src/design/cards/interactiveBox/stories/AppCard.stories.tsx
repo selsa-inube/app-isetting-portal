@@ -25,7 +25,7 @@ Default.args = {
   label: "Card Title",
   description: "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   icon: <MdContacts />,
-  url: "/privileges",
+  url: "/positions",
 };
 export { Default };
 export default meta;

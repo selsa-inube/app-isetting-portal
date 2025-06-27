@@ -17,7 +17,7 @@ const rulesOptionsConfig = [
       },
       {
         path: "/rules",
-        label: "Privilegios",
+        label: "Cargos",
         id: "/rules",
         isActive: false,
       },

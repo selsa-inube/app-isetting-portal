@@ -1,13 +1,14 @@
 import { MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
-
-import { Button } from "@inubekit/button";
-import { Blanket } from "@inubekit/blanket";
-import { Stack } from "@inubekit/stack";
-import { Text } from "@inubekit/text";
-import { Icon } from "@inubekit/icon";
-import { useMediaQuery } from "@inubekit/hooks";
-import { isMobile743 } from "@config/environment";
+import {
+  Stack,
+  Text,
+  Icon,
+  Button,
+  Blanket,
+  useMediaQuery,
+} from "@inubekit/inubekit";
+import { enviroment } from "@config/environment";
 import { basic } from "@design/tokens";
 
 import { StyledBackdropBlanket, StyledModal } from "./styles";
@@ -19,7 +20,7 @@ interface ILogoutModal {
 
 const LogoutModal = (props: ILogoutModal) => {
   const { logoutPath, handleShowBlanket } = props;
-  const smallScreen = useMediaQuery(isMobile743);
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_743);
 
   return (
     <StyledBackdropBlanket>

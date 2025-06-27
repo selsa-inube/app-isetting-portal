@@ -1,4 +1,4 @@
-import { Stack } from "@inubekit/stack";
+import { Stack } from "@inubekit/inubekit";
 
 const Rules = () => {
   return <Stack>Principal Rules</Stack>;

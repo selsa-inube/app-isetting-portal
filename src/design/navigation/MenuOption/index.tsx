@@ -1,5 +1,4 @@
-import { Stack } from "@inubekit/stack";
-import { Text } from "@inubekit/text";
+import { Stack, Text } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { StyledOption } from "./styles";
 
@@ -10,7 +9,7 @@ interface IMenuOption {
 }
 
 const MenuOption = ({ label, icon, handleClick }: IMenuOption) => (
-  <StyledOption onClick={handleClick} type="button">
+  <StyledOption onClick={handleClick}>
     <Stack gap={basic.spacing.s12} alignItems="center">
       {icon}
       <Text size="small">{label}</Text>

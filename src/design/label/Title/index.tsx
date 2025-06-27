@@ -1,11 +1,14 @@
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "@inubekit/hooks";
-import { Icon } from "@inubekit/icon";
-import { Stack } from "@inubekit/stack";
-import { ITextSize, Text } from "@inubekit/text";
+import {
+  Icon,
+  useMediaQuery,
+  Stack,
+  ITextSize,
+  Text,
+} from "@inubekit/inubekit";
+import { enviroment } from "@config/environment";
 import { basic } from "@design/tokens";
-import { mediaQueryMobile } from "@config/environment";
 import { StyledContainerText } from "./styles";
 
 interface ITitle {
@@ -25,7 +28,7 @@ const Title = (props: ITitle) => {
     navigatePage,
   } = props;
 
-  const smallScreen = useMediaQuery(mediaQueryMobile);
+  const smallScreen = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
 
   const navigate = useNavigate();
 

@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { inube } from "@inubekit/foundations";
+import { inube } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 
 interface IStyledInteractiveBox {
   $isMobile: boolean;
   $smallScreen?: boolean;
 }
+
 const StyledInteractiveBox = styled(Link)<IStyledInteractiveBox>`
   box-sizing: border-box;
   padding: ${(props) =>
@@ -22,20 +23,18 @@ const StyledInteractiveBox = styled(Link)<IStyledInteractiveBox>`
   border-radius: ${basic.spacing.s050};
   text-decoration: none;
   color: ${({ theme }) =>
-    theme?.color?.stroke.dark.regular || inube.palette.neutral.N900};
+    theme?.palette?.neutral.N900 || inube.palette.neutral.N900};
   border: 1px solid
-    ${({ theme }) =>
-      theme?.color?.stroke.dark.regular || inube.palette.neutral.N30};
+    ${({ theme }) => theme?.palette?.neutral?.N30 || inube.palette.neutral.N30};
   box-shadow: 3px 3px 5px 1px
-    ${({ theme }) =>
-      theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
+    ${({ theme }) => theme?.palette?.neutral?.N30 || inube.palette.neutral.N30};
   cursor: pointer;
 
   &:hover {
     color: ${({ theme }) =>
-      theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
+      theme?.palette?.neutral?.N30 || inube.palette.neutral.N30};
     background-color: ${({ theme }) =>
-      theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
+      theme?.palette?.neutral?.N30 || inube.palette.neutral.N30};
     box-shadow: none;
   }
   div {

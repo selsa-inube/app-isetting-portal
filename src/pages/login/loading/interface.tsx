@@ -1,6 +1,4 @@
-import { Stack } from "@inubekit/stack";
-import { Text } from "@inubekit/text";
-import { Spinner } from "@inubekit/spinner";
+import { Spinner, Text, Stack } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 
 const LoadingUI = () => {

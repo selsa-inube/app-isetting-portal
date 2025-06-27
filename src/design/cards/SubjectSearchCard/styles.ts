@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { inube } from "@inubekit/foundations";
+import { inube } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 
 interface IStyledSubjectSearchCard {
@@ -17,21 +17,18 @@ const StyledSubjectSearchCard = styled.div<IStyledSubjectSearchCard>`
   box-sizing: border-box;
   border-radius: ${basic.spacing.s8};
   border: 1px solid
-    ${({ theme }) =>
-      theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30};
+    ${({ theme }) => theme?.palette?.neutral?.N30 || inube.palette.neutral.N30};
   cursor: pointer;
   background-color: ${({ theme, $isActive }) =>
     $isActive
-      ? theme?.color?.surface?.gray?.regular || inube.palette.neutral.N30
-      : theme?.color?.surface?.light?.clear || inube.palette.neutral.N0};
+      ? theme?.palette?.neutral?.N30 || inube.palette.neutral.N30
+      : theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
 
   box-shadow: ${({ theme }) =>
     `0px 1px 3px 1px ${
-      theme?.color?.palette?.neutralAlpha?.N40A ||
-      inube.palette.neutralAlpha.N40A
+      theme?.palette?.neutral?.N40 || inube.palette.neutralAlpha.N40A
     }, 0px 1px 2px 0px ${
-      theme?.color?.palette?.neutralAlpha?.N60A ||
-      inube.palette.neutralAlpha.N60A
+      theme?.palette?.neutral?.N60 || inube.palette.neutralAlpha.N60A
     }`};
 `;
 

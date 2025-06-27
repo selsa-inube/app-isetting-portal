@@ -10,6 +10,7 @@ interface IDetailsMissionModalUI {
   hasLabels: boolean;
   hasActions: boolean;
   isMobile: boolean;
+  title?: string;
   actions?: IAction[];
   dataTable?: IEntry[];
   actionsTitle?: string;

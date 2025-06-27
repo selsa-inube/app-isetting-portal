@@ -5,6 +5,7 @@ interface IRequestsInProcess {
   labelsOfRequest: ILabel[];
   labelsOfTraceability: ILabel[];
   isMobile: boolean;
+  title?: string;
   onCloseModal: () => void;
   onClick?: () => void;
 }

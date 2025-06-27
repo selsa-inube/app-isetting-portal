@@ -5,7 +5,6 @@ interface IDetailBox {
   data: IEntry;
   id: number;
   width: string;
-  backgroundColor: string;
   borderRadius?: string;
   padding?: string;
   borderColor?: string;

@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from "axios";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { postWithRetries } from "@services/core/postWithRetries";
-import { axiosInstance } from "@api/isaasPersistence";
+import { isaasPerAxiosInstance } from "@api/isaasPersistence";
 import { mapSavePositionsEntityToApi } from "./mappers";
 const postSaveRequest = async (
   userAccount: string,
@@ -19,7 +19,7 @@ const postSaveRequest = async (
     `/requests`,
     config,
     mapSavePositionsEntityToApi(data) as unknown as string[],
-    axiosInstance
+    isaasPerAxiosInstance
   );
 
   return saveData;

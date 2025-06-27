@@ -1,7 +1,8 @@
 import { BorderStack } from "@design/modals/borderStack";
-import { Stack, Tag, Text } from "@inubekit/inubekit";
+import { inube, Stack, Tag, Text } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { IDetailBox } from "@ptypes/design/IDetailBox";
+import { useThemeData } from "@utils/theme";
 
 const DetailBox = (props: IDetailBox) => {
   const {
@@ -9,19 +10,20 @@ const DetailBox = (props: IDetailBox) => {
     field,
     data,
     width,
-    backgroundColor,
     borderRadius,
     borderColor,
     padding,
     withTag,
     ellipsis = false,
   } = props;
+
+  const theme = useThemeData();
   return (
     <BorderStack
       key={id}
       direction="column"
       width={width}
-      background={backgroundColor}
+      background={theme?.palette.neutral.N10 ?? inube.palette.neutral.N10}
       borderRadius={borderRadius}
       border={borderColor}
       boxSizing="border-box"

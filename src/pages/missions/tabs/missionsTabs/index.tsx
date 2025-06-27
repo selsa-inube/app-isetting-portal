@@ -14,7 +14,8 @@ const MissionsTab = () => {
   const {
     smallScreen,
     label,
-    searchPosition, 
+    searchPosition,
+    columnWidths, 
     handleSearchPositions,
   } = useMissionsTab();
 
@@ -27,6 +28,7 @@ const MissionsTab = () => {
       smallScreen={smallScreen}
       label={label}
       setEntryDeleted={() => {}}
+      columnWidths={columnWidths}
     />
   );
 };

@@ -10,6 +10,7 @@ import { Table } from "@design/table";
 import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
 import { missionsTabLabels } from "@config/missions/missionTab/missionsTabLabels";
 import { StyledButtonWrapper } from "./styles";
+import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
 
 const MissionsTabUI = (props: IMissionsTabUI) => {
   const {
@@ -18,6 +19,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
     loading,
     data,
     smallScreen,
+    columnWidths,
     setEntryDeleted,
   } = props;
 
@@ -89,11 +91,11 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
             id="portal"
             titles={titlesOptions}
             entries={data ?? []}
-            actions={actionsConfig(setEntryDeleted)}
+            actions={actionsConfig(setEntryDeleted, detailsLabels.titleDetails )}
             breakpoints={breakPoints}
             filter={searchMission}
             loading={loading}
-            columnWidths={[75]}
+            columnWidths={columnWidths}
           />
         </Stack>
       </Stack>

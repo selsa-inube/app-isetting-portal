@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
 import { getWithRetries } from "@services/core/getWithRetries";
-import { axiosInstance } from "@api/isettingProcess";
+import { queryProcessAxiosInstance } from "@api/isettingProcess";
 import { mapRequestsInProgressToEntity } from "./mappers";
 const getRequestInProgressById = async (
   bussinesUnits: string,
@@ -19,7 +19,7 @@ const getRequestInProgressById = async (
     entityName: "Mission",
   });
   const data = await getWithRetries<IRequestsInProgress>(
-    axiosInstance,
+    queryProcessAxiosInstance,
     `/requests/business-unit/${bussinesUnits}/${settingRequestId}?${queryParams.toString()}`,
     config
   );

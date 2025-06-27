@@ -13,7 +13,8 @@ const Missions =() => {
       showModal,
       showInfoModal,
       showMissionTab,
-      missionsTabs,
+      showRequestTab,
+      missionsTabs, 
       onToggleInfoModal,
       onCloseMenu,
       onToggleModal,
@@ -33,6 +34,7 @@ const Missions =() => {
         onCloseMenu={onCloseMenu}
         onToggleModal={onToggleModal}
         showMissionTab={showMissionTab}
+        showRequestTab={ showRequestTab}
         missionsTabs={missionsTabs}
       />
     );

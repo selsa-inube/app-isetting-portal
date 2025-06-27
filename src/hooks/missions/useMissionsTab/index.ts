@@ -27,12 +27,15 @@ const useMissionsTab = (
     setSearchPosition(e.target.value);
   };
 
+   const columnWidths=[85]
+
   return {
     searchPosition,
     smallScreen,
     label,
     businessManagersData,
     entryDeleted,
+    columnWidths,
     setEntryDeleted,
     handleSearchPositions,
   };

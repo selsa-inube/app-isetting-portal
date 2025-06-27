@@ -9,7 +9,7 @@ import { TableView } from "./tableView";
 import { detailsMission } from "@config/missions/details";
 
 const DetailsMissionModalUI = (props: IDetailsMissionModalUI) => {
-  const { onClose, labels, infoData, hasLabels, dataTable, isMobile } = props;
+  const { onClose, labels, infoData, hasLabels, dataTable, isMobile, title } = props;
 
   return (
     <ModalWrapper
@@ -18,7 +18,7 @@ const DetailsMissionModalUI = (props: IDetailsMissionModalUI) => {
       labelActionButton={detailsMission.detailsMissionsInfoText}
       labelCloseButton={detailsMission.detailsMissionsInfoText}
       labelCloseModal={detailsMission.detailsMissionsInfoText}
-      title={detailsMission.detailsMissions}
+      title={title ?? detailsMission.detailsMissions}
       onCloseModal={onClose}
       onClick={onClose}
       width={isMobile ? "335px" : "700px"}

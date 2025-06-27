@@ -10,6 +10,7 @@ isSelected: string;
   showInfoModal: boolean;
   options: IMenuOptions[];
   showMissionTab: boolean;
+  showRequestTab: boolean;
   missionsTabs: ITab[];
   onToggleInfoModal: () => void;
   onCloseMenu: () => void;

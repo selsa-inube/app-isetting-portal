@@ -7,6 +7,7 @@ interface IFeedbackModal {
   smallScreen: boolean;
   labels: IField[];
   infoData: IPosition;
+  title?: string;
   actions?: IAction[];
   dataTable?: IEntry[];
   actionsTitle?: string;

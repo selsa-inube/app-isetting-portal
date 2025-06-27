@@ -7,6 +7,7 @@ import { IMissionsUI } from "@ptypes/missions/IMissionsUI";
 import { missionTitle } from "@config/missions/missionTab/missionTitle";
 import { crumbMissions } from "@config/missions/navigation";
 import { MissionsTab } from "./tabs/missionsTabs";
+import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
 
 const MissionsUI = (props: IMissionsUI) => {
   const {
@@ -21,6 +22,7 @@ const MissionsUI = (props: IMissionsUI) => {
     smallScreenTab,
     smallScreen,
     showMissionTab,
+    showRequestTab,
     missionsTabs,
   } = props;
 
@@ -76,6 +78,7 @@ const MissionsUI = (props: IMissionsUI) => {
               scroll={smallScreenTab ? true : false}
             />
             {showMissionTab && <MissionsTab />}
+            {showRequestTab  && <RequestsInProgressTab />}
           </Stack>
         </Stack>
       </Stack>

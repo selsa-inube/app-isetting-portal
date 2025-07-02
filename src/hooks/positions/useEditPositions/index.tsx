@@ -243,6 +243,10 @@ const UseEditPositions = (props: IUseEditPositions) => {
     formValues.rolesStaff.values = selectedToggle;
   }
 
+  const showGeneralInformation = isSelected === editPositionTabsConfig.generalInformation.id;
+
+  const showRolesform  = isSelected === editPositionTabsConfig.selectionRoles.id 
+
   return {
     formValues,
     generalInformationRef,
@@ -262,6 +266,8 @@ const UseEditPositions = (props: IUseEditPositions) => {
     setSelectedToggle,
     handleRoleToggle,
     roles,
+    showGeneralInformation,
+    showRolesform,
   };
 };
 

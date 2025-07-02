@@ -1,3 +1,4 @@
+import { basic } from "@design/tokens";
 import styled from "styled-components";
 
 interface IStyledComponent {
@@ -23,7 +24,7 @@ const StyledOptionsContainer = styled.div`
 `;
 
 const StyledToggleContainer = styled.div<IStyledComponent>`
-  margin: ${({ $smallScreen }) => ($smallScreen ? "10px" : "0px")};
+  margin: ${({ $smallScreen }) => ($smallScreen ? `${basic.spacing.s10}` : `${basic.spacing.s0}`)};
   & > div {
     justify-content: center;
   }

@@ -1,17 +1,19 @@
-import { Breadcrumbs, Button, Stack, Tabs } from "@inubekit/inubekit";
-import { InitializerForm } from "@design/forms/InitializerForm";
+import { Breadcrumbs, Stack, Tabs } from "@inubekit/inubekit";
+
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { Title } from "@design/label/Title";
 import { crumbsEditPosition } from "@config/positions/editPositions/navigation";
 import { RequestProcess } from "@design/feedback/requestProcess";
-import { DecisionModalLabel } from "@config/positions/decisionModalText";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { IEditPositionsUI } from "@ptypes/positions/actions/IEditPositionsUI";
 import { GeneralInformationForm } from "../../forms/generalInformationForm";
-import { modalsLabels } from "@config/modalsLabels";
+import { editPositionTitle } from "@config/positions/editPositions/editPositionTitle";
+import { portalId } from "@config/portalId";
+import { RolesForm } from "../../forms/rolesForm";
+
 const EditPositionsUI = (props: IEditPositionsUI) => {
   const {
     editPositionTabsConfig,
@@ -20,14 +22,16 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
     savePositions,
     isSelected,
     loading,
-    showRequestProcessModal,
+    showGeneralInformation,
+    showRequestProcess,
+    showRolesform,
+    showRequestStatusModal,
     onButtonClick,
     onTabChange,
     onCloseRequestStatus,
     onClosePendingReqModal,
     setIsCurrentFormValid,
     setSelectedToggle,
-    showPendingReqModal,
     requestSteps,
     smallScreen,
     onReset,
@@ -48,7 +52,11 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
       <Stack gap={basic.spacing.s300} direction="column">
         <Stack gap={basic.spacing.s300} direction="column">
           <Breadcrumbs crumbs={crumbsEditPosition} />
-          <Title title="Editar " description=" posición." sizeTitle="large" />
+          <Title
+            title={editPositionTitle.title}
+            description={editPositionTitle.description}
+            sizeTitle="large"
+          />
         </Stack>
         <Stack gap={basic.spacing.s300} direction="column">
           <Tabs
@@ -57,50 +65,34 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
             onChange={onTabChange}
           />
           <Stack direction="column">
-            {isSelected === editPositionTabsConfig.generalInformation.id && (
+            {showGeneralInformation && (
               <GeneralInformationForm
                 ref={generalInformationRef}
                 initialValues={initialValues.generalInformation.values}
                 onFormValid={setIsCurrentFormValid}
                 editDataOption
                 loading={loading}
-                handleNextStep={() => false}
+                handleNextStep={onButtonClick}
+                onReset={onReset}
               />
             )}
-            {isSelected === editPositionTabsConfig.selectionRoles.id && (
-              <InitializerForm
-                key={isSelected}
-                dataOptionsForms={roles}
-                dataOptionsValueSelect={options}
+            {showRolesform && (
+              <RolesForm
+                entries={roles}
+                options={options}
                 setSelectedToggle={setSelectedToggle}
+                onButtonClick={onButtonClick}
+                onReset={onReset}
+                withFilter
               />
             )}
           </Stack>
         </Stack>
       </Stack>
-      <Stack justifyContent="flex-end" gap={basic.spacing.s250}>
-        <Button
-          fullwidth={smallScreen}
-          onClick={onReset}
-          appearance={ComponentAppearance.GRAY}
-          disabled={false}
-        >
-          {modalsLabels.cancel}
-        </Button>
 
-        <Button
-          fullwidth={smallScreen}
-          onClick={onButtonClick}
-          disabled={false}
-          loading={loading}
-          appearance={ComponentAppearance.PRIMARY}
-        >
-         {modalsLabels.save}
-        </Button>
-      </Stack>
-      {showRequestProcessModal && savePositions && (
+      {showRequestProcess && (
         <RequestProcess
-          portalId={DecisionModalLabel.portalId}
+          portalId={portalId}
           saveData={savePositions}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
@@ -111,9 +103,9 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
         />
       )}
 
-      {showPendingReqModal && savePositions.requestNumber && (
+      {showRequestStatusModal && (
         <RequestStatusModal
-          portalId="portal"
+          portalId={portalId}
           title={requestStatusMessage(savePositions.responsible).title}
           description={
             requestStatusMessage(savePositions.responsible).description

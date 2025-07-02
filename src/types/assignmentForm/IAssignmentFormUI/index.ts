@@ -1,40 +1,35 @@
-import { IOptionItemChecked } from "@design/select/OptionItem";
 import { IOption } from "@ptypes/navigation/IOption";
-
+import { IFilterTag } from "@isettingkit/business-rules";
+import { IFields } from "@ptypes/IFields";
 import { IFormEntry } from "../IFormEntry";
 
 interface IAssignmentFormUI {
-  entries: IFormEntry[];
   filter: string;
-  filteredRows: IFormEntry[];
-  handleToggleRol: () => void;
-  handleCloseMenuRol: () => void;
+  filteredEntries: IFormEntry[];
   filterValue: string;
   isAssignAll: boolean;
+  isDisabledButton: boolean;
+  labelButtonNext: string;
+  labelButtonPrevious: string;
+  loading: boolean;
   menuOptions: IOption[];
-  options: IOptionItemChecked[];
   showMenu: boolean;
   smallScreen: boolean;
-  showModal: boolean;
-  dataValidations: boolean;
-  title: string;
-  selectedOptions: IOptionItemChecked[];
-  handleToggleModal: () => void;
-  handleClearFilters: () => void;
-  onSelectChange: (options: IOptionItemChecked[]) => void;
-  setSelectedOptions: React.Dispatch<
-    React.SetStateAction<IOptionItemChecked[]>
-  >;
-  handleClick: () => void;
-  handleCloseMenuInvitation: () => void;
-  handleFilter: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSelectChange: (options: IOptionItemChecked[]) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  handleToggleAllEntries: (allocate: boolean) => void;
-  handleToggleMenuInvitation: () => void;
-  onHandleSelectCheckChange: (id: string) => void;
+  fields: IFields[];
+  showFilter: boolean;
+  showFilterModal: boolean;
+  handleCloseMenuRol: () => void;
   handleFilterInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  readOnly?: boolean;
+  handleToggleAllEntries: (allocate: boolean) => void;
+  handleToggleRol: () => void;
+  onSelectCheckChange: (id: string) => void;
+  onReset: () => void;
+  onButtonClick: () => void; 
+  appliedFilters?: IFilterTag[]; 
+  onApply?: () => void;
+  onFilterChange?: (name: string, values: string) => void;
+  handleClearFilters: () => void;
+  handleToggleModal?: () => void;
 }
 
 export type { IAssignmentFormUI };

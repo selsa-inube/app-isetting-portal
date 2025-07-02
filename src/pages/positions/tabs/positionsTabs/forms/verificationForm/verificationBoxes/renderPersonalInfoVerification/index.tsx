@@ -4,7 +4,7 @@ import { basic } from "@design/tokens";
 import { labels } from "@config/verificationTitles";
 import { IRenderPersonalTwo } from "@ptypes/verification/IRenderPersonalTwo";
 
-const renderPersonalInfoVerification = (props: IRenderPersonalTwo) => {
+const RenderPersonalInfoVerification = (props: IRenderPersonalTwo) => {
   const { values, isMobile } = props;
   return (
     <>
@@ -25,4 +25,4 @@ const renderPersonalInfoVerification = (props: IRenderPersonalTwo) => {
   );
 };
 
-export { renderPersonalInfoVerification };
+export { RenderPersonalInfoVerification };

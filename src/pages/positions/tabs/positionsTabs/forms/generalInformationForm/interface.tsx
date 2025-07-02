@@ -1,10 +1,23 @@
 import { labels } from "@config/positions/assistedText";
 import { IGeneralInformationFormUI } from "@ptypes/positions/generalInformation/IGeneralInformationFormUI";
 import { basic } from "@design/tokens";
-import { Input, Stack, Textarea } from "@inubekit/inubekit";
+import { Button, Stack, Textarea, Textfield } from "@inubekit/inubekit";
 import { StyledContainer, StyledContainerFields } from "./styles";
+import { ComponentAppearance } from "@ptypes/aparences.types";
+import { getFieldState } from "@utils/forms";
+
 const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
-  const { formik, loading, isMobile } = props;
+  const {
+    formik,
+    loading,
+    isMobile,
+    editDataOption,
+    buttonDisabledState,
+    labelButtonNext,
+    valuesEqual,
+    onReset,
+    onButtonClick,
+  } = props;
 
   return (
     <StyledContainer>
@@ -17,7 +30,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                 gap={basic.spacing.s250}
               >
                 <Stack width={isMobile ? "100%" : "350px"}>
-                  <Input
+                  <Textfield
                     name="namePosition"
                     id="namePosition"
                     label={labels.namePosition}
@@ -27,16 +40,8 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                     value={formik.values.namePosition}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    status={
-                      formik.touched.namePosition && formik.errors.namePosition
-                        ? "invalid"
-                        : undefined
-                    }
-                    message={
-                      formik.touched.namePosition
-                        ? formik.errors.namePosition
-                        : ""
-                    }
+                    status={getFieldState(formik, "namePosition")}
+                    message={formik.errors.namePosition}
                     required
                     fullwidth
                   />
@@ -49,19 +54,10 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                 name="descriptionPosition"
                 id="descriptionPosition"
                 value={formik.values.descriptionPosition}
-                maxLength={100}
+                maxLength={labels.maxLengthdescrip}
                 disabled={loading}
-                status={
-                  formik.touched.descriptionPosition &&
-                  formik.errors.descriptionPosition
-                    ? "invalid"
-                    : undefined
-                }
-                message={
-                  formik.touched.descriptionPosition
-                    ? formik.errors.descriptionPosition
-                    : ""
-                }
+                status={getFieldState(formik, "descriptionPosition")}
+                message={formik.errors.descriptionPosition}
                 fullwidth
                 required
                 onBlur={formik.handleBlur}
@@ -69,6 +65,27 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
               />
             </Stack>
           </StyledContainerFields>
+
+          <Stack justifyContent="flex-end" gap={basic.spacing.s250}>
+            {editDataOption && (
+              <Button
+                onClick={onReset}
+                appearance={ComponentAppearance.GRAY}
+                disabled={valuesEqual}
+              >
+                {labels.cancelButton}
+              </Button>
+            )}
+
+            <Button
+              onClick={onButtonClick}
+              disabled={buttonDisabledState}
+              loading={loading}
+              appearance={ComponentAppearance.PRIMARY}
+            >
+              {labelButtonNext}
+            </Button>
+          </Stack>
         </Stack>
       </form>
     </StyledContainer>

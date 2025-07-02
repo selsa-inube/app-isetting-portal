@@ -15,9 +15,11 @@ interface IEditPositionsUI {
   isSelected: string;
   requestSteps: IRequestSteps[];
   loading: boolean;
-  showPendingReqModal: boolean;
-  showRequestProcessModal: boolean;
   savePositions: ISaveDataResponse;
+  showGeneralInformation: boolean;
+  showRolesform: boolean;
+  showRequestProcess: boolean;
+  showRequestStatusModal: boolean;
   onTabChange: (id: string) => void;
   onButtonClick: () => void;
   onReset: () => void;

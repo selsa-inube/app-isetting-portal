@@ -8,23 +8,49 @@ import { GeneralInformationFormUI } from "./interface";
 const GeneralInformationForm = forwardRef<
   FormikProps<IGeneralInformationEntry>,
   IGeneralInformationForm
->(({ initialValues, onFormValid, onSubmit, handleNextStep, loading }, ref) => {
-  const { formik, isMobile } = UseGeneralInfoCreditLineForm(
-    initialValues,
-    ref,
-    onSubmit,
-    onFormValid
-  );
+>(
+  (
+    {
+      initialValues,
+      onFormValid,
+      onSubmit,
+      onReset,
+      handleNextStep,
+      loading,
+      editDataOption = false,
+    },
+    ref
+  ) => {
+    const {
+      formik,
+      isMobile,
+      valuesEqualBoton,
+      labelButtonNext,
+      isDisabledButton,
+    } = UseGeneralInfoCreditLineForm(
+      initialValues,
+      ref,
+      onSubmit,
+      onFormValid,
+      editDataOption
+    );
 
-  return (
-    <GeneralInformationFormUI
-      loading={loading}
-      formik={formik}
-      onNextStep={handleNextStep}
-      isMobile={isMobile}
-    />
-  );
-});
+    return (
+      <GeneralInformationFormUI
+        loading={loading}
+        formik={formik}
+        onNextStep={handleNextStep}
+        isMobile={isMobile}
+        editDataOption={editDataOption}
+        buttonDisabledState={isDisabledButton}
+        labelButtonNext={labelButtonNext}
+        valuesEqual={valuesEqualBoton}
+        onReset={onReset}
+        onButtonClick={handleNextStep}
+      />
+    );
+  }
+);
 
 GeneralInformationForm.displayName = "GeneralInformationForm";
 

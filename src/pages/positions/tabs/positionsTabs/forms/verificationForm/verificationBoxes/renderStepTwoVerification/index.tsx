@@ -2,11 +2,11 @@ import { Grid, Stack, Tag } from "@inubekit/inubekit";
 import { BoxAttribute } from "@design/feedback/boxAttribute";
 import { basic } from "@design/tokens";
 import { labels } from "@config/verificationTitles";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { IRenderPersonal } from "@ptypes/verification/IRenderPersonal";
 import { IEntry } from "@ptypes/design/table/IEntry";
 import { columnsAttribute } from "@utils/columnsAttribute";
 import { rowsAttribute } from "@utils/rowsAttribute";
+import { EComponentAppearance } from "@enum/appearances";
 
 const RenderStepTwoVerification = (props: IRenderPersonal) => {
   const { values, isMobile } = props;
@@ -37,7 +37,7 @@ const RenderStepTwoVerification = (props: IRenderPersonal) => {
       ) : (
         <Stack padding={basic.spacing.s100}>
           <Tag
-            appearance={ComponentAppearance.DANGER}
+            appearance={EComponentAppearance.DANGER}
             label={labels.modificationDate}
           />
         </Stack>

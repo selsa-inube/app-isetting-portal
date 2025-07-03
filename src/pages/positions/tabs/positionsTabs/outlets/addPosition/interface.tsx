@@ -9,7 +9,6 @@ import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationForm } from "@pages/positions/tabs/positionsTabs/forms/verificationForm";
 import { FinishModal } from "@config/positions/verificationForm";
 import { crumbsAddPosition } from "@config/positions/addPositions/navigation";
@@ -18,6 +17,7 @@ import { GeneralInformationForm } from "../../forms/generalInformationForm";
 import { controlsAssisted } from "@config/controlsAssisted";
 import { portalId } from "@config/portalId";
 import { RolesForm } from "../../forms/rolesForm";
+import { EComponentAppearance } from "@enum/appearances";
 
 const AddPositionUI = (props: IAddPositionUI) => {
   const {
@@ -143,7 +143,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
             description={DecisionModalLabel.descriptionSecondaStep}
             actionText={DecisionModalLabel.actionTextSecondaStep}
             icon={<MdOutlineWarningAmber />}
-            appearance={ComponentAppearance.WARNING}
+            appearance={EComponentAppearance.WARNING}
             onCloseModal={() => setShowMultipurposeModal(false)}
             onClick={() => {
               handleNextStep();
@@ -158,7 +158,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
             descriptionRequestProcess={requestProcessMessage}
             descriptionRequestStatus={requestStatusMessage}
             requestProcessSteps={requestSteps}
-            appearance={ComponentAppearance.SUCCESS}
+            appearance={EComponentAppearance.SUCCESS}
             onCloseRequestStatus={onCloseRequestStatus}
             onCloseProcess={() => {}}
           />
@@ -178,7 +178,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
             actionText={
               requestStatusMessage(savePositions.responsible).actionText
             }
-            appearance={ComponentAppearance.PRIMARY}
+            appearance={EComponentAppearance.PRIMARY}
           />
         )}
       </Stack>

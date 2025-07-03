@@ -3,8 +3,8 @@ import { IGeneralInformationFormUI } from "@ptypes/positions/generalInformation/
 import { basic } from "@design/tokens";
 import { Button, Stack, Textarea, Textfield } from "@inubekit/inubekit";
 import { StyledContainer, StyledContainerFields } from "./styles";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { getFieldState } from "@utils/forms";
+import { EComponentAppearance } from "@enum/appearances";
 
 const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
   const {
@@ -70,7 +70,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
             {editDataOption && (
               <Button
                 onClick={onReset}
-                appearance={ComponentAppearance.GRAY}
+                appearance={EComponentAppearance.GRAY}
                 disabled={valuesEqual}
               >
                 {labels.cancelButton}
@@ -81,7 +81,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
               onClick={onButtonClick}
               disabled={buttonDisabledState}
               loading={loading}
-              appearance={ComponentAppearance.PRIMARY}
+              appearance={EComponentAppearance.PRIMARY}
             >
               {labelButtonNext}
             </Button>

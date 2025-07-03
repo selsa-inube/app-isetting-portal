@@ -1,7 +1,6 @@
 import { Breadcrumbs, Stack, Tabs } from "@inubekit/inubekit";
 
 import { basic } from "@design/tokens";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { Title } from "@design/label/Title";
 import { crumbsEditPosition } from "@config/positions/editPositions/navigation";
@@ -13,6 +12,7 @@ import { GeneralInformationForm } from "../../forms/generalInformationForm";
 import { editPositionTitle } from "@config/positions/editPositions/editPositionTitle";
 import { portalId } from "@config/portalId";
 import { RolesForm } from "../../forms/rolesForm";
+import { EComponentAppearance } from "@enum/appearances";
 
 const EditPositionsUI = (props: IEditPositionsUI) => {
   const {
@@ -97,7 +97,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
           requestProcessSteps={requestSteps}
-          appearance={ComponentAppearance.SUCCESS}
+          appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={onCloseRequestStatus}
           onCloseProcess={() => {}}
         />
@@ -117,7 +117,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
           actionText={
             requestStatusMessage(savePositions.responsible).actionText
           }
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
         />
       )}
     </Stack>

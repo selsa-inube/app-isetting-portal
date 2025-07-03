@@ -4,9 +4,9 @@ import { basic } from "@design/tokens";
 import { Accordion } from "@design/data/acordion";
 import { labels } from "@config/verificationTitles";
 import { IVerificationStepSection } from "@ptypes/verification/IVerificationStepSection";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { VerificationBoxes } from "../verificationBoxes";
 import { enviroment } from "@config/environment";
+import { EComponentAppearance } from "@enum/appearances";
 
 const VerificationStepSection = (props: IVerificationStepSection) => {
   const { step, updatedData, onStepChange } = props;
@@ -28,7 +28,7 @@ const VerificationStepSection = (props: IVerificationStepSection) => {
         <Button
           iconBefore={<MdOutlineArrowBack />}
           onClick={() => onStepChange(step.number)}
-          appearance={ComponentAppearance.DARK}
+          appearance={EComponentAppearance.DARK}
           variant="none"
         >
           {labels.renderStepButton}

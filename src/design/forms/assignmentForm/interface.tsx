@@ -7,9 +7,9 @@ import { ActionButtons } from "./actionButtons";
 import { ToggleGroup } from "./toggleGroup";
 import { BorderStack } from "@design/modals/borderStack";
 import { searchLabels } from "@config/searchLabels";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { assigmentLabels } from "@config/assignmentForm/assigmentLabels";
 import { useThemeData } from "@utils/theme";
+import { EComponentAppearance } from "@enum/appearances";
 
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const {
@@ -126,7 +126,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
         <Button
           onClick={onReset}
           variant="outlined"
-          appearance={ComponentAppearance.GRAY}
+          appearance={EComponentAppearance.GRAY}
         >
           {labelButtonPrevious}
         </Button>
@@ -135,7 +135,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
           onClick={onButtonClick}
           disabled={isDisabledButton}
           loading={loading}
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
         >
           {labelButtonNext}
         </Button>

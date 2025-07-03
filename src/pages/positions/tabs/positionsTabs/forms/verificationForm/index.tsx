@@ -4,7 +4,7 @@ import { IVerificationForm } from "@ptypes/verification/IVerificationForm";
 import { AddPositionsSteps } from "@config/positions/assisted";
 import { VerificationStepSection } from "./verificationStepSection";
 import { labels } from "@config/verificationTitles";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 
 const VerificationForm = (props: IVerificationForm) => {
   const {
@@ -34,7 +34,7 @@ const VerificationForm = (props: IVerificationForm) => {
         <Button
           fullwidth={isMobile}
           onClick={onPreviousStep}
-          appearance={ComponentAppearance.GRAY}
+          appearance={EComponentAppearance.GRAY}
         >
           {labels.previous}
         </Button>
@@ -42,7 +42,7 @@ const VerificationForm = (props: IVerificationForm) => {
         <Button
           fullwidth={isMobile}
           onClick={onToggleModal}
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
         >
           {labels.finally}
         </Button>

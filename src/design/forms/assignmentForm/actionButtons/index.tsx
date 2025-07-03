@@ -5,6 +5,7 @@ import { basic } from "@design/tokens";
 import { Menu } from "@design/navigation";
 import { actionButtonsLabels } from "@config/assignmentForm/actionButtonsLabels";
 import { StyledOptionsContainer } from "./styles";
+import { ComponentAppearance } from "@ptypes/aparences.types";
 
 const ActionButtons = (props: IActionButtons) => {
   const {
@@ -27,9 +28,9 @@ const ActionButtons = (props: IActionButtons) => {
         <StyledOptionsContainer>
           <Icon
             icon={<MdOutlineMoreHoriz />}
-            appearance="dark"
+            appearance={ComponentAppearance.DARK}
             spacing="narrow"
-            size="24px"
+            size={basic.spacing.s300}
             shape="circle"
             onClick={handleToggleRol}
           />

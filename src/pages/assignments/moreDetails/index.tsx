@@ -26,6 +26,8 @@ const MoreDetails = (props: IMoreDetails) => {
 
   const theme = useThemeData();
 
+  const showRoles = data.roles && data.roles.length > 0
+
   return (
     <ModalWrapper
       width={isMobile ? "335px" : "700px"}
@@ -74,7 +76,7 @@ const MoreDetails = (props: IMoreDetails) => {
             entry={data.assignmentDescription}
           />
         </Stack>
-        {data.roles && data.roles.length > 0 && (
+        { showRoles && (
           <BorderStack
             direction="column"
             width="100%"

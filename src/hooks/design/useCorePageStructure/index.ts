@@ -6,6 +6,7 @@ import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessun
 import { IUseCorePageStructure } from "@ptypes/hooks/IUseCorePageStructure";
 import { decrypt } from "@utils/decrypt";
 import { enviroment } from "@config/environment";
+import { portalLocalStorage } from "@config/portalLocalStorage";
 
 const useCorePageStructure = (props: IUseCorePageStructure) => {
   const { businessUnitSigla, logout } = props;
@@ -15,7 +16,7 @@ const useCorePageStructure = (props: IUseCorePageStructure) => {
   const isTablet = useMediaQuery(enviroment.IS_MOBILE_849);
   const isTabletMain = useMediaQuery(enviroment.IS_MOBILE_970);
 
-  const portalId = localStorage.getItem("portalCode");
+  const portalId = localStorage.getItem(portalLocalStorage);
   const staffPortalId = portalId ? decrypt(portalId) : "";
 
   const { optionsCards } = useOptionsByBusinessunits({

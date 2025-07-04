@@ -33,8 +33,8 @@ const StyledContainerTable = styled.div<IStyledContainer>`
 
   `}
 
-  ${({ $withGeneralizedTitle }) =>
-   !$withGeneralizedTitle &&
+  ${({ $withGeneralizedTitle, $isTablet }) =>
+   $isTablet && !$withGeneralizedTitle && 
     `
     & > div > div {
     min-height: 320px;

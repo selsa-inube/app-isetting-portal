@@ -14,10 +14,10 @@ const UseHome = () => {
   } = useContext(AuthAndData);
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
-  const { optionsCards, loading } = useOptionsByBusinessunits(
+  const { optionsCards, loading } = useOptionsByBusinessunits({
     staffPortalId,
     businessUnitSigla
-  );
+  });
   const [Collapse, SetCollapse] = useState(false);
   const [SelectedClient, SetSelectedClient] = useState<string>("");
   const CollapseMenuRef = useRef<HTMLDivElement>(null);

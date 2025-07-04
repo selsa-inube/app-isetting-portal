@@ -1,24 +1,68 @@
 import { MdOutlineStart } from "react-icons/md";
-import { INav } from "@ptypes/home/INav";
+import { Location } from "react-router-dom";
+import { ILinkNav } from "@inubekit/inubekit";
+import { ICardData } from "@ptypes/home/ICardData";
+import { actionsConfig } from "@config/mainActionLogout";
 
-const nav: INav = {
-  items: {
+const createNavLink = (
+  option: ICardData,
+  defaultIcon: React.ReactElement,
+  location?: Location,
+) => ({
+  id: option?.id ?? "",
+  label: option?.publicCode ?? "",
+  icon: option?.icon ?? defaultIcon,
+  path: option?.url ?? "",
+  isActive: location ? location.pathname === option?.url : false,
+});
+
+const mainNavigation = (optionsCards: ICardData[], logout: () => void, location?: Location) => {
+  const linkNav = optionsCards.reduce<Record<string, ILinkNav>>(
+    (acc, option) => {
+      const navLink = createNavLink(option, <MdOutlineStart />, location);
+      acc[navLink.id] = navLink;
+      return acc;
+    },
+    {},
+  );
+
+  const optionsHeader = {
+    nav: {
+      reactPortalId: "portal",
+      title: "MENU",
+      sections: [
+        {
+          subtitle: "",
+          links: Object.values(linkNav),
+
+          isOpen: false,
+          onClose: () => {
+            console.log();
+          },
+          onToggle: () => {
+            console.log();
+          },
+        },
+      ],
+      actions: actionsConfig(logout),
+    },
+    breakpoint: "848px",
+  };
+
+  const optionsNav = {
     title: "MENU",
     sections: {
       administrate: {
         name: "",
-        links: {
-          positions: {
-            id: "privileges",
-            label: "Privilegios",
-            icon: <MdOutlineStart />,
-            path: "/privileges",
-          },
-        },
+        links: linkNav,
       },
     },
-  },
-  breakpoint: "848px",
+  };
+
+  return {
+    optionsHeader,
+    optionsNav,
+  };
 };
 
-export { nav };
+export { mainNavigation };

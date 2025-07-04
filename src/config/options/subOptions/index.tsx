@@ -1,17 +1,8 @@
 import {
   MdGroup,
   MdOutlineBusinessCenter,
-  MdOutlineStart,
   MdSupervisedUserCircle,
 } from "react-icons/md";
-
-const options = [
-  {
-    publicCode: "Privilegios",
-    icon: <MdOutlineStart />,
-    url: "/privileges",
-  },
-];
 
 const subOptions = [
   {
@@ -70,7 +61,7 @@ const subOptions = [
       },
     ],
   },
-   {
+  {
     publicCode: "Privilegios",
     publicCodeOption: "Cargos de los operadores",
     icon: <MdSupervisedUserCircle />,
@@ -100,20 +91,4 @@ const subOptions = [
   },
 ];
 
-const normalizeOptionsByPublicCode = (publicCode: string) =>
-  options.find((data) => data.publicCode === publicCode);
-
-const normalizesubOptionsByPublicCode = (
-  publicCode: string,
-  publicCodeSubOption: string
-) =>
-  subOptions.find(
-    (data) =>
-      data.publicCode === publicCode &&
-      data.publicCodeOption === publicCodeSubOption
-  );
-export {
-  options,
-  normalizeOptionsByPublicCode,
-  normalizesubOptionsByPublicCode,
-};
+export { subOptions };

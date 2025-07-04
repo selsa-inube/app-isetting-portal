@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import { enviroment } from "@config/environment";
 
-const axiosInstance: AxiosInstance = axios.create({
+const iportalStaffAxiosInstance: AxiosInstance = axios.create({
   baseURL: enviroment.IVITE_IPORTAL_STAFF_QUERY_PROCESS_SERVICE,
   timeout: enviroment.FETCH_TIMEOUT_SERVICES,
   headers: {
@@ -9,7 +9,7 @@ const axiosInstance: AxiosInstance = axios.create({
   },
 });
 
-axiosInstance.interceptors.response.use(
+iportalStaffAxiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.code === "ECONNABORTED") {
@@ -19,4 +19,4 @@ axiosInstance.interceptors.response.use(
   }
 );
 
-export { axiosInstance };
+export { iportalStaffAxiosInstance };

@@ -17,6 +17,8 @@ interface IStyledFlex {
   $boxSizing?: string;
   $boxShadow?: string;
   $overflowY?: string;
+  $minHeight?: string;
+  $maxHeight?: string;
 }
 
 const StyledBorderFlex = styled.div<IStyledFlex>`
@@ -31,11 +33,14 @@ const StyledBorderFlex = styled.div<IStyledFlex>`
   gap: ${({ $gap }) => $gap};
   margin: ${({ $margin }) => $margin};
   padding: ${({ $padding }) => $padding};
-  background: ${({ $background, theme }) => $background  ?? theme.palette.neutral.N0};
+  background: ${({ $background, theme }) =>
+    $background ?? theme.palette.neutral.N0};
   border: ${({ $border }) => `1px solid ${$border}`};
   border-radius: ${({ $borderRadius }) => $borderRadius};
   box-sizing: ${({ $boxSizing }) => $boxSizing};
   box-shadow: ${({ $boxShadow }) => $boxShadow};
   overflow-y: ${({ $overflowY }) => $overflowY};
+  min-height: ${({ $minHeight }) => $minHeight};
+  max-height: ${({ $maxHeight }) => $maxHeight};
 `;
 export { StyledBorderFlex };

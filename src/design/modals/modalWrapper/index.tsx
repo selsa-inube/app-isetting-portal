@@ -27,6 +27,9 @@ const ModalWrapper = (props: IModalWrapper) => {
     title,
     width = "auto",
     withCancelButton,
+    minHeight,
+    maxHeight,
+    padding = basic.spacing.s300,
     onCloseModal,
     onClick,
   } = props;
@@ -42,13 +45,15 @@ const ModalWrapper = (props: IModalWrapper) => {
   return createPortal(
     <Blanket>
       <BorderStack
+      direction="column"
         width={width}
         height={height}
-        direction="column"
         background={inube.palette.neutral.N0}
         borderRadius={basic.spacing.s100}
-        padding={basic.spacing.s300}
+        padding={padding}
         boxSizing="border-box"
+        minHeight={minHeight}
+        maxHeight={maxHeight}
       >
         <Stack
           direction="row"

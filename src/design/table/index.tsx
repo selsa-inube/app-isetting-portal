@@ -65,6 +65,7 @@ const Table = (props: ITable) => {
       $pageLength={pageLength}
       $entriesLength={entries.length}
       $isTablet={screenTablet}
+      $withGeneralizedTitle={withGeneralizedTitle}
     >
       <Stack direction="column">
         <TableUI

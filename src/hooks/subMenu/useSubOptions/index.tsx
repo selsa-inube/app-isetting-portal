@@ -6,11 +6,11 @@ const useSubOptions = (catalogName: string) => {
   const { businessUnitSigla } = useContext(AuthAndData);
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
-  const { subOptions } = useOptionsByBusinessunits(
+  const { subOptions } = useOptionsByBusinessunits({
     staffPortalId,
     businessUnitSigla,
-    catalogName
-  );
+    publicCodeParent:catalogName
+  });
 
   return { subOptions };
 };

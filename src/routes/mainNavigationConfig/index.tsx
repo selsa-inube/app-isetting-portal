@@ -9,6 +9,7 @@ import { CorePageStructure } from "@design/layout/corePageStructure";
 import { Logout } from "@pages/login/logout";
 import { PositionsRoutes } from "@routes/positions";
 import { Home } from "@pages/home";
+import { AssignmentsRoutes } from "@routes/assignments";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} errorElement={<ErrorPage />} />
       <Route path="/" element={<CorePageStructure />}>
         <Route path="privileges/*" element={<PositionsRoutes />} />
+        <Route path="assignments/*" element={<AssignmentsRoutes />} />
         <Route path="rules/*" element={<RulesRoutes />} />
       </Route>
       <Route path="logout" element={<Logout />} />

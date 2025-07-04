@@ -6,10 +6,10 @@ import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessun
 import { decrypt } from "@utils/decrypt";
 import { catalogsOptionsConfig } from "@config/options/catalogsConfig";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { catalogName } from "@config/positions/catalogName/inde";
 import { PositionsOptionsUI } from "./interface";
 
 const PositionsOptions = () => {
-  const catalogName = "Privilegios";
   const { subOptions } = useSubOptions(catalogName);
   const catalogsOptions = catalogsOptionsConfig(subOptions).find(
     (item) => item
@@ -17,10 +17,10 @@ const PositionsOptions = () => {
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
   const { businessUnitSigla } = useContext(AuthAndData);
-  const { optionsCards, loading } = useOptionsByBusinessunits(
+  const { optionsCards, loading } = useOptionsByBusinessunits({
     staffPortalId,
     businessUnitSigla
-  );
+  });
 
   if (loading || !optionsCards?.length) {
     return <></>;

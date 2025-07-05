@@ -1,6 +1,5 @@
 import { ModalWrapper } from "@design/modals/modalWrapper";
 import { BorderStack } from "@design/modals/borderStack";
-import { inube } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import RequestTitleSection from "@pages/positions/tabs/requestsInProgressTab/tools/details/requestsInProcess/requestTitleSection";
 import { IDetailsMissionModalUI } from "@ptypes/missions/IDetailsMissionModalUI";
@@ -27,7 +26,7 @@ const DetailsMissionModalUI = (props: IDetailsMissionModalUI) => {
       <BorderStack
         direction="column"
         borderRadius={basic.spacing.s100}
-        border={inube.palette.neutral.N40}
+        border="n40"
         boxSizing="border-box"
         width="100%"
         height="100%"

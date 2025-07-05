@@ -8,7 +8,6 @@ import {
   useMediaQuery,
   Icon,
   Divider,
-  inube,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
@@ -30,7 +29,7 @@ const InteractiveModal = (props: IInteractiveModal) => {
   return createPortal(
     <Blanket>
       <BorderStack
-        background={inube.palette.neutral.N10}
+        background="n10"
         width={width}
         height={height}
         borderRadius={smallScreen ? basic.spacing.s0 : basic.spacing.s8}

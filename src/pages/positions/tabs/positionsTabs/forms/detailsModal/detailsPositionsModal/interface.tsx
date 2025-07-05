@@ -4,7 +4,6 @@ import { LabelsInfo } from "./labelsInfo";
 import { TableView } from "./tableView";
 import { ModalWrapper } from "@design/modals/modalWrapper";
 import { BorderStack } from "@design/modals/borderStack";
-import { inube } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import RequestTitleSection from "@pages/positions/tabs/requestsInProgressTab/tools/details/requestsInProcess/requestTitleSection";
 
@@ -26,9 +25,8 @@ const DetailsPositionsModalUI = (props: IDetailsPositionsModalUI) => {
     >
       <BorderStack
         direction="column"
-        background={inube.palette.neutral.N0}
         borderRadius={basic.spacing.s100}
-        border={inube.palette.neutral.N40}
+        border="n40"
         boxSizing="border-box"
         width="100%"
         height="100%"

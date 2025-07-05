@@ -1,6 +1,6 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { Icon, useMediaQuery, Text, inube } from "@inubekit/inubekit";
+import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
 import { IDetails } from "@ptypes/traceabilityCard/IDetails";
 import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
 import { labelsOfTraceability } from "@config/requestsInProgressTab/details/labelsOfTraceability";
@@ -70,9 +70,8 @@ const DetailsRequestInProcess = (props: IDetails) => {
         >
           <BorderStack
             direction="column"
-            background={inube.palette.neutral.N0}
             borderRadius={basic.spacing.s100}
-            border={inube.palette.neutral.N40}
+            border="n40"
             boxSizing="border-box"
             width="100%"
             height="100%"

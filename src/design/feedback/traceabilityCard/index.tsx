@@ -1,4 +1,4 @@
-import { inube, Stack } from "@inubekit/inubekit";
+import { Stack } from "@inubekit/inubekit";
 import { BorderStack } from "@design/modals/borderStack";
 import { basic } from "@design/tokens";
 import { ITraceabilityCard } from "@ptypes/traceabilityCard/ITraceabilityCard";
@@ -16,7 +16,7 @@ const TraceabilityCard = (props: ITraceabilityCard) => {
   return (
     <BorderStack
       direction="column"
-      background={inube.palette.neutral.N0}
+      background="n0"
       width={isMobile ? "244px" : "400px"}
       height="auto"
       borderRadius={basic.spacing.s100}

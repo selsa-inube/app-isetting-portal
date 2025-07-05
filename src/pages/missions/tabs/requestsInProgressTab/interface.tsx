@@ -1,4 +1,4 @@
-import { inube, Searchfield, Stack, Text } from "@inubekit/inubekit";
+import { Searchfield, Stack, Text } from "@inubekit/inubekit";
 
 import { Table } from "@design/table";
 import { BorderStack } from "@design/modals/borderStack";
@@ -26,8 +26,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
   return (
     <BorderStack
       boxSizing="initial"
-      border={ inube.palette.neutral.N40
-      }
+      border="n40"
       borderRadius={basic.spacing.s100}
       padding={smallScreen ? `${basic.spacing.s150}` : `${basic.spacing.s0}`}
     >

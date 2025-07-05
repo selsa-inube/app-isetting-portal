@@ -3,7 +3,7 @@ import { BorderStack } from "..";
 
 const Template: StoryFn = (args) => (
   <BorderStack {...args}>
-    <BorderStack background="white" padding="5px" width="100%">
+    <BorderStack background="n0" padding="5px" width="100%">
       Contenido
     </BorderStack>
   </BorderStack>

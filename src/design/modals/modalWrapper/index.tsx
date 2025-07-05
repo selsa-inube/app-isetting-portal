@@ -5,7 +5,6 @@ import {
   Button,
   Divider,
   Icon,
-  inube,
   Stack,
   Text,
 } from "@inubekit/inubekit";
@@ -45,7 +44,7 @@ const ModalWrapper = (props: IModalWrapper) => {
         width={width}
         height={height}
         direction="column"
-        background={inube.palette.neutral.N0}
+        background="n0"
         borderRadius={basic.spacing.s100}
         padding={basic.spacing.s300}
         boxSizing="border-box"

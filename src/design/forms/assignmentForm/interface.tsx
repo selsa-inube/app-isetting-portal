@@ -1,4 +1,4 @@
-import { Stack, Searchfield, inube, Button } from "@inubekit/inubekit";
+import { Stack, Searchfield, Button } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { IAssignmentFormUI } from "@ptypes/assignmentForm/IAssignmentFormUI";
 import { Filter, FilterModal, FormFilter } from "@isettingkit/business-rules";
@@ -8,7 +8,6 @@ import { ToggleGroup } from "./toggleGroup";
 import { BorderStack } from "@design/modals/borderStack";
 import { searchLabels } from "@config/searchLabels";
 import { assigmentLabels } from "@config/assignmentForm/assigmentLabels";
-import { useThemeData } from "@utils/theme";
 import { EComponentAppearance } from "@enum/appearances";
 
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
@@ -40,7 +39,6 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     onSelectCheckChange,
   } = props;
 
-  const theme = useThemeData();
 
  const fieldsData = fields?.map((field) => ({
     ...field,
@@ -69,7 +67,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
         />
       )}
       <BorderStack
-        border={inube.palette.neutral.N40}
+        border="n40"
         borderRadius={basic.spacing.s100}
         padding={basic.spacing.s300}
         gap={basic.spacing.s250}
@@ -107,7 +105,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
           </Stack>
           <BorderStack
             direction="column"
-            border={theme.palette.neutral.N40 ?? inube.palette.neutral.N40}
+            border="n40"
             borderRadius={basic.spacing.s100}
             padding={basic.spacing.s200}
             gap={basic.spacing.s200}

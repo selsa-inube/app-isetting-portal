@@ -2,7 +2,7 @@ import { DetailsPosition } from "@config/positions/details";
 import { BorderStack } from "@design/modals/borderStack";
 import { basic } from "@design/tokens";
 import { UseTableData } from "@hooks/positions/useTableView";
-import { Fieldset, inube, Text } from "@inubekit/inubekit";
+import { Fieldset, Text } from "@inubekit/inubekit";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { ITabllePositions } from "@ptypes/positions/details/ITabllePositions";
 
@@ -19,7 +19,7 @@ const TableView = (props: ITabllePositions) => {
           row.map(({ key, value }) => (
             <BorderStack
               direction="column"
-              background={inube.palette.neutral.N10}
+              background="n10"
               key={`${rowIndex}-${key}`}
               padding={`${basic.spacing.s075} ${basic.spacing.s200}`}
               borderRadius={basic.spacing.s8}

@@ -79,7 +79,7 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
     }
   }, [isSelected]);
 
-  const filteredTabsConfig = Object.keys(tabs).reduce((acc, key) => {
+  const filteredTabsConfig = Object.keys(tabs).reduce((visibleTabs, key) => {
     const tab = tabs[key as keyof typeof assignmentsTabsConfig];
 
     if (
@@ -87,13 +87,13 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
       requestsInProgress &&
       requestsInProgress.length === 0
     ) {
-      return acc;
+      return visibleTabs;
     }
 
     if (tab !== undefined) {
-      acc[key as keyof IAssignmentsTabsConfig] = tab;
+      visibleTabs[key as keyof IAssignmentsTabsConfig] = tab;
     }
-    return acc;
+    return visibleTabs;
   }, {} as IAssignmentsTabsConfig);
 
   const showAssignmentstTab = isSelected === tabs.assigments.id;

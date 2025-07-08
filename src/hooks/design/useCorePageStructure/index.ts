@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { mainNavigation } from "@config/mainNav";
 import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
 import { IUseCorePageStructure } from "@ptypes/hooks/IUseCorePageStructure";
 import { decrypt } from "@utils/decrypt";
 import { enviroment } from "@config/environment";
 import { portalLocalStorage } from "@config/portalLocalStorage";
+import { UseMainNavigation } from "@hooks/useMainNavigation";
 
 const useCorePageStructure = (props: IUseCorePageStructure) => {
   const { businessUnitSigla, logout } = props;
@@ -21,21 +21,21 @@ const useCorePageStructure = (props: IUseCorePageStructure) => {
 
   const { optionsCards } = useOptionsByBusinessunits({
     staffPortalId,
-    businessUnitSigla
+    businessUnitSigla,
   });
 
   const location = useLocation();
 
-  const sanitizedOptionsCards = optionsCards.map(card => ({
+  const sanitizedOptionsCards = optionsCards.map((card) => ({
     ...card,
     url: typeof card.url === "string" ? card.url : String(card.url),
   }));
 
-  const { optionsHeader, optionsNav } = mainNavigation(
-    sanitizedOptionsCards,
+  const { optionsHeader, optionsNav } = UseMainNavigation({
+    optionsCards: sanitizedOptionsCards,
     logout,
-    location
-  );
+    location,
+  });
 
   return {
     collapse,

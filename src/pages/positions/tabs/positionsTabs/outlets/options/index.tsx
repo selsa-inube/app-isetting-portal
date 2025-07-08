@@ -6,7 +6,7 @@ import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessun
 import { decrypt } from "@utils/decrypt";
 import { catalogsOptionsConfig } from "@config/options/catalogsConfig";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { catalogName } from "@config/positions/catalogName/inde";
+import { catalogName } from "@config/positions/catalogName";
 import { PositionsOptionsUI } from "./interface";
 
 const PositionsOptions = () => {

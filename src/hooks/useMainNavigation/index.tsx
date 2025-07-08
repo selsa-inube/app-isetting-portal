@@ -3,8 +3,14 @@ import { Location } from "react-router-dom";
 import { ILinkNav } from "@inubekit/inubekit";
 import { ICardData } from "@ptypes/home/ICardData";
 import { actionsConfig } from "@config/mainActionLogout";
+import { portalId } from '@config/portalId';
+import { IUseMainNavigation } from "@ptypes/hooks/IUseMainNavigation";
 
-const createNavLink = (
+const UseMainNavigation = (props: IUseMainNavigation) => {
+
+  const { optionsCards, logout, location } = props;
+
+    const createNavLink = (
   option: ICardData,
   defaultIcon: React.ReactElement,
   location?: Location,
@@ -15,20 +21,18 @@ const createNavLink = (
   path: option?.url ?? "",
   isActive: location ? location.pathname === option?.url : false,
 });
-
-const mainNavigation = (optionsCards: ICardData[], logout: () => void, location?: Location) => {
   const linkNav = optionsCards.reduce<Record<string, ILinkNav>>(
-    (acc, option) => {
+    (linkIndex, option) => {
       const navLink = createNavLink(option, <MdOutlineStart />, location);
-      acc[navLink.id] = navLink;
-      return acc;
+      linkIndex[navLink.id] = navLink;
+      return linkIndex;
     },
     {},
   );
 
   const optionsHeader = {
     nav: {
-      reactPortalId: "portal",
+      reactPortalId: portalId,
       title: "MENU",
       sections: [
         {
@@ -65,4 +69,4 @@ const mainNavigation = (optionsCards: ICardData[], logout: () => void, location?
   };
 };
 
-export { mainNavigation };
+export { UseMainNavigation };

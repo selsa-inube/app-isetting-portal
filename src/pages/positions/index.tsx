@@ -3,7 +3,7 @@ import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { menuPositionLinks } from "@config/positions/menuInvitation";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { catalogName } from "@config/positions/catalogName/inde";
+import { catalogName } from "@config/positions/catalogName";
 import { PositionsUI } from "./interface";
 
 const Positions =() => {

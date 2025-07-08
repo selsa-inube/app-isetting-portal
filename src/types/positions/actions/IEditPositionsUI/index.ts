@@ -17,7 +17,7 @@ interface IEditPositionsUI {
   loading: boolean;
   savePositions: ISaveDataResponse;
   showGeneralInformation: boolean;
-  showRolesform: boolean;
+  showRolesForm: boolean;
   showRequestProcess: boolean;
   showRequestStatusModal: boolean;
   onTabChange: (id: string) => void;

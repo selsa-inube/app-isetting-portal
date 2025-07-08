@@ -9,7 +9,7 @@ import { UseEditPositions } from "@hooks/positions/useEditPositions";
 import { UseFetchRolesStaff } from "@hooks/positions/useFetchRolesStaff";
 import { EditPositionsUI } from "./interface";
 import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
-import { UseFetchAplicaionStaff } from "@hooks/positions/useAplication";
+import { UseFetchAplicationStaff } from "@hooks/positions/useAplication";
 
 const EditPositions = () => {
   const location = useLocation();
@@ -24,7 +24,7 @@ const EditPositions = () => {
     saveData,
     showRequestProcessModal,
     showGeneralInformation,
-    showRolesform,
+    showRolesForm,
     onSubmit,
     handleReset,
     setIsCurrentFormValid,
@@ -49,7 +49,7 @@ const EditPositions = () => {
     saveData as ISaveDataRequest,
     setShowModal
   );
-  const { options } = UseFetchAplicaionStaff();
+  const { options } = UseFetchAplicationStaff();
 
   const showRequestProcess = Boolean(showRequestProcessModal && savePositions);
 
@@ -77,7 +77,7 @@ const EditPositions = () => {
       roles={roles}
       options={options as IOptionInitialiceEntryApp[]}
       showGeneralInformation={showGeneralInformation}
-      showRolesform={showRolesform}
+      showRolesForm={showRolesForm}
       showRequestProcess={showRequestProcess}
       showRequestStatusModal={showRequestStatusModal}
     />

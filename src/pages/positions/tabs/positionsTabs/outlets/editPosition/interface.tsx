@@ -24,7 +24,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
     loading,
     showGeneralInformation,
     showRequestProcess,
-    showRolesform,
+    showRolesForm,
     showRequestStatusModal,
     onButtonClick,
     onTabChange,
@@ -76,7 +76,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
                 onReset={onReset}
               />
             )}
-            {showRolesform && (
+            {showRolesForm && (
               <RolesForm
                 entries={roles}
                 options={options}

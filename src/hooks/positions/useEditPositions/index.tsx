@@ -245,7 +245,7 @@ const UseEditPositions = (props: IUseEditPositions) => {
 
   const showGeneralInformation = isSelected === editPositionTabsConfig.generalInformation.id;
 
-  const showRolesform  = isSelected === editPositionTabsConfig.selectionRoles.id 
+  const showRolesForm  = isSelected === editPositionTabsConfig.selectionRoles.id 
 
   return {
     formValues,
@@ -267,7 +267,7 @@ const UseEditPositions = (props: IUseEditPositions) => {
     handleRoleToggle,
     roles,
     showGeneralInformation,
-    showRolesform,
+    showRolesForm,
   };
 };
 

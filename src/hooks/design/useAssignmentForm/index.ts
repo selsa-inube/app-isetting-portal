@@ -1,22 +1,22 @@
 import { useEffect, useState, useMemo } from "react";
-import { IFilterTag } from "@isettingkit/business-rules";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { assignmentLabels } from "@config/assignmentForm/assigmentLabels";
 import { actionButtonsLabels } from "@config/assignmentForm/actionButtonsLabels";
 import { compareObjects } from "@utils/compareObjects";
+import { IUseAssignmentForm } from "@ptypes/hooks/IUseAssignmentForm";
 
-const UseAssignmentForm = (
-  entries: IFormEntry[],
-  setSelectedToggle: React.Dispatch<
-    React.SetStateAction<IFormEntry[] | undefined>
-  >,
-  editDataOption: boolean,
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
-  withFilter: boolean,
-  appliedFilters?: IFilterTag[]
-) => {
+const UseAssignmentForm = (props: IUseAssignmentForm) => {
+  const {
+    entries,
+    setSelectedToggle,
+    editDataOption,
+    setShowModal,
+    withFilter,
+    appliedFilters,
+  } = props;
+
   const [InitialValues] = useState(entries);
   const [loading] = useState(false);
   const [showMenu, setShowMenu] = useState(false);

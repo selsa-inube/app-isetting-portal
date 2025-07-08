@@ -44,14 +44,14 @@ const RolesForm = (props: IRolesForm) => {
     handleToggleAllEntries,
     handleToggleRol,
     onHandleSelectCheckChange,
-  } = UseAssignmentForm(
+  } = UseAssignmentForm({
     entries,
     setSelectedToggle,
     editDataOption,
     setShowModal,
     withFilter,
-    appliedFilters
-  );
+    appliedFilters,
+  });
   return (
     <AssignmentForm
       appliedFilters={appliedFilters}

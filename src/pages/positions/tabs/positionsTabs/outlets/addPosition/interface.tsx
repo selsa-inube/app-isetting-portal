@@ -13,10 +13,10 @@ import { VerificationForm } from "@pages/positions/tabs/positionsTabs/forms/veri
 import { FinishModal } from "@config/positions/verificationForm";
 import { crumbsAddPosition } from "@config/positions/addPositions/navigation";
 import { addPositionTitle } from "@config/positions/addPositions/addPositionTitle";
-import { GeneralInformationForm } from "../../forms/generalInformationForm";
+import { GeneralInformationForm } from "@pages/positions/tabs/positionsTabs/forms/generalInformationForm";
 import { controlsAssisted } from "@config/controlsAssisted";
 import { portalId } from "@config/portalId";
-import { RolesForm } from "../../forms/rolesForm";
+import { RolesForm } from "@pages/positions/tabs/positionsTabs/forms/rolesForm";
 import { EComponentAppearance } from "@enum/appearances";
 
 const AddPositionUI = (props: IAddPositionUI) => {

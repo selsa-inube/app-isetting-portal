@@ -2,6 +2,7 @@ import { Stack } from "@inubekit/inubekit";
 import { DetailBox } from "@design/feedback/detailBox";
 import { basic } from "@design/tokens";
 import { IRequestDetailBoxes } from "@ptypes/requestsInProgress/IRequestDetailBoxes";
+import { EComponentAppearance } from "@enum/appearances";
 
 const RequestDetailBoxes = (props: IRequestDetailBoxes) => {
   const { labels, data, isMobile } = props;
@@ -18,7 +19,7 @@ const RequestDetailBoxes = (props: IRequestDetailBoxes) => {
               borderRadius={basic.spacing.s100}
               padding={`${basic.spacing.s075} ${basic.spacing.s150}`}
               width={isMobile ? "253px" : "240px"}
-              borderColor="n40"
+              borderColor={EComponentAppearance.DARK}
               ellipsis
             />
           )

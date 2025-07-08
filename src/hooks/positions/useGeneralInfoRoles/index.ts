@@ -38,7 +38,7 @@ const UseGeneralInfoCreditLineForm = (
 
   const [isDisabledButton, setIsDisabledButton] = useState(false);
 
-  const valuesEqualBoton =
+  const valuesEqualButton =
     JSON.stringify(initialValues) === JSON.stringify(formik.values);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const UseGeneralInfoCreditLineForm = (
   useEffect(() => {
     const updateButton = () => {
       if (editDataOption) {
-        setIsDisabledButton(!formik.isValid || valuesEmpty || valuesEqualBoton);
+        setIsDisabledButton(!formik.isValid || valuesEmpty || valuesEqualButton);
       } else {
         setIsDisabledButton(!formik.isValid);
       }
@@ -74,7 +74,7 @@ const UseGeneralInfoCreditLineForm = (
   return {
     formik,
     isMobile,
-    valuesEqualBoton,
+    valuesEqualButton,
     labelButtonNext,
     isDisabledButton
   };

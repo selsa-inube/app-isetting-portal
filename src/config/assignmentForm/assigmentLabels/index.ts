@@ -1,4 +1,4 @@
-const assigmentLabels = {
+const assignmentLabels = {
 cancel: "Cancelar",
   previous: "Anterior",
   next: "Siguiente",
@@ -8,4 +8,4 @@ cancel: "Cancelar",
   noFiltersLabel:"Sin filtros aun."
 
 }
-export {assigmentLabels}
+export {assignmentLabels}

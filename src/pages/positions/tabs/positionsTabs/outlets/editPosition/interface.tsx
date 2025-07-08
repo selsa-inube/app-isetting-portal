@@ -8,10 +8,10 @@ import { RequestProcess } from "@design/feedback/requestProcess";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { IEditPositionsUI } from "@ptypes/positions/actions/IEditPositionsUI";
-import { GeneralInformationForm } from "../../forms/generalInformationForm";
+import { GeneralInformationForm } from "@pages/positions/tabs/positionsTabs/forms/generalInformationForm";
 import { editPositionTitle } from "@config/positions/editPositions/editPositionTitle";
 import { portalId } from "@config/portalId";
-import { RolesForm } from "../../forms/rolesForm";
+import { RolesForm } from "@pages/positions/tabs/positionsTabs/forms/rolesForm";
 import { EComponentAppearance } from "@enum/appearances";
 
 const EditPositionsUI = (props: IEditPositionsUI) => {

@@ -38,7 +38,7 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
       <BorderStack
         direction="column"
         borderRadius={basic.spacing.s100}
-        border="n40"
+        border={EComponentAppearance.DARK}
         boxSizing="border-box"
         width="100%"
         height={isMobile ? "400px" : "430px"}

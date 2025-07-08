@@ -6,6 +6,7 @@ import { IDetailsMissionModalUI } from "@ptypes/missions/IDetailsMissionModalUI"
 import { LabelsInfo } from "./labelsInfo";
 import { TableView } from "./tableView";
 import { detailsMission } from "@config/missions/details";
+import { EComponentAppearance } from "@enum/appearances";
 
 const DetailsMissionModalUI = (props: IDetailsMissionModalUI) => {
   const { onClose, labels, infoData, hasLabels, dataTable, isMobile, title } = props;
@@ -26,7 +27,7 @@ const DetailsMissionModalUI = (props: IDetailsMissionModalUI) => {
       <BorderStack
         direction="column"
         borderRadius={basic.spacing.s100}
-        border="n40"
+        border={EComponentAppearance.DARK}
         boxSizing="border-box"
         width="100%"
         height="100%"

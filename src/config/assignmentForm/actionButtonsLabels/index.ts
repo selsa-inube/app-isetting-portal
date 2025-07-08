@@ -1,6 +1,6 @@
 const actionButtonsLabels = {
   uncheckAll: "Desmarcar todo",
-  CheckAll: "Marcar todo",
+  checkAll: "Marcar todo",
   filter: "Filtrar",
 };
 

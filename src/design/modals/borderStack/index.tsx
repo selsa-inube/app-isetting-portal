@@ -1,6 +1,4 @@
 import { IBorderStack } from "@ptypes/design/IBorderStack";
-import { IBackground } from "@ptypes/design/IBackground";
-import { IBorder } from "@ptypes/design/IBorder";
 import { StyledBorderFlex } from "./styles";
 
 const BorderStack = (props: IBorderStack) => {
@@ -14,9 +12,9 @@ const BorderStack = (props: IBorderStack) => {
     height,
     width,
     gap,
-    background = "n0",
+    background = "light",
     borderRadius,
-    border = "n0",
+    border = "light",
     margin = "0px",
     padding = "0px",
     boxSizing,
@@ -34,8 +32,8 @@ const BorderStack = (props: IBorderStack) => {
       $width={width}
       $wrap={wrap}
       $gap={gap}
-      $background={background as IBackground}
-      $border={border as IBorder}
+      $background={background}
+      $border={border}
       $margin={margin}
       $padding={padding}
       $borderRadius={borderRadius}

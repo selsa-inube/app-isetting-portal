@@ -1,7 +1,7 @@
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IVerificationBoxes } from "@ptypes/verification/IVerificationBoxes";
 import { RenderStepTwoVerification } from "./renderStepTwoVerification";
-import { stepsKeysPositions } from "@enum/stepsKeysPositions";
+import { EStepsKeysPositions } from "@enum/stepsKeysPositions";
 import { RenderPersonalInfoVerification } from "./renderPersonalInfoVerification";
 import { enviroment } from "@config/environment";
 
@@ -12,13 +12,13 @@ const VerificationBoxes = (props: IVerificationBoxes) => {
 
   return (
     <>
-      {stepKey === stepsKeysPositions.GENERAL_INFO && (
+      {stepKey === EStepsKeysPositions.GENERAL_INFO && (
         <RenderPersonalInfoVerification
           values={updatedData.generalInformation.values}
           isMobile={isMobile}
         />
       )}
-      {stepKey === stepsKeysPositions.ROLES && (
+      {stepKey === EStepsKeysPositions.ROLES && (
         <RenderStepTwoVerification
           values={updatedData.rolesStaff.values}
           isMobile={isMobile}

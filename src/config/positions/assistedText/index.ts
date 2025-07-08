@@ -3,7 +3,7 @@ const labels = {
   descriptionNamePosition: "Ej. XXXXXXXXXX",
   descriptionPosition: "Descripción Funcional",
   placeholderPosition: "Agregue una breve descripción",
-  maxLengthdescrip:  100,
+  maxLengthdescription:  100,
   creationDate: "Rol:",
   modificationDate: "Ninguna rol fue activado",
   businessUnit: "Unidad de Negocio",

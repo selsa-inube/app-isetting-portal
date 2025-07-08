@@ -3,7 +3,7 @@ import { IFilterTag } from "@isettingkit/business-rules";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
-import { assigmentLabels } from "@config/assignmentForm/assigmentLabels";
+import { assignmentLabels } from "@config/assignmentForm/assigmentLabels";
 import { actionButtonsLabels } from "@config/assignmentForm/actionButtonsLabels";
 import { compareObjects } from "@utils/compareObjects";
 
@@ -35,7 +35,7 @@ const UseAssignmentForm = (
     const baseOptions = [
       {
         id: "allocate-all",
-        label: actionButtonsLabels.CheckAll,
+        label: actionButtonsLabels.checkAll,
         handleClick: () => handleToggleAllEntries(true),
       },
       {
@@ -180,12 +180,12 @@ const UseAssignmentForm = (
   };
 
   const labelButtonPrevious = editDataOption
-    ? assigmentLabels.cancel
-    : assigmentLabels.previous;
+    ? assignmentLabels.cancel
+    : assignmentLabels.previous;
 
   const labelButtonNext = editDataOption
-    ? assigmentLabels.send
-    : assigmentLabels.next;
+    ? assignmentLabels.send
+    : assignmentLabels.next;
 
   return {
     filteredRows,

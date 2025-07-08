@@ -24,7 +24,7 @@ const GeneralInformationForm = forwardRef<
     const {
       formik,
       isMobile,
-      valuesEqualBoton,
+      valuesEqualButton,
       labelButtonNext,
       isDisabledButton,
     } = UseGeneralInfoCreditLineForm(
@@ -44,7 +44,7 @@ const GeneralInformationForm = forwardRef<
         editDataOption={editDataOption}
         buttonDisabledState={isDisabledButton}
         labelButtonNext={labelButtonNext}
-        valuesEqual={valuesEqualBoton}
+        valuesEqual={valuesEqualButton}
         onReset={onReset}
         onButtonClick={handleNextStep}
       />

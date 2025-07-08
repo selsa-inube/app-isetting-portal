@@ -1,5 +1,5 @@
 import { IEntry } from "@ptypes/table/IEntry";
-import { IBorder } from "../IBorder";
+import { IAppearenceBorderStack } from "../IAppearenceBorderStack";
 
 interface IDetailBox {
   field: { id: string; titleName: string };
@@ -8,7 +8,7 @@ interface IDetailBox {
   width: string;
   borderRadius?: string;
   padding?: string;
-  borderColor?: IBorder;
+  borderColor?: IAppearenceBorderStack;
   withTag?: boolean;
   ellipsis?: boolean;
 }

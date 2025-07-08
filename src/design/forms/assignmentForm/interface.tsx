@@ -7,8 +7,9 @@ import { ActionButtons } from "./actionButtons";
 import { ToggleGroup } from "./toggleGroup";
 import { BorderStack } from "@design/modals/borderStack";
 import { searchLabels } from "@config/searchLabels";
-import { assigmentLabels } from "@config/assignmentForm/assigmentLabels";
+import { assignmentLabels } from "@config/assignmentForm/assigmentLabels";
 import { EComponentAppearance } from "@enum/appearances";
+
 
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const {
@@ -60,14 +61,14 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
         <Filter
           onClear={handleClearFilters}
           onClick={handleToggleModal ?? (() => {})}
-          titleClearFilter={assigmentLabels.clearFilter}
-          titleFilter={assigmentLabels.titleFilter}
+          titleClearFilter={assignmentLabels.clearFilter}
+          titleFilter={assignmentLabels.titleFilter}
           appliedFilters={appliedFilters}
-          noFiltersLabel={assigmentLabels.noFiltersLabel}
+          noFiltersLabel={assignmentLabels.noFiltersLabel}
         />
       )}
       <BorderStack
-        border="n40"
+        border={EComponentAppearance.DARK}
         borderRadius={basic.spacing.s100}
         padding={basic.spacing.s300}
         gap={basic.spacing.s250}
@@ -105,7 +106,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
           </Stack>
           <BorderStack
             direction="column"
-            border="n40"
+            border={EComponentAppearance.DARK}
             borderRadius={basic.spacing.s100}
             padding={basic.spacing.s200}
             gap={basic.spacing.s200}
@@ -141,12 +142,12 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
 
       {showFilterModal && (
         <FilterModal
-          actionButtonLabel={assigmentLabels.titleFilter}
-          cancelButtonLabel={assigmentLabels.clearFilter}
+          actionButtonLabel={assignmentLabels.titleFilter}
+          cancelButtonLabel={assignmentLabels.clearFilter}
           onClick={onApply ?? (() => {})}
           onCloseModal={handleToggleModal ?? (() => {})}
           portalId={portalId}
-          title={assigmentLabels.titleFilter}
+          title={assignmentLabels.titleFilter}
         >
           <FormFilter
             appliedFilters={appliedFilters}

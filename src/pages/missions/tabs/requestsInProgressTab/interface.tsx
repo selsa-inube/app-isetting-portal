@@ -3,13 +3,13 @@ import { Searchfield, Stack, Text } from "@inubekit/inubekit";
 import { Table } from "@design/table";
 import { BorderStack } from "@design/modals/borderStack";
 import { basic } from "@design/tokens";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { tabLabels } from "@config/tabLabels";
 import { titles } from "@config/missions/requestTab/table/titles";
 import { breakPoints } from "@config/missions/missionTab/table/breakPoints";
 import { IRequestsInProgressTabUI } from "@ptypes/requestsInProgress/IRequestsInProgressTabUI";
 import { actionsConfig } from "@config/missions/requestTab/table/actionsConfig";
 import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
+import { EComponentAppearance } from "@enum/appearances";
 
 const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
   const {
@@ -26,7 +26,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
   return (
     <BorderStack
       boxSizing="initial"
-      border="n40"
+      border={EComponentAppearance.DARK}
       borderRadius={basic.spacing.s100}
       padding={smallScreen ? `${basic.spacing.s150}` : `${basic.spacing.s0}`}
     >
@@ -49,7 +49,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
               <Text
                 type="title"
                 size="medium"
-                appearance={ComponentAppearance.DARK}
+                appearance={EComponentAppearance.DARK}
                 ellipsis
               >
                 {tabLabels.description}
@@ -88,7 +88,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
               <Text
                 type="title"
                 size="medium"
-                appearance={ComponentAppearance.DARK}
+                appearance={EComponentAppearance.DARK}
               >
                 {tabLabels.description}
               </Text>

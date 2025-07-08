@@ -8,10 +8,10 @@ import {
   Stack,
   Text,
 } from "@inubekit/inubekit";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { basic } from "@design/tokens";
 import { IModalWrapper } from "@ptypes/modals/IModalWrapper";
 import { BorderStack } from "../borderStack";
+import { EComponentAppearance } from "@enum/appearances";
 
 const ModalWrapper = (props: IModalWrapper) => {
   const {
@@ -44,7 +44,7 @@ const ModalWrapper = (props: IModalWrapper) => {
         width={width}
         height={height}
         direction="column"
-        background="n0"
+        background={EComponentAppearance.LIGHT}
         borderRadius={basic.spacing.s100}
         padding={basic.spacing.s300}
         boxSizing="border-box"
@@ -58,7 +58,7 @@ const ModalWrapper = (props: IModalWrapper) => {
           <Text
             type="headline"
             size="small"
-            appearance={ComponentAppearance.DARK}
+            appearance={EComponentAppearance.DARK}
             weight="normal"
           >
             {title}
@@ -71,14 +71,14 @@ const ModalWrapper = (props: IModalWrapper) => {
             <Text
               type="body"
               size="large"
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
               cursorHover
               onClick={onCloseModal}
             >
               {labelCloseModal}
             </Text>
             <Icon
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
               icon={<MdClear />}
               cursorHover
               onClick={onCloseModal}
@@ -100,7 +100,7 @@ const ModalWrapper = (props: IModalWrapper) => {
           {withCancelButton && (
             <Button
               spacing="wide"
-              appearance={ComponentAppearance.LIGHT}
+              appearance={EComponentAppearance.LIGHT}
               variant="filled"
               onClick={onCloseModal}
             >
@@ -110,7 +110,7 @@ const ModalWrapper = (props: IModalWrapper) => {
 
           <Button
             spacing="wide"
-            appearance={appearanceButton ?? ComponentAppearance.PRIMARY}
+            appearance={appearanceButton ?? EComponentAppearance.PRIMARY}
             variant="filled"
             onClick={onClick}
             iconBefore={iconBeforeButton ?? <></>}

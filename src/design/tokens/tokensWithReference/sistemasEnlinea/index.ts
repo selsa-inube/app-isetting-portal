@@ -267,20 +267,28 @@ const sistemasenlinea = {
     },
   },
   borderStack: {
-    border: {
-      n0: {
+    light: {
+      border: {
         color: inube.palette.neutral.N0,
       },
-      n40: {
-        color: inube.palette.neutral.N40,
+      background: {
+        color: inube.palette.neutral.N0,
       },
     },
-    background: {
-      n0: {
-        color: inube.palette.neutral.N0,
-      },
-      n10: {
+    gray: {
+      border: {
         color: inube.palette.neutral.N10,
+      },
+      background: {
+        color: inube.palette.neutral.N10,
+      },
+    },
+    dark: {
+      border: {
+        color: inube.palette.neutral.N40,
+      },
+      background: {
+        color: inube.palette.neutral.N40,
       },
     },
   },

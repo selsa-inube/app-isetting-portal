@@ -4,7 +4,7 @@ import { IOption } from "@inubekit/inubekit";
 import { IFilterTag } from "@isettingkit/business-rules";
 import { IUseFilter } from "@ptypes/hooks/positions/IUseFilter";
 
-const useFilterRoles = (props: IUseFilter) => {
+const UseFilterRoles = (props: IUseFilter) => {
   const { options } = props;
 
   const [showModal, setShowModal] = useState(false);
@@ -12,8 +12,8 @@ const useFilterRoles = (props: IUseFilter) => {
   const [filters, setFilters] = useState({ application: "" });
 
   const optionsRecord = options.reduce(
-    (acc, item, index) => ({
-      ...acc,
+    (option, item, index) => ({
+      ...option,
       [index]: item.value,
     }),
     {} as Record<string, string>
@@ -90,4 +90,4 @@ const useFilterRoles = (props: IUseFilter) => {
   };
 };
 
-export { useFilterRoles };
+export { UseFilterRoles };

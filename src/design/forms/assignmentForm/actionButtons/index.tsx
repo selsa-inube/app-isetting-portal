@@ -5,7 +5,7 @@ import { basic } from "@design/tokens";
 import { Menu } from "@design/navigation";
 import { actionButtonsLabels } from "@config/assignmentForm/actionButtonsLabels";
 import { StyledOptionsContainer } from "./styles";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 
 const ActionButtons = (props: IActionButtons) => {
   const {
@@ -19,8 +19,10 @@ const ActionButtons = (props: IActionButtons) => {
     handleToggleAllEntries,
   } = props;
 
-  const disabled =
+  const disabledUncheckAll =
     !entries.some((entry) => entry.isActive) || entries.length === 0;
+
+  const disabledCheckAll = isAssignAll || entries.length === 0;
 
   return (
     <>
@@ -28,7 +30,7 @@ const ActionButtons = (props: IActionButtons) => {
         <StyledOptionsContainer>
           <Icon
             icon={<MdOutlineMoreHoriz />}
-            appearance={ComponentAppearance.DARK}
+            appearance={EComponentAppearance.DARK}
             spacing="narrow"
             size={basic.spacing.s300}
             shape="circle"
@@ -44,7 +46,7 @@ const ActionButtons = (props: IActionButtons) => {
             spacing="compact"
             onClick={() => handleToggleAllEntries(false)}
             iconBefore={<MdClear />}
-            disabled={disabled}
+            disabled={disabledUncheckAll}
             variant="outlined"
           >
             {actionButtonsLabels.uncheckAll}
@@ -53,10 +55,10 @@ const ActionButtons = (props: IActionButtons) => {
             spacing="compact"
             iconBefore={<MdCheck />}
             onClick={() => handleToggleAllEntries(true)}
-            disabled={isAssignAll || entries.length === 0}
+            disabled={disabledCheckAll}
             variant="outlined"
           >
-            {actionButtonsLabels.CheckAll}
+            {actionButtonsLabels.checkAll}
           </Button>
         </Stack>
       )}

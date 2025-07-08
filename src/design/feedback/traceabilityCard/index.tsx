@@ -3,6 +3,7 @@ import { BorderStack } from "@design/modals/borderStack";
 import { basic } from "@design/tokens";
 import { ITraceabilityCard } from "@ptypes/traceabilityCard/ITraceabilityCard";
 import { RenderDetailBox } from "./renderDetailBox";
+import { EComponentAppearance } from "@enum/appearances";
 
 const TraceabilityCard = (props: ITraceabilityCard) => {
   const { data, labels, isMobile } = props;
@@ -16,7 +17,7 @@ const TraceabilityCard = (props: ITraceabilityCard) => {
   return (
     <BorderStack
       direction="column"
-      background="n0"
+      background={EComponentAppearance.LIGHT}
       width={isMobile ? "244px" : "400px"}
       height="auto"
       borderRadius={basic.spacing.s100}

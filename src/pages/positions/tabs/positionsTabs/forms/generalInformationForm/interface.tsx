@@ -54,7 +54,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                 name="descriptionPosition"
                 id="descriptionPosition"
                 value={formik.values.descriptionPosition}
-                maxLength={labels.maxLengthdescription}
+                maxLength={labels.maxLengthDescription}
                 disabled={loading}
                 status={getFieldState(formik, "descriptionPosition")}
                 message={formik.errors.descriptionPosition}

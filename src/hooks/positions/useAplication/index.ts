@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IAplicationCatalog } from "@ptypes/applicationCatalog";
 import { getApplicationCatalog } from "@services/positions/getApplicationCatalog";
 
-const UseFetchAplicaionStaff = () => {
+const UseFetchAplicationStaff = () => {
   const [AplicationStaff, setAplicationStaff] =
     useState<IAplicationCatalog[]>();
   const [hasError, setHasError] = useState(false);
@@ -28,4 +28,4 @@ const UseFetchAplicaionStaff = () => {
   return { AplicationStaff, hasError, options };
 };
 
-export { UseFetchAplicaionStaff };
+export { UseFetchAplicationStaff };

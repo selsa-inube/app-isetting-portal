@@ -1,98 +1,73 @@
-import { useEffect, useState } from "react";
-import { IOptionItemChecked } from "@design/select/OptionItem";
+import { useEffect, useState, useMemo } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
+import { IOptionItemChecked } from "@design/select/OptionItem";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { assignmentLabels } from "@config/assignmentForm/assigmentLabels";
+import { actionButtonsLabels } from "@config/assignmentForm/actionButtonsLabels";
+import { compareObjects } from "@utils/compareObjects";
+import { IUseAssignmentForm } from "@ptypes/hooks/IUseAssignmentForm";
 
-const UseAssignmentForm = (
-  entries: IFormEntry[],
-  changeData: IFormEntry[],
-  setChangedData: (changeData: IFormEntry[]) => void,
-  handleChange: (entries: IFormEntry[]) => void,
-  setSelectedToggle: React.Dispatch<
-    React.SetStateAction<IFormEntry[] | undefined>
-  >,
-  valueSelect: { id: string; value: string }[]
-) => {
-  const [filter, setFilter] = useState("");
+const UseAssignmentForm = (props: IUseAssignmentForm) => {
+  const {
+    entries,
+    setSelectedToggle,
+    editDataOption,
+    setShowModal,
+    withFilter,
+    appliedFilters,
+  } = props;
+
+  const [InitialValues] = useState(entries);
+  const [loading] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [isAssignAll, setIsAssignAll] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<IOptionItemChecked[]>(
-    []
-  );
+  const [selectedOptions] = useState<IOptionItemChecked[]>([]);
+  const [isDisabledButton, setIsDisabledButton] = useState(false);
   const [filteredRows, setFilteredRows] = useState<IFormEntry[]>(entries);
   const [filterValue, setFilterValue] = useState("");
-  const [dataValidations, setDataValidations] = useState(entries.length === 0);
-
-  const [showModal, setShowModal] = useState<boolean>(false);
   const smallScreen = useMediaQuery("(max-width: 1001px)");
-  const [tempSelectedOptions, setTempSelectedOptions] = useState<
-    IOptionItemChecked[]
-  >([]);
-
-  const handleToggleModal = () => {
-    setShowModal(!showModal);
-    if (!showModal) {
-      setTempSelectedOptions(selectedOptions);
-    }
-  };
-
-  const handleSelectChange = (options: IOptionItemChecked[]) => {
-    setTempSelectedOptions((prev) => {
-      const newOptions = options.filter((option) => option.checked);
-      const mergedOptions = [...prev, ...newOptions].reduce<
-        IOptionItemChecked[]
-      >((acc, option) => {
-        if (!acc.some((item) => item.id === option.id)) {
-          acc.push(option);
-        }
-        return acc;
-      }, []);
-
-      return mergedOptions;
-    });
-  };
-
-  const handleApplyFilters = () => {
-    setShowModal(false);
-
-    setSelectedOptions((prev) => {
-      const mergedOptions = [...prev, ...tempSelectedOptions].reduce<
-        IOptionItemChecked[]
-      >((acc, option) => {
-        if (!acc.some((item) => item.id === option.id)) {
-          acc.push(option);
-        }
-        return acc;
-      }, []);
-      return mergedOptions;
-    });
-  };
-
-  const handleClearFilters = () => {
-    setSelectedOptions([]);
-    setTempSelectedOptions([]);
-  };
 
   const handleToggleRol = () => {
     setShowMenu((prevShowMenu) => !prevShowMenu);
   };
-  const menuOptions = [
-    {
-      id: "allocate-all",
-      label: "Asignar todos",
-      handleClick: () => handleToggleAllEntries(true),
-    },
-    {
-      id: "deallocate-all",
-      label: "Desasignar todos",
-      handleClick: () => handleToggleAllEntries(false),
-    },
-    {
-      id: "allocate-rol",
-      label: `Filtrar (${selectedOptions.length})`,
-      handleClick: handleToggleModal,
-    },
-  ];
+
+  const menuOptions = useMemo(() => {
+    const baseOptions = [
+      {
+        id: "allocate-all",
+        label: actionButtonsLabels.checkAll,
+        handleClick: () => handleToggleAllEntries(true),
+      },
+      {
+        id: "deallocate-all",
+        label: actionButtonsLabels.uncheckAll,
+        handleClick: () => handleToggleAllEntries(false),
+      },
+    ];
+
+    if (withFilter) {
+      baseOptions.push({
+        id: "allocate-rol",
+        label: `${actionButtonsLabels.filter} (${appliedFilters?.length})`,
+        handleClick: () => {
+          setShowModal(true);
+        },
+      });
+    }
+
+    return baseOptions;
+  }, [withFilter, appliedFilters?.length]);
+
+  useEffect(() => {
+    if (appliedFilters && appliedFilters.length > 0) {
+      const newFilteredRows = entries.filter((entry) =>
+        appliedFilters.some((filter) => filter.label === entry.applicationStaff)
+      );
+      setFilteredRows(newFilteredRows);
+    } else {
+      setFilteredRows(entries);
+    }
+  }, [appliedFilters]);
 
   const handleToggleAllEntries = (allocate: boolean) => {
     const newFilteredEntries = filteredRows.map((entry) => ({
@@ -106,7 +81,6 @@ const UseAssignmentForm = (
     });
 
     setIsAssignAll(allocate);
-    handleChange(newEntries);
     setFilteredRows(newFilteredEntries);
     setSelectedToggle(newEntries);
   };
@@ -126,21 +100,12 @@ const UseAssignmentForm = (
           isActive: !entry.isActive,
         };
 
-        if (updatedEntry.isActive !== entry.isActive) {
-          const updatedChangedData = [
-            ...changeData.filter((e) => e.id !== entry.id),
-            updatedEntry,
-          ];
-          setChangedData(updatedChangedData);
-        }
-
         return updatedEntry;
       }
 
       return entry;
     });
     setSelectedToggle(newEntries);
-    handleChange(newEntries);
   };
 
   const onHandleSelectCheckChange = (id: string) => {
@@ -170,17 +135,6 @@ const UseAssignmentForm = (
     }
   }, [selectedOptions]);
 
-  const newOptions = valueSelect.map((entry) => ({
-    id: entry.id,
-    label: entry.value,
-    checked: filteredRows.some((row) => row.applicationName === entry.value),
-  }));
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    handleChange(entries);
-  };
-
   useEffect(() => {
     if (selectedOptions.length === 0 && filterValue.length === 0) {
       setFilteredRows(entries);
@@ -206,46 +160,51 @@ const UseAssignmentForm = (
     setFilteredRows(newFilter);
   }, [selectedOptions, filterValue, entries]);
 
-  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value);
+  const valuesEqual = compareObjects(InitialValues, filteredRows);
 
-    const filterText = e.target.value.toLowerCase();
+  const valuesEmpty = filteredRows.every(
+    (entry) =>
+      entry.value === "" || entry.value === null || entry.value === undefined
+  );
 
-    const newFilteredRows = entries.filter(
-      (entry) =>
-        entry.value.toLowerCase().includes(filterText) ||
-        (entry.applicationStaff ?? "").toLowerCase().includes(filterText)
-    );
-    setFilteredRows(newFilteredRows);
+  useEffect(() => {
+    if (editDataOption) {
+      setIsDisabledButton(valuesEqual || valuesEmpty);
+    } else {
+      setIsDisabledButton(false);
+    }
+  }, [InitialValues, filteredRows]);
+
+  const handleReset = () => {
+    setFilteredRows(InitialValues);
   };
+
+  const labelButtonPrevious = editDataOption
+    ? assignmentLabels.cancel
+    : assignmentLabels.previous;
+
+  const labelButtonNext = editDataOption
+    ? assignmentLabels.send
+    : assignmentLabels.next;
 
   return {
     filteredRows,
     filterValue,
-    filter,
-    setDataValidations,
-    setFilter,
-    handleFilterInput,
-    handleFilterChange,
-    handleToggleAllEntries,
-    onHandleSelectCheckChange,
-    handleSelectChange,
-    handleClearFilters,
-    selectedOptions,
-    setSelectedOptions,
-    handleApplyFilters,
-    menuOptions,
     isAssignAll,
-    showModal,
-    setShowMenu,
+    isDisabledButton,
+    labelButtonNext,
+    labelButtonPrevious,
+    loading,
+    menuOptions,
+    selectedOptions,
     showMenu,
-    dataValidations,
-    newOptions,
-    handleSubmit,
-    handleToggleRol,
-    handleCloseMenuRol,
-    handleToggleModal,
     smallScreen,
+    handleCloseMenuRol,
+    handleFilterInput,
+    handleReset,
+    handleToggleAllEntries,
+    handleToggleRol,
+    onHandleSelectCheckChange,
   };
 };
 

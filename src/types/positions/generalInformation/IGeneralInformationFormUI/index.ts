@@ -3,6 +3,12 @@ import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInf
 
 interface IGeneralInformationFormUI {
   formik: FormikProps<IGeneralInformationEntry>;
+  editDataOption: boolean;
+  buttonDisabledState: boolean;
+  labelButtonNext: string;
+  valuesEqual: boolean;
+  onReset: () => void;
+  onButtonClick: () => void;
   onNextStep: () => void;
   loading?: boolean;
   isMobile: boolean;

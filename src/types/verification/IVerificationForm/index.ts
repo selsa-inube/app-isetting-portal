@@ -5,10 +5,11 @@ interface IVerificationForm {
   showModal: boolean;
   showRequestProcessModal: boolean;
   updatedData: IFormAddPosition;
+  isMobile: boolean;
   handleStepChange: (stepId: number) => void;
   onFinishForm?: () => void;
-  onPreviousStep?: () => void;
-  onToggleModal?: () => void;
+  onPreviousStep: () => void;
+  onToggleModal: () => void;
 }
 
 export type { IVerificationForm };

@@ -1,8 +1,7 @@
 import { BorderStack } from "@design/modals/borderStack";
-import { inube, Stack, Tag, Text } from "@inubekit/inubekit";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
+import { Stack, Tag, Text } from "@inubekit/inubekit";
 import { IDetailBox } from "@ptypes/design/IDetailBox";
-import { useThemeData } from "@utils/theme";
 
 const DetailBox = (props: IDetailBox) => {
   const {
@@ -17,13 +16,12 @@ const DetailBox = (props: IDetailBox) => {
     ellipsis = false,
   } = props;
 
-  const theme = useThemeData();
   return (
     <BorderStack
       key={id}
       direction="column"
       width={width}
-      background={theme?.palette.neutral.N10 ?? inube.palette.neutral.N10}
+      background={EComponentAppearance.GRAY}
       borderRadius={borderRadius}
       border={borderColor}
       boxSizing="border-box"
@@ -36,7 +34,7 @@ const DetailBox = (props: IDetailBox) => {
       {withTag ? (
         <Stack width="auto">
           <Tag
-            appearance={ComponentAppearance.GRAY}
+            appearance={EComponentAppearance.GRAY}
             label={data[field.id]}
             displayIcon={false}
           />
@@ -44,7 +42,7 @@ const DetailBox = (props: IDetailBox) => {
       ) : (
         <Text
           size="small"
-          appearance={ComponentAppearance.GRAY}
+          appearance={EComponentAppearance.GRAY}
           ellipsis={ellipsis}
         >
           {data[field.id]}

@@ -44,7 +44,6 @@ interface IAddPositionUI {
   onClosePendingReqModal: () => void;
   options: IOptionInitialiceEntry[];
   requestSteps: IRequestSteps[];
-  buttonText: string;
   shouldShowRequestProcessModal: ISaveDataResponse;
   showPendingReqModals: boolean;
 }

@@ -1,6 +1,10 @@
 import styled from "styled-components";
+import { tokensBorderStack } from "./tokens";
+import {IAppearenceBorderStack} from "@ptypes/design/IAppearenceBorderStack";  
 
 interface IStyledFlex {
+  $background: IAppearenceBorderStack;
+  $border: IAppearenceBorderStack;
   $justifyContent?: string;
   $alignItems?: string;
   $alignContent?: string;
@@ -11,8 +15,6 @@ interface IStyledFlex {
   $gap?: string;
   $margin?: string;
   $padding?: string;
-  $background?: string;
-  $border?: string;
   $borderRadius?: string;
   $boxSizing?: string;
   $boxShadow?: string;
@@ -31,8 +33,11 @@ const StyledBorderFlex = styled.div<IStyledFlex>`
   gap: ${({ $gap }) => $gap};
   margin: ${({ $margin }) => $margin};
   padding: ${({ $padding }) => $padding};
-  background: ${({ $background, theme }) => $background  ?? theme.palette.neutral.N0};
-  border: ${({ $border }) => `1px solid ${$border}`};
+  background: ${({ $background, theme }) =>
+    theme?.borderStack?.[$background].background ??
+    tokensBorderStack[$background].background};
+  border: ${({ $border, theme }) =>
+    `1px solid ${theme?.borderStack?.[$border].border ?? tokensBorderStack[$border].border}`};
   border-radius: ${({ $borderRadius }) => $borderRadius};
   box-sizing: ${({ $boxSizing }) => $boxSizing};
   box-shadow: ${({ $boxShadow }) => $boxShadow};

@@ -6,10 +6,9 @@ import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { UseSavePositions } from "@hooks/positions/useSavePositions";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { UseFetchAplicaionStaff } from "@hooks/positions/useAplication";
+import { UseFetchAplicationStaff } from "@hooks/positions/useAplication";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
 import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
-import { postionsButtonText } from "@config/positions/assisted/buttonText";
 import { AddPositionUI } from "./interface";
 
 const AddPosition = () => {
@@ -60,11 +59,7 @@ const AddPosition = () => {
     setShowModal
   );
 
-  const { options } = UseFetchAplicaionStaff();
-  const buttonText =
-    currentStep === addStaffRolesSteps.length
-      ? postionsButtonText.buttonHandleSubmit
-      : postionsButtonText.buttonHandleNext;
+  const { options } = UseFetchAplicationStaff();
 
   const shouldShowRequestProcessModal =
     showRequestProcessModal && savePositions;
@@ -109,7 +104,6 @@ const AddPosition = () => {
       options={options as IOptionInitialiceEntryApp[]}
       showPendingReqModal={showPendingReqModal}
       onClosePendingReqModal={handleClosePendingReqModal}
-      buttonText={buttonText}
       shouldShowRequestProcessModal={
         shouldShowRequestProcessModal as ISaveDataResponse
       }

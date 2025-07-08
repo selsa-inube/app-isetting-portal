@@ -4,6 +4,9 @@ const labels: Record<string, string> = {
   creationDate: "Rol:",
   modificationDate: "Ninguna rol fue activado",
   renderStepButton: "Regresar a este paso",
+  verification: "verificación",
+  previous: "Anterior",
+  finally: "Finalizar",
 };
 
 export { labels };

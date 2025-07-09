@@ -3,7 +3,7 @@ import { IDetailsPositionsModalUI } from "@ptypes/positions/details/IDetailsPosi
 import { LabelsInfo } from "./labelsInfo";
 import { TableView } from "./tableView";
 import { ModalWrapper } from "@design/modals/modalWrapper";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { basic } from "@design/tokens";
 import RequestTitleSection from "@pages/positions/tabs/requestsInProgressTab/tools/details/requestsInProcess/requestTitleSection";
 import { EComponentAppearance } from "@enum/appearances";

@@ -12,7 +12,7 @@ import {
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
 import { IInteractiveModal } from "@ptypes/interactiveModal/InteractiveModalProps";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { EComponentAppearance } from "@enum/appearances";
 
 const InteractiveModal = (props: IInteractiveModal) => {

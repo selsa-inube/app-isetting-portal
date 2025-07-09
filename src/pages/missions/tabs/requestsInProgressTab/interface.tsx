@@ -1,7 +1,7 @@
 import { Searchfield, Stack, Text } from "@inubekit/inubekit";
 
 import { Table } from "@design/table";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { basic } from "@design/tokens";
 import { tabLabels } from "@config/tabLabels";
 import { titles } from "@config/missions/requestTab/table/titles";

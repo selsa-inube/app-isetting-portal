@@ -4,7 +4,7 @@ import { Icon, Stack, Text } from "@inubekit/inubekit";
 import { StyledMenuItemLink } from "./styles";
 import { basic } from "@design/tokens";
 import { IMenuItem } from "@ptypes/design/IMenuItem";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 
 const MenuItem = (props: IMenuItem) => {

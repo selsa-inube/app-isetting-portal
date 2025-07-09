@@ -6,7 +6,7 @@ import { EComponentAppearance } from "@enum/appearances";
 import { Table } from "@design/table";
 import { portalId } from "@config/portalId";
 import { tabLabels } from "@config/tabLabels";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { assignmentsTabLabels } from "@config/assignments/generic/assignmentsTabLabels";
 import { IAssigmentsTabUI } from "@ptypes/assignments/IAssignmentsTabUI";
 import { actionsConfig } from "@config/assignments/assignmentsTab/table/actionsConfig";

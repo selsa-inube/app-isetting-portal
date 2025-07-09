@@ -3,7 +3,7 @@ import { FieldDetails } from "@design/feedback/fieldDetails";
 import { ModalWrapper } from "@design/modals/modalWrapper";
 import { basic } from "@design/tokens";
 import { IMoreDetails } from "@ptypes/assignments/IMoreDetails";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { Table } from "@design/table";
 import { titles } from "@config/assignments/details/table/titles";
 import { actionsConfig } from "@config/assignments/details/table/actionsConfig";

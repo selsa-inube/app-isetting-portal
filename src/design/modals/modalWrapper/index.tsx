@@ -10,7 +10,7 @@ import {
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { IModalWrapper } from "@ptypes/modals/IModalWrapper";
-import { BorderStack } from "../borderStack";
+import { BorderStack } from "../../layout/borderStack";
 import { EComponentAppearance } from "@enum/appearances";
 
 const ModalWrapper = (props: IModalWrapper) => {

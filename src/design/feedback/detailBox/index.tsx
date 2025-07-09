@@ -1,4 +1,4 @@
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { EComponentAppearance } from "@enum/appearances";
 import { Stack, Tag, Text } from "@inubekit/inubekit";
 import { IDetailBox } from "@ptypes/design/IDetailBox";

@@ -5,7 +5,7 @@ import { Filter, FilterModal, FormFilter } from "@isettingkit/business-rules";
 import { portalId } from "@config/portalId";
 import { ActionButtons } from "./actionButtons";
 import { ToggleGroup } from "./toggleGroup";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { searchLabels } from "@config/searchLabels";
 import { assignmentLabels } from "@config/assignmentForm/assigmentLabels";
 import { EComponentAppearance } from "@enum/appearances";

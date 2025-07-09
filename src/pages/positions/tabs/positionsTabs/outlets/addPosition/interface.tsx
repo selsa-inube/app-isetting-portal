@@ -1,7 +1,6 @@
 import { MdOutlineWarningAmber } from "react-icons/md";
-import { Stack, Breadcrumbs, Assisted, Button } from "@inubekit/inubekit";
+import { Stack, Breadcrumbs, Assisted } from "@inubekit/inubekit";
 import { PageTitle } from "@design/label/PageTitle";
-import { InitializerForm } from "@design/forms/InitializerForm";
 import { basic } from "@design/tokens";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
@@ -10,13 +9,15 @@ import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
-import { ComponentAppearance } from "@ptypes/aparences.types";
-import { VerificationForm } from "@design/forms/verificationForm";
+import { VerificationForm } from "@pages/positions/tabs/positionsTabs/forms/verificationForm";
 import { FinishModal } from "@config/positions/verificationForm";
-import { postionsButtonText } from "@config/positions/assisted/buttonText";
 import { crumbsAddPosition } from "@config/positions/addPositions/navigation";
 import { addPositionTitle } from "@config/positions/addPositions/addPositionTitle";
-import { GeneralInformationForm } from "../../forms/generalInformationForm";
+import { GeneralInformationForm } from "@pages/positions/tabs/positionsTabs/forms/generalInformationForm";
+import { controlsAssisted } from "@config/controlsAssisted";
+import { portalId } from "@config/portalId";
+import { RolesForm } from "@pages/positions/tabs/positionsTabs/forms/rolesForm";
+import { EComponentAppearance } from "@enum/appearances";
 
 const AddPositionUI = (props: IAddPositionUI) => {
   const {
@@ -45,7 +46,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
     showMultipurposeModal,
     setShowMultipurposeModal,
     onClosePendingReqModal,
-    buttonText,
+
     shouldShowRequestProcessModal,
     showPendingReqModals,
   } = props;
@@ -77,11 +78,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
             onNextClick={onNextStep}
             onSubmitClick={onToggleModal}
             disableNext={disabled}
-            controls={{
-              goBackText: "Anterior",
-              goNextText: "Siguiente",
-              submitText: "Finalizar",
-            }}
+            controls={controlsAssisted}
             size={smallScreen ? "small" : "large"}
           />
           <Stack direction="column">
@@ -91,13 +88,17 @@ const AddPositionUI = (props: IAddPositionUI) => {
                 initialValues={initialValues.generalInformation.values}
                 onFormValid={setIsCurrentFormValid}
                 handleNextStep={onNextStep}
+                onReset={handlePreviousStep}
               />
             )}
             {currentStep === 2 && (
-              <InitializerForm
-                dataOptionsForms={roles}
-                dataOptionsValueSelect={options}
+              <RolesForm
+                entries={roles}
+                options={options}
                 setSelectedToggle={setSelectedToggle}
+                onButtonClick={onNextStep}
+                onReset={handlePreviousStep}
+                withFilter
               />
             )}
             {currentStep === 3 && (
@@ -114,35 +115,13 @@ const AddPositionUI = (props: IAddPositionUI) => {
                 }}
                 requestSteps={[]}
                 showModal={false}
+                isMobile={smallScreen}
                 showRequestProcessModal={false}
                 handleStepChange={(stepId) => setCurrentStep(stepId)}
+                onPreviousStep={handlePreviousStep}
+                onToggleModal={onToggleModal}
               />
             )}
-          </Stack>
-          <Stack gap="16px" justifyContent="flex-end">
-            {currentStep !== 1 && (
-              <Button
-                onClick={handlePreviousStep}
-                type="button"
-                disabled={currentStep === steps[0].id}
-                spacing="wide"
-                variant="none"
-                appearance={ComponentAppearance.GRAY}
-              >
-                {postionsButtonText.buttonHandlePrevious}
-              </Button>
-            )}
-            <Button
-              onClick={() =>
-                currentStep === steps.length
-                  ? onToggleModal()
-                  : handleNextStep()
-              }
-              spacing="wide"
-              disabled={disabled}
-            >
-              {buttonText}
-            </Button>
           </Stack>
         </Stack>
 
@@ -164,7 +143,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
             description={DecisionModalLabel.descriptionSecondaStep}
             actionText={DecisionModalLabel.actionTextSecondaStep}
             icon={<MdOutlineWarningAmber />}
-            appearance={ComponentAppearance.WARNING}
+            appearance={EComponentAppearance.WARNING}
             onCloseModal={() => setShowMultipurposeModal(false)}
             onClick={() => {
               handleNextStep();
@@ -179,15 +158,15 @@ const AddPositionUI = (props: IAddPositionUI) => {
             descriptionRequestProcess={requestProcessMessage}
             descriptionRequestStatus={requestStatusMessage}
             requestProcessSteps={requestSteps}
-            appearance={ComponentAppearance.SUCCESS}
+            appearance={EComponentAppearance.SUCCESS}
             onCloseRequestStatus={onCloseRequestStatus}
-            onCloseProcess={()=>{}}
+            onCloseProcess={() => {}}
           />
         )}
 
         {showPendingReqModals && (
           <RequestStatusModal
-            portalId="portal"
+            portalId={portalId}
             title={requestStatusMessage(savePositions.responsible).title}
             description={
               requestStatusMessage(savePositions.responsible).description
@@ -199,7 +178,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
             actionText={
               requestStatusMessage(savePositions.responsible).actionText
             }
-            appearance={ComponentAppearance.PRIMARY}
+            appearance={EComponentAppearance.PRIMARY}
           />
         )}
       </Stack>

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IPosition } from "@ptypes/positions/assisted/IPosition";
+import { eventBus } from "@events/eventBus";
+import { EModalState } from "@enum/modalState";
 
 const UseDetailsModal = (data?: IPosition) => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -16,6 +18,10 @@ const UseDetailsModal = (data?: IPosition) => {
     : [];
 
   const showDetailsMission = Boolean(data && showModal);
+
+  useEffect(() => {
+    eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
+  }, [showModal]);
 
   return {
     showModal,

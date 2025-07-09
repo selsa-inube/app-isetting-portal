@@ -1,8 +1,8 @@
 import { IStack } from "@inubekit/inubekit";
-
+import { IAppearenceBorderStack } from "../IAppearenceBorderStack";
 interface IBorderStack extends IStack {
-  background?: string;
-  border?: string;
+  background?: IAppearenceBorderStack;
+  border?: IAppearenceBorderStack;
   borderRadius?: string;
   boxSizing?: string;
   boxShadow?: string;

@@ -9,8 +9,6 @@ import { IMenu } from "@ptypes/design/IMenu";
 const Menu = (props: IMenu) => {
   const { options, onToggleInfoModal, onClose } = props;
 
-  const close: boolean = options.length > 1;
-
   return (
     <StyledContent $options={options.length}>
       <Stack direction="column">
@@ -20,29 +18,25 @@ const Menu = (props: IMenu) => {
               description={option.description}
               icon={option.icon}
               disabled={option.disabled}
-              path={option.path}
+              path={option.path ?? ""}
               onToggleInfoModal={onToggleInfoModal}
-              close={close}
-              onClose={onClose}
+              onClick={option.onClick}
             />
           </Stack>
         ))}
       </Stack>
-
-      {!close && (
-        <Stack
-          justifyContent="flex-end"
-          margin={`${basic.spacing.s075} ${basic.spacing.s100} ${basic.spacing.s0} ${basic.spacing.s025}`}
-        >
-          <Icon
-            icon={<MdOutlineClear />}
-            size="16px"
-            appearance={ComponentAppearance.DARK}
-            onClick={onClose}
-            cursorHover
-          />
-        </Stack>
-      )}
+      <Stack
+        justifyContent="flex-end"
+        margin={`${basic.spacing.s075} ${basic.spacing.s100} ${basic.spacing.s0} ${basic.spacing.s025}`}
+      >
+        <Icon
+          icon={<MdOutlineClear />}
+          size="16px"
+          appearance={ComponentAppearance.DARK}
+          onClick={onClose}
+          cursorHover
+        />
+      </Stack>
     </StyledContent>
   );
 };

@@ -1,4 +1,3 @@
-import { inube } from "@inubekit/inubekit";
 import { ModalWrapper } from "@design/modals/modalWrapper";
 import { BorderStack } from "@design/modals/borderStack";
 import { basic } from "@design/tokens";
@@ -7,6 +6,7 @@ import { IRequestsInProcess } from "@ptypes/requestsInProgress/IRequestsInProces
 import RequestTitleSection from "./requestTitleSection";
 import RequestDetailBoxes from "./requestDetailBoxes";
 import TraceabilitySection from "./traceabilitySection";
+import { EComponentAppearance } from "@enum/appearances";
 
 const RequestsInProcess = (props: IRequestsInProcess) => {
   const {
@@ -33,9 +33,8 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
     >
       <BorderStack
         direction="column"
-        background={inube.palette.neutral.N0}
         borderRadius={basic.spacing.s100}
-        border={inube.palette.neutral.N40}
+        border={EComponentAppearance.DARK}
         boxSizing="border-box"
         width="auto"
         height={isMobile ? "400px" : "430px"}
@@ -45,7 +44,6 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
         <RequestTitleSection requestType={data.request} />
 
         <BorderStack
-          background={inube.palette.neutral.N0}
           overflowY="auto"
           boxSizing="border-box"
           wrap="wrap"

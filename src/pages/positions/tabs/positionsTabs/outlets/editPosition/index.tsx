@@ -9,7 +9,7 @@ import { UseEditPositions } from "@hooks/positions/useEditPositions";
 import { UseFetchRolesStaff } from "@hooks/positions/useFetchRolesStaff";
 import { EditPositionsUI } from "./interface";
 import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
-import { UseFetchAplicaionStaff } from "@hooks/positions/useAplication";
+import { UseFetchAplicationStaff } from "@hooks/positions/useAplication";
 
 const EditPositions = () => {
   const location = useLocation();
@@ -23,6 +23,8 @@ const EditPositions = () => {
     isSelected,
     saveData,
     showRequestProcessModal,
+    showGeneralInformation,
+    showRolesForm,
     onSubmit,
     handleReset,
     setIsCurrentFormValid,
@@ -30,7 +32,7 @@ const EditPositions = () => {
     setShowModal,
     setSelectedToggle,
     roles,
-  } = UseEditPositions({data, appData, rolesData: rolesStaff});
+  } = UseEditPositions({ data, appData, rolesData: rolesStaff });
 
   const {
     savePositions,
@@ -47,7 +49,14 @@ const EditPositions = () => {
     saveData as ISaveDataRequest,
     setShowModal
   );
-  const { options } = UseFetchAplicaionStaff();
+  const { options } = UseFetchAplicationStaff();
+
+  const showRequestProcess = Boolean(showRequestProcessModal && savePositions);
+
+  const showRequestStatusModal = Boolean(
+    showPendingReqModal && savePositions?.requestNumber
+  );
+
   return (
     <EditPositionsUI
       editPositionTabsConfig={editPositionTabsConfig}
@@ -59,9 +68,7 @@ const EditPositions = () => {
       savePositions={savePositions as ISaveDataResponse}
       requestSteps={requestSteps}
       loading={loading}
-      showRequestProcessModal={showRequestProcessModal}
       onCloseRequestStatus={handleCloseRequestStatus}
-      showPendingReqModal={showPendingReqModal}
       onClosePendingReqModal={handleClosePendingReqModal}
       onButtonClick={onSubmit}
       onReset={handleReset}
@@ -69,6 +76,10 @@ const EditPositions = () => {
       smallScreen={smallScreen}
       roles={roles}
       options={options as IOptionInitialiceEntryApp[]}
+      showGeneralInformation={showGeneralInformation}
+      showRolesForm={showRolesForm}
+      showRequestProcess={showRequestProcess}
+      showRequestStatusModal={showRequestStatusModal}
     />
   );
 };

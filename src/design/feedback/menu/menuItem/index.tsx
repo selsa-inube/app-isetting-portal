@@ -1,4 +1,4 @@
-import { MdInfoOutline, MdOutlineClear } from "react-icons/md";
+import { MdInfoOutline } from "react-icons/md";
 import { Icon, Stack, Text } from "@inubekit/inubekit";
 
 import { StyledMenuItemLink } from "./styles";
@@ -14,13 +14,11 @@ const MenuItem = (props: IMenuItem) => {
     disabled = false,
     path = "",
     onToggleInfoModal,
-    close = true,
-    onClose,
+    onClick = () => {},
   } = props;
 
   const disabledPath = disabled ? "" : path;
-
-  return (
+   return (
     <BorderStack
       justifyContent="space-between"
       alignItems="center"
@@ -30,7 +28,7 @@ const MenuItem = (props: IMenuItem) => {
       gap={basic.spacing.s050}
       boxSizing="border-box"
     >
-      <StyledMenuItemLink to={disabledPath}>
+      <StyledMenuItemLink to={disabledPath} onClick={onClick}>
         <Stack gap={basic.spacing.s050} alignItems="center">
           <Icon
             icon={icon}
@@ -57,14 +55,7 @@ const MenuItem = (props: IMenuItem) => {
           )}
         </Stack>
       </StyledMenuItemLink>
-      {close && (
-        <Icon
-          icon={<MdOutlineClear />}
-          size="16px"
-          appearance={ComponentAppearance.DARK}
-          onClick={onClose}
-        />
-      )}
+     
     </BorderStack>
   );
 };

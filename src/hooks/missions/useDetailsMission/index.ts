@@ -10,7 +10,7 @@ import { requestType } from "@config/requestType";
 import { EModalState } from "@enum/modalState";
 
 const useDetailsMission = (props: IUseDetailsMission) => {
-  const { data, showModalReq } = props;
+  const { data } = props;
 
   const [isSelected, setIsSelected] = useState<string>();
   const [showModal, setShowModal] = useState(false);
@@ -42,18 +42,8 @@ const useDetailsMission = (props: IUseDetailsMission) => {
 
   const screenTablet = useMediaQuery(enviroment.IS_MOBILE_1200);
 
-  const emitEvent = (eventName: string) => {
-    eventBus.emit(eventName, showModal);
-  };
-  
-  useEffect(() => {
-    if (showModalReq && !showModal) {
-      emitEvent(EModalState.SECOND_MODAL_STATE);
-    } else if (!showModalReq && !showModal) {
-      emitEvent(EModalState.SECOND_MODAL_STATE);
-    } else if (!showModalReq && showModal) {
-      emitEvent(EModalState.THIRD_MODAL_STATE);
-    }
+    useEffect(() => {
+    eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
 
   return {

@@ -8,12 +8,12 @@ import {
   useMediaQuery,
   Icon,
   Divider,
-  inube,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
 import { IInteractiveModal } from "@ptypes/interactiveModal/InteractiveModalProps";
 import { BorderStack } from "@design/modals/borderStack";
+import { EComponentAppearance } from "@enum/appearances";
 
 const InteractiveModal = (props: IInteractiveModal) => {
   const { children, closeModal, title, width, height, portalId, infoText } =
@@ -30,7 +30,7 @@ const InteractiveModal = (props: IInteractiveModal) => {
   return createPortal(
     <Blanket>
       <BorderStack
-        background={inube.palette.neutral.N10}
+        background={EComponentAppearance.GRAY}
         width={width}
         height={height}
         borderRadius={smallScreen ? basic.spacing.s0 : basic.spacing.s8}
@@ -40,11 +40,11 @@ const InteractiveModal = (props: IInteractiveModal) => {
       >
         <Stack direction="column" gap={basic.spacing.s20}>
           <Stack alignItems="center" justifyContent="space-between">
-            <Text type="headline" size="small" appearance="dark">
+            <Text type="headline" size="small" appearance={EComponentAppearance.DARK}>
               {title}
             </Text>
             <Icon
-              appearance={"dark"}
+              appearance={EComponentAppearance.DARK}
               icon={<MdClear />}
               spacing="narrow"
               size="24px"

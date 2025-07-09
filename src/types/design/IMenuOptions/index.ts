@@ -1,8 +1,9 @@
 interface IMenuOptions {
   description: string;
   icon: React.JSX.Element;
-  path: string;
   disabled: boolean;
+  path?: string;
+  onClick?: () => void;
 }
 
 export type { IMenuOptions };

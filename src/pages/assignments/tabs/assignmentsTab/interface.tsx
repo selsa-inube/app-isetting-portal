@@ -1,7 +1,6 @@
 import { MdAdd } from "react-icons/md";
-import { Stack, Button, Text, inube, Searchfield } from "@inubekit/inubekit";
+import { Stack, Button, Text, Searchfield } from "@inubekit/inubekit";
 
-import { useThemeData } from "@utils/theme";
 import { basic } from "@design/tokens";
 import { EComponentAppearance } from "@enum/appearances";
 import { Table } from "@design/table";
@@ -26,11 +25,9 @@ const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
     onSearchAssingments,
   } = props;
 
-  const theme = useThemeData();
-
   return (
     <BorderStack
-      border={theme ? theme?.palette?.neutral?.N40 : inube.palette.neutral.N40}
+      border={EComponentAppearance.DARK}
       borderRadius={basic.spacing.s100}
       padding={smallScreen ? `${basic.spacing.s150}` : `${basic.spacing.s0}`}
       boxSizing="initial"

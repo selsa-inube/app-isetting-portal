@@ -1,16 +1,15 @@
 import { BorderStack } from "@design/modals/borderStack";
 import { basic } from "@design/tokens";
 import { EComponentAppearance } from "@enum/appearances";
-import { inube, Text } from "@inubekit/inubekit";
+import { Text } from "@inubekit/inubekit";
 import { IFieldDetails } from "@ptypes/design/IFieldDetails";
-import { useThemeData } from "@utils/theme";
 
 const FieldDetails = (props: IFieldDetails) => {
   const {
     labelDetail,
     entry,
   } = props;
-  const theme = useThemeData();
+
   return (
     <BorderStack
       direction="column"
@@ -20,7 +19,7 @@ const FieldDetails = (props: IFieldDetails) => {
       padding={`${basic.spacing.s075} ${basic.spacing.s200}`}
       boxSizing="border-box"
       background={
-        theme ? theme?.palette?.neutral?.N10 : inube.palette.neutral.N10
+        EComponentAppearance.GRAY
       }
       gap={basic.spacing.s050}
     >

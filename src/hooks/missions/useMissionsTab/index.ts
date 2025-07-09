@@ -27,7 +27,7 @@ const useMissionsTab = (
     setSearchPosition(e.target.value);
   };
 
-   const columnWidths=[85]
+   const columnWidths=smallScreen ?  [72]:[85]
 
   return {
     searchPosition,

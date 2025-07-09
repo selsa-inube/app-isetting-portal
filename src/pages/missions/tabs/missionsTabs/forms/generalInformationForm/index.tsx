@@ -45,6 +45,7 @@ const GeneralInformationForm = forwardRef<
         isDisabledButton={isDisabledButton}
         onPreviousStep={onPrevious}
         onButtonClick={onButtonClick}
+        editDataOption={editDataOption}
       />
     );
   }

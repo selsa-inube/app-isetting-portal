@@ -1,10 +1,9 @@
-import { Divider, Fieldset, inube, Stack, Text } from "@inubekit/inubekit";
+import { Divider, Fieldset, Stack, Text } from "@inubekit/inubekit";
 import { FieldDetails } from "@design/feedback/fieldDetails";
 import { ModalWrapper } from "@design/modals/modalWrapper";
 import { basic } from "@design/tokens";
 import { IMoreDetails } from "@ptypes/assignments/IMoreDetails";
 import { BorderStack } from "@design/modals/borderStack";
-import { useThemeData } from "@utils/theme";
 import { Table } from "@design/table";
 import { titles } from "@config/assignments/details/table/titles";
 import { actionsConfig } from "@config/assignments/details/table/actionsConfig";
@@ -24,7 +23,6 @@ const MoreDetails = (props: IMoreDetails) => {
     columnWidths,
   } = props;
 
-  const theme = useThemeData();
 
   const showRoles = data.roles && data.roles.length > 0
 
@@ -84,7 +82,7 @@ const MoreDetails = (props: IMoreDetails) => {
             padding={basic.spacing.s200}
             boxSizing="border-box"
             border={
-              theme ? theme?.palette?.neutral?.N40 : inube.palette.neutral.N40
+              EComponentAppearance.DARK
             }
             gap={basic.spacing.s200}
           >

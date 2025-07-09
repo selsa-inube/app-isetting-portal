@@ -21,7 +21,6 @@ const PositionsUI = (props: IPositionsUI) => {
     onCloseMenu,
     onToggleModal,
     handleTabChange,
-    smallScreenTab,
     smallScreen,
     showModalUnits,
     formik,
@@ -105,7 +104,6 @@ const PositionsUI = (props: IPositionsUI) => {
                 tabs={positionTab}
                 selectedTab={isSelected}
                 onChange={handleTabChange}
-                scroll={smallScreenTab}
               />
 
               {showPositionsTab && (

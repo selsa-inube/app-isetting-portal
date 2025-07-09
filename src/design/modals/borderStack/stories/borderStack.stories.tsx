@@ -1,9 +1,10 @@
 import { Meta, StoryFn } from "@storybook/react/*";
 import { BorderStack } from "..";
+import { EComponentAppearance } from "@enum/appearances";
 
 const Template: StoryFn = (args) => (
   <BorderStack {...args}>
-    <BorderStack background="white" padding="5px" width="100%">
+    <BorderStack background={EComponentAppearance.LIGHT} padding="5px" width="100%">
       Contenido
     </BorderStack>
   </BorderStack>

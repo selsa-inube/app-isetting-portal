@@ -1,5 +1,5 @@
 import { UseDetailsRequest } from "@hooks/assignments/UseDetailsRequest";
-import { useDetailsRequestInProgress } from "@hooks/assignments/useDetailsRequestInProgress";
+import { UseDetailsRequestInProgress } from "@hooks/assignments/useDetailsRequestInProgress";
 import { IDetails } from "@ptypes/assignments/request/IDetails";
 import { IEntry } from "@ptypes/design/table/IEntry";
 import { DetailsUI } from "./interface";
@@ -8,7 +8,7 @@ const Details = (props: IDetails) => {
   const { data } = props;
 
   const { showModal, screenTablet, normalizeData, handleToggleModal } =
-    useDetailsRequestInProgress({ data });
+    UseDetailsRequestInProgress({ data });
 
   const {
     normalizeData: normalizeDataMoreDetails,

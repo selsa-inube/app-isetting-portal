@@ -29,6 +29,8 @@ const DetailsUI = (props: IDetailsUI) => {
     onToggleModal,
   } = props;
 
+  console.log({screenTablet});
+
   return (
     <>
       <StyledContainerIcon onClick={onToggleModal} $isTablet={screenTablet}>
@@ -64,7 +66,7 @@ const DetailsUI = (props: IDetailsUI) => {
           labelsDetails={moreLabelsDetails}
           isMobile={smallScreen}
           portalId={portalId}
-          onCloseModal={onToggleModal}
+          onCloseModal={handleMoreDetails}
           title={moreDetailsModal.titleDetails}
           moreDetailsModal={moreDetailsModal}
           pageLength={pageLength}

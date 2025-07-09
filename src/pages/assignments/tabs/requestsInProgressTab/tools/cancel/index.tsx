@@ -3,14 +3,14 @@ import { CancelRecord } from "@design/feedback/cancelRecord";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { cancelRequestInProgressModal } from "@config/request/cancelRequestInProgressModal";
 import { ICancel } from "@ptypes/assignments/request/ICancel";
-import { useCancelRequestInProgress } from "@hooks/assignments/useCancelRequestInProgress";
+import { UseCancelRequestInProgress } from "@hooks/assignments/useCancelRequestInProgress";
 
 const Cancel = (props: ICancel) => {
   const { data, setEntryCanceled } = props;
   const { appData } = useContext(AuthAndData);
 
   const { showModal, loading, handleToggleModal, handleClick } =
-    useCancelRequestInProgress({
+    UseCancelRequestInProgress({
       businessUnit: appData.businessUnit.publicCode,
       data,
       userAccount: appData.user.userAccount,

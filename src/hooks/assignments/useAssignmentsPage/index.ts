@@ -12,7 +12,7 @@ import { enviroment } from "@config/environment";
 import { EOptionsByBusinessunits } from "@enum/optionsByBusinessunits";
 import { ERequestAssignments } from "@enum/requestAssignments";
 
-const useAssignmentsPage = (props: IUseAssignmentsPage) => {
+const UseAssignmentsPage = (props: IUseAssignmentsPage) => {
   const { businessUnitSigla, bussinesUnits } = props;
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
@@ -119,4 +119,4 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
   };
 };
 
-export { useAssignmentsPage };
+export { UseAssignmentsPage };

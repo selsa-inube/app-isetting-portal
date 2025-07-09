@@ -6,7 +6,7 @@ import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
 import { IUseDetailsAssignments } from "@ptypes/assignments/request/IUseDetailsAssignments";
 
-const useDetailsAssignments = (props: IUseDetailsAssignments) => {
+const UseDetailsAssignments = (props: IUseDetailsAssignments) => {
   const { data } = props;
 
   const [showModal, setShowModal] = useState(false);
@@ -43,4 +43,4 @@ const useDetailsAssignments = (props: IUseDetailsAssignments) => {
   };
 };
 
-export { useDetailsAssignments };
+export { UseDetailsAssignments };

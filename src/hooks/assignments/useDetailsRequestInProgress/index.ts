@@ -8,7 +8,7 @@ import { IUseDetailsRequestInProgress } from "@ptypes/assignments/request/IUseDe
 import { enviroment } from "@config/environment";
 import { EModalState } from "@enum/modalState";
 
-const useDetailsRequestInProgress = (props: IUseDetailsRequestInProgress) => {
+const UseDetailsRequestInProgress = (props: IUseDetailsRequestInProgress) => {
   const { data } = props;
   const [showModal, setShowModal] = useState(false);
 
@@ -37,7 +37,7 @@ const useDetailsRequestInProgress = (props: IUseDetailsRequestInProgress) => {
     eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
 
-  const screenTablet = useMediaQuery(enviroment.IS_MOBILE_1200);
+  const screenTablet = useMediaQuery(enviroment.IS_MOBILE_970);
   const isMobile = useMediaQuery(enviroment.IS_MOBILE_743);
 
   return {
@@ -49,4 +49,4 @@ const useDetailsRequestInProgress = (props: IUseDetailsRequestInProgress) => {
   };
 };
 
-export { useDetailsRequestInProgress };
+export { UseDetailsRequestInProgress };

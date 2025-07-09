@@ -8,7 +8,6 @@ import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfR
 import { requestType } from "@config/requestType";
 import { EModalState } from "@enum/modalState";
 import { IUseDetailsRequest } from "@ptypes/hooks/IUseDetailsRequest";
-import { IEntry } from "@ptypes/design/table/IEntry";
 
 const UseDetailsRequest = (props: IUseDetailsRequest) => {
   const { data } = props;
@@ -21,12 +20,6 @@ const UseDetailsRequest = (props: IUseDetailsRequest) => {
     ...data,
     id: data.id,
     reasonForAbsence: `Sí, de ${data.nameOfAbsentStaff}`,
-    roles: data.temporaryRolesByBusinessUnit.map((role: IEntry) => ({
-      id: role.assignmentId,
-      businessUnitName: role.businessUnitCode,
-      roleName: role.roleName,
-    })),
-
   };
 
   const handleToggleModal = () => {

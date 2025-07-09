@@ -9,7 +9,7 @@ import { IUseCancelRequestInProgress } from "@ptypes/hooks/IUseCancelRequestInPr
 import { EModalState } from "@enum/modalState";
 import { cancelLabels } from "@config/assignments/requestTab/cancelLabels";
 
-const useCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
+const UseCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
   const { businessUnit, data, userAccount, setEntryCanceled } = props;
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -68,4 +68,4 @@ const useCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
     handleClick,
   };
 };
-export { useCancelRequestInProgress };
+export { UseCancelRequestInProgress };

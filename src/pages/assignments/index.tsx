@@ -4,7 +4,7 @@ import { ICardData } from "@ptypes/home/ICardData";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { assignmentsTabsConfig } from "@config/assignments/tabs";
 import { menuOptionsAssignments } from "@config/assignments/menuOptions";
-import { useAssignmentsPage } from "@hooks/assignments/useAssignmentsPage";
+import { UseAssignmentsPage } from "@hooks/assignments/useAssignmentsPage";
 import { AssignmentsUI } from "./interface";
 
 const Assignments = () => {
@@ -22,7 +22,7 @@ const Assignments = () => {
     onCloseMenu,
     onToggleModal,
     handleTabChange,
-  } = useAssignmentsPage({
+  } = UseAssignmentsPage({
     businessUnitSigla,
     bussinesUnits: appData.businessUnit.publicCode,
   });

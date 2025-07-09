@@ -7,7 +7,7 @@ import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgr
 import { enviroment } from "@config/environment";
 import { ERequestAssignments } from "@enum/requestAssignments";
 
-const useRequestsInProgress = (props: IUseRequestsInProgress) => {
+const UseRequestsInProgress = (props: IUseRequestsInProgress) => {
   const { bussinesUnits } = props;
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
@@ -50,11 +50,11 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   };
 
   const smallScreen = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
-  const widthFirstColumn = smallScreen ? 70 : 10;
+  const widthFirstColumn = smallScreen ? 70 : 12;
 
   const columnWidths = smallScreen
     ? [widthFirstColumn, 25, 20]
-    : [widthFirstColumn, 60, 18];
+    : [widthFirstColumn, 58, 18];
 
   return {
     requestsInProgress,
@@ -68,4 +68,4 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   };
 };
 
-export { useRequestsInProgress };
+export { UseRequestsInProgress };

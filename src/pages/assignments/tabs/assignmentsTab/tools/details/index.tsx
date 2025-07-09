@@ -3,7 +3,7 @@ import { Icon } from "@inubekit/inubekit";
 import { EComponentAppearance } from "@enum/appearances";
 import { IDetails } from "@ptypes/assignments/IDetailsUI";
 import { StyledContainerIcon } from "./styles";
-import { useDetailsAssignments } from "@hooks/assignments/useDetailsAssignments";
+import { UseDetailsAssignments } from "@hooks/assignments/useDetailsAssignments";
 import { MoreDetails } from "@pages/assignments/moreDetails";
 import { portalId } from "@config/portalId";
 import { moreLabelsDetails } from "@config/assignments/details/moreLabelsDetails";
@@ -20,7 +20,7 @@ const Details = (props: IDetails) => {
     pageLength,
     columnWidths,
     onToggleModal,
-  } = useDetailsAssignments({
+  } = UseDetailsAssignments({
     data,
   });
 

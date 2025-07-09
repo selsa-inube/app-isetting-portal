@@ -1,10 +1,10 @@
 
-enum ERequestMission {
+enum ERequestPosition {
   ADD = "agregar cargo",
   MODIFY = "modificación cargo",
   DELETE = "eliminación cargo",
   TEST = "test",
-  MISSIONS = "Mission",
+  POSITIONS = "Position",
 }
 
-export { ERequestMission };
+export { ERequestPosition };

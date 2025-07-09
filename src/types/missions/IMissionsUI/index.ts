@@ -4,7 +4,6 @@ import { IMenuOptions } from "@ptypes/design/IMenuOptions";
 interface IMissionsUI {
 isSelected: string;
   handleTabChange: (id: string) => void;
-  smallScreenTab: boolean;
   smallScreen: boolean;
   showModal: boolean;
   showInfoModal: boolean;

@@ -14,7 +14,6 @@ const Positions =() => {
       isSelected,
       handleTabChange,
       smallScreen,
-      smallScreenTab,
       showModal,
       showInfoModal,
       showModalUnits,
@@ -35,11 +34,10 @@ const Positions =() => {
 
     return (
       <PositionsUI
-        isSelected={isSelected ?? positionsTabsConfig.cargos.id}
+        isSelected={isSelected ?? positionsTabsConfig(smallScreen).cargos.id}
         handleTabChange={handleTabChange}
         catalogName={catalogName}
         smallScreen={smallScreen}
-        smallScreenTab={smallScreenTab}
         showModal={showModal}
         showInfoModal={showInfoModal}
         options={menuPositionLinks}

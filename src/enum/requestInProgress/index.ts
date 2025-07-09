@@ -1,5 +1,5 @@
 enum ERequestInProgress {
-  MISSIONS= "Missions",
+  MISSIONS= "Mission",
   ASSIGNMENTS= "Assignments",  
 }
 

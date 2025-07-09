@@ -14,7 +14,6 @@ const Users = () => {
     isSelected,
     handleTabChange,
     smallScreen,
-    smallScreenTab,
     showMenu,
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
@@ -27,11 +26,11 @@ const Users = () => {
     <UsersUI
       handleSearchPositions={handleSearchPositions}
       searchPosition={searchPosition}
-      isSelected={isSelected ?? positionsTabsConfig.cargos.id}
+      isSelected={isSelected ?? positionsTabsConfig(smallScreen).cargos.id}
       handleTabChange={handleTabChange}
       catalogName="Privilegios"
       smallScreen={smallScreen}
-      smallScreenTab={smallScreenTab}
+      smallScreenTab={false}
       showMenu={showMenu}
       loading={loading}
       handleToggleMenuInvitation={handleToggleMenuInvitation}

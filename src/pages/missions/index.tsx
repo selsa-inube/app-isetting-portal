@@ -9,7 +9,6 @@ const Missions =() => {
       isSelected,
       handleTabChange,
       smallScreen,
-      smallScreenTab,
       showModal,
       showInfoModal,
       showMissionTab,
@@ -22,11 +21,10 @@ const Missions =() => {
 
     return (
       <MissionsUI
-        isSelected={isSelected ?? missionsTabsConfig.roles.id}
+        isSelected={isSelected ?? missionsTabsConfig(smallScreen).roles.id}
         handleTabChange={handleTabChange}
         catalogName="Privilegios"
         smallScreen={smallScreen}
-        smallScreenTab={smallScreenTab}
         showModal={showModal}
         showInfoModal={showInfoModal}
         options={menuMissionsLinks}

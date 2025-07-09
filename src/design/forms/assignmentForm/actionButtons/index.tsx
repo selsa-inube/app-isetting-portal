@@ -1,11 +1,11 @@
-import { MdCheck, MdClear, MdOutlineMoreHoriz } from "react-icons/md";
+import { MdCheck, MdClear, MdOutlineMoreVert } from "react-icons/md";
 import { Stack, Button, Icon } from "@inubekit/inubekit";
 import { IActionButtons } from "@ptypes/design/IActionButtons";
 import { basic } from "@design/tokens";
-import { Menu } from "@design/navigation";
 import { actionButtonsLabels } from "@config/assignmentForm/actionButtonsLabels";
 import { StyledOptionsContainer } from "./styles";
 import { EComponentAppearance } from "@enum/appearances";
+import { Menu } from "@design/feedback/menu";
 
 const ActionButtons = (props: IActionButtons) => {
   const {
@@ -15,7 +15,6 @@ const ActionButtons = (props: IActionButtons) => {
     entries,
     isAssignAll,
     handleToggleRol,
-    handleCloseMenuRol,
     handleToggleAllEntries,
   } = props;
 
@@ -29,7 +28,7 @@ const ActionButtons = (props: IActionButtons) => {
       {smallScreen ? (
         <StyledOptionsContainer>
           <Icon
-            icon={<MdOutlineMoreHoriz />}
+            icon={<MdOutlineMoreVert />}
             appearance={EComponentAppearance.DARK}
             spacing="narrow"
             size={basic.spacing.s300}
@@ -37,7 +36,11 @@ const ActionButtons = (props: IActionButtons) => {
             onClick={handleToggleRol}
           />
           {showMenu && (
-            <Menu options={menuOptions} handleClose={handleCloseMenuRol} />
+            <Menu
+              options={menuOptions}
+              onToggleInfoModal={handleToggleRol}
+              onClose={handleToggleRol}
+            />
           )}
         </StyledOptionsContainer>
       ) : (

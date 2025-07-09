@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { formatDateTable } from "@utils/date/formatDateTable";
 import { IEntry } from "@ptypes/table/IEntry";
+import { EModalState } from "@enum/modalState";
+import { eventBus } from "@events/eventBus";
+import { useMediaQuery } from "@inubekit/inubekit";
+import { enviroment } from "@config/environment";
 
 const UseDetailsRequestInProgress = (data: IEntry) => {
   const [showModal, setShowModal] = useState(false);
@@ -37,12 +41,19 @@ const UseDetailsRequestInProgress = (data: IEntry) => {
       )
     : [];
 
+   useEffect(() => {
+    eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
+  }, [showModal]);
+
+  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970)
+
   return {
     showMoreMission,
     showModal,
     handleToggleModal,
     normalizeData,
     dataTable,
+    isMobile,
     onToggleMoreDetailsModal,
   };
 };

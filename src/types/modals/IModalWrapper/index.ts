@@ -13,6 +13,9 @@ interface IModalWrapper {
   height?: string;
   width?: string;
   withCancelButton?: boolean;
+  minHeight?: string;
+  maxHeight?: string;
+  padding?: string;
   onCloseModal?: () => void;
   onClick?: () => void;
 }

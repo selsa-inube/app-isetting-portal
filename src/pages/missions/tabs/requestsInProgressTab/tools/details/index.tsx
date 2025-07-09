@@ -19,7 +19,6 @@ const Details = (props: IDetails) => {
     handleToggleModal: onToggleMoreDetailsModal,
   } = useDetailsMission({
     data: normalizeData,
-    showModalReq: showModal,
   });
 
 

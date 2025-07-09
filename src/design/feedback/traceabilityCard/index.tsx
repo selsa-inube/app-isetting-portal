@@ -1,5 +1,5 @@
 import { Stack } from "@inubekit/inubekit";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { basic } from "@design/tokens";
 import { ITraceabilityCard } from "@ptypes/traceabilityCard/ITraceabilityCard";
 import { RenderDetailBox } from "./renderDetailBox";

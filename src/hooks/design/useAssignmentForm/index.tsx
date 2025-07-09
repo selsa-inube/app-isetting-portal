@@ -1,4 +1,5 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
+import { MdCheck, MdClear, MdOutlineFilterAlt } from "react-icons/md";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
@@ -6,6 +7,10 @@ import { assignmentLabels } from "@config/assignmentForm/assigmentLabels";
 import { actionButtonsLabels } from "@config/assignmentForm/actionButtonsLabels";
 import { compareObjects } from "@utils/compareObjects";
 import { IUseAssignmentForm } from "@ptypes/hooks/IUseAssignmentForm";
+import { enviroment } from "@config/environment";
+import { eventBus } from "@events/eventBus";
+import { EModalState } from "@enum/modalState";
+import { EComponentAppearance } from "@enum/appearances";
 
 const UseAssignmentForm = (props: IUseAssignmentForm) => {
   const {
@@ -25,38 +30,11 @@ const UseAssignmentForm = (props: IUseAssignmentForm) => {
   const [isDisabledButton, setIsDisabledButton] = useState(false);
   const [filteredRows, setFilteredRows] = useState<IFormEntry[]>(entries);
   const [filterValue, setFilterValue] = useState("");
-  const smallScreen = useMediaQuery("(max-width: 1001px)");
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
 
   const handleToggleRol = () => {
-    setShowMenu((prevShowMenu) => !prevShowMenu);
+    setShowMenu(!showMenu);
   };
-
-  const menuOptions = useMemo(() => {
-    const baseOptions = [
-      {
-        id: "allocate-all",
-        label: actionButtonsLabels.checkAll,
-        handleClick: () => handleToggleAllEntries(true),
-      },
-      {
-        id: "deallocate-all",
-        label: actionButtonsLabels.uncheckAll,
-        handleClick: () => handleToggleAllEntries(false),
-      },
-    ];
-
-    if (withFilter) {
-      baseOptions.push({
-        id: "allocate-rol",
-        label: `${actionButtonsLabels.filter} (${appliedFilters?.length})`,
-        handleClick: () => {
-          setShowModal(true);
-        },
-      });
-    }
-
-    return baseOptions;
-  }, [withFilter, appliedFilters?.length]);
 
   useEffect(() => {
     if (appliedFilters && appliedFilters.length > 0) {
@@ -167,6 +145,40 @@ const UseAssignmentForm = (props: IUseAssignmentForm) => {
       entry.value === "" || entry.value === null || entry.value === undefined
   );
 
+  const menuOptions = [
+    {
+      id: "deallocate-all",
+      icon: <MdClear />,
+      appearanceIcon: EComponentAppearance.PRIMARY,
+      description: actionButtonsLabels.uncheckAll,
+      onClick: () => {
+        handleToggleAllEntries(false);
+      },
+      disabled: false,
+    },
+    {
+      id: "allocate-all",
+      icon: <MdCheck />,
+      appearanceIcon: EComponentAppearance.PRIMARY,
+      description: actionButtonsLabels.checkAll,
+      onClick: () => handleToggleAllEntries(true),
+      disabled: false,
+    },
+  ];
+
+  if (withFilter) {
+    menuOptions.push({
+      id: "allocate-rol",
+      icon: <MdOutlineFilterAlt />,
+      appearanceIcon: EComponentAppearance.SUCCESS,
+      description: `${actionButtonsLabels.filter} (${appliedFilters?.length})`,
+      onClick: () => {
+        setShowModal(true);
+      },
+      disabled: false,
+    });
+  }
+
   useEffect(() => {
     if (editDataOption) {
       setIsDisabledButton(valuesEqual || valuesEmpty);
@@ -186,6 +198,10 @@ const UseAssignmentForm = (props: IUseAssignmentForm) => {
   const labelButtonNext = editDataOption
     ? assignmentLabels.send
     : assignmentLabels.next;
+
+  useEffect(() => {
+    eventBus.emit(EModalState.SECOND_MODAL_STATE, showMenu);
+  }, [showMenu]);
 
   return {
     filteredRows,

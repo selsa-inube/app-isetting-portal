@@ -6,7 +6,7 @@ import { verificationLabels } from "@config/missions/missionTab/assisted/verific
 import { IRenderGeneralInfoVerification } from "@ptypes/missions/assisted/IRenderGeneralinfoVerification";
 
 const RenderGeneralinfoVerification = (
-  props: IRenderGeneralInfoVerification,
+  props: IRenderGeneralInfoVerification
 ) => {
   const { values, isMobile } = props;
   return (
@@ -14,7 +14,7 @@ const RenderGeneralinfoVerification = (
       <Grid
         width="100%"
         templateColumns={isMobile ? "1fr" : "repeat(2, 1fr)"}
-        templateRows="auto"
+        templateRows={isMobile ? "repeat(2, 1fr)" : "1fr"}
         gap={basic.spacing.s200}
       >
         <BoxAttribute
@@ -22,12 +22,11 @@ const RenderGeneralinfoVerification = (
           label={verificationLabels.nameMission}
           value={values.nameMission}
         />
-           <BoxAttribute
+        <BoxAttribute
           direction="column"
           label={verificationLabels.descriptionMission}
           value={values.descriptionMission}
         />
-        
       </Grid>
     </>
   );

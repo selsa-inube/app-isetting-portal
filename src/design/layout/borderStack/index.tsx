@@ -20,6 +20,8 @@ const BorderStack = (props: IBorderStack) => {
     boxSizing,
     boxShadow,
     overflowY,
+    minHeight,
+    maxHeight,
   } = props;
 
   return (
@@ -40,6 +42,8 @@ const BorderStack = (props: IBorderStack) => {
       $boxSizing={boxSizing}
       $boxShadow={boxShadow}
       $overflowY={overflowY}
+           $minHeight={minHeight}
+      $maxHeight={maxHeight}
     >
       {children}
     </StyledBorderFlex>

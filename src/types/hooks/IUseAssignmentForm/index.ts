@@ -9,8 +9,7 @@ interface IUseAssignmentForm {
   editDataOption: boolean,
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
   withFilter: boolean,
-  appliedFilters?: IFilterTag[]
-
+  appliedFilters?: IFilterTag[];
 }
 
 

@@ -8,20 +8,23 @@ import { IMissionTabsConfig } from "@ptypes/missions/IMissionTabsConfig";
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { ERequestMission } from "@enum/requestMission";
+import { enviroment } from "@config/environment";
 
 const UseMissionsTabs = () => {
+
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const tabs= missionsTabsConfig(smallScreen);
   const [isSelected, setIsSelected] = useState<string>(
-    missionsTabsConfig.roles.id
+    tabs.roles.id
   );
   const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);
-  const smallScreen = useMediaQuery("(max-width: 990px)");
+  
   const [showMenu, setShowMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
   >([]);
   const [showInfoModal, setShowInfoModal] = useState(false);
-  const smallScreenTab = useMediaQuery("(max-width: 450px)");
   const widthFirstColumn = smallScreen ? 60 : 20;
 
   const { setBusinessUnitSigla } = useContext(AuthAndData);
@@ -71,23 +74,23 @@ const UseMissionsTabs = () => {
 
   useEffect(() => {
     if (changeTab) {
-      setIsSelected(missionsTabsConfig.requestsInProgress.id);
+      setIsSelected(tabs.requestsInProgress.id);
     }
   }, [changeTab]);
 
   useEffect(() => {
-    if (isSelected === missionsTabsConfig.requestsInProgress.id) {
+    if (isSelected === tabs.requestsInProgress.id) {
       setChangeTab(false);
-      setIsSelected(missionsTabsConfig.requestsInProgress.id);
+      setIsSelected(tabs.requestsInProgress.id);
     }
   }, [isSelected]);
 
-  const filteredTabsConfig = Object.keys(missionsTabsConfig).reduce(
+  const filteredTabsConfig = Object.keys(tabs).reduce(
     (filteredtabs, key) => {
-      const tab = missionsTabsConfig[key as keyof typeof missionsTabsConfig];
+      const tab = tabs[key as keyof typeof missionsTabsConfig];
 
       if (
-        key === missionsTabsConfig.requestsInProgress.id &&
+        key === tabs.requestsInProgress.id &&
         requestsInProgress &&
         requestsInProgress.length === 0
       ) {
@@ -102,10 +105,10 @@ const UseMissionsTabs = () => {
     {} as IMissionTabsConfig
   );
 
-  const showMissionTab = isSelected === missionsTabsConfig.roles.id;
+  const showMissionTab = isSelected === tabs.roles.id;
 
   const showRequestTab =
-    isSelected === missionsTabsConfig.requestsInProgress.id;
+    isSelected === tabs.requestsInProgress.id;
 
   const missionsTabs = Object.values(filteredTabsConfig);
 
@@ -113,7 +116,6 @@ const UseMissionsTabs = () => {
     isSelected,
     handleTabChange,
     smallScreen,
-    smallScreenTab,
     showMenu,
     showModal,
     showInfoModal,

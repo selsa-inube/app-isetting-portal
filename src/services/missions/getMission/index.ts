@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 import { getWithRetries } from "@services/core/getWithRetries";
-import { axiosInstance } from "@api/iportalStaff";
+import { iportalStaffAxiosInstance } from "@api/iportalStaff";
 import { IMisionData } from "@ptypes/missions/IMisionData";
 import { mapMissionsToEntities } from "./mappers";
 
@@ -14,7 +14,7 @@ const getMission = async (): Promise<
   };
   const data: IMisionData[] = await getWithRetries<
     IMisionData[]
-  >(axiosInstance, `/missions`, config);
+  >(iportalStaffAxiosInstance, `/missions`, config);
   return Array.isArray(data) ? mapMissionsToEntities(data) : [];
 };
 

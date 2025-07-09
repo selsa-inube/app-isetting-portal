@@ -8,7 +8,7 @@ import {
   Select,
   Stack,
 } from "@inubekit/inubekit";
-import { BorderStack } from "../borderStack";
+import { BorderStack } from "../../layout/borderStack";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { basic } from "@design/tokens";
 import { ISelectBusUnitModal } from "@ptypes/design/ISelectBusUnitModal";

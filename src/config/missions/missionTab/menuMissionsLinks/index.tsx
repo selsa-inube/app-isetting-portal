@@ -1,10 +1,10 @@
-import { TfiMenuAlt } from "react-icons/tfi";
+import { MdAdd } from "react-icons/md";
 
 const menuMissionsLinks = [
   {
     description: "Solicitar cargo ",
     path: "/privileges/missions/add-mission",
-    icon: <TfiMenuAlt size={16} />,
+    icon: <MdAdd />,
      disabled: false,
   },
 ];

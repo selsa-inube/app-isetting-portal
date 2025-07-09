@@ -1,5 +1,5 @@
 import { ModalWrapper } from "@design/modals/modalWrapper";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { basic } from "@design/tokens";
 import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
 import { IRequestsInProcess } from "@ptypes/requestsInProgress/IRequestsInProcess";

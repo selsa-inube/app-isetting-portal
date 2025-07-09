@@ -1,10 +1,10 @@
-import { IOption } from "@ptypes/navigation/IOption";
 import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IMenuOptions } from "../IMenuOptions";
 
 interface IActionButtons {
   smallScreen: boolean;
   showMenu: boolean;
-  menuOptions: IOption[];
+  menuOptions: IMenuOptions[];
   entries: IFormEntry[];
   isAssignAll: boolean;
   handleToggleRol: () => void;

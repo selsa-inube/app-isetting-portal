@@ -7,7 +7,7 @@ import { LabelsInfo } from "@pages/positions/tabs/positionsTabs/forms/detailsMod
 import { UseModalLabelsAndActions } from "@hooks/positions/useModalLabelsAndActions";
 import { ModalWrapper } from "@design/modals/modalWrapper";
 import { detailsMoreDetails } from "@config/requestsInProgressTab/details/detailsRequestInProgressModalMoreDetails";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { TableView } from "@pages/positions/tabs/positionsTabs/forms/detailsModal/detailsPositionsModal/tableView";
 import { basic } from "@design/tokens";
 import { StyledContainerIcon } from "./styles";

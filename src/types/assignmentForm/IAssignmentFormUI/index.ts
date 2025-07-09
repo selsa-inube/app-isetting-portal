@@ -1,7 +1,7 @@
-import { IOption } from "@ptypes/navigation/IOption";
 import { IFilterTag } from "@isettingkit/business-rules";
 import { IFields } from "@ptypes/IFields";
 import { IFormEntry } from "../IFormEntry";
+import { IMenuOptions } from "@ptypes/design/IMenuOptions";
 
 interface IAssignmentFormUI {
   filter: string;
@@ -12,7 +12,7 @@ interface IAssignmentFormUI {
   labelButtonNext: string;
   labelButtonPrevious: string;
   loading: boolean;
-  menuOptions: IOption[];
+  menuOptions: IMenuOptions[];
   showMenu: boolean;
   smallScreen: boolean;
   fields: IFields[];
@@ -21,7 +21,7 @@ interface IAssignmentFormUI {
   handleCloseMenuRol: () => void;
   handleFilterInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleToggleAllEntries: (allocate: boolean) => void;
-  handleToggleRol: () => void;
+  handleToggleRol: () => void;  
   onSelectCheckChange: (id: string) => void;
   onReset: () => void;
   onButtonClick: () => void; 

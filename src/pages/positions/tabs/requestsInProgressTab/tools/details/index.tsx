@@ -12,6 +12,7 @@ const Details = (props: IDetails) => {
     showMoreMission,
     onToggleMoreDetailsModal,
     dataTable,
+    isMobile,
   } = UseDetailsRequestInProgress(data);
   return (
     <DetailsRequestInProcess
@@ -19,7 +20,7 @@ const Details = (props: IDetails) => {
       showModal={showModal}
       onToggleModal={handleToggleModal}
       showMoreMission={showMoreMission}
-      isMobile={false}
+      isMobile={isMobile}
       onToggleMoreDetailsModal={onToggleMoreDetailsModal}
       labels={labelsOptions}
       infoData={data}

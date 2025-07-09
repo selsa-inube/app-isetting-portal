@@ -23,7 +23,6 @@ Default.args = {
   description: "Agregar nomina",
   icon: <MdAdd />,
   disabled: false,
-  close: true,
   path: "/",
 };
 export const Disabled: Story = (args: IMenuItem) => <MenuItem {...args} />;

@@ -7,6 +7,8 @@ interface IBorderStack extends IStack {
   boxSizing?: string;
   boxShadow?: string;
   overflowY?: string;
+  minHeight?: string;
+  maxHeight?: string;
 }
 
 export type { IBorderStack };

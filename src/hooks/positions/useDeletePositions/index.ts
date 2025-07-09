@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { formatDate } from "@utils/date/formatDate";
 import { IUseDeletePositions } from "@ptypes/hooks/IUseDeletePositions";
+import { eventBus } from "@events/eventBus";
+import { EModalState } from "@enum/modalState";
 
 const UseDeletePositions = (props: IUseDeletePositions) => {
   const { data, appData } = props;
@@ -30,6 +32,10 @@ const UseDeletePositions = (props: IUseDeletePositions) => {
     });
     setShowRequestProcessModal(true);
   };
+
+    useEffect(() => {
+    eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
+  }, [showModal]);
 
   return {
     showModal,

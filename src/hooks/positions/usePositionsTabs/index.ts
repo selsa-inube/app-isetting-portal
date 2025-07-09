@@ -9,19 +9,28 @@ import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { useOptionsByBusinessUnit } from "@hooks/staffPortal/useOptionsByBusinessUnit";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { enviroment } from "@config/environment";
+import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
+import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
+import { IPositionTabsConfig } from "@ptypes/positions/IPositionTabsConfig";
+import { ERequestPosition } from "@enum/requestPosition";
 
 const UsePositionsTabs = () => {
+
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const tabs = positionsTabsConfig(smallScreen);
   const [isSelected, setIsSelected] = useState<string>(
-    positionsTabsConfig.cargos.id
+    tabs.cargos.id
   );
   const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);
-  const smallScreen = useMediaQuery("(max-width: 990px)");
+    const [requestsInProgress, setRequestsInProgress] = useState<
+    IRequestsInProgress[]
+  >([]);
   const [showMenu, setShowMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModalUnits, setShowModalUnits] = useState(false);
   const [unit, setUnit] = useState<string>("");
   const [showInfoModal, setShowInfoModal] = useState(false);
-  const smallScreenTab = useMediaQuery("(max-width: 450px)");
   const widthFirstColumn = smallScreen ? 60 : 20;
 
   const { appData, setBusinessUnitSigla } = useContext(AuthAndData);
@@ -127,23 +136,60 @@ const UsePositionsTabs = () => {
 
   useEffect(() => {
     if (changeTab) {
-      setIsSelected(positionsTabsConfig.requestsInProgress.id);
+      setIsSelected(tabs.requestsInProgress.id);
     }
   }, [changeTab]);
 
   useEffect(() => {
-    if (isSelected === positionsTabsConfig.requestsInProgress.id) {
+    if (isSelected === tabs.requestsInProgress.id) {
       setChangeTab(false);
-      setIsSelected(positionsTabsConfig.requestsInProgress.id);
+      setIsSelected(tabs.requestsInProgress.id);
     }
   }, [isSelected]);
 
-  const positionTab = Object.values(positionsTabsConfig);
+   useEffect(() => {
+    const fetchRequestsInProgressData = async () => {
+      try {
+        const data = await getRequestsInProgress(
+          ERequestPosition.TEST,
+          ERequestPosition.POSITIONS
+        );
+        setRequestsInProgress(data);
+      } catch (error) {
+        console.info(error);
+      }
+    };
 
-  const showPositionsTab = isSelected === positionsTabsConfig.cargos.id;
+    fetchRequestsInProgressData();
+  }, []);
+
+  const filteredTabsConfig = Object.keys(tabs).reduce(
+    (filteredtabs, key) => {
+      const tab = tabs[key as keyof typeof tabs];
+
+      if (
+        key === tabs.requestsInProgress.id &&
+        requestsInProgress &&
+        requestsInProgress.length === 0
+      ) {
+        return filteredtabs;
+      }
+
+      if (tab !== undefined) {
+        filteredtabs[key as keyof IPositionTabsConfig] = tab;
+      }
+      return filteredtabs;
+    },
+    {} as IPositionTabsConfig
+  );
+
+
+  const positionTab = Object.values(filteredTabsConfig);
+
+  const showPositionsTab = isSelected === tabs.cargos.id;
 
   const showReqInProgTab =
-    isSelected === positionsTabsConfig.requestsInProgress.id;
+    isSelected === tabs.requestsInProgress.id;
 
   const columnWidths = [widthFirstColumn, 55, 23];
 
@@ -151,7 +197,6 @@ const UsePositionsTabs = () => {
     isSelected,
     handleTabChange,
     smallScreen,
-    smallScreenTab,
     showMenu,
     showModal,
     showInfoModal,

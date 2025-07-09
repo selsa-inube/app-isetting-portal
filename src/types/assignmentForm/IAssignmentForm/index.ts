@@ -1,7 +1,7 @@
 import { IFilterTag } from "@isettingkit/business-rules";
 import { IFormEntry } from "../IFormEntry";
 import { IFields } from "@ptypes/IFields";
-import { IOption } from "@ptypes/navigation/IOption";
+import { IMenuOptions } from "@ptypes/design/IMenuOptions";
 
 interface IAssignmentForm {
    appliedFilters: IFilterTag[];
@@ -21,7 +21,7 @@ interface IAssignmentForm {
     labelButtonNext: string;
     labelButtonPrevious: string;
     loading:boolean;
-    menuOptions: IOption[];
+    menuOptions: IMenuOptions[];
     onButtonClick: () => void;
     onHandleSelectCheckChange: (id: string) => void;
     onReset: () => void;

@@ -1,5 +1,5 @@
 import { DetailsPosition } from "@config/positions/details";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { basic } from "@design/tokens";
 import { EComponentAppearance } from "@enum/appearances";
 import { UseTableData } from "@hooks/positions/useTableView";

@@ -5,7 +5,7 @@ import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { formatDate } from "@utils/date/formatDate";
 import { editPositionTabsConfig } from "@config/positions/editPositions/tabs";
 
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IUseEditPositions } from "@ptypes/hooks/IUseEditPositions";

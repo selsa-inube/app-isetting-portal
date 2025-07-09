@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MdCheck, MdClear, MdOutlineFilterAlt } from "react-icons/md";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IOptionItemChecked } from "@design/select/OptionItem";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
@@ -7,9 +8,9 @@ import { actionButtonsLabels } from "@config/assignmentForm/actionButtonsLabels"
 import { compareObjects } from "@utils/compareObjects";
 import { IUseAssignmentForm } from "@ptypes/hooks/IUseAssignmentForm";
 import { enviroment } from "@config/environment";
-import { MdAdd } from "react-icons/md";
 import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
+import { EComponentAppearance } from "@enum/appearances";
 
 const UseAssignmentForm = (props: IUseAssignmentForm) => {
   const {
@@ -146,19 +147,21 @@ const UseAssignmentForm = (props: IUseAssignmentForm) => {
 
   const menuOptions = [
     {
-      id: "allocate-all",
-      icon: <MdAdd />,
-      description: actionButtonsLabels.checkAll,
-      onClick: () => handleToggleAllEntries(true),
-      disabled: false,
-    },
-    {
       id: "deallocate-all",
-      icon: <MdAdd />,
+      icon: <MdClear />,
+      appearanceIcon: EComponentAppearance.PRIMARY,
       description: actionButtonsLabels.uncheckAll,
       onClick: () => {
         handleToggleAllEntries(false);
       },
+      disabled: false,
+    },
+    {
+      id: "allocate-all",
+      icon: <MdCheck />,
+      appearanceIcon: EComponentAppearance.PRIMARY,
+      description: actionButtonsLabels.checkAll,
+      onClick: () => handleToggleAllEntries(true),
       disabled: false,
     },
   ];
@@ -166,7 +169,8 @@ const UseAssignmentForm = (props: IUseAssignmentForm) => {
   if (withFilter) {
     menuOptions.push({
       id: "allocate-rol",
-      icon: <MdAdd />,
+      icon: <MdOutlineFilterAlt />,
+      appearanceIcon: EComponentAppearance.SUCCESS,
       description: `${actionButtonsLabels.filter} (${appliedFilters?.length})`,
       onClick: () => {
         setShowModal(true);

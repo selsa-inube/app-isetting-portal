@@ -77,6 +77,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
           gap={basic.spacing.s200}
           direction="column"
           width="-webkit-fill-available"
+          height={smallScreen ? "380px" : "30vh"}
         >
           <Stack gap={basic.spacing.s400} justifyContent="space-between">
             <Stack gap={basic.spacing.s200} direction="column" width="100%">
@@ -110,10 +111,18 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
             borderRadius={basic.spacing.s100}
             padding={basic.spacing.s200}
             gap={basic.spacing.s200}
-            height="300px"
+            height="100%"
             overflowY="auto"
           >
             <ToggleGroup
+              entries={filteredEntries}
+              onSelectCheckChange={onSelectCheckChange}
+            />
+             <ToggleGroup
+              entries={filteredEntries}
+              onSelectCheckChange={onSelectCheckChange}
+            />
+             <ToggleGroup
               entries={filteredEntries}
               onSelectCheckChange={onSelectCheckChange}
             />

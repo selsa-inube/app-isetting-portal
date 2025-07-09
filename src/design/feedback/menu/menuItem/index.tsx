@@ -5,7 +5,7 @@ import { StyledMenuItemLink } from "./styles";
 import { basic } from "@design/tokens";
 import { IMenuItem } from "@ptypes/design/IMenuItem";
 import { BorderStack } from "@design/layout/borderStack";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 
 const MenuItem = (props: IMenuItem) => {
   const {
@@ -13,6 +13,7 @@ const MenuItem = (props: IMenuItem) => {
     icon,
     disabled = false,
     path = "",
+    appearanceIcon = EComponentAppearance.PRIMARY,
     onToggleInfoModal,
     onClick = () => {},
   } = props;
@@ -33,13 +34,13 @@ const MenuItem = (props: IMenuItem) => {
           <Icon
             icon={icon}
             size="18px"
-            appearance={ComponentAppearance.PRIMARY}
+            appearance={appearanceIcon }
             disabled={disabled}
           />
 
           <Text
             size="small"
-            appearance={ComponentAppearance.DARK}
+            appearance={EComponentAppearance.DARK}
             disabled={disabled}
           >
             {description}
@@ -49,7 +50,7 @@ const MenuItem = (props: IMenuItem) => {
             <Icon
               icon={<MdInfoOutline />}
               size="16px"
-              appearance={ComponentAppearance.PRIMARY}
+              appearance={EComponentAppearance.PRIMARY}
               onClick={onToggleInfoModal}
             />
           )}

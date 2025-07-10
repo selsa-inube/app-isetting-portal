@@ -29,8 +29,6 @@ const DetailsUI = (props: IDetailsUI) => {
     onToggleModal,
   } = props;
 
-  console.log({screenTablet});
-
   return (
     <>
       <StyledContainerIcon onClick={onToggleModal} $isTablet={screenTablet}>

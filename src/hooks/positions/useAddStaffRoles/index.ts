@@ -6,7 +6,7 @@ import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAssignmentFormEntry";

@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { enviroment } from "@config/environment";
+import { useState, useEffect } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
+import { enviroment } from "@config/environment";
 import { IEntry } from "@ptypes/design/table/IEntry";
-import { IUseDetailsAssignments } from "@ptypes/hooks/IUseDetailsAssignments";
-import { eventBus } from '@events/eventBus';
-import { EModalState } from '@enum/modalState';
+import { eventBus } from "@events/eventBus";
+import { EModalState } from "@enum/modalState";
+import { IUseDetailsAssignments } from "@ptypes/assignments/request/IUseDetailsAssignments";
 
-const useDetailsAssignments = (props: IUseDetailsAssignments) => {
+const UseDetailsAssignments = (props: IUseDetailsAssignments) => {
   const { data } = props;
 
   const [showModal, setShowModal] = useState(false);
@@ -26,10 +26,9 @@ const useDetailsAssignments = (props: IUseDetailsAssignments) => {
     setShowModal(!showModal);
   };
 
-   useEffect(() => {
-     eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
+  useEffect(() => {
+    eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
-
 
   const pageLength = 5;
   const columnWidths = smallScreen ? [35, 35] : [43, 43];
@@ -44,4 +43,4 @@ const useDetailsAssignments = (props: IUseDetailsAssignments) => {
   };
 };
 
-export { useDetailsAssignments };
+export { UseDetailsAssignments };

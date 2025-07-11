@@ -1,6 +1,6 @@
 import { Stack, Searchfield, Button } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { IAssignmentFormUI } from "@ptypes/assignmentForm/IAssignmentFormUI";
+import { IAssignmentFormUI } from "@ptypes/assignments/assignmentForm/IAssignmentFormUI";
 import { Filter, FilterModal, FormFilter } from "@isettingkit/business-rules";
 import { portalId } from "@config/portalId";
 import { ActionButtons } from "./actionButtons";

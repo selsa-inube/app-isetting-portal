@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MdCheck, MdClear, MdOutlineFilterAlt } from "react-icons/md";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IOptionItemChecked } from "@design/select/OptionItem";
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { assignmentLabels } from "@config/assignmentForm/assigmentLabels";
 import { actionButtonsLabels } from "@config/assignmentForm/actionButtonsLabels";
 import { compareObjects } from "@utils/compareObjects";

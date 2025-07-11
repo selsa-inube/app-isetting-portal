@@ -9,10 +9,10 @@ import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessun
 import { IAssignmentsTabsConfig } from "@ptypes/assignments/IAssignmentsTabsConfig";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { enviroment } from "@config/environment";
-import { ERequestInProgress } from "@enum/requestInProgress";
 import { EOptionsByBusinessunits } from "@enum/optionsByBusinessunits";
+import { ERequestAssignments } from "@enum/requestAssignments";
 
-const useAssignmentsPage = (props: IUseAssignmentsPage) => {
+const UseAssignmentsPage = (props: IUseAssignmentsPage) => {
   const { businessUnitSigla, bussinesUnits } = props;
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
@@ -50,7 +50,7 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
       try {
         const data = await getRequestsInProgress(
           bussinesUnits,
-          ERequestInProgress.ASSIGNMENTS
+          ERequestAssignments.ASSIGNMENTS
         );
         setRequestsInProgress(data);
       } catch (error) {
@@ -119,4 +119,4 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
   };
 };
 
-export { useAssignmentsPage };
+export { UseAssignmentsPage };

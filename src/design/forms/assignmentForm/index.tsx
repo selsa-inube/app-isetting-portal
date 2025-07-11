@@ -1,4 +1,4 @@
-import { IAssignmentForm } from "@ptypes/assignmentForm/IAssignmentForm";
+import { IAssignmentForm } from "@ptypes/assignments/assignmentForm/IAssignmentForm";
 import { AssignmentFormUI } from "./interface";
 
 const AssignmentForm = (props: IAssignmentForm) => {

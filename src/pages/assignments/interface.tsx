@@ -8,12 +8,14 @@ import { descriptionTitle } from "@config/assignments/descriptionTitle";
 import { IAssignmentsUI } from "@ptypes/assignments/IAssignmentsUI";
 import { AssignmentsTab } from "./tabs/assignmentsTab";
 import { StyledMenuContainer } from "./styles";
+import { RequestsInProgressTab } from "./tabs/requestsInProgressTab";
 
 const AssignmentsUI = (props: IAssignmentsUI) => {
   const {
     isSelected,
     descriptionOptions,
     showAssigmentsTab,
+    showRequestsInProgressTab,
     smallScreen,
     assignmentsTabs,
     showModal,
@@ -74,6 +76,7 @@ const AssignmentsUI = (props: IAssignmentsUI) => {
             onChange={handleTabChange}
           />
           {showAssigmentsTab && <AssignmentsTab />}
+          {showRequestsInProgressTab && <RequestsInProgressTab />}
         </Stack>
       </Stack>
     </Stack>

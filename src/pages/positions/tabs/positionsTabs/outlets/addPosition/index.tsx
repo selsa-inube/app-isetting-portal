@@ -7,7 +7,7 @@ import { UseSavePositions } from "@hooks/positions/useSavePositions";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { UseFetchAplicationStaff } from "@hooks/positions/useAplication";
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
 import { AddPositionUI } from "./interface";
 

@@ -5,17 +5,17 @@ import { DeleteRecord } from "@design/feedback/deleteRecord";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
-import { requestStatusMessage } from "@config/positions/requestStatusMessage";
-import { IDelete } from "@ptypes/positions/actions/IDelete";
-import { useSaveMission } from "@hooks/missions/useSaveMission";
+import { useDeleteAssignments } from "@hooks/assignments/useDeleteAssignments";
+import { useSaveAssignments } from "@hooks/assignments/useSaveAssignments";
 import { EUseCase } from "@enum/useCase";
 import { portalId } from "@config/portalId";
-import { UseDeleteMission } from "@hooks/missions/useDeleteMission";
 import { EComponentAppearance } from "@enum/appearances";
-import { deleteMission } from "@config/missions/missionTab/generic/deleteMission";
+import { deleteAssignments } from "@config/assignments/generic/deleteAssignments";
+import { requestStatusMessage } from "@config/assignments/generic/requestStatusMessage";
+import { IDelete } from "@ptypes/assignments/IDelete";
 
 const Delete = (props: IDelete) => {
-  const { data } = props;
+  const { data, setEntryDeleted } = props;
   const { appData } = useContext(AuthAndData);
 
   const {
@@ -26,42 +26,44 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
-  } = UseDeleteMission({data, appData});
+  } = useDeleteAssignments({ data, appData });
 
   const {
-    saveMission,
+    saveAssignments,
     requestSteps,
     showPendingReqModal,
     loadingSendData,
     handleClosePendingReqModal,
     handleCloseRequestStatus,
-  } = useSaveMission({
+  } = useSaveAssignments({
     useCase: EUseCase.DELETE,
     bussinesUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
-     sendData: showRequestProcessModal,
+    sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
-    setShowModal}
-  );
+    setShowModal,
+    setEntryDeleted,
+  });
 
-  const showRequestProcess =  showRequestProcessModal && saveMission
+  const showRequestProcess = showRequestProcessModal && saveAssignments;
 
-  const showRequestStatusModal = showPendingReqModal && saveMission?.requestNumber
+  const showRequestStatusModal =
+    showPendingReqModal && saveAssignments?.requestNumber;
 
   return (
     <>
       <DeleteRecord
-        messageDelete={deleteMission}
+        messageDelete={deleteAssignments}
         showModal={showModal}
         onToggleModal={handleToggleModal}
         onClick={handleClick}
         loading={loadingSendData}
       />
-      { showRequestProcess && (
+      {showRequestProcess && (
         <RequestProcess
           portalId={portalId}
-          saveData={saveMission}
+          saveData={saveAssignments}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
           requestProcessSteps={requestSteps}
@@ -71,19 +73,19 @@ const Delete = (props: IDelete) => {
         />
       )}
 
-      { showRequestStatusModal && (
+      {showRequestStatusModal && (
         <RequestStatusModal
           portalId={portalId}
-          title={requestStatusMessage(saveMission.staffName).title}
+          title={requestStatusMessage(saveAssignments.staffName).title}
           description={
-            requestStatusMessage(saveMission.staffName).description
+            requestStatusMessage(saveAssignments.staffName).description
           }
-          requestNumber={saveMission.requestNumber}
+          requestNumber={saveAssignments.requestNumber}
           onClick={handleClosePendingReqModal}
           onCloseModal={handleClosePendingReqModal}
           loading={false}
           actionText={
-            requestStatusMessage(saveMission.staffName).actionText
+            requestStatusMessage(saveAssignments.staffName).actionText
           }
           appearance={EComponentAppearance.PRIMARY}
         />

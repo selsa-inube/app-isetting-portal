@@ -10,7 +10,7 @@ const LabelsFieldRenderer = (props: ILabelsFieldRenderer) => {
   return (
     <BorderStack
       direction="column"
-      background={EComponentAppearance.LIGHT}
+      background={EComponentAppearance.GRAY}
       gap={basic.spacing.s4}
       borderRadius={basic.spacing.s100}
       padding={`${basic.spacing.s075} ${basic.spacing.s200}`}

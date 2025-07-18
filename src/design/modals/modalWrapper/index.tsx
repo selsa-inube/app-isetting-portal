@@ -29,6 +29,8 @@ const ModalWrapper = (props: IModalWrapper) => {
     minHeight,
     maxHeight,
     padding = basic.spacing.s300,
+    overflowY="auto",
+    disabled= false,
     onCloseModal,
     onClick,
   } = props;
@@ -95,7 +97,7 @@ const ModalWrapper = (props: IModalWrapper) => {
         <BorderStack
           height="100%"
           width="100%"
-          overflowY="auto"
+          overflowY={overflowY}
           margin={`${basic.spacing.s300} ${basic.spacing.s0}`}
         >
           {children}
@@ -119,6 +121,7 @@ const ModalWrapper = (props: IModalWrapper) => {
             variant="filled"
             onClick={onClick}
             iconBefore={iconBeforeButton ?? <></>}
+            disabled={disabled}
           >
             {labelActionButton}
           </Button>

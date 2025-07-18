@@ -4,7 +4,6 @@ import { useAssignmentsTab } from "@hooks/assignments/useAssignmentsTab";
 import { AssignmentsTabUI } from "./interface";
 
 const AssignmentsTab = () => {
-
   const {
     assingments,
     searchAssingments,
@@ -12,6 +11,14 @@ const AssignmentsTab = () => {
     smallScreen,
     columnWidths,
     emptyDataMessage,
+    showModal,
+    absentOfficialOptions,
+    formik,
+    disabledButtonModal,
+    handleSelectChange,
+    handleSelectCheckChange,
+    handleClickModal,
+    handleToggleModal,
     setEntryDeleted,
     handleSearchAssingments,
   } = useAssignmentsTab();
@@ -29,6 +36,15 @@ const AssignmentsTab = () => {
       columnWidths={columnWidths}
       pageLength={pageLength}
       emptyDataMessage={emptyDataMessage}
+      showModal={showModal}
+      onClickModal={handleClickModal}
+      onToggleModal={handleToggleModal}
+      isActiveChecked={formik.values.isActive}
+      absentOfficialOptions={absentOfficialOptions}
+      formik={formik}
+      onSelectChange={handleSelectChange}
+      onSelectCheckChange={handleSelectCheckChange}
+      disabledButtonModal={disabledButtonModal}
     />
   );
 };

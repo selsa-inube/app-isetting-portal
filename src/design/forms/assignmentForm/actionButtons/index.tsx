@@ -2,7 +2,7 @@ import { MdCheck, MdClear, MdOutlineMoreVert } from "react-icons/md";
 import { Stack, Button, Icon } from "@inubekit/inubekit";
 import { IActionButtons } from "@ptypes/design/IActionButtons";
 import { basic } from "@design/tokens";
-import { actionButtonsLabels } from "@config/assignmentForm/actionButtonsLabels";
+import { actionButtonsLabels } from "@config/assignments/assignmentForm/actionButtonsLabels";
 import { StyledOptionsContainer } from "./styles";
 import { EComponentAppearance } from "@enum/appearances";
 import { Menu } from "@design/feedback/menu";

@@ -12,6 +12,7 @@ import { IAssigmentsTabUI } from "@ptypes/assignments/IAssignmentsTabUI";
 import { actionsConfig } from "@config/assignments/assignmentsTab/table/actionsConfig";
 import { titles } from "@config/assignments/assignmentsTab/table/titles";
 import { breakPoints } from "@config/assignments/assignmentsTab/table/breakPoints";
+import { AbsenceModal } from "./AbsenceModal";
 
 const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
   const {
@@ -22,6 +23,15 @@ const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
     columnWidths,
     pageLength,
     emptyDataMessage,
+    showModal,
+    isActiveChecked,
+    absentOfficialOptions,
+    formik,
+    disabledButtonModal,
+    onSelectChange,
+    onSelectCheckChange,
+    onClickModal,
+    onToggleModal,
     onSearchAssingments,
   } = props;
 
@@ -84,13 +94,11 @@ const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
             </Stack>
             {!smallScreen && (
               <Button
-                spacing="wide"
+                spacing="compact"
                 appearance={EComponentAppearance.PRIMARY}
-                variant="filled"
                 iconBefore={<MdAdd />}
                 type="link"
-                path="/assignments/add-assignment"
-                fullwidth={smallScreen}
+                onClick={onToggleModal}
               >
                 {assignmentsTabLabels.buttonLabel}
               </Button>
@@ -122,10 +130,23 @@ const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
             pageLength={pageLength}
             emptyDataMessage={emptyDataMessage}
             withActionMobile={false}
-            withGeneralizedTitle 
+            withGeneralizedTitle
           />
         </Stack>
       </Stack>
+      {showModal && (
+        <AbsenceModal
+          isMobile={smallScreen}
+          onCloseModal={onToggleModal}
+          onClick={onClickModal}
+          isActiveChecked={isActiveChecked}
+          absentOfficialOptions={absentOfficialOptions}
+          formik={formik}
+          disabled={disabledButtonModal}
+          onSelectChange={onSelectChange}
+          onSelectCheckChange={onSelectCheckChange}
+        />
+      )}
     </BorderStack>
   );
 };

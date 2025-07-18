@@ -17,6 +17,8 @@ interface IAssignmentsData {
   assignmentDateFormat?: string;
   assignmentEndDateFormat?: string;
   officialName?: string;
+  code?: string;
+  value?: string;
 }
 
 export type { IAssignmentsData };

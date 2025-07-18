@@ -8,6 +8,7 @@ import { portalId } from "@config/portalId";
 import { basic } from "@design/tokens";
 import { isInvalid } from "@utils/isInvalid";
 import { EComponentAppearance } from "@enum/appearances";
+import { EBooleanText } from "@enum/booleanText";
 
 const AbsenceModal = (props: IAbsenceModal) => {
   const {
@@ -22,7 +23,7 @@ const AbsenceModal = (props: IAbsenceModal) => {
     onClick,
   } = props;
 
-  const toggleLabel = isActiveChecked ? "SI" : "NO";
+  const toggleLabel = isActiveChecked ? EBooleanText.YES : EBooleanText.NO;
 
   return (
     <ModalWrapper

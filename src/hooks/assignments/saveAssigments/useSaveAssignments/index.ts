@@ -12,7 +12,7 @@ import { flowAutomaticMessages } from "@config/assignments/generic/flowAutomatic
 import { interventionHumanMessage } from "@config/assignments/generic/interventionHumanMessage";
 import { useRequest } from "../useRequest";
 
-const useSaveAssignments = (props: IUseSaveAssigments) => {
+const UseSaveAssignments = (props: IUseSaveAssigments) => {
   const {
     useCase,
     userAccount,
@@ -118,13 +118,13 @@ const useSaveAssignments = (props: IUseSaveAssigments) => {
     setChangeTab(true);
     navigate(navigatePage);
     addFlag({
-      title: interventionHumanMessage.SuccessfulCreateRequestIntHuman.title,
+      title: interventionHumanMessage.successfulCreateRequestIntHuman.title,
       description:
-        interventionHumanMessage.SuccessfulCreateRequestIntHuman.description,
-      appearance: interventionHumanMessage.SuccessfulCreateRequestIntHuman
+        interventionHumanMessage.successfulCreateRequestIntHuman.description,
+      appearance: interventionHumanMessage.successfulCreateRequestIntHuman
         .appearance as IFlagAppearance,
       duration:
-        interventionHumanMessage.SuccessfulCreateRequestIntHuman.duration,
+        interventionHumanMessage.successfulCreateRequestIntHuman.duration,
     });
   };
 
@@ -160,4 +160,4 @@ const useSaveAssignments = (props: IUseSaveAssigments) => {
   };
 };
 
-export { useSaveAssignments };
+export { UseSaveAssignments };

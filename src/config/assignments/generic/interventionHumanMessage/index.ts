@@ -1,7 +1,7 @@
 import { ComponentAppearance } from "@ptypes/aparences.types";
 
 const interventionHumanMessage = {
-  SuccessfulCreateRequestIntHuman: {
+  successfulCreateRequestIntHuman: {
     title: "Solicitud agregada con éxito",
     description: "Tu solicitud ha sido agregada a las solicitudes en trámite.",
     appearance: ComponentAppearance.SUCCESS,

@@ -129,16 +129,16 @@ const useRequest = (props: IUseRequest) => {
         addFlag({
           title: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.title,
+          ).successfulCreateRequest.title,
           description: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.description,
+          ).successfulCreateRequest.description,
           appearance: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.appearance as IFlagAppearance,
+          ).successfulCreateRequest.appearance as IFlagAppearance,
           duration: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.duration,
+          ).successfulCreateRequest.duration,
         });
       }
     }

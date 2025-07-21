@@ -6,7 +6,7 @@ import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { useDeleteAssignments } from "@hooks/assignments/useDeleteAssignments";
-import { useSaveAssignments } from "@hooks/assignments/saveAssigments/useSaveAssignments";
+import { UseSaveAssignments } from "@hooks/assignments/saveAssigments/useSaveAssignments";
 import { EUseCase } from "@enum/useCase";
 import { portalId } from "@config/portalId";
 import { EComponentAppearance } from "@enum/appearances";
@@ -35,7 +35,7 @@ const Delete = (props: IDelete) => {
     loadingSendData,
     handleClosePendingReqModal,
     handleCloseRequestStatus,
-  } = useSaveAssignments({
+  } = UseSaveAssignments({
     useCase: EUseCase.DELETE,
     bussinesUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,

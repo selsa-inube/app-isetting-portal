@@ -1,11 +1,9 @@
-import { Icon } from "@inubekit/inubekit";
-import { MdDeleteOutline } from "react-icons/md";
 import { IAction } from "@ptypes/design/table/IAction";
-import { EComponentAppearance } from "@enum/appearances";
 import { Details } from "@pages/assignments/tabs/assignmentsTab/tools/details";
 import { IEntry } from "@ptypes/design/table/IEntry";
+import { Delete } from "@pages/assignments/tabs/assignmentsTab/tools/delete";
 
-const actionsConfig = () => {
+const actionsConfig = (setEntryDeleted: (id: string | number) => void) => {
   const actions: IAction[] = [
     {
       id: "Details",
@@ -13,14 +11,8 @@ const actionsConfig = () => {
     },
     {
       id: "delete",
-      content: () => (
-        <Icon
-          appearance={EComponentAppearance.DANGER}
-          icon={<MdDeleteOutline />}
-          size="16px"
-          cursorHover
-          spacing="narrow"
-        />
+      content: (entry: IEntry) => (
+       <Delete  data={entry} setEntryDeleted ={setEntryDeleted}/>
       ),
     },
   ];

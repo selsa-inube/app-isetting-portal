@@ -3,6 +3,9 @@ import { DecisionModal } from "@design/modals/decisionModal";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
 import { IMessageModal } from "@ptypes/decisions/IMessageModal";
+import { portalId } from "@config/portalId";
+import { deleteLabels } from "@config/deleteLabels";
+import { enviroment } from "@config/environment";
 import { StyledContainerIcon } from "./styles";
 interface IDelete {
   showModal: boolean;
@@ -23,7 +26,7 @@ const DeleteRecord = (props: IDelete) => {
     setJustificationDelete,
   } = props;
 
-  const screenTablet = useMediaQuery("(max-width: 1068px)");
+  const screenTablet = useMediaQuery(enviroment.IS_MOBILE_970);
 
   return (
     <>
@@ -38,13 +41,13 @@ const DeleteRecord = (props: IDelete) => {
         />
         {screenTablet && (
           <Text type="body" size="medium">
-            Eliminar
+           {deleteLabels.title}
           </Text>
         )}
       </StyledContainerIcon>
       {showModal && (
         <DecisionModal
-          portalId="portal"
+          portalId={portalId}
           title={messageDelete.title}
           actionText={messageDelete.actionText}
           description={messageDelete.description}

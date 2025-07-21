@@ -50,7 +50,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   };
 
   const smallScreen = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
-  const widthFirstColumn = smallScreen ? 70 : 10;
+  const widthFirstColumn = smallScreen ? 70 : 15;
 
   const columnWidths = smallScreen
     ? [widthFirstColumn, 25, 20]

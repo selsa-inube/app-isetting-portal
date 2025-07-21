@@ -6,7 +6,7 @@ const labels: Record<string, string> = {
   renderStepButton: "Regresar a este paso",
   verification: "verificación",
   previous: "Anterior",
-  finally: "Finalizar",
+  finally: "Enviar",
 };
 
 export { labels };

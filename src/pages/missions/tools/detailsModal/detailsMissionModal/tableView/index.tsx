@@ -13,7 +13,7 @@ const TableView = (props: ITabllePositions) => {
   if (!rows || rows.length === 0) return null;
 
   return (
-    <Fieldset legend={DetailsPosition.rol} size="small" type="title">
+    <Fieldset legend={DetailsPosition.rol} spacing="wide" >
       <BorderStack direction="column" gap={basic.spacing.s100} width="100%">
         {rows.map((row, rowIndex) =>
           row.map(({ key, value }) => (

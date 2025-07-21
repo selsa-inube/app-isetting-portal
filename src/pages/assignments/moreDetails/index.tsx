@@ -50,9 +50,7 @@ const MoreDetails = (props: IMoreDetails) => {
 
         <Fieldset
           legend={moreDetailsModal.legend}
-          spacing="compact"
-          type="title"
-          size="small"
+          spacing="wide"
         >
           <Stack gap={basic.spacing.s250} width="100%">
             <FieldDetails

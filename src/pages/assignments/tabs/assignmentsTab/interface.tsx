@@ -22,6 +22,7 @@ const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
     columnWidths,
     pageLength,
     emptyDataMessage,
+    setEntryDeleted,
     onSearchAssingments,
   } = props;
 
@@ -114,7 +115,7 @@ const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
             id={portalId}
             titles={titles}
             entries={entries}
-            actions={actionsConfig()}
+            actions={actionsConfig(setEntryDeleted)}
             breakpoints={breakPoints}
             filter={searchAssingments}
             loading={loading}

@@ -5,13 +5,12 @@ import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgr
 import { mapRequestsInProgressToEntities } from "./mappers/mapRequestsToEntities";
 
 const getRequestsInProgress = async (
-  bussinesUnits: string,
   entity: string,
+  bussinesUnits?: string,
 ): Promise<IRequestsInProgress[]> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchPendingConfigurationRequest",
-      "X-Business-unit": "test",
     },
   };
 
@@ -21,6 +20,8 @@ const getRequestsInProgress = async (
     page: ".1",
     per_page: ".1",
     sort: "desc.requestDate",
+    businessManagerCode: bussinesUnits ?? "",
+
   });
   const data = await getWithRetries<IRequestsInProgress[]>(
     queryProcessAxiosInstance,

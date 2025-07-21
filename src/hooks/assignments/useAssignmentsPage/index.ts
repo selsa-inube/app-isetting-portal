@@ -4,7 +4,7 @@ import { getRequestsInProgress } from "@services/requestInProgress/getRequestsIn
 import { decrypt } from "@utils/decrypt";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { assignmentsTabsConfig } from "@config/assignments/tabs";
-import { IUseAssignmentsPage } from "@ptypes/hooks/IUseAssignmentsPage";
+import { IUseAssignmentsPage } from "@ptypes/hooks/assignments/IUseAssignmentsPage";
 import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
 import { IAssignmentsTabsConfig } from "@ptypes/assignments/IAssignmentsTabsConfig";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
@@ -49,8 +49,8 @@ const UseAssignmentsPage = (props: IUseAssignmentsPage) => {
     const fetchRequestsInProgressData = async () => {
       try {
         const data = await getRequestsInProgress(
+          ERequestAssignments.ASSIGNMENTS,
           bussinesUnits,
-          ERequestAssignments.ASSIGNMENTS
         );
         setRequestsInProgress(data);
       } catch (error) {

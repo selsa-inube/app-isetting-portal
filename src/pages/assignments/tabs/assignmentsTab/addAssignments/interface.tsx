@@ -6,6 +6,7 @@ import { basic } from "@design/tokens";
 import { PageTitle } from "@design/label/PageTitle";
 import { IAddAssignmentsUI } from "@ptypes/assignments/assisted/IAddAssignmentsUI";
 import { OfficialInChargeForm } from "../forms/officialInChargeForm";
+import { BusinessUnitForm } from "../forms/businessUnitForm";
 
 const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
   const {
@@ -16,6 +17,7 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
     absentOfficialSelected,
     formValues,
     formReferences,
+    setSelectedToggle,
     setIsCurrentFormValid,
     onNextStep,
     onPreviousStep,
@@ -60,6 +62,14 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
                 initialValues={formValues.officialInCharge.values}
                 onFormValid={setIsCurrentFormValid}
                 onButtonClick={onNextStep}
+              />
+            )}
+              {currentStep === 2 && (
+              <BusinessUnitForm
+                entries={formValues.businessUnitOfficial.values}
+                setSelectedToggle={setSelectedToggle}
+                onButtonClick={onNextStep}
+                onPreviousStep={onPreviousStep}
               />
             )}
           </Stack>

@@ -5,7 +5,7 @@ import { DeleteRecord } from "@design/feedback/deleteRecord";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
-import { useDeleteAssignments } from "@hooks/assignments/useDeleteAssignments";
+import { UseDeleteAssignments } from "@hooks/assignments/useDeleteAssignments";
 import { UseSaveAssignments } from "@hooks/assignments/saveAssigments/useSaveAssignments";
 import { EUseCase } from "@enum/useCase";
 import { portalId } from "@config/portalId";
@@ -26,7 +26,7 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
-  } = useDeleteAssignments({ data, appData });
+  } = UseDeleteAssignments({ data, appData });
 
   const {
     saveAssignments,

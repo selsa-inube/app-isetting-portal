@@ -6,7 +6,7 @@ import { EModalState } from "@enum/modalState";
 import { IUseDeleteAssignments } from "@ptypes/hooks/assignments/IUseDeleteAssignments";
 import { deleteLabels } from "@config/assignments/deleteLabels";
 
-const useDeleteAssignments = (props: IUseDeleteAssignments) => {
+const UseDeleteAssignments = (props: IUseDeleteAssignments) => {
   const { data, appData } = props;
   const [showModal, setShowModal] = useState(false);
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
@@ -46,4 +46,4 @@ const useDeleteAssignments = (props: IUseDeleteAssignments) => {
     setShowModal,
   };
 };
-export { useDeleteAssignments };
+export { UseDeleteAssignments };

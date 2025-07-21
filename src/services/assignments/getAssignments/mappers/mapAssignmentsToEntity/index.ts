@@ -15,12 +15,21 @@ const mapAssignmentsToEntity = (data: IAssignmentsData): IAssignmentsData => {
     staffIdentificationNumber: String(data.staffIdentificationNumber),
     staffLastName: String(data.staffLastName),
     staffName: String(data.staffName),
-    temporaryRolesByBusinessUnit: Object( data.temporaryRolesByBusinessUnit),
-    assignmentDateFormat: formatDateTable(new Date(String(data.assignmentDate))),
-    assignmentEndDateFormat: formatDateTable(new Date(String(data.assignmentEndDate))),
-    officialName: String( data.nameOfAbsentStaff
-            ? `${data.staffName} ${data.staffLastName} -> ${data.nameOfAbsentStaff}`
-            : data.officialName,),
+    temporaryRolesByBusinessUnit: Object(data.temporaryRolesByBusinessUnit),
+    assignmentDateFormat: formatDateTable(
+      new Date(String(data.assignmentDate))
+    ),
+    assignmentEndDateFormat: formatDateTable(
+      new Date(String(data.assignmentEndDate))
+    ),
+    officialName: String(
+      data.nameOfAbsentStaff
+        ? `${data.staffName} ${data.staffLastName} -> ${data.nameOfAbsentStaff}`
+        : data.officialName
+    ),
+
+    code: String(data.nameOfAbsentStaff),
+    value: String(data.nameOfAbsentStaff),
   };
 
   return newData;

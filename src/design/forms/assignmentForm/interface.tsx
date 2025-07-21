@@ -7,7 +7,7 @@ import { ActionButtons } from "./actionButtons";
 import { ToggleGroup } from "./toggleGroup";
 import { BorderStack } from "@design/layout/borderStack";
 import { searchLabels } from "@config/searchLabels";
-import { assignmentLabels } from "@config/assignmentForm/assigmentLabels";
+import { assignmentLabels } from "@config/assignments/assignmentForm/assigmentLabels";
 import { EComponentAppearance } from "@enum/appearances";
 
 

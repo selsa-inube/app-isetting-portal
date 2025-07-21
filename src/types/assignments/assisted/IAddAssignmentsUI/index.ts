@@ -1,4 +1,5 @@
 import { IAssistedStep } from "@inubekit/inubekit";
+import { IBusinessEntry } from "@ptypes/assignments/IBusinessEntry";
 import { IAddAssignmentForms } from "../IAddAssignmentForms";
 import { IAddAssignmentsRef } from "../IAddAssignmentsRef";
 
@@ -11,6 +12,7 @@ interface IAddAssignmentsUI {
   formValues: IAddAssignmentForms;
   formReferences: IAddAssignmentsRef;
   setIsCurrentFormValid:React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedToggle: React.Dispatch<React.SetStateAction<IBusinessEntry[]>>
   onNextStep: () => void;
   onPreviousStep: () => void;
   onToggleModal: () => void;

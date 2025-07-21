@@ -151,8 +151,8 @@ const UsePositionsTabs = () => {
     const fetchRequestsInProgressData = async () => {
       try {
         const data = await getRequestsInProgress(
+          ERequestPosition.POSITIONS,
           ERequestPosition.TEST,
-          ERequestPosition.POSITIONS
         );
         setRequestsInProgress(data);
       } catch (error) {

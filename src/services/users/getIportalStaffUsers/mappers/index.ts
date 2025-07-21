@@ -5,6 +5,7 @@ const mapUsersPortalStaffEntities = (usersData: IUsers[]): IUsers[] => {
     id: String(user.staffId),
     staffId: String(user.staffId),
     staffName: String(user.staffName),
+    staffLastName: String(user.staffLastName),
     biologicalSex: String(user.biologicalSex),
     identificationTypeNaturalPerson: String(
       user.identificationTypeNaturalPerson

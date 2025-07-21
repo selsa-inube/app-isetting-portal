@@ -6,7 +6,7 @@ import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { assignmentLabels } from "@config/assignments/assignmentForm/assigmentLabels";
 import { actionButtonsLabels } from "@config/assignments/assignmentForm/actionButtonsLabels";
 import { compareObjects } from "@utils/compareObjects";
-import { IUseAssignmentForm } from "@ptypes/hooks/IUseAssignmentForm";
+import { IUseAssignmentForm } from "@ptypes/hooks/assignments/IUseAssignmentForm";
 import { enviroment } from "@config/environment";
 import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";

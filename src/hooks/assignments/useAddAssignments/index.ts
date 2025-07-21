@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "@inubekit/inubekit";
+import { IFlagAppearance, useFlag, useMediaQuery } from "@inubekit/inubekit";
 import { FormikProps } from "formik";
 
 import { compareObjects } from "@utils/compareObjects";
@@ -13,8 +13,13 @@ import { IOfficialInChargeEntry } from "@ptypes/assignments/assisted/IOfficialIn
 import { addAssignmentsLabels } from "@config/assignments/assisted/addAssignmentsLabels";
 import { IAddAssignmentsRef } from "@ptypes/assignments/assisted/IAddAssignmentsRef";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { UseBusinessUnitsByOfficial } from "../useBusinessUnitsByOfficial";
+import { IUseAddAssignments } from "@ptypes/hooks/IUseAddAssignments";
+import { withoutBusinessUnitsMessage } from "@config/assignments/generic/withoutBusinessUnitsMessage";
+import { IBusinessEntry } from "@ptypes/assignments/IBusinessEntry";
 
-const useAddAssignments = () => {
+const UseAddAssignments = (props: IUseAddAssignments) => {
+  const { absentOfficial } = props;
   const { appData } = useContext(AuthAndData);
 
   const initialValues = {
@@ -24,6 +29,7 @@ const useAddAssignments = () => {
         official: "",
       },
     },
+    businessUnitOfficial: { isValid: false, values: [] },
   };
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -35,10 +41,55 @@ const useAddAssignments = () => {
   const [canRefresh, setCanRefresh] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
-
+  const [selectedToggle, setSelectedToggle] = useState<IBusinessEntry[]>([]);
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const { addFlag } = useFlag();
   const navigate = useNavigate();
 
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const { options: businessUnitsOptions, hasError } =
+    UseBusinessUnitsByOfficial({ absentOfficial });
+
+  useEffect(() => {
+    if (businessUnitsOptions.length > 0) {
+      setFormValues((prev) => ({
+        ...prev,
+        businessUnitOfficial: {
+          ...prev.businessUnitOfficial,
+          values: businessUnitsOptions,
+        },
+      }));
+    }
+  }, [businessUnitsOptions]);
+
+  useEffect(() => {
+    if (currentStep === 2 && hasError) {
+      addFlag({
+        title: withoutBusinessUnitsMessage.errorBusinessUnits.title,
+        description: withoutBusinessUnitsMessage.errorBusinessUnits.description,
+        appearance: withoutBusinessUnitsMessage.errorBusinessUnits
+          .appearance as IFlagAppearance,
+        duration: withoutBusinessUnitsMessage.errorBusinessUnits.duration,
+      });
+      setTimeout(function () {
+        navigate("/assignments");
+      }, 3500);
+    }
+  }, [currentStep]);
+
+  useEffect(() => {
+    if (currentStep === 2 && businessUnitsOptions.length === 0) {
+      addFlag({
+        title: withoutBusinessUnitsMessage.withoutUnits.title,
+        description: withoutBusinessUnitsMessage.withoutUnits.description,
+        appearance: withoutBusinessUnitsMessage.withoutUnits
+          .appearance as IFlagAppearance,
+        duration: withoutBusinessUnitsMessage.withoutUnits.duration,
+      });
+      setTimeout(function () {
+        navigate("/assignments");
+      }, 3500);
+    }
+  }, [currentStep, businessUnitsOptions]);
 
   const officialInChargeRef = useRef<FormikProps<IOfficialInChargeEntry>>(null);
 
@@ -57,6 +108,16 @@ const useAddAssignments = () => {
           },
         }));
         setIsCurrentFormValid(officialInChargeRef.current.isValid);
+        setCurrentStep(currentStep + 1);
+      }
+      if (currentStep === 2) {
+        setFormValues((prev) => ({
+          ...prev,
+          businessUnitOfficial: {
+            ...prev.businessUnitOfficial,
+            values: selectedToggle ?? [],
+          },
+        }));
         setCurrentStep(currentStep + 1);
       }
     }
@@ -118,7 +179,9 @@ const useAddAssignments = () => {
     };
   }, [formValues, initialValues, officialInChargeRef, canRefresh]);
 
-  const formValid = !isCurrentFormValid;
+  const validateselectedToggle = selectedToggle?.some((unit) => unit.isActive === true)
+
+  const formValid =( currentStep === 2 && !validateselectedToggle )|| !isCurrentFormValid;
 
   const handleSubmitClick = () => {
     setSaveData({
@@ -135,6 +198,7 @@ const useAddAssignments = () => {
   };
 
   return {
+    businessUnitsOptions,
     currentStep,
     formValues,
     formReferences,
@@ -156,7 +220,8 @@ const useAddAssignments = () => {
     setShowModal,
     setShowRequestProcessModal,
     handleSubmitClick,
+    setSelectedToggle,
   };
 };
 
-export { useAddAssignments };
+export { UseAddAssignments };

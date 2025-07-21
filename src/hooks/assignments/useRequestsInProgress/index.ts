@@ -22,7 +22,7 @@ const UseRequestsInProgress = (props: IUseRequestsInProgress) => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        const data = await getRequestsInProgress(bussinesUnits, ERequestAssignments.ASSIGNMENTS);
+        const data = await getRequestsInProgress( ERequestAssignments.ASSIGNMENTS, bussinesUnits);
         setRequestsInProgress(data);
       } catch (error) {
         console.info(error);

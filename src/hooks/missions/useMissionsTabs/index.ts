@@ -60,8 +60,8 @@ const UseMissionsTabs = () => {
     const fetchRequestsInProgressData = async () => {
       try {
         const data = await getRequestsInProgress(
+          ERequestMission.MISSIONS,
           ERequestMission.TEST,
-          ERequestMission.MISSIONS
         );
         setRequestsInProgress(data);
       } catch (error) {

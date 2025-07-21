@@ -15,7 +15,7 @@ const ToggleGroup = (props: IToggleGroup) => {
             id={`${entry.id}`}
             name="isActive"
             margin={basic.spacing.s0}
-            onChange={() => onSelectCheckChange(entry.id)}
+            onChange={() => onSelectCheckChange(entry.id ?? "")}
             padding={basic.spacing.s0}
             size="small"
           >

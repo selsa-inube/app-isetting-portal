@@ -118,14 +118,6 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
               entries={filteredEntries}
               onSelectCheckChange={onSelectCheckChange}
             />
-             <ToggleGroup
-              entries={filteredEntries}
-              onSelectCheckChange={onSelectCheckChange}
-            />
-             <ToggleGroup
-              entries={filteredEntries}
-              onSelectCheckChange={onSelectCheckChange}
-            />
           </BorderStack>
         </Stack>
       </BorderStack>

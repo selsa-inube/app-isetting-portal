@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
-import { getRequestsInProgress } from "@services/positions/getRequestsInProgress";
 import { useMediaQuery } from "@inubekit/inubekit";
+import { ERequestPosition } from "@enum/requestPosition";
+import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 
 const UseRequestsInProgress = (bussinesUnits: string) => {
   const [requestsInProgress, setRequestsInProgress] = useState<
@@ -18,7 +19,7 @@ const UseRequestsInProgress = (bussinesUnits: string) => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        const data = await getRequestsInProgress(bussinesUnits);
+        const data = await getRequestsInProgress(ERequestPosition.POSITIONS, bussinesUnits);
         setRequestsInProgress(data);
       } catch (error) {
         console.info(error);

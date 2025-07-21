@@ -12,7 +12,7 @@ import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { requestStepsInitial } from "@config/requestSteps";
 import { IUseRequest } from "@ptypes/hooks/IUseRequest";
 
-const useRequest = (props: IUseRequest) => {
+const UseRequest = (props: IUseRequest) => {
   const { setSendData, useCase, statusRequest, saveAssignments } = props;
 
   const { addFlag } = useFlag();
@@ -154,4 +154,4 @@ const useRequest = (props: IUseRequest) => {
   };
 };
 
-export { useRequest };
+export { UseRequest };

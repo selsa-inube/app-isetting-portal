@@ -10,7 +10,7 @@ import { IUseSaveAssigments } from "@ptypes/hooks/assignments/IUseSaveAssigments
 import { requestStatusMessage } from "@config/assignments/generic/requestStatusMessage";
 import { flowAutomaticMessages } from "@config/assignments/generic/flowAutomaticMessages";
 import { interventionHumanMessage } from "@config/assignments/generic/interventionHumanMessage";
-import { useRequest } from "../useRequest";
+import { UseRequest } from "../useRequest";
 
 const UseSaveAssignments = (props: IUseSaveAssigments) => {
   const {
@@ -68,7 +68,7 @@ const UseSaveAssignments = (props: IUseSaveAssigments) => {
     isStatusCloseModal,
     isStatusRequestFinished,
     isStatusIntAutomatic,
-  } = useRequest({
+  } = UseRequest({
     setSendData,
     useCase,
     statusRequest: statusRequest || "",

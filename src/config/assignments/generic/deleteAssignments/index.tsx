@@ -1,8 +1,8 @@
-const deleteRequestInProgress = {
- title: "Enviar",
+const deleteAssignments = {
+  title: "Enviar",
   description:
     "Se enviará la solicitud de eliminación. ¿Realmente quieres continuar con la eliminación?",
   actionText: "Continuar",
 };
 
-export { deleteRequestInProgress };
+export { deleteAssignments };

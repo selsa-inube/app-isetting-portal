@@ -1,7 +1,7 @@
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
 interface IUseSavePositions {
-  bussinesUnits: string;
+  businessUnits: string;
   userAccount: string;
   sendData: boolean;
   data: ISaveDataRequest;

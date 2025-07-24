@@ -43,7 +43,7 @@ const EditPositions = () => {
     handleClosePendingReqModal,
     smallScreen,
   } = useSavePositions({
-    bussinesUnits: appData.businessUnit.publicCode,
+    businessUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,

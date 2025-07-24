@@ -16,7 +16,7 @@ import { IUseSavePositions } from "@ptypes/hooks/IUseSavePositions";
 
 const useSavePositions = (props: IUseSavePositions) => {
   const {
-    bussinesUnits,
+    businessUnits,
     userAccount,
     sendData,
     data,
@@ -64,7 +64,7 @@ const useSavePositions = (props: IUseSavePositions) => {
       if (!isStatusIntAutomatic(savePositions?.requestStatus)) return;
 
       const data = await getRequestInProgressById(
-        bussinesUnits,
+        businessUnits,
         savePositions?.settingRequestId || ""
       );
       setStatusRequest(data.requestStatus);

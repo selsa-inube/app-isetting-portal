@@ -59,6 +59,7 @@ const Delete = (props: IDelete) => {
         onToggleModal={handleToggleModal}
         onClick={handleClick}
         loading={loadingSendData}
+        withText={false}
       />
       {showRequestProcess && (
         <RequestProcess

@@ -2,13 +2,8 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { Text, Icon, Divider } from "@inubekit/inubekit";
 import { useAccordion } from "@hooks/design/useAccordion";
 import { ComponentAppearance } from "@ptypes/aparences.types";
+import { IAccordion } from "@ptypes/design/IAccordion";
 import { StyledContainer, StyledHead } from "./styles";
-
-interface IAccordion {
-  title: string;
-  defaultOpen?: boolean;
-  children?: React.ReactNode;
-}
 
 const Accordion = (props: IAccordion) => {
   const { title, defaultOpen = true, children } = props;

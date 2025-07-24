@@ -18,6 +18,8 @@ const Assignments = () => {
     assignmentsTabs,
     showModal,
     showInfoModal,
+    showAbsenceModal,
+    setShowAbsenceModal,
     onToggleInfoModal,
     onCloseMenu,
     onToggleModal,
@@ -41,10 +43,11 @@ const Assignments = () => {
       assignmentsTabs={assignmentsTabs}
       showModal={showModal}
       showInfoModal={showInfoModal}
-      options={menuOptionsAssignments}
+      options={menuOptionsAssignments(setShowAbsenceModal)}
       onToggleInfoModal={onToggleInfoModal}
       onCloseMenu={onCloseMenu}
       onToggleModal={onToggleModal}
+      showAbsenceModal={showAbsenceModal}
     />
   );
 };

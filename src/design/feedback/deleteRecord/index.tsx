@@ -1,26 +1,19 @@
 import { MdDeleteOutline } from "react-icons/md";
-import { DecisionModal } from "@design/modals/decisionModal";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
-import { IMessageModal } from "@ptypes/decisions/IMessageModal";
+import { DecisionModal } from "@design/modals/decisionModal";
 import { portalId } from "@config/portalId";
 import { deleteLabels } from "@config/deleteLabels";
 import { enviroment } from "@config/environment";
+import { ComponentAppearance } from "@ptypes/aparences.types";
+import { IDelete } from "@ptypes/design/IDelete";
 import { StyledContainerIcon } from "./styles";
-interface IDelete {
-  showModal: boolean;
-  messageDelete: IMessageModal;
-  onToggleModal: () => void;
-  onClick: () => void;
-  loading: boolean;
-  setJustificationDelete?: (value: string) => void;
-}
 
 const DeleteRecord = (props: IDelete) => {
   const {
     showModal,
     messageDelete,
     loading,
+    withText = true,
     onToggleModal,
     onClick,
     setJustificationDelete,
@@ -28,6 +21,7 @@ const DeleteRecord = (props: IDelete) => {
 
   const screenTablet = useMediaQuery(enviroment.IS_MOBILE_970);
 
+  const showText = screenTablet && withText;
   return (
     <>
       <StyledContainerIcon onClick={onToggleModal} $isTablet={screenTablet}>
@@ -39,9 +33,9 @@ const DeleteRecord = (props: IDelete) => {
           cursorHover
           spacing="narrow"
         />
-        {screenTablet && (
+        {showText && (
           <Text type="body" size="medium">
-           {deleteLabels.title}
+            {deleteLabels.title}
           </Text>
         )}
       </StyledContainerIcon>

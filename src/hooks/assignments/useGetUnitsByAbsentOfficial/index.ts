@@ -20,7 +20,7 @@ const useGetUnitsByAbsentOfficial = (props: IUseGetUnitsByAbsentOfficial) => {
 
   if (official.length >= 3) {
     staffName = `${official[0]} ${official[1]}`;
-    staffLastName = official[2];
+    staffLastName =`${official[2]} ${official[3]}`;
   }
 
   const dataUnit = unitsByAbsentOfficial.find(
@@ -59,7 +59,7 @@ const useGetUnitsByAbsentOfficial = (props: IUseGetUnitsByAbsentOfficial) => {
         {
           id: `${unit.staffId}-${unit.businessUnitCode}`,
           publicCode: unit.businessUnitCode,
-          value: unit.businessUnitCode,
+          value: unit.businessUnitName,
           isActive: false,
           roleNames: groupByBusinessUnitCode[unit.businessUnitCode].roleNames,
         },

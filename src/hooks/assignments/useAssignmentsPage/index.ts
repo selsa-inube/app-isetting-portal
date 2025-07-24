@@ -25,8 +25,9 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
     IRequestsInProgress[]
   >([]);
   const [isSelected, setIsSelected] = useState<string>(tabs.assigments.id);
-  const [showModal, setShowModal] = useState(false);
-  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
+  const [showAbsenceModal, setShowAbsenceModal] = useState<boolean>(false);
 
   const { descriptionOptions } = useOptionsByBusinessunits({
     businessUnitSigla,
@@ -50,7 +51,7 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
       try {
         const data = await getRequestsInProgress(
           ERequestAssignments.ASSIGNMENTS,
-          bussinesUnits,
+          bussinesUnits
         );
         setRequestsInProgress(data);
       } catch (error) {
@@ -112,6 +113,8 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
     filteredTabsConfig,
     showModal,
     showInfoModal,
+    showAbsenceModal,
+    setShowAbsenceModal,
     onToggleInfoModal,
     onCloseMenu,
     onToggleModal,

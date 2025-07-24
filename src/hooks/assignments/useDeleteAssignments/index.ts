@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
-import { formatDate } from "@utils/date/formatDate";
-import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
-import { IUseDeleteAssignments } from "@ptypes/hooks/assignments/IUseDeleteAssignments";
+import { eventBus } from "@events/eventBus";
+import { formatDate } from "@utils/date/formatDate";
 import { deleteLabels } from "@config/assignments/deleteLabels";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
+import { IUseDeleteAssignments } from "@ptypes/hooks/assignments/IUseDeleteAssignments";
 
-const UseDeleteAssignments = (props: IUseDeleteAssignments) => {
+const useDeleteAssignments = (props: IUseDeleteAssignments) => {
   const { data, appData } = props;
   const [showModal, setShowModal] = useState(false);
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
@@ -46,4 +46,4 @@ const UseDeleteAssignments = (props: IUseDeleteAssignments) => {
     setShowModal,
   };
 };
-export { UseDeleteAssignments };
+export { useDeleteAssignments };

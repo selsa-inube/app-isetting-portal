@@ -1,7 +1,9 @@
-import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
+import { IUseVerifiedErrorRequest } from "@ptypes/hooks/IUseVerifiedErrorRequest";
 
-const UseVerifiedErrorRequest = (requests: IRequestSteps[]): boolean => {
+const useVerifiedErrorRequest = (props: IUseVerifiedErrorRequest ): boolean => {
+
+  const {requests} = props;
   return requests.find((request) => request.status === "error") ? true : false;
 };
 
-export { UseVerifiedErrorRequest };
+export { useVerifiedErrorRequest };

@@ -7,7 +7,7 @@ import { IRequestsInProgress } from "@ptypes/missions/requestTab/IRequestsInProg
 import { enviroment } from "@config/environment";
 import { ERequestInProgress } from "@enum/requestInProgress";
 
-const UseRequestsInProgress = (props: IUseRequestsInProgress) => {
+const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   const { bussinesUnits } = props;
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
@@ -68,4 +68,4 @@ const UseRequestsInProgress = (props: IUseRequestsInProgress) => {
   };
 };
 
-export { UseRequestsInProgress };
+export { useRequestsInProgress };

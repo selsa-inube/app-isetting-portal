@@ -1,10 +1,8 @@
+import { IUseMultipleChoices } from "@ptypes/hooks/IUseMultipleChoices";
 import { useState } from "react";
-import { IOptionItemChecked } from "@design/select/OptionItem";
 
-const UseMultipleChoices = (
-  initialOptions: IOptionItemChecked[],
-  onHandleSelectCheckChange: (options: IOptionItemChecked[]) => void
-) => {
+const useMultipleChoices = (props: IUseMultipleChoices) => {
+  const { initialOptions, onHandleSelectCheckChange } = props;
   const [optionsSelect, setOptionsSelect] = useState(
     initialOptions.map((option) => ({ ...option, checked: false }))
   );
@@ -40,4 +38,4 @@ const UseMultipleChoices = (
   };
 };
 
-export { UseMultipleChoices };
+export { useMultipleChoices };

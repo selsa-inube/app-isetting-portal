@@ -1,4 +1,4 @@
-import { UseMissionsTabs } from "@hooks/missions/useMissionsTabs";
+import { useMissionsTabs } from "@hooks/missions/useMissionsTabs";
 import { menuMissionsLinks } from "@config/missions/missionTab/menuMissionsLinks";
 import { missionsTabsConfig } from "@config/missions/tabs";
 import { MissionsUI } from "./interface";
@@ -17,7 +17,7 @@ const Missions =() => {
       onToggleInfoModal,
       onCloseMenu,
       onToggleModal,
-    } = UseMissionsTabs();
+    } = useMissionsTabs();
 
     return (
       <MissionsUI

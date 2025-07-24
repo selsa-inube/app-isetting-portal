@@ -2,7 +2,7 @@ interface IStaffByBusinessUnitAndRole {
   staffId: string;
   roleName: string;
   businessUnitCode: string;
-  BusinessUnitName: string;
+  businessUnitName: string;
   positionName: string
 }
 

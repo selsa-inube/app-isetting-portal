@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { IPosition } from "@ptypes/positions/assisted/IPosition";
-import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
+import { eventBus } from "@events/eventBus";
+import { IPosition } from "@ptypes/positions/assisted/IPosition";
 
-const UseDetailsModal = (data?: IPosition) => {
+const useDetailsModal = (data?: IPosition) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const screenTablet = useMediaQuery("(max-width: 1068px)");
 
@@ -32,4 +32,4 @@ const UseDetailsModal = (data?: IPosition) => {
   };
 };
 
-export { UseDetailsModal };
+export { useDetailsModal };

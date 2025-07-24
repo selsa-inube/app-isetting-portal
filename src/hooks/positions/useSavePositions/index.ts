@@ -1,27 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFlagAppearance, useFlag, useMediaQuery } from "@inubekit/inubekit";
+import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
+import { getRequestInProgressById } from "@services/positions/getRequestInProgressById";
+import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
 import { requestStepsInitial } from "@config/positions/addPositions/requestSteps";
 import { flowAutomaticMessages } from "@config/positionsTabs/generics/flowAutomaticMessages";
-import { getRequestInProgressById } from "@services/positions/getRequestInProgressById";
 import { statusCloseModal } from "@config/status/statusCloseModal";
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
 import { interventionHumanMessage } from "@config/positionsTabs/generics/interventionHumanMessage";
-import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
-import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import { ISaveDataResponse } from "@ptypes/requestsInProgress/saveData/ISaveDataResponse";
-const UseSavePositions = (
-  bussinesUnits: string,
-  userAccount: string,
-  sendData: boolean,
-  data: ISaveDataRequest,
-  setSendData: React.Dispatch<React.SetStateAction<boolean>>,
-  setShowPendingReq?: React.Dispatch<React.SetStateAction<boolean>>,
-  setShowModal?: React.Dispatch<React.SetStateAction<boolean>>
-) => {
+import { IUseSavePositions } from "@ptypes/hooks/IUseSavePositions";
+
+const useSavePositions = (props: IUseSavePositions) => {
+  const {
+    bussinesUnits,
+    userAccount,
+    sendData,
+    data,
+    setSendData,
+    setShowPendingReq,
+    setShowModal,
+  } = props;
   const [savePositions, setSavePositions] = useState<ISaveDataResponse>();
   const [showPendingReqModal, setShowPendingReqModal] = useState(false);
   const [statusRequest, setStatusRequest] = useState<string>();
@@ -239,4 +241,4 @@ const UseSavePositions = (
   };
 };
 
-export { UseSavePositions };
+export { useSavePositions };

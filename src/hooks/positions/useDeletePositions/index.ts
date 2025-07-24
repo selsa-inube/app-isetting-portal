@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { formatDate } from "@utils/date/formatDate";
-import { IUseDeletePositions } from "@ptypes/hooks/IUseDeletePositions";
 import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
+import { IUseDeletePositions } from "@ptypes/hooks/IUseDeletePositions";
 
-const UseDeletePositions = (props: IUseDeletePositions) => {
+const useDeletePositions = (props: IUseDeletePositions) => {
   const { data, appData } = props;
   const [showModal, setShowModal] = useState(false);
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
@@ -47,4 +47,4 @@ const UseDeletePositions = (props: IUseDeletePositions) => {
     setShowModal,
   };
 };
-export { UseDeletePositions };
+export { useDeletePositions };

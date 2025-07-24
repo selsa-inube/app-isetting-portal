@@ -3,19 +3,19 @@ import { useContext, useEffect, useState } from "react";
 import { object } from "yup";
 import { useFormik } from "formik";
 import { useMediaQuery } from "@inubekit/inubekit";
+import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { AuthAndData } from "@context/authAndDataProvider";
+import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
+import { useOptionsByBusinessUnit } from "@hooks/staffPortal/useOptionsByBusinessUnit";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
+import { ERequestPosition } from "@enum/requestPosition";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
-import { ChangeToRequestTab } from "@context/changeToRequestTab";
-import { useOptionsByBusinessUnit } from "@hooks/staffPortal/useOptionsByBusinessUnit";
-import { AuthAndData } from "@context/authAndDataProvider";
 import { enviroment } from "@config/environment";
-import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { IPositionTabsConfig } from "@ptypes/positions/IPositionTabsConfig";
-import { ERequestPosition } from "@enum/requestPosition";
 
-const UsePositionsTabs = () => {
+const usePositionsTabs = () => {
 
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
   const tabs = positionsTabsConfig(smallScreen);
@@ -222,4 +222,4 @@ const UsePositionsTabs = () => {
   };
 };
 
-export { UsePositionsTabs };
+export { usePositionsTabs };

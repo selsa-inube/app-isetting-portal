@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
 
 import { cancelRequestInProgress } from "@services/requestInProgress/cancelRequestInProgress";
-import { eventBus } from "@events/eventBus";
-import { ICancelRequestInProgress } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
-import { cancelRequestInProgMessage } from "@config/request/cancelRequestInProgMessage";
-import { IUseCancelRequestInProgress } from "@ptypes/hooks/IUseCancelRequestInProgress";
 import { EModalState } from "@enum/modalState";
+import { eventBus } from "@events/eventBus";
 import { cancelLabels } from "@config/assignments/requestTab/cancelLabels";
+import { cancelRequestInProgMessage } from "@config/request/cancelRequestInProgMessage";
+import { ICancelRequestInProgress } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
+import { IUseCancelRequestInProgress } from "@ptypes/hooks/IUseCancelRequestInProgress";
 
-const UseCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
+const useCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
   const { businessUnit, data, userAccount, setEntryCanceled } = props;
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -68,4 +68,4 @@ const UseCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
     handleClick,
   };
 };
-export { UseCancelRequestInProgress };
+export { useCancelRequestInProgress };

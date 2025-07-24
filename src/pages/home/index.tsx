@@ -1,4 +1,4 @@
-import { UseHome } from "@hooks/useHome";
+import { useHome } from "@hooks/useHome";
 import { ICardData } from "@ptypes/home/ICardData";
 import { HomeUI } from "./interface";
 
@@ -14,7 +14,7 @@ const Home = () => {
     loading,
     hasData,
     multipleBusinessUnits,
-  } = UseHome();
+  } = useHome();
 
   return (
     <HomeUI

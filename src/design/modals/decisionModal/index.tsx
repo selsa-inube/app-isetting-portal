@@ -1,7 +1,7 @@
-import { UseDecisionModal } from "@hooks/design/useDecisionModal";
+import { useDecisionModal } from "@hooks/design/useDecisionModal";
+import { detailsModal } from "@config/details";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { IDecisionModal } from "@ptypes/modals/decisionModal/IDecisionModal";
-import { detailsModal } from "@config/details";
 import { DecisionModalUI } from "./interface";
 
 const DecisionModal = (props: IDecisionModal) => {
@@ -24,7 +24,7 @@ const DecisionModal = (props: IDecisionModal) => {
   } = props;
 
   const { formik, isMobile, isMobileTextarea, getFieldState, comparisonData } =
-    UseDecisionModal({
+    useDecisionModal({
       justificationOfDecision,
       setFieldEntered,
     });

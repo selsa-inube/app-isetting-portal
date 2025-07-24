@@ -1,10 +1,10 @@
-import { useCallback, useMemo, useState } from "react";
 import { MdApps, MdOutlineApps } from "react-icons/md";
+import { useCallback, useMemo, useState } from "react";
 import { IOption } from "@inubekit/inubekit";
 import { IFilterTag } from "@isettingkit/business-rules";
 import { IUseFilter } from "@ptypes/hooks/positions/IUseFilter";
 
-const UseFilterRoles = (props: IUseFilter) => {
+const useFilterRoles = (props: IUseFilter) => {
   const { options } = props;
 
   const [showModal, setShowModal] = useState(false);
@@ -90,4 +90,4 @@ const UseFilterRoles = (props: IUseFilter) => {
   };
 };
 
-export { UseFilterRoles };
+export { useFilterRoles };

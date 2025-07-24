@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { getBusinessManagersId } from "@services/staffPortal/getBusinessManagersId";
 import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPortalStaff";
+import { IUseBusinessManagersId } from "@ptypes/hooks/IUseBusinessManagersId";
 
-const UseBusinessManagersId = (businessUnitCode: string, portalPublicCode?: string) => {
+const useBusinessManagersId = ( props: IUseBusinessManagersId ) => {
+
+  const {businessUnitCode, portalPublicCode} = props;
   const [businessManagersData, SetbusinessManagersData] = useState<
     IBusinessUnitsPortalStaff[]
   >([]);
@@ -29,4 +32,4 @@ const UseBusinessManagersId = (businessUnitCode: string, portalPublicCode?: stri
   return { businessManagersData, HasError };
 };
 
-export { UseBusinessManagersId };
+export { useBusinessManagersId };

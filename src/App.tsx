@@ -6,7 +6,7 @@ import { router } from "@routes/mainNavigationConfig";
 
 import { GlobalStyles } from "./styles/global";
 import { ThemeProviderWrapper } from "./context/ThemeContext";
-import { UseAppData } from "@hooks/staffPortal/usePortalManage";
+import { useAppData } from "@hooks/staffPortal/usePortalManage";
 import { IUser } from "@ptypes/authAndPortalDataProvider/IUser";
 import { ChangeToRequestTabProvider } from "@context/changeToRequestTab";
 
@@ -22,12 +22,12 @@ interface IApp {
 
 const App = (props: IApp) => {
   const { code, user, businessUnit } = props;
-  const { isLoading, hasError, isAuthenticated, errorCode } = UseAppData(
+  const { isLoading, hasError, isAuthenticated, errorCode } = useAppData({
     portalCode,
     code,
-    user as IUser,
+    user: user as IUser,
     businessUnit
-  );
+  });
 
   if (isLoading) {
     return null;

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { MdCheck, MdClear } from "react-icons/md";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { assignmentLabels } from "@config/assignments/assignmentForm/assigmentLabels";
-import { actionButtonsLabels } from "@config/assignments/assignmentForm/actionButtonsLabels";
-import { compareObjects } from "@utils/compareObjects";
-import { enviroment } from "@config/environment";
-import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
 import { EComponentAppearance } from "@enum/appearances";
+import { eventBus } from "@events/eventBus";
+import { compareObjects } from "@utils/compareObjects";
+import { assignmentLabels } from "@config/assignments/assignmentForm/assigmentLabels";
+import { actionButtonsLabels } from "@config/assignments/assignmentForm/actionButtonsLabels";
+import { enviroment } from "@config/environment";
 import { IUseBusinessunitForm } from "@ptypes/hooks/assignments/IUseBusinessunitForm";
 import { IBusinessEntry } from "@ptypes/assignments/IBusinessEntry";
 
-const UseBusinessUnitForm = (props: IUseBusinessunitForm) => {
+const useBusinessUnitForm = (props: IUseBusinessunitForm) => {
   const { entries, setSelectedToggle, editDataOption } = props;
 
   const [InitialValues] = useState(entries);
@@ -152,4 +152,4 @@ const UseBusinessUnitForm = (props: IUseBusinessunitForm) => {
   };
 };
 
-export { UseBusinessUnitForm };
+export { useBusinessUnitForm };

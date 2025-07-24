@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { enviroment } from "@config/environment";
-import { IEntry } from "@ptypes/design/table/IEntry";
-import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
+import { eventBus } from "@events/eventBus";
+import { enviroment } from "@config/environment";
 import { IUseDetailsAssignments } from "@ptypes/assignments/request/IUseDetailsAssignments";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
-const UseDetailsAssignments = (props: IUseDetailsAssignments) => {
+const useDetailsAssignments = (props: IUseDetailsAssignments) => {
   const { data } = props;
 
   const [showModal, setShowModal] = useState(false);
@@ -43,4 +43,4 @@ const UseDetailsAssignments = (props: IUseDetailsAssignments) => {
   };
 };
 
-export { UseDetailsAssignments };
+export { useDetailsAssignments };

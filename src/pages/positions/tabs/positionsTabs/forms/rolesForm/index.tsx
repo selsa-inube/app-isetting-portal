@@ -1,8 +1,8 @@
-import { UseAssignmentForm } from "@hooks/design/useAssignmentForm";
-import { UseFilterRoles } from "@hooks/positions/useFilterRoles";
+import { useAssignmentForm } from "@hooks/design/useAssignmentForm";
+import { useFilterRoles } from "@hooks/positions/useFilterRoles";
+import { AssignmentForm } from "@design/forms/assignmentForm";
 import { IEntry } from "@ptypes/design/table/IEntry";
 import { IRolesForm } from "@ptypes/positions/IRolesForm";
-import { AssignmentForm } from "@design/forms/assignmentForm";
 
 const RolesForm = (props: IRolesForm) => {
   const {
@@ -24,7 +24,7 @@ const RolesForm = (props: IRolesForm) => {
     handleApply,
     handleToggleModal,
     setShowModal,
-  } = UseFilterRoles({
+  } = useFilterRoles({
     options: options as IEntry[],
   });
 
@@ -44,7 +44,7 @@ const RolesForm = (props: IRolesForm) => {
     handleToggleAllEntries,
     handleToggleRol,
     onHandleSelectCheckChange,
-  } = UseAssignmentForm({
+  } = useAssignmentForm({
     entries,
     setSelectedToggle,
     editDataOption,

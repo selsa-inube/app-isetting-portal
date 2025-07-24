@@ -1,18 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
-import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
-import { statusRequestFinished } from "@config/status/statusRequestFinished";
-import { EUseCase } from "@enum/useCase";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
-import { IUseSaveAssigments } from "@ptypes/hooks/assignments/IUseSaveAssigments";
+import { EUseCase } from "@enum/useCase";
+import { statusRequestFinished } from "@config/status/statusRequestFinished";
 import { requestStatusMessage } from "@config/assignments/generic/requestStatusMessage";
 import { flowAutomaticMessages } from "@config/assignments/generic/flowAutomaticMessages";
 import { interventionHumanMessage } from "@config/assignments/generic/interventionHumanMessage";
-import { UseRequest } from "../useRequest";
+import { IUseSaveAssigments } from "@ptypes/hooks/assignments/IUseSaveAssigments";
+import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
+import { useRequest } from "../useRequest";
 
-const UseSaveAssignments = (props: IUseSaveAssigments) => {
+const useSaveAssignments = (props: IUseSaveAssigments) => {
   const {
     useCase,
     userAccount,
@@ -68,7 +68,7 @@ const UseSaveAssignments = (props: IUseSaveAssigments) => {
     isStatusCloseModal,
     isStatusRequestFinished,
     isStatusIntAutomatic,
-  } = UseRequest({
+  } = useRequest({
     setSendData,
     useCase,
     statusRequest: statusRequest || "",
@@ -160,4 +160,4 @@ const UseSaveAssignments = (props: IUseSaveAssigments) => {
   };
 };
 
-export { UseSaveAssignments };
+export { useSaveAssignments };

@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
-import { getWithRetries } from "@services/core/getWithRetries";
 import { queryProcessAxiosInstance } from "@api/isettingProcess";
+import { getWithRetries } from "@services/core/getWithRetries";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { mapRequestsInProgressToEntities } from "./mappers/mapRequestsToEntities";
 
@@ -25,7 +25,7 @@ const getRequestsInProgress = async (
   });
   const data = await getWithRetries<IRequestsInProgress[]>(
     queryProcessAxiosInstance,
-    `/requests/business-unit/test?${queryParams.toString()}`,
+    `/requests?${queryParams.toString()}`,
     config,
   );
   return Array.isArray(data) ? mapRequestsInProgressToEntities(data) : [];

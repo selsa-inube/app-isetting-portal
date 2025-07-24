@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
+import { IUseRequestProcessModal } from "@ptypes/hooks/IUseRequestProcessModal";
+import { enviroment } from "@config/environment";
 
-const UseRequestProcessModal = (portalId: string) => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+const useRequestProcessModal = (props: IUseRequestProcessModal) => {
+  const { portalId } = props;
+  const isMobile = useMediaQuery(enviroment.IS_MOBILE_849);
   const [node, setNode] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -19,4 +22,4 @@ const UseRequestProcessModal = (portalId: string) => {
   return { isMobile, node };
 };
 
-export { UseRequestProcessModal };
+export { useRequestProcessModal };

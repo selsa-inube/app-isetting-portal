@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState, useRef } from "react";
-import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
 import { decrypt } from "@utils/decrypt";
+import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 
-const UseHome = () => {
+const useHome = () => {
   const {
     appData,
     businessUnitsToTheStaff,
@@ -63,4 +63,4 @@ const UseHome = () => {
   };
 };
 
-export { UseHome };
+export { useHome };

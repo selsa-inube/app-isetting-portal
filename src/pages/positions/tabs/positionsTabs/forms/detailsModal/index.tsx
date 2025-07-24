@@ -1,6 +1,6 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Icon, Text } from "@inubekit/inubekit";
-import { UseDetailsModal } from "@hooks/positions/useDetailsModal";
+import { useDetailsModal } from "@hooks/positions/useDetailsModal";
 import { IDetailsModal } from "@ptypes/positions/details/IDetailsModal";
 import { StyledContainerIcon } from "./styles";
 import { DetailsPositionsModal } from "./detailsPositionsModal";
@@ -8,7 +8,7 @@ import { DetailsPositionsModal } from "./detailsPositionsModal";
 const DetailsModal = (props: IDetailsModal) => {
   const { data, labelsOptions } = props;
   const { showModal, handleToggleModal, screenTablet, dataTable } =
-    UseDetailsModal(data);
+    useDetailsModal(data);
 
   return (
     <>

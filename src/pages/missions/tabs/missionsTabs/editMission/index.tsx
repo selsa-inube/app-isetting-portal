@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { useEditMission } from "@hooks/missions/useEditMission";
 import { useSaveMission } from "@hooks/missions/useSaveMission";
 import { EUseCase } from "@enum/useCase";
-import { UseEditMission } from "@hooks/missions/useEditMission";
-import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { editMissionTabsConfig } from "@config/missions/missionTab/edit/tabs";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
+import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { EditMissionUI } from "./interface";
 
 const EditMission = () => {
@@ -33,7 +33,7 @@ const EditMission = () => {
     handleTabChange,
     setShowModal,
     setShowRequestProcessModal,
-  } = UseEditMission({ data, appData });
+  } = useEditMission({ data, appData });
 
   const {
     saveMission,

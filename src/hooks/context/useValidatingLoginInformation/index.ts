@@ -1,18 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
+import { usePortalData } from "@hooks/staffPortal/usePortalData";
+import { useBusinessManagers } from "@hooks/staffPortal/useBusinessManagers";
 import { decrypt } from "@utils/decrypt";
-import { UsePortalData } from "@hooks/staffPortal/usePortalData";
-import { UseBusinessManagers } from "@hooks/staffPortal/useBusinessManagers";
-import { IAppData } from "@ptypes/authAndDataProvider/IAppData";
 import { validateAndTrimString } from "@utils/validateAndTrimString";
+import { IAppData } from "@ptypes/authAndDataProvider/IAppData";
+import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 
 const useValidatingLoginInformation = () => {
   const { user } = useAuth0();
 
   const portalCode = decrypt(localStorage.getItem("portalCode") ?? "");
-  const { portalData } = UsePortalData(portalCode);
-  const { businessManagersData } = UseBusinessManagers(portalData);
+  const { portalData } = usePortalData({portalCode});
+  const { businessManagersData } = useBusinessManagers({portalPublicCode: portalData});
 
   const [businessUnitSigla, setBusinessUnitSigla] = useState(
     localStorage.getItem("businessUnitSigla") ?? ""

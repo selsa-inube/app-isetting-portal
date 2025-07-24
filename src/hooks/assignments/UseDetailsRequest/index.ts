@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 
 import { eventBus } from "@events/eventBus";
+import { EModalState } from "@enum/modalState";
 import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
 import { enviroment } from "@config/environment";
 import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
 import { requestType } from "@config/requestType";
-import { EModalState } from "@enum/modalState";
 import { IUseDetailsRequest } from "@ptypes/hooks/IUseDetailsRequest";
 
-const UseDetailsRequest = (props: IUseDetailsRequest) => {
+const useDetailsRequest = (props: IUseDetailsRequest) => {
   const { data } = props;
 
   const [isSelected, setIsSelected] = useState<string>();
@@ -64,4 +64,4 @@ const UseDetailsRequest = (props: IUseDetailsRequest) => {
   };
 };
 
-export { UseDetailsRequest };
+export { useDetailsRequest };

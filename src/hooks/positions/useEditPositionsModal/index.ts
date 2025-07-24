@@ -1,8 +1,10 @@
-import { IEntry } from "@ptypes/table/IEntry";
+import { IUseEditPositionsModal } from "@ptypes/hooks/IUseEditPositionsModal";
 import { useNavigate } from "react-router-dom";
 
-const UseEditPositionsModal = (data: IEntry) => {
+const useEditPositionsModal = (props: IUseEditPositionsModal) => {
   const navigate = useNavigate();
+
+  const { data } = props;
 
   const destinationData = {
     positionId: data.positionId,
@@ -22,4 +24,4 @@ const UseEditPositionsModal = (data: IEntry) => {
   };
 };
 
-export { UseEditPositionsModal };
+export { useEditPositionsModal };

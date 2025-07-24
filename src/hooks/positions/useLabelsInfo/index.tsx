@@ -1,12 +1,9 @@
 import { useMemo } from "react";
 import { IPosition } from "@ptypes/positions/assisted/IPosition";
-import { ILabelsInfo } from "@ptypes/positions/details/ILabelsInfo";
+import { IUseLabelsInfo } from "@ptypes/hooks/IUseLabelsInfo";
 
-const UseLabelsInfo = (
-  labels: ILabelsInfo["labels"],
-  infoData: IPosition,
-  hasLabels: boolean
-) => {
+const useLabelsInfo = (props: IUseLabelsInfo) => {
+  const { labels, infoData, hasLabels } = props;
   return useMemo(() => {
     return hasLabels
       ? labels.map((field) => ({
@@ -22,4 +19,4 @@ const UseLabelsInfo = (
   }, [labels, infoData, hasLabels]);
 };
 
-export { UseLabelsInfo };
+export { useLabelsInfo };

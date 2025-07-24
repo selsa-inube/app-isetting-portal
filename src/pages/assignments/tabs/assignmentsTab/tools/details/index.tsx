@@ -1,14 +1,14 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Icon } from "@inubekit/inubekit";
-import { EComponentAppearance } from "@enum/appearances";
-import { IDetails } from "@ptypes/assignments/IDetailsUI";
-import { StyledContainerIcon } from "./styles";
-import { UseDetailsAssignments } from "@hooks/assignments/useDetailsAssignments";
+import { useDetailsAssignments } from "@hooks/assignments/useDetailsAssignments";
 import { MoreDetails } from "@pages/assignments/moreDetails";
+import { EComponentAppearance } from "@enum/appearances";
 import { portalId } from "@config/portalId";
 import { moreLabelsDetails } from "@config/assignments/details/moreLabelsDetails";
 import { moreDetailsModal } from "@config/assignments/details/moreDetailsModal";
+import { IDetails } from "@ptypes/assignments/IDetailsUI";
 import { IEntry } from "@ptypes/design/table/IEntry";
+import { StyledContainerIcon } from "./styles";
 
 const Details = (props: IDetails) => {
   const { data } = props;
@@ -20,7 +20,7 @@ const Details = (props: IDetails) => {
     pageLength,
     columnWidths,
     onToggleModal,
-  } = UseDetailsAssignments({
+  } = useDetailsAssignments({
     data,
   });
 

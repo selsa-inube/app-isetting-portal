@@ -1,4 +1,4 @@
-import { UseDetailsRequestInProgress } from "@hooks/positions/useDetailsRequestInProgress";
+import { useDetailsRequestInProgress } from "@hooks/positions/useDetailsRequestInProgress";
 import { labelsOptions } from "@config/requestsInProgressTab/details/labelsOptions";
 import { IDetails } from "@ptypes/requestsInProgress/IDetails";
 import { DetailsRequestInProcess } from "./detailsRequestInProcess";
@@ -13,7 +13,7 @@ const Details = (props: IDetails) => {
     onToggleMoreDetailsModal,
     dataTable,
     isMobile,
-  } = UseDetailsRequestInProgress(data);
+  } = useDetailsRequestInProgress(data);
   return (
     <DetailsRequestInProcess
       data={normalizeData}

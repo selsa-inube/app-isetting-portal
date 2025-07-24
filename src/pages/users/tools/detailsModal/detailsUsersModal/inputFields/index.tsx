@@ -1,10 +1,10 @@
-import { UseInputFields } from "@hooks/users/useInputFields";
+import { useInputFields } from "@hooks/users/useInputFields";
 import { Input } from "@inubekit/inubekit";
 import { IInputFields } from "@ptypes/users/details/IInputFields";
 
 const InputFields = (props: IInputFields) => {
   const { labels, infoData } = props;
-  const fields = UseInputFields({ labels, infoData });
+  const fields = useInputFields({ labels, infoData });
 
   return (
     <>

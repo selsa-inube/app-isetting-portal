@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { getIportalStaffUsers } from "@services/users/getIportalStaffUsers";
-import { IUsers } from "@ptypes/users/usersTable/IUsers";
 import { getAllBusinessUnits } from "@services/staffPortal/getAllBusinessUnits";
+import { useGetUnitsByAbsentOfficial } from "@hooks/assignments/useGetUnitsByAbsentOfficial";
+import { IUsers } from "@ptypes/users/usersTable/IUsers";
 import { IAllBusinessUnits } from "@ptypes/staffPortal/IAllBusinessUnits";
 import { IBusinessEntry } from "@ptypes/assignments/IBusinessEntry";
-import { getUnitsByAbsentOfficial } from "@utils/getUnitsByAbsentOfficial";
 import { IUseUnitsByAbsentOfficial } from "@ptypes/hooks/IUseUnitsByAbsentOfficial";
+import { useGetBusinessUnits } from "../useGetBusinessUnits";
 
 const UseBusinessUnitsByOfficial = (props: IUseUnitsByAbsentOfficial) => {
   const { absentOfficial } = props;
@@ -49,31 +50,24 @@ const UseBusinessUnitsByOfficial = (props: IUseUnitsByAbsentOfficial) => {
     }
   }, []);
 
+  const { staffByUnitsData } = useGetUnitsByAbsentOfficial({
+    absentOfficial,
+    unitsByAbsentOfficial
+  }) as { staffByUnitsData: IBusinessEntry[] };
+
   useEffect(() => {
     if (unitsByAbsentOfficial.length > 0) {
-      const data = getUnitsByAbsentOfficial(
-        absentOfficial,
-        unitsByAbsentOfficial
-      );
-
-      setOptions(data);
+      setOptions(staffByUnitsData);
     }
   }, [unitsByAbsentOfficial]);
 
-  useEffect(() => {
-    if (businessUnits.length > 0) {
-      const businessUnitsData = businessUnits.map((unit) => ({
-        id: ` ${unit.publicCode}-${unit.abbreviatedName}`,
-        publicCode: unit.publicCode,
-        value: unit.abbreviatedName,
-        isActive: false,
-        roleName: "",
-        positionName: "",
-      }));
+  const { businessUnitsData } = useGetBusinessUnits({businessUnits});
 
+  useEffect(() => {
+    if (businessUnits.length > 0 && businessUnitsData) {
       setOptions(businessUnitsData);
     }
-  }, [businessUnits]);
+  }, [businessUnits, businessUnitsData]);
 
   return {
     options,

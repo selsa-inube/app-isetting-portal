@@ -1,18 +1,18 @@
 import { ITab, useMediaQuery } from "@inubekit/inubekit";
 import { useContext, useEffect, useState } from "react";
-import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
-import { decrypt } from "@utils/decrypt";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
-import { assignmentsTabsConfig } from "@config/assignments/tabs";
-import { IUseAssignmentsPage } from "@ptypes/hooks/assignments/IUseAssignmentsPage";
+import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
-import { IAssignmentsTabsConfig } from "@ptypes/assignments/IAssignmentsTabsConfig";
-import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
-import { enviroment } from "@config/environment";
 import { EOptionsByBusinessunits } from "@enum/optionsByBusinessunits";
 import { ERequestAssignments } from "@enum/requestAssignments";
+import { decrypt } from "@utils/decrypt";
+import { enviroment } from "@config/environment";
+import { assignmentsTabsConfig } from "@config/assignments/tabs";
+import { IUseAssignmentsPage } from "@ptypes/hooks/assignments/IUseAssignmentsPage";
+import { IAssignmentsTabsConfig } from "@ptypes/assignments/IAssignmentsTabsConfig";
+import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
-const UseAssignmentsPage = (props: IUseAssignmentsPage) => {
+const useAssignmentsPage = (props: IUseAssignmentsPage) => {
   const { businessUnitSigla, bussinesUnits } = props;
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
@@ -119,4 +119,4 @@ const UseAssignmentsPage = (props: IUseAssignmentsPage) => {
   };
 };
 
-export { UseAssignmentsPage };
+export { useAssignmentsPage };

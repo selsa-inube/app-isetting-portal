@@ -1,17 +1,17 @@
 import { useContext } from "react";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { useDeleteAssignments } from "@hooks/assignments/useDeleteAssignments";
+import { useSaveAssignments } from "@hooks/assignments/saveAssigments/useSaveAssignments";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
-import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
-import { UseDeleteAssignments } from "@hooks/assignments/useDeleteAssignments";
-import { UseSaveAssignments } from "@hooks/assignments/saveAssigments/useSaveAssignments";
 import { EUseCase } from "@enum/useCase";
-import { portalId } from "@config/portalId";
 import { EComponentAppearance } from "@enum/appearances";
+import { portalId } from "@config/portalId";
+import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { deleteAssignments } from "@config/assignments/generic/deleteAssignments";
 import { requestStatusMessage } from "@config/assignments/generic/requestStatusMessage";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IDelete } from "@ptypes/assignments/IDelete";
 
 const Delete = (props: IDelete) => {
@@ -26,7 +26,7 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
-  } = UseDeleteAssignments({ data, appData });
+  } = useDeleteAssignments({ data, appData });
 
   const {
     saveAssignments,
@@ -35,7 +35,7 @@ const Delete = (props: IDelete) => {
     loadingSendData,
     handleClosePendingReqModal,
     handleCloseRequestStatus,
-  } = UseSaveAssignments({
+  } = useSaveAssignments({
     useCase: EUseCase.DELETE,
     bussinesUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,

@@ -1,21 +1,21 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { AuthAndData } from "@context/authAndDataProvider";
+import { useFetchAplicationStaff } from "@hooks/positions/useAplication";
+import { useEditPositions } from "@hooks/positions/useEditPositions";
+import { useFetchRolesStaff } from "@hooks/positions/useFetchRolesStaff";
+import { useSavePositions } from "@hooks/positions/useSavePositions";
+import { editPositionTabsConfig } from "@config/positions/editPositions/tabs";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
-import { AuthAndData } from "@context/authAndDataProvider";
-import { UseSavePositions } from "@hooks/positions/useSavePositions";
-import { editPositionTabsConfig } from "@config/positions/editPositions/tabs";
-import { UseEditPositions } from "@hooks/positions/useEditPositions";
-import { UseFetchRolesStaff } from "@hooks/positions/useFetchRolesStaff";
-import { EditPositionsUI } from "./interface";
 import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
-import { UseFetchAplicationStaff } from "@hooks/positions/useAplication";
+import { EditPositionsUI } from "./interface";
 
 const EditPositions = () => {
   const location = useLocation();
   const { data } = location.state || {};
   const { appData } = useContext(AuthAndData);
-  const { rolesStaff } = UseFetchRolesStaff();
+  const { rolesStaff } = useFetchRolesStaff();
 
   const {
     formValues,
@@ -32,7 +32,7 @@ const EditPositions = () => {
     setShowModal,
     setSelectedToggle,
     roles,
-  } = UseEditPositions({ data, appData, rolesData: rolesStaff });
+  } = useEditPositions({ data, appData, rolesData: rolesStaff });
 
   const {
     savePositions,
@@ -42,14 +42,14 @@ const EditPositions = () => {
     handleCloseRequestStatus,
     handleClosePendingReqModal,
     smallScreen,
-  } = UseSavePositions(
-    appData.businessUnit.publicCode,
-    appData.user.userAccount,
-    showRequestProcessModal,
-    saveData as ISaveDataRequest,
-    setShowModal
-  );
-  const { options } = UseFetchAplicationStaff();
+  } = useSavePositions({
+    bussinesUnits: appData.businessUnit.publicCode,
+    userAccount: appData.user.userAccount,
+    sendData: showRequestProcessModal,
+    data: saveData as ISaveDataRequest,
+    setSendData: setShowModal,
+  });
+  const { options } = useFetchAplicationStaff();
 
   const showRequestProcess = Boolean(showRequestProcessModal && savePositions);
 

@@ -1,6 +1,6 @@
 import { stepKeysMission } from "@enum/stepsKeysMission";
-import { RenderGeneralinfoVerification } from "../GeneralinfoVerification";
 import { IVerificationBoxes } from "@ptypes/missions/assisted/IVerificationBoxes";
+import { RenderGeneralinfoVerification } from "../GeneralinfoVerification";
 
 const VerificationBoxes = (props: IVerificationBoxes) => {
   const { updatedData, stepKey, isMobile } = props;

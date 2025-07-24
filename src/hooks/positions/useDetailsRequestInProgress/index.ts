@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "@inubekit/inubekit";
 import { formatDateTable } from "@utils/date/formatDateTable";
-import { IEntry } from "@ptypes/table/IEntry";
 import { EModalState } from "@enum/modalState";
 import { eventBus } from "@events/eventBus";
-import { useMediaQuery } from "@inubekit/inubekit";
 import { enviroment } from "@config/environment";
+import { IEntry } from "@ptypes/table/IEntry";
 
-const UseDetailsRequestInProgress = (data: IEntry) => {
+const useDetailsRequestInProgress = (data: IEntry) => {
   const [showModal, setShowModal] = useState(false);
   const [showMoreMission, setShowMoreMission] = useState(false);
 
@@ -58,4 +58,4 @@ const UseDetailsRequestInProgress = (data: IEntry) => {
   };
 };
 
-export { UseDetailsRequestInProgress };
+export { useDetailsRequestInProgress };

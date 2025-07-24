@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { inube } from "@inubekit/inubekit";
+import { useInputColor } from "@hooks/design/useSelectCheck";
 import { basic } from "@design/tokens";
-import { UseInputColor } from "@hooks/design/useSelectCheck";
 import { ISelectCheck } from ".";
 
 interface IStyledInputContainer {
@@ -76,7 +76,7 @@ const StyledInput = styled.input<IStyledInput>`
   letter-spacing: ${({ theme }) =>
     theme?.typography?.body?.large?.font ||
     inube.typography.body.large.tracking};
-  color: ${({ disabled }) => UseInputColor(disabled)};
+  color: ${({ disabled }) => useInputColor({disabled})};
   background-color: ${({ theme }) =>
     theme?.palette?.neutral?.N0 || inube.palette.neutral.N0};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};

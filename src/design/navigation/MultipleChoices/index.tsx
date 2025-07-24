@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Text, Tag } from "@inubekit/inubekit";
+import { useMultipleChoices } from "@hooks/design/useMultipleChoices";
 import { basic } from "@design/tokens";
 import { SelectCheck } from "@design/select";
-import { UseMultipleChoices } from "@hooks/design/useMultipleChoices";
-import { StyledContainer, StyledSelection } from "./styles";
 import { IMultipleChoices } from "@ptypes/design/IMultipleChoices";
+import { StyledContainer, StyledSelection } from "./styles";
 
 const MultipleChoices = (props: IMultipleChoices) => {
   const {
@@ -20,7 +20,7 @@ const MultipleChoices = (props: IMultipleChoices) => {
   } = props;
 
   const { uniqueOptions, onHandleSelectCheck, onRemoveTag } =
-    UseMultipleChoices(options, onHandleSelectCheckChange);
+    useMultipleChoices({initialOptions: options, onHandleSelectCheckChange});
 
   const [selectedLabels, setSelectedLabels] = useState<string>("");
 

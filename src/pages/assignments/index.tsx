@@ -1,10 +1,10 @@
 import { useContext } from "react";
 
-import { ICardData } from "@ptypes/home/ICardData";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { useAssignmentsPage } from "@hooks/assignments/useAssignmentsPage";
 import { assignmentsTabsConfig } from "@config/assignments/tabs";
 import { menuOptionsAssignments } from "@config/assignments/menuOptions";
-import { UseAssignmentsPage } from "@hooks/assignments/useAssignmentsPage";
+import { ICardData } from "@ptypes/home/ICardData";
 import { AssignmentsUI } from "./interface";
 
 const Assignments = () => {
@@ -22,7 +22,7 @@ const Assignments = () => {
     onCloseMenu,
     onToggleModal,
     handleTabChange,
-  } = UseAssignmentsPage({
+  } = useAssignmentsPage({
     businessUnitSigla,
     bussinesUnits: appData.businessUnit.publicCode,
   });

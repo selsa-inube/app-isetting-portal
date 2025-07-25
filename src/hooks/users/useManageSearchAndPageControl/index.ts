@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
-import { IUsers } from "@ptypes/users/usersTable/IUsers";
 import { getIportalStaffUsers } from "@services/users/getIportalStaffUsers";
+import { IUsers } from "@ptypes/users/usersTable/IUsers";
+import { IUseManageUsersPageControl } from "@ptypes/hooks/IUseManageUsersPageControl";
 
-const UseManageUsersSearchAndPageControl = (businessManager: string) => {
+const useManageUsersSearchAndPageControl = (
+  props: IUseManageUsersPageControl
+) => {
+  const { businessManager } = props;
   const [searchPosition, setSearchPosition] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -36,4 +40,4 @@ const UseManageUsersSearchAndPageControl = (businessManager: string) => {
     hasError,
   };
 };
-export { UseManageUsersSearchAndPageControl };
+export { useManageUsersSearchAndPageControl };

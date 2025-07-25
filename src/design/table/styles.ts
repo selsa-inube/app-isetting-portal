@@ -6,7 +6,7 @@ interface IStyledContainer {
   $pageLength?: number;
   $entriesLength?: number;
   $isTablet?: boolean;
-  $withGeneralizedTitle?: boolean; 
+  $withGeneralizedTitle?: boolean;
 }
 
 const StyledContainerTable = styled.div<IStyledContainer>`
@@ -27,6 +27,7 @@ const StyledContainerTable = styled.div<IStyledContainer>`
   ${({ $isTablet }) =>
     $isTablet &&
     `
+  
     & > td {
       justify-content: flex-start;
     }
@@ -34,10 +35,11 @@ const StyledContainerTable = styled.div<IStyledContainer>`
   `}
 
   ${({ $withGeneralizedTitle, $isTablet }) =>
-   $isTablet && !$withGeneralizedTitle && 
+    $isTablet &&
+    !$withGeneralizedTitle &&
     `
     & > div > div {
-    min-height: 320px;
+       overflow: auto;
   }
   `}
 `;

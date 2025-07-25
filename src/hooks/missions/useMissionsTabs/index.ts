@@ -3,14 +3,14 @@ import { useMediaQuery } from "@inubekit/inubekit";
 
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { missionsTabsConfig } from "@config/missions/tabs";
-import { IMissionTabsConfig } from "@ptypes/missions/IMissionTabsConfig";
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
-import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { ERequestMission } from "@enum/requestMission";
+import { missionsTabsConfig } from "@config/missions/tabs";
 import { enviroment } from "@config/environment";
+import { IMissionTabsConfig } from "@ptypes/missions/IMissionTabsConfig";
+import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
-const UseMissionsTabs = () => {
+const useMissionsTabs = () => {
 
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
   const tabs= missionsTabsConfig(smallScreen);
@@ -131,4 +131,4 @@ const UseMissionsTabs = () => {
   };
 };
 
-export { UseMissionsTabs };
+export { useMissionsTabs };

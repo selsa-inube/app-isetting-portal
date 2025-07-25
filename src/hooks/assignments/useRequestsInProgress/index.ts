@@ -2,13 +2,13 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { useState, useEffect } from "react";
 
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
+import { ERequestAssignments } from "@enum/requestAssignments";
+import { enviroment } from "@config/environment";
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
-import { enviroment } from "@config/environment";
-import { ERequestAssignments } from "@enum/requestAssignments";
 
-const UseRequestsInProgress = (props: IUseRequestsInProgress) => {
-  const { bussinesUnits } = props;
+const useRequestsInProgress = (props: IUseRequestsInProgress) => {
+  const { businessUnits } = props;
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
   >([]);
@@ -22,7 +22,7 @@ const UseRequestsInProgress = (props: IUseRequestsInProgress) => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        const data = await getRequestsInProgress( ERequestAssignments.ASSIGNMENTS, bussinesUnits);
+        const data = await getRequestsInProgress( ERequestAssignments.ASSIGNMENTS, businessUnits);
         setRequestsInProgress(data);
       } catch (error) {
         console.info(error);
@@ -68,4 +68,4 @@ const UseRequestsInProgress = (props: IUseRequestsInProgress) => {
   };
 };
 
-export { UseRequestsInProgress };
+export { useRequestsInProgress };

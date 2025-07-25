@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import { MdCheck, MdClear, MdOutlineFilterAlt } from "react-icons/md";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IOptionItemChecked } from "@design/select/OptionItem";
-import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
-import { assignmentLabels } from "@config/assignments/assignmentForm/assigmentLabels";
-import { actionButtonsLabels } from "@config/assignments/assignmentForm/actionButtonsLabels";
 import { compareObjects } from "@utils/compareObjects";
-import { IUseAssignmentForm } from "@ptypes/hooks/assignments/IUseAssignmentForm";
-import { enviroment } from "@config/environment";
-import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
 import { EComponentAppearance } from "@enum/appearances";
+import { eventBus } from "@events/eventBus";
+import { assignmentLabels } from "@config/assignments/assignmentForm/assigmentLabels";
+import { actionButtonsLabels } from "@config/assignments/assignmentForm/actionButtonsLabels";
+import { enviroment } from "@config/environment";
+import { IUseAssignmentForm } from "@ptypes/hooks/assignments/IUseAssignmentForm";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 
-const UseAssignmentForm = (props: IUseAssignmentForm) => {
+const useAssignmentForm = (props: IUseAssignmentForm) => {
   const {
     entries,
     setSelectedToggle,
@@ -224,4 +224,4 @@ const UseAssignmentForm = (props: IUseAssignmentForm) => {
   };
 };
 
-export { UseAssignmentForm };
+export { useAssignmentForm };

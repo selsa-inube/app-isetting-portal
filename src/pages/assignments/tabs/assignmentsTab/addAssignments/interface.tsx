@@ -1,12 +1,14 @@
 import { Assisted, Breadcrumbs, Stack } from "@inubekit/inubekit";
+import { basic } from "@design/tokens";
+import { PageTitle } from "@design/label/PageTitle";
+import { stepsKeysAssignments } from "@enum/stepsKeysAssignments";
 import { controlsAssisted } from "@config/controlsAssisted";
 import { addAssignmentsLabels } from "@config/assignments/assisted/addAssignmentsLabels";
 import { crumbsAddAssignments } from "@config/assignments/assisted/navigation";
-import { basic } from "@design/tokens";
-import { PageTitle } from "@design/label/PageTitle";
 import { IAddAssignmentsUI } from "@ptypes/assignments/assisted/IAddAssignmentsUI";
 import { OfficialInChargeForm } from "../forms/officialInChargeForm";
 import { BusinessUnitForm } from "../forms/businessUnitForm";
+import { RolesByBusinessUnitForm } from "../forms/rolesByBusinessUnitForm";
 
 const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
   const {
@@ -17,12 +19,15 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
     absentOfficialSelected,
     formValues,
     formReferences,
+    setRolesSelected,
     setSelectedToggle,
     setIsCurrentFormValid,
     onNextStep,
     onPreviousStep,
     onToggleModal,
   } = props;
+
+  console.log("qqq", stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT);
 
   return (
     <Stack
@@ -55,21 +60,30 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
             showCurrentStepNumber={false}
           />
           <Stack direction="column">
-            {currentStep === 1 && (
+            {currentStep === stepsKeysAssignments.OFFICIAL_IN_CHARGE && (
               <OfficialInChargeForm
-               ref={formReferences.officialInCharge}
+                ref={formReferences.officialInCharge}
                 absentOfficialSelected={absentOfficialSelected}
                 initialValues={formValues.officialInCharge.values}
                 onFormValid={setIsCurrentFormValid}
                 onButtonClick={onNextStep}
               />
             )}
-              {currentStep === 2 && (
+            {currentStep === stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT && (
               <BusinessUnitForm
                 entries={formValues.businessUnitOfficial.values}
                 setSelectedToggle={setSelectedToggle}
                 onButtonClick={onNextStep}
                 onPreviousStep={onPreviousStep}
+              />
+            )}
+            {currentStep === stepsKeysAssignments.ROLES_BY_BUSINESS_UNIT && (
+              <RolesByBusinessUnitForm
+                entries={formValues.rolesByBusinessUnits.values}
+                onPreviousStep={onPreviousStep}
+                onButtonClick={onNextStep}
+                loading={false}
+                setRolesSelected={setRolesSelected}
               />
             )}
           </Stack>

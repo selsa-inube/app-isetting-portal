@@ -1,18 +1,18 @@
 import { useContext } from "react";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { useSaveMission } from "@hooks/missions/useSaveMission";
+import { useDeleteMission } from "@hooks/missions/useDeleteMission";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
-import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
-import { requestStatusMessage } from "@config/positions/requestStatusMessage";
-import { IDelete } from "@ptypes/positions/actions/IDelete";
-import { useSaveMission } from "@hooks/missions/useSaveMission";
 import { EUseCase } from "@enum/useCase";
-import { portalId } from "@config/portalId";
-import { UseDeleteMission } from "@hooks/missions/useDeleteMission";
 import { EComponentAppearance } from "@enum/appearances";
+import { portalId } from "@config/portalId";
+import { requestProcessMessage } from "@config/request/requestProcessMessage";
+import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { deleteMission } from "@config/missions/missionTab/generic/deleteMission";
+import { IDelete } from "@ptypes/positions/actions/IDelete";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
 const Delete = (props: IDelete) => {
   const { data } = props;
@@ -26,7 +26,7 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
-  } = UseDeleteMission({data, appData});
+  } = useDeleteMission({data, appData});
 
   const {
     saveMission,
@@ -37,7 +37,7 @@ const Delete = (props: IDelete) => {
     handleCloseRequestStatus,
   } = useSaveMission({
     useCase: EUseCase.DELETE,
-    bussinesUnits: appData.businessUnit.publicCode,
+    businessUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
      sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,

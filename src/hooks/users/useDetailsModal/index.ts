@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { IPosition } from "@ptypes/positions/assisted/IPosition";
+import { IUseDetailsModal } from "@ptypes/hooks/IUseDetailsModal";
 
-const UseDetailsModal = (data?: IPosition) => {
+const useDetailsModal = (props: IUseDetailsModal) => {
+
+  const {data} =props;
   const [showModal, setShowModal] = useState<boolean>(false);
   const screenTablet = useMediaQuery("(max-width: 1200px)");
 
@@ -26,4 +28,4 @@ const UseDetailsModal = (data?: IPosition) => {
   };
 };
 
-export { UseDetailsModal };
+export { useDetailsModal };

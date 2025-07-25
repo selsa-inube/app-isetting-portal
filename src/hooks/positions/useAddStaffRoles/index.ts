@@ -2,18 +2,19 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
+
 import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
+import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
+import { saveDataLabels } from "@config/positions/assisted/saveDataLabels";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAssignmentFormEntry";
 import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
-import { saveDataLabels } from "@config/positions/assisted/saveDataLabels";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
-const UseAddStaffRoles = (props: IUseAddStaffRoles ) => {
+const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
 
   const { rolesData } = props;
   const { appData } = useContext(AuthAndData);
@@ -213,4 +214,4 @@ const UseAddStaffRoles = (props: IUseAddStaffRoles ) => {
   };
 };
 
-export { UseAddStaffRoles };
+export { useAddStaffRoles };

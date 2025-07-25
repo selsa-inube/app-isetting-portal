@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { IUseAccordion } from "@ptypes/hooks/IUseAccordion";
 
-const UseAccordion = (defaultOpen: boolean = true) => {
+const useAccordion = (props: IUseAccordion) => {
+  const { defaultOpen = true } = props;
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   const toggleAccordion = () => {
@@ -13,4 +15,4 @@ const UseAccordion = (defaultOpen: boolean = true) => {
   };
 };
 
-export { UseAccordion };
+export { useAccordion };

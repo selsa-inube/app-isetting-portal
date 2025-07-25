@@ -1,18 +1,18 @@
-import { operationTypes } from "@config/useCase";
-import { requestStepsNames } from "@config/requestStepsNames";
-import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
-import { ERequestStepsStatus } from "@enum/requestStepsStatus";
-import { statusCloseModal } from "@config/status/statusCloseModal";
-import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
 import { useContext, useState } from "react";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
+import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { ERequestStepsStatus } from "@enum/requestStepsStatus";
+import { operationTypes } from "@config/useCase";
+import { requestStepsNames } from "@config/requestStepsNames";
+import { statusCloseModal } from "@config/status/statusCloseModal";
+import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
 import { flowAutomaticMessages } from "@config/assignments/generic/flowAutomaticMessages";
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
-import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { requestStepsInitial } from "@config/requestSteps";
+import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
 import { IUseRequest } from "@ptypes/hooks/IUseRequest";
 
-const UseRequest = (props: IUseRequest) => {
+const useRequest = (props: IUseRequest) => {
   const { setSendData, useCase, statusRequest, saveAssignments } = props;
 
   const { addFlag } = useFlag();
@@ -154,4 +154,4 @@ const UseRequest = (props: IUseRequest) => {
   };
 };
 
-export { UseRequest };
+export { useRequest };

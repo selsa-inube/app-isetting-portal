@@ -13,7 +13,7 @@ const initialValues: IDecisionEntry = {
   justification: "",
 };
 
-const UseDecisionModal = ({
+const useDecisionModal = ({
   justificationOfDecision,
   setFieldEntered,
 }: {
@@ -73,4 +73,4 @@ const UseDecisionModal = ({
   };
 };
 
-export { UseDecisionModal };
+export { useDecisionModal };

@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import {
-  IBusinessManagers,
-  IStaffPortalByBusinessManager,
-} from "@ptypes/staffPortal.types";
 import { initializeDataDB } from "@mocks/utils/inicializeDataDB";
+import { IUseAuthRedirect } from "@ptypes/hooks/IUseAuthRedirect";
 
-const UseAuthRedirect = (
-  portalPublicCode: IStaffPortalByBusinessManager,
-  businessManagersData: IBusinessManagers,
-  portalCode: string | null
-) => {
+const useAuthRedirect = (props: IUseAuthRedirect) => {
+  const { portalPublicCode, businessManagersData, portalCode } = props;
   const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
   const [hasRedirected, setHasRedirected] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -49,4 +43,4 @@ const UseAuthRedirect = (
   return { hasRedirected, hasError, isLoading, isAuthenticated, errorCode };
 };
 
-export { UseAuthRedirect };
+export { useAuthRedirect };

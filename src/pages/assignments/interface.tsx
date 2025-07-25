@@ -21,6 +21,7 @@ const AssignmentsUI = (props: IAssignmentsUI) => {
     showModal,
     showInfoModal,
     options,
+    showAbsenceModal,
     onToggleInfoModal,
     onCloseMenu,
     onToggleModal,
@@ -75,7 +76,7 @@ const AssignmentsUI = (props: IAssignmentsUI) => {
             selectedTab={isSelected}
             onChange={handleTabChange}
           />
-          {showAssigmentsTab && <AssignmentsTab />}
+          {showAssigmentsTab && <AssignmentsTab showAbsenceModal={showAbsenceModal}/>}
           {showRequestsInProgressTab && <RequestsInProgressTab />}
         </Stack>
       </Stack>

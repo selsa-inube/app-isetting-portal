@@ -3,15 +3,17 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { object } from "yup";
-import { assignmentsTabLabels } from "@config/assignments/generic/assignmentsTabLabels";
-import { IAssignmentsData } from "@ptypes/assignments/IAssignmentsData";
-import { enviroment } from "@config/environment";
-import { IAbsenceEntry } from "@ptypes/assignments/IAbsenceEntry";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
+import { assignmentsTabLabels } from "@config/assignments/generic/assignmentsTabLabels";
+import { enviroment } from "@config/environment";
+import { IAbsenceEntry } from "@ptypes/assignments/IAbsenceEntry";
+import { IAssignmentsData } from "@ptypes/assignments/IAssignmentsData";
+import { IUseAssignmentsTab } from "@ptypes/hooks/IUseAssignmentsTab";
 import { useAssignmentsData } from "../useAssignmentsData";
 
-const useAssignmentsTab = () => {
+const useAssignmentsTab = (props: IUseAssignmentsTab) => {
+  const {showAbsenceModal} =props;
   const [searchAssingments, setSearchAssingments] = useState<string>("");
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -32,6 +34,10 @@ const useAssignmentsTab = () => {
       setAssingments(data);
     }
   }, [data]);
+
+  useEffect(()=>{
+    setShowModal(showAbsenceModal)
+  }, [showAbsenceModal])
 
   const validationSchema = object({
     isActive: validationRules.boolean,
@@ -109,7 +115,7 @@ const useAssignmentsTab = () => {
   };
 
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
-  const columnWidths = smallScreen ? [63] : [52, 17, 17];
+  const columnWidths = smallScreen ? [68] : [52, 17, 17];
 
   const emptyDataMessage = smallScreen
     ? assignmentsTabLabels.emptyDataMessageMobile

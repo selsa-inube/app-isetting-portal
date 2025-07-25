@@ -3,7 +3,7 @@ import { basic } from "@design/tokens";
 import { IToggleGroup } from "@ptypes/design/IToggleGroup";
 
 const ToggleGroup = (props: IToggleGroup) => {
-  const { entries, onSelectCheckChange } = props;
+  const { entries, size = "small", onSelectCheckChange } = props;
   return (
     <>
       {entries.map((entry) => (
@@ -17,7 +17,7 @@ const ToggleGroup = (props: IToggleGroup) => {
             margin={basic.spacing.s0}
             onChange={() => onSelectCheckChange(entry.id ?? "")}
             padding={basic.spacing.s0}
-            size="small"
+            size={size}
           >
             {entry.value}
           </Toggle>

@@ -1,10 +1,11 @@
-import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
+import { IUseCountVerifiedRequests } from "@ptypes/hooks/IUseCountVerifiedRequests";
 
-const UseCountVerifiedRequests = (requests: IRequestSteps[]) => {
+const useCountVerifiedRequests = (props: IUseCountVerifiedRequests) => {
+  const { requests } = props;
   const countVerified = requests.filter(
     (request) => request.status === "completed" || request.status === "error"
   ).length;
   return (countVerified * 100) / requests.length;
 };
 
-export { UseCountVerifiedRequests };
+export { useCountVerifiedRequests };

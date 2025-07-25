@@ -1,14 +1,14 @@
-import { DetailsPosition } from "@config/positions/details";
+import { Fieldset, Text } from "@inubekit/inubekit";
+import { useTableData } from "@hooks/positions/useTableView";
 import { BorderStack } from "@design/layout/borderStack";
 import { basic } from "@design/tokens";
 import { EComponentAppearance } from "@enum/appearances";
-import { UseTableData } from "@hooks/positions/useTableView";
-import { Fieldset, Text } from "@inubekit/inubekit";
+import { DetailsPosition } from "@config/positions/details";
 import { ITabllePositions } from "@ptypes/positions/details/ITabllePositions";
 
 const TableView = (props: ITabllePositions) => {
   const { dataTable } = props;
-  const { rows } = UseTableData(dataTable);
+  const { rows } = useTableData({dataTable});
 
   if (!rows || rows.length === 0) return null;
 

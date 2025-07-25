@@ -1,19 +1,19 @@
 import { ITab, useMediaQuery } from "@inubekit/inubekit";
 import { useContext, useEffect, useState } from "react";
-import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
-import { decrypt } from "@utils/decrypt";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
-import { assignmentsTabsConfig } from "@config/assignments/tabs";
-import { IUseAssignmentsPage } from "@ptypes/hooks/assignments/IUseAssignmentsPage";
+import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
-import { IAssignmentsTabsConfig } from "@ptypes/assignments/IAssignmentsTabsConfig";
-import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
-import { enviroment } from "@config/environment";
 import { EOptionsByBusinessunits } from "@enum/optionsByBusinessunits";
 import { ERequestAssignments } from "@enum/requestAssignments";
+import { decrypt } from "@utils/decrypt";
+import { enviroment } from "@config/environment";
+import { assignmentsTabsConfig } from "@config/assignments/tabs";
+import { IUseAssignmentsPage } from "@ptypes/hooks/assignments/IUseAssignmentsPage";
+import { IAssignmentsTabsConfig } from "@ptypes/assignments/IAssignmentsTabsConfig";
+import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
-const UseAssignmentsPage = (props: IUseAssignmentsPage) => {
-  const { businessUnitSigla, bussinesUnits } = props;
+const useAssignmentsPage = (props: IUseAssignmentsPage) => {
+  const { businessUnitSigla, businessUnits } = props;
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
 
@@ -25,8 +25,9 @@ const UseAssignmentsPage = (props: IUseAssignmentsPage) => {
     IRequestsInProgress[]
   >([]);
   const [isSelected, setIsSelected] = useState<string>(tabs.assigments.id);
-  const [showModal, setShowModal] = useState(false);
-  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
+  const [showAbsenceModal, setShowAbsenceModal] = useState<boolean>(false);
 
   const { descriptionOptions } = useOptionsByBusinessunits({
     businessUnitSigla,
@@ -50,7 +51,7 @@ const UseAssignmentsPage = (props: IUseAssignmentsPage) => {
       try {
         const data = await getRequestsInProgress(
           ERequestAssignments.ASSIGNMENTS,
-          bussinesUnits,
+          businessUnits
         );
         setRequestsInProgress(data);
       } catch (error) {
@@ -112,6 +113,8 @@ const UseAssignmentsPage = (props: IUseAssignmentsPage) => {
     filteredTabsConfig,
     showModal,
     showInfoModal,
+    showAbsenceModal,
+    setShowAbsenceModal,
     onToggleInfoModal,
     onCloseMenu,
     onToggleModal,
@@ -119,4 +122,4 @@ const UseAssignmentsPage = (props: IUseAssignmentsPage) => {
   };
 };
 
-export { UseAssignmentsPage };
+export { useAssignmentsPage };

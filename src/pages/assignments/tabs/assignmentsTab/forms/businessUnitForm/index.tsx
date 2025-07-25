@@ -1,5 +1,5 @@
+import { useBusinessUnitForm } from "@hooks/assignments/useBusinessUnitForm";
 import { IBusinessUnitForm } from "@ptypes/assignments/assisted/IBusinessUnitForm";
-import { UseBusinessUnitForm } from "@hooks/assignments/useBusinessUnitForm";
 import { BusinessUnitFormUI } from "./interface";
 
 const BusinessUnitForm = (props: IBusinessUnitForm) => {
@@ -27,7 +27,7 @@ const BusinessUnitForm = (props: IBusinessUnitForm) => {
     handleToggleAllEntries,
     handleToggleUnits,
     handleSelectCheckChange,
-  } = UseBusinessUnitForm({
+  } = useBusinessUnitForm({
     entries,
     setSelectedToggle,
     editDataOption,

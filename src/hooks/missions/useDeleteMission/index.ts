@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { formatDate } from "@utils/date/formatDate";
-import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
-import { IUseDeleteMission } from "@ptypes/hooks/missions/IUseDeleteMission";
+import { eventBus } from "@events/eventBus";
 import { deleteLabels } from "@config/missions/deleteLabels";
+import { IUseDeleteMission } from "@ptypes/hooks/missions/IUseDeleteMission";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
-const UseDeleteMission = (props: IUseDeleteMission) => {
+const useDeleteMission = (props: IUseDeleteMission) => {
   const { data, appData } = props;
   const [showModal, setShowModal] = useState(false);
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
@@ -48,4 +48,4 @@ const UseDeleteMission = (props: IUseDeleteMission) => {
     setShowModal,
   };
 };
-export { UseDeleteMission };
+export { useDeleteMission };

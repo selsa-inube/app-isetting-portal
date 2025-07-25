@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { UseManageSearchAndPageControl } from "@hooks/positions/useManageSearchAndPageControl";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { UseBusinessManagersId } from "@hooks/positions/useBusinessManageresId";
+import { useManageSearchAndPageControl } from "@hooks/positions/useManageSearchAndPageControl";
+import { useBusinessManagersId } from "@hooks/positions/useBusinessManageresId";
 import { IPositionTab } from "@ptypes/positions/IPositionTab";
 import { PositionsTabUI } from "./interface";
 
@@ -9,10 +9,10 @@ const PositionsTab = (props: IPositionTab) => {
   const {businessUnitCode} = props;
   const loading = false;
   const { appData } = useContext(AuthAndData);
-  const { businessManagersData } = UseBusinessManagersId(
+  const { businessManagersData } = useBusinessManagersId({
     businessUnitCode,
-    appData.businessManager.publicCode
-  );
+    portalPublicCode: appData.businessManager.publicCode
+  });
 
   const {
     smallScreen,
@@ -21,7 +21,7 @@ const PositionsTab = (props: IPositionTab) => {
     columnWidths,
     setEntryDeleted,
     handleSearchPositions,
-  } = UseManageSearchAndPageControl();
+  } = useManageSearchAndPageControl();
 
   return (
     <PositionsTabUI

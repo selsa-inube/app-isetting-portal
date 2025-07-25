@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { UseSavePositions } from "@hooks/positions/useSavePositions";
+import { useSavePositions } from "@hooks/positions/useSavePositions";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
 import { deleteRequestInProgress } from "@config/positionsTabs/generics/deleteRequestInProgress";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { UseDeletePositions } from "@hooks/positions/useDeletePositions";
+import { useDeletePositions } from "@hooks/positions/useDeletePositions";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
@@ -25,7 +25,7 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
-  } = UseDeletePositions({data, appData});
+  } = useDeletePositions({data, appData});
 
   const {
     savePositions,
@@ -34,14 +34,14 @@ const Delete = (props: IDelete) => {
     loading,
     handleClosePendingReqModal,
     handleCloseRequestStatus,
-  } = UseSavePositions(
-    appData.businessUnit.publicCode,
-    appData.user.userAccount,
-    showRequestProcessModal,
-    saveData as ISaveDataRequest,
-    setShowRequestProcessModal,
+  } = useSavePositions({
+    businessUnits: appData.businessUnit.publicCode,
+    userAccount: appData.user.userAccount,
+    sendData: showRequestProcessModal,
+    data: saveData as ISaveDataRequest,
+    setSendData: setShowRequestProcessModal,
     setShowModal
-  );
+  });
 
   const showRequestProcess = showRequestProcessModal && savePositions;
 

@@ -1,11 +1,9 @@
 import { useContext } from "react";
-import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
-
-import { positionsTabsConfig } from "@config/positionsTabs/tabs";
-import { UseManageUsersSearchAndPageControl } from "@hooks/users/useManageSearchAndPageControl";
-import { IEntry } from "@ptypes/design/table/IEntry";
 import { AuthAndData } from "@context/authAndDataProvider";
-
+import { usePositionsTabs } from "@hooks/positions/usePositionsTabs";
+import { useManageUsersSearchAndPageControl } from "@hooks/users/useManageSearchAndPageControl";
+import { positionsTabsConfig } from "@config/positionsTabs/tabs";
+import { IEntry } from "@ptypes/design/table/IEntry";
 import { UsersUI } from "./interface";
 
 const Users = () => {
@@ -18,10 +16,10 @@ const Users = () => {
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
     columnWidths,
-  } = UsePositionsTabs();
+  } = usePositionsTabs();
 
   const { searchPosition, handleSearchPositions, loading, requestsInProgress } =
-    UseManageUsersSearchAndPageControl(appData.businessManager.publicCode);
+    useManageUsersSearchAndPageControl({businessManager: appData.businessManager.publicCode});
   return (
     <UsersUI
       handleSearchPositions={handleSearchPositions}

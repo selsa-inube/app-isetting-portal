@@ -4,10 +4,10 @@ import { object } from "yup";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
-import { IUseGeneralInfo } from "@ptypes/hooks/missions/IUseGeneralInfo";
 import { generalInfoLabels } from "@config/missions/missionTab/generalInfoLabels";
+import { IUseGeneralInfo } from "@ptypes/hooks/missions/IUseGeneralInfo";
 
-const UseGeneralInfo = (props: IUseGeneralInfo) => {
+const useGeneralInfo = (props: IUseGeneralInfo) => {
   const { initialValues, ref,editDataOption, onSubmit, onFormValid } = props;
 
     const [isDisabledButton, setIsDisabledButton] = useState(false);
@@ -77,4 +77,4 @@ const UseGeneralInfo = (props: IUseGeneralInfo) => {
   };
 };
 
-export { UseGeneralInfo };
+export { useGeneralInfo };

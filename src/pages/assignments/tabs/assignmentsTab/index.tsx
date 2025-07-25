@@ -1,9 +1,11 @@
 import { IEntry } from "@ptypes/design/table/IEntry";
 import { usePageLength } from "@hooks/authentication/usePageLength";
 import { useAssignmentsTab } from "@hooks/assignments/useAssignmentsTab";
+import { IAssignmentsTab } from "@ptypes/assignments/IAssignmentsTab";
 import { AssignmentsTabUI } from "./interface";
 
-const AssignmentsTab = () => {
+const AssignmentsTab = (props: IAssignmentsTab) => {
+  const {showAbsenceModal} =props;
   const {
     assingments,
     searchAssingments,
@@ -21,7 +23,7 @@ const AssignmentsTab = () => {
     handleToggleModal,
     setEntryDeleted,
     handleSearchAssingments,
-  } = useAssignmentsTab();
+  } = useAssignmentsTab({showAbsenceModal});
 
   const pageLength = usePageLength();
 

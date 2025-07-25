@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { UseAddAssignments } from "@hooks/assignments/useAddAssignments";
+import { useAddAssignments } from "@hooks/addAssignments/useAddAssignments";
 import { addAssignmentsSteps } from "@config/assignments/assisted/steps";
 import { AddAssignmentsUI } from "./interface";
 
@@ -13,12 +13,13 @@ const AddAssignments = () => {
     formValid,
     formValues,
     formReferences,
+    setRolesSelected,
     setSelectedToggle,
     handleToggleModal,
     handleNextStep,
     handlePreviousStep,
     setIsCurrentFormValid,
-  } = UseAddAssignments({ absentOfficial: data });
+  } = useAddAssignments({ absentOfficial: data });
 
   return (
     <AddAssignmentsUI
@@ -34,6 +35,7 @@ const AddAssignments = () => {
       setIsCurrentFormValid={setIsCurrentFormValid}
       absentOfficialSelected={data || ("" as string)}
       setSelectedToggle={setSelectedToggle}
+      setRolesSelected={setRolesSelected}
     />
   );
 };

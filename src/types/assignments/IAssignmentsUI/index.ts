@@ -12,6 +12,7 @@ interface IAssignmentsUI {
   showModal: boolean;
   showInfoModal: boolean;
   options: IMenuOptions[];
+  showAbsenceModal: boolean;
   onToggleInfoModal: () => void;
   onCloseMenu: () => void;
   onToggleModal: () => void;

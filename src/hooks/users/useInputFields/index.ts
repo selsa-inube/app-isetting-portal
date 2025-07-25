@@ -1,7 +1,8 @@
 import { IPosition } from "@ptypes/positions/assisted/IPosition";
 import { IInputFields } from "@ptypes/users/details/IInputFields";
 
-const UseInputFields = ({ labels, infoData }: IInputFields) => {
+const useInputFields = ( props: IInputFields) => {
+  const { labels, infoData } = props;
   return (labels.length ? labels : Object.keys(infoData))
     .map((field) => {
       const { id, labelName } =
@@ -20,4 +21,4 @@ const UseInputFields = ({ labels, infoData }: IInputFields) => {
     .filter(Boolean);
 };
 
-export { UseInputFields };
+export { useInputFields };

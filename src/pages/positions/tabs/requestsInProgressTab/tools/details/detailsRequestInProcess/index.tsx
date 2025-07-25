@@ -1,19 +1,19 @@
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
-import { IDetails } from "@ptypes/traceabilityCard/IDetails";
-import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
-import { labelsOfTraceability } from "@config/requestsInProgressTab/details/labelsOfTraceability";
-import { LabelsInfo } from "@pages/positions/tabs/positionsTabs/forms/detailsModal/detailsPositionsModal/labelsInfo";
-import { UseModalLabelsAndActions } from "@hooks/positions/useModalLabelsAndActions";
-import { ModalWrapper } from "@design/modals/modalWrapper";
-import { detailsMoreDetails } from "@config/requestsInProgressTab/details/detailsRequestInProgressModalMoreDetails";
-import { BorderStack } from "@design/layout/borderStack";
+import { useModalLabelsAndActions } from "@hooks/positions/useModalLabelsAndActions";
 import { TableView } from "@pages/positions/tabs/positionsTabs/forms/detailsModal/detailsPositionsModal/tableView";
+import { LabelsInfo } from "@pages/positions/tabs/positionsTabs/forms/detailsModal/detailsPositionsModal/labelsInfo";
+import { ModalWrapper } from "@design/modals/modalWrapper";
+import { BorderStack } from "@design/layout/borderStack";
 import { basic } from "@design/tokens";
-import { StyledContainerIcon } from "./styles";
-import { RequestsInProcess } from "../requestsInProcess";
-import RequestTitleSection from "../requestsInProcess/requestTitleSection";
 import { EComponentAppearance } from "@enum/appearances";
+import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
+import { detailsMoreDetails } from "@config/requestsInProgressTab/details/detailsRequestInProgressModalMoreDetails";
+import { labelsOfTraceability } from "@config/requestsInProgressTab/details/labelsOfTraceability";
+import { IDetails } from "@ptypes/traceabilityCard/IDetails";
+import { StyledContainerIcon } from "./styles";
+import RequestTitleSection from "../requestsInProcess/requestTitleSection";
+import { RequestsInProcess } from "../requestsInProcess";
 
 const DetailsRequestInProcess = (props: IDetails) => {
   const {
@@ -28,7 +28,7 @@ const DetailsRequestInProcess = (props: IDetails) => {
     dataTable,
   } = props;
   const screenTablet = useMediaQuery("(max-width: 1200px)");
-  const { hasLabels } = UseModalLabelsAndActions(labels);
+  const { hasLabels } = useModalLabelsAndActions({labels});
   return (
     <>
       <StyledContainerIcon onClick={onToggleModal} $isTablet={screenTablet}>

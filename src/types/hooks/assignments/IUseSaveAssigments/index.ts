@@ -1,7 +1,7 @@
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
 interface IUseSaveAssigments {
-  bussinesUnits: string;
+  businessUnits: string;
   useCase: "add" | "edit" | "delete";
   userAccount: string;
   sendData: boolean;

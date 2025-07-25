@@ -1,6 +1,6 @@
 interface IUseAssignmentsPage {
   businessUnitSigla: string;
-  bussinesUnits: string;
+  businessUnits: string;
 }
 
 export type { IUseAssignmentsPage };

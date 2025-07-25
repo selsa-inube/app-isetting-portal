@@ -1,12 +1,12 @@
 import { MdOutlineStart } from "react-icons/md";
 import { Location } from "react-router-dom";
 import { ILinkNav } from "@inubekit/inubekit";
-import { ICardData } from "@ptypes/home/ICardData";
 import { actionsConfig } from "@config/mainActionLogout";
 import { portalId } from '@config/portalId';
 import { IUseMainNavigation } from "@ptypes/hooks/IUseMainNavigation";
+import { ICardData } from "@ptypes/home/ICardData";
 
-const UseMainNavigation = (props: IUseMainNavigation) => {
+const useMainNavigation = (props: IUseMainNavigation) => {
 
   const { optionsCards, logout, location } = props;
 
@@ -69,4 +69,4 @@ const UseMainNavigation = (props: IUseMainNavigation) => {
   };
 };
 
-export { UseMainNavigation };
+export { useMainNavigation };

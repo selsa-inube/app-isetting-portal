@@ -1,20 +1,15 @@
 import { useEffect, useImperativeHandle, useState } from "react";
-import { FormikProps, useFormik } from "formik";
+import { useFormik } from "formik";
 import { object } from "yup";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
-import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { labels } from "@config/positions/assistedText";
 import { enviroment } from "@config/environment";
+import { IUseGeneralInfoCreditLineForm } from "@ptypes/hooks/IUseGeneralInfoCreditLineForm";
 
-const UseGeneralInfoCreditLineForm = (
-  initialValues: IGeneralInformationEntry,
-  ref: React.ForwardedRef<FormikProps<IGeneralInformationEntry>>,
-  onSubmit: ((values: IGeneralInformationEntry) => void) | undefined,
-  onFormValid: React.Dispatch<React.SetStateAction<boolean>> | undefined,
-  editDataOption?: boolean
-) => {
+const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
+  const { initialValues, ref, onSubmit, onFormValid, editDataOption } = props;
   const createValidationSchema = () =>
     object().shape({
       namePosition: validationRules.string.required(
@@ -52,14 +47,16 @@ const UseGeneralInfoCreditLineForm = (
 
   const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
 
-    const valuesEmpty = Object.values(formik.values).every(
-    (value) => value === "" || value === null || value === undefined,
+  const valuesEmpty = Object.values(formik.values).every(
+    (value) => value === "" || value === null || value === undefined
   );
 
   useEffect(() => {
     const updateButton = () => {
       if (editDataOption) {
-        setIsDisabledButton(!formik.isValid || valuesEmpty || valuesEqualButton);
+        setIsDisabledButton(
+          !formik.isValid || valuesEmpty || valuesEqualButton
+        );
       } else {
         setIsDisabledButton(!formik.isValid);
       }
@@ -76,8 +73,8 @@ const UseGeneralInfoCreditLineForm = (
     isMobile,
     valuesEqualButton,
     labelButtonNext,
-    isDisabledButton
+    isDisabledButton,
   };
 };
 
-export { UseGeneralInfoCreditLineForm };
+export { useGeneralInfoCreditLineForm };

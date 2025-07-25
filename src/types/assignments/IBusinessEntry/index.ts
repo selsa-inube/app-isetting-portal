@@ -2,8 +2,8 @@ interface IBusinessEntry {
   publicCode: string;
   isActive: boolean;
   id?: string;
-  roleName?: string;
-  positionName?: string;
+  roleNames?: string[];
+  positionNames?: string[];
   value?: string
 }
 

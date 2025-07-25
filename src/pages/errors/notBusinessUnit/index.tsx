@@ -1,12 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { enviroment } from "@config/environment";
+import { useLogout } from "@hooks/authentication/useLogout";
 import { ErrorPage } from "@design/layout/ErrorPage";
-import { UseLogout } from "@hooks/authentication/useLogout";
+import { enviroment } from "@config/environment";
 
 const NotBusinessUnit = () => {
   const { logout } = useAuth0();
 
-  UseLogout();
+  useLogout();
 
   const handleLogout = () => {
     logout({ logoutParams: { returnTo: enviroment.REDIRECT_URI } });

@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 
-import {
-  IBusinessManagers,
-  IStaffPortalByBusinessManager,
-} from "@ptypes/staffPortal.types";
 import { getBusinessManagers } from "@services/staffPortal/getBusinessManager";
+import { IBusinessManagers } from "@ptypes/staffPortal.types";
+import { IUseBusinessManagers } from "@ptypes/hooks/IUseBusinessManagers";
 
-const UseBusinessManagers = (
-  portalPublicCode: IStaffPortalByBusinessManager
-) => {
+const useBusinessManagers = (props: IUseBusinessManagers) => {
+  const { portalPublicCode } = props;
   const [businessManagersData, setBusinessManagersData] =
     useState<IBusinessManagers>({} as IBusinessManagers);
   const [hasError, setHasError] = useState(false);
@@ -39,4 +36,4 @@ const UseBusinessManagers = (
   return { businessManagersData, hasError, errorCode };
 };
 
-export { UseBusinessManagers };
+export { useBusinessManagers };

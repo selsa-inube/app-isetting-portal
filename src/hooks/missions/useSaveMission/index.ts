@@ -2,22 +2,22 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
 
-import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
-import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
-import { statusCloseModal } from "@config/status/statusCloseModal";
-import { statusRequestFinished } from "@config/status/statusRequestFinished";
+import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 import { ERequestStepsStatus } from "@enum/requestStepsStatus";
+import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { EUseCase } from "@enum/useCase";
+import { flowAutomaticMessages } from "@config/missions/missionTab/generic/flowAutomaticMessages";
+import { interventionHumanMessage } from "@config/missions/missionTab/generic/interventionHumanMessage";
+import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
+import { statusCloseModal } from "@config/status/statusCloseModal";
 import { requestStepsInitial } from "@config/requestSteps";
 import { operationTypes } from "@config/useCase";
 import { requestStepsNames } from "@config/requestStepsNames";
-import { EUseCase } from "@enum/useCase";
-import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { statusRequestFinished } from "@config/status/statusRequestFinished";
+import { requestStatusMessage } from "@config/missions/missionTab/generic/requestStatusMessage";
 import { IUseSaveMission } from "@ptypes/hooks/missions/IUseSaveMission";
 import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
-import { flowAutomaticMessages } from "@config/missions/missionTab/generic/flowAutomaticMessages";
-import { interventionHumanMessage } from "@config/missions/missionTab/generic/interventionHumanMessage";
-import { requestStatusMessage } from "@config/missions/missionTab/generic/requestStatusMessage";
-import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
+import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 
 const useSaveMission = (props: IUseSaveMission) => {
   const {

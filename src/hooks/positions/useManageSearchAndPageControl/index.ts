@@ -1,12 +1,12 @@
+import { useLocation } from "react-router-dom";
 import { useState, useContext } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { useLocation } from "react-router-dom";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { UseBusinessManagersId } from "@hooks/positions/useBusinessManageresId";
+import { useBusinessManagersId } from "@hooks/positions/useBusinessManageresId";
 import { PrivilegeOptionsConfig } from "@config/positions/tabs";
 import { enviroment } from "@config/environment";
 
-const UseManageSearchAndPageControl = () => {
+const useManageSearchAndPageControl = () => {
   const [searchPosition, setSearchPosition] = useState<string>("");
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
 
@@ -17,16 +17,15 @@ const UseManageSearchAndPageControl = () => {
   );
 
   const { appData } = useContext(AuthAndData);
-  const { businessManagersData } = UseBusinessManagersId(
-    
-    appData.businessManager.publicCode
-  );
+  const { businessManagersData } = useBusinessManagersId({
+    businessUnitCode: appData.businessManager.publicCode,
+  });
 
   const handleSearchPositions = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchPosition(e.target.value);
   };
 
-  const columnWidths = [75]
+  const columnWidths = [75];
 
   return {
     searchPosition,
@@ -40,4 +39,4 @@ const UseManageSearchAndPageControl = () => {
   };
 };
 
-export { UseManageSearchAndPageControl };
+export { useManageSearchAndPageControl };

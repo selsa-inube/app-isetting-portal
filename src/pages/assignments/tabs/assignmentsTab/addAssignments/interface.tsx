@@ -1,6 +1,7 @@
 import { Assisted, Breadcrumbs, Stack } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { PageTitle } from "@design/label/PageTitle";
+import { stepsKeysAssignments } from "@enum/stepsKeysAssignments";
 import { controlsAssisted } from "@config/controlsAssisted";
 import { addAssignmentsLabels } from "@config/assignments/assisted/addAssignmentsLabels";
 import { crumbsAddAssignments } from "@config/assignments/assisted/navigation";
@@ -25,6 +26,8 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
     onPreviousStep,
     onToggleModal,
   } = props;
+
+  console.log("qqq", stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT);
 
   return (
     <Stack
@@ -57,7 +60,7 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
             showCurrentStepNumber={false}
           />
           <Stack direction="column">
-            {currentStep === 1 && (
+            {currentStep === stepsKeysAssignments.OFFICIAL_IN_CHARGE && (
               <OfficialInChargeForm
                 ref={formReferences.officialInCharge}
                 absentOfficialSelected={absentOfficialSelected}
@@ -66,7 +69,7 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
                 onButtonClick={onNextStep}
               />
             )}
-            {currentStep === 2 && (
+            {currentStep === stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT && (
               <BusinessUnitForm
                 entries={formValues.businessUnitOfficial.values}
                 setSelectedToggle={setSelectedToggle}
@@ -74,7 +77,7 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
                 onPreviousStep={onPreviousStep}
               />
             )}
-            {currentStep === 3 && (
+            {currentStep === stepsKeysAssignments.ROLES_BY_BUSINESS_UNIT && (
               <RolesByBusinessUnitForm
                 entries={formValues.rolesByBusinessUnits.values}
                 onPreviousStep={onPreviousStep}

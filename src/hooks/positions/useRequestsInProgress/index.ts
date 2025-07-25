@@ -7,7 +7,7 @@ import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IReque
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 
 const useRequestsInProgress = (props: IUseRequestsInProgress) => {
-  const { bussinesUnits } = props;
+  const { businessUnits } = props;
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
   >([]);
@@ -24,7 +24,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
       try {
         const data = await getRequestsInProgress(
           ERequestPosition.POSITIONS,
-          bussinesUnits
+          businessUnits
         );
         setRequestsInProgress(data);
       } catch (error) {

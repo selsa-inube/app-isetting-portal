@@ -5,12 +5,12 @@ import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IReque
 import { mapRequestsInProgressToEntities } from "./mappers";
 
 const getRequestsInProgress = async (
-  bussinesUnits: string
+  businessUnits: string
 ): Promise<IRequestsInProgress[]> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchPendingConfigurationRequest",
-      "X-Business-unit": bussinesUnits,
+      "X-Business-unit": businessUnits,
     },
   };
 
@@ -24,7 +24,7 @@ const getRequestsInProgress = async (
   });
   const data = await getWithRetries<IRequestsInProgress[]>(
     queryProcessAxiosInstance,
-    `/requests/business-unit/${bussinesUnits}?${queryParams.toString()}`,
+    `/requests/business-unit/${businessUnits}?${queryParams.toString()}`,
     config
   );
   return Array.isArray(data) ? mapRequestsInProgressToEntities(data) : [];

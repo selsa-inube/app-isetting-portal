@@ -4,9 +4,9 @@ import {
 } from "@ptypes/staffPortal.types";
 
 interface IUseAuthRedirect {
-      portalPublicCode: IStaffPortalByBusinessManager,
-  businessManagersData: IBusinessManagers,
-  portalCode: string | null
+  portalPublicCode: IStaffPortalByBusinessManager;
+  businessManagersData: IBusinessManagers;
+  portalCode: string | null;
 }
 
-export type {IUseAuthRedirect}
+export type { IUseAuthRedirect };

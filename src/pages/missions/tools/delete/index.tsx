@@ -37,7 +37,7 @@ const Delete = (props: IDelete) => {
     handleCloseRequestStatus,
   } = useSaveMission({
     useCase: EUseCase.DELETE,
-    bussinesUnits: appData.businessUnit.publicCode,
+    businessUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
      sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,

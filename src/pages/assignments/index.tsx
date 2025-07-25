@@ -26,7 +26,7 @@ const Assignments = () => {
     handleTabChange,
   } = useAssignmentsPage({
     businessUnitSigla,
-    bussinesUnits: appData.businessUnit.publicCode,
+    businessUnits: appData.businessUnit.publicCode,
   });
 
   return (

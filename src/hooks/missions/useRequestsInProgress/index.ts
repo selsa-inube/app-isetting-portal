@@ -8,7 +8,7 @@ import { enviroment } from "@config/environment";
 import { ERequestInProgress } from "@enum/requestInProgress";
 
 const useRequestsInProgress = (props: IUseRequestsInProgress) => {
-  const { bussinesUnits } = props;
+  const { businessUnits } = props;
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
   >([]);
@@ -22,7 +22,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        const data = await getRequestsInProgress(ERequestInProgress.MISSIONS, bussinesUnits);
+        const data = await getRequestsInProgress(ERequestInProgress.MISSIONS, businessUnits);
         setRequestsInProgress(data);
       } catch (error) {
         console.info(error);

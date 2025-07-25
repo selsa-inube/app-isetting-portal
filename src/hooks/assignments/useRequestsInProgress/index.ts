@@ -8,7 +8,7 @@ import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
 const useRequestsInProgress = (props: IUseRequestsInProgress) => {
-  const { bussinesUnits } = props;
+  const { businessUnits } = props;
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
   >([]);
@@ -22,7 +22,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        const data = await getRequestsInProgress( ERequestAssignments.ASSIGNMENTS, bussinesUnits);
+        const data = await getRequestsInProgress( ERequestAssignments.ASSIGNMENTS, businessUnits);
         setRequestsInProgress(data);
       } catch (error) {
         console.info(error);

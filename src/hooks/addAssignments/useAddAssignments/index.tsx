@@ -1,9 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
-import {  useMediaQuery } from "@inubekit/inubekit";
+import { useMediaQuery } from "@inubekit/inubekit";
 
 import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
+import { stepsKeysAssignments } from "@enum/stepsKeysAssignments";
 import { enviroment } from "@config/environment";
 import { addAssignmentsSteps } from "@config/assignments/assisted/steps";
 import { addAssignmentsLabels } from "@config/assignments/assisted/addAssignmentsLabels";
@@ -94,13 +95,15 @@ const useAddAssignments = (props: IUseAddAssignments) => {
   );
   const officialInChargeRef = useRef<FormikProps<IOfficialInChargeEntry>>(null);
 
-   const {  validateselectedToggle,
+  const {
+    validateSelectedToggle,
     showGoBackModal,
     handleGoBack,
     handleOpenModal,
     handleToggleModal,
-    handleCloseModal,   
-  } = useAssignmentNavigation({currentStep,
+    handleCloseModal,
+  } = useAssignmentNavigation({
+    currentStep,
     hasError,
     businessUnitsOptions,
     initialValues,
@@ -108,8 +111,8 @@ const useAddAssignments = (props: IUseAddAssignments) => {
     showModal,
     officialInChargeRef,
     selectedToggle,
-    setShowModal})
-
+    setShowModal,
+  });
 
   const formReferences: IAddAssignmentsRef = {
     officialInCharge: officialInChargeRef,
@@ -128,7 +131,7 @@ const useAddAssignments = (props: IUseAddAssignments) => {
         setIsCurrentFormValid(officialInChargeRef.current.isValid);
         setCurrentStep(currentStep + 1);
       }
-      if (currentStep === 2) {
+      if (currentStep === stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT) {
         setFormValues((prev) => ({
           ...prev,
           businessUnitOfficial: {
@@ -139,7 +142,7 @@ const useAddAssignments = (props: IUseAddAssignments) => {
         setCurrentStep(currentStep + 1);
       }
 
-      if (currentStep === 3) {
+      if (currentStep === stepsKeysAssignments.ROLES_BY_BUSINESS_UNIT) {
         setFormValues((prev) => ({
           ...prev,
           rolesByBusinessUnits: {
@@ -164,8 +167,8 @@ const useAddAssignments = (props: IUseAddAssignments) => {
     allRoles.length > 0 && allRoles.every((role) => !role.isActive);
 
   const formValid =
-    (currentStep === 2 && !validateselectedToggle) ||
-    (currentStep === 3 && globalAllActiveRoles) ||
+    (currentStep === stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT && !validateSelectedToggle) ||
+    (currentStep === stepsKeysAssignments.ROLES_BY_BUSINESS_UNIT && globalAllActiveRoles) ||
     !isCurrentFormValid;
 
   const handleSubmitClick = () => {

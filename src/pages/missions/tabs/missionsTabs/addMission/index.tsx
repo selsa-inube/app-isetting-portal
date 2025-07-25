@@ -1,12 +1,12 @@
 import { useContext } from "react";
+import { AuthAndData } from "@context/authAndDataProvider";
+import { useSaveMission } from "@hooks/missions/useSaveMission";
+import { useAddMission } from "@hooks/missions/useAddMission";
+import { EUseCase } from "@enum/useCase";
+import { assistedSteps } from "@config/missions/missionTab/assisted/assistedSteps";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
-import { AuthAndData } from "@context/authAndDataProvider";
-import { useAddMission } from "@hooks/missions/useAddMission";
-import { assistedSteps } from "@config/missions/missionTab/assisted/assistedSteps";
 import { AddMissionUI } from "./interface";
-import { useSaveMission } from "@hooks/missions/useSaveMission";
-import { EUseCase } from "@enum/useCase";
 
 const AddMission = () => {
 
@@ -43,7 +43,7 @@ const AddMission = () => {
     showPendingReqModal,
   } = useSaveMission({
       useCase: EUseCase.ADD,
-    bussinesUnits: appData.businessUnit.publicCode,
+    businessUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,

@@ -101,12 +101,12 @@ const useAssignmentNavigation = (props: IUseAssignmentNavigation) => {
     };
   }, [formValues, initialValues, officialInChargeRef, canRefresh]);
 
-  const validateselectedToggle = selectedToggle?.some(
+  const validateSelectedToggle = selectedToggle?.some(
     (unit) => unit.isActive === true
   );
 
   return {
-    validateselectedToggle,
+    validateSelectedToggle,
     showGoBackModal,
     handleGoBack,
     handleOpenModal,

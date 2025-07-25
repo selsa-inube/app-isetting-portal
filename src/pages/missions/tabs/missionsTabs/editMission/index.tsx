@@ -45,7 +45,7 @@ const EditMission = () => {
     showPendingReqModal,
   } = useSaveMission({
     useCase: EUseCase.EDIT,
-    bussinesUnits: appData.businessUnit.publicCode,
+    businessUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,

@@ -16,7 +16,10 @@ const RequestsInProgressTab = () => {
     columnWidths,
     handleSearchRequestsInProgress,
     setEntryCanceled,
-  } = useRequestsInProgress({ businessUnits: appData.businessUnit.publicCode });
+  } = useRequestsInProgress({
+    businessUnits: appData.businessUnit.publicCode,
+    businessManager: appData.businessManager.publicCode,
+  });
 
   const pageLength = usePageLength();
 

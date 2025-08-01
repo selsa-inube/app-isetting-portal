@@ -152,7 +152,8 @@ const usePositionsTabs = () => {
       try {
         const data = await getRequestsInProgress(
           ERequestPosition.POSITIONS,
-          ERequestPosition.TEST,
+          appData.businessManager.publicCode,
+          appData.businessUnit.publicCode
         );
         setRequestsInProgress(data);
       } catch (error) {

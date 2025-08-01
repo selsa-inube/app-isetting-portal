@@ -14,7 +14,10 @@ const RequestsInProgressTab = () => {
     setEntryDeleted,
     columnWidths,
     smallScreen,
-  } = useRequestsInProgress({businessUnits: appData.businessUnit.publicCode});
+  } = useRequestsInProgress({
+    businessUnits: appData.businessUnit.publicCode,
+    businessManager: appData.businessManager.publicCode,
+  });
 
   return (
     <RequestsInProgressTabUI

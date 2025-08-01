@@ -25,6 +25,7 @@ const Assignments = () => {
     onToggleModal,
     handleTabChange,
   } = useAssignmentsPage({
+    businessManager: appData.businessManager.publicCode,
     businessUnitSigla,
     businessUnits: appData.businessUnit.publicCode,
   });

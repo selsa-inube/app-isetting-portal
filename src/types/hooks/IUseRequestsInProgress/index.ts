@@ -1,5 +1,6 @@
 interface IUseRequestsInProgress {
-  businessUnits: string;
+  businessManager: string;
+  businessUnits?: string;
 }
 
 export type { IUseRequestsInProgress };

@@ -16,6 +16,7 @@ import { IOfficialInChargeEntry } from "@ptypes/assignments/assisted/IOfficialIn
 import { IAddAssignmentsRef } from "@ptypes/assignments/assisted/IAddAssignmentsRef";
 import { IUseAddAssignments } from "@ptypes/hooks/IUseAddAssignments";
 import { IRolesByUnitEntry } from "@ptypes/assignments/assisted/IRolesByUnitEntry";
+import { IReasonAndCoverageEntry } from "@ptypes/assignments/assisted/IReasonAndCoverageEntry";
 import { UseBusinessUnitsByOfficial } from "../../assignments/useBusinessUnitsByOfficial";
 import { useAssignmentNavigation } from "../useAssignmentNavigation";
 
@@ -34,6 +35,14 @@ const useAddAssignments = (props: IUseAddAssignments) => {
     rolesByBusinessUnits: {
       isValid: false,
       values: [],
+    },
+    reasonAndCoverage: {
+      isValid: false,
+      values: {
+        dateFrom: "",
+        dateTo: "",
+        descriptionReason: "",
+      },
     },
   };
 
@@ -94,6 +103,8 @@ const useAddAssignments = (props: IUseAddAssignments) => {
     formValues.rolesByBusinessUnits.values
   );
   const officialInChargeRef = useRef<FormikProps<IOfficialInChargeEntry>>(null);
+  const reasonAndCoverageRef =
+    useRef<FormikProps<IReasonAndCoverageEntry>>(null);
 
   const {
     validateSelectedToggle,
@@ -116,6 +127,7 @@ const useAddAssignments = (props: IUseAddAssignments) => {
 
   const formReferences: IAddAssignmentsRef = {
     officialInCharge: officialInChargeRef,
+    reasonAndCoverage: reasonAndCoverageRef,
   };
 
   const handleNextStep = () => {
@@ -129,6 +141,18 @@ const useAddAssignments = (props: IUseAddAssignments) => {
           },
         }));
         setIsCurrentFormValid(officialInChargeRef.current.isValid);
+        setCurrentStep(currentStep + 1);
+      }
+
+      if(reasonAndCoverageRef.current){
+        setFormValues((prevValues) => ({
+          ...prevValues,
+          reasonAndCoverage: {
+            ...prevValues.reasonAndCoverage,
+            values: reasonAndCoverageRef.current!.values,
+          },
+        }));
+        setIsCurrentFormValid(reasonAndCoverageRef.current.isValid);
         setCurrentStep(currentStep + 1);
       }
       if (currentStep === stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT) {
@@ -167,8 +191,10 @@ const useAddAssignments = (props: IUseAddAssignments) => {
     allRoles.length > 0 && allRoles.every((role) => !role.isActive);
 
   const formValid =
-    (currentStep === stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT && !validateSelectedToggle) ||
-    (currentStep === stepsKeysAssignments.ROLES_BY_BUSINESS_UNIT && globalAllActiveRoles) ||
+    (currentStep === stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT &&
+      !validateSelectedToggle) ||
+    (currentStep === stepsKeysAssignments.ROLES_BY_BUSINESS_UNIT &&
+      globalAllActiveRoles) ||
     !isCurrentFormValid;
 
   const handleSubmitClick = () => {

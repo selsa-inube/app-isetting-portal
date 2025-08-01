@@ -11,14 +11,11 @@ import { IMissionTabsConfig } from "@ptypes/missions/IMissionTabsConfig";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
 const useMissionsTabs = () => {
-
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
-  const tabs= missionsTabsConfig(smallScreen);
-  const [isSelected, setIsSelected] = useState<string>(
-    tabs.roles.id
-  );
+  const tabs = missionsTabsConfig(smallScreen);
+  const [isSelected, setIsSelected] = useState<string>(tabs.roles.id);
   const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);
-  
+
   const [showMenu, setShowMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [requestsInProgress, setRequestsInProgress] = useState<
@@ -27,7 +24,7 @@ const useMissionsTabs = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const widthFirstColumn = smallScreen ? 60 : 20;
 
-  const { setBusinessUnitSigla } = useContext(AuthAndData);
+  const { setBusinessUnitSigla, appData } = useContext(AuthAndData);
 
   useEffect(() => {
     setBusinessUnitSigla("");
@@ -61,7 +58,7 @@ const useMissionsTabs = () => {
       try {
         const data = await getRequestsInProgress(
           ERequestMission.MISSIONS,
-          ERequestMission.TEST,
+          appData.businessManager.publicCode
         );
         setRequestsInProgress(data);
       } catch (error) {
@@ -85,30 +82,26 @@ const useMissionsTabs = () => {
     }
   }, [isSelected]);
 
-  const filteredTabsConfig = Object.keys(tabs).reduce(
-    (filteredtabs, key) => {
-      const tab = tabs[key as keyof typeof missionsTabsConfig];
+  const filteredTabsConfig = Object.keys(tabs).reduce((filteredtabs, key) => {
+    const tab = tabs[key as keyof typeof missionsTabsConfig];
 
-      if (
-        key === tabs.requestsInProgress.id &&
-        requestsInProgress &&
-        requestsInProgress.length === 0
-      ) {
-        return filteredtabs;
-      }
-
-      if (tab !== undefined) {
-        filteredtabs[key as keyof IMissionTabsConfig] = tab;
-      }
+    if (
+      key === tabs.requestsInProgress.id &&
+      requestsInProgress &&
+      requestsInProgress.length === 0
+    ) {
       return filteredtabs;
-    },
-    {} as IMissionTabsConfig
-  );
+    }
+
+    if (tab !== undefined) {
+      filteredtabs[key as keyof IMissionTabsConfig] = tab;
+    }
+    return filteredtabs;
+  }, {} as IMissionTabsConfig);
 
   const showMissionTab = isSelected === tabs.roles.id;
 
-  const showRequestTab =
-    isSelected === tabs.requestsInProgress.id;
+  const showRequestTab = isSelected === tabs.requestsInProgress.id;
 
   const missionsTabs = Object.values(filteredTabsConfig);
 

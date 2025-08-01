@@ -6,6 +6,7 @@ enum ERequestStatus {
   InTheProcessOfValidation = "En proceso de validación",
   InTheProcessOfComplementationAndValidation = "En proceso de complementación y validación",
   ProcessingRequest = "Procesando solicitud",
+  RequestReadyToProcess = "Solicitud lista para procesar",
   RejectedRequest = "Solicitud rechazada",
 }
 

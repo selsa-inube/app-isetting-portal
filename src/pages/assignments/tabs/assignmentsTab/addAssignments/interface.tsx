@@ -9,6 +9,7 @@ import { IAddAssignmentsUI } from "@ptypes/assignments/assisted/IAddAssignmentsU
 import { OfficialInChargeForm } from "../forms/officialInChargeForm";
 import { BusinessUnitForm } from "../forms/businessUnitForm";
 import { RolesByBusinessUnitForm } from "../forms/rolesByBusinessUnitForm";
+import { ReasonAndCoverageForm } from "../forms/reasonAndCoverageForm";
 
 const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
   const {
@@ -26,8 +27,6 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
     onPreviousStep,
     onToggleModal,
   } = props;
-
-  console.log("qqq", stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT);
 
   return (
     <Stack
@@ -86,6 +85,14 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
                 setRolesSelected={setRolesSelected}
               />
             )}
+            {currentStep === stepsKeysAssignments.REASON_AND_COVERAGE && (
+              <ReasonAndCoverageForm
+                 ref={formReferences.reasonAndCoverage}
+                initialValues={formValues.reasonAndCoverage.values}
+                onFormValid={setIsCurrentFormValid}
+                onButtonClick={onNextStep}
+              />
+            )}            
           </Stack>
         </Stack>
       </Stack>

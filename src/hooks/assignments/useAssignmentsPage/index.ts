@@ -13,7 +13,7 @@ import { IAssignmentsTabsConfig } from "@ptypes/assignments/IAssignmentsTabsConf
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
 const useAssignmentsPage = (props: IUseAssignmentsPage) => {
-  const { businessUnitSigla, businessUnits } = props;
+  const { businessUnitSigla, businessUnits, businessManager } = props;
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
 
@@ -51,6 +51,7 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
       try {
         const data = await getRequestsInProgress(
           ERequestAssignments.ASSIGNMENTS,
+          businessManager,
           businessUnits
         );
         setRequestsInProgress(data);

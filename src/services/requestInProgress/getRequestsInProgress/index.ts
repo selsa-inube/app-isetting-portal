@@ -6,6 +6,7 @@ import { mapRequestsInProgressToEntities } from "./mappers/mapRequestsToEntities
 
 const getRequestsInProgress = async (
   entity: string,
+  businessManagerCode: string,
   businessUnits?: string,
 ): Promise<IRequestsInProgress[]> => {
   const config: AxiosRequestConfig = {
@@ -20,7 +21,8 @@ const getRequestsInProgress = async (
     page: ".1",
     per_page: ".1",
     sort: "desc.requestDate",
-    businessManagerCode: businessUnits ?? "",
+    businessManagerCode: businessManagerCode,
+    businessUnitCode: businessUnits ?? "",
 
   });
   const data = await getWithRetries<IRequestsInProgress[]>(

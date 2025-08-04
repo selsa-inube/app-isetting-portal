@@ -6,15 +6,9 @@ const crumbsAddMission=[
         isActive: false,
       },
       {
-        path: "/privileges",
-        label: "Privilegios",
-        id: "/privileges",
-        isActive: false,
-      },
-      {
-        path: "/privileges/missions",
+        path: "/missions",
         label: "Cargos de los operadores",
-        id: "/privileges/missions",
+        id: "/missions",
         isActive: false,
       },
 ]

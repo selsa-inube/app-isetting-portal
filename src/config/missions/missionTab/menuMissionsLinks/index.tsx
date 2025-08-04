@@ -3,7 +3,7 @@ import { MdAdd } from "react-icons/md";
 const menuMissionsLinks = [
   {
     description: "Solicitar cargo ",
-    path: "/privileges/missions/add-mission",
+    path: "/missions/add-mission",
     icon: <MdAdd />,
      disabled: false,
   },

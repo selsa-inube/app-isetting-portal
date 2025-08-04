@@ -6,13 +6,7 @@ const crumbsEditPosition = [
     isActive: false,
   },
   {
-    path: "/privileges",
-    label: "Privilegios",
-    id: "positions",
-    isActive: false,
-  },
-  {
-    path: "/privileges/positions",
+    path: "/positions",
     label: "Cargos de las unidades de negocio",
     id: "positions",
     isActive: false,

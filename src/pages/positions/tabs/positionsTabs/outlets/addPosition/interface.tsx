@@ -1,23 +1,23 @@
 import { MdOutlineWarningAmber } from "react-icons/md";
 import { Stack, Breadcrumbs, Assisted } from "@inubekit/inubekit";
+import { RolesForm } from "@pages/positions/tabs/positionsTabs/forms/rolesForm";
+import { VerificationForm } from "@pages/positions/tabs/positionsTabs/forms/verificationForm";
+import { GeneralInformationForm } from "@pages/positions/tabs/positionsTabs/forms/generalInformationForm";
 import { PageTitle } from "@design/label/PageTitle";
 import { basic } from "@design/tokens";
+import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { DecisionModal } from "@design/modals/decisionModal";
+import { RequestProcess } from "@design/feedback/requestProcess";
+import { EComponentAppearance } from "@enum/appearances";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { DecisionModalLabel } from "@config/positions/decisionModalText";
-import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
-import { RequestProcess } from "@design/feedback/requestProcess";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
-import { RequestStatusModal } from "@design/modals/requestStatusModal";
-import { VerificationForm } from "@pages/positions/tabs/positionsTabs/forms/verificationForm";
 import { FinishModal } from "@config/positions/verificationForm";
 import { crumbsAddPosition } from "@config/positions/addPositions/navigation";
 import { addPositionTitle } from "@config/positions/addPositions/addPositionTitle";
-import { GeneralInformationForm } from "@pages/positions/tabs/positionsTabs/forms/generalInformationForm";
 import { controlsAssisted } from "@config/controlsAssisted";
 import { portalId } from "@config/portalId";
-import { RolesForm } from "@pages/positions/tabs/positionsTabs/forms/rolesForm";
-import { EComponentAppearance } from "@enum/appearances";
+import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
 
 const AddPositionUI = (props: IAddPositionUI) => {
   const {
@@ -67,7 +67,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
           <PageTitle
             title={addPositionTitle.title}
             description={addPositionTitle.description}
-            navigatePage="/privileges/positions"
+            navigatePage="/positions"
           />
         </Stack>
         <Stack gap={basic.spacing.s300} direction="column">

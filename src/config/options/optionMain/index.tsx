@@ -1,10 +1,25 @@
-import { MdKey, MdOutlinePeopleAlt } from "react-icons/md";
+import {
+  MdBusinessCenter,
+  MdOutlinePeopleAlt,
+  MdOutlinePerson,
+  MdOutlineWorkOutline,
+} from "react-icons/md";
 
 const options = [
   {
-    publicCode: "Privilegios",
-    icon: <MdKey />,
-    url: "/privileges",
+    publicCode: "Cargos de los operadores",
+    icon: <MdBusinessCenter />,
+    url: "/missions",
+  },
+  {
+    publicCode: "Cargos de las unidades de negocio",
+    icon: <MdOutlineWorkOutline />,
+    url: "/positions",
+  },
+  {
+    publicCode: "Funcionarios",
+    icon: <MdOutlinePerson />,
+    url: "/users",
   },
   {
     publicCode: "Encargos",

@@ -6,21 +6,15 @@ const crumbsAddPosition=[
         isActive: false,
       },
       {
-        path: "/privileges",
-        label: "Privilegios",
-        id: "/privileges",
-        isActive: false,
-      },
-      {
-        path: "/privileges/positions",
+        path: "/positions",
         label: "Cargos de las unidades de negocio",
-        id: "/privileges/positions",
+        id: "/positions",
         isActive: false,
       },
       {
-        path: "/privileges/positions/add-position",
+        path: "/positions/add-position",
         label: "Solicitar nuevo cargo",
-        id: "/privileges/positions/add-position",
+        id: "/positions/add-position",
         isActive: true,
       },
 ]

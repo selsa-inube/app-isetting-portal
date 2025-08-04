@@ -12,7 +12,7 @@ const useEditMissionsModal = (data: IEntry) => {
   };
 
   const handleEdit = () => {
-    navigate(`/privileges/missions/edit-mission`, {
+    navigate(`/missions/edit-mission`, {
       state: { data: dataMission },
     });
   };

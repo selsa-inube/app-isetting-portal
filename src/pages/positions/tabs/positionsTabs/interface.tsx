@@ -8,10 +8,10 @@ import {
 } from "@config/positions/table";
 import { IPositionsTabUI } from "@ptypes/positions/table/IPositions";
 import { tabLabels } from "@config/tabLabels";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { positionsTabLabels } from "@config/positions/positionTitle";
 import { Table } from "@design/table";
 import { IEntry } from "@ptypes/design/table/IEntry";
+import { ComponentAppearance } from "@ptypes/aparences.types";
 import { StyledButtonWrapper } from "./styles";
 
 const PositionsTabUI = (props: IPositionsTabUI) => {
@@ -71,7 +71,7 @@ const PositionsTabUI = (props: IPositionsTabUI) => {
                   iconBefore={<MdPersonAddAlt />}
                   spacing="wide"
                   type="link"
-                  path="/privileges/positions/add-position"
+                  path="/positions/add-position"
                 >
                   {positionsTabLabels.buttonLabel}
                 </Button>

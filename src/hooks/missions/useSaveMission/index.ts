@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
 
+import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 import { ERequestStepsStatus } from "@enum/requestStepsStatus";
-import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { EUseCase } from "@enum/useCase";
 import { flowAutomaticMessages } from "@config/missions/missionTab/generic/flowAutomaticMessages";
 import { interventionHumanMessage } from "@config/missions/missionTab/generic/interventionHumanMessage";
@@ -42,7 +42,7 @@ const useSaveMission = (props: IUseSaveMission) => {
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
-  const navigatePage = "/privileges/missions";
+  const navigatePage = "/missions";
 
   const fetchSaveMissionData = async () => {
     setLoadingSendData(true);

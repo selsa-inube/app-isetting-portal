@@ -10,13 +10,13 @@ import { basic } from "@design/tokens";
 import { Table } from "@design/table";
 import { actionsConfig, breakPoints, titles } from "@config/users/table";
 import { PageTitle } from "@design/label/PageTitle";
-import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
 import { Menu } from "@design/navigation";
 import { menuUserLinks } from "@config/users/menuInvitation";
-import { StyledContainer } from "./styles";
 import { UserbuttonText } from "@config/users/addUsers/assisted/buttonText";
 import { crumbsUsers } from "@config/users/navigation";
 import { usersTitle } from "@config/users/usersTitle";
+import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
+import { StyledContainer } from "./styles";
 
 const UsersUI = (props: IUsersUI) => {
   const {
@@ -88,7 +88,7 @@ const UsersUI = (props: IUsersUI) => {
             iconBefore={<MdPersonAddAlt />}
             spacing="wide"
             type="link"
-            path="/privileges/users"
+            path="/users"
           >
             {UserbuttonText.buttonAddUsers}
           </Button>

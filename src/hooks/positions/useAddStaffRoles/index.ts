@@ -7,6 +7,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
 import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
 import { saveDataLabels } from "@config/positions/assisted/saveDataLabels";
+import { enviroment } from "@config/environment";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
@@ -56,7 +57,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
   });
 
   const navigate = useNavigate();
-  const smallScreen = useMediaQuery("(max-width: 990px)");
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
 
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
 
@@ -180,7 +181,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
   const handleSubmitClickApplication = () => {
     handleToggleModal();
     setShowModalApplicationStatus(!showRequestProcessModal);
-    navigate("/privileges/positions");
+    navigate("/positions");
   };
 
   return {

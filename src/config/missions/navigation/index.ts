@@ -6,14 +6,7 @@ const crumbMissions = [
     isActive: false,
   },
   {
-    path: "/privileges",
-    label: "Privilegios",
-    id: "/privileges",
-    isActive: true,
-  },
-
-  {
-    path: "/privileges/missions",
+    path: "/missions",
     label: "Cargos de los operadores",
     id: "/missions",
     isActive: true,

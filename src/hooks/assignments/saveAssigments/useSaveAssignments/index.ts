@@ -34,7 +34,7 @@ const useSaveAssignments = (props: IUseSaveAssigments) => {
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
-  const navigatePage = "/privileges/assigments";
+  const navigatePage = "/assigments";
 
   const fetchSaveAssigmentsData = async () => {
     setLoadingSendData(true);

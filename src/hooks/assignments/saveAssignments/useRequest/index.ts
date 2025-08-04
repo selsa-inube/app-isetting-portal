@@ -1,34 +1,35 @@
 import { useContext, useState } from "react";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
+
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { ERequestStepsStatus } from "@enum/requestStepsStatus";
-import { operationTypes } from "@config/useCase";
-import { requestStepsNames } from "@config/requestStepsNames";
 import { statusCloseModal } from "@config/status/statusCloseModal";
-import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
-import { flowAutomaticMessages } from "@config/assignments/generic/flowAutomaticMessages";
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
+import { operationTypes } from "@config/useCase";
+import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
+import { requestStepsNames } from "@config/requestStepsNames";
 import { requestStepsInitial } from "@config/requestSteps";
+import { flowAutomaticMessages } from "@config/assignments/generic/flowAutomaticMessages";
 import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
 import { IUseRequest } from "@ptypes/hooks/IUseRequest";
 
 const useRequest = (props: IUseRequest) => {
-  const { setSendData, useCase, statusRequest, saveData } = props;
+  const { setSendData, useCase, statusRequest, errorFetchRequest, saveData } =
+    props;
 
   const { addFlag } = useFlag();
   const [requestSteps, setRequestSteps] =
     useState<IRequestSteps[]>(requestStepsInitial);
-  const [errorFetchRequest] = useState(false);
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
-  const isStatusIntAutomatic = (status: string | undefined): boolean => {
+  const isStatusInAutomatic = (status: string | undefined): boolean => {
     return status ? statusFlowAutomatic.includes(status) : false;
   };
 
   const updateRequestSteps = (
     steps: IRequestSteps[],
     stepName: string,
-    newStatus: ERequestStepsStatus
+    newStatus: ERequestStepsStatus,
   ): IRequestSteps[] => {
     return steps.map((step) => {
       if (step.name === stepName) {
@@ -71,9 +72,9 @@ const useRequest = (props: IUseRequest) => {
           )
         );
       }
-    }, 1000);
+    }, 1500);
     setTimeout(() => {
-      if (isStatusIntAutomatic(statusRequest)) {
+      if (isStatusInAutomatic(statusRequest)) {
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
@@ -113,7 +114,7 @@ const useRequest = (props: IUseRequest) => {
   };
 
   const handleStatusChange = () => {
-    if (isStatusIntAutomatic(saveData?.requestStatus)) {
+    if (isStatusInAutomatic(saveData?.requestStatus)) {
       if (isStatusCloseModal()) {
         setChangeTab(true);
         addFlag({
@@ -127,18 +128,14 @@ const useRequest = (props: IUseRequest) => {
 
       if (isStatusRequestFinished()) {
         addFlag({
-          title: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes]
-          ).successfulCreateRequest.title,
-          description: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes]
-          ).successfulCreateRequest.description,
-          appearance: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes]
-          ).successfulCreateRequest.appearance as IFlagAppearance,
-          duration: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes]
-          ).successfulCreateRequest.duration,
+          title: flowAutomaticMessages(operationTypes[useCase])
+            .successfulCreateRequest.title,
+          description: flowAutomaticMessages(operationTypes[useCase])
+            .successfulCreateRequest.description,
+          appearance: flowAutomaticMessages(operationTypes[useCase])
+            .successfulCreateRequest.appearance as IFlagAppearance,
+          duration: flowAutomaticMessages(operationTypes[useCase])
+            .successfulCreateRequest.duration,
         });
       }
     }
@@ -148,7 +145,7 @@ const useRequest = (props: IUseRequest) => {
     requestSteps,
     changeRequestSteps,
     handleStatusChange,
-    isStatusIntAutomatic,
+    isStatusInAutomatic,
     isStatusCloseModal,
     isStatusRequestFinished,
   };

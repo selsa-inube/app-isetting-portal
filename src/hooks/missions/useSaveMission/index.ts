@@ -105,7 +105,7 @@ const useSaveMission = (props: IUseSaveMission) => {
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
-            requestStepsNames.requestFiled,
+            requestStepsNames.requestFilled,
             ERequestStepsStatus.ERROR,
           ),
         );
@@ -114,12 +114,12 @@ const useSaveMission = (props: IUseSaveMission) => {
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
-            requestStepsNames.requestFiled,
+            requestStepsNames.requestFilled,
             ERequestStepsStatus.COMPLETED,
           ),
         );
       }
-    }, 1000);
+    }, 1500);
     setTimeout(() => {
       if (isStatusIntAutomatic(statusRequest)) {
         setRequestSteps((prev) =>
@@ -235,13 +235,13 @@ const useSaveMission = (props: IUseSaveMission) => {
     setChangeTab(true);
     navigate(navigatePage);
     addFlag({
-      title: interventionHumanMessage.SuccessfulCreateRequestIntHuman.title,
+      title: interventionHumanMessage.successfulCreateRequestIntHuman.title,
       description:
-        interventionHumanMessage.SuccessfulCreateRequestIntHuman.description,
-      appearance: interventionHumanMessage.SuccessfulCreateRequestIntHuman
+        interventionHumanMessage.successfulCreateRequestIntHuman.description,
+      appearance: interventionHumanMessage.successfulCreateRequestIntHuman
         .appearance as IFlagAppearance,
       duration:
-        interventionHumanMessage.SuccessfulCreateRequestIntHuman.duration,
+        interventionHumanMessage.successfulCreateRequestIntHuman.duration,
     });
   };
 

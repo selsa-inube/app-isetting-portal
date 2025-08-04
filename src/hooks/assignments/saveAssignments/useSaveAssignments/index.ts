@@ -1,51 +1,45 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
+
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 import { EUseCase } from "@enum/useCase";
-import { statusRequestFinished } from "@config/status/statusRequestFinished";
-import { requestStatusMessage } from "@config/assignments/generic/requestStatusMessage";
 import { flowAutomaticMessages } from "@config/assignments/generic/flowAutomaticMessages";
 import { interventionHumanMessage } from "@config/assignments/generic/interventionHumanMessage";
-import { IUseSaveAssigments } from "@ptypes/hooks/assignments/IUseSaveAssigments";
+import { IUseSaveAssignments } from "@ptypes/hooks/IUseSaveAssignments";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { useRequest } from "../useRequest";
 
-const useSaveAssignments = (props: IUseSaveAssigments) => {
+const useSaveAssignments = (props: IUseSaveAssignments) => {
   const {
-    useCase,
     userAccount,
-    sendData,
     data,
     setSendData,
+    sendData,
     setShowModal,
-    setErrorFetchSaveData,
-    setEntryDeleted,
+    useCase,
   } = props;
 
-  const [saveAssignments, setsaveAssignments] = useState<ISaveDataResponse>();
+  const [saveAssignments, setSaveAssignments] = useState<ISaveDataResponse>();
   const [statusRequest, setStatusRequest] = useState<string>();
   const { addFlag } = useFlag();
-
   const [showPendingReqModal, setShowPendingReqModal] = useState(false);
   const [loadingSendData, setLoadingSendData] = useState(false);
-
+  const [errorFetchRequest, setErrorFetchRequest] = useState(false);
+  
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
-  const navigatePage = "/privileges/assigments";
+  const navigatePage = "/";
 
-  const fetchSaveAssigmentsData = async () => {
+  const fetchSaveAssignmentData = async () => {
     setLoadingSendData(true);
     try {
       const saveData = await postSaveRequest(userAccount, data);
-      setsaveAssignments(saveData);
+      setSaveAssignments(saveData);
     } catch (error) {
       console.info(error);
-      if (setErrorFetchSaveData) {
-        setErrorFetchSaveData(true);
-      }
       setSendData(false);
       navigate(navigatePage);
       addFlag({
@@ -67,13 +61,46 @@ const useSaveAssignments = (props: IUseSaveAssigments) => {
     handleStatusChange,
     isStatusCloseModal,
     isStatusRequestFinished,
-    isStatusIntAutomatic,
+    isStatusInAutomatic,
   } = useRequest({
     setSendData,
     useCase,
     statusRequest: statusRequest || "",
     saveData: saveAssignments as ISaveDataResponse,
+    errorFetchRequest,
   });
+
+  const requestConfiguration = {
+    ...data?.configurationRequestData,
+    settingRequest: {
+      requestNumber: saveAssignments?.requestNumber,
+      settingRequestId: saveAssignments?.settingRequestId,
+    },
+  };
+
+  const fetchRequestData = async () => {
+    try {
+      if (useCase === EUseCase.ADD) {
+        requestConfiguration;
+        setStatusRequest("");
+      }
+    } catch (error) {
+      console.info(error);
+      setErrorFetchRequest(true);
+      setSendData(false);
+      setTimeout(() => {
+        navigate(navigatePage);
+      }, 3000);
+      addFlag({
+        title: flowAutomaticMessages().errorQueryingData.title,
+        description: flowAutomaticMessages().errorQueryingData.description,
+        appearance: flowAutomaticMessages().errorQueryingData
+          .appearance as IFlagAppearance,
+        duration: flowAutomaticMessages().errorQueryingData.duration,
+      });
+      setShowModal(false);
+    }
+  };
 
   const handleCloseProcess = () => {
     setSendData(false);
@@ -85,27 +112,16 @@ const useSaveAssignments = (props: IUseSaveAssigments) => {
         navigate(navigatePage);
       }, 3000);
     }
-    if (
-      setEntryDeleted &&
-      statusRequest &&
-      statusRequestFinished.includes(statusRequest)
-    ) {
-      setTimeout(() => {
-        setEntryDeleted(
-          data.configurationRequestData.payrollForDeductionAgreementId as string
-        );
-      }, 3000);
-    }
   };
 
   useEffect(() => {
     if (!sendData) return;
-    fetchSaveAssigmentsData();
+    fetchSaveAssignmentData();
   }, [sendData]);
 
   useEffect(() => {
-    if (isStatusIntAutomatic(saveAssignments?.requestStatus)) {
-      setStatusRequest("");
+    if (isStatusInAutomatic(saveAssignments?.requestStatus)) {
+      fetchRequestData();
     }
   }, [saveAssignments]);
 
@@ -134,26 +150,15 @@ const useSaveAssignments = (props: IUseSaveAssigments) => {
     navigate(navigatePage);
   };
 
-  const showRequestProcess = sendData && saveAssignments;
-  const showRequestStatus =
-    showPendingReqModal && saveAssignments?.requestNumber;
-
-  const {
-    title: titleRequest,
-    description: descriptionRequest,
-    actionText: actionTextRequest,
-  } = requestStatusMessage(saveAssignments?.staffName);
+  const isRequestStatusModal =
+    showPendingReqModal && saveAssignments?.requestNumber ? true : false;
 
   return {
     saveAssignments,
     requestSteps,
     showPendingReqModal,
     loadingSendData,
-    showRequestProcess,
-    showRequestStatus,
-    titleRequest,
-    descriptionRequest,
-    actionTextRequest,
+    isRequestStatusModal,
     handleCloseProcess,
     handleCloseRequestStatus,
     handleClosePendingReqModal,

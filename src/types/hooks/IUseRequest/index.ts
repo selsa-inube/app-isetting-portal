@@ -1,10 +1,12 @@
+import { UseCase } from "@ptypes/IUseCase";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 
 interface IUseRequest {
   setSendData: React.Dispatch<React.SetStateAction<boolean>>;
-  useCase: "add" | "edit" | "delete";
+  useCase:UseCase;
   statusRequest: string;
-  saveAssignments: ISaveDataResponse;
+  saveData: ISaveDataResponse;
+  errorFetchRequest?: boolean;
 }
 
 export type { IUseRequest };

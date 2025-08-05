@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 
 import { getStaffPortalByBusinessManager } from "@services/subMenu";
-import { IPortalStaff } from "@ptypes/subMenu/types";
-import { IUseOptionsByBusinessunits } from "@ptypes/hooks/IUseOptionsByBusinessunits";
 import { normalizeOptionsByPublicCode } from "@utils/normalizeOptionsPublic";
 import { options } from "@config/options/optionMain";
-import { normalizeSubOptionsByPublicCode } from "@utils/normalizesubOptionsPublic";
+import { IPortalStaff } from "@ptypes/subMenu/types";
+import { IUseOptionsByBusinessunits } from "@ptypes/hooks/IUseOptionsByBusinessunits";
 
 const useOptionsByBusinessunits = (props: IUseOptionsByBusinessunits) => {
-  const { staffPortalId, businessUnitSigla, publicCodeParent, optionName } =
+  const { staffPortalId, businessUnitSigla, optionName } =
     props;
   const [optionsData, setOptionsData] = useState<IPortalStaff[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -52,32 +51,11 @@ const useOptionsByBusinessunits = (props: IUseOptionsByBusinessunits) => {
       };
     });
 
-  const subOptions = optionsData
-    .filter((option) => option.publicCode === publicCodeParent)
-    .flatMap((option) =>
-      option.subOption.map((item) => {
-        const normalizedSubOption = normalizeSubOptionsByPublicCode(
-          option.publicCode,
-          item.publicCode
-        );
-        return {
-          parentCode: option.publicCode,
-          id: normalizedSubOption?.publicCodeOption,
-          icon: normalizedSubOption?.icon,
-          label: item.abbreviatedName,
-          description: item.descriptionUse,
-          url: normalizedSubOption?.url || "",
-          domain: normalizedSubOption?.domain || "",
-          crumbs: normalizedSubOption?.crumbs,
-        };
-      })
-    );
-
   const descriptionOptions =
     optionName &&
     optionsCards.find((option) => option.publicCode === optionName);
 
-  return { optionsCards, subOptions, hasError, loading, descriptionOptions };
+  return { optionsCards, hasError, loading, descriptionOptions };
 };
 
 export { useOptionsByBusinessunits };

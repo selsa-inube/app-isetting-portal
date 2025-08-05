@@ -4,7 +4,7 @@ const menuUserLinks = [
   {
     id: "user",
     label: "Invitar usuario ",
-    path: "/privileges/users",
+    path: "/users",
     icon: <MdPersonAddAlt size={16} />,
   },
 ];

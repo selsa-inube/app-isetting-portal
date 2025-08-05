@@ -28,13 +28,13 @@ const useSaveAssignments = (props: IUseSaveAssigments) => {
   const [statusRequest, setStatusRequest] = useState<string>();
   const { addFlag } = useFlag();
 
-  const [showPendingReqModal, setShowPendingReqModal] = useState(false);
+  const [showPendingRequestModal, setshowPendingRequestModal] = useState(false);
   const [loadingSendData, setLoadingSendData] = useState(false);
 
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
-  const navigatePage = "/privileges/assigments";
+  const navigatePage = "/assigments";
 
   const fetchSaveAssigmentsData = async () => {
     setLoadingSendData(true);
@@ -128,15 +128,15 @@ const useSaveAssignments = (props: IUseSaveAssigments) => {
     });
   };
 
-  const handleClosePendingReqModal = () => {
-    setShowPendingReqModal(false);
+  const handleClosePendingRequestModal = () => {
+    setshowPendingRequestModal(false);
     setChangeTab(true);
     navigate(navigatePage);
   };
 
   const showRequestProcess = sendData && saveAssignments;
   const showRequestStatus =
-    showPendingReqModal && saveAssignments?.requestNumber;
+    showPendingRequestModal && saveAssignments?.requestNumber;
 
   const {
     title: titleRequest,
@@ -147,7 +147,7 @@ const useSaveAssignments = (props: IUseSaveAssigments) => {
   return {
     saveAssignments,
     requestSteps,
-    showPendingReqModal,
+    showPendingRequestModal,
     loadingSendData,
     showRequestProcess,
     showRequestStatus,
@@ -156,7 +156,7 @@ const useSaveAssignments = (props: IUseSaveAssigments) => {
     actionTextRequest,
     handleCloseProcess,
     handleCloseRequestStatus,
-    handleClosePendingReqModal,
+    handleClosePendingRequestModal,
   };
 };
 

@@ -1,6 +1,6 @@
 const useCase = ["add", "edit", "delete"] as const;
 
-type UseCase = (typeof useCase)[number];
+type IUseCase = (typeof useCase)[number];
 
-export type { UseCase };
+export type { IUseCase };
 export { useCase };

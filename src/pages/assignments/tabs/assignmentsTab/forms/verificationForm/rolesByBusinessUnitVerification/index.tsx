@@ -34,7 +34,7 @@ const RenderRolesByUnitVerification = (
               <BoxAttribute
                 key={item.id}
                 direction="column"
-                label={`${item.name}`}
+                label={item.name}
                 value={valuesString(item.roles ?? [])}
               />
             </>

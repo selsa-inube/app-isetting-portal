@@ -14,7 +14,7 @@ const useEditPositionsModal = (props: IUseEditPositionsModal) => {
   };
 
   const handleEdit = () => {
-    navigate(`/privileges/positions/edit-destination`, {
+    navigate(`/positions/edit-destination`, {
       state: { data: destinationData },
     });
   };

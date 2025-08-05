@@ -6,14 +6,7 @@ const crumbPosition = [
     isActive: false,
   },
   {
-    path: "/privileges",
-    label: "Privilegios",
-    id: "/privileges",
-    isActive: true,
-  },
-
-  {
-    path: "/privileges/positions",
+    path: "/positions",
     label: "Cargos de las unidades de negocio",
     id: "/positions",
     isActive: true,

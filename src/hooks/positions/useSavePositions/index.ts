@@ -4,7 +4,9 @@ import { IFlagAppearance, useFlag, useMediaQuery } from "@inubekit/inubekit";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 import { getRequestInProgressById } from "@services/positions/getRequestInProgressById";
+import { ERequestStepsStatus } from "@enum/requestStepsStatus";
 import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
+import { enviroment } from "@config/environment";
 import { requestStepsInitial } from "@config/positions/addPositions/requestSteps";
 import { flowAutomaticMessages } from "@config/positionsTabs/generics/flowAutomaticMessages";
 import { statusCloseModal } from "@config/status/statusCloseModal";
@@ -28,7 +30,7 @@ const useSavePositions = (props: IUseSavePositions) => {
   const [showPendingReqModal, setShowPendingReqModal] = useState(false);
   const [statusRequest, setStatusRequest] = useState<string>();
   const [loading, setLoading] = useState(false);
-  const smallScreen = useMediaQuery("(max-width: 990px)");
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
   const { addFlag } = useFlag();
   const [requestSteps, setRequestSteps] =
     useState<IRequestSteps[]>(requestStepsInitial);
@@ -36,7 +38,7 @@ const useSavePositions = (props: IUseSavePositions) => {
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
-  const navigatePage = "/privileges/positions";
+  const navigatePage = "/positions";
 
   const fetchSavePositionsData = async () => {
     setLoading(true);
@@ -83,7 +85,7 @@ const useSavePositions = (props: IUseSavePositions) => {
   const updateRequestSteps = (
     steps: IRequestSteps[],
     stepName: string,
-    newStatus: "pending" | "completed" | "error"
+    newStatus: ERequestStepsStatus
   ): IRequestSteps[] => {
     return steps.map((step) => {
       if (step.name === stepName) {
@@ -113,22 +115,22 @@ const useSavePositions = (props: IUseSavePositions) => {
   const changeRequestSteps = () => {
     if (isStatusIntAutomatic(statusRequest)) {
       setRequestSteps((prev) =>
-        updateRequestSteps(prev, requestStepsInitial[1].name, "completed")
+        updateRequestSteps(prev, requestStepsInitial[1].name, ERequestStepsStatus.COMPLETED)
       );
     }
 
     if (isStatusRequestFinished()) {
       setRequestSteps((prev) =>
-        updateRequestSteps(prev, requestStepsInitial[1].name, "completed")
+        updateRequestSteps(prev, requestStepsInitial[1].name, ERequestStepsStatus.COMPLETED)
       );
       setRequestSteps((prev) =>
-        updateRequestSteps(prev, requestStepsInitial[2].name, "completed")
+        updateRequestSteps(prev, requestStepsInitial[2].name,ERequestStepsStatus.COMPLETED)
       );
     }
 
     if (isStatusCloseModal()) {
       setRequestSteps((prev) =>
-        updateRequestSteps(prev, requestStepsInitial[1].name, "error")
+        updateRequestSteps(prev, requestStepsInitial[1].name, ERequestStepsStatus.ERROR)
       );
     }
   };
@@ -171,7 +173,7 @@ const useSavePositions = (props: IUseSavePositions) => {
   useEffect(() => {
     if (isStatusIntAutomatic(savePositions?.requestStatus)) {
       setRequestSteps((prev) =>
-        updateRequestSteps(prev, requestStepsInitial[0].name, "completed")
+        updateRequestSteps(prev, requestStepsInitial[0].name, ERequestStepsStatus.COMPLETED)
       );
 
       const timer = setInterval(() => {

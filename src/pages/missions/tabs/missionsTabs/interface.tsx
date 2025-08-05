@@ -1,16 +1,17 @@
 import { MdPersonAddAlt } from "react-icons/md";
 import { basic } from "@design/tokens";
 import { Button, Searchfield, Stack, Text } from "@inubekit/inubekit";
+import { Table } from "@design/table";
+import { EComponentAppearance } from "@enum/appearances";
 import { actionsConfig } from "@config/missions/missionTab/table/actionsConfig";
 import { breakPoints } from "@config/missions/missionTab/table/breakPoints";
 import { titlesOptions } from "@config/missions/missionTab/table/titlesoptions";
 import { tabLabels } from "@config/tabLabels";
-import { ComponentAppearance } from "@ptypes/aparences.types";
-import { Table } from "@design/table";
-import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
 import { missionsTabLabels } from "@config/missions/missionTab/missionsTabLabels";
-import { StyledButtonWrapper } from "./styles";
 import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
+
+import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
+import { StyledButtonWrapper } from "./styles";
 
 const MissionsTabUI = (props: IMissionsTabUI) => {
   const {
@@ -31,7 +32,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
             <Text
               type="title"
               size="medium"
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
               ellipsis
             >
               {missionsTabLabels.description}
@@ -66,7 +67,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
                   iconBefore={<MdPersonAddAlt />}
                   spacing="wide"
                   type="link"
-                  path="/privileges/missions/add-mission"
+                  path="/missions/add-mission"
                 >
                   {missionsTabLabels.buttonLabel}
                 </Button>
@@ -79,7 +80,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
               <Text
                 type="title"
                 size={smallScreen ? "small" : "medium"}
-                appearance={ComponentAppearance.DARK}
+                appearance={EComponentAppearance.DARK}
                 ellipsis
               >
                 {missionsTabLabels.description}

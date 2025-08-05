@@ -1,15 +1,16 @@
 import { MdOutlineArrowBack } from "react-icons/md";
 import { Button, Stack } from "@inubekit/inubekit";
 
+import { useVerification } from "@hooks/assignments/useVerificationForm";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
-import { useVerification } from "@hooks/assignments/useVerificationForm";
 import { basic } from "@design/tokens";
 import { Accordion } from "@design/data/acordion";
 import { BoxAttribute } from "@design/feedback/boxAttribute";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { requestStatusMessage } from "@config/request/requestStatusMessage";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
+import { portalId } from "@config/portalId";
 import { finishModal } from "@config/assignments/assisted/finishModal";
 import { verificationLabels } from "@config/assignments/assisted/verification";
 import { ComponentAppearance } from "@ptypes/aparences.types";
@@ -23,7 +24,7 @@ const VerificationForm = (props: IVerificationForm) => {
     showRequestProcessModal,
     updatedData,
     saveAssignments,
-    showPendingReqModal,
+    showPendingRequestModal,
     loading,
     absentOfficialSelected,
     handleStepChange,
@@ -31,7 +32,7 @@ const VerificationForm = (props: IVerificationForm) => {
     onPreviousStep,
     onToggleModal,
     onCloseRequestStatus,
-    onClosePendingReqModal,
+    onClosePendingRequestModal,
     onCloseProcess,
   } = props;
 
@@ -44,7 +45,7 @@ const VerificationForm = (props: IVerificationForm) => {
   } = useVerification({
     showRequestProcessModal,
     saveAssignments,
-    showPendingReqModal,
+    showPendingRequestModal,
   });
 
   return (
@@ -102,7 +103,7 @@ const VerificationForm = (props: IVerificationForm) => {
 
       {showModal && (
         <DecisionModal
-          portalId="portal"
+          portalId={portalId}
           title={finishModal.title}
           description={finishModal.description}
           actionText={finishModal.actionText}
@@ -112,7 +113,7 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowRequestProcess && (
         <RequestProcess
-          portalId="portal"
+          portalId={portalId}
           saveData={saveAssignments}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
@@ -124,14 +125,14 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowPendingRequest && (
         <RequestStatusModal
-          portalId="portal"
+          portalId={portalId}
           title={requestStatusMessage(saveAssignments.staffName).title}
           description={
             requestStatusMessage(saveAssignments.staffName).description
           }
           requestNumber={saveAssignments.requestNumber}
-          onClick={onClosePendingReqModal}
-          onCloseModal={onClosePendingReqModal}
+          onClick={onClosePendingRequestModal}
+          onCloseModal={onClosePendingRequestModal}
           actionText={
             requestStatusMessage(saveAssignments.staffName).actionText
           }

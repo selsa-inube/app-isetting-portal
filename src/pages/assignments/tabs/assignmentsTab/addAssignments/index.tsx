@@ -40,8 +40,8 @@ const AddAssignments = () => {
     requestSteps,
     loadingSendData,
     handleCloseRequestStatus,
-    handleClosePendingReqModal,
-    showPendingReqModal,
+    handleClosePendingRequestModal,
+    showPendingRequestModal,
   } = useSaveAssignments({
     useCase: EUseCase.ADD,
     businessUnits: appData.businessUnit.publicCode,
@@ -67,8 +67,8 @@ const AddAssignments = () => {
       absentOfficialSelected={data || ("" as string)}
       setSelectedToggle={setSelectedToggle}
       setRolesSelected={setRolesSelected}
-      onClosePendingReqModal={handleClosePendingReqModal}
-      showPendingReqModal={showPendingReqModal}
+      onClosePendingRequestModal={handleClosePendingRequestModal}
+      showPendingRequestModal={showPendingRequestModal}
       loading={loadingSendData}
       setCurrentStep={setCurrentStep}
       requestSteps={requestSteps}

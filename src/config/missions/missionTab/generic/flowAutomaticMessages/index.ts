@@ -21,7 +21,7 @@ const flowAutomaticMessages = (action?: string) => {
       appearance: ComponentAppearance.DANGER,
       duration: 3000,
     },
-    SuccessfulCreateRequest: {
+    successfulCreateRequest: {
       title: `Cargo del operador ${action} con éxito!`,
       description: `Cargo del operador fue ${action} con éxito!`,
       appearance: ComponentAppearance.SUCCESS,

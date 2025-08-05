@@ -10,6 +10,7 @@ import { OfficialInChargeForm } from "../forms/officialInChargeForm";
 import { BusinessUnitForm } from "../forms/businessUnitForm";
 import { RolesByBusinessUnitForm } from "../forms/rolesByBusinessUnitForm";
 import { ReasonAndCoverageForm } from "../forms/reasonAndCoverageForm";
+import { VerificationForm } from "../forms/verificationForm";
 
 const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
   const {
@@ -20,8 +21,18 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
     absentOfficialSelected,
     formValues,
     formReferences,
+    requestSteps,
+    showModal,
+    showRequestProcessModal,
+    showPendingReqModal,
+    loading,
+    saveAssignments,
+    onFinishForm,
+    onCloseRequestStatus,
+    onClosePendingReqModal,
     setRolesSelected,
     setSelectedToggle,
+    setCurrentStep,
     setIsCurrentFormValid,
     onNextStep,
     onPreviousStep,
@@ -87,12 +98,31 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
             )}
             {currentStep === stepsKeysAssignments.REASON_AND_COVERAGE && (
               <ReasonAndCoverageForm
-                 ref={formReferences.reasonAndCoverage}
+                ref={formReferences.reasonAndCoverage}
                 initialValues={formValues.reasonAndCoverage.values}
                 onFormValid={setIsCurrentFormValid}
                 onButtonClick={onNextStep}
               />
-            )}            
+            )}
+            {currentStep === stepsKeysAssignments.VERIFICATION && (
+              <VerificationForm
+                requestSteps={requestSteps}
+                absentOfficialSelected={absentOfficialSelected}
+                showModal={showModal}
+                showRequestProcessModal={showRequestProcessModal}
+                updatedData={formValues}
+                saveAssignments={saveAssignments}
+                showPendingReqModal={showPendingReqModal}
+                handleStepChange={(stepId) => setCurrentStep(stepId)}
+                onFinishForm={onFinishForm}
+                onPreviousStep={onPreviousStep}
+                onToggleModal={onToggleModal}
+                onCloseRequestStatus={onCloseRequestStatus}
+                onClosePendingReqModal={onClosePendingReqModal}
+                onCloseProcess={onClosePendingReqModal}
+                loading={loading}
+              />
+            )}
           </Stack>
         </Stack>
       </Stack>

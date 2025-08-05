@@ -144,7 +144,7 @@ const useAddAssignments = (props: IUseAddAssignments) => {
         setCurrentStep(currentStep + 1);
       }
 
-      if(reasonAndCoverageRef.current){
+      if (reasonAndCoverageRef.current) {
         setFormValues((prevValues) => ({
           ...prevValues,
           reasonAndCoverage: {
@@ -198,6 +198,24 @@ const useAddAssignments = (props: IUseAddAssignments) => {
     !isCurrentFormValid;
 
   const handleSubmitClick = () => {
+    const { dateFrom, dateTo } = formValues.reasonAndCoverage.values;
+
+  const temporaryRoles = formValues.rolesByBusinessUnits.values
+  .filter((unit) => unit?.publicCode)
+  .flatMap((unit) => {
+    const roles = unit.roles || [];
+
+    return roles
+      .filter((rol) => rol.isActive) 
+      .map((rol) => ({             
+        roleName: rol?.value,
+        businessUnitName: unit.publicCode,
+        businessUnitCode: unit.publicCode,
+        startDate: dateFrom,
+        endDate: dateTo,
+      }));
+  });
+
     setSaveData({
       applicationName: "",
       businessManagerCode: appData.businessManager.publicCode,
@@ -206,7 +224,15 @@ const useAddAssignments = (props: IUseAddAssignments) => {
       entityName: "Assignments",
       requestDate: formatDate(new Date()),
       useCaseName: "AddAssignments",
-      configurationRequestData: {},
+      configurationRequestData: {
+        nameOfAbsentStaff: absentOfficial,
+        assignmentDate: dateFrom,
+        assignmentEndDate: dateTo,
+        staffName: formValues.officialInCharge.values.official,
+        staffLastName: formValues.officialInCharge.values.official,
+        staffIdentificationNumber: "",
+        temporaryRolesByBusinessUnit: temporaryRoles,
+      },
     });
     setShowRequestProcessModal(!showRequestProcessModal);
   };

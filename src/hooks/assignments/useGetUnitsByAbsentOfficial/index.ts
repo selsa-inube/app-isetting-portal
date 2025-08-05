@@ -18,7 +18,12 @@ const useGetUnitsByAbsentOfficial = (props: IUseGetUnitsByAbsentOfficial) => {
   let staffName: string = official[0];
   let staffLastName: string = official[1];
 
-  if (official.length >= 3) {
+  if (official.length === 3) {
+    staffName = `${official[0]} ${official[1]}`;
+    staffLastName =`${official[2]}`;
+  }
+
+  if (official.length >= 4) {
     staffName = `${official[0]} ${official[1]}`;
     staffLastName =`${official[2]} ${official[3]}`;
   }

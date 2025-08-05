@@ -105,7 +105,7 @@ const useSaveMission = (props: IUseSaveMission) => {
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
-            requestStepsNames.requestFiled,
+            requestStepsNames.requestFilled,
             ERequestStepsStatus.ERROR,
           ),
         );
@@ -114,12 +114,12 @@ const useSaveMission = (props: IUseSaveMission) => {
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
-            requestStepsNames.requestFiled,
+            requestStepsNames.requestFilled,
             ERequestStepsStatus.COMPLETED,
           ),
         );
       }
-    }, 1000);
+    }, 1500);
     setTimeout(() => {
       if (isStatusIntAutomatic(statusRequest)) {
         setRequestSteps((prev) =>
@@ -177,16 +177,16 @@ const useSaveMission = (props: IUseSaveMission) => {
         addFlag({
           title: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.title,
+          ).successfulCreateRequest.title,
           description: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.description,
+          ).successfulCreateRequest.description,
           appearance: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.appearance as IFlagAppearance,
+          ).successfulCreateRequest.appearance as IFlagAppearance,
           duration: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.duration,
+          ).successfulCreateRequest.duration,
         });
       }
     }
@@ -235,13 +235,13 @@ const useSaveMission = (props: IUseSaveMission) => {
     setChangeTab(true);
     navigate(navigatePage);
     addFlag({
-      title: interventionHumanMessage.SuccessfulCreateRequestIntHuman.title,
+      title: interventionHumanMessage.successfulCreateRequestIntHuman.title,
       description:
-        interventionHumanMessage.SuccessfulCreateRequestIntHuman.description,
-      appearance: interventionHumanMessage.SuccessfulCreateRequestIntHuman
+        interventionHumanMessage.successfulCreateRequestIntHuman.description,
+      appearance: interventionHumanMessage.successfulCreateRequestIntHuman
         .appearance as IFlagAppearance,
       duration:
-        interventionHumanMessage.SuccessfulCreateRequestIntHuman.duration,
+        interventionHumanMessage.successfulCreateRequestIntHuman.duration,
     });
   };
 

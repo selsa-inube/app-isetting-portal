@@ -10,6 +10,7 @@ import {
   Thead,
   Tr,
 } from "@inubekit/inubekit";
+import { EComponentAppearance } from "@enum/appearances";
 import { getAlignment } from "@utils/getAlignment/index.";
 import { ITableUI } from "@ptypes/design/table/ITableUI";
 import { tableLabels } from "@config/tableLabels";
@@ -17,7 +18,6 @@ import { WidthColmnsData } from "./widthColumns";
 import { ShowActionTitle } from "./showActionTitle";
 import { ShowAction } from "./showAction";
 import { DataLoading } from "./dataLoading";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 
 const TableUI = (props: ITableUI) => {
   const {
@@ -84,7 +84,7 @@ const TableUI = (props: ITableUI) => {
                   <Text
                     type="label"
                     size={mediaActionOpen ? "medium" : "large"}
-                    appearance={ComponentAppearance.DARK}
+                    appearance={EComponentAppearance.DARK}
                     ellipsis
                   >
                     {emptyDataMessage
@@ -123,8 +123,8 @@ const TableUI = (props: ITableUI) => {
                       <Text
                         type="label"
                         size="large"
-                        appearance={ComponentAppearance.DARK}
-                        ellipsis
+                        appearance={EComponentAppearance.DARK}
+                        ellipsis={mediaActionOpen ? false : true }
                       >
                         {tableLabels.emptySearch}
                       </Text>

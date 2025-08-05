@@ -1,7 +1,7 @@
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { Text, Icon, Divider } from "@inubekit/inubekit";
 import { useAccordion } from "@hooks/design/useAccordion";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { IAccordion } from "@ptypes/design/IAccordion";
 import { StyledContainer, StyledHead } from "./styles";
 
@@ -15,7 +15,7 @@ const Accordion = (props: IAccordion) => {
         <Text
           type="label"
           size={"large"}
-          appearance={ComponentAppearance.GRAY}
+          appearance={EComponentAppearance.DARK}
           weight="bold"
           ellipsis
         >
@@ -24,7 +24,7 @@ const Accordion = (props: IAccordion) => {
 
         <Icon
           icon={isOpen ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
-          appearance={ComponentAppearance.DARK}
+          appearance={EComponentAppearance.DARK}
           spacing="compact"
           cursorHover={true}
           size="24px"

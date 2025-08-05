@@ -24,7 +24,6 @@ const RenderRolesByUnitVerification = (
     <Stack width="100%" direction="column">
       {hasValues(values) && (
         <Grid
-          key={values[0].id}
           width="100%"
           templateColumns={columnsAttribute(values as IEntry[], isMobile)}
           templateRows={rowsAttribute(values as IEntry[], isMobile)}

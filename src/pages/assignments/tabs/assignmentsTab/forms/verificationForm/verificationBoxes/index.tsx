@@ -17,7 +17,7 @@ const VerificationBoxes = (props: IVerificationBoxes) => {
       )}
       {stepKey === stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT && (
         <RenderBusinessUnitVerification
-          values={updatedData.businessUnitOfficial.values}
+          values={updatedData.rolesByBusinessUnits.values}
         />
       )}
       {stepKey === stepsKeysAssignments.ROLES_BY_BUSINESS_UNIT && (

@@ -30,7 +30,7 @@ const PositionsUI = (props: IPositionsUI) => {
     businessUnitSigla,
     positionTab, 
     showPositionsTab,
-    showReqInProgTab,
+    showRequestTab,
     onChange,
     onClickUnits,
     onCloseModalUnits,
@@ -109,7 +109,7 @@ const PositionsUI = (props: IPositionsUI) => {
               {showPositionsTab && (
                 <PositionsTab businessUnitCode={selectedUnit} />
               )}
-              { showReqInProgTab && (
+              { showRequestTab && (
                 <RequestsInProgressTab />
               )}
             </Stack>

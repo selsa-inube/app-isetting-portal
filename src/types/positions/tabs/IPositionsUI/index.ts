@@ -15,7 +15,7 @@ interface IPositionsUI {
   comparisonData: boolean;
   positionTab:  ITab[];
   showPositionsTab: boolean;
-  showReqInProgTab: boolean;
+  showRequestTab: boolean;
   onToggleInfoModal: () => void;
   onCloseMenu: () => void;
   onToggleModal: () => void;

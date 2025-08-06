@@ -184,7 +184,7 @@ const usePositionsTabs = () => {
 
   const showPositionsTab = isSelected === tabs.cargos.id;
 
-  const showReqInProgTab = isSelected === tabs.requestsInProgress.id;
+  const showRequestTab = isSelected === tabs.requestsInProgress.id;
 
   const columnWidths = [widthFirstColumn, 55, 23];
 
@@ -202,7 +202,7 @@ const usePositionsTabs = () => {
     loading,
     positionTab,
     showPositionsTab,
-    showReqInProgTab,
+    showRequestTab,
     handleClickUnits,
     handleCloseModalUnits,
     onToggleInfoModal,

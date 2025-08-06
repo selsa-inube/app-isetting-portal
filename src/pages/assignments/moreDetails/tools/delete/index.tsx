@@ -1,20 +1,20 @@
 import { useContext } from "react";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { useDeleteDetailsAssignments } from "@hooks/assignments/useDeleteDetailsAssignments";
 import { useSaveAssignments } from "@hooks/assignments/saveAssignments/useSaveAssignments";
-import { useDeleteAssignments } from "@hooks/assignments/useDeleteAssignments";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { EUseCase } from "@enum/useCase";
 import { EComponentAppearance } from "@enum/appearances";
 import { portalId } from "@config/portalId";
+import { deleteDetails } from "@config/assignments/details/deleteDetails";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
-import { deleteAssignments } from "@config/assignments/generic/deleteAssignments";
-import { requestStatusMessage } from "@config/assignments/generic/requestStatusMessage";
+import { requestStatusMessage } from "@config/positions/requestStatusMessage";
+import { IDelete } from "@ptypes/positions/actions/IDelete";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
-import { IDelete } from "@ptypes/assignments/IDelete";
 
-const Delete = (props: IDelete) => {
+const DeleteDetails = (props: IDelete) => {
   const { data, setEntryDeleted } = props;
   const { appData } = useContext(AuthAndData);
 
@@ -26,7 +26,7 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
-  } = useDeleteAssignments({ data, appData });
+  } = useDeleteDetailsAssignments({data, appData});
 
   const {
     saveAssignments,
@@ -39,29 +39,27 @@ const Delete = (props: IDelete) => {
     useCase: EUseCase.DELETE,
     businessUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
-    sendData: showRequestProcessModal,
+     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
     setShowModal,
-    setEntryDeleted,
-  });
+   setEntryDeleted }
+  );
 
-  const showRequestProcess = showRequestProcessModal && saveAssignments;
+  const showRequestProcess =  showRequestProcessModal && saveAssignments
 
-  const showRequestStatusModal =
-    showPendingRequestModal && saveAssignments?.requestNumber;
+  const showRequestStatusModal = showPendingRequestModal && saveAssignments?.requestNumber
 
   return (
     <>
       <DeleteRecord
-        messageDelete={deleteAssignments}
+        messageDelete={deleteDetails}
         showModal={showModal}
         onToggleModal={handleToggleModal}
         onClick={handleClick}
         loading={loadingSendData}
-        withText={false}
       />
-      {showRequestProcess && (
+      { showRequestProcess && (
         <RequestProcess
           portalId={portalId}
           saveData={saveAssignments}
@@ -74,7 +72,7 @@ const Delete = (props: IDelete) => {
         />
       )}
 
-      {showRequestStatusModal && (
+      { showRequestStatusModal && (
         <RequestStatusModal
           portalId={portalId}
           title={requestStatusMessage(saveAssignments.staffName).title}
@@ -95,4 +93,4 @@ const Delete = (props: IDelete) => {
   );
 };
 
-export { Delete };
+export { DeleteDetails };

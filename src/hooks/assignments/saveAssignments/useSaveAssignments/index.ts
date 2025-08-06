@@ -5,6 +5,7 @@ import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 import { EUseCase } from "@enum/useCase";
+import { requestStatusMessage } from "@config/assignments/generic/requestStatusMessage";
 import { flowAutomaticMessages } from "@config/assignments/generic/flowAutomaticMessages";
 import { interventionHumanMessage } from "@config/assignments/generic/interventionHumanMessage";
 import { IUseSaveAssignments } from "@ptypes/hooks/IUseSaveAssignments";
@@ -12,22 +13,16 @@ import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { useRequest } from "../useRequest";
 
 const useSaveAssignments = (props: IUseSaveAssignments) => {
-  const {
-    userAccount,
-    data,
-    setSendData,
-    sendData,
-    setShowModal,
-    useCase,
-  } = props;
+  const { userAccount, data, setSendData, sendData, setShowModal, useCase } =
+    props;
 
   const [saveAssignments, setSaveAssignments] = useState<ISaveDataResponse>();
   const [statusRequest, setStatusRequest] = useState<string>();
   const { addFlag } = useFlag();
-  const [showPendingReqModal, setShowPendingReqModal] = useState(false);
+  const [showPendingRequestModal, setShowPendingRequestModal] = useState(false);
   const [loadingSendData, setLoadingSendData] = useState(false);
   const [errorFetchRequest, setErrorFetchRequest] = useState(false);
-  
+
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
@@ -144,24 +139,39 @@ const useSaveAssignments = (props: IUseSaveAssignments) => {
     });
   };
 
-  const handleClosePendingReqModal = () => {
-    setShowPendingReqModal(false);
+  const handleClosePendingRequestModal = () => {
+    setShowPendingRequestModal(false);
     setChangeTab(true);
     navigate(navigatePage);
   };
 
   const isRequestStatusModal =
-    showPendingReqModal && saveAssignments?.requestNumber ? true : false;
+    showPendingRequestModal && saveAssignments?.requestNumber ? true : false;
+
+  const showRequestProcess = sendData && saveAssignments;
+  const showRequestStatus =
+    showPendingRequestModal && saveAssignments?.requestNumber;
+
+  const {
+    title: titleRequest,
+    description: descriptionRequest,
+    actionText: actionTextRequest,
+  } = requestStatusMessage(saveAssignments?.staffName);
 
   return {
     saveAssignments,
     requestSteps,
-    showPendingReqModal,
+    showPendingRequestModal,
     loadingSendData,
     isRequestStatusModal,
+    showRequestProcess,
+    showRequestStatus,
+    titleRequest,
+    descriptionRequest,
+    actionTextRequest,
     handleCloseProcess,
     handleCloseRequestStatus,
-    handleClosePendingReqModal,
+    handleClosePendingRequestModal,
   };
 };
 

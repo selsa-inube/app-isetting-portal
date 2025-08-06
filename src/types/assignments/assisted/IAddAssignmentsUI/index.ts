@@ -15,11 +15,11 @@ interface IAddAssignmentsUI {
   requestSteps: IRequestSteps[];
   showModal: boolean;
   saveAssignments: ISaveDataResponse;
-  showPendingReqModal: boolean;
+  showPendingRequestModal: boolean;
   showRequestProcessModal: boolean;
   smallScreen: boolean;
   steps: IAssistedStep[];
-  onClosePendingReqModal: () => void;
+  onClosePendingRequestModal: () => void;
   onCloseRequestStatus: () => void;
   onFinishForm: () => void;
   onNextStep: () => void;

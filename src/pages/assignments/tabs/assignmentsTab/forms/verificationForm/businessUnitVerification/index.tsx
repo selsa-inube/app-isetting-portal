@@ -10,10 +10,9 @@ const RenderBusinessUnitVerification = (
   const { values } = props;
 
   const valuesString = values
-    .filter((val) => val.value && val.isActive)
-    .map((val) => val.value)
+    .flatMap((val) => val.name)
     .join(", ");
-
+    
   return (
     <Stack width="100%" direction="column" gap={basic.spacing.s100}>
       <BoxAttribute

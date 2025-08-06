@@ -82,7 +82,7 @@ const PositionsUI = (props: IPositionsUI) => {
                   <PageTitle
                     title={positionTitle.title}
                     description={positionTitle.description}
-                    navigatePage="/privileges"
+                    navigatePage="/"
                   />
                   {smallScreen && (
                     <StyledMenuContainer>

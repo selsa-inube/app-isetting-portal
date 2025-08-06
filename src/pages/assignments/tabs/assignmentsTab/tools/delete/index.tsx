@@ -31,9 +31,9 @@ const Delete = (props: IDelete) => {
   const {
     saveAssignments,
     requestSteps,
-    showPendingReqModal,
+    showPendingRequestModal,
     loadingSendData,
-    handleClosePendingReqModal,
+    handleClosePendingRequestModal,
     handleCloseRequestStatus,
   } = useSaveAssignments({
     useCase: EUseCase.DELETE,
@@ -49,7 +49,7 @@ const Delete = (props: IDelete) => {
   const showRequestProcess = showRequestProcessModal && saveAssignments;
 
   const showRequestStatusModal =
-    showPendingReqModal && saveAssignments?.requestNumber;
+    showPendingRequestModal && saveAssignments?.requestNumber;
 
   return (
     <>
@@ -82,8 +82,8 @@ const Delete = (props: IDelete) => {
             requestStatusMessage(saveAssignments.staffName).description
           }
           requestNumber={saveAssignments.requestNumber}
-          onClick={handleClosePendingReqModal}
-          onCloseModal={handleClosePendingReqModal}
+          onClick={handleClosePendingRequestModal}
+          onCloseModal={handleClosePendingRequestModal}
           loading={false}
           actionText={
             requestStatusMessage(saveAssignments.staffName).actionText

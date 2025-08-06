@@ -2,13 +2,13 @@ import { Divider, Fieldset, Stack, Text } from "@inubekit/inubekit";
 import { FieldDetails } from "@design/feedback/fieldDetails";
 import { ModalWrapper } from "@design/modals/modalWrapper";
 import { basic } from "@design/tokens";
-import { IMoreDetails } from "@ptypes/assignments/IMoreDetails";
 import { BorderStack } from "@design/layout/borderStack";
 import { Table } from "@design/table";
+import { EComponentAppearance } from "@enum/appearances";
 import { titles } from "@config/assignments/details/table/titles";
 import { actionsConfig } from "@config/assignments/details/table/actionsConfig";
 import { breakPoints } from "@config/assignments/details/table/breakPoints";
-import { EComponentAppearance } from "@enum/appearances";
+import { IMoreDetails } from "@ptypes/assignments/IMoreDetails";
 
 const MoreDetails = (props: IMoreDetails) => {
   const {
@@ -30,7 +30,7 @@ const MoreDetails = (props: IMoreDetails) => {
   return (
     <ModalWrapper
       width={isMobile ? "335px" : "700px"}
-      maxHeight={isMobile ? "650px" : "784px"}
+      maxHeight={isMobile ? "650px" : "790px"}
       isMobile={isMobile}
       padding={isMobile ? `${basic.spacing.s150}` : `${basic.spacing.s300}`}
       labelActionButton={moreDetailsModal.labelActionButton}

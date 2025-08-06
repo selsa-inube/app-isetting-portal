@@ -52,7 +52,7 @@ const MissionsUI = (props: IMissionsUI) => {
                 <PageTitle
                   title={missionTitle.title}
                   description={missionTitle.description}
-                  navigatePage="/privileges"
+                  navigatePage="/"
                 />
                 {smallScreen && (
                   <StyledMenuContainer>

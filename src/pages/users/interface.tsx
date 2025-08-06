@@ -48,7 +48,7 @@ const UsersUI = (props: IUsersUI) => {
               <PageTitle
                 title={usersTitle.title}
                 description={usersTitle.description}
-                navigatePage="/privileges"
+                navigatePage="/"
               />
         </Stack>
       </Stack>

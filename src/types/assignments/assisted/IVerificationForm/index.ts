@@ -8,7 +8,7 @@ interface IVerificationForm {
   showRequestProcessModal: boolean;
   updatedData: IFormsUpdateData;
   saveAssignments: ISaveDataResponse;
-  showPendingReqModal: boolean;
+  showPendingRequestModal: boolean;
   loading: boolean;
   absentOfficialSelected: string;
   handleStepChange: (stepId: number) => void;
@@ -16,7 +16,7 @@ interface IVerificationForm {
   onPreviousStep: () => void;
   onToggleModal: () => void;
   onCloseRequestStatus: () => void;
-  onClosePendingReqModal: () => void;
+  onClosePendingRequestModal: () => void;
   onCloseProcess: () => void;
 }
 

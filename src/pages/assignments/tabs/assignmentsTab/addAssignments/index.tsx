@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { useSaveAssignments } from "@hooks/assignments/saveAssignments/useSaveAssignments";
-import { useAddAssignments } from "@hooks/addAssignments/useAddAssignments";
+import { useAddAssignments } from "@hooks/assignments/addAssignments/useAddAssignments";
+import { useSaveAssignments } from "@hooks/assignments/saveAssigments/useSaveAssignments";
 import { EUseCase } from "@enum/useCase";
 import { addAssignmentsSteps } from "@config/assignments/assisted/steps";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
@@ -40,8 +40,8 @@ const AddAssignments = () => {
     requestSteps,
     loadingSendData,
     handleCloseRequestStatus,
-    handleClosePendingReqModal,
-    showPendingReqModal,
+    handleClosePendingRequestModal,
+    showPendingRequestModal,
   } = useSaveAssignments({
     useCase: EUseCase.ADD,
     businessUnits: appData.businessUnit.publicCode,
@@ -67,8 +67,8 @@ const AddAssignments = () => {
       absentOfficialSelected={data || ("" as string)}
       setSelectedToggle={setSelectedToggle}
       setRolesSelected={setRolesSelected}
-      onClosePendingReqModal={handleClosePendingReqModal}
-      showPendingReqModal={showPendingReqModal}
+      onClosePendingRequestModal={handleClosePendingRequestModal}
+      showPendingRequestModal={showPendingRequestModal}
       loading={loadingSendData}
       setCurrentStep={setCurrentStep}
       requestSteps={requestSteps}

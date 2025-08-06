@@ -3,7 +3,7 @@ import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 interface IUseVerification {
   showRequestProcessModal: boolean;
   saveAssignments: ISaveDataResponse;
-  showPendingReqModal: boolean;
+  showPendingRequestModal: boolean;
 }
 
 export type { IUseVerification };

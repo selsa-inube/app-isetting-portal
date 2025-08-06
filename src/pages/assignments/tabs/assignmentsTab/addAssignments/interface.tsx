@@ -24,12 +24,12 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
     requestSteps,
     showModal,
     showRequestProcessModal,
-    showPendingReqModal,
+    showPendingRequestModal,
     loading,
     saveAssignments,
     onFinishForm,
     onCloseRequestStatus,
-    onClosePendingReqModal,
+    onClosePendingRequestModal,
     setRolesSelected,
     setSelectedToggle,
     setCurrentStep,
@@ -112,14 +112,14 @@ const AddAssignmentsUI = (props: IAddAssignmentsUI) => {
                 showRequestProcessModal={showRequestProcessModal}
                 updatedData={formValues}
                 saveAssignments={saveAssignments}
-                showPendingReqModal={showPendingReqModal}
+                showPendingRequestModal={showPendingRequestModal}
                 handleStepChange={(stepId) => setCurrentStep(stepId)}
                 onFinishForm={onFinishForm}
                 onPreviousStep={onPreviousStep}
                 onToggleModal={onToggleModal}
                 onCloseRequestStatus={onCloseRequestStatus}
-                onClosePendingReqModal={onClosePendingReqModal}
-                onCloseProcess={onClosePendingReqModal}
+                onClosePendingRequestModal={onClosePendingRequestModal}
+                onCloseProcess={onClosePendingRequestModal}
                 loading={loading}
               />
             )}

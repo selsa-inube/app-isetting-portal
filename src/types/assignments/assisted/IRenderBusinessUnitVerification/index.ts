@@ -1,7 +1,7 @@
-import { IBusinessEntry } from "@ptypes/assignments/IBusinessEntry";
+import { IRolesByUnitEntry } from "../IRolesByUnitEntry";
 
 interface IRenderBusinessUnitVerification {
-  values: IBusinessEntry[];
+  values: IRolesByUnitEntry[];
 }
 
 export type { IRenderBusinessUnitVerification };

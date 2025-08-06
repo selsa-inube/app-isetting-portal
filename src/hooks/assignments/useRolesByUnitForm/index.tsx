@@ -58,8 +58,12 @@ const useRolesByUnitForm = (props: IUseRolesByUnitForm) => {
       currentRoles.length > 0 && currentRoles.every((role) => role.isActive);
     const newActiveState = !allRolesActive;
 
-    const iconButton = newActiveState ? rolesByUnitLabels.allInactiveIcon : rolesByUnitLabels.allActiveIcon;
-    const actionButton = newActiveState ? rolesByUnitLabels.allInactive : rolesByUnitLabels.allActive;
+    const iconButton = newActiveState
+      ? rolesByUnitLabels.allInactiveIcon
+      : rolesByUnitLabels.allActiveIcon;
+    const actionButton = newActiveState
+      ? rolesByUnitLabels.allInactive
+      : rolesByUnitLabels.allActive;
 
     const newRoles = rolesByBusinessUnit.map((entry) => {
       if (entry.id === id) {
@@ -86,9 +90,13 @@ const useRolesByUnitForm = (props: IUseRolesByUnitForm) => {
 
     const globalAllInactive =
       allRoles.length > 0 && allRoles.every((role) => !role.isActive);
-      
+
+    const allUnitsHaveActiveRole = rolesByBusinessUnit.every(
+      (unit) => unit.roles && unit.roles.some((role) => role.isActive)
+    );
+
     setRolesSelected(rolesByBusinessUnit);
-    setIsDisabledButton(globalAllInactive);
+    setIsDisabledButton(globalAllInactive || !allUnitsHaveActiveRole);
   }, [rolesByBusinessUnit]);
 
   const labelButtonPrevious = editDataOption

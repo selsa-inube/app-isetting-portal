@@ -12,6 +12,7 @@ interface IUseAssignmentNavigation {
   showModal: boolean;
   officialInChargeRef: React.RefObject<FormikProps<IOfficialInChargeEntry>>;
   selectedToggle: IBusinessEntry[];
+  absentOfficial: string;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

@@ -6,7 +6,7 @@ import { addAssignmentsSteps } from "@config/assignments/assisted/steps";
 import { IUseVerification } from "@ptypes/assignments/IUseVerification";
 
 const useVerification = (props: IUseVerification) => {
-  const { showRequestProcessModal, saveAssignments, showPendingReqModal } = props;
+  const { showRequestProcessModal, saveAssignments, showPendingRequestModal } = props;
 
   const isTablet = useMediaQuery(enviroment.IS_MOBILE_1200);
 
@@ -15,7 +15,7 @@ const useVerification = (props: IUseVerification) => {
   const canShowRequestProcess = showRequestProcessModal && saveAssignments;
 
   const canShowPendingRequest =
-    showPendingReqModal && saveAssignments && saveAssignments.requestNumber.length > 0;
+    showPendingRequestModal && saveAssignments && saveAssignments.requestNumber.length > 0;
 
   const steps = addAssignmentsSteps.filter(
     (step) => step.name.toLowerCase() !== verificationLabels.verification

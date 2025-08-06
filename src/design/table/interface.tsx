@@ -10,14 +10,14 @@ import {
   Thead,
   Tr,
 } from "@inubekit/inubekit";
+import { EComponentAppearance } from "@enum/appearances";
 import { getAlignment } from "@utils/getAlignment/index.";
-import { ITableUI } from "@ptypes/design/table/ITableUI";
 import { tableLabels } from "@config/tableLabels";
+import { ITableUI } from "@ptypes/design/table/ITableUI";
 import { WidthColmnsData } from "./widthColumns";
 import { ShowActionTitle } from "./showActionTitle";
 import { ShowAction } from "./showAction";
 import { DataLoading } from "./dataLoading";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 
 const TableUI = (props: ITableUI) => {
   const {
@@ -84,7 +84,7 @@ const TableUI = (props: ITableUI) => {
                   <Text
                     type="label"
                     size={mediaActionOpen ? "medium" : "large"}
-                    appearance={ComponentAppearance.DARK}
+                    appearance={EComponentAppearance.DARK}
                     ellipsis
                   >
                     {emptyDataMessage
@@ -97,7 +97,7 @@ const TableUI = (props: ITableUI) => {
               <>
                 {entries.length > 0 ? (
                   entries.map((entry, index) => (
-                    <Tr key={index} zebra={index % 2 === 1}>
+                    <Tr key={index} zebra={index % 2 === 1} border="top">
                       {TitleColumns.map((title, index) => (
                         <Td
                           key={`${index}-${entry[title.id]}`}
@@ -123,8 +123,8 @@ const TableUI = (props: ITableUI) => {
                       <Text
                         type="label"
                         size="large"
-                        appearance={ComponentAppearance.DARK}
-                        ellipsis
+                        appearance={EComponentAppearance.DARK}
+                        ellipsis={mediaActionOpen}
                       >
                         {tableLabels.emptySearch}
                       </Text>

@@ -60,7 +60,7 @@ const ReasonAndCoverageFormUI = (props: IReasonAndCoverageFormUI) => {
                 alignItems="center"
                 justifyItems="center"
                 templateColumns={isMobile ? "1fr" : "repeat(3, 1fr)"}
-                templateRows={isMobile ? "repeat(3, 1fr)" : "1fr"}
+                templateRows={isMobile ? "1fr 0.5fr 1fr" : "1fr"}
               >
                 <Stack width="100%" gap={basic.spacing.s150} alignItems="center" justifyContent="space-between">
                   <Text size="medium">{addAssignmentsLabels.reasonFrom}</Text>

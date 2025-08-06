@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import { IAppearenceBorderStack } from "@ptypes/design/IAppearenceBorderStack";
 import { tokensBorderStack } from "./tokens";
-import {IAppearenceBorderStack} from "@ptypes/design/IAppearenceBorderStack";  
 
 interface IStyledFlex {
   $background: IAppearenceBorderStack;
@@ -42,7 +42,9 @@ const StyledBorderFlex = styled.div<IStyledFlex>`
     `1px solid ${theme?.borderStack?.[$border].border?.color ?? tokensBorderStack[$border].border.color}`};
   border-radius: ${({ $borderRadius }) => $borderRadius};
   box-sizing: ${({ $boxSizing }) => $boxSizing};
-  box-shadow: ${({ $boxShadow }) => $boxShadow};
+  box-shadow: ${({ $boxShadow, theme }) =>
+    $boxShadow &&
+    `${$boxShadow} ${theme?.borderStack?.dark.border?.color ?? tokensBorderStack.dark.border.color}`};
   overflow-y: ${({ $overflowY }) => $overflowY};
   min-height: ${({ $minHeight }) => $minHeight};
   max-height: ${({ $maxHeight }) => $maxHeight};

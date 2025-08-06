@@ -1,28 +1,23 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 import { useMediaQuery } from "@inubekit/inubekit";
 
-import { AuthAndData } from "@context/authAndDataProvider";
-import { formatDate } from "@utils/date/formatDate";
+import { UseBusinessUnitsByOfficial } from "@hooks/assignments/useBusinessUnitsByOfficial";
 import { stepsKeysAssignments } from "@enum/stepsKeysAssignments";
 import { enviroment } from "@config/environment";
 import { addAssignmentsSteps } from "@config/assignments/assisted/steps";
-import { addAssignmentsLabels } from "@config/assignments/assisted/addAssignmentsLabels";
 import { rolesByUnitLabels } from "@config/assignments/assisted/rolesByUnitLabels";
 import { IBusinessEntry } from "@ptypes/assignments/IBusinessEntry";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IAddAssignmentForms } from "@ptypes/assignments/assisted/IAddAssignmentForms";
 import { IOfficialInChargeEntry } from "@ptypes/assignments/assisted/IOfficialInChargeEntry";
 import { IAddAssignmentsRef } from "@ptypes/assignments/assisted/IAddAssignmentsRef";
 import { IUseAddAssignments } from "@ptypes/hooks/IUseAddAssignments";
 import { IRolesByUnitEntry } from "@ptypes/assignments/assisted/IRolesByUnitEntry";
 import { IReasonAndCoverageEntry } from "@ptypes/assignments/assisted/IReasonAndCoverageEntry";
-import { UseBusinessUnitsByOfficial } from "../../assignments/useBusinessUnitsByOfficial";
 import { useAssignmentNavigation } from "../useAssignmentNavigation";
 
 const useAddAssignments = (props: IUseAddAssignments) => {
   const { absentOfficial } = props;
-  const { appData } = useContext(AuthAndData);
 
   const initialValues = {
     officialInCharge: {
@@ -50,11 +45,7 @@ const useAddAssignments = (props: IUseAddAssignments) => {
   const [formValues, setFormValues] =
     useState<IAddAssignmentForms>(initialValues);
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
-
-  const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
-
   const [showModal, setShowModal] = useState(false);
-  const [saveData, setSaveData] = useState<ISaveDataRequest>();
   const [selectedToggle, setSelectedToggle] = useState<IBusinessEntry[]>([]);
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
 
@@ -109,6 +100,10 @@ const useAddAssignments = (props: IUseAddAssignments) => {
   const {
     validateSelectedToggle,
     showGoBackModal,
+    saveData,
+    showRequestProcessModal,
+    setShowRequestProcessModal,
+    handleSubmitClick,
     handleGoBack,
     handleOpenModal,
     handleToggleModal,
@@ -123,6 +118,7 @@ const useAddAssignments = (props: IUseAddAssignments) => {
     officialInChargeRef,
     selectedToggle,
     setShowModal,
+    absentOfficial,
   });
 
   const formReferences: IAddAssignmentsRef = {
@@ -190,52 +186,16 @@ const useAddAssignments = (props: IUseAddAssignments) => {
   const globalAllActiveRoles =
     allRoles.length > 0 && allRoles.every((role) => !role.isActive);
 
+  const allUnitsHaveActiveRole = rolesSelected.every(
+    (unit) => unit.roles && unit.roles.some((role) => role.isActive)
+  );
+
   const formValid =
     (currentStep === stepsKeysAssignments.BUSINESS_UNITS_ASSIGNMENT &&
       !validateSelectedToggle) ||
     (currentStep === stepsKeysAssignments.ROLES_BY_BUSINESS_UNIT &&
-      globalAllActiveRoles) ||
+      (globalAllActiveRoles || !allUnitsHaveActiveRole)) ||
     !isCurrentFormValid;
-
-  const handleSubmitClick = () => {
-    const { dateFrom, dateTo } = formValues.reasonAndCoverage.values;
-
-  const temporaryRoles = formValues.rolesByBusinessUnits.values
-  .filter((unit) => unit?.publicCode)
-  .flatMap((unit) => {
-    const roles = unit.roles || [];
-
-    return roles
-      .filter((rol) => rol.isActive) 
-      .map((rol) => ({             
-        roleName: rol?.value,
-        businessUnitName: unit.publicCode,
-        businessUnitCode: unit.publicCode,
-        startDate: dateFrom,
-        endDate: dateTo,
-      }));
-  });
-
-    setSaveData({
-      applicationName: "",
-      businessManagerCode: appData.businessManager.publicCode,
-      businessUnitCode: appData.businessUnit.publicCode,
-      description: addAssignmentsLabels.descriptionSaveData,
-      entityName: "Assignments",
-      requestDate: formatDate(new Date()),
-      useCaseName: "AddAssignments",
-      configurationRequestData: {
-        nameOfAbsentStaff: absentOfficial,
-        assignmentDate: dateFrom,
-        assignmentEndDate: dateTo,
-        staffName: formValues.officialInCharge.values.official,
-        staffLastName: formValues.officialInCharge.values.official,
-        staffIdentificationNumber: "",
-        temporaryRolesByBusinessUnit: temporaryRoles,
-      },
-    });
-    setShowRequestProcessModal(!showRequestProcessModal);
-  };
 
   return {
     businessUnitsOptions,

@@ -27,6 +27,7 @@ const RolesCardByUnit = (props: IRolesCardByUnit) => {
       height="fit-content"
       borderRadius={basic.spacing.s100}
       padding={basic.spacing.s200}
+      boxShadow={`2px 2px 3px 0px`}
     >
       <Text type="title" weight="bold" size="large" textAlign="center">
         {businessUnit}

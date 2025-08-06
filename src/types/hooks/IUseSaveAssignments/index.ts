@@ -1,8 +1,8 @@
-import { UseCase } from "@ptypes/IUseCase";
+import { IUseCase } from "@ptypes/IUseCase";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
 interface IUseSaveAssignments {
-  useCase: UseCase;
+  useCase: IUseCase;
   businessUnits: string;
   userAccount: string;
   sendData: boolean;

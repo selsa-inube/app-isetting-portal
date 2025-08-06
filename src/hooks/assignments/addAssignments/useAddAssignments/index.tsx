@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 import { useMediaQuery } from "@inubekit/inubekit";
 
+import { UseBusinessUnitsByOfficial } from "@hooks/assignments/useBusinessUnitsByOfficial";
 import { stepsKeysAssignments } from "@enum/stepsKeysAssignments";
 import { enviroment } from "@config/environment";
 import { addAssignmentsSteps } from "@config/assignments/assisted/steps";
@@ -13,7 +14,6 @@ import { IAddAssignmentsRef } from "@ptypes/assignments/assisted/IAddAssignments
 import { IUseAddAssignments } from "@ptypes/hooks/IUseAddAssignments";
 import { IRolesByUnitEntry } from "@ptypes/assignments/assisted/IRolesByUnitEntry";
 import { IReasonAndCoverageEntry } from "@ptypes/assignments/assisted/IReasonAndCoverageEntry";
-import { UseBusinessUnitsByOfficial } from "../../useBusinessUnitsByOfficial";
 import { useAssignmentNavigation } from "../useAssignmentNavigation";
 
 const useAddAssignments = (props: IUseAddAssignments) => {

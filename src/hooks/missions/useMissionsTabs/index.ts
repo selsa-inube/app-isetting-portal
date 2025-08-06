@@ -56,18 +56,21 @@ const useMissionsTabs = () => {
   useEffect(() => {
     const fetchRequestsInProgressData = async () => {
       try {
-        const data = await getRequestsInProgress(
-          ERequestMission.MISSIONS,
-          appData.businessManager.publicCode
-        );
-        setRequestsInProgress(data);
+        if(appData.businessManager.publicCode.length > 0){
+
+          const data = await getRequestsInProgress(
+            ERequestMission.MISSIONS,
+            appData.businessManager.publicCode
+          );
+          setRequestsInProgress(data);
+        }
       } catch (error) {
         console.info(error);
       }
     };
 
     fetchRequestsInProgressData();
-  }, []);
+  }, [appData.businessManager.publicCode]);
 
   useEffect(() => {
     if (changeTab) {

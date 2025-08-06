@@ -22,12 +22,14 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        const data = await getRequestsInProgress(
-          ERequestPosition.POSITIONS,
-          businessManager,
-          businessUnits
-        );
-        setRequestsInProgress(data);
+        if (businessManager.length > 0) {
+          const data = await getRequestsInProgress(
+            ERequestPosition.POSITIONS,
+            businessManager,
+            businessUnits
+          );
+          setRequestsInProgress(data);
+        }
       } catch (error) {
         console.info(error);
         setHasError(true);
@@ -37,7 +39,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     };
 
     fetchRequestsInProgressData();
-  }, []);
+  }, [businessManager, businessUnits]);
 
   useEffect(() => {
     if (entryDeleted) {

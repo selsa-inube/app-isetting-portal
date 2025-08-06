@@ -2,10 +2,10 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { useState, useEffect } from "react";
 
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
+import { ERequestInProgress } from "@enum/requestInProgress";
+import { enviroment } from "@config/environment";
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/missions/requestTab/IRequestsInProgress";
-import { enviroment } from "@config/environment";
-import { ERequestInProgress } from "@enum/requestInProgress";
 
 const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   const { businessManager } = props;
@@ -22,11 +22,13 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        const data = await getRequestsInProgress(
-          ERequestInProgress.MISSIONS,
-          businessManager
-        );
-        setRequestsInProgress(data);
+        if(businessManager.length > 0){
+          const data = await getRequestsInProgress(
+            ERequestInProgress.MISSIONS,
+            businessManager
+          );
+          setRequestsInProgress(data);
+        }
       } catch (error) {
         console.info(error);
         setHasError(true);
@@ -36,7 +38,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     };
 
     fetchRequestsInProgressData();
-  }, []);
+  }, [businessManager]);
 
   useEffect(() => {
     if (entryCanceled) {

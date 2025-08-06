@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useAddAssignments } from "@hooks/assignments/addAssignments/useAddAssignments";
-import { useSaveAssignments } from "@hooks/assignments/saveAssigments/useSaveAssignments";
 import { EUseCase } from "@enum/useCase";
 import { addAssignmentsSteps } from "@config/assignments/assisted/steps";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { AddAssignmentsUI } from "./interface";
+import { useSaveAssignments } from "@hooks/assignments/saveAssignments/useSaveAssignments";
 
 const AddAssignments = () => {
   const location = useLocation();

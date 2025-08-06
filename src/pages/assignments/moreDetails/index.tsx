@@ -21,6 +21,7 @@ const MoreDetails = (props: IMoreDetails) => {
     moreDetailsModal,
     pageLength,
     columnWidths,
+    setEntryDeleted,
   } = props;
 
 
@@ -95,7 +96,7 @@ const MoreDetails = (props: IMoreDetails) => {
               id={portalId}
               titles={titles}
               entries={data.roles}
-              actions={actionsConfig()}
+              actions={actionsConfig(setEntryDeleted)}
               breakpoints={breakPoints}
               loading={false}
               columnWidths={columnWidths}

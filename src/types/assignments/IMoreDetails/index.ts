@@ -9,6 +9,7 @@ interface IMoreDetails {
   moreDetailsModal: { [key: string]: string };
   pageLength?: number;
   columnWidths: number[];
+  setEntryDeleted?: (id: string | number) => void;
 }
 
 export type { IMoreDetails };

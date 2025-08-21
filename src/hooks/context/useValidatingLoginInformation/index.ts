@@ -60,16 +60,27 @@ const useValidatingLoginInformation = () => {
         staffPortalCatalogId: portalData?.staffPortalId || "",
         businessManagerId: portalData?.businessManagerId || "",
         publicCode: portalData?.publicCode || "",
-      },
-      businessManager: {
-        ...prev.businessManager,
-        publicCode: businessManagersData.publicCode || "",
-        abbreviatedName: businessManagersData.abbreviatedName || "",
-        urlBrand: businessManagersData.urlBrand || "",
-        urlLogo: businessManagersData.urlLogo || "",
-      },
+      }
     }));
   }, [businessManagersData, portalData, portalCode]);
+
+   useEffect(() => {
+    if (!businessManagersData) return;
+
+    if(businessManagersData.publicCode && businessManagersData.publicCode.length > 0){
+      setAppData((prev) => ({
+        ...prev,
+        businessManager: {
+          ...prev.businessManager,
+          publicCode: businessManagersData.publicCode,
+          abbreviatedName: businessManagersData.abbreviatedName,
+          urlBrand: businessManagersData.urlBrand,
+          urlLogo: businessManagersData.urlLogo,
+        },
+      }));
+    }
+
+  }, [businessManagersData]);
 
   useEffect(() => {
     localStorage.setItem("businessUnitSigla", businessUnitSigla);

@@ -16,14 +16,11 @@ import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgr
 import { IPositionTabsConfig } from "@ptypes/positions/IPositionTabsConfig";
 
 const usePositionsTabs = () => {
-
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
   const tabs = positionsTabsConfig(smallScreen);
-  const [isSelected, setIsSelected] = useState<string>(
-    tabs.cargos.id
-  );
+  const [isSelected, setIsSelected] = useState<string>(tabs.cargos.id);
   const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);
-    const [requestsInProgress, setRequestsInProgress] = useState<
+  const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
   >([]);
   const [showMenu, setShowMenu] = useState(false);
@@ -147,50 +144,47 @@ const usePositionsTabs = () => {
     }
   }, [isSelected]);
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchRequestsInProgressData = async () => {
       try {
-        const data = await getRequestsInProgress(
-          ERequestPosition.POSITIONS,
-          appData.businessManager.publicCode,
-          appData.businessUnit.publicCode
-        );
-        setRequestsInProgress(data);
+        if (appData.businessManager.publicCode.length > 0) {
+          const data = await getRequestsInProgress(
+            ERequestPosition.POSITIONS,
+            appData.businessManager.publicCode,
+            appData.businessUnit.publicCode
+          );
+          setRequestsInProgress(data);
+        }
       } catch (error) {
         console.info(error);
       }
     };
 
     fetchRequestsInProgressData();
-  }, []);
+  }, [appData.businessManager.publicCode, appData.businessUnit.publicCode]);
 
-  const filteredTabsConfig = Object.keys(tabs).reduce(
-    (filteredtabs, key) => {
-      const tab = tabs[key as keyof typeof tabs];
+  const filteredTabsConfig = Object.keys(tabs).reduce((filteredtabs, key) => {
+    const tab = tabs[key as keyof typeof tabs];
 
-      if (
-        key === tabs.requestsInProgress.id &&
-        requestsInProgress &&
-        requestsInProgress.length === 0
-      ) {
-        return filteredtabs;
-      }
-
-      if (tab !== undefined) {
-        filteredtabs[key as keyof IPositionTabsConfig] = tab;
-      }
+    if (
+      key === tabs.requestsInProgress.id &&
+      requestsInProgress &&
+      requestsInProgress.length === 0
+    ) {
       return filteredtabs;
-    },
-    {} as IPositionTabsConfig
-  );
+    }
 
+    if (tab !== undefined) {
+      filteredtabs[key as keyof IPositionTabsConfig] = tab;
+    }
+    return filteredtabs;
+  }, {} as IPositionTabsConfig);
 
   const positionTab = Object.values(filteredTabsConfig);
 
   const showPositionsTab = isSelected === tabs.cargos.id;
 
-  const showReqInProgTab =
-    isSelected === tabs.requestsInProgress.id;
+  const showRequestTab = isSelected === tabs.requestsInProgress.id;
 
   const columnWidths = [widthFirstColumn, 55, 23];
 
@@ -208,7 +202,7 @@ const usePositionsTabs = () => {
     loading,
     positionTab,
     showPositionsTab,
-    showReqInProgTab,
+    showRequestTab,
     handleClickUnits,
     handleCloseModalUnits,
     onToggleInfoModal,

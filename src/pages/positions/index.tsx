@@ -23,7 +23,7 @@ const Positions =() => {
       unit,
       positionTab,
       showPositionsTab,
-      showReqInProgTab,
+      showRequestTab,
       handleClickUnits,
       handleCloseModalUnits,
       onToggleInfoModal,
@@ -55,7 +55,7 @@ const Positions =() => {
         selectedUnit={unit}
         positionTab={positionTab}
         showPositionsTab={showPositionsTab}
-        showReqInProgTab={showReqInProgTab}
+        showRequestTab={showRequestTab}
       />
     );
   }

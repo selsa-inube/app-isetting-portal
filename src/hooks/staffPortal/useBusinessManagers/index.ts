@@ -18,11 +18,14 @@ const useBusinessManagers = (props: IUseBusinessManagers) => {
         setErrorCode(1000);
         return;
       }
+
       try {
-        const newData = await getBusinessManagers(
-          portalPublicCode.businessManagerId
-        );
-        setBusinessManagersData(newData);
+        if (portalPublicCode.businessManagerId.length > 0) {
+          const newData = await getBusinessManagers(
+            portalPublicCode.businessManagerId
+          );
+          setBusinessManagersData(newData);
+        }
       } catch (error) {
         console.info(error);
         setHasError(true);

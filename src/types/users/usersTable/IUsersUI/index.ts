@@ -14,6 +14,7 @@ interface IUsersUI {
   entries: IEntry[];
   columnWidths: number[];
   catalogName?: string;
+  title: string;
 }
 
 export type { IUsersUI };

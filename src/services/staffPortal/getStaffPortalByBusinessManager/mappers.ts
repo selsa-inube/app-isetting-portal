@@ -11,10 +11,10 @@ const mapStaffPortalByBusinessManagerApiToEntity = (
 ): IStaffPortalByBusinessManager => {
   const buildResend: IStaffPortalByBusinessManager = {
     abbreviatedName: String(resend.abbreviatedName),
-    businessManagerId: String(resend.businessManagerId),
+    businessManagerCode: String(resend.businessManagerCode),
     descriptionUse: String(resend.descriptionUse),
     publicCode: String(resend.publicCode),
-    staffPortalCatalogId: String(resend.staffPortalCatalogId),
+    staffPortalCatalogCode: String(resend.staffPortalCatalogCode),
     staffPortalId: String(resend.staffPortalId),
     url: String(resend.url),
   };

@@ -16,7 +16,7 @@ const useHome = () => {
   const staffPortalId = portalId ? decrypt(portalId) : "";
   const { optionsCards, loading } = useOptionsByBusinessunits({
     staffPortalId,
-    businessUnitSigla
+    businessUnitSigla,
   });
   const [Collapse, SetCollapse] = useState(false);
   const [SelectedClient, SetSelectedClient] = useState<string>("");
@@ -40,9 +40,9 @@ const useHome = () => {
 
   const Username = appData.user.userName.split(" ")[0];
 
-  const hasData = optionsCards && optionsCards?.length > 0
+  const hasData = optionsCards && optionsCards?.length > 0;
 
-  const multipleBusinessUnits = businessUnitsToTheStaff.length > 1
+  const multipleBusinessUnits = businessUnitsToTheStaff.length > 1;
 
   return {
     Collapse,
@@ -59,7 +59,7 @@ const useHome = () => {
     optionsCards,
     loading,
     hasData,
-    multipleBusinessUnits
+    multipleBusinessUnits,
   };
 };
 

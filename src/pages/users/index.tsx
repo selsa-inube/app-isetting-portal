@@ -5,6 +5,8 @@ import { useManageUsersSearchAndPageControl } from "@hooks/users/useManageSearch
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { IEntry } from "@ptypes/design/table/IEntry";
 import { UsersUI } from "./interface";
+import { useTitleAndPrivileges } from "@hooks/users/useTitleAndDescription";
+import { columnWidthsUsers } from "@config/users/tableUsers/columnWidths";
 
 const Users = () => {
   const { appData } = useContext(AuthAndData);
@@ -15,13 +17,16 @@ const Users = () => {
     showMenu,
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
-    columnWidths,
   } = usePositionsTabs();
 
   const { searchPosition, handleSearchPositions, loading, requestsInProgress } =
-    useManageUsersSearchAndPageControl({businessManager: appData.businessManager.publicCode});
+    useManageUsersSearchAndPageControl({
+      businessManager: appData.businessManager.publicCode,
+    });
+  const { title } = useTitleAndPrivileges();
   return (
     <UsersUI
+      title={title}
       handleSearchPositions={handleSearchPositions}
       searchPosition={searchPosition}
       isSelected={isSelected ?? positionsTabsConfig(smallScreen).cargos.id}
@@ -34,7 +39,7 @@ const Users = () => {
       handleToggleMenuInvitation={handleToggleMenuInvitation}
       handleCloseMenuInvitation={handleCloseMenuInvitation}
       entries={requestsInProgress as IEntry[]}
-      columnWidths={columnWidths}
+      columnWidths={columnWidthsUsers}
     />
   );
 };

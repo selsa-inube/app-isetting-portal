@@ -5,10 +5,11 @@ import {
   Textfield,
   Button,
   Icon,
+  Text,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { Table } from "@design/table";
-import { actionsConfig, breakPoints, titles } from "@config/users/table";
+import { actionsConfig } from "@config/users/tableUsers";
 import { PageTitle } from "@design/label/PageTitle";
 import { Menu } from "@design/navigation";
 import { menuUserLinks } from "@config/users/menuInvitation";
@@ -17,6 +18,9 @@ import { crumbsUsers } from "@config/users/navigation";
 import { usersTitle } from "@config/users/usersTitle";
 import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
 import { StyledContainer } from "./styles";
+import { BorderStack } from "@design/layout/borderStack";
+import { breakPointsUsers } from "@config/users/tableUsers/breakPoints";
+import { titlesUsers } from "@config/users/tableUsers/titles";
 
 const UsersUI = (props: IUsersUI) => {
   const {
@@ -29,6 +33,7 @@ const UsersUI = (props: IUsersUI) => {
     handleCloseMenuInvitation,
     loading,
     columnWidths,
+    title,
   } = props;
 
   return (
@@ -44,66 +49,75 @@ const UsersUI = (props: IUsersUI) => {
     >
       <Stack gap={basic.spacing.s600} direction="column">
         <Stack gap={basic.spacing.s300} direction="column">
-              <Breadcrumbs crumbs={crumbsUsers} />
-              <PageTitle
-                title={usersTitle.title}
-                description={usersTitle.description}
-                navigatePage="/"
-              />
+          <Breadcrumbs crumbs={crumbsUsers} />
+          <PageTitle
+            title={title}
+            description={usersTitle.description}
+            navigatePage="/"
+          />
         </Stack>
       </Stack>
+      <BorderStack
+        border="dark"
+        borderRadius={basic.spacing.s100}
+        direction="column"
+        gap={basic.spacing.s20}
+        padding={basic.spacing.s24}
+      >
+        <Stack justifyContent="space-between" alignItems="center">
+          <Textfield
+            name="searchPositions"
+            id="searchPositions"
+            placeholder="Palabra clave"
+            type="search"
+            iconBefore={<MdSearch />}
+            size="compact"
+            label="Buscar"
+            value={searchPosition}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleSearchPositions(e)
+            }
+          />
 
-      <Stack justifyContent="space-between" alignItems="center">
-        <Textfield
-          name="searchPositions"
-          id="searchPositions"
-          placeholder="Búsqueda..."
-          type="search"
-          iconBefore={<MdSearch />}
-          size="compact"
-          value={searchPosition}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleSearchPositions(e)
-          }
-        />
-
-        {smallScreen ? (
-          <StyledContainer>
-            <Icon
-              icon={<MdOutlineMoreHoriz />}
-              size="24px"
-              onClick={handleToggleMenuInvitation}
-              cursorHover={true}
-              appearance="dark"
-            />
-            {showMenu && (
-              <Menu
-                options={menuUserLinks}
-                handleClose={handleCloseMenuInvitation}
+          {smallScreen ? (
+            <StyledContainer>
+              <Icon
+                icon={<MdOutlineMoreHoriz />}
+                size="24px"
+                onClick={handleToggleMenuInvitation}
+                cursorHover={true}
+                appearance="dark"
               />
-            )}
-          </StyledContainer>
-        ) : (
-          <Button
-            iconBefore={<MdPersonAddAlt />}
-            spacing="wide"
-            type="link"
-            path="/users"
-          >
-            {UserbuttonText.buttonAddUsers}
-          </Button>
-        )}
-      </Stack>
-      <Table
-        id="portal"
-        titles={titles}
-        entries={entries}
-        actions={actionsConfig()}
-        breakpoints={breakPoints}
-        filter={(() => "")()}
-        loading={loading}
-        columnWidths={columnWidths}
-      />
+              {showMenu && (
+                <Menu
+                  options={menuUserLinks}
+                  handleClose={handleCloseMenuInvitation}
+                />
+              )}
+            </StyledContainer>
+          ) : (
+            <Button
+              iconBefore={<MdPersonAddAlt />}
+              spacing="wide"
+              type="link"
+              path="/users"
+            >
+              {UserbuttonText.buttonAddUsers}
+            </Button>
+          )}
+        </Stack>
+        <Text>{UserbuttonText.labelTab}</Text>
+        <Table
+          id="portal"
+          titles={titlesUsers}
+          entries={entries}
+          actions={actionsConfig()}
+          breakpoints={breakPointsUsers}
+          filter={searchPosition}
+          loading={loading}
+          columnWidths={columnWidths}
+        />
+      </BorderStack>
     </Stack>
   );
 };

@@ -5,11 +5,12 @@ import { IDetailsModal } from "@ptypes/positions/details/IDetailsModal";
 import { basic } from "@design/tokens";
 import { DetailsUsersModal } from "./detailsUsersModal";
 import { UserbuttonText } from "@config/users/addUsers/assisted/buttonText";
+import { EComponentAppearance } from "@enum/appearances";
 
 const DetailsModal = (props: IDetailsModal) => {
   const { data, labelsOptions } = props;
   const { showModal, handleToggleModal, screenTablet, dataTable } =
-    useDetailsModal({data});
+    useDetailsModal({ data });
 
   return (
     <>
@@ -17,7 +18,7 @@ const DetailsModal = (props: IDetailsModal) => {
         <Icon
           icon={<MdOutlineRemoveRedEye />}
           size="16px"
-          appearance="dark"
+          appearance={EComponentAppearance.DARK}
           cursorHover
           onClick={handleToggleModal}
         />

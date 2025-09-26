@@ -1,7 +1,7 @@
 import { IPosition } from "@ptypes/positions/assisted/IPosition";
-import { IInputFields } from "@ptypes/users/details/IInputFields";
+import { IInputFields } from "@ptypes/users/tabs/userTab/details/IInputFields";
 
-const useInputFields = ( props: IInputFields) => {
+const useInputFields = (props: IInputFields) => {
   const { labels, infoData } = props;
   return (labels.length ? labels : Object.keys(infoData))
     .map((field) => {

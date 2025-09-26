@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { getWithRetries } from "@services/core/getWithRetries";
 import { iportalStaffAxiosInstance } from "@api/iportalStaff";
-import { IUsers } from "@ptypes/users/usersTable/IUsers";
+import { IUsers } from "@ptypes/users/tabs/userTab/usersTable/IUsers";
 import { mapUsersPortalStaffEntities } from "./mappers";
 
 const getIportalStaffUsers = async (

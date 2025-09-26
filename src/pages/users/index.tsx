@@ -1,45 +1,35 @@
 import { useContext } from "react";
+
 import { AuthAndData } from "@context/authAndDataProvider";
-import { usePositionsTabs } from "@hooks/positions/usePositionsTabs";
-import { useManageUsersSearchAndPageControl } from "@hooks/users/useManageSearchAndPageControl";
-import { positionsTabsConfig } from "@config/positionsTabs/tabs";
-import { IEntry } from "@ptypes/design/table/IEntry";
+import { useUserPage } from "@hooks/users/userPage";
+
 import { UsersUI } from "./interface";
-import { useTitleAndPrivileges } from "@hooks/users/useTitleAndDescription";
-import { columnWidthsUsers } from "@config/users/tableUsers/columnWidths";
 
 const Users = () => {
   const { appData } = useContext(AuthAndData);
   const {
+    smallScreen,
     isSelected,
     handleTabChange,
-    smallScreen,
-    showMenu,
-    handleToggleMenuInvitation,
-    handleCloseMenuInvitation,
-  } = usePositionsTabs();
-
-  const { searchPosition, handleSearchPositions, loading, requestsInProgress } =
-    useManageUsersSearchAndPageControl({
-      businessManager: appData.businessManager.publicCode,
-    });
-  const { title } = useTitleAndPrivileges();
+    title,
+    showStaffTab,
+    showRequestsInProgressTab,
+    userTabs,
+    loading,
+  } = useUserPage({
+    businessUnits: appData.businessUnit.publicCode,
+    businessManager: appData.businessManager.publicCode,
+  });
   return (
     <UsersUI
       title={title}
-      handleSearchPositions={handleSearchPositions}
-      searchPosition={searchPosition}
-      isSelected={isSelected ?? positionsTabsConfig(smallScreen).cargos.id}
-      handleTabChange={handleTabChange}
-      catalogName="Privilegios"
       smallScreen={smallScreen}
-      smallScreenTab={false}
-      showMenu={showMenu}
+      isSelected={isSelected}
+      handleTabChange={handleTabChange}
+      showStaffTab={showStaffTab}
+      showRequestsInProgressTab={showRequestsInProgressTab}
+      userTabs={userTabs}
       loading={loading}
-      handleToggleMenuInvitation={handleToggleMenuInvitation}
-      handleCloseMenuInvitation={handleCloseMenuInvitation}
-      entries={requestsInProgress as IEntry[]}
-      columnWidths={columnWidthsUsers}
     />
   );
 };

@@ -1,7 +1,7 @@
 import { InteractiveModal } from "@design/feedback/InteractiveModal";
 import { basic } from "@design/tokens";
 import { Grid, Stack } from "@inubekit/inubekit";
-import { IFeedbackModal } from "@ptypes/users/details/IFeedbackModal";
+import { IFeedbackModal } from "@ptypes/users/tabs/userTab/details/IFeedbackModal";
 import { InputFields } from "./inputFields";
 import { TableUsers } from "./tableUsers";
 

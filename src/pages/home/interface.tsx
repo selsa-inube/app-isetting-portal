@@ -19,6 +19,7 @@ import {
   StyledTitle,
 } from "./styles";
 import { homeLabel } from "@config/homeLabel";
+import { AppCard } from "@design/feedback/appCard";
 
 const HomeUI = (props: IHome) => {
   const {
@@ -31,11 +32,11 @@ const HomeUI = (props: IHome) => {
     smallScreen,
     username,
     hasData,
-    multipleBusinessUnits
+    multipleBusinessUnits,
   } = props;
 
   const { appData } = useContext(AuthAndData);
-  
+
   return (
     <>
       <StyledContainer>
@@ -49,7 +50,7 @@ const HomeUI = (props: IHome) => {
             }}
             menu={userMenu}
           />
-          { multipleBusinessUnits && (
+          {multipleBusinessUnits && (
             <>
               <StyledCollapseIcon
                 $collapse={collapse}
@@ -84,15 +85,15 @@ const HomeUI = (props: IHome) => {
               </>
             ) : (
               <>
-                { hasData ? (
+                {hasData ? (
                   data?.map((card) => (
-                    <InteractiveBox
+                    <AppCard
                       key={card.id}
-                      label={card.label}
+                      label={card.publicCode}
                       description={card.description}
                       icon={card.icon}
                       url={card.url}
-                      isLoading={loading}
+                      loading={false}
                     />
                   ))
                 ) : (

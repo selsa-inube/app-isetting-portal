@@ -1,5 +1,5 @@
 import { Table, Thead, Tr, Th, Tbody, Td } from "@inubekit/inubekit";
-import { ITableComponent } from "@ptypes/users/details/ITableComponent";
+import { ITableComponent } from "@ptypes/users/tabs/userTab/details/ITableComponent";
 
 const TableUsers = (props: ITableComponent) => {
   const { dataTable } = props;

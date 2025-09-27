@@ -7,8 +7,7 @@ import { IPortalStaff } from "@ptypes/subMenu/types";
 import { IUseOptionsByBusinessunits } from "@ptypes/hooks/IUseOptionsByBusinessunits";
 
 const useOptionsByBusinessunits = (props: IUseOptionsByBusinessunits) => {
-  const { staffPortalId, businessUnitSigla, optionName } =
-    props;
+  const { staffPortalId, businessUnitSigla, optionName } = props;
   const [optionsData, setOptionsData] = useState<IPortalStaff[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [hasError, setHasError] = useState(false);
@@ -37,9 +36,14 @@ const useOptionsByBusinessunits = (props: IUseOptionsByBusinessunits) => {
   }, [businessUnitSigla]);
 
   const optionsCards = optionsData
-    .filter((option) => normalizeOptionsByPublicCode(option.publicCode, options))
+    .filter((option) =>
+      normalizeOptionsByPublicCode(option.publicCode, options)
+    )
     .map((option) => {
-      const normalizedOption = normalizeOptionsByPublicCode(option.publicCode, options);
+      const normalizedOption = normalizeOptionsByPublicCode(
+        option.publicCode,
+        options
+      );
 
       return {
         id: option.publicCode,

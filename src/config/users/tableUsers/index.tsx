@@ -1,22 +1,8 @@
-import { DetailsModal } from "@pages/users/tools/detailsModal";
+import { DetailsModal } from "@pages/users/tabs/userTab/tools/detailsModal";
 import { IAction } from "@ptypes/table/IAction";
 
 import { IEntry } from "@ptypes/table/IEntry";
-import { ITitle } from "@ptypes/table/ITitle";
-import { MdDeleteOutline, MdOutlineCreate } from "react-icons/md";
-
-const titles: ITitle[] = [
-  {
-    id: "staffName",
-    titleName: "Nombre",
-    priority: 0,
-  },
-  {
-    id: "identificationDocumentNumber",
-    titleName: "Identificación",
-    priority: 1,
-  },
-];
+import { MdDeleteOutline, MdOutlineCreate, MdGroup } from "react-icons/md";
 
 const labelsOptions = [
   {
@@ -81,13 +67,13 @@ const actionsConfig = () => {
         <MdDeleteOutline title={`View ${entry.staffName}`} />
       ),
     },
+    {
+      id: "Group",
+      content: (entry: IEntry) => <MdGroup title={`View ${entry.staffName}`} />,
+    },
   ];
 
   return actions;
 };
 
-const breakPoints = [
-  { breakpoint: "(min-width: 745px)", totalColumns: 3 },
-  { breakpoint: "(max-width: 744px)", totalColumns: 1 },
-];
-export { titles, actionsConfig, breakPoints };
+export { actionsConfig };

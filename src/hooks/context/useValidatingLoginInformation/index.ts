@@ -11,8 +11,10 @@ const useValidatingLoginInformation = () => {
   const { user } = useAuth0();
 
   const portalCode = decrypt(localStorage.getItem("portalCode") ?? "");
-  const { portalData } = usePortalData({portalCode});
-  const { businessManagersData } = useBusinessManagers({portalPublicCode: portalData});
+  const { portalData } = usePortalData({ portalCode });
+  const { businessManagersData } = useBusinessManagers({
+    portalPublicCode: portalData,
+  });
 
   const [businessUnitSigla, setBusinessUnitSigla] = useState(
     localStorage.getItem("businessUnitSigla") ?? ""
@@ -44,7 +46,7 @@ const useValidatingLoginInformation = () => {
       urlLogo: "",
     },
     user: {
-      userAccount:  validateAndTrimString(user?.email ?? "") ?? "",
+      userAccount: validateAndTrimString(user?.email ?? "") ?? "",
       userName: user?.name ?? "",
     },
   });
@@ -57,17 +59,20 @@ const useValidatingLoginInformation = () => {
       portal: {
         ...prev.portal,
         abbreviatedName: portalData?.abbreviatedName || "",
-        staffPortalCatalogId: portalData?.staffPortalId || "",
-        businessManagerId: portalData?.businessManagerId || "",
+        staffPortalCatalogCode: portalData?.staffPortalCatalogCode || "",
+        businessManagerCode: portalData?.businessManagerCode || "",
         publicCode: portalData?.publicCode || "",
-      }
+      },
     }));
   }, [businessManagersData, portalData, portalCode]);
 
-   useEffect(() => {
+  useEffect(() => {
     if (!businessManagersData) return;
 
-    if(businessManagersData.publicCode && businessManagersData.publicCode.length > 0){
+    if (
+      businessManagersData.publicCode &&
+      businessManagersData.publicCode.length > 0
+    ) {
       setAppData((prev) => ({
         ...prev,
         businessManager: {
@@ -79,7 +84,6 @@ const useValidatingLoginInformation = () => {
         },
       }));
     }
-
   }, [businessManagersData]);
 
   useEffect(() => {

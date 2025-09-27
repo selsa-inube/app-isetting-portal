@@ -4,6 +4,8 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
 import { decrypt } from "@utils/decrypt";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
+import { useAuth0 } from "@auth0/auth0-react";
+import { enviroment } from "@config/environment";
 
 const useHome = () => {
   const {
@@ -12,6 +14,7 @@ const useHome = () => {
     setBusinessUnitSigla,
     businessUnitSigla,
   } = useContext(AuthAndData);
+  const { logout } = useAuth0();
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
   const { optionsCards, loading } = useOptionsByBusinessunits({
@@ -44,6 +47,10 @@ const useHome = () => {
 
   const multipleBusinessUnits = businessUnitsToTheStaff.length > 1;
 
+  const handlelogout = () => {
+    logout({ logoutParams: { returnTo: enviroment.REDIRECT_URI } });
+  };
+
   return {
     Collapse,
     SetCollapse,
@@ -60,6 +67,7 @@ const useHome = () => {
     loading,
     hasData,
     multipleBusinessUnits,
+    handlelogout,
   };
 };
 

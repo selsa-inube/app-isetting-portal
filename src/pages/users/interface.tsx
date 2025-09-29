@@ -7,6 +7,7 @@ import { crumbsUsers } from "@config/users/navigation";
 import { usersTitle } from "@config/users/usersTitle";
 import { IUsersUI } from "@ptypes/users/IUsersUI";
 import { UsersTab } from "./tabs/userTab";
+import { RequestInProgress } from "./tabs/requestInProgressTab";
 
 const UsersUI = (props: IUsersUI) => {
   const {
@@ -15,7 +16,7 @@ const UsersUI = (props: IUsersUI) => {
     isSelected,
     handleTabChange,
     showStaffTab,
-    // showRequestsInProgressTab,
+    showRequestsInProgressTab,
     userTabs,
   } = props;
 
@@ -47,7 +48,10 @@ const UsersUI = (props: IUsersUI) => {
           onChange={handleTabChange}
         />
       </Stack>
-      <Stack justifyContent="center">{showStaffTab && <UsersTab />}</Stack>
+      <Stack justifyContent="center">
+        {showStaffTab && <UsersTab />}
+        {showRequestsInProgressTab && <RequestInProgress />}
+      </Stack>
     </Stack>
   );
 };

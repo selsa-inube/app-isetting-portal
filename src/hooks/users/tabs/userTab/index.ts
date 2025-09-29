@@ -38,7 +38,7 @@ const useSearchAndPageControlUser = () => {
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
 
   const { disabledButton } = useValidateUseCase({
-    useCase: EUseCaseTypes.ADD_SUITE,
+    useCase: EUseCaseTypes.ADD_USER,
   });
 
   const handleToggleInfoModal = () => {

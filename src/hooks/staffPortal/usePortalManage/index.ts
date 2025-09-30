@@ -4,6 +4,7 @@ import { useAuthRedirect } from "@hooks/authentication/useAuthRedirect";
 import { IUseAppData } from "@ptypes/hooks/IUseAppData";
 import { usePortalData } from "../usePortalData";
 import { useBusinessManagers } from "../useBusinessManagers";
+import { validateAndTrimString } from "@utils/validateAndTrimString";
 
 const useAppData = (props: IUseAppData) => {
   const { portalCode, code, user, businessUnit } = props;
@@ -22,8 +23,8 @@ const useAppData = (props: IUseAppData) => {
       setAppData((prev) => ({
         ...prev,
         user: {
-          userAccount: user.userAccount,
-          userName: user.userName,
+          userAccount: validateAndTrimString(user.email),
+          userName: user.name,
         },
       }));
     }

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 
 import { getBusinessManagers } from "@services/staffPortal/getBusinessManager";
-import { IBusinessManagers } from "@ptypes/staffPortal.types";
+
 import { IUseBusinessManagers } from "@ptypes/hooks/IUseBusinessManagers";
+import { IBusinessManagers } from "@ptypes/staffPortal/IBusinessManagers";
 
 const useBusinessManagers = (props: IUseBusinessManagers) => {
   const { portalPublicCode } = props;
@@ -24,7 +25,7 @@ const useBusinessManagers = (props: IUseBusinessManagers) => {
           const newData = await getBusinessManagers(
             portalPublicCode.businessManagerCode
           );
-          setBusinessManagersData(newData);
+          setBusinessManagersData(newData[0]);
         }
       } catch (error) {
         console.info(error);

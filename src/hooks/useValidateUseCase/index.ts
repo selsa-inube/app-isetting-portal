@@ -7,8 +7,8 @@ const useValidateUseCase = (props: IUseValidateUseCase) => {
   const [disabledButton, setDisabledButton] = useState<boolean>(false);
 
   const { appData } = useContext(AuthAndData);
-  const useCasesData = appData.user.userName;
-  // swap to useCase
+  const useCasesData = appData.useCasesByStaff;
+  console.log(appData.useCasesByStaff);
   useEffect(() => {
     if (useCasesData) {
       const validateUseCase = useCasesData.includes(useCase);

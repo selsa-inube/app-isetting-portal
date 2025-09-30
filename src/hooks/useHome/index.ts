@@ -4,6 +4,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
 import { decrypt } from "@utils/decrypt";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
+import { useCaseForStaff } from "@hooks/staffPortal/useCaseForStaff";
 
 const useHome = () => {
   const {
@@ -11,7 +12,9 @@ const useHome = () => {
     businessUnitsToTheStaff,
     setBusinessUnitSigla,
     businessUnitSigla,
+    setUseCases,
   } = useContext(AuthAndData);
+
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
   const { optionsCards, loading } = useOptionsByBusinessunits({
@@ -43,6 +46,20 @@ const useHome = () => {
   const hasData = optionsCards && optionsCards?.length > 0;
 
   const multipleBusinessUnits = businessUnitsToTheStaff.length > 1;
+  const { useCases } = useCaseForStaff({
+    businessUnitPrevious: appData.businessUnit.publicCode,
+    useCasesByStaff: appData.useCasesByStaff,
+    businessUnit: businessUnitSigla,
+    userAccount: appData.user.userAccount,
+    businessManagerCode: appData.businessManager.publicCode,
+  });
+
+  useEffect(() => {
+    if (useCases.length > 0) {
+      const useCasesJSON = JSON.stringify(useCases);
+      setUseCases(useCasesJSON);
+    }
+  }, [useCases]);
 
   return {
     Collapse,

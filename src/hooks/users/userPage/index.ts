@@ -72,7 +72,6 @@ const useUserPage = (props: IUseUserPage) => {
 
     fetchRequestsInProgressData();
   }, [businessManager, businessUnits]);
-  console.log(requestsInProgress);
   const filteredTabsConfig = Object.keys(tabs).reduce((allTabs, key) => {
     const tab = tabs[key as keyof typeof usersTabsConfig];
 

@@ -1,7 +1,5 @@
-import {
-  IBusinessManagers,
-  IStaffPortalByBusinessManager,
-} from "@ptypes/staffPortal.types";
+import { IStaffPortalByBusinessManager } from "@ptypes/staffPortal.types";
+import { IBusinessManagers } from "@ptypes/staffPortal/IBusinessManagers";
 
 interface IUseAuthRedirect {
   portalPublicCode: IStaffPortalByBusinessManager;

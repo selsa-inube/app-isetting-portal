@@ -1,4 +1,4 @@
-import { IUsers } from "@ptypes/users/usersTable/IUsers";
+import { IUsers } from "@ptypes/users/tabs/userTab/usersTable/IUsers";
 
 const mapUsersPortalStaffEntities = (usersData: IUsers[]): IUsers[] => {
   return usersData.map((user) => ({
@@ -21,6 +21,5 @@ const mapUsersPortalStaffEntities = (usersData: IUsers[]): IUsers[] => {
     staffByBusinessUnitAndRole: Object(user.staffByBusinessUnitAndRole),
   }));
 };
-
 
 export { mapUsersPortalStaffEntities };

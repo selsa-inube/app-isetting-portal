@@ -1,34 +1,23 @@
-import { MdOutlineMoreHoriz, MdPersonAddAlt, MdSearch } from "react-icons/md";
-import {
-  Stack,
-  Breadcrumbs,
-  Textfield,
-  Button,
-  Icon,
-} from "@inubekit/inubekit";
+import { Stack, Breadcrumbs, Tabs } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { Table } from "@design/table";
-import { actionsConfig, breakPoints, titles } from "@config/users/table";
+
 import { PageTitle } from "@design/label/PageTitle";
-import { Menu } from "@design/navigation";
-import { menuUserLinks } from "@config/users/menuInvitation";
-import { UserbuttonText } from "@config/users/addUsers/assisted/buttonText";
+
 import { crumbsUsers } from "@config/users/navigation";
 import { usersTitle } from "@config/users/usersTitle";
-import { IUsersUI } from "@ptypes/users/usersTable/IUsersUI";
-import { StyledContainer } from "./styles";
+import { IUsersUI } from "@ptypes/users/IUsersUI";
+import { UsersTab } from "./tabs/userTab";
+import { RequestInProgress } from "./tabs/requestInProgressTab";
 
 const UsersUI = (props: IUsersUI) => {
   const {
     smallScreen,
-    handleSearchPositions,
-    searchPosition,
-    entries,
-    showMenu,
-    handleToggleMenuInvitation,
-    handleCloseMenuInvitation,
-    loading,
-    columnWidths,
+    title,
+    isSelected,
+    handleTabChange,
+    showStaffTab,
+    showRequestsInProgressTab,
+    userTabs,
   } = props;
 
   return (
@@ -44,66 +33,25 @@ const UsersUI = (props: IUsersUI) => {
     >
       <Stack gap={basic.spacing.s600} direction="column">
         <Stack gap={basic.spacing.s300} direction="column">
-              <Breadcrumbs crumbs={crumbsUsers} />
-              <PageTitle
-                title={usersTitle.title}
-                description={usersTitle.description}
-                navigatePage="/"
-              />
+          <Breadcrumbs crumbs={crumbsUsers} />
+          <PageTitle
+            title={title}
+            description={usersTitle.description}
+            navigatePage="/"
+          />
         </Stack>
       </Stack>
-
-      <Stack justifyContent="space-between" alignItems="center">
-        <Textfield
-          name="searchPositions"
-          id="searchPositions"
-          placeholder="Búsqueda..."
-          type="search"
-          iconBefore={<MdSearch />}
-          size="compact"
-          value={searchPosition}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleSearchPositions(e)
-          }
+      <Stack gap={basic.spacing.s300} direction="column">
+        <Tabs
+          tabs={userTabs}
+          selectedTab={isSelected}
+          onChange={handleTabChange}
         />
-
-        {smallScreen ? (
-          <StyledContainer>
-            <Icon
-              icon={<MdOutlineMoreHoriz />}
-              size="24px"
-              onClick={handleToggleMenuInvitation}
-              cursorHover={true}
-              appearance="dark"
-            />
-            {showMenu && (
-              <Menu
-                options={menuUserLinks}
-                handleClose={handleCloseMenuInvitation}
-              />
-            )}
-          </StyledContainer>
-        ) : (
-          <Button
-            iconBefore={<MdPersonAddAlt />}
-            spacing="wide"
-            type="link"
-            path="/users"
-          >
-            {UserbuttonText.buttonAddUsers}
-          </Button>
-        )}
       </Stack>
-      <Table
-        id="portal"
-        titles={titles}
-        entries={entries}
-        actions={actionsConfig()}
-        breakpoints={breakPoints}
-        filter={(() => "")()}
-        loading={loading}
-        columnWidths={columnWidths}
-      />
+      <Stack justifyContent="center">
+        {showStaffTab && <UsersTab />}
+        {showRequestsInProgressTab && <RequestInProgress />}
+      </Stack>
     </Stack>
   );
 };

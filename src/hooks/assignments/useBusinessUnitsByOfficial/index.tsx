@@ -3,7 +3,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { getIportalStaffUsers } from "@services/users/getIportalStaffUsers";
 import { getAllBusinessUnits } from "@services/staffPortal/getAllBusinessUnits";
 import { useGetUnitsByAbsentOfficial } from "@hooks/assignments/useGetUnitsByAbsentOfficial";
-import { IUsers } from "@ptypes/users/usersTable/IUsers";
+import { IUsers } from "@ptypes/users/tabs/userTab/usersTable/IUsers";
 import { IAllBusinessUnits } from "@ptypes/staffPortal/IAllBusinessUnits";
 import { IBusinessEntry } from "@ptypes/assignments/IBusinessEntry";
 import { IUseUnitsByAbsentOfficial } from "@ptypes/hooks/IUseUnitsByAbsentOfficial";
@@ -52,7 +52,7 @@ const UseBusinessUnitsByOfficial = (props: IUseUnitsByAbsentOfficial) => {
 
   const { staffByUnitsData } = useGetUnitsByAbsentOfficial({
     absentOfficial,
-    unitsByAbsentOfficial
+    unitsByAbsentOfficial,
   }) as { staffByUnitsData: IBusinessEntry[] };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const UseBusinessUnitsByOfficial = (props: IUseUnitsByAbsentOfficial) => {
     }
   }, [unitsByAbsentOfficial]);
 
-  const { businessUnitsData } = useGetBusinessUnits({businessUnits});
+  const { businessUnitsData } = useGetBusinessUnits({ businessUnits });
 
   useEffect(() => {
     if (businessUnits.length > 0 && businessUnitsData) {

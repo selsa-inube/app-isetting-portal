@@ -14,6 +14,7 @@ const Home = () => {
     loading,
     hasData,
     multipleBusinessUnits,
+    handlelogout,
   } = useHome();
 
   return (
@@ -28,6 +29,7 @@ const Home = () => {
       loading={loading}
       hasData={hasData}
       multipleBusinessUnits={multipleBusinessUnits}
+      handlelogout={handlelogout}
     />
   );
 };

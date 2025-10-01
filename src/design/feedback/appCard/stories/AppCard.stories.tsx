@@ -2,11 +2,12 @@ import { BrowserRouter } from "react-router-dom";
 import { MdContacts } from "react-icons/md";
 import { StoryFn, Meta } from "@storybook/react";
 
-import { InteractiveBox, IInteractiveBox } from "..";
+import { AppCard } from "..";
+import { IAppCard } from "@ptypes/design/IAppCard";
 
-const meta: Meta<typeof InteractiveBox> = {
-  component: InteractiveBox,
-  title: "feedback/InteractiveBox",
+const meta: Meta<typeof AppCard> = {
+  component: AppCard,
+  title: "feedback/AppCard",
   decorators: [
     (Story: StoryFn) => (
       <BrowserRouter>
@@ -16,16 +17,14 @@ const meta: Meta<typeof InteractiveBox> = {
   ],
 };
 
-const Template: StoryFn<IInteractiveBox> = (args) => (
-  <InteractiveBox {...args} />
-);
+const Template: StoryFn<IAppCard> = (args) => <AppCard {...args} />;
 
-const Default = Template.bind({});
+export const Default = Template.bind({});
 Default.args = {
   label: "Card Title",
   description: "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   icon: <MdContacts />,
-  url: "/positions",
+  url: "/privileges",
 };
-export { Default };
+
 export default meta;

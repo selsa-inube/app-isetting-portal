@@ -22,12 +22,6 @@ const StyledContainer = styled.div`
   height: 100vh;
   overflow-y: auto;
 `;
-const StyledContainerSection = styled.div<IStyledContainer>`
-  display: flex;
-  flex-direction: column;
-  padding: ${basic.spacing.s200};
-  gap: ${basic.spacing.s300};
-`;
 
 const StyledHeaderContainer = styled.div`
   position: relative;
@@ -55,20 +49,6 @@ const StyledTitle = styled.div<IStyledContainer>`
     props.$smallScreen
       ? ` ${(basic.spacing.s200, basic.spacing.s16)} `
       : `${basic.spacing.s600} ${basic.spacing.s1600} ${basic.spacing.s1000} `};
-`;
-
-const StyledContainerCards = styled.div<IStyledContainer>`
-  box-sizing: border-box;
-  padding: 170px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${basic.spacing.s400};
-
-  justify-content: ${(props) => props.$smallScreen && "center"};
-  padding: ${(props) =>
-    props.$smallScreen
-      ? `${basic.spacing.s0}`
-      : `${basic.spacing.s0} ${basic.spacing.s1400} ${basic.spacing.s400}`};
 `;
 
 const StyledFooter = styled.footer<IStyledFooter>`
@@ -99,9 +79,7 @@ export {
   StyledTitle,
   StyledContentImg,
   StyledLogo,
-  StyledContainerCards,
   StyledFooter,
-  StyledContainerSection,
   StyledCollapseIcon,
   StyledCollapse,
 };

@@ -10,6 +10,7 @@ interface IHome {
   username: string;
   multipleBusinessUnits: boolean;
   loading?: boolean;
+  handlelogout: () => void;
 }
 
 export type { IHome };

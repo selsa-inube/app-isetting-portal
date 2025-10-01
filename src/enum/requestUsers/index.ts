@@ -3,7 +3,7 @@ enum ERequestUsers {
   MODIFY = "modificación funcionario",
   DELETE = "eliminación funcionario",
   TEST = "test",
-  STAFF = "funcionario",
+  STAFF = "staff",
 }
 
 export { ERequestUsers };

@@ -2,7 +2,7 @@ import { ITitle } from "@ptypes/table/ITitle";
 
 const titlesUsers: ITitle[] = [
   {
-    id: "staffName",
+    id: "abbreviatedName",
     titleName: "Nombre del funcionario",
     priority: 1,
   },

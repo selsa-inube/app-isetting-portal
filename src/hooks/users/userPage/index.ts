@@ -13,9 +13,10 @@ import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { IUsersTabsConfig } from "@ptypes/hooks/IUseUserPage/tabs";
+import { ERequestUsers } from "@enum/requestUsers";
 
 const useUserPage = (props: IUseUserPage) => {
-  const { businessUnits, businessManager } = props;
+  const { businessManager } = props;
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
   const tabs = usersTabsConfig(smallScreen);
   const [isSelected, setIsSelected] = useState<string>(tabs.staff.id);
@@ -57,9 +58,8 @@ const useUserPage = (props: IUseUserPage) => {
       try {
         if (businessManager.length > 0) {
           const data = await getRequestsInProgress(
-            "",
-            businessManager,
-            businessUnits
+            ERequestUsers.STAFF,
+            businessManager
           );
           setRequestsInProgress(data);
         }
@@ -71,7 +71,7 @@ const useUserPage = (props: IUseUserPage) => {
     };
 
     fetchRequestsInProgressData();
-  }, [businessManager, businessUnits]);
+  }, [businessManager]);
   const filteredTabsConfig = Object.keys(tabs).reduce((allTabs, key) => {
     const tab = tabs[key as keyof typeof usersTabsConfig];
 

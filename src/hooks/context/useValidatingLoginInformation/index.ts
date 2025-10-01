@@ -99,7 +99,7 @@ const useValidatingLoginInformation = () => {
       }));
     }
   }, [businessManagersData]);
-  console.log("unitsigkla", businessUnitSigla);
+
   useEffect(() => {
     localStorage.setItem("businessUnitSigla", businessUnitSigla);
 
@@ -149,7 +149,6 @@ const useValidatingLoginInformation = () => {
   useEffect(() => {
     localStorage.setItem("useCasesByStaff", useCases);
   }, [useCases]);
-  console.log(appData);
   const AuthAndData = useMemo(
     () => ({
       appData,

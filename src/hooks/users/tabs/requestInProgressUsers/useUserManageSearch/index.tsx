@@ -6,7 +6,7 @@ import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgr
 import { requestInProgressActionsConfig } from "@config/users/requestInProgress/actions";
 
 const useUserManageSearchUsers = (props: IUseUserManageSearch) => {
-  const { entityName, businessUnits, businessManager } = props;
+  const { entityName, businessManager } = props;
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
   const actions = requestInProgressActionsConfig(setEntryDeleted);
   const [loading, setLoading] = useState(true);
@@ -21,11 +21,7 @@ const useUserManageSearchUsers = (props: IUseUserManageSearch) => {
       setLoading(true);
       try {
         if (businessManager.length > 0) {
-          const data = await getRequestsInProgress(
-            entityName,
-            businessManager,
-            businessUnits
-          );
+          const data = await getRequestsInProgress(entityName, businessManager);
           setRequestsInProgress(data);
         }
       } catch (error) {
@@ -36,7 +32,7 @@ const useUserManageSearchUsers = (props: IUseUserManageSearch) => {
     };
 
     fetchRequestsInProgressData();
-  }, [businessManager, businessUnits]);
+  }, [businessManager]);
 
   useEffect(() => {
     if (entryDeleted) {

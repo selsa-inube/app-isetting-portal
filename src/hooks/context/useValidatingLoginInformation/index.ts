@@ -12,6 +12,7 @@ const useValidatingLoginInformation = () => {
 
   const portalCode = decrypt(localStorage.getItem("portalCode") ?? "");
   const { portalData } = usePortalData({ portalCode });
+
   const { businessManagersData } = useBusinessManagers({
     portalPublicCode: portalData,
   });
@@ -19,6 +20,18 @@ const useValidatingLoginInformation = () => {
   const [businessUnitSigla, setBusinessUnitSigla] = useState(
     localStorage.getItem("businessUnitSigla") ?? ""
   );
+
+  const [useCases, setUseCases] = useState<string>(
+    localStorage.getItem("useCasesByStaff") ?? ""
+  );
+
+  let useCasesData: string[] = [];
+  try {
+    useCasesData = JSON.parse(useCases || "[]") as string[];
+  } catch (error) {
+    console.error("Error parsing useCases:", error);
+  }
+
   const [businessUnitsToTheStaff, setBusinessUnitsToTheStaff] = useState<
     IBusinessUnitsPortalStaff[]
   >(() => {
@@ -49,6 +62,7 @@ const useValidatingLoginInformation = () => {
       userAccount: validateAndTrimString(user?.email ?? "") ?? "",
       userName: user?.name ?? "",
     },
+    useCasesByStaff: useCasesData ?? [],
   });
 
   useEffect(() => {
@@ -85,7 +99,7 @@ const useValidatingLoginInformation = () => {
       }));
     }
   }, [businessManagersData]);
-
+  console.log("unitsigkla", businessUnitSigla);
   useEffect(() => {
     localStorage.setItem("businessUnitSigla", businessUnitSigla);
 
@@ -112,12 +126,37 @@ const useValidatingLoginInformation = () => {
     );
   }, [businessUnitsToTheStaff]);
 
+  useEffect(() => {
+    localStorage.setItem("useCasesByStaff", useCases);
+
+    if (useCases) {
+      const businessUnit = JSON.parse(useCases);
+
+      setAppData((prev) => ({
+        ...prev,
+        useCasesByStaff: businessUnit,
+      }));
+    }
+  }, [useCases]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "businessUnitsToTheStaff",
+      JSON.stringify(businessUnitsToTheStaff)
+    );
+  }, [businessUnitsToTheStaff]);
+
+  useEffect(() => {
+    localStorage.setItem("useCasesByStaff", useCases);
+  }, [useCases]);
+  console.log(appData);
   const AuthAndData = useMemo(
     () => ({
       appData,
       businessUnitSigla,
       businessUnitsToTheStaff,
       setAppData,
+      setUseCases,
       setBusinessUnitSigla,
       setBusinessUnitsToTheStaff,
     }),

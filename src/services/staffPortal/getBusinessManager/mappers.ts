@@ -1,19 +1,16 @@
-import { IBusinessManagers } from "@ptypes/staffPortal.types";
+import { IBusinessManagers } from "@ptypes/staffPortal/IBusinessManagers";
 
 const mapBusinessManagerApiToEntity = (
-  businessManager: Record<string, string>,
-): IBusinessManagers => {
-  const business: IBusinessManagers = {
-    id: String(businessManager.businessManagerId),
-    publicCode: String(businessManager.publicCode),
-    language: String(businessManager.languageId),
-    abbreviatedName: String(businessManager.abbreviatedName),
-    description: String(businessManager.descriptionUse),
-    urlBrand: String(businessManager.urlBrand),
-    urlLogo: String(businessManager.urlLogo),
-    customerId: String(businessManager.customerId),
-  };
-  return business;
-};
+  businessManager: Record<string, string>
+): IBusinessManagers => ({
+  id: businessManager.businessManagerId,
+  publicCode: businessManager.publicCode,
+  language: businessManager.languageId,
+  abbreviatedName: businessManager.abbreviatedName,
+  description: businessManager.descriptionUse,
+  urlBrand: businessManager.urlBrand,
+  urlLogo: businessManager.urlLogo,
+  customerId: businessManager.customerId,
+});
 
 export { mapBusinessManagerApiToEntity };

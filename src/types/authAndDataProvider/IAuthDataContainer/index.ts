@@ -10,6 +10,7 @@ interface IAuthDataContainer {
   setBusinessUnitsToTheStaff: React.Dispatch<
     React.SetStateAction<IBusinessUnitsPortalStaff[]>
   >;
+  setUseCases: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export type { IAuthDataContainer };

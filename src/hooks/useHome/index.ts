@@ -6,6 +6,7 @@ import { decrypt } from "@utils/decrypt";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { useAuth0 } from "@auth0/auth0-react";
 import { enviroment } from "@config/environment";
+import { useCaseForStaff } from "@hooks/staffPortal/useCaseForStaff";
 
 const useHome = () => {
   const {
@@ -13,8 +14,10 @@ const useHome = () => {
     businessUnitsToTheStaff,
     setBusinessUnitSigla,
     businessUnitSigla,
+    setUseCases,
   } = useContext(AuthAndData);
   const { logout } = useAuth0();
+
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
   const { optionsCards, loading } = useOptionsByBusinessunits({
@@ -46,6 +49,20 @@ const useHome = () => {
   const hasData = optionsCards && optionsCards?.length > 0;
 
   const multipleBusinessUnits = businessUnitsToTheStaff.length > 1;
+  const { useCases } = useCaseForStaff({
+    businessUnitPrevious: appData.businessUnit.publicCode,
+    useCasesByStaff: appData.useCasesByStaff,
+    businessUnit: businessUnitSigla,
+    userAccount: appData.user.userAccount,
+    businessManagerCode: appData.businessManager.publicCode,
+  });
+
+  useEffect(() => {
+    if (useCases.length > 0) {
+      const useCasesJSON = JSON.stringify(useCases);
+      setUseCases(useCasesJSON);
+    }
+  }, [useCases]);
 
   const handlelogout = () => {
     logout({ logoutParams: { returnTo: enviroment.REDIRECT_URI } });

@@ -1,2 +1,2 @@
-const addUserPath = "/user/addUser";
+const addUserPath = "/users/addUser";
 export { addUserPath };

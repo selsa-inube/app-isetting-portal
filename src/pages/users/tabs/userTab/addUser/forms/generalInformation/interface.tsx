@@ -15,6 +15,9 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
     mobilePadding,
     labelButtonNext,
     buttonDisabledState,
+    optionGender,
+    optionIdType,
+    handleSelectChange,
   } = props;
   return (
     <StyledContainer>
@@ -62,8 +65,8 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
             />
             <Select
               name={generalInformationConfig.idType.name}
-              onChange={formik.handleChange}
-              options={[]}
+              onChange={handleSelectChange}
+              options={optionIdType}
               value={formik.values.idType}
               label={generalInformationConfig.idType.label}
               placeholder={generalInformationConfig.idType.placeholder}
@@ -87,8 +90,8 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
             />
             <Select
               name={generalInformationConfig.gender.name}
-              onChange={formik.handleChange}
-              options={[]}
+              onChange={handleSelectChange}
+              options={optionGender}
               value={formik.values.gender}
               label={generalInformationConfig.gender.label}
               placeholder={generalInformationConfig.gender.placeholder}

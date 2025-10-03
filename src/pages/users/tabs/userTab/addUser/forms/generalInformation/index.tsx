@@ -21,15 +21,22 @@ const GeneralInformationForm = forwardRef<
     },
     ref
   ) => {
-    const { formik, mobilePadding, labelButtonNext, buttonDisabledState } =
-      useGeneralInformationUserForm({
-        initialValues,
-        ref,
-        onSubmit,
-        onFormValid,
-        loading,
-        editDataOption,
-      });
+    const {
+      formik,
+      mobilePadding,
+      optionGender,
+      optionIdType,
+      labelButtonNext,
+      buttonDisabledState,
+      handleSelectChange,
+    } = useGeneralInformationUserForm({
+      initialValues,
+      ref,
+      onSubmit,
+      onFormValid,
+      loading,
+      editDataOption,
+    });
 
     return (
       <GeneralInformationFormUI
@@ -39,6 +46,9 @@ const GeneralInformationForm = forwardRef<
         mobilePadding={mobilePadding}
         labelButtonNext={labelButtonNext}
         buttonDisabledState={buttonDisabledState}
+        optionGender={optionGender}
+        optionIdType={optionIdType}
+        handleSelectChange={handleSelectChange}
       />
     );
   }

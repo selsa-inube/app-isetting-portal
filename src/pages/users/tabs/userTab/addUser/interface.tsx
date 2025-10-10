@@ -10,6 +10,9 @@ import { addUserUIConfig } from "@config/users/addUsers/addUserUI";
 import { goBackModal } from "@config/goBackModal";
 import { IAddUserUI } from "@ptypes/users/tabs/userTab/addUser/IAddUserUI";
 import { crumbsAddUser } from "@config/users/addUsers/navigation";
+import { MissionForStaffForm } from "./forms/misionForStaff";
+import { ComponentAppearance } from "@ptypes/aparences.types";
+import { MdOutlineWarningAmber } from "react-icons/md";
 
 const AddUserUI = (props: IAddUserUI) => {
   const {
@@ -29,7 +32,10 @@ const AddUserUI = (props: IAddUserUI) => {
     setIsCurrentFormValid,
     onToggleModal,
     description,
+    showMissionNameModal,
+    onToggleMissionModal,
   } = props;
+
   return (
     <Stack
       direction="column"
@@ -70,6 +76,15 @@ const AddUserUI = (props: IAddUserUI) => {
                 handleNextStep={onNextStep}
               />
             )}
+            {currentStep === addUserUIConfig.misionForStaff && (
+              <MissionForStaffForm
+                ref={formReferences.missionForStaff}
+                initialValues={initialValues.missionForStaffStep.values}
+                onFormValid={setIsCurrentFormValid}
+                handleNextStep={onNextStep}
+                handlePreviousStep={onPreviousStep}
+              />
+            )}
           </Stack>
         </Stack>
       </Stack>
@@ -81,6 +96,22 @@ const AddUserUI = (props: IAddUserUI) => {
           actionText={goBackModal.actionText}
           onCloseModal={handleModal}
           onClick={onGoBack}
+        />
+      )}
+      {showMissionNameModal && (
+        <DecisionModal
+          portalId="portal"
+          title={addUserUIConfig.missionNameModal.title}
+          subtitle={addUserUIConfig.missionNameModal.subtitle}
+          description={addUserUIConfig.missionNameModal.description}
+          actionText={addUserUIConfig.missionNameModal.actionText}
+          onCloseModal={onToggleMissionModal}
+          onClick={onToggleMissionModal}
+          withIcon
+          icon={<MdOutlineWarningAmber />}
+          appearance={ComponentAppearance.WARNING}
+          withDivider
+          showCancelButton={false}
         />
       )}
     </Stack>

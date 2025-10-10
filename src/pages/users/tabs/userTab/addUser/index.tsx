@@ -19,6 +19,8 @@ const AddUser = () => {
     setIsCurrentFormValid,
     handleToggleModal,
     description,
+    showMissionNameModal,
+    handleToggleMissionModal,
   } = useAddUser();
 
   return (
@@ -39,6 +41,8 @@ const AddUser = () => {
       setIsCurrentFormValid={setIsCurrentFormValid}
       onToggleModal={handleToggleModal}
       description={description}
+      showMissionNameModal={showMissionNameModal}
+      onToggleMissionModal={handleToggleMissionModal}
     />
   );
 };

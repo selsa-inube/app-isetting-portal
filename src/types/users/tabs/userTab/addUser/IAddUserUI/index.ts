@@ -5,6 +5,7 @@ import { IGeneralUserFormValues } from "../forms/IGeneralFormValues";
 interface IAddUserUI {
   showGoBackModal: boolean;
   smallScreen: boolean;
+  showMissionNameModal: boolean;
   title: string;
   description?: string;
   handleModal: () => void;
@@ -19,5 +20,6 @@ interface IAddUserUI {
   onGoBack: () => void;
   assistedLength: IAssistedSize;
   onToggleModal: () => void;
+  onToggleMissionModal: () => void;
 }
 export type { IAddUserUI };

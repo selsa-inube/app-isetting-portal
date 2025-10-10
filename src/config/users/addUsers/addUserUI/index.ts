@@ -8,6 +8,14 @@ const addUserUIConfig = {
   misionForStaff: 2,
   title: "Agregar funcionario",
   description: "Agrega un nuevo funcionario a tu organización",
+  missionNameModal: {
+    title: "Alerta",
+    description:
+      "No es posible registrarla de nuevo, selecciónala en la lista.",
+    actionText: "Entendido",
+    subtitle:
+      "Encontramos una misión con el nombre que estás utilizando, se trata de: Nombre de misión existente",
+  },
 };
 
 export { addUserUIConfig };

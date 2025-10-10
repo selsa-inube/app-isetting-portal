@@ -3,6 +3,6 @@ const addUserHookConfig = {
   large: "large",
   description: "Solicitud de creación de un funcionario",
   useCaseName: "AddUser",
-  maxSteps: 2,
+  maxSteps: 3,
 };
 export { addUserHookConfig };

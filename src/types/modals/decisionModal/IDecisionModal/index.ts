@@ -14,6 +14,7 @@ interface IDecisionModal {
   justificationOfDecision?: boolean;
   showCancelButton?: boolean;
   withIcon?: boolean;
+  withDivider?: boolean;
   withCancelButton?: boolean;
   subtitle?: string;
 }

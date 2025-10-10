@@ -1,4 +1,4 @@
-import { IGeneralInfoForm } from "../IGeneralInfoForm/indexs";
+import { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm/indexs";
 
 interface IGeneralInformationForm {
   initialValues: IGeneralInfoForm;

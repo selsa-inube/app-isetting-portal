@@ -8,7 +8,7 @@ import { validationRules } from "@validations/validationRules";
 import { useFormik } from "formik";
 import { useContext, useEffect, useImperativeHandle, useState } from "react";
 import { object } from "yup";
-import { useEnumerators } from "../enumerators";
+import { useEnumerators } from "../../enumerators";
 import { ESelectOptions } from "@enum/user/getEnumeratos";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { II18n } from "@ptypes/users/tabs/userTab/addUser/enumerators/enumeItem/i18n";
@@ -18,12 +18,15 @@ const useGeneralInformationUserForm = (
 ) => {
   const { initialValues, ref, onSubmit, onFormValid } = props;
   const { appData } = useContext(AuthAndData);
-  const [isDisabledButton] = useState(false);
+  const [isDisabledButton, setIsDisableButton] = useState(true);
   const createValidationSchema = () =>
     object().shape({
       firstName: validationRules.string.required(validationMessages.required),
-      application: validationRules.string.required(validationMessages.required),
-      description: validationRules.string.required(validationMessages.required),
+      lastName: validationRules.string.required(validationMessages.required),
+      idType: validationRules.string.required(validationMessages.required),
+      idNumber: validationRules.string.required(validationMessages.required),
+      gender: validationRules.string.required(validationMessages.required),
+      birthDate: validationRules.string.required(validationMessages.required),
     });
 
   const validationSchema = createValidationSchema();
@@ -43,6 +46,7 @@ const useGeneralInformationUserForm = (
       formik.validateForm().then((errors) => {
         const isFormValid = Object.keys(errors).length === 0;
         onFormValid(isFormValid);
+        setIsDisableButton(!isFormValid);
       });
     }
   }, [formik.values, onFormValid]);
@@ -69,7 +73,6 @@ const useGeneralInformationUserForm = (
         value: item.value,
       })) || [];
   const labelButtonNext = generalInformationConfig.buttonLabel;
-
   const buttonDisabledState = isDisabledButton;
 
   const handleSelectChange = (name: string, value: string) => {

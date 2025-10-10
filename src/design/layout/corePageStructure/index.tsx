@@ -1,13 +1,7 @@
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import {
-  Nav,
-  Header,
-  Icon,
-  Grid,
-  Stack,
-} from "@inubekit/inubekit";
-import { MdOutlineChevronRight } from "react-icons/md";
+import { Nav, Header, Icon, Grid, Stack } from "@inubekit/inubekit";
+import { MdOutlineChevronRight, MdOutlineWarningAmber } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { userMenu } from "@config/menuMainConfiguration";
@@ -21,17 +15,19 @@ import {
   StyledHeaderContainer,
   StyledMain,
 } from "./styles";
+import { EComponentAppearance } from "@enum/appearances";
+import { useErrorManagement } from "@hooks/errorManagement";
+import { DecisionModal } from "@design/modals/decisionModal";
+import { errorModalConfig } from "@config/errorModal";
+import { messageErrorStatusConsultation } from "@utils/messageErrorStatus";
 
 const CorePageStructure = () => {
-  const {
-    appData,
-    businessUnitsToTheStaff,
-    businessUnitSigla,
-  } = useContext(AuthAndData);
+  const { appData, businessUnitsToTheStaff, businessUnitSigla } =
+    useContext(AuthAndData);
   const { logout } = useAuth0();
- 
+  const { errorModal, errorData, closeErrorModal } = useErrorManagement();
 
-const{ 
+  const {
     collapse,
     collapseMenuRef,
     isTablet,
@@ -39,8 +35,8 @@ const{
     optionsHeader,
     optionsNav,
     setCollapse,
-  } = useCorePageStructure({businessUnitSigla, logout});
-  
+  } = useCorePageStructure({ businessUnitSigla, logout });
+
   return (
     <StyledAppPage>
       <Grid templateRows="auto 1fr" justifyContent="unset">
@@ -89,6 +85,20 @@ const{
           </Grid>
         </StyledContainer>
       </Grid>
+      {errorModal && errorData && (
+        <DecisionModal
+          onCloseModal={closeErrorModal}
+          title={errorModalConfig.title}
+          withIcon
+          icon={<MdOutlineWarningAmber />}
+          appearance={EComponentAppearance.WARNING}
+          showCancelButton={false}
+          actionText={errorModalConfig.actionText}
+          description={messageErrorStatusConsultation(errorData.code)}
+          portalId={"portal"}
+          onClick={closeErrorModal}
+        />
+      )}
     </StyledAppPage>
   );
 };

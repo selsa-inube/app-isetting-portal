@@ -1,6 +1,6 @@
 import { FormikProps } from "formik";
 
-import { IGeneralInfoForm } from "../../IGeneralInfoForm/indexs";
+import { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm/indexs";
 import { IOption } from "@inubekit/inubekit";
 
 interface IGeneralInformationFormUI {

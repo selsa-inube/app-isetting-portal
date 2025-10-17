@@ -5,7 +5,7 @@ import { basic } from "@design/tokens";
 import { EComponentAppearance } from "@enum/appearances";
 
 import { BorderStack } from "@design/layout/borderStack";
-import { IGeneralInformationFormUI } from "@ptypes/users/tabs/userTab/addUser/forms/initializeGeneralInformationForm/initializeGeneralInfoUI";
+import { IGeneralInformationFormUI } from "@ptypes/users/tabs/userTab/addUser/forms/initializers/initializeGeneralInformationForm/initializeGeneralInfoUI";
 import { generalInformationConfig } from "@config/users/addUsers/form/generalStep";
 
 const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {

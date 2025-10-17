@@ -28,6 +28,7 @@ const RequestInProgressUI = (props: IRequestInProgressTabUI) => {
       padding={basic.spacing.s300}
       gap={basic.spacing.s250}
       boxSizing="border-box"
+      direction="column"
     >
       <Stack gap={basic.spacing.s250}>
         <Textfield

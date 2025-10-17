@@ -37,6 +37,7 @@ const enviroment = {
   IS_MOBILE_849: import.meta.env.VITE_IS_MOBILE_849,
   IS_MOBILE_970: import.meta.env.VITE_IS_MOBILE_970,
   IS_MOBILE_1200: import.meta.env.VITE_IS_MOBILE_1200,
+  VITE_LANGUAGE: import.meta.env.VITE_LANGUAGE,
 };
 
 export { enviroment, maxRetriesDelete };

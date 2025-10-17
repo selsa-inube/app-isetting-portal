@@ -13,8 +13,9 @@ const useSearchAndPageControlUser = () => {
   const { appData } = useContext(AuthAndData);
   const [searchService, setSearchService] = useState<string>("");
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
-  const { userData, loading } = useUserConsult(appData.businessUnit.publicCode);
-
+  const { userData, loading } = useUserConsult(
+    appData.businessManager.publicCode
+  );
   const filteredData = useMemo(() => {
     return userData
       .filter((row) =>
@@ -28,7 +29,6 @@ const useSearchAndPageControlUser = () => {
         abbreviatedName: row.staffName,
       }));
   }, [userData, searchService, entryDeleted]);
-
   const handleSearchService = (value: React.ChangeEvent<HTMLInputElement>) => {
     setSearchService(value.target.value);
   };

@@ -1,23 +1,10 @@
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import {
-  Icon,
-  useMediaQuery,
-  Stack,
-  ITextSize,
-  Text,
-} from "@inubekit/inubekit";
+import { Icon, useMediaQuery, Stack, Text } from "@inubekit/inubekit";
 import { enviroment } from "@config/environment";
 import { basic } from "@design/tokens";
 import { StyledContainerText } from "./styles";
-
-interface ITitle {
-  title: string;
-  description?: string;
-  icon?: React.ReactNode;
-  navigatePage?: string;
-  sizeTitle?: ITextSize;
-}
+import { ITitle } from "@ptypes/ITitle";
 
 const Title = (props: ITitle) => {
   const {
@@ -26,15 +13,27 @@ const Title = (props: ITitle) => {
     description,
     icon,
     navigatePage,
+    onClick,
   } = props;
 
-  const smallScreen = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
+  const onGoBack = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      if (navigatePage) {
+        navigate(navigatePage);
+      } else {
+        navigate(-1);
+      }
+    }
+  };
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_743);
 
   const navigate = useNavigate();
 
   return (
     <>
-      <Stack gap={basic.spacing.s100} direction="column">
+      <Stack gap={basic.spacing.s16} direction="column">
         <Stack gap={basic.spacing.s100} alignItems="center">
           {icon ? (
             <Icon
@@ -51,9 +50,7 @@ const Title = (props: ITitle) => {
               icon={<MdArrowBack />}
               spacing="narrow"
               size="20px"
-              onClick={() =>
-                navigatePage ? navigate(navigatePage) : navigate(-1)
-              }
+              onClick={onGoBack}
             />
           )}
           <StyledContainerText>
@@ -75,4 +72,3 @@ const Title = (props: ITitle) => {
 };
 
 export { Title };
-export type { ITitle };

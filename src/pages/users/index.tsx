@@ -7,6 +7,7 @@ import { UsersUI } from "./interface";
 
 const Users = () => {
   const { appData } = useContext(AuthAndData);
+
   const {
     smallScreen,
     isSelected,
@@ -17,7 +18,6 @@ const Users = () => {
     userTabs,
     loading,
   } = useUserPage({
-    businessUnits: appData.businessUnit.publicCode,
     businessManager: appData.businessManager.publicCode,
   });
   return (

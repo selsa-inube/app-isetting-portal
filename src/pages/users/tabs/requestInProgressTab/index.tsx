@@ -17,7 +17,6 @@ const RequestInProgress = () => {
     actions,
   } = useUserManageSearchUsers({
     entityName: ERequestUsers.STAFF,
-    businessUnits: appData.businessUnit.publicCode,
     businessManager: appData.businessManager.publicCode,
   });
 

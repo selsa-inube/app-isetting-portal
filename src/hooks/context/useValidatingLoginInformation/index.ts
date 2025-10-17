@@ -6,6 +6,8 @@ import { decrypt } from "@utils/decrypt";
 import { validateAndTrimString } from "@utils/validateAndTrimString";
 import { IAppData } from "@ptypes/authAndDataProvider/IAppData";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
+import { useLanguage } from "@hooks/language";
+import { enviroment } from "@config/environment";
 
 const useValidatingLoginInformation = () => {
   const { user } = useAuth0();
@@ -20,11 +22,11 @@ const useValidatingLoginInformation = () => {
   const [businessUnitSigla, setBusinessUnitSigla] = useState(
     localStorage.getItem("businessUnitSigla") ?? ""
   );
+  const { languageBrowser } = useLanguage();
 
   const [useCases, setUseCases] = useState<string>(
     localStorage.getItem("useCasesByStaff") ?? ""
   );
-
   let useCasesData: string[] = [];
   try {
     useCasesData = JSON.parse(useCases || "[]") as string[];
@@ -63,6 +65,7 @@ const useValidatingLoginInformation = () => {
       userName: user?.name ?? "",
     },
     useCasesByStaff: useCasesData ?? [],
+    language: enviroment.VITE_LANGUAGE,
   });
 
   useEffect(() => {
@@ -99,7 +102,7 @@ const useValidatingLoginInformation = () => {
       }));
     }
   }, [businessManagersData]);
-  console.log("unitsigkla", businessUnitSigla);
+
   useEffect(() => {
     localStorage.setItem("businessUnitSigla", businessUnitSigla);
 
@@ -149,7 +152,14 @@ const useValidatingLoginInformation = () => {
   useEffect(() => {
     localStorage.setItem("useCasesByStaff", useCases);
   }, [useCases]);
-  console.log(appData);
+
+  useEffect(() => {
+    setAppData((prev) => ({
+      ...prev,
+      language: languageBrowser ?? enviroment.VITE_LANGUAGE,
+    }));
+  }, [languageBrowser]);
+
   const AuthAndData = useMemo(
     () => ({
       appData,

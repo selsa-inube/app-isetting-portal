@@ -7,7 +7,7 @@ const TableUsers = (props: ITableComponent) => {
     <Table tableLayout="auto">
       <Thead>
         <Tr>
-          {Object.keys(dataTable[0]).map((key) => (
+          {dataTable.length > 0 && Object.keys(dataTable[0]).map((key) => (
             <Th key={key} align="left">
               {key}
             </Th>
@@ -23,7 +23,10 @@ const TableUsers = (props: ITableComponent) => {
               </Td>
             ))}
           </Tr>
-        ))}
+        )) ||
+          <Tr>{"No data available"}</Tr>
+        }
+
       </Tbody>
     </Table>
   );

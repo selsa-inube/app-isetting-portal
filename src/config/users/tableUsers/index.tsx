@@ -4,8 +4,8 @@ import { IAction } from "@ptypes/table/IAction";
 import { IEntry } from "@ptypes/table/IEntry";
 import { MdDeleteOutline, MdOutlineCreate, MdGroup } from "react-icons/md";
 
-const labelsOptions = [
-  {
+const labelsOptions = {
+  "Información personal": [{
     id: "identificationTypeNaturalPerson",
     labelName: "Tipo de identificación",
     type: "table",
@@ -15,10 +15,9 @@ const labelsOptions = [
     labelName: "Número de identificación",
     type: "table",
   },
-
   {
     id: "biologicalSex",
-    labelName: "Sexo al nacer",
+    labelName: "Sexo biológico del funcionario",
     type: "table",
   },
   {
@@ -26,27 +25,27 @@ const labelsOptions = [
     labelName: "Fecha de nacimiento",
     type: "table",
   },
-  {
-    id: "principalEmail",
-    labelName: "Email",
-    type: "table",
-  },
-  {
-    id: "principalPhone",
-    labelName: "Número de celular",
-    type: "table",
-  },
-  {
+
+  ],
+  "Misión para el operador": [{
     id: "businessManagerName",
-    labelName: "Cargo",
+    labelName: "Nombre",
     type: "table",
-  },
-  {
-    id: "identificationDocumentNumber",
-    labelName: "Cuenta del usuario",
-    type: "table",
-  },
-];
+  },],
+  "Datos de contacto": [
+    {
+      id: "principalEmail",
+      labelName: "Email",
+      type: "table",
+    },
+    {
+      id: "principalPhone",
+      labelName: "Móvil",
+      type: "table",
+    },
+
+  ],
+};
 const actionsConfig = () => {
   const actions: IAction[] = [
     {

@@ -5,6 +5,7 @@ import { addUserHookConfig } from "@config/users/addUsers/hook";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useMissionsData } from "@hooks/missions/useMissionsData";
 import { IAssistedStep, useMediaQuery } from "@inubekit/inubekit";
+import { IContactDataFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IContactData";
 import { IGeneralUserFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IGeneralFormValues";
 import { IFormsAddUserGeneralFormRefs } from "@ptypes/users/tabs/userTab/addUser/forms/IGeneralFormValues/ref";
 import { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm/indexs";
@@ -43,13 +44,22 @@ const useAddUser = () => {
         missionDescription: "",
       },
     },
+    contactDataStep: {
+      isValid: false,
+      values: {
+        email: "",
+        phone: "",
+      },
+    },
   });
 
   const generalInformationRef = useRef<FormikProps<IGeneralInfoForm>>(null);
   const missionForStaffRef = useRef<FormikProps<IMissionForStaff>>(null);
+  const contactDataRef = useRef<FormikProps<IContactDataFormValues>>(null);
   const formReferences: IFormsAddUserGeneralFormRefs = {
-    generalInformation: generalInformationRef,
-    missionForStaff: missionForStaffRef,
+    generalInformationStep: generalInformationRef,
+    missionForStaffStep: missionForStaffRef,
+    contactDataStep: contactDataRef,
   };
   const navigate = useNavigate();
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
@@ -70,9 +80,9 @@ const useAddUser = () => {
       if (generalInformationRef.current) {
         setFormValues((prev) => ({
           ...prev,
-          generalInformation: {
+          generalInformationStep: {
             ...prev.generalInformationStep,
-            values: generalInformationRef.current?.values,
+            values: generalInformationRef.current!.values,
           },
         }));
       }
@@ -99,6 +109,16 @@ const useAddUser = () => {
           },
         }));
       }
+      if (contactDataRef.current) {
+        setFormValues((prev) => ({
+          ...prev,
+          contactDataStep: {
+            ...prev.contactDataStep,
+            values: contactDataRef.current!.values,
+          },
+        }));
+      }
+
       setCurrentStep(currentStep + 1);
     }
   };

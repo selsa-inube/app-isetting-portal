@@ -6,6 +6,7 @@ const addUserUIConfig = {
   },
   generalInformationStep: 1,
   misionForStaff: 2,
+  contactData: 3,
   title: "Agregar funcionario",
   description: "Agrega un nuevo funcionario a tu organización",
   missionNameModal: {

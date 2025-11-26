@@ -1,3 +1,4 @@
+import { IContactDataFormValues } from "../IContactData";
 import { IGeneralInfoForm } from "../stepData/IGeneralInfoForm/indexs";
 import { IMissionForStaff } from "../stepData/IMissionForStaff";
 
@@ -9,6 +10,10 @@ interface IGeneralUserFormValues {
   missionForStaffStep: {
     isValid: boolean;
     values: IMissionForStaff;
+  };
+  contactDataStep: {
+    isValid: boolean;
+    values: IContactDataFormValues;
   };
 }
 

@@ -15,6 +15,7 @@ interface IGeneralUserFormValues {
     isValid: boolean;
     values: IContactDataFormValues;
   };
+  businessUnits: string[];
 }
 
 export type { IGeneralUserFormValues };

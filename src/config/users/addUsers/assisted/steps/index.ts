@@ -19,6 +19,13 @@ const addUserSteps: IAssistedStep[] = [
     name: "Misión para el funcionario",
     description: "Agrega o selecciona una misión para el funcionario.",
   },
+  {
+    id: 4,
+    number: 4,
+    name: "Unidades de negocio",
+    description:
+      "Selecciona las unidades de negocio que tomará el funcionario.",
+  },
 ];
 
 export { addUserSteps };

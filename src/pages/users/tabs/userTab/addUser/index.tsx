@@ -1,5 +1,6 @@
 import { useAddUser } from "@hooks/users/tabs/userTab/addUser";
 import { AddUserUI } from "./interface";
+import { useOptionsBusinessEntity } from "@hooks/users/tabs/userTab/addUser/optionsBusinessUnit";
 
 const AddUser = () => {
   const {
@@ -23,6 +24,11 @@ const AddUser = () => {
     handleToggleMissionModal,
   } = useAddUser();
 
+  const { setEntriesAdditionalSaasService, entriesAdditionalSaasService } =
+    useOptionsBusinessEntity({
+      formValues,
+    });
+
   return (
     <AddUserUI
       currentStep={currentStep}
@@ -43,6 +49,8 @@ const AddUser = () => {
       description={description}
       showMissionNameModal={showMissionNameModal}
       onToggleMissionModal={handleToggleMissionModal}
+      setEntriesAdditionalSaasService={setEntriesAdditionalSaasService}
+      entriesAdditionalSaasService={entriesAdditionalSaasService}
     />
   );
 };

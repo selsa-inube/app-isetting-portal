@@ -7,16 +7,11 @@ const AssignmentForm = (props: IAssignmentForm) => {
     filteredRows,
     filterValue,
     formFields,
-    handleApply,
-    handleClear,
-    handleCloseMenuRol,
     handleFilterChange,
     handleFilterInput,
     handleToggleAllEntries,
-    handleToggleModal,
     handleToggleRol,
     isAssignAll,
-    isDisabledButton,
     labelButtonNext,
     labelButtonPrevious,
     loading,
@@ -25,43 +20,35 @@ const AssignmentForm = (props: IAssignmentForm) => {
     onHandleSelectCheckChange,
     onReset,
     showMenu,
-    showModal,
     smallScreen,
     withFilter,
+    filterTitle,
+    filterPlaceholder,
   } = props;
-
-  const showFilter = withFilter && !smallScreen;
-
-  const showFilterModal = withFilter && showModal;
 
   return (
     <AssignmentFormUI
       appliedFilters={appliedFilters}
       fields={formFields}
-      filter={filterValue}
       filteredEntries={filteredRows}
       filterValue={filterValue}
-      handleClearFilters={handleClear}
-      handleCloseMenuRol={handleCloseMenuRol}
       handleFilterInput={handleFilterInput}
       handleToggleAllEntries={handleToggleAllEntries}
-      handleToggleModal={handleToggleModal}
       handleToggleRol={handleToggleRol}
       isAssignAll={isAssignAll}
-      isDisabledButton={isDisabledButton}
       labelButtonNext={labelButtonNext}
       labelButtonPrevious={labelButtonPrevious}
       loading={loading}
       menuOptions={menuOptions}
-      onApply={handleApply}
       onButtonClick={onButtonClick}
       onFilterChange={handleFilterChange}
       onReset={onReset}
       onSelectCheckChange={onHandleSelectCheckChange}
       showMenu={showMenu}
       smallScreen={smallScreen}
-      showFilter={showFilter}
-      showFilterModal={showFilterModal}
+      withFilter={withFilter}
+      filterTitle={filterTitle}
+      filterPlaceholder={filterPlaceholder}
     />
   );
 };

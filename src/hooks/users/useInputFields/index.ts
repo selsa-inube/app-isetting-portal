@@ -3,22 +3,34 @@ import { IInputFields } from "@ptypes/users/tabs/userTab/details/IInputFields";
 
 const useInputFields = (props: IInputFields) => {
   const { labels, infoData } = props;
-  return (labels.length ? labels : Object.keys(infoData))
-    .map((field) => {
-      const { id, labelName } =
-        typeof field === "string" ? { id: field, labelName: field } : field;
 
-      const fieldValue = infoData[id as keyof IPosition];
+  const result: Record<
+    string,
+    { id: string; labelName: string; fieldValue: string }[]
+  > = {};
 
-      if (!fieldValue) return null;
+  Object.entries(labels).forEach(([section, fields]) => {
+    result[section] = fields
+      .map((field) => {
+        const { id, labelName } = field;
+        const fieldValue = infoData[id as keyof IPosition];
 
-      return {
-        id,
-        labelName,
-        fieldValue,
-      };
-    })
-    .filter(Boolean);
+        if (fieldValue === undefined || fieldValue === null) return null;
+
+        return {
+          id,
+          labelName,
+          fieldValue,
+        };
+      })
+      .filter(Boolean) as {
+      id: string;
+      labelName: string;
+      fieldValue: string;
+    }[];
+  });
+
+  return result;
 };
 
 export { useInputFields };

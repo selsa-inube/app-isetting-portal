@@ -4,9 +4,11 @@ import { IEntry } from "@ptypes/table/IEntry";
 interface IFeedbackModal {
   onClose: () => void;
   smallScreen: boolean;
-  labels: IField[];
+  labels: Record<string, IField[]>;
   infoData: IPosition;
   dataTable?: IEntry[];
+  positionsByBusinessUnitRoles?: IEntry[];
+  rolesByBusinessUnit?: IEntry[];
 }
 
 export type { IFeedbackModal };

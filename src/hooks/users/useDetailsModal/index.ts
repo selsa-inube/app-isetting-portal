@@ -3,28 +3,46 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { IUseDetailsModal } from "@ptypes/hooks/IUseDetailsModal";
 
 const useDetailsModal = (props: IUseDetailsModal) => {
-
-  const {data} =props;
+  const { data } = props;
   const [showModal, setShowModal] = useState<boolean>(false);
   const screenTablet = useMediaQuery("(max-width: 1200px)");
 
   const handleToggleModal = () => {
     setShowModal((prev) => !prev);
   };
-  const dataTable = Array.isArray(data?.staffByBusinessUnitAndRole)
+  const positionsByBusinessUnitRoles = Array.isArray(
+    data?.staffByBusinessUnitAndRole
+  )
+    ? data.staffByBusinessUnitAndRole
+        .map((item: { positionName: string; businessUnitName: string }) => ({
+          "Unidad de negocio": item.businessUnitName,
+          Rol: item.positionName,
+        }))
+        .filter(
+          (item, index, self) =>
+            index ===
+            self.findIndex(
+              (t) =>
+                t["Unidad de negocio"] === item["Unidad de negocio"] &&
+                t.Rol === item.Rol
+            )
+        )
+    : [];
+
+  const rolesByBusinessUnit = Array.isArray(data?.staffByBusinessUnitAndRole)
     ? data.staffByBusinessUnitAndRole.map(
-        (item: { roleName: string; BusinessUnitName: string }) => ({
-          "Unidad de negocio": item.BusinessUnitName,
-          roles: item.roleName,
+        (item: { roleName: string; businessUnitName: string }) => ({
+          "Unidad de negocio": item.businessUnitName,
+          Cargo: item.roleName,
         })
       )
     : [];
-
   return {
     showModal,
     handleToggleModal,
     screenTablet,
-    dataTable,
+    positionsByBusinessUnitRoles,
+    rolesByBusinessUnit,
   };
 };
 

@@ -7,7 +7,7 @@ const crumbsUsers = [
   },
   {
     path: "/users",
-    label: "Usuarios",
+    label: "Funcionarios",
     id: "/users",
     isActive: true,
   },

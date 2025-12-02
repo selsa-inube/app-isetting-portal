@@ -27,6 +27,7 @@ const useSearchAndPageControlUser = () => {
       .map((row) => ({
         id: row.staffId,
         abbreviatedName: row.staffName,
+        ...row,
       }));
   }, [userData, searchService, entryDeleted]);
   const handleSearchService = (value: React.ChangeEvent<HTMLInputElement>) => {

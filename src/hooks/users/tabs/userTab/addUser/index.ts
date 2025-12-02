@@ -4,7 +4,7 @@ import { addUserSteps } from "@config/users/addUsers/assisted/steps";
 import { addUserHookConfig } from "@config/users/addUsers/hook";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useMissionsData } from "@hooks/missions/useMissionsData";
-import { IAssistedStep, useMediaQuery } from "@inubekit/inubekit";
+import { useMediaQuery } from "@inubekit/inubekit";
 import { IContactDataFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IContactData";
 import { IGeneralUserFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IGeneralFormValues";
 import { IFormsAddUserGeneralFormRefs } from "@ptypes/users/tabs/userTab/addUser/forms/IGeneralFormValues/ref";
@@ -19,7 +19,7 @@ const useAddUser = () => {
   const description = addUserUIConfig.description;
   const [currentStep, setCurrentStep] = useState(1);
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
-  const [steps] = useState<IAssistedStep[]>(addUserSteps);
+  const steps = addUserSteps;
   const [showGoBackModal, setShowGoBackModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showMissionNameModal, setShowMissionNameModal] = useState(false);
@@ -51,6 +51,7 @@ const useAddUser = () => {
         phone: "",
       },
     },
+    businessUnits: [],
   });
 
   const generalInformationRef = useRef<FormikProps<IGeneralInfoForm>>(null);

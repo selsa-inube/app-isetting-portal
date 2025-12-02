@@ -1,24 +1,17 @@
-import { useAssignmentForm } from "@hooks/design/useAssignmentForm";
-import { useFilterRoles } from "@hooks/positions/useFilterRoles";
 import { AssignmentForm } from "@design/forms/assignmentForm";
-import { IEntry } from "@ptypes/design/table/IEntry";
-import { IRolesForm } from "@ptypes/positions/IRolesForm";
+import { useAssignmentForm } from "@hooks/design/useAssignmentForm";
 
-const RolesForm = (props: IRolesForm) => {
+import { IBusinessEntityForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IBusinessEntityForm";
+
+const BusinessEntityForm = (props: IBusinessEntityForm) => {
   const {
     entries,
-    options,
-    withFilter,
     setSelectedToggle,
     onButtonClick,
     onReset,
     editDataOption = false,
+    withFilter = false,
   } = props;
-
-  const { appliedFilters, setShowModal } = useFilterRoles({
-    options: options as IEntry[],
-  });
-
   const {
     filteredRows,
     filterValue,
@@ -27,8 +20,8 @@ const RolesForm = (props: IRolesForm) => {
     labelButtonPrevious,
     loading,
     menuOptions,
-    smallScreen,
     showMenu,
+    smallScreen,
     handleFilterInput,
     handleToggleAllEntries,
     handleToggleRol,
@@ -37,9 +30,7 @@ const RolesForm = (props: IRolesForm) => {
     entries,
     setSelectedToggle,
     editDataOption,
-    setShowModal,
-    withFilter,
-    appliedFilters,
+    withFilter: false,
   });
   return (
     <AssignmentForm
@@ -63,4 +54,5 @@ const RolesForm = (props: IRolesForm) => {
   );
 };
 
-export { RolesForm };
+BusinessEntityForm.displayName = "BusinessEntityForm";
+export { BusinessEntityForm };

@@ -1,10 +1,10 @@
-import { useState, useMemo, useRef, useEffect, useCallback } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import ReactCountryFlag from "react-country-flag";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Text } from "@inubekit/inubekit";
 import { countries as defaultCountries } from "./countries";
 import { PHONE_NUMBER_FIELD_TEXT } from "./constants";
-import type { CountryOption, IPhoneNumberField } from "./types";
+
 import {
   StyledWrapper,
   StyledLabelRow,
@@ -24,6 +24,8 @@ import {
   StyledCountryCode,
 } from "./styles";
 import { phoneFieldTokens } from "./tokens";
+import { CountryOption } from "@ptypes/design/phoneInput/ICountryOption";
+import { IPhoneNumberField } from "@ptypes/design/phoneInput/IPhoneNumberField";
 
 const sanitizePhoneValue = (input: string) =>
   input.replace(/[^0-9\s\-()]/g, "");

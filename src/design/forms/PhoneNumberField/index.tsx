@@ -1,7 +1,9 @@
 import { useState } from "react";
-import type { CountryOption, IPhoneNumberField } from "./types";
+
 import { PhoneNumberFieldUI } from "./interface";
 import { countries as defaultCountries } from "./countries";
+import { CountryOption } from "@ptypes/design/phoneInput/ICountryOption";
+import { IPhoneNumberField } from "@ptypes/design/phoneInput/IPhoneNumberField";
 
 const PhoneNumberField = (props: IPhoneNumberField) => {
   const {

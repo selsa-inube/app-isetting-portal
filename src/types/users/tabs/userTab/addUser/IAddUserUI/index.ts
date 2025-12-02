@@ -1,6 +1,8 @@
-import { IAssistedSize, IAssistedStep } from "@inubekit/inubekit";
+import { IAssistedSize, IAssistedStep, IOption } from "@inubekit/inubekit";
 import { IFormsAddUserGeneralFormRefs } from "../forms/IGeneralFormValues/ref";
 import { IGeneralUserFormValues } from "../forms/IGeneralFormValues";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
+import React, { Dispatch, SetStateAction } from "react";
 
 interface IAddUserUI {
   showGoBackModal: boolean;
@@ -21,5 +23,7 @@ interface IAddUserUI {
   assistedLength: IAssistedSize;
   onToggleModal: () => void;
   onToggleMissionModal: () => void;
+  setEntriesAdditionalSaasService: Dispatch<SetStateAction<IFormEntry[]>>;
+  entriesAdditionalSaasService: IFormEntry[];
 }
 export type { IAddUserUI };

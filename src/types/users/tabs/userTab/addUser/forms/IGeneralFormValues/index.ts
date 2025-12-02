@@ -1,5 +1,6 @@
-import { IGeneralInfoForm } from "../stepData/IGeneralInfoForm/indexs";
-import { IMissionForStaff } from "../stepData/IMissionForStaff";
+import { IContactDataFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IContactData";
+import { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm";
+import { IMissionForStaff } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IMissionForStaff";
 
 interface IGeneralUserFormValues {
   generalInformationStep: {
@@ -10,6 +11,11 @@ interface IGeneralUserFormValues {
     isValid: boolean;
     values: IMissionForStaff;
   };
+  contactDataStep: {
+    isValid: boolean;
+    values: IContactDataFormValues;
+  };
+  businessUnits: string[];
 }
 
 export type { IGeneralUserFormValues };

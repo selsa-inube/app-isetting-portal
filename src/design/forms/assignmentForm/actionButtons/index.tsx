@@ -10,12 +10,12 @@ import { Menu } from "@design/feedback/menu";
 const ActionButtons = (props: IActionButtons) => {
   const {
     smallScreen,
-    showMenu,
-    menuOptions,
     entries,
     isAssignAll,
     handleToggleRol,
     handleToggleAllEntries,
+    showMenu,
+    menuOptions,
   } = props;
 
   const disabledUncheckAll =
@@ -46,7 +46,7 @@ const ActionButtons = (props: IActionButtons) => {
       ) : (
         <Stack gap={basic.spacing.s150} alignItems="end">
           <Button
-            spacing="compact"
+            spacing="wide"
             onClick={() => handleToggleAllEntries(false)}
             iconBefore={<MdClear />}
             disabled={disabledUncheckAll}
@@ -55,7 +55,7 @@ const ActionButtons = (props: IActionButtons) => {
             {actionButtonsLabels.uncheckAll}
           </Button>
           <Button
-            spacing="compact"
+            spacing="wide"
             iconBefore={<MdCheck />}
             onClick={() => handleToggleAllEntries(true)}
             disabled={disabledCheckAll}

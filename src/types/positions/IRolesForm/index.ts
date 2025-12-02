@@ -6,9 +6,7 @@ interface IRolesForm {
   withFilter: boolean;
   onReset: () => void;
   onButtonClick: () => void;
-  setSelectedToggle: React.Dispatch<
-    React.SetStateAction<IFormEntry[] | undefined>
-  >;
+  setSelectedToggle: React.Dispatch<React.SetStateAction<IFormEntry[]>>;
   options: IOptionInitialiceEntryApp[];
   readOnly?: boolean;
   editDataOption?: boolean;

@@ -1,10 +1,12 @@
 import { FormikProps } from "formik";
-import { IGeneralInfoForm } from "../../stepData/IGeneralInfoForm/indexs";
-import { IMissionForStaff } from "../../stepData/IMissionForStaff";
+import { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm";
+import { IMissionForStaff } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IMissionForStaff";
+import { IContactDataFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IContactData";
 
 interface IFormsAddUserGeneralFormRefs {
-  generalInformation: React.RefObject<FormikProps<IGeneralInfoForm>>;
-  missionForStaff: React.RefObject<FormikProps<IMissionForStaff>>;
+  generalInformationStep: React.RefObject<FormikProps<IGeneralInfoForm> | null>;
+  missionForStaffStep: React.RefObject<FormikProps<IMissionForStaff> | null>;
+  contactDataStep: React.RefObject<FormikProps<IContactDataFormValues> | null>;
 }
 
 export type { IFormsAddUserGeneralFormRefs };

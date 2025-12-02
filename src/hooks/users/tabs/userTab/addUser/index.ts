@@ -8,7 +8,7 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { IContactDataFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IContactData";
 import { IGeneralUserFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IGeneralFormValues";
 import { IFormsAddUserGeneralFormRefs } from "@ptypes/users/tabs/userTab/addUser/forms/IGeneralFormValues/ref";
-import { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm/indexs";
+import { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm";
 import { IMissionForStaff } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IMissionForStaff";
 import { FormikProps } from "formik";
 import { useContext, useRef, useState } from "react";

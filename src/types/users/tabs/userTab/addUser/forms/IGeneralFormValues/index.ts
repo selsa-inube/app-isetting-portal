@@ -1,6 +1,6 @@
-import { IContactDataFormValues } from "../IContactData";
-import { IGeneralInfoForm } from "../stepData/IGeneralInfoForm/indexs";
-import { IMissionForStaff } from "../stepData/IMissionForStaff";
+import { IContactDataFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IContactData";
+import { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm";
+import { IMissionForStaff } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IMissionForStaff";
 
 interface IGeneralUserFormValues {
   generalInformationStep: {

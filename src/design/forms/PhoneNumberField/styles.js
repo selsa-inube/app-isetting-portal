@@ -17,7 +17,7 @@ const StyledWrapper = styled.div`
 const StyledLabelRow = styled.label`
   font-size: 12px;
   font-weight: 500;
-  line-height: 16px;
+  line-height: ${basic.spacing.s16};
   letter-spacing: 0.5px;
   color: ${({ $disabled, theme }) =>
     $disabled
@@ -43,7 +43,7 @@ const StyledFieldContainer = styled.div`
         phoneFieldTokens.field.background.color.disabled)
       : (theme?.phoneField?.field?.background?.color?.regular ??
         phoneFieldTokens.field.background.color.regular)};
-  border-radius: 8px;
+  border-radius: ${basic.spacing.s8};
   height: ${({ $size }) => fieldHeights[$size]};
   overflow: hidden;
   transition: border-color 0.15s ease;
@@ -108,7 +108,7 @@ const StyledNumberInput = styled.input`
 const StyledDropdown = styled.div`
   position: absolute;
   z-index: 2;
-  margin-top: 4px;
+  margin-top: ${basic.spacing.s4};
   background: ${({ theme }) =>
     theme?.phoneField?.dropdown?.background?.color ??
     phoneFieldTokens.dropdown.background.color};
@@ -118,7 +118,7 @@ const StyledDropdown = styled.div`
       phoneFieldTokens.dropdown.border.color};
   box-shadow: ${({ theme }) =>
     `0 4px 8px ${theme?.phoneField?.dropdown?.shadow?.color ?? phoneFieldTokens.dropdown.shadow.color}`};
-  border-radius: 8px;
+  border-radius: ${basic.spacing.s8};
   max-height: 320px;
   display: flex;
   flex-direction: column;
@@ -129,7 +129,7 @@ const StyledSearchBox = styled.input`
   border: none;
   border-bottom: ${({ theme }) =>
     `1px solid ${theme?.phoneField?.border?.color?.regular ?? phoneFieldTokens.border.color}`};
-  padding: 8px 12px;
+  padding: ${basic.spacing.s8} ${basic.spacing.s12};
   outline: none;
   font-size: 0.85rem;
 `;
@@ -145,8 +145,8 @@ const StyledCountryList = styled.ul`
 const StyledCountryItem = styled.li`
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
+  gap: ${basic.spacing.s8};
+  padding: ${basic.spacing.s6} ${basic.spacing.s10};
   cursor: pointer;
   font-size: 0.85rem;
   background: ${({ $active, theme }) =>
@@ -163,7 +163,7 @@ const StyledCountryItem = styled.li`
 `;
 
 const StyledHelperText = styled.span`
-  margin-top: 4px;
+  margin-top: ${basic.spacing.s4};
   font-size: 0.75rem;
   color: ${({ $error, theme }) =>
     $error
@@ -176,8 +176,8 @@ const StyledHelperText = styled.span`
 const StyledErrorContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-top: 4px;
+  gap: ${basic.spacing.s4};
+  margin-top: ${basic.spacing.s4};
 `;
 
 const StyledWarningIcon = styled.figure`
@@ -187,21 +187,6 @@ const StyledWarningIcon = styled.figure`
   align-items: center;
   justify-content: center;
 `;
-
-export {
-  StyledWrapper,
-  StyledLabelRow,
-  StyledFieldContainer,
-  StyledCountryButton,
-  StyledNumberInput,
-  StyledDropdown,
-  StyledSearchBox,
-  StyledCountryList,
-  StyledCountryItem,
-  StyledHelperText,
-  StyledErrorContainer,
-  StyledWarningIcon,
-};
 
 const StyledFlag = styled.span`
   display: inline-flex;
@@ -235,4 +220,21 @@ const StyledCountryCode = styled.span`
   font-size: 0.75rem;
 `;
 
-export { StyledDial, StyledCountryName, StyledCountryCode, StyledFlag };
+export {
+  StyledWrapper,
+  StyledLabelRow,
+  StyledFieldContainer,
+  StyledCountryButton,
+  StyledNumberInput,
+  StyledDropdown,
+  StyledSearchBox,
+  StyledCountryList,
+  StyledCountryItem,
+  StyledHelperText,
+  StyledErrorContainer,
+  StyledWarningIcon,
+  StyledDial,
+  StyledCountryName,
+  StyledCountryCode,
+  StyledFlag,
+};

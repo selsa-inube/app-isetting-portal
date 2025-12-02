@@ -1,4 +1,4 @@
-import { IContactDataFormValues } from "../../IContactData";
+import { IContactDataFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IContactData";
 
 interface IContactDataForm {
   initialValues: IContactDataFormValues;

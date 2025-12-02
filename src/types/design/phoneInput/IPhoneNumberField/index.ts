@@ -1,15 +1,11 @@
-interface CountryOption {
-  code: string; // ISO alpha-2 e.g. CO
-  dialCode: string; // e.g. +57
-  name: string; // e.g. Colombia
-}
+import { CountryOption } from "../ICountryOption";
 
 interface IPhoneNumberField {
   id: string;
   label?: string;
   placeholder?: string;
   value?: string;
-  countryCode?: string; // ISO alpha-2
+  countryCode?: string;
   showDialCode?: boolean;
   onChange: (e: { target: { name: string; value: string } }) => void;
   onCountryChange?: (country: CountryOption) => void;
@@ -26,4 +22,4 @@ interface IPhoneNumberField {
   minDigits?: number;
 }
 
-export type { CountryOption, IPhoneNumberField };
+export type { IPhoneNumberField };

@@ -1,5 +1,5 @@
-import type { CountryOption } from "./types";
-// Base country list (ISO alpha-2 + dial code). names in Spanish.
+import { CountryOption } from "@ptypes/design/phoneInput/ICountryOption";
+
 const countries: CountryOption[] = [
   { code: "AF", dialCode: "+93", name: "Afganistán" },
   { code: "AL", dialCode: "+355", name: "Albania" },

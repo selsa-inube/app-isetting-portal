@@ -1,15 +1,7 @@
 import { AssignmentForm } from "@design/forms/assignmentForm";
 import { useAssignmentForm } from "@hooks/design/useAssignmentForm";
-import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 
-interface IBusinessEntityForm {
-  entries: IFormEntry[];
-  setSelectedToggle: React.Dispatch<React.SetStateAction<IFormEntry[]>>;
-  onButtonClick: () => void;
-  onReset: () => void;
-  editDataOption?: boolean;
-  withFilter?: boolean;
-}
+import { IBusinessEntityForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IBusinessEntityForm";
 
 const BusinessEntityForm = (props: IBusinessEntityForm) => {
   const {

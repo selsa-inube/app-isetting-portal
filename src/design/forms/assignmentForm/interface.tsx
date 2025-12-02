@@ -34,8 +34,8 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
   } = props;
 
   const showFilter = !!(withFilter && filterTitle && onFilterChange && fields);
-  const OptiosWithSearch = showFilter && smallScreen;
-  const directionValue = OptiosWithSearch ? "column" : "row";
+  const optiosWithSearch = showFilter && smallScreen;
+  const directionValue = optiosWithSearch ? "column" : "row";
   return (
     <BorderStack
       gap={basic.spacing.s250}
@@ -74,7 +74,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
             <Stack
               alignItems="end"
               gap={smallScreen ? basic.spacing.s4 : basic.spacing.s32}
-              width={!OptiosWithSearch ? "" : smallScreen ? "100%" : "65%"}
+              width={!optiosWithSearch ? "" : smallScreen ? "100%" : "65%"}
               justifyContent="space-between"
             >
               {showFilter && (

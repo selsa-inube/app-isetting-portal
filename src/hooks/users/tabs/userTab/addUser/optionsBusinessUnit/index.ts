@@ -1,13 +1,11 @@
+import { useContext, useEffect, useState } from "react";
+
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useOptionsByBusinessUnit } from "@hooks/staffPortal/useOptionsByBusinessUnit";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
-import { IGeneralUserFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IGeneralFormValues";
-import { useContext, useEffect, useState } from "react";
-interface IUseOptionsBusinessEn {
-  formValues: IGeneralUserFormValues;
-}
+import { IUseOptionsBusinessEntity } from "@ptypes/hooks/IUseOptionsBusinessEntity";
 
-const useOptionsBusinessEntity = (props: IUseOptionsBusinessEn) => {
+const useOptionsBusinessEntity = (props: IUseOptionsBusinessEntity) => {
   const { formValues } = props;
   const { appData } = useContext(AuthAndData);
   const { optionsSelectUnits: optionsUnits } = useOptionsByBusinessUnit({

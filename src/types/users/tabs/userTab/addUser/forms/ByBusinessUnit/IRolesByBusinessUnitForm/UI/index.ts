@@ -1,7 +1,7 @@
-import { IBusinessUnitField } from "../../IBusinessUnitField";
+import { IRolesByBusinessUnit } from "@ptypes/assignments/IRolesByBusinessUnit";
 
 interface IRolesByBusinessUnitFormUI {
-  businessUnits: Record<string, IBusinessUnitField>;
+  businessUnits: Record<string, IRolesByBusinessUnit>;
   setSelectedChange: (name: string, value: string) => void;
   onNextPage: () => void;
   onReset: () => void;

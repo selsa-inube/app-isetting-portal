@@ -5,9 +5,10 @@ import { Button, Stack } from "@inubekit/inubekit";
 
 import { RolesCardByBusinessUnit } from "./rolesCardByBusinessUnit";
 import { BorderStack } from "@design/layout/borderStack";
-import { IRolesByBusinessUnitFormUI } from "@ptypes/users/tabs/userTab/addUser/forms/rolesByBusinessUnit/IRolesByBusinessUnitForm/UI";
 
-const RolesByBusinessUnitUI = (props: IRolesByBusinessUnitFormUI) => {
+import { IPositionsByBusinessUnitFormUI } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/IPositionByBusinessUnitForm/UI";
+
+const RolesByBusinessUnitUI = (props: IPositionsByBusinessUnitFormUI) => {
   const {
     businessUnits,
     setSelectedChange,

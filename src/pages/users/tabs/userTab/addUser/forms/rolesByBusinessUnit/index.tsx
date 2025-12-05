@@ -1,7 +1,7 @@
-import { IRolesByBusinessUnitForm } from "@ptypes/users/tabs/userTab/addUser/forms/rolesByBusinessUnit/IRolesByBusinessUnitForm";
 import { RolesByBusinessUnitUI } from "./interface";
+import { IPositionsByBusinessUnitForm } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/IPositionByBusinessUnitForm";
 
-const RolesByBusinessUnit = (props: IRolesByBusinessUnitForm) => {
+const RolesByBusinessUnit = (props: IPositionsByBusinessUnitForm) => {
   const { businessUnits, setSelectedChange, onNextPage, onReset } = props;
 
   const buttonDisabledState = Object.values(businessUnits).some(

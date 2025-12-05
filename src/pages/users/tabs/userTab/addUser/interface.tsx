@@ -39,7 +39,7 @@ const AddUserUI = (props: IAddUserUI) => {
     onToggleMissionModal,
     setEntriesAdditionalBusinessEntity,
     entriesAdditionalBusinessEntity,
-    rolesByBusinessUnit,
+    positionsByBusinessUnit,
     selectRolesByBusinessUnit,
   } = props;
 
@@ -110,7 +110,7 @@ const AddUserUI = (props: IAddUserUI) => {
             )}
             {currentStep === addUserUIConfig.rolesByBusinessUnit && (
               <RolesByBusinessUnit
-                businessUnits={rolesByBusinessUnit}
+                businessUnits={positionsByBusinessUnit}
                 setSelectedChange={selectRolesByBusinessUnit}
                 onNextPage={onNextStep}
                 onReset={onPreviousStep}

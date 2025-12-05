@@ -32,8 +32,11 @@ const AddUser = () => {
     formValues,
   });
 
-  const { rolesByBusinessUnit, selectRolesByBusinessUnit } =
-    useRolesByBusinessUnit(entriesAdditionalBusinessEntity);
+  const {
+    rolesByBusinessUnit,
+    selectRolesByBusinessUnit,
+    positionsByBusinessUnit,
+  } = useRolesByBusinessUnit(entriesAdditionalBusinessEntity);
 
   return (
     <AddUserUI
@@ -57,7 +60,7 @@ const AddUser = () => {
       onToggleMissionModal={handleToggleMissionModal}
       setEntriesAdditionalBusinessEntity={setEntriesAdditionalBusinessEntity}
       entriesAdditionalBusinessEntity={entriesAdditionalBusinessEntity}
-      rolesByBusinessUnit={rolesByBusinessUnit}
+      positionsByBusinessUnit={positionsByBusinessUnit}
       selectRolesByBusinessUnit={selectRolesByBusinessUnit}
     />
   );

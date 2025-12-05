@@ -1,19 +1,19 @@
-import { BusinessUnitField } from "@pages/users/tabs/userTab/addUser/forms/rolesByBusinessUnit";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPortalStaff";
+import { IRoleByBusinessUnit } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/ICardByBusinessUnit/IRoleByBusinessUnit";
+
+import { IRolesByBusinessMapped } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/ICardByBusinessUnit/mapped";
+import { IPositionByBusinessUnit } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/IRoleByBusinessUnit";
 
 import { getBusinessManagersId } from "@services/staffPortal/getBusinessManagersId";
 import { useEffect, useState } from "react";
-
-export interface IRolesByBusinessMapped {
-  businessUnits: Record<string, BusinessUnitField>;
-}
 
 const useRolesByBusinessUnit = (
   entriesAdditionalBusinessEntity: IFormEntry[]
 ) => {
   const [formData, setFormData] = useState<IRolesByBusinessMapped>({
-    businessUnits: {},
+    rolesByBusinessUnits: {},
+    positionsByBusinessUnit: {},
   });
 
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,6 @@ const useRolesByBusinessUnit = (
     );
 
     if (activeEntries.length === 0) {
-      setFormData({ businessUnits: {} });
       return;
     }
 
@@ -41,22 +40,38 @@ const useRolesByBusinessUnit = (
           })
         );
 
-        const mapped: Record<string, BusinessUnitField> = {};
+        const rolesBusinessUnitsMapped: Record<string, IRoleByBusinessUnit> =
+          {};
+        const positionsBusinessUnitsMapped: Record<
+          string,
+          IPositionByBusinessUnit
+        > = {};
 
         results.forEach(({ code, data }) => {
-          mapped[code] = {
+          rolesBusinessUnitsMapped[code] = {
             value: "",
             options: data.flatMap((item: IBusinessUnitsPortalStaff) =>
               item.positionStaffByRoles.map((role) => ({
-                id: role.positionId,
                 label: role.roleName,
-                value: role.positionId,
+                isActive: false,
               }))
             ),
           };
+          rolesBusinessUnitsMapped;
+          positionsBusinessUnitsMapped[code] = {
+            value: "",
+            options: data.map((item: IBusinessUnitsPortalStaff) => ({
+              id: item.positionId,
+              label: item.positionName,
+              value: item.positionId,
+            })),
+          };
         });
 
-        setFormData({ businessUnits: mapped });
+        setFormData({
+          rolesByBusinessUnits: rolesBusinessUnitsMapped,
+          positionsByBusinessUnit: positionsBusinessUnitsMapped,
+        });
       } catch (err) {
         console.error(err);
         setError("Failed to fetch roles");
@@ -71,20 +86,35 @@ const useRolesByBusinessUnit = (
   const selectRolesByBusinessUnit = (name: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      businessUnits: {
-        ...prev.businessUnits,
+      rolesByBusinessUnits: {
+        ...prev.rolesByBusinessUnits,
         [name]: {
-          ...prev.businessUnits[name],
+          ...prev.rolesByBusinessUnits[name],
           value,
         },
       },
     }));
   };
+  const selectPositionsByBusinessUnit = (name: string, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      positionsByBusinessUnit: {
+        ...prev.positionsByBusinessUnit,
+        [name]: {
+          ...prev.positionsByBusinessUnit[name],
+          value,
+        },
+      },
+    }));
+  };
+  console.log(formData);
   return {
-    rolesByBusinessUnit: formData.businessUnits,
+    rolesByBusinessUnit: formData.rolesByBusinessUnits,
+    positionsByBusinessUnit: formData.positionsByBusinessUnit,
     loading,
     error,
     selectRolesByBusinessUnit,
+    selectPositionsByBusinessUnit,
   };
 };
 

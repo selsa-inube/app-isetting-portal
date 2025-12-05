@@ -3,7 +3,7 @@ import { IFormsAddUserGeneralFormRefs } from "../forms/IGeneralFormValues/ref";
 import { IGeneralUserFormValues } from "../forms/IGeneralFormValues";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import React, { Dispatch, SetStateAction } from "react";
-import { IBusinessUnitField } from "../forms/rolesByBusinessUnit/IBusinessUnitField";
+import { IPositionByBusinessUnit } from "../forms/ByBusinessUnit/IRoleByBusinessUnit";
 
 interface IAddUserUI {
   showGoBackModal: boolean;
@@ -26,7 +26,7 @@ interface IAddUserUI {
   onToggleMissionModal: () => void;
   setEntriesAdditionalBusinessEntity: Dispatch<SetStateAction<IFormEntry[]>>;
   entriesAdditionalBusinessEntity: IFormEntry[];
-  rolesByBusinessUnit: Record<string, IBusinessUnitField>;
+  positionsByBusinessUnit: Record<string, IPositionByBusinessUnit>;
   selectRolesByBusinessUnit: (name: string, value: string) => void;
 }
 export type { IAddUserUI };

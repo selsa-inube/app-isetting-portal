@@ -1,7 +1,7 @@
 import { IOption } from "@inubekit/inubekit";
 
-interface IBusinessUnitField {
+interface IPositionByBusinessUnit {
   options: IOption[];
   value: string;
 }
-export type { IBusinessUnitField };
+export type { IPositionByBusinessUnit };

@@ -4,7 +4,7 @@ import { BorderStack } from "@design/layout/borderStack";
 import { basic } from "@design/tokens";
 import { EComponentAppearance } from "@enum/appearances";
 import { selectPlaceholder } from "@config/users/addUsers/form/rolesCardByBusinessUnit";
-import { IRolesCardByBusinessUnit } from "@ptypes/users/tabs/userTab/addUser/forms/rolesByBusinessUnit/ICardRolesByBusinessUnit";
+import { IRolesCardByBusinessUnit } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/ICardByBusinessUnit";
 
 const RolesCardByBusinessUnit = (props: IRolesCardByBusinessUnit) => {
   const { id, businessUnit, options = [], onSelectChange, value = "" } = props;

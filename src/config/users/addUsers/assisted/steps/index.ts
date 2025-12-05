@@ -26,12 +26,6 @@ const addUserSteps: IAssistedStep[] = [
     description:
       "Selecciona las unidades de negocio que tomará el funcionario.",
   },
-  {
-    id: 5,
-    number: 5,
-    name: "Cargo por unidad de negocio",
-    description: "Selecciona para cada U.N. el cargo para el funcionario.",
-  },
 ];
 
 export { addUserSteps };

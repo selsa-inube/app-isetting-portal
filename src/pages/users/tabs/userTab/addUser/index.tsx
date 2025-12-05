@@ -1,7 +1,6 @@
 import { useAddUser } from "@hooks/users/tabs/userTab/addUser";
 import { AddUserUI } from "./interface";
-import { useOptionsBusinessEntity } from "@hooks/users/tabs/userTab/addUser/useOptionsBusinessUnit";
-import { useRolesByBusinessUnit } from "@hooks/users/tabs/userTab/addUser/useRolesByBusinessUnit";
+import { useOptionsBusinessEntity } from "@hooks/users/tabs/userTab/addUser/optionsBusinessUnit";
 
 const AddUser = () => {
   const {
@@ -25,15 +24,10 @@ const AddUser = () => {
     handleToggleMissionModal,
   } = useAddUser();
 
-  const {
-    setEntriesAdditionalBusinessEntity,
-    entriesAdditionalBusinessEntity,
-  } = useOptionsBusinessEntity({
-    formValues,
-  });
-
-  const { rolesByBusinessUnit, selectRolesByBusinessUnit } =
-    useRolesByBusinessUnit(entriesAdditionalBusinessEntity);
+  const { setEntriesAdditionalSaasService, entriesAdditionalSaasService } =
+    useOptionsBusinessEntity({
+      formValues,
+    });
 
   return (
     <AddUserUI
@@ -55,10 +49,8 @@ const AddUser = () => {
       description={description}
       showMissionNameModal={showMissionNameModal}
       onToggleMissionModal={handleToggleMissionModal}
-      setEntriesAdditionalBusinessEntity={setEntriesAdditionalBusinessEntity}
-      entriesAdditionalBusinessEntity={entriesAdditionalBusinessEntity}
-      rolesByBusinessUnit={rolesByBusinessUnit}
-      selectRolesByBusinessUnit={selectRolesByBusinessUnit}
+      setEntriesAdditionalSaasService={setEntriesAdditionalSaasService}
+      entriesAdditionalSaasService={entriesAdditionalSaasService}
     />
   );
 };

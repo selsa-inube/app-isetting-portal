@@ -15,6 +15,7 @@ import { ComponentAppearance } from "@ptypes/aparences.types";
 import { MdOutlineWarningAmber } from "react-icons/md";
 import { ContactDataForm } from "./forms/contactData";
 import { BusinessEntityForm } from "./forms/businessEntity";
+import { RolesByBusinessUnit } from "./forms/rolesByBusinessUnit";
 
 const AddUserUI = (props: IAddUserUI) => {
   const {
@@ -36,8 +37,10 @@ const AddUserUI = (props: IAddUserUI) => {
     description,
     showMissionNameModal,
     onToggleMissionModal,
-    setEntriesAdditionalSaasService,
-    entriesAdditionalSaasService,
+    setEntriesAdditionalBusinessEntity,
+    entriesAdditionalBusinessEntity,
+    rolesByBusinessUnit,
+    selectRolesByBusinessUnit,
   } = props;
 
   return (
@@ -99,11 +102,19 @@ const AddUserUI = (props: IAddUserUI) => {
             )}
             {currentStep === addUserUIConfig.businessEntityStep && (
               <BusinessEntityForm
-                entries={entriesAdditionalSaasService}
-                setSelectedToggle={setEntriesAdditionalSaasService}
+                entries={entriesAdditionalBusinessEntity}
+                setSelectedToggle={setEntriesAdditionalBusinessEntity}
                 onButtonClick={onNextStep}
                 onReset={onPreviousStep}
               ></BusinessEntityForm>
+            )}
+            {currentStep === addUserUIConfig.rolesByBusinessUnit && (
+              <RolesByBusinessUnit
+                businessUnits={rolesByBusinessUnit}
+                setSelectedChange={selectRolesByBusinessUnit}
+                onNextPage={onNextStep}
+                onReset={onPreviousStep}
+              />
             )}
           </Stack>
         </Stack>

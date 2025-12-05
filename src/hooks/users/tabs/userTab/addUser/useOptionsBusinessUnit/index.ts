@@ -12,12 +12,15 @@ const useOptionsBusinessEntity = (props: IUseOptionsBusinessEntity) => {
     publicCode: appData.portal.publicCode,
     userAccount: appData.user.userAccount,
   });
-  const [entriesAdditionalSaasService, setEntriesAdditionalSaasService] =
+  const [entriesAdditionalBusinessEntity, setEntriesAdditionalBusinessEntity] =
     useState<IFormEntry[]>([]);
 
   useEffect(() => {
-    if (entriesAdditionalSaasService.length === 0 && optionsUnits.length > 0) {
-      setEntriesAdditionalSaasService([
+    if (
+      entriesAdditionalBusinessEntity.length === 0 &&
+      optionsUnits.length > 0
+    ) {
+      setEntriesAdditionalBusinessEntity([
         ...formValues.businessUnits.map((value, index) => ({
           id: index.toString(),
           value,
@@ -32,8 +35,8 @@ const useOptionsBusinessEntity = (props: IUseOptionsBusinessEntity) => {
     }
   }, [formValues.businessUnits, optionsUnits]);
   return {
-    entriesAdditionalSaasService,
-    setEntriesAdditionalSaasService,
+    entriesAdditionalBusinessEntity,
+    setEntriesAdditionalBusinessEntity,
   };
 };
 export { useOptionsBusinessEntity };

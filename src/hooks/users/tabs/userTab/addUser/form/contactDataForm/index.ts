@@ -31,7 +31,7 @@ const useContactDataForm = (props: IUseContactDataForm) => {
 
   const validationSchema = createValidationSchema();
   const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
-  const [isDisabledButton, setIsDisabledButton] = useState(false);
+  const [isDisabledButton, setIsDisabledButton] = useState(true);
   const mobilePadding = isMobile ? basic.spacing.s150 : basic.spacing.s300;
   const formik = useFormik({
     initialValues,

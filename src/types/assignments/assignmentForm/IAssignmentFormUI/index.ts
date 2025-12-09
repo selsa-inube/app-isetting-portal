@@ -1,7 +1,7 @@
 import { IFormEntry } from "../IFormEntry";
 import { IMenuOptions } from "@ptypes/design/IMenuOptions";
 import { IOption } from "@inubekit/inubekit";
-import { IToggleTableColumn } from "@design/forms/assignmentForm/tableGroup";
+import { IToggleTableColumn } from "../tableGroup/IToggleTableColumn";
 
 interface IAssignmentFormUI {
   filteredEntries: IFormEntry[];

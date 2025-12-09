@@ -1,6 +1,6 @@
 import { useAddUser } from "@hooks/users/tabs/userTab/addUser";
 import { AddUserUI } from "./interface";
-import { useOptionsBusinessEntity } from "@hooks/users/tabs/userTab/addUser/useOptionsBusinessUnit";
+import { useOptionsBusinessEntity } from "@hooks/users/tabs/userTab/addUser/optionsBusinessUnit";
 import { useRolesByBusinessUnit } from "@hooks/users/tabs/userTab/addUser/useRolesByBusinessUnit";
 
 const AddUser = () => {

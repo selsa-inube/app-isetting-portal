@@ -1,4 +1,4 @@
-import { IAssistedSize, IAssistedStep } from "@inubekit/inubekit";
+import { IAssistedSize, IAssistedStep, IOption } from "@inubekit/inubekit";
 import { IFormsAddUserGeneralFormRefs } from "../forms/IGeneralFormValues/ref";
 import { IGeneralUserFormValues } from "../forms/IGeneralFormValues";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";

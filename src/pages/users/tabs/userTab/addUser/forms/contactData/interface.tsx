@@ -15,6 +15,7 @@ const ContactDataFormUI = (props: IContactDataFormUI) => {
     formik,
     loading,
     onNextStep,
+    componentSize,
     mobilePadding,
     labelButtonNext,
     buttonDisabledState,

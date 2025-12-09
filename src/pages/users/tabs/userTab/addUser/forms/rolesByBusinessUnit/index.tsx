@@ -1,23 +1,62 @@
-import { RolesByBusinessUnitUI } from "./interface";
-import { IPositionsByBusinessUnitForm } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/IPositionByBusinessUnitForm";
+import { rolesByBusinessUnitColumnsTitles } from "@config/users/addUsers/form/rolesByBusinessUnit/tableTitles";
+import { AssignmentForm } from "@design/forms/assignmentForm";
+import { useAssignmentForm } from "@hooks/design/useAssignmentForm";
+import { IRolesByBusinessUnitProps } from "@ptypes/users/tabs/userTab/addUser/forms/IRolesByBusinessUnit";
 
-const RolesByBusinessUnit = (props: IPositionsByBusinessUnitForm) => {
-  const { businessUnits, setSelectedChange, onNextPage, onReset } = props;
+const RolesByBusinessUnit = (props: IRolesByBusinessUnitProps) => {
+  const {
+    entries,
+    setSelectedToggle,
+    onButtonClick,
+    onReset,
+    editDataOption = false,
+    withFilter = false,
+  } = props;
 
-  const buttonDisabledState = Object.values(businessUnits).some(
-    (unit) => !unit.value || unit.value.trim() === ""
-  );
+  const {
+    filteredRows,
+    filterValue,
+    isAssignAll,
+    labelButtonNext,
+    labelButtonPrevious,
+    loading,
+    menuOptions,
+    showMenu,
+    smallScreen,
+    handleFilterInput,
+    handleToggleAllEntries,
+    handleToggleRol,
+    onHandleSelectCheckChange,
+  } = useAssignmentForm({
+    entries,
+    setSelectedToggle,
+    editDataOption,
+    withFilter: false,
+  });
 
   return (
-    <RolesByBusinessUnitUI
-      businessUnits={businessUnits}
-      setSelectedChange={setSelectedChange}
-      onNextPage={onNextPage}
+    <AssignmentForm
+      filteredRows={filteredRows}
+      filterValue={filterValue}
+      handleFilterInput={handleFilterInput}
+      handleToggleAllEntries={handleToggleAllEntries}
+      handleToggleRol={handleToggleRol}
+      isAssignAll={isAssignAll}
+      labelButtonNext={labelButtonNext}
+      labelButtonPrevious={labelButtonPrevious}
+      loading={loading}
+      menuOptions={menuOptions}
+      onButtonClick={onButtonClick}
+      onHandleSelectCheckChange={onHandleSelectCheckChange}
       onReset={onReset}
-      buttonDisabledState={buttonDisabledState}
-    ></RolesByBusinessUnitUI>
+      showMenu={showMenu}
+      smallScreen={smallScreen}
+      withFilter={withFilter}
+      columnsTitles={rolesByBusinessUnitColumnsTitles}
+    />
   );
 };
 
 RolesByBusinessUnit.displayName = "RolesByBusinessUnit";
+
 export { RolesByBusinessUnit };

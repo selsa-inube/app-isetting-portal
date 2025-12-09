@@ -48,5 +48,6 @@ const StyledBorderFlex = styled.div<IStyledFlex>`
   overflow-y: ${({ $overflowY }) => $overflowY};
   min-height: ${({ $minHeight }) => $minHeight};
   max-height: ${({ $maxHeight }) => $maxHeight};
+  overflow-x: ${({ $overflowY }) => ($overflowY ? "hidden" : "")};
 `;
 export { StyledBorderFlex };

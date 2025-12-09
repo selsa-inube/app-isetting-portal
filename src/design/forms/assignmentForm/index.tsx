@@ -24,6 +24,7 @@ const AssignmentForm = (props: IAssignmentForm) => {
     withFilter,
     filterTitle,
     filterPlaceholder,
+    columnsTitles,
   } = props;
 
   return (
@@ -49,6 +50,7 @@ const AssignmentForm = (props: IAssignmentForm) => {
       withFilter={withFilter}
       filterTitle={filterTitle}
       filterPlaceholder={filterPlaceholder}
+      columnsTitles={columnsTitles}
     />
   );
 };

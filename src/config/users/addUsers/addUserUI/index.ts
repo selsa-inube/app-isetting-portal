@@ -8,7 +8,9 @@ const addUserUIConfig = {
   misionForStaff: 2,
   contactData: 3,
   businessEntityStep: 4,
-  rolesByBusinessUnit: 5,
+  positionByBusinessUnit: 5,
+  roleByBusinessUnit: 6,
+
   title: "Agregar funcionario",
   description: "Agrega un nuevo funcionario a tu organización",
   missionNameModal: {

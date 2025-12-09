@@ -7,6 +7,7 @@ import { BorderStack } from "@design/layout/borderStack";
 import { searchLabels } from "@config/searchLabels";
 import { EComponentAppearance } from "@enum/appearances";
 import { Checkpicker } from "@isettingkit/business-rules";
+import { ToggleTableGroup } from "./tableGroup";
 
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const {
@@ -31,6 +32,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     withFilter,
     filterTitle,
     filterPlaceholder,
+    columnsTitles,
   } = props;
 
   const showFilter = !!(withFilter && filterTitle && onFilterChange && fields);
@@ -109,10 +111,18 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
             height="300px"
             overflowY="auto"
           >
-            <ToggleGroup
-              entries={filteredEntries}
-              onSelectCheckChange={onSelectCheckChange}
-            />
+            {columnsTitles && columnsTitles.length > 0 ? (
+              <ToggleTableGroup
+                entries={filteredEntries}
+                onSelectCheckChange={onSelectCheckChange}
+                columnsTitles={columnsTitles}
+              />
+            ) : (
+              <ToggleGroup
+                entries={filteredEntries}
+                onSelectCheckChange={onSelectCheckChange}
+              />
+            )}
           </BorderStack>
         </Stack>
       </BorderStack>

@@ -34,7 +34,8 @@ const AddUser = () => {
 
   const {
     rolesByBusinessUnit,
-    selectRolesByBusinessUnit,
+    setRolesByBusinessUnit,
+    selectPositionsByBusinessUnit,
     positionsByBusinessUnit,
   } = useRolesByBusinessUnit(entriesAdditionalBusinessEntity);
 
@@ -61,7 +62,9 @@ const AddUser = () => {
       setEntriesAdditionalBusinessEntity={setEntriesAdditionalBusinessEntity}
       entriesAdditionalBusinessEntity={entriesAdditionalBusinessEntity}
       positionsByBusinessUnit={positionsByBusinessUnit}
-      selectRolesByBusinessUnit={selectRolesByBusinessUnit}
+      selectPositionsByBusinessUnit={selectPositionsByBusinessUnit}
+      rolesByBusinessUnit={rolesByBusinessUnit}
+      selectRolesByBusinessUnit={setRolesByBusinessUnit}
     />
   );
 };

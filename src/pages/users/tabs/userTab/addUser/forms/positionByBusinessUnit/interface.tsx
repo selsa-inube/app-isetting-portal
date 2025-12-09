@@ -3,12 +3,12 @@ import { basic } from "@design/tokens";
 import { EComponentAppearance } from "@enum/appearances";
 import { Button, Stack } from "@inubekit/inubekit";
 
-import { RolesCardByBusinessUnit } from "./rolesCardByBusinessUnit";
+import { PositionCardByBusinessUnit } from "./positionCardByBusinessUnit";
 import { BorderStack } from "@design/layout/borderStack";
 
 import { IPositionsByBusinessUnitFormUI } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/IPositionByBusinessUnitForm/UI";
 
-const RolesByBusinessUnitUI = (props: IPositionsByBusinessUnitFormUI) => {
+const PositionByBusinessUnitUI = (props: IPositionsByBusinessUnitFormUI) => {
   const {
     businessUnits,
     setSelectedChange,
@@ -27,7 +27,7 @@ const RolesByBusinessUnitUI = (props: IPositionsByBusinessUnitFormUI) => {
     >
       <Stack gap={basic.spacing.s20}>
         {Object.entries(businessUnits).map(([unitKey, businessUnit]) => (
-          <RolesCardByBusinessUnit
+          <PositionCardByBusinessUnit
             id={unitKey}
             businessUnit={unitKey}
             onSelectChange={setSelectedChange}
@@ -55,4 +55,4 @@ const RolesByBusinessUnitUI = (props: IPositionsByBusinessUnitFormUI) => {
     </BorderStack>
   );
 };
-export { RolesByBusinessUnitUI };
+export { PositionByBusinessUnitUI };

@@ -1,4 +1,4 @@
-import { IPositionByBusinessUnit } from "../IRoleByBusinessUnit";
+import { IPositionByBusinessUnit } from "../IPositionByBusinessUnit";
 
 interface IPositionsByBusinessUnitForm {
   businessUnits: Record<string, IPositionByBusinessUnit>;

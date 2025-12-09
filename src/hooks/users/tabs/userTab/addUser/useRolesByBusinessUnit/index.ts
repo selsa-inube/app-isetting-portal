@@ -1,20 +1,19 @@
+import { useEffect, useState } from "react";
+
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPortalStaff";
-import { IRoleByBusinessUnit } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/ICardByBusinessUnit/IRoleByBusinessUnit";
-
-import { IRolesByBusinessMapped } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/ICardByBusinessUnit/mapped";
-import { IPositionByBusinessUnit } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/IRoleByBusinessUnit";
-
 import { getBusinessManagersId } from "@services/staffPortal/getBusinessManagersId";
-import { useEffect, useState } from "react";
+import { PositionsByBusinessUnitMap } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/IPositionByBusinessUnit";
 
 const useRolesByBusinessUnit = (
   entriesAdditionalBusinessEntity: IFormEntry[]
 ) => {
-  const [formData, setFormData] = useState<IRolesByBusinessMapped>({
-    rolesByBusinessUnits: {},
-    positionsByBusinessUnit: {},
-  });
+  const [rolesByBusinessUnit, setRolesByBusinessUnit] = useState<IFormEntry[]>(
+    []
+  );
+
+  const [positionsByBusinessUnit, setPositionsByBusinessUnit] =
+    useState<PositionsByBusinessUnitMap>({});
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<null | string>(null);
@@ -25,6 +24,8 @@ const useRolesByBusinessUnit = (
     );
 
     if (activeEntries.length === 0) {
+      setRolesByBusinessUnit([]);
+      setPositionsByBusinessUnit({});
       return;
     }
 
@@ -40,25 +41,11 @@ const useRolesByBusinessUnit = (
           })
         );
 
-        const rolesBusinessUnitsMapped: Record<string, IRoleByBusinessUnit> =
-          {};
-        const positionsBusinessUnitsMapped: Record<
-          string,
-          IPositionByBusinessUnit
-        > = {};
+        const positionsMap: PositionsByBusinessUnitMap = {};
+        const rolesEntries: IFormEntry[] = [];
 
         results.forEach(({ code, data }) => {
-          rolesBusinessUnitsMapped[code] = {
-            value: "",
-            options: data.flatMap((item: IBusinessUnitsPortalStaff) =>
-              item.positionStaffByRoles.map((role) => ({
-                label: role.roleName,
-                isActive: false,
-              }))
-            ),
-          };
-          rolesBusinessUnitsMapped;
-          positionsBusinessUnitsMapped[code] = {
+          positionsMap[code] = {
             value: "",
             options: data.map((item: IBusinessUnitsPortalStaff) => ({
               id: item.positionId,
@@ -66,12 +53,24 @@ const useRolesByBusinessUnit = (
               value: item.positionId,
             })),
           };
+
+          data.forEach((item: IBusinessUnitsPortalStaff) => {
+            item.positionStaffByRoles.forEach((role) => {
+              rolesEntries.push({
+                id: `${code}-${role.positionId}`,
+                value: code,
+                isActive: false,
+                rolesStaff: role.roleName,
+                businessUnitCode: code,
+                positionId: item.positionId,
+                positionName: item.positionName,
+              });
+            });
+          });
         });
 
-        setFormData({
-          rolesByBusinessUnits: rolesBusinessUnitsMapped,
-          positionsByBusinessUnit: positionsBusinessUnitsMapped,
-        });
+        setPositionsByBusinessUnit(positionsMap);
+        setRolesByBusinessUnit(rolesEntries);
       } catch (err) {
         console.error(err);
         setError("Failed to fetch roles");
@@ -83,37 +82,22 @@ const useRolesByBusinessUnit = (
     fetchAll();
   }, [entriesAdditionalBusinessEntity]);
 
-  const selectRolesByBusinessUnit = (name: string, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      rolesByBusinessUnits: {
-        ...prev.rolesByBusinessUnits,
-        [name]: {
-          ...prev.rolesByBusinessUnits[name],
-          value,
-        },
-      },
-    }));
-  };
   const selectPositionsByBusinessUnit = (name: string, value: string) => {
-    setFormData((prev) => ({
+    setPositionsByBusinessUnit((prev) => ({
       ...prev,
-      positionsByBusinessUnit: {
-        ...prev.positionsByBusinessUnit,
-        [name]: {
-          ...prev.positionsByBusinessUnit[name],
-          value,
-        },
+      [name]: {
+        ...prev[name],
+        value,
       },
     }));
   };
-  console.log(formData);
+
   return {
-    rolesByBusinessUnit: formData.rolesByBusinessUnits,
-    positionsByBusinessUnit: formData.positionsByBusinessUnit,
+    rolesByBusinessUnit,
+    setRolesByBusinessUnit,
+    positionsByBusinessUnit,
     loading,
     error,
-    selectRolesByBusinessUnit,
     selectPositionsByBusinessUnit,
   };
 };

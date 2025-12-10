@@ -26,7 +26,7 @@ const PositionCardByBusinessUnit = (props: IPositionCardByBusinessUnit) => {
         weight="bold"
         size="large"
         textAlign="center"
-        appearance="gray"
+        appearance={EComponentAppearance.GRAY}
       >
         {businessUnit}
       </Text>

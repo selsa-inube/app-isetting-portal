@@ -15,7 +15,7 @@ const PositionByBusinessUnit = (props: IPositionsByBusinessUnitForm) => {
       onNextPage={onNextPage}
       onReset={onReset}
       buttonDisabledState={buttonDisabledState}
-    ></PositionByBusinessUnitUI>
+    />
   );
 };
 

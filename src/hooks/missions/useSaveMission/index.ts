@@ -2,22 +2,22 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
 
-import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
-import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
-import { statusCloseModal } from "@config/status/statusCloseModal";
-import { statusRequestFinished } from "@config/status/statusRequestFinished";
+import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 import { ERequestStepsStatus } from "@enum/requestStepsStatus";
+import { EUseCase } from "@enum/useCase";
+import { flowAutomaticMessages } from "@config/missions/missionTab/generic/flowAutomaticMessages";
+import { interventionHumanMessage } from "@config/missions/missionTab/generic/interventionHumanMessage";
+import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
+import { statusCloseModal } from "@config/status/statusCloseModal";
 import { requestStepsInitial } from "@config/requestSteps";
 import { operationTypes } from "@config/useCase";
 import { requestStepsNames } from "@config/requestStepsNames";
-import { EUseCase } from "@enum/useCase";
-import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { statusRequestFinished } from "@config/status/statusRequestFinished";
+import { requestStatusMessage } from "@config/missions/missionTab/generic/requestStatusMessage";
 import { IUseSaveMission } from "@ptypes/hooks/missions/IUseSaveMission";
 import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
-import { flowAutomaticMessages } from "@config/missions/missionTab/generic/flowAutomaticMessages";
-import { interventionHumanMessage } from "@config/missions/missionTab/generic/interventionHumanMessage";
-import { requestStatusMessage } from "@config/missions/missionTab/generic/requestStatusMessage";
-import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
+import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 
 const useSaveMission = (props: IUseSaveMission) => {
   const {
@@ -42,7 +42,7 @@ const useSaveMission = (props: IUseSaveMission) => {
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
-  const navigatePage = "/privileges/missions";
+  const navigatePage = "/missions";
 
   const fetchSaveMissionData = async () => {
     setLoadingSendData(true);
@@ -105,7 +105,7 @@ const useSaveMission = (props: IUseSaveMission) => {
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
-            requestStepsNames.requestFiled,
+            requestStepsNames.requestFilled,
             ERequestStepsStatus.ERROR,
           ),
         );
@@ -114,12 +114,12 @@ const useSaveMission = (props: IUseSaveMission) => {
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
-            requestStepsNames.requestFiled,
+            requestStepsNames.requestFilled,
             ERequestStepsStatus.COMPLETED,
           ),
         );
       }
-    }, 1000);
+    }, 1500);
     setTimeout(() => {
       if (isStatusIntAutomatic(statusRequest)) {
         setRequestSteps((prev) =>
@@ -177,16 +177,16 @@ const useSaveMission = (props: IUseSaveMission) => {
         addFlag({
           title: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.title,
+          ).successfulCreateRequest.title,
           description: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.description,
+          ).successfulCreateRequest.description,
           appearance: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.appearance as IFlagAppearance,
+          ).successfulCreateRequest.appearance as IFlagAppearance,
           duration: flowAutomaticMessages(
             operationTypes[useCase as keyof typeof operationTypes]
-          ).SuccessfulCreateRequest.duration,
+          ).successfulCreateRequest.duration,
         });
       }
     }
@@ -235,13 +235,13 @@ const useSaveMission = (props: IUseSaveMission) => {
     setChangeTab(true);
     navigate(navigatePage);
     addFlag({
-      title: interventionHumanMessage.SuccessfulCreateRequestIntHuman.title,
+      title: interventionHumanMessage.successfulCreateRequestIntHuman.title,
       description:
-        interventionHumanMessage.SuccessfulCreateRequestIntHuman.description,
-      appearance: interventionHumanMessage.SuccessfulCreateRequestIntHuman
+        interventionHumanMessage.successfulCreateRequestIntHuman.description,
+      appearance: interventionHumanMessage.successfulCreateRequestIntHuman
         .appearance as IFlagAppearance,
       duration:
-        interventionHumanMessage.SuccessfulCreateRequestIntHuman.duration,
+        interventionHumanMessage.successfulCreateRequestIntHuman.duration,
     });
   };
 

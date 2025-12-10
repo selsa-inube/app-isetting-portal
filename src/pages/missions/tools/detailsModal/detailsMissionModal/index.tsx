@@ -1,6 +1,6 @@
-import { UseModalLabelsAndActions } from "@hooks/positions/useModalLabelsAndActions";
-import { DetailsMissionModalUI } from "./interface";
+import { useModalLabelsAndActions } from "@hooks/positions/useModalLabelsAndActions";
 import { IFeedbackModal } from "@ptypes/positions/details/IFeedbackModal";
+import { DetailsMissionModalUI } from "./interface";
 
 const DetailsMissionModal = (props: IFeedbackModal) => {
   const {
@@ -14,10 +14,10 @@ const DetailsMissionModal = (props: IFeedbackModal) => {
     title,
   } = props;
 
-  const { hasLabels, hasActions, isMobile } = UseModalLabelsAndActions(
+  const { hasLabels, hasActions, isMobile } = useModalLabelsAndActions({
     labels,
     actions
-  );
+  });
 
   return (
     <DetailsMissionModalUI

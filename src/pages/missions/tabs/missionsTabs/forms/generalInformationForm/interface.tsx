@@ -14,6 +14,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
     labelButtonNext,
     labelButtonPrevious,
     isDisabledButton,
+    editDataOption,
     onPreviousStep,
     onButtonClick,
   } = props;
@@ -65,13 +66,15 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
         </StyledContainerFields>
 
         <Stack justifyContent="flex-end" gap={basic.spacing.s250}>
-          <Button
-            onClick={onPreviousStep}
-            variant="outlined"
-            appearance={ComponentAppearance.GRAY}
-          >
-            {labelButtonPrevious}
-          </Button>
+          {editDataOption && (
+            <Button
+              onClick={onPreviousStep}
+              variant="outlined"
+              appearance={ComponentAppearance.GRAY}
+            >
+              {labelButtonPrevious}
+            </Button>
+          )}
 
           <Button
             onClick={onButtonClick}

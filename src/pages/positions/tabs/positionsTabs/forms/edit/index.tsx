@@ -1,16 +1,11 @@
+import { useEditPositionsModal } from "@hooks/positions/useEditPositionsModal";
 import { EditRecord } from "@design/feedback/editRecord";
-
-import { UseEditPositionsModal } from "@hooks/positions/useEditPositionsModal";
-import { IEntry } from "@ptypes/table/IEntry";
-
-interface IEdit {
-  data: IEntry;
-}
+import { IEdit } from "@ptypes/positions/IEdit";
 
 const Edit = (props: IEdit) => {
   const { data } = props;
 
-  const { handleEdit } = UseEditPositionsModal(data);
+  const { handleEdit } = useEditPositionsModal({data});
   return <EditRecord onEdit={handleEdit} />;
 };
 

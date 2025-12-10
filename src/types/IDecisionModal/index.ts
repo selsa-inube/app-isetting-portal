@@ -26,6 +26,7 @@ interface IDecisionModalUI {
   cancelButton: string;
   subtitle?: string;
   withButton: string;
+  withDivider?: boolean;
 }
 
 export type { IDecisionModalUI };

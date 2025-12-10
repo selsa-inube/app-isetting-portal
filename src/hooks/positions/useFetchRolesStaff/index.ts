@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { IRoleForStaff } from "@ptypes/rolesForStaff";
 import { getRolesForStaff } from "@services/positions/getRolesForStaff";
+import { IRoleForStaff } from "@ptypes/rolesForStaff";
 
-const UseFetchRolesStaff = () => {
+const useFetchRolesStaff = () => {
   const [rolesStaff, setRolesStaff] = useState<IRoleForStaff[]>();
   const [hasError, setHasError] = useState(false);
 
@@ -22,4 +22,4 @@ const UseFetchRolesStaff = () => {
   return { rolesStaff, hasError };
 };
 
-export { UseFetchRolesStaff };
+export { useFetchRolesStaff };

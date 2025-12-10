@@ -1,10 +1,10 @@
-import { TfiMenuAlt } from "react-icons/tfi";
+import { MdAdd } from "react-icons/md";
 
 const menuPositionLinks = [
   {
     description: "Solicitar cargo ",
-    path: "/privileges/positions/add-position",
-    icon: <TfiMenuAlt size={16} />,
+    path: "/positions/add-position",
+    icon: <MdAdd />,
     disabled: false,
   },
 ];

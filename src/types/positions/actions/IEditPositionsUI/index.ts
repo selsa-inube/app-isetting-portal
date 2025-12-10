@@ -1,6 +1,6 @@
 import { FormikProps } from "formik";
 import { IEditPositionsTabsConfig } from "@ptypes/positions/tabs/IEditDestinationTabsConfig";
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
@@ -15,9 +15,11 @@ interface IEditPositionsUI {
   isSelected: string;
   requestSteps: IRequestSteps[];
   loading: boolean;
-  showPendingReqModal: boolean;
-  showRequestProcessModal: boolean;
   savePositions: ISaveDataResponse;
+  showGeneralInformation: boolean;
+  showRolesForm: boolean;
+  showRequestProcess: boolean;
+  showRequestStatusModal: boolean;
   onTabChange: (id: string) => void;
   onButtonClick: () => void;
   onReset: () => void;

@@ -1,10 +1,11 @@
-import { IUsers } from "@ptypes/users/usersTable/IUsers";
+import { IUsers } from "@ptypes/users/tabs/userTab/usersTable/IUsers";
 
 const mapUsersPortalStaffEntities = (usersData: IUsers[]): IUsers[] => {
   return usersData.map((user) => ({
     id: String(user.staffId),
     staffId: String(user.staffId),
     staffName: String(user.staffName),
+    staffLastName: String(user.staffLastName),
     biologicalSex: String(user.biologicalSex),
     identificationTypeNaturalPerson: String(
       user.identificationTypeNaturalPerson
@@ -20,6 +21,5 @@ const mapUsersPortalStaffEntities = (usersData: IUsers[]): IUsers[] => {
     staffByBusinessUnitAndRole: Object(user.staffByBusinessUnitAndRole),
   }));
 };
-
 
 export { mapUsersPortalStaffEntities };

@@ -2,18 +2,20 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
+
 import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
+import { saveDataLabels } from "@config/positions/assisted/saveDataLabels";
+import { enviroment } from "@config/environment";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAssignmentFormEntry";
 import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
-import { saveDataLabels } from "@config/positions/assisted/saveDataLabels";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
-const UseAddStaffRoles = (props: IUseAddStaffRoles ) => {
+const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
 
   const { rolesData } = props;
   const { appData } = useContext(AuthAndData);
@@ -55,7 +57,7 @@ const UseAddStaffRoles = (props: IUseAddStaffRoles ) => {
   });
 
   const navigate = useNavigate();
-  const smallScreen = useMediaQuery("(max-width: 990px)");
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
 
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
 
@@ -179,7 +181,7 @@ const UseAddStaffRoles = (props: IUseAddStaffRoles ) => {
   const handleSubmitClickApplication = () => {
     handleToggleModal();
     setShowModalApplicationStatus(!showRequestProcessModal);
-    navigate("/privileges/positions");
+    navigate("/positions");
   };
 
   return {
@@ -213,4 +215,4 @@ const UseAddStaffRoles = (props: IUseAddStaffRoles ) => {
   };
 };
 
-export { UseAddStaffRoles };
+export { useAddStaffRoles };

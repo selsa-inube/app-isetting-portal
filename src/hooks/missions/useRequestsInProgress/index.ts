@@ -2,13 +2,13 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { useState, useEffect } from "react";
 
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
+import { ERequestInProgress } from "@enum/requestInProgress";
+import { enviroment } from "@config/environment";
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/missions/requestTab/IRequestsInProgress";
-import { enviroment } from "@config/environment";
-import { ERequestInProgress } from "@enum/requestInProgress";
 
 const useRequestsInProgress = (props: IUseRequestsInProgress) => {
-  const { bussinesUnits } = props;
+  const { businessManager } = props;
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
   >([]);
@@ -22,8 +22,13 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        const data = await getRequestsInProgress(bussinesUnits, ERequestInProgress.MISSIONS);
-        setRequestsInProgress(data);
+        if(businessManager.length > 0){
+          const data = await getRequestsInProgress(
+            ERequestInProgress.MISSIONS,
+            businessManager
+          );
+          setRequestsInProgress(data);
+        }
       } catch (error) {
         console.info(error);
         setHasError(true);
@@ -33,7 +38,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     };
 
     fetchRequestsInProgressData();
-  }, []);
+  }, [businessManager]);
 
   useEffect(() => {
     if (entryCanceled) {
@@ -50,7 +55,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   };
 
   const smallScreen = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
-  const widthFirstColumn = smallScreen ? 70 : 10;
+  const widthFirstColumn = smallScreen ? 70 : 15;
 
   const columnWidths = smallScreen
     ? [widthFirstColumn, 25, 20]

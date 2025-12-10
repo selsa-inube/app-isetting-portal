@@ -1,0 +1,49 @@
+import { IAssistedStep } from "@inubekit/inubekit";
+
+const addUserSteps: IAssistedStep[] = [
+  {
+    id: 1,
+    number: 1,
+    name: "Información general",
+    description: "Atributos básicos del funcionario",
+  },
+  {
+    id: 2,
+    number: 2,
+    name: "Misión para el funcionario",
+    description: "Agrega o selecciona una misión para el funcionario.",
+  },
+  {
+    id: 3,
+    number: 3,
+    name: "Datos de contacto",
+    description: "Completa los datos de contacto del funcionario.",
+  },
+  {
+    id: 4,
+    number: 4,
+    name: "Unidades de negocio",
+    description:
+      "Selecciona las unidades de negocio que tomará el funcionario.",
+  },
+  {
+    id: 5,
+    number: 5,
+    name: "Cargo por unidad de negocio",
+    description: "Selecciona para cada U.N. el cargo para el funcionario.",
+  },
+  {
+    id: 6,
+    number: 6,
+    name: "Rol por unidad de negocio",
+    description: "Selecciona para cada U.N los roles para el funcionario.",
+  },
+  {
+    id: 7,
+    number: 7,
+    name: "Verificación",
+    description: "Confirma la información diligenciada en pasos anteriores.",
+  },
+];
+
+export { addUserSteps };

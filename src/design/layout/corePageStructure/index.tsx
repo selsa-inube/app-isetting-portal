@@ -1,23 +1,13 @@
-import { useContext, useRef, useState } from "react";
+import { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { MdOutlineChevronRight } from "react-icons/md";
+import { Nav, Header, Icon, Grid, Stack } from "@inubekit/inubekit";
+import { MdOutlineChevronRight, MdOutlineWarningAmber } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { mainNavigation } from "@config/nav";
 import { userMenu } from "@config/menuMainConfiguration";
-import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
-import { decrypt } from "@utils/decrypt";
-import { ICardData } from "@ptypes/home/ICardData";
 import { actionsConfig } from "@config/mainActionLogout";
-import { nav } from "@config/mainNav";
-import {
-  Nav,
-  Header,
-  Icon,
-  Grid,
-  useMediaQuery,
-  Stack,
-} from "@inubekit/inubekit";
+import { useCorePageStructure } from "@hooks/design/useCorePageStructure";
+import { renderLogo } from "../renderLogo/logoUtils";
 import {
   StyledAppPage,
   StyledCollapseIcon,
@@ -25,34 +15,34 @@ import {
   StyledHeaderContainer,
   StyledMain,
 } from "./styles";
-import { renderLogo } from "../renderLogo/logoUtils";
+import { EComponentAppearance } from "@enum/appearances";
+import { useErrorManagement } from "@hooks/errorManagement";
+import { DecisionModal } from "@design/modals/decisionModal";
+import { errorModalConfig } from "@config/errorModal";
+import { messageErrorStatusConsultation } from "@utils/messageErrorStatus";
 
 const CorePageStructure = () => {
-  const {
-    appData,
-    businessUnitsToTheStaff,
-    businessUnitSigla,
-  } = useContext(AuthAndData);
+  const { appData, businessUnitsToTheStaff, businessUnitSigla } =
+    useContext(AuthAndData);
   const { logout } = useAuth0();
-  const [collapse, setCollapse] = useState(false);
-  const collapseMenuRef = useRef<HTMLDivElement>(null);
-  const isTablet = useMediaQuery("(max-width: 849px)");
-  const isTabletMain = useMediaQuery("(max-width: 1000px)");
+  const { errorModal, errorData, closeErrorModal } = useErrorManagement();
 
-  const portalId = localStorage.getItem("portalCode");
-  const staffPortalId = portalId ? decrypt(portalId) : "";
-
-  const { optionsCards } = useOptionsByBusinessunits(
-    staffPortalId,
-    businessUnitSigla
-  );
+  const {
+    collapse,
+    collapseMenuRef,
+    isTablet,
+    isTabletMain,
+    optionsHeader,
+    optionsNav,
+    setCollapse,
+  } = useCorePageStructure({ businessUnitSigla, logout });
 
   return (
     <StyledAppPage>
       <Grid templateRows="auto 1fr" justifyContent="unset">
         <StyledHeaderContainer>
           <Header
-            navigation={mainNavigation(optionsCards as ICardData[])}
+            navigation={optionsHeader}
             user={{
               username: appData.user.userName,
               breakpoint: "848px",
@@ -85,7 +75,7 @@ const CorePageStructure = () => {
           >
             {!isTablet && (
               <Stack height="100%">
-                <Nav navigation={nav.items} actions={actionsConfig(logout)} />
+                <Nav navigation={optionsNav} actions={actionsConfig(logout)} />
               </Stack>
             )}
 
@@ -95,6 +85,20 @@ const CorePageStructure = () => {
           </Grid>
         </StyledContainer>
       </Grid>
+      {errorModal && errorData && (
+        <DecisionModal
+          onCloseModal={closeErrorModal}
+          title={errorModalConfig.title}
+          withIcon
+          icon={<MdOutlineWarningAmber />}
+          appearance={EComponentAppearance.WARNING}
+          showCancelButton={false}
+          actionText={errorModalConfig.actionText}
+          description={messageErrorStatusConsultation(errorData.code)}
+          portalId={"portal"}
+          onClick={closeErrorModal}
+        />
+      )}
     </StyledAppPage>
   );
 };

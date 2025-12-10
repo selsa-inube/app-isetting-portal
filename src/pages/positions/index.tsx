@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
+import { usePositionsTabs } from "@hooks/positions/usePositionsTabs";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { menuPositionLinks } from "@config/positions/menuInvitation";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { catalogName } from "@config/positions/catalogName/inde";
+import { catalogName } from "@config/positions/catalogName";
 import { PositionsUI } from "./interface";
 
 const Positions =() => {
@@ -14,7 +14,6 @@ const Positions =() => {
       isSelected,
       handleTabChange,
       smallScreen,
-      smallScreenTab,
       showModal,
       showInfoModal,
       showModalUnits,
@@ -24,22 +23,21 @@ const Positions =() => {
       unit,
       positionTab,
       showPositionsTab,
-      showReqInProgTab,
+      showRequestTab,
       handleClickUnits,
       handleCloseModalUnits,
       onToggleInfoModal,
       onCloseMenu,
       onToggleModal,
       handleChange,
-    } = UsePositionsTabs();
+    } = usePositionsTabs();
 
     return (
       <PositionsUI
-        isSelected={isSelected ?? positionsTabsConfig.cargos.id}
+        isSelected={isSelected ?? positionsTabsConfig(smallScreen).cargos.id}
         handleTabChange={handleTabChange}
         catalogName={catalogName}
         smallScreen={smallScreen}
-        smallScreenTab={smallScreenTab}
         showModal={showModal}
         showInfoModal={showInfoModal}
         options={menuPositionLinks}
@@ -57,7 +55,7 @@ const Positions =() => {
         selectedUnit={unit}
         positionTab={positionTab}
         showPositionsTab={showPositionsTab}
-        showReqInProgTab={showReqInProgTab}
+        showRequestTab={showRequestTab}
       />
     );
   }

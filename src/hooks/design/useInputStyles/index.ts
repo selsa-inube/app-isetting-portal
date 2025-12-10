@@ -1,6 +1,6 @@
 import { inube } from "@inubekit/inubekit";
 
-const UseBorderColor = (
+const useBorderColor = (
   disabled: boolean,
   $readonly: boolean | undefined,
   $status: string | undefined,
@@ -19,4 +19,4 @@ const UseBorderColor = (
   return inube.palette.neutral.N40;
 };
 
-export { UseBorderColor };
+export { useBorderColor };

@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "@inubekit/inubekit";
-import { FormikProps } from "formik";
-
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
-import { formatDate } from "@utils/date/formatDate";
-import { IFormAddMission } from "@ptypes/missions/assisted/IFormAddMission";
-import { IGeneralInformationEntry } from "@ptypes/missions/assisted/IGeneralInformationEntry";
-import { editMissionTabsConfig } from "@config/missions/missionTab/edit/tabs";
-import { IUseEditMission } from "@ptypes/hooks/missions/IUseEditMission";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { FormikProps } from "formik";
+import { useMediaQuery } from "@inubekit/inubekit";
+
+import { formatDate } from "@utils/date/formatDate";
 import { compareObjects } from "@utils/compareObjects";
 import { jsonLabels } from "@config/jsonlLabels";
+import { editMissionTabsConfig } from "@config/missions/missionTab/edit/tabs";
+import { IFormAddMission } from "@ptypes/missions/assisted/IFormAddMission";
+import { IUseEditMission } from "@ptypes/hooks/missions/IUseEditMission";
+import { IGeneralInformationEntry } from "@ptypes/missions/assisted/IGeneralInformationEntry";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
-const UseEditMission = (props: IUseEditMission) => {
+const useEditMission = (props: IUseEditMission) => {
   const { data, appData } = props;
   const normalizeGeneralData = {
     missionId: data.missionId,
@@ -189,4 +189,4 @@ const UseEditMission = (props: IUseEditMission) => {
   };
 };
 
-export { UseEditMission };
+export { useEditMission };

@@ -5,6 +5,9 @@ import { Stack, useMediaQuery, Text, Icon } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { enviroment } from "@config/environment";
 import { DecisionModal } from "@design/modals/decisionModal";
+import { portalId } from "@config/portalId";
+import { goBackModal } from "@config/goBackModal";
+import { EComponentAppearance } from "@enum/appearances";
 
 interface IPageTitle {
   title: string;
@@ -28,7 +31,7 @@ const PageTitle = ({ title, icon, description, navigatePage }: IPageTitle) => {
       <Stack gap={basic.spacing.s8} direction="column">
         <Stack gap={basic.spacing.s8} alignItems="center">
           <Icon
-            appearance="dark"
+            appearance={EComponentAppearance.DARK}
             cursorHover={true}
             icon={icon || <MdArrowBack />}
             spacing="narrow"
@@ -39,17 +42,20 @@ const PageTitle = ({ title, icon, description, navigatePage }: IPageTitle) => {
             {title}
           </Text>
         </Stack>
-        <Text appearance="gray" size={smallScreen ? "small" : "medium"}>
+        <Text
+          appearance={EComponentAppearance.GRAY}
+          size={smallScreen ? "small" : "medium"}
+        >
           {description}
         </Text>
       </Stack>
 
       {showCancelModal && (
         <DecisionModal
-          portalId="portal"
-          title="Regresar"
-          description="Perderás el progreso, ¿Realmente deseas regresar?"
-          actionText="Regresar"
+          portalId={portalId}
+          title={goBackModal.title}
+          description={goBackModal.description}
+          actionText={goBackModal.actionText}
           onCloseModal={() => setShowCancelModal(false)}
           onClick={confirmCancel}
         />

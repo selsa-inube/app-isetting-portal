@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
-import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
-import { getRequestsInProgress } from "@services/positions/getRequestsInProgress";
 import { useMediaQuery } from "@inubekit/inubekit";
+import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
+import { ERequestPosition } from "@enum/requestPosition";
+import { enviroment } from "@config/environment";
+import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
+import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 
-const UseRequestsInProgress = (bussinesUnits: string) => {
+const useRequestsInProgress = (props: IUseRequestsInProgress) => {
+  const { businessUnits, businessManager } = props;
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
   >([]);
@@ -12,14 +16,20 @@ const UseRequestsInProgress = (bussinesUnits: string) => {
     useState<string>("");
   const [loading, setLoading] = useState(true);
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
-  const smallScreen = useMediaQuery("(max-width: 690px)");
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_743);
   const widthFirstColumn = smallScreen ? 70 : 12;
   useEffect(() => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        const data = await getRequestsInProgress(bussinesUnits);
-        setRequestsInProgress(data);
+        if (businessManager.length > 0) {
+          const data = await getRequestsInProgress(
+            ERequestPosition.POSITIONS,
+            businessManager,
+            businessUnits
+          );
+          setRequestsInProgress(data);
+        }
       } catch (error) {
         console.info(error);
         setHasError(true);
@@ -29,7 +39,7 @@ const UseRequestsInProgress = (bussinesUnits: string) => {
     };
 
     fetchRequestsInProgressData();
-  }, []);
+  }, [businessManager, businessUnits]);
 
   useEffect(() => {
     if (entryDeleted) {
@@ -45,7 +55,7 @@ const UseRequestsInProgress = (bussinesUnits: string) => {
     setSearchRequestsInProgress(e.target.value);
   };
 
-  const columnWidths=[widthFirstColumn, 55, 23]
+  const columnWidths = [widthFirstColumn, 55, 23];
 
   return {
     requestsInProgress,
@@ -59,4 +69,4 @@ const UseRequestsInProgress = (bussinesUnits: string) => {
   };
 };
 
-export { UseRequestsInProgress };
+export { useRequestsInProgress };

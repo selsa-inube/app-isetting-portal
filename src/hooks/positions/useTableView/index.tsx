@@ -1,7 +1,9 @@
+import { IUseTableData } from "@ptypes/hooks/IUseTableData";
 import { useMemo } from "react";
-import { ITabllePositions } from "@ptypes/positions/details/ITabllePositions";
 
-const UseTableData = (dataTable: ITabllePositions["dataTable"]) => {
+const useTableData = (props: IUseTableData) => {
+
+  const {dataTable } = props;
   return useMemo(() => {
     if (!dataTable || dataTable.length === 0) return { headers: [], rows: [] };
 
@@ -17,4 +19,4 @@ const UseTableData = (dataTable: ITabllePositions["dataTable"]) => {
   }, [dataTable]);
 };
 
-export { UseTableData };
+export { useTableData };

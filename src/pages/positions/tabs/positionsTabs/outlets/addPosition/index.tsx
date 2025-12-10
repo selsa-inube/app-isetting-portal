@@ -1,19 +1,18 @@
 import { useContext } from "react";
-import { UseFetchRolesStaff } from "@hooks/positions/useFetchRolesStaff";
-import { UseAddStaffRoles } from "@hooks/positions/useAddStaffRoles";
+import { AuthAndData } from "@context/authAndDataProvider";
+import { useFetchRolesStaff } from "@hooks/positions/useFetchRolesStaff";
+import { useAddStaffRoles } from "@hooks/positions/useAddStaffRoles";
+import { useFetchAplicationStaff } from "@hooks/positions/useAplication";
+import { useSavePositions } from "@hooks/positions/useSavePositions";
 import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
-import { UseSavePositions } from "@hooks/positions/useSavePositions";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
-import { AuthAndData } from "@context/authAndDataProvider";
-import { UseFetchAplicaionStaff } from "@hooks/positions/useAplication";
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
-import { postionsButtonText } from "@config/positions/assisted/buttonText";
 import { AddPositionUI } from "./interface";
 
 const AddPosition = () => {
-  const { rolesStaff } = UseFetchRolesStaff();
+  const { rolesStaff } = useFetchRolesStaff();
   const {
     currentStep,
     formValues,
@@ -41,7 +40,7 @@ const AddPosition = () => {
     navigate,
     setShowMultipurposeModal,
     showMultipurposeModal,
-  } = UseAddStaffRoles({rolesData:rolesStaff});
+  } = useAddStaffRoles({rolesData:rolesStaff});
 
   const { appData } = useContext(AuthAndData);
   const {
@@ -51,20 +50,16 @@ const AddPosition = () => {
     handleCloseRequestStatus,
     handleClosePendingReqModal,
     showPendingReqModal,
-  } = UseSavePositions(
-    appData.businessUnit.publicCode,
-    appData.user.userAccount,
-    showRequestProcessModal,
-    saveData as ISaveDataRequest,
-    setShowRequestProcessModal,
+  } = useSavePositions({
+   businessUnits: appData.businessUnit.publicCode,
+    userAccount: appData.user.userAccount,
+    sendData: showRequestProcessModal,
+    data: saveData as ISaveDataRequest,
+    setSendData: setShowRequestProcessModal,
     setShowModal
-  );
+  });
 
-  const { options } = UseFetchAplicaionStaff();
-  const buttonText =
-    currentStep === addStaffRolesSteps.length
-      ? postionsButtonText.buttonHandleSubmit
-      : postionsButtonText.buttonHandleNext;
+  const { options } = useFetchAplicationStaff();
 
   const shouldShowRequestProcessModal =
     showRequestProcessModal && savePositions;
@@ -109,7 +104,6 @@ const AddPosition = () => {
       options={options as IOptionInitialiceEntryApp[]}
       showPendingReqModal={showPendingReqModal}
       onClosePendingReqModal={handleClosePendingReqModal}
-      buttonText={buttonText}
       shouldShowRequestProcessModal={
         shouldShowRequestProcessModal as ISaveDataResponse
       }

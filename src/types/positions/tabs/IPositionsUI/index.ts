@@ -6,7 +6,6 @@ import { ISelectBusUnitEntry } from "@ptypes/positions/tabs/ISelectBusUnitEntry"
 interface IPositionsUI {
   isSelected: string;
   handleTabChange: (id: string) => void;
-  smallScreenTab: boolean;
   smallScreen: boolean;
   showModal: boolean;
   showInfoModal: boolean;
@@ -16,7 +15,7 @@ interface IPositionsUI {
   comparisonData: boolean;
   positionTab:  ITab[];
   showPositionsTab: boolean;
-  showReqInProgTab: boolean;
+  showRequestTab: boolean;
   onToggleInfoModal: () => void;
   onCloseMenu: () => void;
   onToggleModal: () => void;

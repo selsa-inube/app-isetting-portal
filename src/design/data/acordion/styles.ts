@@ -4,10 +4,10 @@ import { basic } from "@design/tokens";
 
 const StyledContainer = styled.div`
   display: flex;
-  padding: ${basic.spacing.s150} ${basic.spacing.s100};
+  padding: ${basic.spacing.s200} ${basic.spacing.s250};
   flex-direction: column;
-  gap: ${basic.spacing.s100};
-  border-radius: ${basic.spacing.s100};
+  gap: ${basic.spacing.s200};
+  border-radius: ${basic.spacing.s8};
   box-sizing: border-box;
   align-items: stretch;
   width: 100%;

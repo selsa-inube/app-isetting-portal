@@ -1,10 +1,10 @@
-import { UseLabelsInfo } from "@hooks/positions/useLabelsInfo";
+import { useLabelsInfo } from "@hooks/positions/useLabelsInfo";
 import { ILabelsInfo } from "@ptypes/positions/details/ILabelsInfo";
 import { LabelsFieldRenderer } from "./labelsFieldRenderer";
 
 const LabelsInfo = (props: ILabelsInfo) => {
   const { labels, infoData, hasLabels } = props;
-  const fieldsToRender = UseLabelsInfo(labels, infoData, hasLabels);
+  const fieldsToRender = useLabelsInfo({labels, infoData, hasLabels});
 
   return (
     <>

@@ -1,32 +1,36 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFlagAppearance, useFlag, useMediaQuery } from "@inubekit/inubekit";
+import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
+import { getRequestInProgressById } from "@services/positions/getRequestInProgressById";
+import { ERequestStepsStatus } from "@enum/requestStepsStatus";
+import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
+import { enviroment } from "@config/environment";
 import { requestStepsInitial } from "@config/positions/addPositions/requestSteps";
 import { flowAutomaticMessages } from "@config/positionsTabs/generics/flowAutomaticMessages";
-import { getRequestInProgressById } from "@services/positions/getRequestInProgressById";
 import { statusCloseModal } from "@config/status/statusCloseModal";
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
 import { interventionHumanMessage } from "@config/positionsTabs/generics/interventionHumanMessage";
-import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
-import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import { ISaveDataResponse } from "@ptypes/requestsInProgress/saveData/ISaveDataResponse";
-const UseSavePositions = (
-  bussinesUnits: string,
-  userAccount: string,
-  sendData: boolean,
-  data: ISaveDataRequest,
-  setSendData: React.Dispatch<React.SetStateAction<boolean>>,
-  setShowPendingReq?: React.Dispatch<React.SetStateAction<boolean>>,
-  setShowModal?: React.Dispatch<React.SetStateAction<boolean>>
-) => {
+import { IUseSavePositions } from "@ptypes/hooks/IUseSavePositions";
+
+const useSavePositions = (props: IUseSavePositions) => {
+  const {
+    businessUnits,
+    userAccount,
+    sendData,
+    data,
+    setSendData,
+    setShowPendingReq,
+    setShowModal,
+  } = props;
   const [savePositions, setSavePositions] = useState<ISaveDataResponse>();
   const [showPendingReqModal, setShowPendingReqModal] = useState(false);
   const [statusRequest, setStatusRequest] = useState<string>();
   const [loading, setLoading] = useState(false);
-  const smallScreen = useMediaQuery("(max-width: 990px)");
+  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
   const { addFlag } = useFlag();
   const [requestSteps, setRequestSteps] =
     useState<IRequestSteps[]>(requestStepsInitial);
@@ -34,7 +38,7 @@ const UseSavePositions = (
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
-  const navigatePage = "/privileges/positions";
+  const navigatePage = "/positions";
 
   const fetchSavePositionsData = async () => {
     setLoading(true);
@@ -62,7 +66,7 @@ const UseSavePositions = (
       if (!isStatusIntAutomatic(savePositions?.requestStatus)) return;
 
       const data = await getRequestInProgressById(
-        bussinesUnits,
+        businessUnits,
         savePositions?.settingRequestId || ""
       );
       setStatusRequest(data.requestStatus);
@@ -81,7 +85,7 @@ const UseSavePositions = (
   const updateRequestSteps = (
     steps: IRequestSteps[],
     stepName: string,
-    newStatus: "pending" | "completed" | "error"
+    newStatus: ERequestStepsStatus
   ): IRequestSteps[] => {
     return steps.map((step) => {
       if (step.name === stepName) {
@@ -111,22 +115,22 @@ const UseSavePositions = (
   const changeRequestSteps = () => {
     if (isStatusIntAutomatic(statusRequest)) {
       setRequestSteps((prev) =>
-        updateRequestSteps(prev, requestStepsInitial[1].name, "completed")
+        updateRequestSteps(prev, requestStepsInitial[1].name, ERequestStepsStatus.COMPLETED)
       );
     }
 
     if (isStatusRequestFinished()) {
       setRequestSteps((prev) =>
-        updateRequestSteps(prev, requestStepsInitial[1].name, "completed")
+        updateRequestSteps(prev, requestStepsInitial[1].name, ERequestStepsStatus.COMPLETED)
       );
       setRequestSteps((prev) =>
-        updateRequestSteps(prev, requestStepsInitial[2].name, "completed")
+        updateRequestSteps(prev, requestStepsInitial[2].name,ERequestStepsStatus.COMPLETED)
       );
     }
 
     if (isStatusCloseModal()) {
       setRequestSteps((prev) =>
-        updateRequestSteps(prev, requestStepsInitial[1].name, "error")
+        updateRequestSteps(prev, requestStepsInitial[1].name, ERequestStepsStatus.ERROR)
       );
     }
   };
@@ -169,7 +173,7 @@ const UseSavePositions = (
   useEffect(() => {
     if (isStatusIntAutomatic(savePositions?.requestStatus)) {
       setRequestSteps((prev) =>
-        updateRequestSteps(prev, requestStepsInitial[0].name, "completed")
+        updateRequestSteps(prev, requestStepsInitial[0].name, ERequestStepsStatus.COMPLETED)
       );
 
       const timer = setInterval(() => {
@@ -239,4 +243,4 @@ const UseSavePositions = (
   };
 };
 
-export { UseSavePositions };
+export { useSavePositions };

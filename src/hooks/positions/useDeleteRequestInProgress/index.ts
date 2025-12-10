@@ -1,10 +1,10 @@
-import { IEntry } from "@ptypes/table/IEntry";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { EModalState } from "@enum/modalState";
+import { eventBus } from "@events/eventBus";
+import { IUseDeleteRequestInProgress } from "@ptypes/hooks/IUseDeleteRequestInProgress";
 
-const UseDeleteRequestInProgress = (
-  data: IEntry,
-  setEntryDeleted: (value: string | number) => void
-) => {
+const useDeleteRequestInProgress = (props: IUseDeleteRequestInProgress) => {
+  const { data, setEntryDeleted } = props;
   const [showModal, setShowModal] = useState(false);
   const [justificationDelete, setJustificationDelete] = useState("");
 
@@ -17,6 +17,10 @@ const UseDeleteRequestInProgress = (
     setEntryDeleted(data.id as string);
   };
 
+  useEffect(() => {
+    eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
+  }, [showModal]);
+
   return {
     showModal,
     handleToggleModal,
@@ -25,4 +29,4 @@ const UseDeleteRequestInProgress = (
     justificationDelete,
   };
 };
-export { UseDeleteRequestInProgress };
+export { useDeleteRequestInProgress };

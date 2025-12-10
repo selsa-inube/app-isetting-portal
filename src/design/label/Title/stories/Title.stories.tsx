@@ -1,7 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
 import { MdDoorBack } from "react-icons/md";
 import { Meta, StoryFn } from "@storybook/react";
-import { ITitle, Title } from "../index";
+import { Title } from "../index";
+import { ITitle } from "@ptypes/ITitle";
 
 const meta: Meta<typeof Title> = {
   title: "data/Title",

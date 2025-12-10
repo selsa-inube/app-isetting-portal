@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { FormikProps } from "formik";
 
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { formatDate } from "@utils/date/formatDate";
 import { editPositionTabsConfig } from "@config/positions/editPositions/tabs";
-
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IUseEditPositions } from "@ptypes/hooks/IUseEditPositions";
 
-const UseEditPositions = (props: IUseEditPositions) => {
+const useEditPositions = (props: IUseEditPositions) => {
   const { data, appData, rolesData } = props;
 
   const normalizeGeneralData = {
@@ -243,6 +242,10 @@ const UseEditPositions = (props: IUseEditPositions) => {
     formValues.rolesStaff.values = selectedToggle;
   }
 
+  const showGeneralInformation = isSelected === editPositionTabsConfig.generalInformation.id;
+
+  const showRolesForm  = isSelected === editPositionTabsConfig.selectionRoles.id 
+
   return {
     formValues,
     generalInformationRef,
@@ -262,7 +265,9 @@ const UseEditPositions = (props: IUseEditPositions) => {
     setSelectedToggle,
     handleRoleToggle,
     roles,
+    showGeneralInformation,
+    showRolesForm,
   };
 };
 
-export { UseEditPositions };
+export { useEditPositions };

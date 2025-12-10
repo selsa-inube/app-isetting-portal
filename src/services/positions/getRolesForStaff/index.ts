@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { IRoleForStaff } from "@ptypes/rolesForStaff";
 import { getWithRetries } from "@services/core/getWithRetries";
-import { axiosInstance } from "@api/isaas";
+import { isaasQueryAxiosInstance } from "@api/isaas";
 import { mapRolesStaffApiToEntities } from "./mappers/mapRolesStaffApiToEntities";
 
 const getRolesForStaff = async (): Promise<IRoleForStaff[]> => {
@@ -11,7 +11,7 @@ const getRolesForStaff = async (): Promise<IRoleForStaff[]> => {
     },
   };
   const data: IRoleForStaff[] = await getWithRetries<IRoleForStaff[]>(
-    axiosInstance,
+    isaasQueryAxiosInstance,
     `/roles-for-staff`,
     config
   );

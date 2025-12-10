@@ -1,4 +1,4 @@
-import { UseMissionsTabs } from "@hooks/missions/useMissionsTabs";
+import { useMissionsTabs } from "@hooks/missions/useMissionsTabs";
 import { menuMissionsLinks } from "@config/missions/missionTab/menuMissionsLinks";
 import { missionsTabsConfig } from "@config/missions/tabs";
 import { MissionsUI } from "./interface";
@@ -9,7 +9,6 @@ const Missions =() => {
       isSelected,
       handleTabChange,
       smallScreen,
-      smallScreenTab,
       showModal,
       showInfoModal,
       showMissionTab,
@@ -18,15 +17,14 @@ const Missions =() => {
       onToggleInfoModal,
       onCloseMenu,
       onToggleModal,
-    } = UseMissionsTabs();
+    } = useMissionsTabs();
 
     return (
       <MissionsUI
-        isSelected={isSelected ?? missionsTabsConfig.roles.id}
+        isSelected={isSelected ?? missionsTabsConfig(smallScreen).roles.id}
         handleTabChange={handleTabChange}
         catalogName="Privilegios"
         smallScreen={smallScreen}
-        smallScreenTab={smallScreenTab}
         showModal={showModal}
         showInfoModal={showInfoModal}
         options={menuMissionsLinks}

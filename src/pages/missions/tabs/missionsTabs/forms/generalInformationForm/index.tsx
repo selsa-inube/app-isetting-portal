@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import { FormikProps } from "formik";
+import { useGeneralInfo } from "@hooks/missions/useGeneralInfo";
 import { IGeneralInformationEntry } from "@ptypes/missions/assisted/IGeneralInformationEntry";
 import { IGeneralInformationForm } from "@ptypes/missions/assisted/IGeneralInformationForm";
-import { UseGeneralInfo } from "@hooks/missions/useGeneralInfo";
 import { GeneralInformationFormUI } from "./interface";
 
 const GeneralInformationForm = forwardRef<
@@ -27,7 +27,7 @@ const GeneralInformationForm = forwardRef<
       labelButtonNext,
       labelButtonPrevious,
       isDisabledButton,
-    } = UseGeneralInfo({
+    } = useGeneralInfo({
       initialValues,
       ref,
       onSubmit,
@@ -45,6 +45,7 @@ const GeneralInformationForm = forwardRef<
         isDisabledButton={isDisabledButton}
         onPreviousStep={onPrevious}
         onButtonClick={onButtonClick}
+        editDataOption={editDataOption}
       />
     );
   }

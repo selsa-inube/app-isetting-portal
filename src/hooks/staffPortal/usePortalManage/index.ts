@@ -1,16 +1,13 @@
-import { AuthAndData } from "@context/authAndDataProvider";
-import { IUser } from "@ptypes/authAndPortalDataProvider/IUser";
 import { useContext, useEffect } from "react";
-import { UsePortalData } from "../usePortalData";
-import { UseBusinessManagers } from "../useBusinessManagers";
-import { UseAuthRedirect } from "@hooks/authentication/useAuthRedirect";
+import { AuthAndData } from "@context/authAndDataProvider";
+import { useAuthRedirect } from "@hooks/authentication/useAuthRedirect";
+import { IUseAppData } from "@ptypes/hooks/IUseAppData";
+import { usePortalData } from "../usePortalData";
+import { useBusinessManagers } from "../useBusinessManagers";
+import { validateAndTrimString } from "@utils/validateAndTrimString";
 
-const UseAppData = (
-  portalCode: string | null,
-  code: string | undefined,
-  user: IUser,
-  businessUnit: string | undefined
-) => {
+const useAppData = (props: IUseAppData) => {
+  const { portalCode, code, user, businessUnit } = props;
   const { setBusinessUnitSigla, setAppData } = useContext(AuthAndData);
   const updateAppData = () => {
     if (code) {
@@ -26,8 +23,8 @@ const UseAppData = (
       setAppData((prev) => ({
         ...prev,
         user: {
-          userAccount: user.userAccount,
-          userName: user.userName,
+          userAccount: validateAndTrimString(user.email),
+          userName: user.name,
         },
       }));
     }
@@ -42,32 +39,34 @@ const UseAppData = (
   let isAuthenticated = true;
   let errorCode = 0;
 
-  if (!code) {
-    const {
-      portalData,
-      hasError: portalError,
-      errorCode: errorCodePortal,
-    } = UsePortalData(portalCode);
-    const {
-      businessManagersData,
-      hasError: businessError,
-      errorCode: errorCodeBusiness,
-    } = UseBusinessManagers(portalData);
+  const {
+    portalData,
+    hasError: portalError,
+    errorCode: errorCodePortal,
+  } = usePortalData({ portalCode });
+  const {
+    businessManagersData,
+    hasError: businessError,
+    errorCode: errorCodeBusiness,
+  } = useBusinessManagers({ portalPublicCode: portalData });
 
-    const {
-      hasError: authError,
-      isLoading: authLoading,
-      isAuthenticated: authAuthenticated,
-      errorCode: errorCodeAuth,
-    } = UseAuthRedirect(portalData, businessManagersData, portalCode);
+  const {
+    hasError: authError,
+    isLoading: authLoading,
+    isAuthenticated: authAuthenticated,
+    errorCode: errorCodeAuth,
+  } = useAuthRedirect({
+    portalPublicCode: portalData,
+    businessManagersData,
+    portalCode,
+  });
 
-    hasError = portalError || businessError || authError;
-    errorCode = errorCodePortal || errorCodeBusiness || errorCodeAuth;
-    isLoading = authLoading;
-    isAuthenticated = authAuthenticated;
-  }
+  hasError = portalError || businessError || authError;
+  errorCode = errorCodePortal || errorCodeBusiness || errorCodeAuth;
+  isLoading = authLoading;
+  isAuthenticated = authAuthenticated;
 
   return { hasError, isLoading, isAuthenticated, errorCode };
 };
 
-export { UseAppData };
+export { useAppData };

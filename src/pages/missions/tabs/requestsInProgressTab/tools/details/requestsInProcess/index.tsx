@@ -1,11 +1,11 @@
-import { Divider, inube, Stack, Text } from "@inubekit/inubekit";
+import { Divider, Stack, Text } from "@inubekit/inubekit";
 
 import { TraceabilityCard } from "@design/feedback/traceabilityCard";
 import { ModalWrapper } from "@design/modals/modalWrapper";
 import { DetailBox } from "@design/feedback/detailBox";
 import { IEntry } from "@ptypes/design/table/IEntry";
 import { basic } from "@design/tokens";
-import { BorderStack } from "@design/modals/borderStack";
+import { BorderStack } from "@design/layout/borderStack";
 import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
 import { IRequestsInProcess } from "@ptypes/requestsInProgress/IRequestsInProcess";
 import { EComponentAppearance } from "@enum/appearances";
@@ -38,7 +38,7 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
       <BorderStack
         direction="column"
         borderRadius={basic.spacing.s100}
-        border={inube.palette.neutral.N40}
+        border={EComponentAppearance.DARK}
         boxSizing="border-box"
         width="100%"
         height={isMobile ? "400px" : "430px"}

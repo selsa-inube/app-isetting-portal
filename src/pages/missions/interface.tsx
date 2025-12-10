@@ -19,7 +19,6 @@ const MissionsUI = (props: IMissionsUI) => {
     onCloseMenu,
     onToggleModal,
     handleTabChange,
-    smallScreenTab,
     smallScreen,
     showMissionTab,
     showRequestTab,
@@ -53,7 +52,7 @@ const MissionsUI = (props: IMissionsUI) => {
                 <PageTitle
                   title={missionTitle.title}
                   description={missionTitle.description}
-                  navigatePage="/privileges"
+                  navigatePage="/"
                 />
                 {smallScreen && (
                   <StyledMenuContainer>
@@ -75,7 +74,6 @@ const MissionsUI = (props: IMissionsUI) => {
               tabs={missionsTabs}
               selectedTab={isSelected}
               onChange={handleTabChange}
-              scroll={smallScreenTab ? true : false}
             />
             {showMissionTab && <MissionsTab />}
             {showRequestTab  && <RequestsInProgressTab />}

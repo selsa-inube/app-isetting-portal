@@ -29,6 +29,7 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
     isMobile,
     showCancelButton = true,
     cancelButton,
+    withDivider,
   } = props;
 
   const node = document.getElementById(portalId);
@@ -81,7 +82,7 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
             {subtitle}
           </Text>
         )}
-
+        {withDivider && <Divider dashed />}
         <Text appearance={ComponentAppearance.GRAY} type="body" size="medium">
           {description}
         </Text>

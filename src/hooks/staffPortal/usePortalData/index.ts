@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
-import { IStaffPortalByBusinessManager } from "@ptypes/staffPortal.types";
 import { staffPortalByBusinessManager } from "@services/staffPortal/getStaffPortalByBusinessManager";
 import { encrypt } from "@utils/encrypt";
 import { enviroment } from "@config/environment";
+import { IStaffPortalByBusinessManager } from "@ptypes/staffPortal.types";
+import { IUsePortalData } from "@ptypes/hooks/IUsePortalData";
 
-const UsePortalData = (portalCode: string | null) => {
+const usePortalData = (props: IUsePortalData ) => {
+
+  const { portalCode } = props;
   const [portalData, setPortalData] = useState<IStaffPortalByBusinessManager>(
     {} as IStaffPortalByBusinessManager
   );
@@ -52,4 +55,4 @@ const UsePortalData = (portalCode: string | null) => {
   return { portalData, hasError, errorCode };
 };
 
-export { UsePortalData };
+export { usePortalData };

@@ -1,6 +1,6 @@
 import { FormikProps } from "formik";
 import { ISaveDataResponse } from "@ptypes/requestsInProgress/saveData/ISaveDataResponse";
-import { IFormEntry } from "@ptypes/assignmentForm/IFormEntry";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import { IAssistedStep } from "@inubekit/inubekit";
 import { IFormAddPosition } from "../IFormAddPosition";
@@ -44,7 +44,6 @@ interface IAddPositionUI {
   onClosePendingReqModal: () => void;
   options: IOptionInitialiceEntry[];
   requestSteps: IRequestSteps[];
-  buttonText: string;
   shouldShowRequestProcessModal: ISaveDataResponse;
   showPendingReqModals: boolean;
 }

@@ -1,0 +1,38 @@
+import axios, { AxiosInstance } from "axios";
+import { enviroment } from "@config/environment";
+import { IBackendErrorResponse } from "@ptypes/errors/IErrorMessage/IBackErrorResponse";
+import { EErrorState } from "@enum/errorState";
+import { eventBus } from "@events/eventBus";
+import { IErrorMessage } from "@ptypes/errors/IErrorMessage";
+import localforage from "localforage";
+
+const isettingIsaasAxiosInstance: AxiosInstance = axios.create({
+  baseURL: enviroment.ISETTING_ISAAS_SERVICE,
+  timeout: enviroment.FETCH_TIMEOUT_SERVICES,
+  headers: {
+    "Content-type": "application/json; charset=UTF-8",
+  },
+});
+
+isettingIsaasAxiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const backendResponse: IBackendErrorResponse = error.response?.data ?? null;
+    const messageError: IErrorMessage = {
+      code: error.request.status ?? "UNKNOWN_ERROR",
+      description:
+        backendResponse?.message ?? error.message ?? "Unexpected error",
+      status: error.response?.status ?? null,
+      response: backendResponse,
+      method: error?.config?.method ?? "",
+    };
+
+    await localforage.setItem<IErrorMessage>("lastError", messageError);
+
+    eventBus.emit(EErrorState.ERROR_MODAL_STATE, true);
+
+    return Promise.reject(new Error(JSON.stringify(messageError)));
+  }
+);
+
+export { isettingIsaasAxiosInstance };

@@ -43,16 +43,15 @@ const Table = (props: ITable) => {
   const screenTablet = useMediaQuery("(max-width: 1200px)");
 
   const media = useMediaQueries(useGetQueriesArray(breakpoints) || []);
-
   const filteredEntries = useMemo(
     () => filterEntries(entries, filter, titles),
-    [entries, filter, titles],
+    [entries, filter, titles]
   );
 
   const { totalPages, firstEntry, lastEntry } = getPagination(
     currentPage,
     pageLength,
-    filteredEntries.length,
+    filteredEntries.length
   );
 
   const numberActions = actions ? actions.length : 1;
@@ -65,6 +64,7 @@ const Table = (props: ITable) => {
       $pageLength={pageLength}
       $entriesLength={entries.length}
       $isTablet={screenTablet}
+      $withGeneralizedTitle={withGeneralizedTitle}
     >
       <Stack direction="column">
         <TableUI
@@ -79,7 +79,7 @@ const Table = (props: ITable) => {
             titles,
             breakpoints,
             mediaQueries,
-            findCurrentMedia,
+            findCurrentMedia
           )}
           mobileTitle={mobileTitle}
           pageLength={pageLength}

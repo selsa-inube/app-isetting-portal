@@ -10,6 +10,7 @@ interface IGeneralInformationFormUI {
   labelButtonPrevious: string;
   onPreviousStep: () => void;
   onButtonClick: () => void;
+  editDataOption?: boolean;
 }
 
 export type { IGeneralInformationFormUI };

@@ -4,6 +4,7 @@ interface IGeneralInformationForm {
   initialValues: IGeneralInformationEntry;
   loading?: boolean;
   handleNextStep: () => void;
+  onReset: () => void;
   onFormValid?: React.Dispatch<React.SetStateAction<boolean>>;
   onSubmit?: (values: IGeneralInformationEntry) => void;
   editDataOption?: boolean;

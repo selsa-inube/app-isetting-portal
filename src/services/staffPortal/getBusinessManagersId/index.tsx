@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 import { getWithRetries } from "@services/core/getWithRetries";
-import { axiosInstance } from "@api/iportalStaff";
+import { iportalStaffAxiosInstance } from "@api/iportalStaff";
 import { mapBusinessManagersIdEntities } from "./mappers/mapBusinessManagersIdEntities";
 import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPortalStaff";
 
@@ -20,7 +20,7 @@ const getBusinessManagersId = async (
 
   const data: IBusinessUnitsPortalStaff[] = await getWithRetries<
     IBusinessUnitsPortalStaff[]
-  >(axiosInstance, `/positions-staff?${queryParams.toString()}`, config);
+  >(iportalStaffAxiosInstance, `/positions-staff?${queryParams.toString()}`, config);
 
   return Array.isArray(data) ? mapBusinessManagersIdEntities(data) : [];
 };

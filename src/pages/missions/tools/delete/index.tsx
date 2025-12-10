@@ -1,17 +1,18 @@
 import { useContext } from "react";
-import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { UseSavePositions } from "@hooks/positions/useSavePositions";
+import { useSaveMission } from "@hooks/missions/useSaveMission";
+import { useDeleteMission } from "@hooks/missions/useDeleteMission";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
-import { deleteRequestInProgress } from "@config/positionsTabs/generics/deleteRequestInProgress";
-import { requestProcessMessage } from "@config/request/requestProcessMessage";
-import { ComponentAppearance } from "@ptypes/aparences.types";
-import { UseDeletePositions } from "@hooks/positions/useDeletePositions";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
+import { EUseCase } from "@enum/useCase";
+import { EComponentAppearance } from "@enum/appearances";
+import { portalId } from "@config/portalId";
+import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
-import { DecisionModalLabel } from "@config/positions/decisionModalText";
+import { deleteMission } from "@config/missions/missionTab/generic/deleteMission";
 import { IDelete } from "@ptypes/positions/actions/IDelete";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
 const Delete = (props: IDelete) => {
   const { data } = props;
@@ -25,61 +26,66 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
-  } = UseDeletePositions({data, appData});
+  } = useDeleteMission({data, appData});
 
   const {
-    savePositions,
+    saveMission,
     requestSteps,
     showPendingReqModal,
-    loading,
+    loadingSendData,
     handleClosePendingReqModal,
     handleCloseRequestStatus,
-  } = UseSavePositions(
-    appData.businessUnit.publicCode,
-    appData.user.userAccount,
-    showRequestProcessModal,
-    saveData as ISaveDataRequest,
-    setShowRequestProcessModal,
-    setShowModal
+  } = useSaveMission({
+    useCase: EUseCase.DELETE,
+    businessUnits: appData.businessUnit.publicCode,
+    userAccount: appData.user.userAccount,
+     sendData: showRequestProcessModal,
+    data: saveData as ISaveDataRequest,
+    setSendData: setShowRequestProcessModal,
+    setShowModal}
   );
+
+  const showRequestProcess =  showRequestProcessModal && saveMission
+
+  const showRequestStatusModal = showPendingReqModal && saveMission?.requestNumber
 
   return (
     <>
       <DeleteRecord
-        messageDelete={deleteRequestInProgress}
+        messageDelete={deleteMission}
         showModal={showModal}
         onToggleModal={handleToggleModal}
         onClick={handleClick}
-        loading={loading}
+        loading={loadingSendData}
       />
-      {showRequestProcessModal && savePositions && (
+      { showRequestProcess && (
         <RequestProcess
-          portalId={DecisionModalLabel.portalId}
-          saveData={savePositions}
+          portalId={portalId}
+          saveData={saveMission}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
           requestProcessSteps={requestSteps}
-          appearance={ComponentAppearance.SUCCESS}
+          appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={handleCloseRequestStatus}
           onCloseProcess={() => {}}
         />
       )}
 
-      {showPendingReqModal && savePositions?.requestNumber && (
+      { showRequestStatusModal && (
         <RequestStatusModal
-          portalId="portal"
-          title={requestStatusMessage(savePositions.responsible).title}
+          portalId={portalId}
+          title={requestStatusMessage(saveMission.staffName).title}
           description={
-            requestStatusMessage(savePositions.responsible).description
+            requestStatusMessage(saveMission.staffName).description
           }
-          requestNumber={savePositions.requestNumber}
+          requestNumber={saveMission.requestNumber}
           onClick={handleClosePendingReqModal}
           onCloseModal={handleClosePendingReqModal}
           loading={false}
           actionText={
-            requestStatusMessage(savePositions.responsible).actionText
+            requestStatusMessage(saveMission.staffName).actionText
           }
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
         />
       )}
     </>

@@ -6,15 +6,8 @@ const crumbsUsers = [
     isActive: false,
   },
   {
-    path: "/privileges",
-    label: "Privilegios",
-    id: "/privileges",
-    isActive: true,
-  },
-
-  {
-    path: "/privileges/users",
-    label: "Usuarios",
+    path: "/users",
+    label: "Funcionarios",
     id: "/users",
     isActive: true,
   },

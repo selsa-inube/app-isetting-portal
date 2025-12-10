@@ -1,43 +1,35 @@
 import { useContext } from "react";
-import { UsePositionsTabs } from "@hooks/positions/usePositionsTabs";
 
-import { positionsTabsConfig } from "@config/positionsTabs/tabs";
-import { UseManageUsersSearchAndPageControl } from "@hooks/users/useManageSearchAndPageControl";
-import { IEntry } from "@ptypes/design/table/IEntry";
 import { AuthAndData } from "@context/authAndDataProvider";
+import { useUserPage } from "@hooks/users/userPage";
 
 import { UsersUI } from "./interface";
 
 const Users = () => {
   const { appData } = useContext(AuthAndData);
+
   const {
+    smallScreen,
     isSelected,
     handleTabChange,
-    smallScreen,
-    smallScreenTab,
-    showMenu,
-    handleToggleMenuInvitation,
-    handleCloseMenuInvitation,
-    columnWidths,
-  } = UsePositionsTabs();
-
-  const { searchPosition, handleSearchPositions, loading, requestsInProgress } =
-    UseManageUsersSearchAndPageControl(appData.businessManager.publicCode);
+    title,
+    showStaffTab,
+    showRequestsInProgressTab,
+    userTabs,
+    loading,
+  } = useUserPage({
+    businessManager: appData.businessManager.publicCode,
+  });
   return (
     <UsersUI
-      handleSearchPositions={handleSearchPositions}
-      searchPosition={searchPosition}
-      isSelected={isSelected ?? positionsTabsConfig.cargos.id}
-      handleTabChange={handleTabChange}
-      catalogName="Privilegios"
+      title={title}
       smallScreen={smallScreen}
-      smallScreenTab={smallScreenTab}
-      showMenu={showMenu}
+      isSelected={isSelected}
+      handleTabChange={handleTabChange}
+      showStaffTab={showStaffTab}
+      showRequestsInProgressTab={showRequestsInProgressTab}
+      userTabs={userTabs}
       loading={loading}
-      handleToggleMenuInvitation={handleToggleMenuInvitation}
-      handleCloseMenuInvitation={handleCloseMenuInvitation}
-      entries={requestsInProgress as IEntry[]}
-      columnWidths={columnWidths}
     />
   );
 };

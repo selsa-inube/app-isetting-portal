@@ -5,7 +5,9 @@ import { IIUseInitializerForm } from "@ptypes/initializerForm/IIUseInitializerFo
 
 const LoadingTimeout = 1500;
 
-const UseInitializerForm = ({
+const useInitializerForm = (props: IIUseInitializerForm) => {
+
+  const {
   dataOptionsForms: InitialDataOptionsForms,
   id,
   keyData,
@@ -16,7 +18,7 @@ const UseInitializerForm = ({
   onHasChanges,
   readOnly = false,
   dataOptionsValueSelect,
-}: IIUseInitializerForm) => {
+} = props
   const [FormDataOptions, SetFormDataOptions] = useState(
     InitialDataOptionsForms
   );
@@ -89,4 +91,4 @@ const UseInitializerForm = ({
   };
 };
 
-export { UseInitializerForm };
+export { useInitializerForm };

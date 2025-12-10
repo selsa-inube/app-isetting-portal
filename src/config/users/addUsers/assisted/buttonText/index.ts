@@ -1,9 +1,10 @@
-const UserbuttonText: Record<string, string> = {
+const UserbuttonText = {
   buttonHandlePrevious: "Atrás",
   buttonHandleNext: "Siguiente",
   buttonHandleSubmit: "Enviar",
-  buttonAddUsers: "Agregar Usuario",
+  buttonAddUsers: "Agregar funcionario",
   textDetails: "Detalles",
+  labelTab: "Consulta de funcionarios vigentes",
 };
 
 export { UserbuttonText };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const UseApplicationsInProcess = () => {
+const useApplicationsInProcess = () => {
   const [pageLength, setPageLength] = useState(1);
 
   useEffect(() => {
@@ -23,4 +23,4 @@ const UseApplicationsInProcess = () => {
   return pageLength;
 };
 
-export { UseApplicationsInProcess };
+export { useApplicationsInProcess };

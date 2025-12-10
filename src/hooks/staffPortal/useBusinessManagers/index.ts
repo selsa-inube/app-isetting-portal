@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 
-import {
-  IBusinessManagers,
-  IStaffPortalByBusinessManager,
-} from "@ptypes/staffPortal.types";
 import { getBusinessManagers } from "@services/staffPortal/getBusinessManager";
 
-const UseBusinessManagers = (
-  portalPublicCode: IStaffPortalByBusinessManager
-) => {
+import { IUseBusinessManagers } from "@ptypes/hooks/IUseBusinessManagers";
+import { IBusinessManagers } from "@ptypes/staffPortal/IBusinessManagers";
+
+const useBusinessManagers = (props: IUseBusinessManagers) => {
+  const { portalPublicCode } = props;
   const [businessManagersData, setBusinessManagersData] =
     useState<IBusinessManagers>({} as IBusinessManagers);
   const [hasError, setHasError] = useState(false);
@@ -21,11 +19,14 @@ const UseBusinessManagers = (
         setErrorCode(1000);
         return;
       }
+
       try {
-        const newData = await getBusinessManagers(
-          portalPublicCode.businessManagerId
-        );
-        setBusinessManagersData(newData);
+        if (portalPublicCode.businessManagerCode?.length > 0) {
+          const newData = await getBusinessManagers(
+            portalPublicCode.businessManagerCode
+          );
+          setBusinessManagersData(newData[0]);
+        }
       } catch (error) {
         console.info(error);
         setHasError(true);
@@ -39,4 +40,4 @@ const UseBusinessManagers = (
   return { businessManagersData, hasError, errorCode };
 };
 
-export { UseBusinessManagers };
+export { useBusinessManagers };

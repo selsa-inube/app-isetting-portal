@@ -1,11 +1,11 @@
-import { MdInfoOutline, MdOutlineClear } from "react-icons/md";
+import { MdInfoOutline } from "react-icons/md";
 import { Icon, Stack, Text } from "@inubekit/inubekit";
 
 import { StyledMenuItemLink } from "./styles";
 import { basic } from "@design/tokens";
 import { IMenuItem } from "@ptypes/design/IMenuItem";
-import { BorderStack } from "@design/modals/borderStack";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { BorderStack } from "@design/layout/borderStack";
+import { EComponentAppearance } from "@enum/appearances";
 
 const MenuItem = (props: IMenuItem) => {
   const {
@@ -13,14 +13,13 @@ const MenuItem = (props: IMenuItem) => {
     icon,
     disabled = false,
     path = "",
+    appearanceIcon = EComponentAppearance.PRIMARY,
     onToggleInfoModal,
-    close = true,
-    onClose,
+    onClick = () => {},
   } = props;
 
   const disabledPath = disabled ? "" : path;
-
-  return (
+   return (
     <BorderStack
       justifyContent="space-between"
       alignItems="center"
@@ -30,18 +29,18 @@ const MenuItem = (props: IMenuItem) => {
       gap={basic.spacing.s050}
       boxSizing="border-box"
     >
-      <StyledMenuItemLink to={disabledPath}>
+      <StyledMenuItemLink to={disabledPath} onClick={onClick}>
         <Stack gap={basic.spacing.s050} alignItems="center">
           <Icon
             icon={icon}
             size="18px"
-            appearance={ComponentAppearance.PRIMARY}
+            appearance={appearanceIcon }
             disabled={disabled}
           />
 
           <Text
             size="small"
-            appearance={ComponentAppearance.DARK}
+            appearance={EComponentAppearance.DARK}
             disabled={disabled}
           >
             {description}
@@ -51,20 +50,13 @@ const MenuItem = (props: IMenuItem) => {
             <Icon
               icon={<MdInfoOutline />}
               size="16px"
-              appearance={ComponentAppearance.PRIMARY}
+              appearance={EComponentAppearance.PRIMARY}
               onClick={onToggleInfoModal}
             />
           )}
         </Stack>
       </StyledMenuItemLink>
-      {close && (
-        <Icon
-          icon={<MdOutlineClear />}
-          size="16px"
-          appearance={ComponentAppearance.DARK}
-          onClick={onClose}
-        />
-      )}
+     
     </BorderStack>
   );
 };

@@ -8,6 +8,8 @@ interface IAppData {
   businessManager: IBusinessManager;
   businessUnit: IBusinessUnit;
   user: IUser;
+  useCasesByStaff: string[];
+  language: string;
 }
 
 export type { IAppData };

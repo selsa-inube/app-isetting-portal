@@ -4,7 +4,7 @@ enum ERequestMission {
   MODIFY = "modificación cargo",
   DELETE = "eliminación cargo",
   TEST = "test",
-  MISSIONS = "Missions",
+  MISSIONS = "Mission",
 }
 
 export { ERequestMission };

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { PaginationConfig } from "@config/positions/tabs";
 
-const UseMissionsUsePageRecord = () => {
+const useMissionsUsePageRecord = () => {
   const [pageRecord, setPageRecord] = useState(PaginationConfig.PageRecord);
 
   useEffect(() => {
@@ -24,4 +24,4 @@ const UseMissionsUsePageRecord = () => {
   return pageRecord;
 };
 
-export { UseMissionsUsePageRecord };
+export { useMissionsUsePageRecord };

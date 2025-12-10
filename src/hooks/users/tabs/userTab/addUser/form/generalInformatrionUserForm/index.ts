@@ -70,7 +70,7 @@ const useGeneralInformationUserForm = (
       ?.items.map((item) => ({
         label: item.i18n[appData.language as keyof II18n],
         id: item.code,
-        value: item.value,
+        value: item.i18n[appData.language as keyof II18n],
       })) || [];
   const labelButtonNext = generalInformationConfig.buttonLabel;
   const buttonDisabledState = isDisabledButton;

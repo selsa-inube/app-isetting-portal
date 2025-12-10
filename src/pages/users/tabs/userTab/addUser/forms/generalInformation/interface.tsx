@@ -108,7 +108,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
               fullwidth
               size="compact"
               name={generalInformationConfig.birthDate.name}
-            ></Date>
+            />
           </Grid>
         </BorderStack>
       </form>

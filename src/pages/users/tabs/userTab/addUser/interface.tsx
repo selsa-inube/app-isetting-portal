@@ -17,6 +17,7 @@ import { ContactDataForm } from "./forms/contactData";
 import { BusinessEntityForm } from "./forms/businessEntity";
 import { PositionByBusinessUnit } from "./forms/positionByBusinessUnit";
 import { RolesByBusinessUnit } from "./forms/rolesByBusinessUnit";
+import { AddUserVerificationForm } from "./forms/verificationForm";
 
 const AddUserUI = (props: IAddUserUI) => {
   const {
@@ -125,6 +126,36 @@ const AddUserUI = (props: IAddUserUI) => {
                 setSelectedToggle={selectRolesByBusinessUnit}
                 onButtonClick={onNextStep}
                 onReset={onPreviousStep}
+              />
+            )}
+            {currentStep === addUserUIConfig.verificationStep && (
+              <AddUserVerificationForm
+                updatedData={{
+                  generalInformationStep: {
+                    values: initialValues.generalInformationStep.values,
+                  },
+                  missionForStaffStep: {
+                    values: initialValues.missionForStaffStep.values,
+                  },
+                  contactDataStep: {
+                    values: initialValues.contactDataStep.values,
+                  },
+                  businessEntityStep: {
+                    values: entriesAdditionalBusinessEntity.filter(
+                      (e) => e.isActive
+                    ),
+                  },
+                  positionByBusinessUnitStep: {
+                    values: positionsByBusinessUnit,
+                  },
+                  roleByBusinessUnitStep: {
+                    values: rolesByBusinessUnit.filter((e) => e.isActive),
+                  },
+                }}
+                isMobile={smallScreen}
+                onPreviousStep={onPreviousStep}
+                onToggleModal={onToggleModal}
+                handleStepChange={onNextStep}
               />
             )}
           </Stack>

@@ -1,6 +1,7 @@
 import { IFormEntry } from "../IFormEntry";
 import { IMenuOptions } from "@ptypes/design/IMenuOptions";
 import { IOption } from "@inubekit/inubekit";
+import { IToggleTableColumn } from "../tableGroup/IToggleTableColumn";
 
 interface IAssignmentForm {
   filteredRows: IFormEntry[];
@@ -24,6 +25,7 @@ interface IAssignmentForm {
   handleFilterChange?: (name: string, values: string) => void;
   filterTitle?: string;
   filterPlaceholder?: string;
+  columnsTitles?: IToggleTableColumn[];
 }
 
 export type { IAssignmentForm };

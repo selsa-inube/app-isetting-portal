@@ -35,8 +35,8 @@ const useOptionsBusinessEntity = (props: IUseOptionsBusinessEntity) => {
     }
   }, [formValues.businessUnits, optionsUnits]);
   return {
-    setEntriesAdditionalBusinessEntity,
     entriesAdditionalBusinessEntity,
+    setEntriesAdditionalBusinessEntity,
   };
 };
 export { useOptionsBusinessEntity };

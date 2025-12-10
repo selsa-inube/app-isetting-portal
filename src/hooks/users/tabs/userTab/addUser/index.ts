@@ -88,24 +88,27 @@ const useAddUser = () => {
         }));
       }
       if (missionForStaffRef.current) {
-        const duplicatedMission = missionsData.find(
-          (mission) =>
-            mission.missionName ===
-            missionForStaffRef.current?.values.missionName
+        const { values } = missionForStaffRef.current;
+        const isDuplicatedMission = missionsData.some(
+          (mission) => mission.missionName === values.missionName
         );
 
-        if (duplicatedMission) {
+        if (isDuplicatedMission) {
           setShowMissionNameModal(true);
           return;
         }
+        const selectedMission = missionsData.find(
+          (mission) => mission.missionName === values.missionValue
+        );
         setFormValues((prev) => ({
           ...prev,
           missionForStaffStep: {
             ...prev.missionForStaffStep,
-            values: missionForStaffRef.current?.values || {
-              missionValue: "",
-              missionName: "",
-              missionDescription: "",
+            values: {
+              ...values,
+              missionName: selectedMission?.missionName ?? values.missionName,
+              missionDescription:
+                selectedMission?.descriptionUse ?? values.missionDescription,
             },
           },
         }));

@@ -16,7 +16,6 @@ const AddUserVerificationForm = (props: IAddUserVerificationForm) => {
     onToggleModal,
     handleStepChange,
   } = props;
-  console.log(updatedData);
   const filteredSteps = addUserSteps.filter(
     (step) => step.name.toLowerCase() !== labels.verification
   );

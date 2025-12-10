@@ -1,16 +1,14 @@
-import { Grid, Stack, Tag, useMediaQuery } from "@inubekit/inubekit";
+import { Grid, Stack, useMediaQuery } from "@inubekit/inubekit";
 
 import { BoxAttribute } from "@design/feedback/boxAttribute";
 import { basic } from "@design/tokens";
-import { labels } from "@config/verificationTitles";
 import { enviroment } from "@config/environment";
-import { EComponentAppearance } from "@enum/appearances";
-import { columnsAttribute } from "@utils/columnsAttribute";
-import { rowsAttribute } from "@utils/rowsAttribute";
-import type { IEntry } from "@ptypes/design/table/IEntry";
 
 import { addUserUIConfig } from "@config/users/addUsers/addUserUI";
 import { IAddUserVerificationBoxes } from "@ptypes/users/tabs/userTab/addUser/forms/verificationForm/IAddUserVerificationBoxes";
+
+import { formatDate } from "@hooks/users/tabs/userTab/addUser/form/generalInformatrionUserForm/dataAdjust";
+import { AddUserVerificationBoxesLabels } from "@config/users/addUsers/form/verificationForm/verificationBoxes";
 
 const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
   const { updatedData, stepKey } = props;
@@ -28,58 +26,62 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
   const activeBusinessEntities =
     updatedData.businessEntityStep?.values.filter((value) => value.isActive) ||
     [];
-  const hasActiveBusinessEntities = activeBusinessEntities.length > 0;
 
   const positionsByBusinessUnit =
     updatedData.positionByBusinessUnitStep?.values || [];
 
-  const activeRolesByBusinessUnit =
-    updatedData.roleByBusinessUnitStep?.values.filter(
-      (value) => value.isActive
-    ) || [];
-  const hasActiveRoles = activeRolesByBusinessUnit.length > 0;
+  const activeRoles =
+    updatedData.roleByBusinessUnitStep?.values.filter((item) => item.isActive) ??
+    [];
 
   return (
     <>
       {generalInfoStep && (
-        <>
-          <Grid
-            templateColumns={isMobile ? "1fr" : "1fr 1fr"}
-            autoRows="1fr"
-            width="100%"
-            gap={basic.spacing.s100}
-          >
-            <BoxAttribute
-              label={labels.userFullName}
-              value={updatedData.generalInformationStep.values.firstName}
-            />
-            <BoxAttribute
-              label={labels.documentType}
-              value={updatedData.generalInformationStep.values.lastName}
-            />
-          </Grid>
+        <Grid
+          templateColumns={isMobile ? "1fr" : "1fr 1fr"}
+          autoRows="1fr"
+          width="100%"
+          gap={basic.spacing.s100}
+        >
+          <BoxAttribute
+            label={AddUserVerificationBoxesLabels.firstName}
+            value={updatedData.generalInformationStep.values.firstName}
+          />
+          <BoxAttribute
+            label={AddUserVerificationBoxesLabels.lastName}
+            value={updatedData.generalInformationStep.values.lastName}
+          />
 
-          <Stack width="100%" direction="column" gap={basic.spacing.s100}>
-            <BoxAttribute
-              label={labels.documentNumber}
-              value={updatedData.generalInformationStep.values.idType}
-            />
-            <BoxAttribute
-              label={labels.status}
-              value={updatedData.generalInformationStep.values.idNumber}
-            />
-          </Stack>
-        </>
+          <BoxAttribute
+            label={AddUserVerificationBoxesLabels.idType}
+            value={updatedData.generalInformationStep.values.idType}
+          />
+          <BoxAttribute
+            label={AddUserVerificationBoxesLabels.idNumber}
+            value={updatedData.generalInformationStep.values.idNumber}
+          />
+
+          <BoxAttribute
+            label={AddUserVerificationBoxesLabels.gender}
+            value={updatedData.generalInformationStep.values.gender}
+          />
+          <BoxAttribute
+            label={AddUserVerificationBoxesLabels.birthDate}
+            value={formatDate(
+              String(updatedData.generalInformationStep.values.birthDate),
+            )}
+          />
+        </Grid>
       )}
 
       {missionForStaffStep && (
         <Stack direction="column" width="100%" gap={basic.spacing.s100}>
           <BoxAttribute
-            label={labels.missionTitle}
+            label={AddUserVerificationBoxesLabels.missionName}
             value={updatedData.missionForStaffStep.values.missionValue}
           />
           <BoxAttribute
-            label={labels.missionDescription}
+            label={AddUserVerificationBoxesLabels.missionDescription}
             value={updatedData.missionForStaffStep.values.missionDescription}
           />
         </Stack>
@@ -93,55 +95,34 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
           gap={basic.spacing.s100}
         >
           <BoxAttribute
-            label={labels.email}
+            label={AddUserVerificationBoxesLabels.email}
             value={updatedData.contactDataStep.values.email}
           />
           <BoxAttribute
-            label={labels.phone}
+            label={AddUserVerificationBoxesLabels.phone}
             value={updatedData.contactDataStep.values.phone}
           />
         </Grid>
       )}
 
-      {businessEntityStep && (
-        <Stack direction="column" width="100%" gap={basic.spacing.s200}>
-          {hasActiveBusinessEntities ? (
-            <Grid
-              templateColumns={columnsAttribute(
-                activeBusinessEntities as IEntry[],
-                isMobile
-              )}
-              templateRows={rowsAttribute(
-                activeBusinessEntities as IEntry[],
-                isMobile
-              )}
-              gap={basic.spacing.s100}
-              width="100%"
-            >
-              {activeBusinessEntities.map((value) => (
-                <Stack
-                  key={value.id}
-                  width="100%"
-                  direction="column"
-                  gap={basic.spacing.s100}
-                >
-                  <BoxAttribute
-                    label={labels.businessEntity}
-                    value={value.value}
-                  />
-                </Stack>
-              ))}
-            </Grid>
-          ) : (
-            <Stack padding={basic.spacing.s100}>
-              <Tag
-                appearance={EComponentAppearance.DANGER}
-                label={labels.withoutBusinessEntity}
+      {businessEntityStep &&
+        activeBusinessEntities.length > 0 && (
+          <Grid
+            templateColumns={isMobile ? "1fr" : "1fr 1fr"}
+            autoRows="1fr"
+            width="100%"
+            gap={basic.spacing.s100}
+          >
+            {activeBusinessEntities.map((value) => (
+              <BoxAttribute
+                key={value.id}
+                label={AddUserVerificationBoxesLabels.businessEntity}
+                value={value.value}
               />
-            </Stack>
-          )}
-        </Stack>
-      )}
+            ))}
+          </Grid>
+        )}
+
       {positionByBusinessUnitStep && (
         <Grid
           templateColumns={isMobile ? "1fr" : "1fr 1fr"}
@@ -150,47 +131,36 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
           gap={basic.spacing.s100}
         >
           {Object.keys(positionsByBusinessUnit).map((key) => (
-            <Stack key={key} direction="column" gap={basic.spacing.s100}>
-              <BoxAttribute label={labels.businessUnit} value={key} />
-
-              <BoxAttribute
-                label={labels.position}
-                value={
-                  positionsByBusinessUnit[key].options.find(
-                    (opt) => opt.value === positionsByBusinessUnit[key].value
-                  )?.label ?? positionsByBusinessUnit[key].value
-                }
-              />
-            </Stack>
+            <BoxAttribute
+              key={key}
+              label={key}
+              value={
+                positionsByBusinessUnit[key].options.find(
+                  (opt) => opt.id === positionsByBusinessUnit[key].value,
+                )?.label ?? positionsByBusinessUnit[key].value
+              }
+            />
           ))}
         </Grid>
       )}
+
       {roleByBusinessUnitStep &&
-        (hasActiveRoles ? (
+        activeRoles.length > 0 && (
           <Grid
             templateColumns={isMobile ? "1fr" : "1fr 1fr"}
             autoRows="1fr"
             width="100%"
             gap={basic.spacing.s100}
           >
-            {activeRolesByBusinessUnit.map((role) => (
-              <Stack key={role.id} direction="column" gap={basic.spacing.s100}>
-                <BoxAttribute
-                  label={labels.businessUnit}
-                  value={role.businessUnitName}
-                />
-                <BoxAttribute label={labels.role} value={role.roleName} />
-              </Stack>
+            {activeRoles.map((role) => (
+              <BoxAttribute
+                key={role.id}
+                label={role.businessUnitCode}
+                value={role.rolesStaff}
+              />
             ))}
           </Grid>
-        ) : (
-          <Stack padding={basic.spacing.s100}>
-            <Tag
-              appearance={EComponentAppearance.DANGER}
-              label={labels.withoutRoles}
-            />
-          </Stack>
-        ))}
+        )}
     </>
   );
 };

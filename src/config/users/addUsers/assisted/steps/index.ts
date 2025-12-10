@@ -38,6 +38,12 @@ const addUserSteps: IAssistedStep[] = [
     name: "Rol por unidad de negocio",
     description: "Selecciona para cada U.N los roles para el funcionario.",
   },
+  {
+    id: 7,
+    number: 7,
+    name: "Verificación",
+    description: "Confirma la información diligenciada en pasos anteriores.",
+  },
 ];
 
 export { addUserSteps };

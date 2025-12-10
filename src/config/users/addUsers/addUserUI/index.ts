@@ -10,6 +10,7 @@ const addUserUIConfig = {
   businessEntityStep: 4,
   positionByBusinessUnit: 5,
   roleByBusinessUnit: 6,
+  verificationStep: 7,
 
   title: "Agregar funcionario",
   description: "Agrega un nuevo funcionario a tu organización",

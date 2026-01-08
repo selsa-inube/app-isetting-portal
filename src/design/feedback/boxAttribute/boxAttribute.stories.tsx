@@ -7,7 +7,7 @@ const meta: Meta<typeof BoxAttribute> = {
   title: "feedback/BoxAttribute",
   component: BoxAttribute,
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>

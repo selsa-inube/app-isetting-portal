@@ -15,8 +15,7 @@ import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAs
 import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
-const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
-
+const useAddStaffRoles = (props: IUseAddStaffRoles) => {
   const { rolesData } = props;
   const { appData } = useContext(AuthAndData);
   const [currentStep, setCurrentStep] = useState(1);
@@ -40,7 +39,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
   const [showModalApplicationStatus, setShowModalApplicationStatus] =
     useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [selectedToggle, setSelectedToggle] = useState<IFormEntry[]>();
+  const [selectedToggle, setSelectedToggle] = useState<IFormEntry[]>([]);
   const [formValues, setFormValues] = useState<IFormAddPosition>({
     generalInformation: {
       isValid: false,
@@ -165,7 +164,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
       applicationName: "istaff",
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
-      description:saveDataLabels.description,
+      description: saveDataLabels.description,
       entityName: "Position",
       requestDate: formatDate(new Date()),
       useCaseName: "AddPosition",

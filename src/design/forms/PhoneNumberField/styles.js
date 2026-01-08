@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { tokensWithReference } from "@design/tokens/tokensWithReference";
 import { phoneFieldTokens } from "./tokens";
 import { basic } from "@design/tokens";
+
 const fieldHeights = {
   compact: "40px",
   wide: "3rem",
@@ -31,20 +32,20 @@ const StyledFieldContainer = styled.div`
   display: flex;
   align-items: stretch;
   border: 1px solid
-    ${({ $invalid, theme }) =>
-      $invalid
+    ${({ invalid, theme }) =>
+      invalid
         ? (theme?.phoneField?.field?.border?.color?.invalid ??
           phoneFieldTokens.field.border.color.invalid)
         : (theme?.phoneField?.field?.border?.color?.regular ??
           phoneFieldTokens.field.border.color.regular)};
-  background: ${({ $disabled, theme }) =>
-    $disabled
+  background: ${({ disabled, theme }) =>
+    disabled
       ? (theme?.phoneField?.field?.background?.color?.disabled ??
         phoneFieldTokens.field.background.color.disabled)
       : (theme?.phoneField?.field?.background?.color?.regular ??
         phoneFieldTokens.field.background.color.regular)};
   border-radius: ${basic.spacing.s8};
-  height: ${({ $size }) => fieldHeights[$size]};
+  height: ${({ size }) => fieldHeights[size]};
   overflow: hidden;
   transition: border-color 0.15s ease;
   flex: 1 1 auto;
@@ -56,7 +57,11 @@ const StyledFieldContainer = styled.div`
       phoneFieldTokens.field.border.color.focus};
   }
 `;
+/**
+ * @typedef {{ $open?: boolean, $size?: "compact" | "wide" }} CountryButtonProps
+ */
 
+/** @type {import("styled-components").IStyledComponent<"web", CountryButtonProps & import("react").ComponentPropsWithRef<"button">>} */
 const StyledCountryButton = styled.button`
   display: flex;
   align-items: center;

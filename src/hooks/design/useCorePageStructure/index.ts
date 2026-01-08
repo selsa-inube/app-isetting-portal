@@ -3,14 +3,12 @@ import { useLocation } from "react-router-dom";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 import { useMainNavigation } from "@hooks/useMainNavigation";
-import { decrypt } from "@utils/decrypt";
 import { enviroment } from "@config/environment";
-import { portalLocalStorage } from "@config/portalLocalStorage";
 import { IUseCorePageStructure } from "@ptypes/hooks/IUseCorePageStructure";
 import { AuthAndData } from "@context/authAndDataProvider";
 
 const useCorePageStructure = (props: IUseCorePageStructure) => {
-  const { businessUnitSigla, logout } = props;
+  const { businessUnitSigla } = props;
   const { appData } = useContext(AuthAndData);
   const [collapse, setCollapse] = useState(false);
   const collapseMenuRef = useRef<HTMLDivElement>(null);
@@ -31,7 +29,6 @@ const useCorePageStructure = (props: IUseCorePageStructure) => {
 
   const { optionsHeader, optionsNav } = useMainNavigation({
     optionsCards: sanitizedOptionsCards,
-    logout,
     location,
   });
 

@@ -1,4 +1,4 @@
-import { Stack, Textarea, Input, Button } from "@inubekit/inubekit";
+import { Stack, Input, Button } from "@inubekit/inubekit";
 
 import { StyledContainer } from "./styles";
 import { basic } from "@design/tokens";
@@ -15,7 +15,6 @@ const ContactDataFormUI = (props: IContactDataFormUI) => {
     formik,
     loading,
     onNextStep,
-    componentSize,
     mobilePadding,
     labelButtonNext,
     buttonDisabledState,

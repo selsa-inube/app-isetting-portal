@@ -10,18 +10,18 @@ import {
   StyledLabelRow,
   StyledFieldContainer,
   StyledCountryButton,
+  StyledFlag,
+  StyledDial,
   StyledNumberInput,
   StyledDropdown,
   StyledSearchBox,
   StyledCountryList,
   StyledCountryItem,
-  StyledHelperText,
-  StyledErrorContainer,
-  StyledWarningIcon,
-  StyledFlag,
-  StyledDial,
   StyledCountryName,
   StyledCountryCode,
+  StyledErrorContainer,
+  StyledWarningIcon,
+  StyledHelperText,
 } from "./styles";
 import { phoneFieldTokens } from "./tokens";
 import { CountryOption } from "@ptypes/design/phoneInput/ICountryOption";

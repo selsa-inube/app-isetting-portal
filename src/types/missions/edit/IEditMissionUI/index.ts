@@ -7,7 +7,7 @@ import { IGeneralInformationEntry } from "@ptypes/missions/assisted/IGeneralInfo
 
 interface IEditMissionUI {
   editMissionTabsConfig: IEditTabsConfig;
-  generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry>>;
+  generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry> | null>;
   initialValues: IFormAddMission;
   isSelected: string;
   requestSteps: IRequestSteps[];

@@ -3,7 +3,6 @@ import { AxiosRequestConfig } from "axios";
 import { getWithRetries } from "@services/core/getWithRetries";
 import { IOptionsByBusinessUnits } from "@ptypes/staffPortal/IOptionsByBusinessUnits";
 import { mapOptionsByBusinessUnitsToEntities } from "./mappers";
-import { isaasQueryAxiosInstance } from "@api/isaas";
 import { iportalStaffAxiosInstance } from "@api/iportalStaff";
 
 const getStaffPortalByBusinessManager = async (

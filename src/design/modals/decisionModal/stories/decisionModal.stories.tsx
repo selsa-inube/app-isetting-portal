@@ -11,7 +11,7 @@ const meta: Meta<typeof DecisionModal> = {
   title: "modals/DecisionModal",
   component: DecisionModal,
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>

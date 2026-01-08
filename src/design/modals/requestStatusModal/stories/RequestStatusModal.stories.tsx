@@ -10,7 +10,7 @@ const meta: Meta<typeof RequestStatusModal> = {
   title: "modals/RequestStatusModal",
   component: RequestStatusModal,
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>

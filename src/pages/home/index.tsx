@@ -25,7 +25,7 @@ const Home = () => {
       isTablet={IsTablet}
       smallScreen={SmallScreen}
       username={Username}
-      loading={loading} Checkpicker
+      loading={loading}
       hasData={hasData}
       multipleBusinessUnits={multipleBusinessUnits}
       handlelogout={handlelogout}

@@ -1,6 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-
-import { AuthAndData } from "@context/authAndDataProvider";
+import { useEffect, useState } from "react";
 
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IUseOptionsBusinessEntity } from "@ptypes/hooks/IUseOptionsBusinessEntity";
@@ -8,7 +6,6 @@ import { optionsUnits } from "@mocks/users/businessUnits";
 
 const useOptionsBusinessEntity = (props: IUseOptionsBusinessEntity) => {
   const { formValues } = props;
-  const { appData } = useContext(AuthAndData);
 
   const [entriesAdditionalBusinessEntity, setEntriesAdditionalBusinessEntity] =
     useState<IFormEntry[]>([]);

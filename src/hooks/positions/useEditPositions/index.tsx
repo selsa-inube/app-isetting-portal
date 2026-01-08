@@ -55,7 +55,7 @@ const useEditPositions = (props: IUseEditPositions) => {
   const [errorFetchSaveData, setErrorFetchSaveData] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [selectedToggle, setSelectedToggle] = useState<
-    IFormEntry[] | undefined
+    IFormEntry[]
   >([]);
 
   const [initialRoles, setInitialRoles] = useState<
@@ -140,7 +140,7 @@ const useEditPositions = (props: IUseEditPositions) => {
       (generalInformationRef.current?.values.namePosition !==
         data.positionName ||
         generalInformationRef.current?.values.descriptionPosition !==
-          data.descriptionUse)
+        data.descriptionUse)
     ) {
       configurationRequestData.abbreviatedName =
         generalInformationRef.current?.values.namePosition ?? "";
@@ -244,7 +244,7 @@ const useEditPositions = (props: IUseEditPositions) => {
 
   const showGeneralInformation = isSelected === editPositionTabsConfig.generalInformation.id;
 
-  const showRolesForm  = isSelected === editPositionTabsConfig.selectionRoles.id 
+  const showRolesForm = isSelected === editPositionTabsConfig.selectionRoles.id
 
   return {
     formValues,

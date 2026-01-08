@@ -2,11 +2,10 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
-import { decrypt } from "@utils/decrypt";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
-import { useAuth0 } from "@auth0/auth0-react";
 import { enviroment } from "@config/environment";
 import { useCaseForStaff } from "@hooks/staffPortal/useCaseForStaff";
+import { useIAuth } from "@inube/iauth-react";
 
 const useHome = () => {
   const {
@@ -16,8 +15,8 @@ const useHome = () => {
     businessUnitSigla,
     setUseCases,
   } = useContext(AuthAndData);
-  const { logout } = useAuth0();
 
+  const { logout } = useIAuth();
   const { optionsCards, loading } = useOptionsByBusinessUnits({
     staffPortalId: appData.portal.publicCode,
     businessUnit: businessUnitSigla,

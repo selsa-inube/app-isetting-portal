@@ -91,9 +91,9 @@ const useAssignmentForm = (props: IUseAssignmentForm) => {
       return prevRows.map((entry) =>
         entry.id === id
           ? {
-              ...entry,
-              isActive: !entry.isActive,
-            }
+            ...entry,
+            isActive: !entry.isActive,
+          }
           : entry
       );
     });
@@ -173,7 +173,7 @@ const useAssignmentForm = (props: IUseAssignmentForm) => {
       appearanceIcon: EComponentAppearance.SUCCESS,
       description: `${actionButtonsLabels.filter} (${appliedFilters?.length})`,
       onClick: () => {
-        setShowModal(true);
+        setShowModal?.(true);
       },
       disabled: false,
     });

@@ -8,7 +8,7 @@ const meta: Meta<typeof ModalWrapper> = {
   title: "modals/ModalWrapper",
   component: ModalWrapper,
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>

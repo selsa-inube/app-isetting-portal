@@ -7,6 +7,7 @@ import { ActionButtons } from "@design/forms/assignmentForm/actionButtons";
 import { ToggleGroup } from "@design/forms/assignmentForm/toggleGroup";
 import { IBusinessUnitFormUI } from "@ptypes/assignments/assisted/IBusinessUnitFormUI";
 import { StyledFormContent } from "./styles";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 
 const BusinessUnitFormUI = (props: IBusinessUnitFormUI) => {
   const {
@@ -21,7 +22,6 @@ const BusinessUnitFormUI = (props: IBusinessUnitFormUI) => {
     searchBusinessUnit,
     showMenu,
     onButtonClick,
-    onClose,
     onPreviousStep,
     onSearchBusinessUnit,
     onSelectCheckChange,
@@ -77,10 +77,9 @@ const BusinessUnitFormUI = (props: IBusinessUnitFormUI) => {
                   smallScreen={isMobile}
                   showMenu={showMenu}
                   menuOptions={menuOptions}
-                  entries={filteredEntries}
+                  entries={filteredEntries as IFormEntry[]}
                   isAssignAll={isAssignAll}
                   handleToggleRol={onToggleUnits}
-                  handleCloseMenuRol={onClose}
                   handleToggleAllEntries={onToggleAllEntries}
                 />
               </Stack>

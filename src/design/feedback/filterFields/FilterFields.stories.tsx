@@ -1,16 +1,14 @@
 import { BrowserRouter } from "react-router-dom";
-import { StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
-import {
-  FilterFieldController,
-  IFilterFieldController,
-} from "./FilterFields.Controller";
+import { FilterFieldController } from "./FilterFields.Controller";
+import type { IFilterFieldController } from "./FilterFields.Controller";
 
-const story = {
+const meta: Meta<typeof FilterFieldController> = {
   component: FilterFieldController,
   title: "feedback/FilterFields",
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -18,18 +16,16 @@ const story = {
   ],
 };
 
-const Template: StoryFn<IFilterFieldController> = (args) => {
-  return <FilterFieldController {...args} />;
-};
+export default meta;
 
-const Default = Template.bind({});
-Default.args = {
-  options: [
-    { id: "Aplicacion.", label: "Aplicación." },
-    { id: "Sistemas.", label: "Sistemas." },
-    { id: "Contabilidad.", label: "Contabilidad." },
-  ],
-};
+type Story = StoryObj<typeof FilterFieldController>;
 
-export { Default };
-export default story;
+export const Default: Story = {
+  args: {
+    options: [
+      { id: "Aplicacion.", label: "Aplicación." },
+      { id: "Sistemas.", label: "Sistemas." },
+      { id: "Contabilidad.", label: "Contabilidad." },
+    ],
+  } as IFilterFieldController,
+};

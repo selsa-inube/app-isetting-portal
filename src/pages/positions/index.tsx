@@ -18,7 +18,6 @@ const Positions = () => {
     showInfoModal,
     showModalUnits,
     formik,
-    optionsCards,
     optionsUnits,
     comparisonData,
     unit,

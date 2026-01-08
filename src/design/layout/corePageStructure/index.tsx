@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { Nav, Header, Icon, Grid, Stack } from "@inubekit/inubekit";
 import { MdOutlineChevronRight, MdOutlineWarningAmber } from "react-icons/md";
-import { useAuth0 } from "@auth0/auth0-react";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { userMenu } from "@config/menuMainConfiguration";
 import { actionsConfig } from "@config/mainActionLogout";
@@ -20,11 +19,12 @@ import { useErrorManagement } from "@hooks/errorManagement";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { errorModalConfig } from "@config/errorModal";
 import { messageErrorStatusConsultation } from "@utils/messageErrorStatus";
+import { useIAuth } from "@inube/iauth-react";
 
 const CorePageStructure = () => {
   const { appData, businessUnitsToTheStaff, businessUnitSigla } =
     useContext(AuthAndData);
-  const { logout } = useAuth0();
+  const { logout } = useIAuth();
   const { errorModal, errorData, closeErrorModal } = useErrorManagement();
 
   const {
@@ -75,7 +75,7 @@ const CorePageStructure = () => {
           >
             {!isTablet && (
               <Stack height="100%">
-                <Nav navigation={optionsNav} actions={actionsConfig(logout)} />
+                <Nav navigation={optionsNav} actions={actionsConfig()} />
               </Stack>
             )}
 

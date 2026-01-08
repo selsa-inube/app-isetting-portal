@@ -18,18 +18,12 @@ const useCaseForStaff = (props: IUseCaseForStaff) => {
     const fetchUseCasesData = async () => {
       setLoading(true);
 
-      const businessUnitSigla = JSON.parse(businessUnit ?? "{}");
-
-      const isDifferentBusinessUnit =
-        businessUnitPrevious !== businessUnitSigla.publicCode;
-      const shouldValidateChange =
-        isDifferentBusinessUnit || useCasesByStaff.length === 0;
+      const shouldValidateChange = useCasesByStaff.length === 0;
 
       try {
         if (shouldValidateChange && businessManagerCode) {
           if (businessManagerCode) {
             const data = await getUseCaseForStaff(
-              businessUnitSigla.publicCode,
               userAccount,
               businessManagerCode
             );

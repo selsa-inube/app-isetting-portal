@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
+import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 import { decrypt } from "@utils/decrypt";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -18,11 +18,9 @@ const useHome = () => {
   } = useContext(AuthAndData);
   const { logout } = useAuth0();
 
-  const portalId = localStorage.getItem("portalCode");
-  const staffPortalId = portalId ? decrypt(portalId) : "";
-  const { optionsCards, loading } = useOptionsByBusinessunits({
-    staffPortalId,
-    businessUnitSigla,
+  const { optionsCards, loading } = useOptionsByBusinessUnits({
+    staffPortalId: appData.portal.publicCode,
+    businessUnit: businessUnitSigla,
   });
   const [Collapse, SetCollapse] = useState(false);
   const [SelectedClient, SetSelectedClient] = useState<string>("");

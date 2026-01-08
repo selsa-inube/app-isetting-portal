@@ -1,17 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 
 import { AuthAndData } from "@context/authAndDataProvider";
-import { useOptionsByBusinessUnit } from "@hooks/staffPortal/useOptionsByBusinessUnit";
+
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IUseOptionsBusinessEntity } from "@ptypes/hooks/IUseOptionsBusinessEntity";
+import { optionsUnits } from "@mocks/users/businessUnits";
 
 const useOptionsBusinessEntity = (props: IUseOptionsBusinessEntity) => {
   const { formValues } = props;
   const { appData } = useContext(AuthAndData);
-  const { optionsSelectUnits: optionsUnits } = useOptionsByBusinessUnit({
-    publicCode: appData.portal.publicCode,
-    userAccount: appData.user.userAccount,
-  });
+
   const [entriesAdditionalBusinessEntity, setEntriesAdditionalBusinessEntity] =
     useState<IFormEntry[]>([]);
 

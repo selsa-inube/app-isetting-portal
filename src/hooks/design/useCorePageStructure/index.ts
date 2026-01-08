@@ -1,27 +1,25 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
+import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 import { useMainNavigation } from "@hooks/useMainNavigation";
 import { decrypt } from "@utils/decrypt";
 import { enviroment } from "@config/environment";
 import { portalLocalStorage } from "@config/portalLocalStorage";
 import { IUseCorePageStructure } from "@ptypes/hooks/IUseCorePageStructure";
+import { AuthAndData } from "@context/authAndDataProvider";
 
 const useCorePageStructure = (props: IUseCorePageStructure) => {
   const { businessUnitSigla, logout } = props;
-
+  const { appData } = useContext(AuthAndData);
   const [collapse, setCollapse] = useState(false);
   const collapseMenuRef = useRef<HTMLDivElement>(null);
   const isTablet = useMediaQuery(enviroment.IS_MOBILE_849);
   const isTabletMain = useMediaQuery(enviroment.IS_MOBILE_970);
 
-  const portalId = localStorage.getItem(portalLocalStorage);
-  const staffPortalId = portalId ? decrypt(portalId) : "";
-
-  const { optionsCards } = useOptionsByBusinessunits({
-    staffPortalId,
-    businessUnitSigla,
+  const { optionsCards } = useOptionsByBusinessUnits({
+    staffPortalId: appData.portal.publicCode,
+    businessUnit: businessUnitSigla,
   });
 
   const location = useLocation();

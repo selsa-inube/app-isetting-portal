@@ -1,8 +1,13 @@
-import { AxiosRequestConfig } from "axios";
-import { IStaffPortalByBusinessManager } from "@ptypes/staffPortal.types";
+import type { AxiosRequestConfig } from "axios";
+
+import type { IStaffPortalByBusinessManager } from "@ptypes/staffPortal.types";
 import { getWithRetries } from "@services/core/getWithRetries";
 import { isaasQueryAxiosInstance } from "@api/isaas";
-import { mapStaffPortalByBusinessManagerApiToEntities } from "./mappers";
+
+import {
+  mapStaffPortalByBusinessManagerApiToEntities,
+  type IStaffPortalByBusinessManagerApi,
+} from "./mappers";
 
 const staffPortalByBusinessManager = async (
   portalCode: string
@@ -10,14 +15,14 @@ const staffPortalByBusinessManager = async (
   const queryParams = new URLSearchParams({
     staffPortalId: portalCode,
   });
+
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchAllStaffPortalsByBusinessManager",
     },
   };
-  const data: IStaffPortalByBusinessManager[] = await getWithRetries<
-    IStaffPortalByBusinessManager[]
-  >(
+
+  const data = await getWithRetries<IStaffPortalByBusinessManagerApi[]>(
     isaasQueryAxiosInstance,
     `/staff-portals-by-business-manager?${queryParams.toString()}`,
     config

@@ -16,7 +16,6 @@ const Home = () => {
     multipleBusinessUnits,
     handlelogout,
   } = useHome();
-
   return (
     <HomeUI
       data={optionsCards as ICardData[]}
@@ -26,7 +25,7 @@ const Home = () => {
       isTablet={IsTablet}
       smallScreen={SmallScreen}
       username={Username}
-      loading={loading}
+      loading={loading} Checkpicker
       hasData={hasData}
       multipleBusinessUnits={multipleBusinessUnits}
       handlelogout={handlelogout}

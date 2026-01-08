@@ -2,7 +2,7 @@ import { ITab, useMediaQuery } from "@inubekit/inubekit";
 import { useContext, useEffect, useState } from "react";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
-import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
+import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 import { EOptionsByBusinessunits } from "@enum/optionsByBusinessunits";
 import { ERequestAssignments } from "@enum/requestAssignments";
 import { decrypt } from "@utils/decrypt";
@@ -29,8 +29,8 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
   const [showAbsenceModal, setShowAbsenceModal] = useState<boolean>(false);
 
-  const { descriptionOptions } = useOptionsByBusinessunits({
-    businessUnitSigla,
+  const { descriptionOptions } = useOptionsByBusinessUnits({
+    businessUnit: businessUnitSigla,
     staffPortalId,
     optionName: EOptionsByBusinessunits.ASSIGNMENTS,
   });
@@ -49,14 +49,13 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
   useEffect(() => {
     const fetchRequestsInProgressData = async () => {
       try {
-         if(businessManager.length > 0){
-
-           const data = await getRequestsInProgress(
-             ERequestAssignments.ASSIGNMENTS,
-             businessManager
-           );
-           setRequestsInProgress(data);
-         }
+        if (businessManager.length > 0) {
+          const data = await getRequestsInProgress(
+            ERequestAssignments.ASSIGNMENTS,
+            businessManager
+          );
+          setRequestsInProgress(data);
+        }
       } catch (error) {
         console.info(error);
       }

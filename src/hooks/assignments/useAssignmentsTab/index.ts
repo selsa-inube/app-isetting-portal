@@ -11,9 +11,11 @@ import { IAbsenceEntry } from "@ptypes/assignments/IAbsenceEntry";
 import { IAssignmentsData } from "@ptypes/assignments/IAssignmentsData";
 import { IUseAssignmentsTab } from "@ptypes/hooks/IUseAssignmentsTab";
 import { useAssignmentsData } from "../useAssignmentsData";
+import { EUseCaseTypes } from "@src/enum/useCaseTypes";
+import { useValidateUseCase } from "@src/hooks/useValidateUseCase";
 
 const useAssignmentsTab = (props: IUseAssignmentsTab) => {
-  const {showAbsenceModal} =props;
+  const { showAbsenceModal } = props;
   const [searchAssingments, setSearchAssingments] = useState<string>("");
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -29,15 +31,19 @@ const useAssignmentsTab = (props: IUseAssignmentsTab) => {
     absentOfficial: "",
   };
 
+  const { disabledButton } = useValidateUseCase({
+    useCase: EUseCaseTypes.ADD_USER,
+  });
+
   useEffect(() => {
     if (data.length > 0) {
       setAssingments(data);
     }
   }, [data]);
 
-  useEffect(()=>{
-    setShowModal(showAbsenceModal)
-  }, [showAbsenceModal])
+  useEffect(() => {
+    setShowModal(showAbsenceModal);
+  }, [showAbsenceModal]);
 
   const validationSchema = object({
     isActive: validationRules.boolean,
@@ -114,6 +120,13 @@ const useAssignmentsTab = (props: IUseAssignmentsTab) => {
     });
   };
 
+  const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
+
+  const handleToggleInfoModal = () => {
+    if (disabledButton) {
+      setShowInfoModal(!showInfoModal);
+    }
+  };
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
   const columnWidths = smallScreen ? [68] : [52, 17, 17];
 
@@ -123,6 +136,7 @@ const useAssignmentsTab = (props: IUseAssignmentsTab) => {
 
   return {
     assingments,
+    disabledButton,
     searchAssingments,
     loading,
     hasError,
@@ -133,6 +147,8 @@ const useAssignmentsTab = (props: IUseAssignmentsTab) => {
     absentOfficialOptions,
     formik,
     disabledButtonModal,
+    showInfoModal,
+    handleToggleInfoModal,
     handleSelectChange,
     handleSelectCheckChange,
     handleClickModal,

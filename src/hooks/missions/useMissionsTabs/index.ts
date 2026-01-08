@@ -56,8 +56,7 @@ const useMissionsTabs = () => {
   useEffect(() => {
     const fetchRequestsInProgressData = async () => {
       try {
-        if(appData.businessManager.publicCode.length > 0){
-
+        if (appData.businessManager.publicCode.length > 0) {
           const data = await getRequestsInProgress(
             ERequestMission.MISSIONS,
             appData.businessManager.publicCode
@@ -120,6 +119,7 @@ const useMissionsTabs = () => {
     onToggleModal,
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
+
     widthFirstColumn,
     showMissionTab,
     showRequestTab,

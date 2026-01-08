@@ -1,6 +1,6 @@
-import { MdPersonAddAlt } from "react-icons/md";
+import { MdOutlineInfo, MdPersonAddAlt } from "react-icons/md";
 import { basic } from "@design/tokens";
-import { Button, Searchfield, Stack, Text } from "@inubekit/inubekit";
+import { Button, Icon, Searchfield, Stack, Text } from "@inubekit/inubekit";
 import { Table } from "@design/table";
 import { EComponentAppearance } from "@enum/appearances";
 import { actionsConfig } from "@config/missions/missionTab/table/actionsConfig";
@@ -11,7 +11,9 @@ import { missionsTabLabels } from "@config/missions/missionTab/missionsTabLabels
 import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
 
 import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
-import { StyledButtonWrapper } from "./styles";
+import { disabledModal } from "@src/config/disabledModal";
+import { portalId } from "@src/config/portalId";
+import { DecisionModal } from "@src/design/modals/decisionModal";
 
 const MissionsTabUI = (props: IMissionsTabUI) => {
   const {
@@ -22,6 +24,9 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
     smallScreen,
     columnWidths,
     setEntryDeleted,
+    disabledButton,
+    showInfoModal,
+    handleToggleInfoModal,
   } = props;
 
   return (
@@ -62,7 +67,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
             />
 
             {!smallScreen && (
-              <StyledButtonWrapper>
+              <Stack alignItems="center">
                 <Button
                   iconBefore={<MdPersonAddAlt />}
                   spacing="wide"
@@ -71,7 +76,16 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
                 >
                   {missionsTabLabels.buttonLabel}
                 </Button>
-              </StyledButtonWrapper>
+                {disabledButton && (
+                  <Icon
+                    appearance={EComponentAppearance.PRIMARY}
+                    icon={<MdOutlineInfo />}
+                    onClick={handleToggleInfoModal}
+                    cursorHover
+                    size="14px"
+                  />
+                )}
+              </Stack>
             )}
           </Stack>
 
@@ -92,7 +106,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
             id="portal"
             titles={titlesOptions}
             entries={data ?? []}
-            actions={actionsConfig(setEntryDeleted, detailsLabels.titleDetails )}
+            actions={actionsConfig(setEntryDeleted, detailsLabels.titleDetails)}
             breakpoints={breakPoints}
             filter={searchMission}
             loading={loading}
@@ -100,6 +114,18 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
           />
         </Stack>
       </Stack>
+      {showInfoModal && (
+        <DecisionModal
+          portalId={portalId}
+          title={disabledModal.title}
+          actionText={disabledModal.actionText}
+          description={disabledModal.description}
+          subtitle={disabledModal.subtitle}
+          onCloseModal={handleToggleInfoModal}
+          onClick={handleToggleInfoModal}
+          withCancelButton={false}
+        />
+      )}
     </Stack>
   );
 };

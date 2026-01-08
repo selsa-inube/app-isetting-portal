@@ -5,7 +5,7 @@ import { IAssignmentsTab } from "@ptypes/assignments/IAssignmentsTab";
 import { AssignmentsTabUI } from "./interface";
 
 const AssignmentsTab = (props: IAssignmentsTab) => {
-  const {showAbsenceModal} =props;
+  const { showAbsenceModal } = props;
   const {
     assingments,
     searchAssingments,
@@ -17,13 +17,16 @@ const AssignmentsTab = (props: IAssignmentsTab) => {
     absentOfficialOptions,
     formik,
     disabledButtonModal,
+    disabledButton,
+    showInfoModal,
+    handleToggleInfoModal,
     handleSelectChange,
     handleSelectCheckChange,
     handleClickModal,
     handleToggleModal,
     setEntryDeleted,
     handleSearchAssingments,
-  } = useAssignmentsTab({showAbsenceModal});
+  } = useAssignmentsTab({ showAbsenceModal });
 
   const pageLength = usePageLength();
 
@@ -44,9 +47,12 @@ const AssignmentsTab = (props: IAssignmentsTab) => {
       isActiveChecked={formik.values.isActive}
       absentOfficialOptions={absentOfficialOptions}
       formik={formik}
+      disabledButton={disabledButton}
       onSelectChange={handleSelectChange}
       onSelectCheckChange={handleSelectCheckChange}
       disabledButtonModal={disabledButtonModal}
+      showInfoModal={showInfoModal}
+      handleToggleInfoModal={handleToggleInfoModal}
     />
   );
 };

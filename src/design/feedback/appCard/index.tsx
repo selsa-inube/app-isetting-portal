@@ -10,14 +10,14 @@ import {
 
 import { basic } from "@design/tokens";
 
-import { enviroment } from "@config/environment";
+import { mediaQueryMobileSmall } from "@config/environment";
 
 import { StyledAppCard } from "./styles";
 import { IAppCard } from "@ptypes/design/IAppCard";
 
 const AppCard = (props: IAppCard) => {
   const { label, description, icon, url, loading } = props;
-  const screenMobile = useMediaQuery(enviroment.IS_MOBILE_580);
+  const screenMobile = useMediaQuery(mediaQueryMobileSmall);
   const appCardProps = {
     to: url ?? "",
     $isMobile: screenMobile,

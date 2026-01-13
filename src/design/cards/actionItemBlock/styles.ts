@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { inube } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@src/config/environment";
 
 const StyledActionItemBlock = styled(Link)`
   box-sizing: border-box;
@@ -23,7 +23,7 @@ const StyledActionItemBlock = styled(Link)`
     }
   }
 
-  @media (${enviroment.IS_MOBILE_580}) {
+  @media (${mediaQueryTabletMain}) {
     display: flex;
     width: 100%;
     height: 72px;

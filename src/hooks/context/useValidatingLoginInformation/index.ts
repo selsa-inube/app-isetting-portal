@@ -5,7 +5,6 @@ import { decrypt } from "@utils/decrypt";
 import { IAppData } from "@ptypes/authAndDataProvider/IAppData";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { useLanguage } from "@hooks/language";
-import { enviroment } from "@config/environment";
 import { useIAuth } from "@inube/iauth-react";
 
 const useValidatingLoginInformation = () => {
@@ -61,9 +60,10 @@ const useValidatingLoginInformation = () => {
       abbreviatedName: "",
       urlBrand: "",
       urlLogo: "",
+      clientId: "",
     },
     businessUnit: {
-      publicCode: businessUnitData?.publicCode ?? "",
+      publicCode: "test",
       abbreviatedName: businessUnitData?.abbreviatedName ?? "",
       languageId: businessUnitData?.languageId ?? "",
       urlLogo: businessUnitData?.urlLogo ?? "",
@@ -74,7 +74,7 @@ const useValidatingLoginInformation = () => {
       identificationDocumentNumber: user.id || "",
     },
     useCasesByStaff: useCasesData ?? [],
-    language: enviroment.VITE_LANGUAGE,
+    language: businessUnitData?.languageIso || "",
   });
   useEffect(() => {
     if (!isIAuthLoading) {
@@ -121,6 +121,7 @@ const useValidatingLoginInformation = () => {
           abbreviatedName: businessManagersData.abbreviatedName,
           urlBrand: businessManagersData.urlBrand,
           urlLogo: businessManagersData.urlLogo,
+          clientId: businessManagersData.clientId,
         },
       }));
     }
@@ -172,7 +173,7 @@ const useValidatingLoginInformation = () => {
   useEffect(() => {
     setAppData((prev) => ({
       ...prev,
-      language: languageBrowser ?? enviroment.VITE_LANGUAGE,
+      language: languageBrowser ?? appData.language,
     }));
   }, [languageBrowser]);
 

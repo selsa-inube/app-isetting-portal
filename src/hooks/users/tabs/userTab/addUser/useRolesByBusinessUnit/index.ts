@@ -4,10 +4,10 @@ import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPortalStaff";
 import { getBusinessManagersId } from "@services/staffPortal/getBusinessManagersId";
 import { PositionsByBusinessUnitMap } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/IPositionByBusinessUnit";
+import { IUseOptionsBusinessEntity } from "@src/types/hooks/IUseOptionsBusinessEntity";
 
-const useRolesByBusinessUnit = (
-  entriesAdditionalBusinessEntity: IFormEntry[]
-) => {
+const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
+  const { setFormValues, activeEntries } = props;
   const [rolesByBusinessUnit, setRolesByBusinessUnit] = useState<IFormEntry[]>(
     []
   );
@@ -19,11 +19,7 @@ const useRolesByBusinessUnit = (
   const [error, setError] = useState<null | string>(null);
 
   useEffect(() => {
-    const activeEntries = entriesAdditionalBusinessEntity.filter(
-      (entry) => entry.isActive
-    );
-
-    if (activeEntries.length === 0) {
+    if (!activeEntries || activeEntries.length === 0) {
       setRolesByBusinessUnit([]);
       setPositionsByBusinessUnit({});
       return;
@@ -80,7 +76,7 @@ const useRolesByBusinessUnit = (
     };
 
     fetchAll();
-  }, [entriesAdditionalBusinessEntity]);
+  }, [activeEntries]);
 
   const selectPositionsByBusinessUnit = (name: string, value: string) => {
     setPositionsByBusinessUnit((prev) => ({
@@ -91,6 +87,22 @@ const useRolesByBusinessUnit = (
       },
     }));
   };
+
+  useEffect(() => {
+    setFormValues((prev) => ({
+      ...prev,
+      positionByBusinessUnitStep: positionsByBusinessUnit,
+    }));
+  }, [positionsByBusinessUnit, setFormValues]);
+
+  useEffect(() => {
+    const activeRoles = rolesByBusinessUnit.filter((role) => role.isActive);
+
+    setFormValues((prev) => ({
+      ...prev,
+      roleByBusinessUnitStep: activeRoles,
+    }));
+  }, [rolesByBusinessUnit, setFormValues]);
 
   return {
     rolesByBusinessUnit,

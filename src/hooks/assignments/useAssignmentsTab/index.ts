@@ -6,7 +6,7 @@ import { object } from "yup";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
 import { assignmentsTabLabels } from "@config/assignments/generic/assignmentsTabLabels";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IAbsenceEntry } from "@ptypes/assignments/IAbsenceEntry";
 import { IAssignmentsData } from "@ptypes/assignments/IAssignmentsData";
 import { IUseAssignmentsTab } from "@ptypes/hooks/IUseAssignmentsTab";
@@ -127,7 +127,7 @@ const useAssignmentsTab = (props: IUseAssignmentsTab) => {
       setShowInfoModal(!showInfoModal);
     }
   };
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const columnWidths = smallScreen ? [68] : [52, 17, 17];
 
   const emptyDataMessage = smallScreen

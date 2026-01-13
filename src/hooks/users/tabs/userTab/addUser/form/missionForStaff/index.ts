@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useContext, useEffect, useImperativeHandle, useState } from "react";
 import { object } from "yup";
 
-import { enviroment } from "@config/environment";
+import { mediaQueryMobile } from "@config/environment";
 import { basic } from "@design/tokens";
 import { IOption, useMediaQuery } from "@inubekit/inubekit";
 import { IUseAddUserMissionForStaffStep } from "@ptypes/hooks/IUseAddUserMissionForStaffStep";
@@ -31,7 +31,7 @@ const useMissionForUserForm = (props: IUseAddUserMissionForStaffStep) => {
     validateOnBlur: true,
     onSubmit: onSubmit ?? (() => true),
   });
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isMobile = useMediaQuery(mediaQueryMobile);
   const mobilePadding = isMobile ? basic.spacing.s150 : basic.spacing.s300;
   useImperativeHandle(ref, () => formik);
 

@@ -8,7 +8,7 @@ import { EComponentAppearance } from "@enum/appearances";
 import { eventBus } from "@events/eventBus";
 import { assignmentLabels } from "@config/assignments/assignmentForm/assigmentLabels";
 import { actionButtonsLabels } from "@config/assignments/assignmentForm/actionButtonsLabels";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IUseAssignmentForm } from "@ptypes/hooks/assignments/IUseAssignmentForm";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 
@@ -30,7 +30,7 @@ const useAssignmentForm = (props: IUseAssignmentForm) => {
   const [isDisabledButton, setIsDisabledButton] = useState(false);
   const [filteredRows, setFilteredRows] = useState<IFormEntry[]>(entries);
   const [filterValue, setFilterValue] = useState("");
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
 
   const handleToggleRol = () => {
     setShowMenu(!showMenu);

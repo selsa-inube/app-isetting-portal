@@ -1,7 +1,7 @@
 interface ISaveDataResponse {
   settingRequestId: string;
   requestNumber: string;
-  requestStatus: string;
+  requestStatus?: string;
   responsible?: string;
 }
 

@@ -6,15 +6,12 @@ import type { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import type { PositionsByBusinessUnitMap } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/IPositionByBusinessUnit";
 
 interface IAddUserVerificationData {
-  generalInformationStep: {
-    values: IGeneralInfoForm;
-  };
-  missionForStaffStep: {
-    values: IMissionForStaff;
-  };
-  contactDataStep: {
-    values: IContactDataFormValues;
-  };
+  generalInformationStep: IGeneralInfoForm;
+
+  missionForStaffStep: IMissionForStaff;
+
+  contactDataStep: IContactDataFormValues;
+
   businessEntityStep: {
     values: IFormEntry[];
   };

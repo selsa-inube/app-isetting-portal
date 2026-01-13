@@ -5,7 +5,7 @@ import { eventBus } from "@events/eventBus";
 import { formatDateTable } from "@utils/date/formatDateTable";
 import { IEntry } from "@ptypes/design/table/IEntry";
 import { IUseDetailsRequestInProgress } from "@ptypes/missions/requestTab/IUseDetailsRequest";
-import { enviroment } from "@config/environment";
+import { mediaQueryMobile, mediaQueryTablet } from "@config/environment";
 import { EModalState } from "@enum/modalState";
 
 const useDetailsRequestInProgress = (props: IUseDetailsRequestInProgress) => {
@@ -37,8 +37,8 @@ const useDetailsRequestInProgress = (props: IUseDetailsRequestInProgress) => {
     eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
 
-  const screenTablet = useMediaQuery(enviroment.IS_MOBILE_1200);
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_743);
+  const screenTablet = useMediaQuery(mediaQueryTablet);
+  const isMobile = useMediaQuery(mediaQueryMobile);
 
   return {
     showModal,

@@ -6,7 +6,7 @@ import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUn
 import { EOptionsByBusinessunits } from "@enum/optionsByBusinessunits";
 import { ERequestAssignments } from "@enum/requestAssignments";
 import { decrypt } from "@utils/decrypt";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { assignmentsTabsConfig } from "@config/assignments/tabs";
 import { IUseAssignmentsPage } from "@ptypes/hooks/assignments/IUseAssignmentsPage";
 import { IAssignmentsTabsConfig } from "@ptypes/assignments/IAssignmentsTabsConfig";
@@ -17,7 +17,7 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
 
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
 
   const tabs = assignmentsTabsConfig(smallScreen);
 

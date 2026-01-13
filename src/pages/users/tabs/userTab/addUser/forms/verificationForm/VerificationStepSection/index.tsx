@@ -5,7 +5,7 @@ import { basic } from "@design/tokens";
 import { Accordion } from "@design/data/acordion";
 import { labels } from "@config/verificationTitles";
 
-import { enviroment } from "@config/environment";
+import { mediaQueryMobile } from "@config/environment";
 import { EComponentAppearance } from "@enum/appearances";
 import { AddUserVerificationBoxes } from "../verificationBoxes";
 import { IAddUserVerificationStepSection } from "@ptypes/users/tabs/userTab/addUser/forms/verificationForm/IAddUserVerificationStepSection";
@@ -15,7 +15,7 @@ const AddUserVerificationStepSection = (
 ) => {
   const { step, updatedData, onStepChange } = props;
 
-  const isTablet = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isTablet = useMediaQuery(mediaQueryMobile);
 
   return (
     <Accordion title={step.name}>

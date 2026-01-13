@@ -3,7 +3,7 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { formatDateTable } from "@utils/date/formatDateTable";
 import { EModalState } from "@enum/modalState";
 import { eventBus } from "@events/eventBus";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IEntry } from "@ptypes/table/IEntry";
 
 const useDetailsRequestInProgress = (data: IEntry) => {
@@ -41,11 +41,11 @@ const useDetailsRequestInProgress = (data: IEntry) => {
       )
     : [];
 
-   useEffect(() => {
+  useEffect(() => {
     eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
 
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970)
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
 
   return {
     showMoreMission,

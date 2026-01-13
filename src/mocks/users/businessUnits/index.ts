@@ -1,15 +1,27 @@
 const optionsUnits = [
   {
     id: "opt-1",
-    value: "test",
+    value: "ihurem",
   },
   {
     id: "opt-2",
-    value: "Sistemas en linea",
+    value: "isetting",
   },
   {
     id: "opt-3",
-    value: "Innovación Digital",
+    value: "ifund1",
+  },
+  {
+    id: "opt-4",
+    value: "ifund2",
+  },
+  {
+    id: "opt-5",
+    value: "CredicarAccountManager",
+  },
+  {
+    id: "opt-6",
+    value: "CredicarAnalyst",
   },
 ];
 export { optionsUnits };

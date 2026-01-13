@@ -3,7 +3,7 @@ import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { portalId } from "@config/portalId";
 import { deleteLabels } from "@config/deleteLabels";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { ComponentAppearance } from "@ptypes/aparences.types";
 import { IDelete } from "@ptypes/design/IDelete";
 import { StyledContainerIcon } from "./styles";
@@ -19,7 +19,7 @@ const DeleteRecord = (props: IDelete) => {
     setJustificationDelete,
   } = props;
 
-  const screenTablet = useMediaQuery(enviroment.IS_MOBILE_970);
+  const screenTablet = useMediaQuery(mediaQueryTabletMain);
 
   const showText = screenTablet && withText;
   return (

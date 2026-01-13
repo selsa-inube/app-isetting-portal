@@ -19,6 +19,7 @@ const ContactDataFormUI = (props: IContactDataFormUI) => {
     labelButtonNext,
     buttonDisabledState,
     handlePreviousStep,
+    componentSize,
   } = props;
 
   return (
@@ -31,7 +32,7 @@ const ContactDataFormUI = (props: IContactDataFormUI) => {
             gap={basic.spacing.s300}
             padding={mobilePadding}
           >
-            <Stack direction="row" width="100%" gap={basic.spacing.s250}>
+            <Stack direction={componentSize} width="100%" gap={basic.spacing.s250}>
               <Input
                 name={contactDataConfig.input.name}
                 id={contactDataConfig.input.id}

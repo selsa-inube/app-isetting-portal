@@ -45,8 +45,17 @@ const AddUserUI = (props: IAddUserUI) => {
     selectPositionsByBusinessUnit,
     rolesByBusinessUnit,
     selectRolesByBusinessUnit,
+    saveUsers,
+    showPendingReqModal,
+    requestSteps,
+    showRequestProcessModal,
+    onCloseRequestStatus,
+    onCloseProcess,
+    onClosePendingReqModal,
+    onSubmit,
+    showModal,
   } = props;
-
+  console.log(!isCurrentFormValid)
   return (
     <Stack
       direction="column"
@@ -100,6 +109,7 @@ const AddUserUI = (props: IAddUserUI) => {
               <ContactDataForm
                 ref={formReferences.contactDataStep}
                 initialValues={initialValues.contactDataStep.values}
+                onFormValid={setIsCurrentFormValid}
                 handleNextStep={onNextStep}
                 handlePreviousStep={onPreviousStep}
               />
@@ -131,15 +141,12 @@ const AddUserUI = (props: IAddUserUI) => {
             {currentStep === addUserUIConfig.verificationStep && (
               <AddUserVerificationForm
                 updatedData={{
-                  generalInformationStep: {
-                    values: initialValues.generalInformationStep.values,
-                  },
-                  missionForStaffStep: {
-                    values: initialValues.missionForStaffStep.values,
-                  },
-                  contactDataStep: {
-                    values: initialValues.contactDataStep.values,
-                  },
+                  generalInformationStep: initialValues.generalInformationStep.values,
+
+                  missionForStaffStep: initialValues.missionForStaffStep.values,
+
+                  contactDataStep: initialValues.contactDataStep.values,
+
                   businessEntityStep: {
                     values: entriesAdditionalBusinessEntity.filter(
                       (e) => e.isActive
@@ -152,10 +159,18 @@ const AddUserUI = (props: IAddUserUI) => {
                     values: rolesByBusinessUnit.filter((e) => e.isActive),
                   },
                 }}
-                isMobile={smallScreen}
                 onPreviousStep={onPreviousStep}
+                handleStepChange={onSubmit}
+                onSubmit={onSubmit}
+                saveUsers={saveUsers}
+                onCloseRequestStatus={onCloseRequestStatus}
+                showPendingReqModal={showPendingReqModal}
+                onCloseProcess={onCloseProcess}
+                onClosePendingReqModal={onClosePendingReqModal}
+                requestSteps={requestSteps}
+                showRequestProcessModal={showRequestProcessModal}
+                showModal={showModal}
                 onToggleModal={onToggleModal}
-                handleStepChange={onNextStep}
               />
             )}
           </Stack>

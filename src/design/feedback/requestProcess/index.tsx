@@ -32,7 +32,7 @@ const RequestProcess = (props: IRequestProcessContent) => {
     >
       {saveData &&
         saveData.requestStatus !== "" &&
-        (statusFlowAutomatic.includes(saveData.requestStatus) ? (
+        (statusFlowAutomatic.includes(saveData.requestStatus ?? "") ? (
           <RequestProcessModal
             portalId={portalId}
             title={descriptionRequestProcess.title}

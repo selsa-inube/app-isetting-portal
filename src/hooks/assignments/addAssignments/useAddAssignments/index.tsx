@@ -4,7 +4,7 @@ import { useMediaQuery } from "@inubekit/inubekit";
 
 import { UseBusinessUnitsByOfficial } from "@hooks/assignments/useBusinessUnitsByOfficial";
 import { stepsKeysAssignments } from "@enum/stepsKeysAssignments";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { addAssignmentsSteps } from "@config/assignments/assisted/steps";
 import { rolesByUnitLabels } from "@config/assignments/assisted/rolesByUnitLabels";
 import { IBusinessEntry } from "@ptypes/assignments/IBusinessEntry";
@@ -47,7 +47,7 @@ const useAddAssignments = (props: IUseAddAssignments) => {
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedToggle, setSelectedToggle] = useState<IBusinessEntry[]>([]);
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
 
   const { options: businessUnitsOptions, hasError } =
     UseBusinessUnitsByOfficial({ absentOfficial });
@@ -75,10 +75,10 @@ const useAddAssignments = (props: IUseAddAssignments) => {
         actionButton: rolesByUnitLabels.allActive,
         roles: unit.roleNames
           ? unit.roleNames.map((rol) => ({
-              id: `${unit.id}-${rol}`,
-              value: rol,
-              isActive: false,
-            }))
+            id: `${unit.id}-${rol}`,
+            value: rol,
+            isActive: false,
+          }))
           : [],
       }));
 

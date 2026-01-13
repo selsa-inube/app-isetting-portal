@@ -4,6 +4,8 @@ import { IGeneralUserFormValues } from "../forms/IGeneralFormValues";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import React, { Dispatch, SetStateAction } from "react";
 import { IPositionByBusinessUnit } from "../forms/ByBusinessUnit/IPositionByBusinessUnit";
+import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
+import { IRequestSteps } from "@src/types/requestsInProgress/IRequestSteps";
 
 interface IAddUserUI {
   showGoBackModal: boolean;
@@ -29,6 +31,15 @@ interface IAddUserUI {
   positionsByBusinessUnit: Record<string, IPositionByBusinessUnit>;
   selectPositionsByBusinessUnit: (name: string, value: string) => void;
   rolesByBusinessUnit: IFormEntry[];
+  saveUsers: ISaveDataResponse;
+  requestSteps: IRequestSteps[];
+  showPendingReqModal: boolean;
+  showRequestProcessModal: boolean;
+  showModal: boolean;
+  onCloseRequestStatus: () => void;
+  onCloseProcess: () => void;
+  onClosePendingReqModal: () => void;
   selectRolesByBusinessUnit: Dispatch<SetStateAction<IFormEntry[]>>;
+  onSubmit: () => void;
 }
 export type { IAddUserUI };

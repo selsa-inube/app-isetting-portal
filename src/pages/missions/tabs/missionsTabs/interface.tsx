@@ -73,6 +73,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
                   spacing="wide"
                   type="link"
                   path="/missions/add-mission"
+                  disabled={disabledButton}
                 >
                   {missionsTabLabels.buttonLabel}
                 </Button>

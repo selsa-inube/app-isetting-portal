@@ -8,6 +8,8 @@ import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInf
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IUseEditPositions } from "@ptypes/hooks/IUseEditPositions";
+import { ERequestType } from "@src/enum/request/requestType";
+
 
 const useEditPositions = (props: IUseEditPositions) => {
   const { data, appData, rolesData } = props;
@@ -156,13 +158,14 @@ const useEditPositions = (props: IUseEditPositions) => {
       entityName: "Mission",
       requestDate: formatDate(new Date()),
       useCaseName: "ModifyMission",
-
+      requestType: ERequestType.MODIFY,
       configurationRequestData: {
         positionId: data.positionId,
         positionName: formValues.generalInformation.values.namePosition,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
         positionByRole: rolesDataEndpoint,
+
       },
     });
     setShowRequestProcessModal(true);

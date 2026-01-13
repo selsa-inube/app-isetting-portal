@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 import { useMainNavigation } from "@hooks/useMainNavigation";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IUseCorePageStructure } from "@ptypes/hooks/IUseCorePageStructure";
 import { AuthAndData } from "@context/authAndDataProvider";
 
@@ -12,8 +12,8 @@ const useCorePageStructure = (props: IUseCorePageStructure) => {
   const { appData } = useContext(AuthAndData);
   const [collapse, setCollapse] = useState(false);
   const collapseMenuRef = useRef<HTMLDivElement>(null);
-  const isTablet = useMediaQuery(enviroment.IS_MOBILE_849);
-  const isTabletMain = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isTablet = useMediaQuery(mediaQueryTabletMain);
+  const isTabletMain = useMediaQuery(mediaQueryTabletMain);
 
   const { optionsCards } = useOptionsByBusinessUnits({
     staffPortalId: appData.portal.publicCode,

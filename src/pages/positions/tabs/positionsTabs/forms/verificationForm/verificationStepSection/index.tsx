@@ -5,13 +5,13 @@ import { Accordion } from "@design/data/acordion";
 import { labels } from "@config/verificationTitles";
 import { IVerificationStepSection } from "@ptypes/verification/IVerificationStepSection";
 import { VerificationBoxes } from "../verificationBoxes";
-import { enviroment } from "@config/environment";
+import { mediaQueryMobile } from "@config/environment";
 import { EComponentAppearance } from "@enum/appearances";
 
 const VerificationStepSection = (props: IVerificationStepSection) => {
   const { step, updatedData, onStepChange } = props;
 
-  const isTablet = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isTablet = useMediaQuery(mediaQueryMobile);
   return (
     <Accordion title={step.name}>
       <Stack

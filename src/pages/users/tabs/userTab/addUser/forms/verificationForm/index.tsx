@@ -13,7 +13,7 @@ import { requestProcessMessage } from "@src/config/request/requestProcessMessage
 import { RequestProcess } from "@src/design/feedback/requestProcess";
 import { RequestStatusModal } from "@src/design/modals/requestStatusModal";
 import { DecisionModal } from "@src/design/modals/decisionModal";
-import { finishModal } from "@src/config/missions/missionTab/assisted/finishModal";
+import { finishModal } from "@src/config/assignments/assisted/finishModal";
 
 const AddUserVerificationForm = (props: IAddUserVerificationForm) => {
   const {

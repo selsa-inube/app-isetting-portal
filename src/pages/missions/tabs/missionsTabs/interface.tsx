@@ -12,8 +12,8 @@ import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
 
 import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
 import { disabledModal } from "@src/config/disabledModal";
-import { portalId } from "@src/config/portalId";
-import { DecisionModal } from "@src/design/modals/decisionModal";
+import { portalId } from "@config/portalId";
+import { DecisionModal } from "@design/modals/decisionModal";
 
 const MissionsTabUI = (props: IMissionsTabUI) => {
   const {

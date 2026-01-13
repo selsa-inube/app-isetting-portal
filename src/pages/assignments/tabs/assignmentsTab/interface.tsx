@@ -13,8 +13,9 @@ import { actionsConfig } from "@config/assignments/assignmentsTab/table/actionsC
 import { titles } from "@config/assignments/assignmentsTab/table/titles";
 import { breakPoints } from "@config/assignments/assignmentsTab/table/breakPoints";
 import { AbsenceModal } from "./AbsenceModal";
-import { DecisionModal } from "@src/design/modals/decisionModal";
-import { disabledModal } from "@src/config/disabledModal";
+import { DecisionModal } from "@design/modals/decisionModal";
+import { disabledModal } from "@config/disabledModal";
+
 
 const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
   const {

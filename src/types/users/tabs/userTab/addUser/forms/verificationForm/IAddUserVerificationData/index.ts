@@ -18,8 +18,6 @@ interface IAddUserVerificationData {
   positionByBusinessUnitStep: {
     values: PositionsByBusinessUnitMap;
   };
-  roleByBusinessUnitStep: {
-    values: IFormEntry[];
-  };
+  roleByBusinessUnitStep: IFormEntry[];
 }
 export type { IAddUserVerificationData };

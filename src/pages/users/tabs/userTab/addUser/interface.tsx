@@ -55,7 +55,6 @@ const AddUserUI = (props: IAddUserUI) => {
     onSubmit,
     showModal,
   } = props;
-  console.log(!isCurrentFormValid)
   return (
     <Stack
       direction="column"
@@ -155,9 +154,9 @@ const AddUserUI = (props: IAddUserUI) => {
                   positionByBusinessUnitStep: {
                     values: positionsByBusinessUnit,
                   },
-                  roleByBusinessUnitStep: {
-                    values: rolesByBusinessUnit.filter((e) => e.isActive),
-                  },
+                  roleByBusinessUnitStep:
+                    rolesByBusinessUnit.filter((e) => e.isActive),
+
                 }}
                 onPreviousStep={onPreviousStep}
                 handleStepChange={onSubmit}

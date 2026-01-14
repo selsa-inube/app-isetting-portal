@@ -21,7 +21,6 @@ const getBusinessUnits = async (
         `/business-unit/?${queryParams}`,
         config
     );
-    console.log(data, "sadasas");
     return mapBusinessUnitFromApi(data);
 };
 

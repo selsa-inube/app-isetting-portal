@@ -12,7 +12,7 @@ import {
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { ComponentAppearance } from "@ptypes/aparences.types";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { MultipleChoices } from "@design/navigation/MultipleChoices";
 import { IFilterModal } from "@ptypes/design/IFilterModal";
 import {
@@ -36,7 +36,7 @@ const FilterModal = (props: IFilterModal) => {
     setSelectedOptions,
   } = props;
 
-  const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
 
   const node = document.getElementById(portalId);
 

@@ -3,6 +3,7 @@ import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 interface IUseSaveUsers {
   useCase: "add" | "edit" | "delete";
   businessUnits: string;
+  businessManagerCode: string;
   userAccount: string;
   sendData: boolean;
   data: ISaveDataRequest;

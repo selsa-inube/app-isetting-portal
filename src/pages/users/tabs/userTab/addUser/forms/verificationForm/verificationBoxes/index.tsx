@@ -31,7 +31,7 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
     updatedData.positionByBusinessUnitStep?.values || [];
 
   const activeRoles =
-    updatedData.roleByBusinessUnitStep?.values.filter((item) => item.isActive) ??
+    updatedData.roleByBusinessUnitStep ??
     [];
 
   return (

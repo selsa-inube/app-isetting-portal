@@ -7,7 +7,8 @@ import { IRequestUsers } from "@src/types/users/tabs/userTab/addUser/IRequestUse
 const postAddUsers = async (
   businessUnit: string,
   user: string,
-  data: IRequestUsers
+  data: IRequestUsers,
+  businessManagerCode: string
 ): Promise<IRequestUsers> => {
   const config: AxiosRequestConfig = {
     headers: {
@@ -16,11 +17,10 @@ const postAddUsers = async (
       "X-User-Name": user,
     },
   };
-  console.log("staff", businessUnit, user, data);
   const newData = await postWithRetries<IRequestUsers>(
     `/staff`,
     config,
-    mapAddUsersToApi(data, businessUnit) as unknown as string[],
+    mapAddUsersToApi(data, businessManagerCode) as unknown as string[],
     isettingIsaasAxiosInstance
   );
 

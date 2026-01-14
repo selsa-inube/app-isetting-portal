@@ -17,6 +17,7 @@ import { IRequestUsers } from "@src/types/users/tabs/userTab/addUser/IRequestUse
 const useSaveUsers = (props: IUseSaveUsers) => {
   const {
     businessUnits,
+    businessManagerCode,
     userAccount,
     data,
     setSendData,
@@ -85,7 +86,8 @@ const useSaveUsers = (props: IUseSaveUsers) => {
         const newData = await postAddUsers(
           businessUnits,
           userAccount,
-          requestConfiguration as IRequestUsers
+          requestConfiguration as IRequestUsers,
+          businessManagerCode
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
@@ -93,7 +95,8 @@ const useSaveUsers = (props: IUseSaveUsers) => {
         const newData = await postAddUsers(
           businessUnits,
           userAccount,
-          requestConfiguration as IRequestUsers
+          requestConfiguration as IRequestUsers,
+          businessManagerCode
         );
 
         setStatusRequest(newData.settingRequest?.requestStatus);

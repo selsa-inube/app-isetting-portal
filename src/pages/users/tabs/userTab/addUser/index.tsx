@@ -54,7 +54,6 @@ const AddUser = () => {
     selectPositionsByBusinessUnit,
     positionsByBusinessUnit,
   } = useRolesByBusinessUnit({ formValues, setFormValues, activeEntries });
-
   const {
     saveUsers,
     requestSteps,
@@ -65,6 +64,7 @@ const AddUser = () => {
   } = useSaveUsers({
     useCase: EUseCase.ADD,
     businessUnits: appData.businessUnit.publicCode,
+    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,

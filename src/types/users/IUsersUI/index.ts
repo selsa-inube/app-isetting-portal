@@ -1,4 +1,5 @@
 import { ITab } from "@inubekit/inubekit";
+import { IMenuOptions } from "@src/types/design/IMenuOptions";
 
 interface IUsersUI {
   isSelected: string;
@@ -9,6 +10,12 @@ interface IUsersUI {
   showRequestsInProgressTab: boolean;
   userTabs: ITab[];
   loading: boolean;
+  showModal: boolean;
+  showInfoModal: boolean;
+  options: IMenuOptions[];
+  onToggleInfoModal: () => void;
+  onCloseMenu: () => void;
+  onToggleModal: () => void;
 }
 
 export type { IUsersUI };

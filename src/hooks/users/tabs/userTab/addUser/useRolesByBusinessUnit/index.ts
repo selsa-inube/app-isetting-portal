@@ -55,7 +55,7 @@ const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
               rolesEntries.push({
                 id: `${code}-${role.positionId}`,
                 value: code,
-                isActive: false,
+                isActive: true,
                 rolesStaff: role.roleName,
                 businessUnitCode: code,
                 positionId: item.positionId,
@@ -91,7 +91,7 @@ const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
   useEffect(() => {
     setFormValues((prev) => ({
       ...prev,
-      positionByBusinessUnitStep: positionsByBusinessUnit,
+      positionByBusinessUnitStep: [positionsByBusinessUnit],
     }));
   }, [positionsByBusinessUnit, setFormValues]);
 

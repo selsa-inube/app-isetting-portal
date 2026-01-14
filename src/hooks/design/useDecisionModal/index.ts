@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { string, object } from "yup";
 import { useFormik, FormikValues } from "formik";
 import { useMediaQuery } from "@inubekit/inubekit";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IDecisionEntry } from "@ptypes/modals/decisionModal/IDecisionEntry";
 
 const validationSchema = object({
@@ -23,7 +23,7 @@ const useDecisionModal = ({
   const [dynamicValidationSchema, setDynamicValidationSchema] =
     useState(validationSchema);
 
-  const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
   const isMobileTextarea = useMediaQuery("(max-width: 490px)");
 
   const getFieldState = (formik: FormikValues, fieldName: string) => {

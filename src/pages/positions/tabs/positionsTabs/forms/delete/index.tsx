@@ -5,7 +5,7 @@ import { useSavePositions } from "@hooks/positions/useSavePositions";
 import { DeleteRecord } from "@design/feedback/deleteRecord";
 import { deleteRequestInProgress } from "@config/positionsTabs/generics/deleteRequestInProgress";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { useDeletePositions } from "@hooks/positions/useDeletePositions";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
@@ -25,7 +25,7 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
-  } = useDeletePositions({data, appData});
+  } = useDeletePositions({ data, appData });
 
   const {
     savePositions,
@@ -63,9 +63,9 @@ const Delete = (props: IDelete) => {
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
           requestProcessSteps={requestSteps}
-          appearance={ComponentAppearance.SUCCESS}
+          appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={handleCloseRequestStatus}
-          onCloseProcess={() => {}}
+          onCloseProcess={() => { }}
         />
       )}
 
@@ -83,7 +83,7 @@ const Delete = (props: IDelete) => {
           actionText={
             requestStatusMessage(savePositions.responsible).actionText
           }
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
         />
       )}
     </>

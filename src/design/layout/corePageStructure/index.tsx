@@ -90,7 +90,7 @@ const CorePageStructure = () => {
           withIcon
           icon={<MdOutlineWarningAmber />}
           appearance={EComponentAppearance.WARNING}
-          showCancelButton={false}
+          withCancelButton={false}
           actionText={errorModalConfig.actionText}
           description={messageErrorStatusConsultation(errorData.code)}
           portalId={"portal"}

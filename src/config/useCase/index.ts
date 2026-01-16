@@ -1,7 +1,13 @@
 const operationTypes = {
-  add: "Agregado",
-  edit: "Editado",
-  delete: "Eliminado",
+  add: "Agregada",
+  edit: "Editada",
+  delete: "Eliminada",
+  details: "detalles",
+  addError: "agregar",
+  editError: "editar",
+  deleteError: "Eliminar",
+  editConfiguration: "Modificar Configuración",
+  detailsConditional: "detalles condicionales",
 };
 
 export { operationTypes };

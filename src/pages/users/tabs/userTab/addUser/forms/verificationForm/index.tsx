@@ -92,6 +92,7 @@ const AddUserVerificationForm = (props: IAddUserVerificationForm) => {
           appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={onCloseRequestStatus}
           onCloseProcess={onCloseProcess}
+
         />
       )}
       {canShowPendingRequest && (

@@ -1,5 +1,5 @@
 import { Divider, Stack, Text } from "@inubekit/inubekit";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { IRequestTitleSection } from "@ptypes/requestsInProgress/IRequestTitleSection";
 import { ERequestMission } from "@enum/requestMission";
 
@@ -11,12 +11,11 @@ const RequestTitleSection = (props: IRequestTitleSection) => {
         type="title"
         size="medium"
         weight="bold"
-        appearance={ComponentAppearance.GRAY}
+        appearance={EComponentAppearance.GRAY}
       >
-        {` ${
-          ERequestMission[requestType as keyof typeof ERequestMission] ??
+        {` ${ERequestMission[requestType as keyof typeof ERequestMission] ??
           requestType
-        }`}
+          }`}
       </Text>
       <Divider dashed />
     </Stack>

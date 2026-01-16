@@ -1,8 +1,17 @@
-import { useDecisionModal } from "@hooks/design/useDecisionModal";
-import { detailsModal } from "@config/details";
-import { ComponentAppearance } from "@ptypes/aparences.types";
-import { IDecisionModal } from "@ptypes/modals/decisionModal/IDecisionModal";
-import { DecisionModalUI } from "./interface";
+import {
+  Date,
+  Divider,
+  Icon,
+  Stack,
+  Text,
+  useMediaQuery,
+} from "@inubekit/inubekit";
+import { EComponentAppearance } from "@enum/appearances";
+import { mediaQueryMobile } from "@config/environment";
+import { basic } from "@design/tokens";
+
+import { ModalWrapper } from "../modalWrapper";
+import { IDecisionModal } from "@src/types/modals/decisionModal/IDecisionModal";
 
 const DecisionModal = (props: IDecisionModal) => {
   const {
@@ -10,58 +19,90 @@ const DecisionModal = (props: IDecisionModal) => {
     icon = <></>,
     withIcon = false,
     description,
-    isLoading = false,
-    justificationOfDecision = false,
-    portalId,
+    loading = false,
+    sizeIcon = "60px",
+    portalId = "portal",
     title,
-    appearance = ComponentAppearance.PRIMARY,
+    appearance = EComponentAppearance.PRIMARY,
+    appearanceButton = EComponentAppearance.PRIMARY,
+    withCancelButton = true,
+    moreDetails,
+    withDate,
+    onDateChange,
+    statusDate,
+    valueDate,
+    messageDate,
+    isDisabledButton = false,
+    changeZIndex,
+    subtitle,
+    onBlurDate,
     onClick,
     onCloseModal,
-    setFieldEntered,
-    showCancelButton = true,
-    withCancelButton = true,
-    subtitle,
-    withDivider = false,
   } = props;
 
-  const { formik, isMobile, isMobileTextarea, getFieldState, comparisonData } =
-    useDecisionModal({
-      justificationOfDecision,
-      setFieldEntered,
-    });
-
-  const node = document.getElementById(portalId);
-  if (!node) {
-    throw new Error(
-      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
-    );
-  }
+  const isMobile = useMediaQuery(mediaQueryMobile);
 
   return (
-    <DecisionModalUI
-      actionText={actionText}
-      appearance={appearance}
-      comparisonData={comparisonData}
-      description={description}
-      formik={formik}
-      icon={icon}
-      isLoading={isLoading}
-      justificationOfDecision={justificationOfDecision}
-      onClick={onClick}
-      onCloseModal={onCloseModal}
+    <ModalWrapper
       portalId={portalId}
-      title={title}
-      withIcon={withIcon}
+      width={isMobile ? "335px" : "450px"}
       isMobile={isMobile}
-      isMobileTextarea={isMobileTextarea}
-      getFieldState={getFieldState}
-      showCancelButton={showCancelButton}
+      labelActionButton={actionText}
+      labelCloseButton="Cancelar"
+      labelCloseModal="Cerrar"
+      title={title}
       withCancelButton={withCancelButton}
-      cancelButton={detailsModal.buttonCancel}
-      withButton={detailsModal.buttonClear}
-      subtitle={subtitle}
-      withDivider={withDivider}
-    />
+      onCloseModal={onCloseModal}
+      onClick={onClick ?? (() => void 0)}
+      loading={loading}
+      disabled={isDisabledButton}
+      appearanceButton={appearanceButton}
+      changeZIndex={changeZIndex}
+    >
+      {withIcon && (
+        <Stack width="100%" alignItems="center" justifyContent="center">
+          <Icon icon={icon} appearance={appearance} size={sizeIcon} />
+        </Stack>
+      )}
+      {subtitle && (
+        <Text appearance={EComponentAppearance.DARK} size="large">
+          {subtitle}
+        </Text>
+      )}
+
+      <Text
+        appearance={
+          moreDetails ? EComponentAppearance.GRAY : EComponentAppearance.DARK
+        }
+        type="body"
+        size="medium"
+      >
+        {description}
+      </Text>
+
+      {withDate && (
+        <Date
+          id="date"
+          name="date"
+          onChange={onDateChange}
+          status={statusDate}
+          value={valueDate}
+          size="compact"
+          message={messageDate}
+          fullwidth
+          onBlur={onBlurDate}
+        />
+      )}
+
+      {moreDetails && (
+        <Stack direction="column" gap={basic.spacing.s200}>
+          <Divider dashed />
+          <Text size="medium" appearance={EComponentAppearance.DARK}>
+            {moreDetails}
+          </Text>
+        </Stack>
+      )}
+    </ModalWrapper>
   );
 };
 

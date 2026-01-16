@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { useSaveUsers } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useSaveUsers";
 import { ISaveDataRequest } from "@src/types/saveData/ISaveDataRequest";
 import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
+import { useModalAddGeneral } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
 
 const AddUser = () => {
   const { appData } = useContext(AuthAndData);
@@ -61,6 +62,11 @@ const AddUser = () => {
     handleCloseRequestStatus,
     handleCloseProcess,
     handleClosePendingReqModal,
+    errorFetchRequest,
+    networkError, loadingSendData,
+    hasError,
+    errorData,
+    handleToggleErrorModal,
   } = useSaveUsers({
     useCase: EUseCase.ADD,
     businessUnits: appData.businessUnit.publicCode,
@@ -72,7 +78,17 @@ const AddUser = () => {
     setShowModal,
   });
 
-
+  const { modalData, showDecision } = useModalAddGeneral({
+    showGoBackModal,
+    loading: loadingSendData,
+    hasError,
+    errorData,
+    networkError,
+    errorFetchRequest,
+    handleCloseModal: handleGoBackModal,
+    handleGoBack: onGoBack,
+    handleToggleErrorModal,
+  });
   return (
     <AddUserUI
       currentStep={currentStep}
@@ -81,9 +97,7 @@ const AddUser = () => {
       isCurrentFormValid={isCurrentFormValid}
       title={title}
       steps={steps}
-      showGoBackModal={showGoBackModal}
       handleModal={handleGoBackModal}
-      onGoBack={onGoBack}
       smallScreen={smallScreen}
       assistedLength={assistedLength as "small" | "large"}
       onNextStep={handleNextStep}
@@ -108,6 +122,8 @@ const AddUser = () => {
       onClosePendingReqModal={handleClosePendingReqModal}
       onSubmit={handleSubmit}
       showModal={showModal}
+      modalData={modalData}
+      showDecision={showDecision}
     />
   );
 };

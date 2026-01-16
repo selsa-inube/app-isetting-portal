@@ -6,9 +6,9 @@ import React, { Dispatch, SetStateAction } from "react";
 import { IPositionByBusinessUnit } from "../forms/ByBusinessUnit/IPositionByBusinessUnit";
 import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
 import { IRequestSteps } from "@src/types/requestsInProgress/IRequestSteps";
+import { IModalData } from "../IModalData";
 
 interface IAddUserUI {
-  showGoBackModal: boolean;
   smallScreen: boolean;
   showMissionNameModal: boolean;
   title: string;
@@ -22,7 +22,6 @@ interface IAddUserUI {
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   formReferences: IFormsAddUserGeneralFormRefs;
   initialValues: IGeneralUserFormValues;
-  onGoBack: () => void;
   assistedLength: IAssistedSize;
   onToggleModal: () => void;
   onToggleMissionModal: () => void;
@@ -41,5 +40,7 @@ interface IAddUserUI {
   onClosePendingReqModal: () => void;
   selectRolesByBusinessUnit: Dispatch<SetStateAction<IFormEntry[]>>;
   onSubmit: () => void;
+  modalData: IModalData;
+  showDecision: boolean;
 }
 export type { IAddUserUI };

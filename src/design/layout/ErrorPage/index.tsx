@@ -14,7 +14,8 @@ import {
 } from "./styles";
 
 import { basic } from "@design/tokens";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
+
 import { errorCodes } from "@config/errorCodes";
 import { IErrorPage } from "@ptypes/design/IErrorPage";
 
@@ -60,7 +61,7 @@ const ErrorPage = (props: IErrorPage) => {
             type="headline"
             weight="bold"
             size={matches["(max-width: 770px)"] ? "medium" : "large"}
-            appearance={ComponentAppearance.DARK}
+            appearance={EComponentAppearance.DARK}
           >
             {heading}
           </Text>
@@ -81,7 +82,7 @@ const ErrorPage = (props: IErrorPage) => {
               type="title"
               size="large"
               weight="bold"
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
             >
               ¿Qué salió mal?
             </Text>
@@ -91,7 +92,7 @@ const ErrorPage = (props: IErrorPage) => {
                   <Text
                     type="title"
                     size="small"
-                    appearance={ComponentAppearance.GRAY}
+                    appearance={EComponentAppearance.GRAY}
                   >
                     {item}
                   </Text>
@@ -107,7 +108,7 @@ const ErrorPage = (props: IErrorPage) => {
               type="title"
               size="large"
               weight="bold"
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
             >
               ¿Cómo solucionarlo?
             </Text>
@@ -117,7 +118,7 @@ const ErrorPage = (props: IErrorPage) => {
                   <Text
                     type="title"
                     size="small"
-                    appearance={ComponentAppearance.GRAY}
+                    appearance={EComponentAppearance.GRAY}
                   >
                     {item}
                   </Text>

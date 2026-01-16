@@ -7,17 +7,17 @@ import { GeneralInformationForm } from "./forms/generalInformation";
 
 import { DecisionModal } from "@design/modals/decisionModal";
 import { addUserUIConfig } from "@config/users/addUsers/addUserUI";
-import { goBackModal } from "@config/goBackModal";
 import { IAddUserUI } from "@ptypes/users/tabs/userTab/addUser/IAddUserUI";
 import { crumbsAddUser } from "@config/users/addUsers/navigation";
 import { MissionForStaffForm } from "./forms/misionForStaff";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { MdOutlineWarningAmber } from "react-icons/md";
 import { ContactDataForm } from "./forms/contactData";
 import { BusinessEntityForm } from "./forms/businessEntity";
 import { PositionByBusinessUnit } from "./forms/positionByBusinessUnit";
 import { RolesByBusinessUnit } from "./forms/rolesByBusinessUnit";
 import { AddUserVerificationForm } from "./forms/verificationForm";
+import { portalId } from "@src/config/portalId";
+import { EComponentAppearance } from "@src/enum/appearances";
 
 const AddUserUI = (props: IAddUserUI) => {
   const {
@@ -27,9 +27,7 @@ const AddUserUI = (props: IAddUserUI) => {
     isCurrentFormValid,
     title,
     steps,
-    showGoBackModal,
     smallScreen,
-    onGoBack,
     handleModal,
     assistedLength,
     onNextStep,
@@ -54,6 +52,8 @@ const AddUserUI = (props: IAddUserUI) => {
     onClosePendingReqModal,
     onSubmit,
     showModal,
+    modalData,
+    showDecision,
   } = props;
   return (
     <Stack
@@ -175,14 +175,19 @@ const AddUserUI = (props: IAddUserUI) => {
           </Stack>
         </Stack>
       </Stack>
-      {showGoBackModal && (
+      {showDecision && (
         <DecisionModal
-          portalId="portal"
-          title={goBackModal.title}
-          description={goBackModal.description}
-          actionText={goBackModal.actionText}
-          onCloseModal={handleModal}
-          onClick={onGoBack}
+          portalId={portalId}
+          title={modalData.title}
+          description={modalData.description}
+          actionText={modalData.actionText}
+          onCloseModal={modalData.onCloseModal}
+          onClick={modalData.onClick}
+          withCancelButton={modalData.withCancelButton}
+          withIcon={modalData.withIcon}
+          icon={modalData.icon}
+          appearance={modalData.appearance}
+          appearanceButton={modalData.appearanceButton}
         />
       )}
       {showMissionNameModal && (
@@ -196,9 +201,8 @@ const AddUserUI = (props: IAddUserUI) => {
           onClick={onToggleMissionModal}
           withIcon
           icon={<MdOutlineWarningAmber />}
-          appearance={ComponentAppearance.WARNING}
-          withDivider
-          showCancelButton={false}
+          appearance={EComponentAppearance.WARNING}
+          withCancelButton={false}
         />
       )}
     </Stack>

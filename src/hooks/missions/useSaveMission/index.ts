@@ -18,6 +18,9 @@ import { requestStatusMessage } from "@config/missions/missionTab/generic/reques
 import { IUseSaveMission } from "@ptypes/hooks/missions/IUseSaveMission";
 import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
+import { IRequestMissions } from "@src/types/missions/assisted/IRequestMissions";
+import { AuthAndData } from "@src/context/authAndDataProvider";
+import { postAddMission } from "@src/services/missions/addMission/postAddMission";
 
 const useSaveMission = (props: IUseSaveMission) => {
   const {
@@ -36,11 +39,12 @@ const useSaveMission = (props: IUseSaveMission) => {
   const { addFlag } = useFlag();
   const [requestSteps, setRequestSteps] =
     useState<IRequestSteps[]>(requestStepsInitial);
+  const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [showPendingReqModal, setShowPendingReqModal] = useState(false);
   const [loadingSendData, setLoadingSendData] = useState(false);
-  const [errorFetchRequest] = useState(false);
+  const [errorFetchRequest, setErrorFetchRequest] = useState(false);
   const { setChangeTab } = useContext(ChangeToRequestTab);
-
+  const { appData } = useContext(AuthAndData);
   const navigate = useNavigate();
   const navigatePage = "/missions";
 
@@ -73,10 +77,52 @@ const useSaveMission = (props: IUseSaveMission) => {
     return status ? statusFlowAutomatic.includes(status) : false;
   };
 
+  const requestConfiguration = {
+    configurationRequestData: data?.configurationRequestData,
+    settingRequest: {
+      requestNumber: saveMission?.requestNumber,
+      settingRequestId: saveMission?.settingRequestId,
+      requestStatus: saveMission?.requestStatus,
+      staffName: saveMission?.staffName,
+    },
+  };
+
+  const fetchRequestData = async () => {
+    try {
+      if (useCase === EUseCase.ADD) {
+        setShowRequestProcessModal(true);
+
+        const newData = await postAddMission(
+          appData.businessUnit.publicCode,
+          userAccount,
+          requestConfiguration as unknown as IRequestMissions,
+          appData.businessManager.publicCode
+        );
+        setStatusRequest(newData.settingRequest?.requestStatus);
+      }
+      if (useCase === EUseCase.DELETE) {
+      }
+      if (useCase === EUseCase.EDIT) {
+      }
+    } catch (error) {
+      console.info(error);
+      setErrorFetchRequest(true);
+      setSendData(false);
+      addFlag({
+        title: flowAutomaticMessages().errorQueryingData.title,
+        description: flowAutomaticMessages().errorQueryingData.description,
+        appearance: flowAutomaticMessages().errorQueryingData
+          .appearance as IFlagAppearance,
+        duration: flowAutomaticMessages().errorQueryingData.duration,
+      });
+      setShowModal(false);
+    }
+  };
+
   const updateRequestSteps = (
     steps: IRequestSteps[],
     stepName: string,
-    newStatus: ERequestStepsStatus,
+    newStatus: ERequestStepsStatus
   ): IRequestSteps[] => {
     return steps.map((step) => {
       if (step.name === stepName) {
@@ -106,8 +152,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.requestFilled,
-            ERequestStepsStatus.ERROR,
-          ),
+            ERequestStepsStatus.ERROR
+          )
         );
         setSendData(false);
       } else {
@@ -115,8 +161,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.requestFilled,
-            ERequestStepsStatus.COMPLETED,
-          ),
+            ERequestStepsStatus.COMPLETED
+          )
         );
       }
     }, 1500);
@@ -126,8 +172,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            ERequestStepsStatus.COMPLETED,
-          ),
+            ERequestStepsStatus.COMPLETED
+          )
         );
       }
 
@@ -136,15 +182,15 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            ERequestStepsStatus.COMPLETED,
-          ),
+            ERequestStepsStatus.COMPLETED
+          )
         );
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
             requestStepsNames.requestAdded,
-            ERequestStepsStatus.COMPLETED,
-          ),
+            ERequestStepsStatus.COMPLETED
+          )
         );
       }
 
@@ -153,8 +199,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-           ERequestStepsStatus.ERROR,
-          ),
+            ERequestStepsStatus.ERROR
+          )
         );
       }
     }, 2000);
@@ -221,6 +267,30 @@ const useSaveMission = (props: IUseSaveMission) => {
   }, [sendData]);
 
   useEffect(() => {
+    if (!saveMission?.requestStatus) return;
+
+    const status = saveMission.requestStatus;
+
+    if (isStatusIntAutomatic(status)) {
+      fetchRequestData();
+    } else {
+      setShowPendingReqModal(true);
+    }
+  }, [saveMission?.requestStatus]);
+
+  useEffect(() => {
+    if (showRequestProcessModal) {
+      changeRequestSteps();
+    }
+    if (isStatusCloseModal() || isStatusRequestFinished()) {
+      setTimeout(() => {
+        handleStatusChange();
+        setSendData(false);
+      }, 30000);
+    }
+  }, [statusRequest]);
+
+  useEffect(() => {
     if (isStatusIntAutomatic(saveMission?.requestStatus)) {
       setStatusRequest("");
     }
@@ -252,15 +322,13 @@ const useSaveMission = (props: IUseSaveMission) => {
   };
 
   const showRequestProcess = sendData && saveMission;
-  const showRequestStatus =
-    showPendingReqModal && saveMission?.requestNumber;
+  const showRequestStatus = showPendingReqModal && saveMission?.requestNumber;
 
   const {
     title: titleRequest,
     description: descriptionRequest,
     actionText: actionTextRequest,
   } = requestStatusMessage(saveMission?.staffName);
-
   return {
     saveMission,
     requestSteps,
@@ -271,6 +339,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     titleRequest,
     descriptionRequest,
     actionTextRequest,
+    setShowRequestProcessModal,
     handleCloseProcess,
     handleCloseRequestStatus,
     handleClosePendingReqModal,

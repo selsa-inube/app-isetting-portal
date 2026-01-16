@@ -1,6 +1,6 @@
 import { Breadcrumbs, Stack, Tabs } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { Title } from "@design/label/Title";
 import { RequestProcess } from "@design/feedback/requestProcess";
@@ -23,8 +23,8 @@ const EditMissionUI = (props: IEditMissionUI) => {
     initialValues,
     saveMission,
     isSelected,
-    loading, 
-    showGeneralInfo,   
+    loading,
+    showGeneralInfo,
     showEditedModal,
     showGoBackModal,
     onToggleEditedModal,
@@ -68,7 +68,7 @@ const EditMissionUI = (props: IEditMissionUI) => {
             selectedTab={isSelected}
             onChange={onTabChange}
           />
-          { showGeneralInfo && (
+          {showGeneralInfo && (
             <Stack direction="column">
               <GeneralInformationForm
                 ref={generalInformationRef}
@@ -92,10 +92,10 @@ const EditMissionUI = (props: IEditMissionUI) => {
           actionText={sendEditedModal.actionText}
           onCloseModal={onToggleEditedModal}
           onClick={onEditedModal}
-          isLoading={loading}
+          loading={loading}
         />)}
 
-         {showGoBackModal && (
+      {showGoBackModal && (
         <DecisionModal
           portalId={portalId}
           title={goBackModal.title}
@@ -106,14 +106,14 @@ const EditMissionUI = (props: IEditMissionUI) => {
         />
       )}
 
-      { showRequestProcess && (
+      {showRequestProcess && (
         <RequestProcess
           portalId={DecisionModalLabel.portalId}
           saveData={saveMission}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
           requestProcessSteps={requestSteps}
-          appearance={ComponentAppearance.SUCCESS}
+          appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={onCloseRequestStatus}
           onCloseProcess={onCloseProcess}
         />
@@ -131,7 +131,7 @@ const EditMissionUI = (props: IEditMissionUI) => {
           onCloseModal={onClosePendingReqModal}
           loading={false}
           actionText={requestStatusMessage(saveMission.responsible).actionText}
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
         />
       )}
     </Stack>

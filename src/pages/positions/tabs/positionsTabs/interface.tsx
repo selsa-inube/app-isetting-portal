@@ -11,7 +11,7 @@ import { tabLabels } from "@config/tabLabels";
 import { positionsTabLabels } from "@config/positions/positionTitle";
 import { Table } from "@design/table";
 import { IEntry } from "@ptypes/design/table/IEntry";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { StyledButtonWrapper } from "./styles";
 
 const PositionsTabUI = (props: IPositionsTabUI) => {
@@ -21,7 +21,7 @@ const PositionsTabUI = (props: IPositionsTabUI) => {
     loading,
     data,
     smallScreen,
-    columnWidths, 
+    columnWidths,
     setEntryDeleted,
   } = props;
 
@@ -36,7 +36,7 @@ const PositionsTabUI = (props: IPositionsTabUI) => {
             <Text
               type="title"
               size="medium"
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
               ellipsis
             >
               {positionsTabLabels.description}
@@ -84,7 +84,7 @@ const PositionsTabUI = (props: IPositionsTabUI) => {
               <Text
                 type="title"
                 size={smallScreen ? "small" : "medium"}
-                appearance={ComponentAppearance.DARK}
+                appearance={EComponentAppearance.DARK}
                 ellipsis
               >
                 {positionsTabLabels.description}

@@ -7,7 +7,8 @@ import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { basic } from "@design/tokens";
 import { useVerification } from "@hooks/missions/useVerificationForm";
 import { Accordion } from "@design/data/acordion";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
+
 import { verificationLabels } from "@config/missions/missionTab/assisted/verification";
 import { IVerificationForm } from "@ptypes/missions/assisted/IVerificationForm";
 import { requestStatusMessage } from "@config/request/requestStatusMessage";
@@ -65,7 +66,7 @@ const VerificationForm = (props: IVerificationForm) => {
             <Button
               iconBefore={<MdOutlineArrowBack />}
               onClick={() => handleStepChange(step.number)}
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
               variant="none"
             >
               {verificationLabels.returnStep}
@@ -77,7 +78,7 @@ const VerificationForm = (props: IVerificationForm) => {
         <Button
           fullwidth={isMobile}
           onClick={onPreviousStep}
-          appearance={ComponentAppearance.GRAY}
+          appearance={EComponentAppearance.GRAY}
         >
           {verificationLabels.previous}
         </Button>
@@ -85,7 +86,7 @@ const VerificationForm = (props: IVerificationForm) => {
         <Button
           fullwidth={isMobile}
           onClick={onToggleModal}
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
         >
           {verificationLabels.finally}
         </Button>
@@ -108,7 +109,7 @@ const VerificationForm = (props: IVerificationForm) => {
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
           requestProcessSteps={requestSteps}
-          appearance={ComponentAppearance.SUCCESS}
+          appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={onCloseRequestStatus}
           onCloseProcess={onCloseProcess}
         />
@@ -127,7 +128,7 @@ const VerificationForm = (props: IVerificationForm) => {
           actionText={
             requestStatusMessage(saveMission.staffName).actionText
           }
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
           loading={loading}
         />
       )}

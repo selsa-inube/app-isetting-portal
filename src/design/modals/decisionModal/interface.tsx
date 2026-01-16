@@ -9,7 +9,7 @@ import {
   Divider,
 } from "@inubekit/inubekit";
 import { IDecisionModalUI } from "@ptypes/IDecisionModal";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { basic } from "@design/tokens";
 import { StyledContainerButton, StyledModal } from "./styles";
 
@@ -45,19 +45,19 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
             <Text
               type="headline"
               size="small"
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
             >
               {title}
             </Text>
             <StyledContainerButton>
               <Button
                 spacing="compact"
-                appearance={ComponentAppearance.DARK}
+                appearance={EComponentAppearance.DARK}
                 variant="none"
                 onClick={onCloseModal}
                 iconAfter={
                   <Icon
-                    appearance={ComponentAppearance.DARK}
+                    appearance={EComponentAppearance.DARK}
                     icon={<MdClear />}
                   />
                 }
@@ -74,7 +74,7 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
         )}
         {subtitle && (
           <Text
-            appearance={ComponentAppearance.DARK}
+            appearance={EComponentAppearance.DARK}
             type="body"
             size="large"
             weight="bold"
@@ -83,7 +83,7 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
           </Text>
         )}
         {withDivider && <Divider dashed />}
-        <Text appearance={ComponentAppearance.GRAY} type="body" size="medium">
+        <Text appearance={EComponentAppearance.GRAY} type="body" size="medium">
           {description}
         </Text>
 
@@ -91,7 +91,7 @@ const DecisionModalUI = (props: IDecisionModalUI) => {
           {showCancelButton && (
             <Button
               spacing="wide"
-              appearance={ComponentAppearance.GRAY}
+              appearance={EComponentAppearance.GRAY}
               variant="filled"
               onClick={onCloseModal}
             >

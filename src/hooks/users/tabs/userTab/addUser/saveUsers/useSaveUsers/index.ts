@@ -37,7 +37,7 @@ const useSaveUsers = (props: IUseSaveUsers) => {
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
-  const navigatePage = "/";
+  const navigatePage = "/users";
 
   const fetchSaveGeneralData = async () => {
     setLoadingSendData(true);

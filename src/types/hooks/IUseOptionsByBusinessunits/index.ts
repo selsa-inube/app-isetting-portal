@@ -1,7 +1,7 @@
-interface IUseOptionsByBusinessunits {
+interface IUseOptionsByBusinessUnit {
+  businessUnit: string;
   staffPortalId: string;
-  businessUnitSigla: string;
   optionName?: string;
 }
 
-export type { IUseOptionsByBusinessunits };
+export type { IUseOptionsByBusinessUnit };

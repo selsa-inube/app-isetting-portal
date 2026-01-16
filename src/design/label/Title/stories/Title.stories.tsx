@@ -8,7 +8,7 @@ const meta: Meta<typeof Title> = {
   title: "data/Title",
   component: Title,
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>

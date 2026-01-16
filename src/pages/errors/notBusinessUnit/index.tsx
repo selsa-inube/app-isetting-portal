@@ -1,14 +1,14 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useLogout } from "@hooks/authentication/useLogout";
 import { ErrorPage } from "@design/layout/ErrorPage";
 import { enviroment } from "@config/environment";
+import { useIAuth } from "@inube/iauth-react";
+import { useClearLocalStorage } from "@hooks/authentication/useClearLocalStorage";
 
-const NotBusinessUnit = () => {
-  const { logout } = useAuth0();
+function NotBusinessUnit() {
+  const { logout } = useIAuth();
 
-  useLogout();
+  useClearLocalStorage();
 
-  const handleLogout = () => {
+  const handlelogout = () => {
     logout({ logoutParams: { returnTo: enviroment.REDIRECT_URI } });
   };
 
@@ -16,9 +16,9 @@ const NotBusinessUnit = () => {
     <ErrorPage
       errorCode={1004}
       heading="No hay resultados..."
-      onClick={handleLogout}
+      onClick={handlelogout}
     />
   );
-};
+}
 
 export { NotBusinessUnit };

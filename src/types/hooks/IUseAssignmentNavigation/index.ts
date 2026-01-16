@@ -10,7 +10,7 @@ interface IUseAssignmentNavigation {
   initialValues: IAddAssignmentForms;
   formValues: IAddAssignmentForms;
   showModal: boolean;
-  officialInChargeRef: React.RefObject<FormikProps<IOfficialInChargeEntry>>;
+  officialInChargeRef: React.RefObject<FormikProps<IOfficialInChargeEntry> | null>;
   selectedToggle: IBusinessEntry[];
   absentOfficial: string;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;

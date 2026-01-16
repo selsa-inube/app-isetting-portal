@@ -8,7 +8,7 @@ import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
 import { basic } from "@design/tokens";
 
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IUseContactDataForm } from "@ptypes/hooks/IUseContactDataForm";
 import { contactDataConfig } from "@config/users/addUsers/form/contactData";
 
@@ -30,7 +30,7 @@ const useContactDataForm = (props: IUseContactDataForm) => {
     });
 
   const validationSchema = createValidationSchema();
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
   const [isDisabledButton, setIsDisabledButton] = useState(false);
   const mobilePadding = isMobile ? basic.spacing.s150 : basic.spacing.s300;
   const formik = useFormik({

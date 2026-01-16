@@ -5,7 +5,7 @@ import { object } from "yup";
 
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { addAssignmentsLabels } from "@config/assignments/assisted/addAssignmentsLabels";
 import { useAssignmentsData } from "../useAssignmentsData";
 import { IUseOfficialInChargeForm } from "@ptypes/assignments/assisted/IUseOfficialInChargeForm";
@@ -51,7 +51,7 @@ const useOfficialInChargeForm = (props: IUseOfficialInChargeForm) => {
     setOfficialInChargeOptions(options);
   }, [absentOfficialOptions]);
 
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
 
   useImperativeHandle(ref, () => formik);
 

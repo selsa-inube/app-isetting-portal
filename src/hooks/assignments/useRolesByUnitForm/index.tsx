@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { addAssignmentsLabels } from "@config/assignments/assisted/addAssignmentsLabels";
 import { rolesByUnitLabels } from "@config/assignments/assisted/rolesByUnitLabels";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IRolesByUnitEntry } from "@ptypes/assignments/assisted/IRolesByUnitEntry";
 import { IUseRolesByUnitForm } from "@ptypes/hooks/IUseRolesByUnitForm";
 
 const useRolesByUnitForm = (props: IUseRolesByUnitForm) => {
   const { entries, editDataOption, setRolesSelected } = props;
   const [isDisabledButton, setIsDisabledButton] = useState<boolean>(false);
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
   const [rolesByBusinessUnit, setRolesByBusinessUnit] =
     useState<IRolesByUnitEntry[]>(entries);
 

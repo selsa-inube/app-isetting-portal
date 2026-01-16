@@ -5,9 +5,9 @@ import { IGetUseCaseForStaff } from "@ptypes/staffPortal/IGetUseCaseForStaff";
 import { iportalStaffAxiosInstance } from "@api/iportalStaff";
 
 const getUseCaseForStaff = async (
-  businessUnit: string,
   userAccount: string,
-  businessManagerCode: string
+  businessManagerCode: string,
+  _businessUnit?: string
 ): Promise<string[]> => {
   const config: AxiosRequestConfig = {
     headers: {
@@ -18,7 +18,7 @@ const getUseCaseForStaff = async (
 
   const queryParams = new URLSearchParams({
     businessManagerCode: businessManagerCode,
-    businessUnitCode: businessUnit,
+    businessUnitCode: "test",
   });
 
   const data: IGetUseCaseForStaff = await getWithRetries<IGetUseCaseForStaff>(

@@ -10,7 +10,8 @@ import {
   useMediaQuery,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
+
 import { StyledModal } from "./styles";
 import { IRequestStatusModal } from "@ptypes/design/IRequestStatusModal";
 import { modalsLabels } from "@config/modalsLabels";
@@ -49,12 +50,12 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
 
             <Button
               spacing="compact"
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
               variant="none"
               onClick={onCloseModal}
               iconAfter={
                 <Icon
-                  appearance={ComponentAppearance.DARK}
+                  appearance={EComponentAppearance.DARK}
                   icon={<MdClear />}
                 />
               }
@@ -68,7 +69,7 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
         <Stack alignItems="center" justifyContent="center">
           <Icon
             icon={<MdCheckCircle />}
-            appearance={ComponentAppearance.SUCCESS}
+            appearance={EComponentAppearance.SUCCESS}
             size="68px"
           />
         </Stack>
@@ -77,7 +78,7 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
           <Stack justifyContent="center">
             <Text
               textAlign="center"
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
               size="large"
               weight="bold"
             >
@@ -85,7 +86,7 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
             </Text>
           </Stack>
 
-          <Text appearance={ComponentAppearance.GRAY} size="medium">
+          <Text appearance={EComponentAppearance.GRAY} size="medium">
             {description}
           </Text>
         </Stack>

@@ -1,12 +1,14 @@
-import { IAssistedSize, IAssistedStep, IOption } from "@inubekit/inubekit";
+import { IAssistedSize, IAssistedStep } from "@inubekit/inubekit";
 import { IFormsAddUserGeneralFormRefs } from "../forms/IGeneralFormValues/ref";
 import { IGeneralUserFormValues } from "../forms/IGeneralFormValues";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import React, { Dispatch, SetStateAction } from "react";
 import { IPositionByBusinessUnit } from "../forms/ByBusinessUnit/IPositionByBusinessUnit";
+import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
+import { IRequestSteps } from "@src/types/requestsInProgress/IRequestSteps";
+import { IModalData } from "../IModalData";
 
 interface IAddUserUI {
-  showGoBackModal: boolean;
   smallScreen: boolean;
   showMissionNameModal: boolean;
   title: string;
@@ -20,7 +22,6 @@ interface IAddUserUI {
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   formReferences: IFormsAddUserGeneralFormRefs;
   initialValues: IGeneralUserFormValues;
-  onGoBack: () => void;
   assistedLength: IAssistedSize;
   onToggleModal: () => void;
   onToggleMissionModal: () => void;
@@ -29,6 +30,17 @@ interface IAddUserUI {
   positionsByBusinessUnit: Record<string, IPositionByBusinessUnit>;
   selectPositionsByBusinessUnit: (name: string, value: string) => void;
   rolesByBusinessUnit: IFormEntry[];
+  saveUsers: ISaveDataResponse;
+  requestSteps: IRequestSteps[];
+  showPendingReqModal: boolean;
+  showRequestProcessModal: boolean;
+  showModal: boolean;
+  onCloseRequestStatus: () => void;
+  onCloseProcess: () => void;
+  onClosePendingReqModal: () => void;
   selectRolesByBusinessUnit: Dispatch<SetStateAction<IFormEntry[]>>;
+  onSubmit: () => void;
+  modalData: IModalData;
+  showDecision: boolean;
 }
 export type { IAddUserUI };

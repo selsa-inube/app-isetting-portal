@@ -15,7 +15,10 @@ const MissionsTab = () => {
     smallScreen,
     label,
     searchPosition,
-    columnWidths, 
+    columnWidths,
+    disabledButton,
+    showInfoModal,
+    handleToggleInfoModal,
     handleSearchPositions,
   } = useMissionsTab();
 
@@ -27,8 +30,11 @@ const MissionsTab = () => {
       data={missionsData}
       smallScreen={smallScreen}
       label={label}
-      setEntryDeleted={() => {}}
+      setEntryDeleted={() => { }}
       columnWidths={columnWidths}
+      disabledButton={disabledButton}
+      showInfoModal={showInfoModal}
+      handleToggleInfoModal={handleToggleInfoModal}
     />
   );
 };

@@ -1,12 +1,13 @@
 import { BrowserRouter } from "react-router-dom";
-import { StoryFn } from "@storybook/react";
-import { FilterModal, IFilterModal } from ".";
+import type { Meta, StoryObj } from "@storybook/react";
 
-const story = {
-  component: FilterModal,
+import { FilterModal } from ".";
+
+const meta: Meta<typeof FilterModal> = {
   title: "modals/FilterModal",
+  component: FilterModal,
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -14,20 +15,21 @@ const story = {
   ],
 };
 
-const Template: StoryFn<IFilterModal> = (args) => <FilterModal {...args} />;
+export default meta;
 
-const Default = Template.bind({});
-Default.args = {
-  actionText: "Filtrar",
-  appearance: "primary",
-  portalId: "portal",
-  title: "Filtrar",
-  options: [
-    { label: "Aplicación 1", id: "app1", checked: false },
-    { label: "Aplicación 2", id: "app2", checked: false },
-    { label: "Aplicación 3", id: "app3", checked: false },
-  ],
-  selectedOptions: [],
+type Story = StoryObj<typeof FilterModal>;
+
+export const Default: Story = {
+  args: {
+    actionText: "Filtrar",
+    appearance: "primary",
+    portalId: "portal",
+    title: "Filtrar",
+    options: [
+      { label: "Aplicación 1", id: "app1", checked: false },
+      { label: "Aplicación 2", id: "app2", checked: false },
+      { label: "Aplicación 3", id: "app3", checked: false },
+    ],
+    selectedOptions: [],
+  },
 };
-export { Default };
-export default story;

@@ -2,7 +2,7 @@ import { useState, useMemo, useContext } from "react";
 
 import { useMediaQuery } from "@inubekit/inubekit";
 
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { useValidateUseCase } from "@hooks/useValidateUseCase";
 import { EUseCaseTypes } from "@enum/useCaseTypes";
 import { addUserPath } from "@config/users/addUsers/path";
@@ -33,7 +33,7 @@ const useSearchAndPageControlUser = () => {
   const handleSearchService = (value: React.ChangeEvent<HTMLInputElement>) => {
     setSearchService(value.target.value);
   };
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const direction = smallScreen ? "column-reverse" : "column";
 
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);

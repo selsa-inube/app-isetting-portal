@@ -2,7 +2,7 @@ import { MdOutlineClear } from "react-icons/md";
 import { Icon, Stack } from "@inubekit/inubekit";
 import { StyledContent } from "./styles";
 import { MenuItem } from "./menuItem";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { basic } from "@design/tokens";
 import { IMenu } from "@ptypes/design/IMenu";
 
@@ -32,7 +32,7 @@ const Menu = (props: IMenu) => {
         <Icon
           icon={<MdOutlineClear />}
           size="16px"
-          appearance={ComponentAppearance.DARK}
+          appearance={EComponentAppearance.DARK}
           onClick={onClose}
           cursorHover
         />

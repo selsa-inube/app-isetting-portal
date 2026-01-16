@@ -6,7 +6,7 @@ import { ToggleGroup } from "./toggleGroup";
 import { BorderStack } from "@design/layout/borderStack";
 import { searchLabels } from "@config/searchLabels";
 import { EComponentAppearance } from "@enum/appearances";
-import { Checkpicker } from "@isettingkit/business-rules";
+import { Checkpicker } from "@inubekit/inubekit";
 import { ToggleTableGroup } from "./tableGroup";
 
 const AssignmentFormUI = (props: IAssignmentFormUI) => {

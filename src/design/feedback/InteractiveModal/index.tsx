@@ -10,7 +10,7 @@ import {
   Divider,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IInteractiveModal } from "@ptypes/interactiveModal/InteractiveModalProps";
 import { BorderStack } from "@design/layout/borderStack";
 import { EComponentAppearance } from "@enum/appearances";
@@ -18,7 +18,7 @@ import { EComponentAppearance } from "@enum/appearances";
 const InteractiveModal = (props: IInteractiveModal) => {
   const { children, closeModal, title, width, height, portalId, infoText } =
     props;
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const node = document.getElementById(portalId);
 
   if (!node) {

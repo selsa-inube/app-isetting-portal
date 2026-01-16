@@ -11,8 +11,8 @@ import {
   Tag,
 } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { ComponentAppearance } from "@ptypes/aparences.types";
-import { enviroment } from "@config/environment";
+import { EComponentAppearance } from "@enum/appearances";
+import { mediaQueryTabletMain } from "@config/environment";
 import { MultipleChoices } from "@design/navigation/MultipleChoices";
 import { IFilterModal } from "@ptypes/design/IFilterModal";
 import {
@@ -36,7 +36,7 @@ const FilterModal = (props: IFilterModal) => {
     setSelectedOptions,
   } = props;
 
-  const isMobile = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
 
   const node = document.getElementById(portalId);
 
@@ -67,12 +67,12 @@ const FilterModal = (props: IFilterModal) => {
             <StyledContainerButton>
               <Button
                 spacing="compact"
-                appearance={ComponentAppearance.DARK}
+                appearance={EComponentAppearance.DARK}
                 variant="none"
                 onClick={onCloseModal}
                 iconAfter={
                   <Icon
-                    appearance={ComponentAppearance.DARK}
+                    appearance={EComponentAppearance.DARK}
                     icon={<MdClear />}
                   />
                 }
@@ -123,7 +123,7 @@ const FilterModal = (props: IFilterModal) => {
         <Stack gap={basic.spacing.s250} justifyContent="flex-end">
           <Button
             spacing="wide"
-            appearance={ComponentAppearance.GRAY}
+            appearance={EComponentAppearance.GRAY}
             variant="filled"
             onClick={isSmallScreen ? handleClearFilters : onCloseModal}
             iconBefore={isSmallScreen ? <MdOutlineFilterAltOff /> : undefined}

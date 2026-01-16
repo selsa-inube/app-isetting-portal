@@ -1,5 +1,5 @@
 import { Text, Stack, useMediaQuery } from "@inubekit/inubekit";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { IBoxAttribute } from "@ptypes/feedback/boxAttribute/IBoxAttribute";
 import { StyledBoxAttribute } from "./styles";
 import { ButtonAttribute } from "./buttonAttribute";
@@ -16,7 +16,7 @@ const BoxAttribute = (props: IBoxAttribute) => {
         <Text
           type="label"
           size={isMobile ? "small" : "medium"}
-          appearance={ComponentAppearance.DARK}
+          appearance={EComponentAppearance.DARK}
           weight="bold"
         >
           {label}
@@ -33,7 +33,7 @@ const BoxAttribute = (props: IBoxAttribute) => {
         ) : (
           <Text
             size={isMobile ? "small" : "medium"}
-            appearance={ComponentAppearance.GRAY}
+            appearance={EComponentAppearance.GRAY}
           >
             {String(value)}
           </Text>

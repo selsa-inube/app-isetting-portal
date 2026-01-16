@@ -16,7 +16,6 @@ const Home = () => {
     multipleBusinessUnits,
     handlelogout,
   } = useHome();
-
   return (
     <HomeUI
       data={optionsCards as ICardData[]}

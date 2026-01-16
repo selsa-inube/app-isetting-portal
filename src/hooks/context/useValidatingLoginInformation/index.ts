@@ -1,38 +1,28 @@
 import { useEffect, useMemo, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import { usePortalData } from "@hooks/staffPortal/usePortalData";
 import { useBusinessManagers } from "@hooks/staffPortal/useBusinessManagers";
 import { decrypt } from "@utils/decrypt";
-import { validateAndTrimString } from "@utils/validateAndTrimString";
 import { IAppData } from "@ptypes/authAndDataProvider/IAppData";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { useLanguage } from "@hooks/language";
-import { enviroment } from "@config/environment";
+import { useIAuth } from "@inube/iauth-react";
 
 const useValidatingLoginInformation = () => {
-  const { user } = useAuth0();
-
+  const { user, isLoading: isIAuthLoading } = useIAuth();
   const portalCode = decrypt(localStorage.getItem("portalCode") ?? "");
   const { portalData } = usePortalData({ portalCode });
-
   const { businessManagersData } = useBusinessManagers({
     portalPublicCode: portalData,
   });
-
   const [businessUnitSigla, setBusinessUnitSigla] = useState(
     localStorage.getItem("businessUnitSigla") ?? ""
   );
-  const { languageBrowser } = useLanguage();
 
   const [useCases, setUseCases] = useState<string>(
     localStorage.getItem("useCasesByStaff") ?? ""
   );
-  let useCasesData: string[] = [];
-  try {
-    useCasesData = JSON.parse(useCases || "[]") as string[];
-  } catch (error) {
-    console.error("Error parsing useCases:", error);
-  }
+
+  const { languageBrowser } = useLanguage();
 
   const [businessUnitsToTheStaff, setBusinessUnitsToTheStaff] = useState<
     IBusinessUnitsPortalStaff[]
@@ -41,11 +31,28 @@ const useValidatingLoginInformation = () => {
     return savedBusinessUnits ? JSON.parse(savedBusinessUnits) : [];
   });
 
+  let businessUnitData: IBusinessUnitsPortalStaff =
+    {} as IBusinessUnitsPortalStaff;
+  try {
+    businessUnitData = JSON.parse(
+      businessUnitSigla || "{}"
+    ) as IBusinessUnitsPortalStaff;
+  } catch (error) {
+    console.error("Error parsing businessUnitSigla:", error);
+  }
+
+  let useCasesData: string[] = [];
+  try {
+    useCasesData = JSON.parse(useCases || "[]") as string[];
+  } catch (error) {
+    console.error("Error parsing useCases:", error);
+  }
+
   const [appData, setAppData] = useState<IAppData>({
     portal: {
       abbreviatedName: "",
-      staffPortalCatalogId: "",
-      businessManagerId: "",
+      staffPortalCatalogCode: "",
+      businessManagerCode: "",
       publicCode: "",
     },
     businessManager: {
@@ -53,21 +60,37 @@ const useValidatingLoginInformation = () => {
       abbreviatedName: "",
       urlBrand: "",
       urlLogo: "",
+      clientId: "",
     },
     businessUnit: {
-      publicCode: "",
-      abbreviatedName: "",
-      languageId: "",
-      urlLogo: "",
+      publicCode: "test",
+      abbreviatedName: businessUnitData?.abbreviatedName ?? "",
+      languageId: businessUnitData?.languageId ?? "",
+      urlLogo: businessUnitData?.urlLogo ?? "",
     },
     user: {
-      userAccount: validateAndTrimString(user?.email ?? "") ?? "",
-      userName: user?.name ?? "",
+      userAccount: user.id || "",
+      userName: user.username || "",
+      identificationDocumentNumber: user.id || "",
     },
     useCasesByStaff: useCasesData ?? [],
-    language: enviroment.VITE_LANGUAGE,
+    language: businessUnitData?.languageIso || "",
   });
-
+  useEffect(() => {
+    if (!isIAuthLoading) {
+      if (user) {
+        setAppData((prev) => ({
+          ...prev,
+          user: {
+            ...prev.user,
+            userAccount: user.id || "",
+            userName: user.username || "",
+            identificationDocumentNumber: user.id || "",
+          },
+        }));
+      }
+    }
+  }, [user, isIAuthLoading]);
   useEffect(() => {
     if (!businessManagersData) return;
 
@@ -76,7 +99,7 @@ const useValidatingLoginInformation = () => {
       portal: {
         ...prev.portal,
         abbreviatedName: portalData?.abbreviatedName || "",
-        staffPortalCatalogCode: portalData?.staffPortalCatalogCode || "",
+        staffPortalCatalogCode: portalData?.staffPortalId || "",
         businessManagerCode: portalData?.businessManagerCode || "",
         publicCode: portalData?.publicCode || "",
       },
@@ -98,6 +121,7 @@ const useValidatingLoginInformation = () => {
           abbreviatedName: businessManagersData.abbreviatedName,
           urlBrand: businessManagersData.urlBrand,
           urlLogo: businessManagersData.urlLogo,
+          clientId: businessManagersData.clientId,
         },
       }));
     }
@@ -121,13 +145,6 @@ const useValidatingLoginInformation = () => {
       }));
     }
   }, [businessUnitSigla, businessUnitsToTheStaff]);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "businessUnitsToTheStaff",
-      JSON.stringify(businessUnitsToTheStaff)
-    );
-  }, [businessUnitsToTheStaff]);
 
   useEffect(() => {
     localStorage.setItem("useCasesByStaff", useCases);
@@ -156,7 +173,7 @@ const useValidatingLoginInformation = () => {
   useEffect(() => {
     setAppData((prev) => ({
       ...prev,
-      language: languageBrowser ?? enviroment.VITE_LANGUAGE,
+      language: languageBrowser ?? appData.language,
     }));
   }, [languageBrowser]);
 
@@ -165,6 +182,7 @@ const useValidatingLoginInformation = () => {
       appData,
       businessUnitSigla,
       businessUnitsToTheStaff,
+      useCases,
       setAppData,
       setUseCases,
       setBusinessUnitSigla,

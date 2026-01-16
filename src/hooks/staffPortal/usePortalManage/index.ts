@@ -38,12 +38,12 @@ const useAppData = (props: IUseAppData) => {
   let isLoading = false;
   let isAuthenticated = true;
   let errorCode = 0;
-
   const {
     portalData,
     hasError: portalError,
     errorCode: errorCodePortal,
   } = usePortalData({ portalCode });
+
   const {
     businessManagersData,
     hasError: businessError,

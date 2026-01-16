@@ -1,4 +1,4 @@
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { generalInformationConfig } from "@config/users/addUsers/form/generalStep";
 import { basic } from "@design/tokens";
 import { IOption, useMediaQuery } from "@inubekit/inubekit";
@@ -37,7 +37,7 @@ const useGeneralInformationUserForm = (
     validateOnBlur: true,
     onSubmit: onSubmit ?? (() => true),
   });
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
   const mobilePadding = isMobile ? basic.spacing.s150 : basic.spacing.s300;
   useImperativeHandle(ref, () => formik);
 

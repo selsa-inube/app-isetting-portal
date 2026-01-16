@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { enviroment } from "@config/environment";
+import { enviroment, fetchTimeoutServices } from "@config/environment";
 import { IBackendErrorResponse } from "@ptypes/errors/IErrorMessage/IBackErrorResponse";
 import { EErrorState } from "@enum/errorState";
 import { eventBus } from "@events/eventBus";
@@ -8,7 +8,7 @@ import localforage from "localforage";
 
 const isettingIsaasAxiosInstance: AxiosInstance = axios.create({
   baseURL: enviroment.ISETTING_ISAAS_SERVICE,
-  timeout: enviroment.FETCH_TIMEOUT_SERVICES,
+  timeout: fetchTimeoutServices,
   headers: {
     "Content-type": "application/json; charset=UTF-8",
   },

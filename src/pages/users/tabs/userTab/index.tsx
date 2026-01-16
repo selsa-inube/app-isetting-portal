@@ -18,7 +18,6 @@ const UsersTab = () => {
     handleToggleInfoModal,
     path,
   } = useSearchAndPageControlUser();
-
   return (
     <UserTabUI
       handleSearchService={handleSearchService}

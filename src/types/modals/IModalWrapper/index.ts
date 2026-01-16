@@ -1,4 +1,4 @@
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@src/enum/appearances";
 
 interface IModalWrapper {
   children: React.ReactNode;
@@ -8,9 +8,10 @@ interface IModalWrapper {
   labelCloseModal: string;
   portalId: string;
   title: string;
-  appearanceButton?: ComponentAppearance;
+  appearanceButton?: EComponentAppearance;
   iconBeforeButton?: React.ReactElement;
   height?: string;
+  loading?: boolean;
   width?: string;
   withCancelButton?: boolean;
   minHeight?: string;
@@ -20,6 +21,7 @@ interface IModalWrapper {
   disabled?: boolean;
   onCloseModal?: () => void;
   onClick?: () => void;
+  changeZIndex?: boolean;
 }
 
 export type { IModalWrapper };

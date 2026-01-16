@@ -8,7 +8,7 @@ import {
   Blanket,
   useMediaQuery,
 } from "@inubekit/inubekit";
-import { enviroment } from "@config/environment";
+import { mediaQueryMobile } from "@config/environment";
 import { basic } from "@design/tokens";
 
 import { StyledBackdropBlanket, StyledModal } from "./styles";
@@ -20,7 +20,7 @@ interface ILogoutModal {
 
 const LogoutModal = (props: ILogoutModal) => {
   const { logoutPath, handleShowBlanket } = props;
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_743);
+  const smallScreen = useMediaQuery(mediaQueryMobile);
 
   return (
     <StyledBackdropBlanket>

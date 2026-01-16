@@ -3,7 +3,7 @@ import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, Text, Icon } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { enviroment } from "@config/environment";
+import { mediaQueryMobileSmall } from "@config/environment";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { portalId } from "@config/portalId";
 import { goBackModal } from "@config/goBackModal";
@@ -17,7 +17,7 @@ interface IPageTitle {
 }
 
 const PageTitle = ({ title, icon, description, navigatePage }: IPageTitle) => {
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_580);
+  const smallScreen = useMediaQuery(mediaQueryMobileSmall);
   const navigate = useNavigate();
   const [showCancelModal, setShowCancelModal] = useState(false);
 

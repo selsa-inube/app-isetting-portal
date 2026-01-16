@@ -5,8 +5,7 @@ import { enviroment } from "@config/environment";
 import { IStaffPortalByBusinessManager } from "@ptypes/staffPortal.types";
 import { IUsePortalData } from "@ptypes/hooks/IUsePortalData";
 
-const usePortalData = (props: IUsePortalData ) => {
-
+const usePortalData = (props: IUsePortalData) => {
   const { portalCode } = props;
   const [portalData, setPortalData] = useState<IStaffPortalByBusinessManager>(
     {} as IStaffPortalByBusinessManager
@@ -29,16 +28,15 @@ const usePortalData = (props: IUsePortalData ) => {
           setErrorCode(1001);
           return;
         }
-
-         if (
-          StaffPortalData[0].staffPortalCatalogId !==
-          enviroment.PORTAL_CATALOG_ID
+        if (
+          StaffPortalData[0].staffPortalCatalogCode !==
+          enviroment.PORTAL_CATALOG_CODE
         ) {
           setHasError(true);
           setErrorCode(1002);
           return;
         }
-        
+
         const encryptedParamValue = encrypt(portalCode);
         localStorage.setItem("portalCode", encryptedParamValue);
         setPortalData(StaffPortalData[0]);

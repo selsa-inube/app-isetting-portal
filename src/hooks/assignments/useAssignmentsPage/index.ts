@@ -2,11 +2,11 @@ import { ITab, useMediaQuery } from "@inubekit/inubekit";
 import { useContext, useEffect, useState } from "react";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
-import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
+import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 import { EOptionsByBusinessunits } from "@enum/optionsByBusinessunits";
 import { ERequestAssignments } from "@enum/requestAssignments";
 import { decrypt } from "@utils/decrypt";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { assignmentsTabsConfig } from "@config/assignments/tabs";
 import { IUseAssignmentsPage } from "@ptypes/hooks/assignments/IUseAssignmentsPage";
 import { IAssignmentsTabsConfig } from "@ptypes/assignments/IAssignmentsTabsConfig";
@@ -17,7 +17,7 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
 
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
 
   const tabs = assignmentsTabsConfig(smallScreen);
 
@@ -29,8 +29,8 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
   const [showAbsenceModal, setShowAbsenceModal] = useState<boolean>(false);
 
-  const { descriptionOptions } = useOptionsByBusinessunits({
-    businessUnitSigla,
+  const { descriptionOptions } = useOptionsByBusinessUnits({
+    businessUnit: businessUnitSigla,
     staffPortalId,
     optionName: EOptionsByBusinessunits.ASSIGNMENTS,
   });
@@ -49,14 +49,13 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
   useEffect(() => {
     const fetchRequestsInProgressData = async () => {
       try {
-         if(businessManager.length > 0){
-
-           const data = await getRequestsInProgress(
-             ERequestAssignments.ASSIGNMENTS,
-             businessManager
-           );
-           setRequestsInProgress(data);
-         }
+        if (businessManager.length > 0) {
+          const data = await getRequestsInProgress(
+            ERequestAssignments.ASSIGNMENTS,
+            businessManager
+          );
+          setRequestsInProgress(data);
+        }
       } catch (error) {
         console.info(error);
       }

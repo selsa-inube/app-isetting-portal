@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IUseRequestProcessModal } from "@ptypes/hooks/IUseRequestProcessModal";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 
 const useRequestProcessModal = (props: IUseRequestProcessModal) => {
   const { portalId } = props;
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_849);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
   const [node, setNode] = useState<HTMLElement | null>(null);
 
   useEffect(() => {

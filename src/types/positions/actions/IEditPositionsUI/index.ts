@@ -10,7 +10,7 @@ import { ISaveDataResponse } from "@ptypes/requestsInProgress/saveData/ISaveData
 
 interface IEditPositionsUI {
   editPositionTabsConfig: IEditPositionsTabsConfig;
-  generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry>>;
+  generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry> | null>;
   initialValues: IFormAddPosition;
   isSelected: string;
   requestSteps: IRequestSteps[];
@@ -28,9 +28,7 @@ interface IEditPositionsUI {
   onClosePendingReqModal: () => void;
   smallScreen: boolean;
   options: IOptionInitialiceEntry[];
-  setSelectedToggle: React.Dispatch<
-    React.SetStateAction<IFormEntry[] | undefined>
-  >;
+  setSelectedToggle: React.Dispatch<React.SetStateAction<IFormEntry[]>>;
   roles: IOptionInitialiceEntryApp[];
 }
 

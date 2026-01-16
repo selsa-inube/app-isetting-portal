@@ -19,6 +19,7 @@ const Assignments = () => {
     showModal,
     showInfoModal,
     showAbsenceModal,
+
     setShowAbsenceModal,
     onToggleInfoModal,
     onCloseMenu,
@@ -28,7 +29,6 @@ const Assignments = () => {
     businessManager: appData.businessManager.publicCode,
     businessUnitSigla
   });
-
   return (
     <AssignmentsUI
       isSelected={

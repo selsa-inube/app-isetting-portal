@@ -1,4 +1,4 @@
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { addUserUIConfig } from "@config/users/addUsers/addUserUI";
 import { addUserSteps } from "@config/users/addUsers/assisted/steps";
 import { addUserHookConfig } from "@config/users/addUsers/hook";
@@ -10,6 +10,11 @@ import { IGeneralUserFormValues } from "@ptypes/users/tabs/userTab/addUser/forms
 import { IFormsAddUserGeneralFormRefs } from "@ptypes/users/tabs/userTab/addUser/forms/IGeneralFormValues/ref";
 import { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm";
 import { IMissionForStaff } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IMissionForStaff";
+import { requestConfig } from "@src/config/request/requestsConfig";
+import { ERequestType } from "@src/enum/request/requestType";
+import { EUserRequest } from "@src/enum/user/usersRequest";
+import { ISaveDataRequest } from "@src/types/saveData/ISaveDataRequest";
+import { formatDate } from "@src/utils/date/formatDate";
 import { FormikProps } from "formik";
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +29,9 @@ const useAddUser = () => {
   const [showModal, setShowModal] = useState(false);
   const [showMissionNameModal, setShowMissionNameModal] = useState(false);
   const { appData } = useContext(AuthAndData);
+  const [saveData, setSaveData] = useState<ISaveDataRequest>();
+  const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
+
   const [formValues, setFormValues] = useState<IGeneralUserFormValues>({
     generalInformationStep: {
       isValid: false,
@@ -51,7 +59,9 @@ const useAddUser = () => {
         phone: "",
       },
     },
-    businessUnits: [],
+    businessUnitsStep: [],
+    positionByBusinessUnitStep: [],
+    roleByBusinessUnitStep: [],
   });
 
   const generalInformationRef = useRef<FormikProps<IGeneralInfoForm>>(null);
@@ -63,7 +73,7 @@ const useAddUser = () => {
     contactDataStep: contactDataRef,
   };
   const navigate = useNavigate();
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const assistedLength = smallScreen
     ? addUserHookConfig.small
     : addUserHookConfig.large;
@@ -138,6 +148,29 @@ const useAddUser = () => {
   const handleToggleMissionModal = () => {
     setShowMissionNameModal(!showMissionNameModal);
   };
+  const handleSubmit = () => {
+    setSaveData({
+      applicationName: requestConfig.applicationName,
+      requestType: ERequestType.ADD,
+      businessManagerCode: appData.businessManager.publicCode,
+      businessUnitCode: appData.businessUnit.publicCode,
+      description: "Solicitud de creación de politicas generales de credito",
+      entityName: "GeneralCreditPolicies",
+      requestDate: formatDate(new Date()),
+      useCaseName: EUserRequest.ADD_USER,
+      configurationRequestData: {
+        configurationRequestData: {
+          generalInformationStep: formValues.generalInformationStep.values,
+          missionForStaffStep: formValues.missionForStaffStep.values,
+          contactDataStep: formValues.contactDataStep.values,
+          businessUnits: formValues.businessUnitsStep,
+          positionByBusinessUnitStep: formValues.positionByBusinessUnitStep,
+          roleByBusinessUnitStep: formValues.roleByBusinessUnitStep,
+        },
+      },
+    });
+    setShowRequestProcessModal(!showRequestProcessModal);
+  };
   return {
     currentStep,
     formReferences,
@@ -157,6 +190,13 @@ const useAddUser = () => {
     description,
     showMissionNameModal,
     handleToggleMissionModal,
+    showRequestProcessModal,
+    setShowRequestProcessModal,
+    setShowModal,
+    handleSubmit,
+    saveData,
+    showModal,
+    setFormValues,
   };
 };
 

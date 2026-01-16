@@ -5,7 +5,7 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
 import { labels } from "@config/positions/assistedText";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IUseGeneralInfoCreditLineForm } from "@ptypes/hooks/IUseGeneralInfoCreditLineForm";
 
 const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
@@ -45,7 +45,7 @@ const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
     }
   }, [formik.values, onFormValid]);
 
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
 
   const valuesEmpty = Object.values(formik.values).every(
     (value) => value === "" || value === null || value === undefined

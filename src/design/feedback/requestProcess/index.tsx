@@ -5,7 +5,7 @@ import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
 import { noStaffName } from "@config/noStaffName";
 import { IRequestProcessContent } from "@ptypes/design/IRequestProcessContent";
 import { basic } from "@design/tokens";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { RequestProcessModal } from "@design/modals/requestProcessModal";
 
 const RequestProcess = (props: IRequestProcessContent) => {
@@ -32,7 +32,7 @@ const RequestProcess = (props: IRequestProcessContent) => {
     >
       {saveData &&
         saveData.requestStatus !== "" &&
-        (statusFlowAutomatic.includes(saveData.requestStatus) ? (
+        (statusFlowAutomatic.includes(saveData.requestStatus ?? "") ? (
           <RequestProcessModal
             portalId={portalId}
             title={descriptionRequestProcess.title}
@@ -52,7 +52,7 @@ const RequestProcess = (props: IRequestProcessContent) => {
             onCloseModal={onCloseRequestStatus}
             loading={false}
             actionText={descriptionRequestStatus(staffDisplayName).actionText}
-            appearance={ComponentAppearance.PRIMARY}
+            appearance={EComponentAppearance.PRIMARY}
           />
         ))}
     </Stack>

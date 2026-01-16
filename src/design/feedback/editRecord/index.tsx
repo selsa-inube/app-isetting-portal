@@ -1,6 +1,6 @@
 import { MdOutlineCreate } from "react-icons/md";
 import { Icon, Text, useMediaQuery } from "@inubekit/inubekit";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { StyledContainerIcon } from "./styles";
 
 interface IEditRecord {
@@ -16,7 +16,7 @@ const EditRecord = (props: IEditRecord) => {
     <>
       <StyledContainerIcon onClick={onEdit} $isTablet={screenTablet}>
         <Icon
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
           icon={<MdOutlineCreate />}
           size={screenTablet ? "20px" : "16px"}
           cursorHover

@@ -1,6 +1,6 @@
 interface IUseOptionsByBusinessUnit {
-  publicCode: string;
-  userAccount: string;
+  businessUnit: string;
+  staffPortalId: string;
   optionName?: string;
 }
 

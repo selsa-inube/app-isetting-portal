@@ -1,5 +1,5 @@
-import { MdAdd } from "react-icons/md";
-import { Stack, Button, Text, Searchfield } from "@inubekit/inubekit";
+import { MdAdd, MdOutlineInfo } from "react-icons/md";
+import { Stack, Button, Text, Searchfield, Icon } from "@inubekit/inubekit";
 
 import { basic } from "@design/tokens";
 import { EComponentAppearance } from "@enum/appearances";
@@ -13,6 +13,9 @@ import { actionsConfig } from "@config/assignments/assignmentsTab/table/actionsC
 import { titles } from "@config/assignments/assignmentsTab/table/titles";
 import { breakPoints } from "@config/assignments/assignmentsTab/table/breakPoints";
 import { AbsenceModal } from "./AbsenceModal";
+import { DecisionModal } from "@design/modals/decisionModal";
+import { disabledModal } from "@config/disabledModal";
+
 
 const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
   const {
@@ -25,10 +28,13 @@ const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
     emptyDataMessage,
     setEntryDeleted,
     showModal,
+    disabledButton,
     isActiveChecked,
     absentOfficialOptions,
     formik,
     disabledButtonModal,
+    showInfoModal,
+    handleToggleInfoModal,
     onSelectChange,
     onSelectCheckChange,
     onClickModal,
@@ -94,15 +100,27 @@ const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
               />
             </Stack>
             {!smallScreen && (
-              <Button
-                spacing="compact"
-                appearance={EComponentAppearance.PRIMARY}
-                iconBefore={<MdAdd />}
-                type="link"
-                onClick={onToggleModal}
-              >
-                {assignmentsTabLabels.buttonLabel}
-              </Button>
+              <Stack alignItems="center">
+                <Button
+                  spacing="compact"
+                  appearance={EComponentAppearance.PRIMARY}
+                  iconBefore={<MdAdd />}
+                  type="link"
+                  onClick={onToggleModal}
+                  disabled={disabledButton}
+                >
+                  {assignmentsTabLabels.buttonLabel}
+                </Button>
+                {disabledButton && (
+                  <Icon
+                    appearance={EComponentAppearance.PRIMARY}
+                    icon={<MdOutlineInfo />}
+                    onClick={handleToggleInfoModal}
+                    cursorHover
+                    size="14px"
+                  />
+                )}
+              </Stack>
             )}
           </Stack>
 
@@ -146,6 +164,18 @@ const AssignmentsTabUI = (props: IAssigmentsTabUI) => {
           disabled={disabledButtonModal}
           onSelectChange={onSelectChange}
           onSelectCheckChange={onSelectCheckChange}
+        />
+      )}
+      {showInfoModal && (
+        <DecisionModal
+          portalId={portalId}
+          title={disabledModal.title}
+          actionText={disabledModal.actionText}
+          description={disabledModal.description}
+          subtitle={disabledModal.subtitle}
+          onCloseModal={handleToggleInfoModal}
+          onClick={handleToggleInfoModal}
+          withCancelButton={false}
         />
       )}
     </BorderStack>

@@ -7,7 +7,7 @@ import { IFormAddMission } from "../IFormAddMission";
 
 interface IAddMissionUI {
   currentStep: number;
-  generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry>>;
+  generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry> | null>;
   initialGeneralInformationValues: IGeneralInformationEntry;
   isCurrentFormValid: boolean;
   steps: IAssistedStep[];

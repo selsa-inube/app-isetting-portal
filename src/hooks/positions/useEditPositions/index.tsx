@@ -8,6 +8,8 @@ import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInf
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IUseEditPositions } from "@ptypes/hooks/IUseEditPositions";
+import { ERequestType } from "@src/enum/request/requestType";
+
 
 const useEditPositions = (props: IUseEditPositions) => {
   const { data, appData, rolesData } = props;
@@ -55,7 +57,7 @@ const useEditPositions = (props: IUseEditPositions) => {
   const [errorFetchSaveData, setErrorFetchSaveData] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [selectedToggle, setSelectedToggle] = useState<
-    IFormEntry[] | undefined
+    IFormEntry[]
   >([]);
 
   const [initialRoles, setInitialRoles] = useState<
@@ -140,7 +142,7 @@ const useEditPositions = (props: IUseEditPositions) => {
       (generalInformationRef.current?.values.namePosition !==
         data.positionName ||
         generalInformationRef.current?.values.descriptionPosition !==
-          data.descriptionUse)
+        data.descriptionUse)
     ) {
       configurationRequestData.abbreviatedName =
         generalInformationRef.current?.values.namePosition ?? "";
@@ -156,13 +158,14 @@ const useEditPositions = (props: IUseEditPositions) => {
       entityName: "Mission",
       requestDate: formatDate(new Date()),
       useCaseName: "ModifyMission",
-
+      requestType: ERequestType.MODIFY,
       configurationRequestData: {
         positionId: data.positionId,
         positionName: formValues.generalInformation.values.namePosition,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
         positionByRole: rolesDataEndpoint,
+
       },
     });
     setShowRequestProcessModal(true);
@@ -244,7 +247,7 @@ const useEditPositions = (props: IUseEditPositions) => {
 
   const showGeneralInformation = isSelected === editPositionTabsConfig.generalInformation.id;
 
-  const showRolesForm  = isSelected === editPositionTabsConfig.selectionRoles.id 
+  const showRolesForm = isSelected === editPositionTabsConfig.selectionRoles.id
 
   return {
     formValues,

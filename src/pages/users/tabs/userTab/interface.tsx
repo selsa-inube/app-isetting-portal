@@ -28,6 +28,7 @@ const UserTabUI = (props: IUserTabUI) => {
     path,
     columnWidths,
   } = props;
+
   return (
     <BorderStack
       border="dark"

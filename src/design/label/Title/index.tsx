@@ -1,7 +1,7 @@
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { Icon, useMediaQuery, Stack, Text } from "@inubekit/inubekit";
-import { enviroment } from "@config/environment";
+import { mediaQueryMobile } from "@config/environment";
 import { basic } from "@design/tokens";
 import { StyledContainerText } from "./styles";
 import { ITitle } from "@ptypes/ITitle";
@@ -27,7 +27,7 @@ const Title = (props: ITitle) => {
       }
     }
   };
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_743);
+  const smallScreen = useMediaQuery(mediaQueryMobile);
 
   const navigate = useNavigate();
 

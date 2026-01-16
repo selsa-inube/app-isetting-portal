@@ -4,6 +4,7 @@ import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IUseDeletePositions } from "@ptypes/hooks/IUseDeletePositions";
+import { ERequestType } from "@src/enum/request/requestType";
 
 const useDeletePositions = (props: IUseDeletePositions) => {
   const { data, appData } = props;
@@ -24,6 +25,7 @@ const useDeletePositions = (props: IUseDeletePositions) => {
       entityName: "Mission",
       requestDate: formatDate(new Date()),
       useCaseName: "DeleteMission",
+      requestType: ERequestType.REMOVE,
       configurationRequestData: {
         positionId: data.missionId,
         positionName: data.namePosition,
@@ -33,7 +35,7 @@ const useDeletePositions = (props: IUseDeletePositions) => {
     setShowRequestProcessModal(true);
   };
 
-    useEffect(() => {
+  useEffect(() => {
     eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
 

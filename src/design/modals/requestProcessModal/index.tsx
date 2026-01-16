@@ -8,7 +8,7 @@ import { percTotalNumber } from "@config/percentageNumber";
 import { StyledModal } from "./styles";
 import { RequestProcessBar } from "./RequestProcessBar";
 import { basic } from "@design/tokens";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { IRequestProcessModal } from "@ptypes/IRequestProcessModal";
 
 const RequestProcessModal = (props: IRequestProcessModal) => {
@@ -50,7 +50,7 @@ const RequestProcessModal = (props: IRequestProcessModal) => {
           <Stack direction="column" justifyContent="center" alignItems="center">
             <Text
               size={isMobile ? "small" : "medium"}
-              appearance={ComponentAppearance.GRAY}
+              appearance={EComponentAppearance.GRAY}
             >
               {description}
             </Text>
@@ -68,7 +68,7 @@ const RequestProcessModal = (props: IRequestProcessModal) => {
           <Stack justifyContent="end">
             <Button
               spacing="wide"
-              appearance={ComponentAppearance.SUCCESS}
+              appearance={EComponentAppearance.SUCCESS}
               onClick={onClose}
             >
               {requestProcessLabels.labelButton}

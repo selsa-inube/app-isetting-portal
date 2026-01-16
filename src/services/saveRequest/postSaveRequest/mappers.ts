@@ -11,6 +11,7 @@ const mapSavePositionsEntityToApi = (
     entityName: data.entityName,
     requestDate: data.requestDate,
     useCaseName: data.useCaseName,
+    requestType: data.requestType,
     configurationRequestData: data.configurationRequestData,
   };
 };

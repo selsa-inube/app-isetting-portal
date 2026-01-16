@@ -7,7 +7,7 @@ const meta: Meta<typeof RadioBusinessUnit> = {
   title: "feedback/RadioBusinessUnit",
   component: RadioBusinessUnit,
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>

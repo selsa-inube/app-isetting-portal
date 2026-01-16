@@ -11,6 +11,7 @@ import { IFormAddMission } from "@ptypes/missions/assisted/IFormAddMission";
 import { IUseEditMission } from "@ptypes/hooks/missions/IUseEditMission";
 import { IGeneralInformationEntry } from "@ptypes/missions/assisted/IGeneralInformationEntry";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
+import { ERequestType } from "@src/enum/request/requestType";
 
 const useEditMission = (props: IUseEditMission) => {
   const { data, appData } = props;
@@ -40,10 +41,10 @@ const useEditMission = (props: IUseEditMission) => {
   const [showModal, setShowModal] = useState(false);
   const [showGoBackModal, setShowGoBackModal] = useState(false);
   const [showEditedModal, setShowEditedModal] = useState(false);
-    const [canRefresh, setCanRefresh] = useState(false);
+  const [canRefresh, setCanRefresh] = useState(false);
   const smallScreen = useMediaQuery("(max-width: 990px)");
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationEntry>>(null);
 
@@ -60,7 +61,7 @@ const useEditMission = (props: IUseEditMission) => {
       generalInformationRef.current?.values.nameMission !== undefined &&
       (generalInformationRef.current?.values.nameMission !== data.missionName ||
         generalInformationRef.current?.values.descriptionMission !==
-          data.descriptionUse)
+        data.descriptionUse)
     ) {
       configurationRequestData.abbreviatedName =
         generalInformationRef.current?.values.nameMission ?? "";
@@ -75,7 +76,7 @@ const useEditMission = (props: IUseEditMission) => {
       entityName: "Mission",
       requestDate: formatDate(new Date()),
       useCaseName: "ModifyMission",
-
+      requestType: ERequestType.MODIFY,
       configurationRequestData: {
         modifyJustification: jsonLabels(appData.user.userAccount),
         missionId: data.missionId,
@@ -86,7 +87,7 @@ const useEditMission = (props: IUseEditMission) => {
     setShowRequestProcessModal(true);
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       const hasUnsavedChanges =
         !compareObjects(initialFormValues, formValues) ||
@@ -110,25 +111,25 @@ const useEditMission = (props: IUseEditMission) => {
     };
   }, [formValues, initialFormValues, generalInformationRef, canRefresh]);
 
-    const handleToggleEditedModal = () => {
+  const handleToggleEditedModal = () => {
     setShowEditedModal(!showEditedModal);
   }
 
   const handleReset = () => {
-   setShowGoBackModal(true);
+    setShowGoBackModal(true);
   };
 
-   const handleEditedModal = () => {
+  const handleEditedModal = () => {
     setShowEditedModal(false);
     onSubmit();
   };
 
-    const handleGoBack = () => {
+  const handleGoBack = () => {
     setCanRefresh(true);
     navigate(-1);
   };
 
-   const handleCloseGoBackModal = () => {
+  const handleCloseGoBackModal = () => {
     setShowGoBackModal(false);
   };
 

@@ -8,7 +8,7 @@ const meta: Meta<typeof RequestStatus> = {
   title: "modals/RequestStatus",
   component: RequestStatus,
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>

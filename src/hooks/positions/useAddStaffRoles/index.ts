@@ -7,16 +7,16 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { formatDate } from "@utils/date/formatDate";
 import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
 import { saveDataLabels } from "@config/positions/assisted/saveDataLabels";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAssignmentFormEntry";
 import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
+import { ERequestType } from "@src/enum/request/requestType";
 
-const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
-
+const useAddStaffRoles = (props: IUseAddStaffRoles) => {
   const { rolesData } = props;
   const { appData } = useContext(AuthAndData);
   const [currentStep, setCurrentStep] = useState(1);
@@ -40,7 +40,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
   const [showModalApplicationStatus, setShowModalApplicationStatus] =
     useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [selectedToggle, setSelectedToggle] = useState<IFormEntry[]>();
+  const [selectedToggle, setSelectedToggle] = useState<IFormEntry[]>([]);
   const [formValues, setFormValues] = useState<IFormAddPosition>({
     generalInformation: {
       isValid: false,
@@ -57,7 +57,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
   });
 
   const navigate = useNavigate();
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
 
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
 
@@ -165,10 +165,11 @@ const useAddStaffRoles = (props: IUseAddStaffRoles ) => {
       applicationName: "istaff",
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
-      description:saveDataLabels.description,
+      description: saveDataLabels.description,
       entityName: "Position",
       requestDate: formatDate(new Date()),
       useCaseName: "AddPosition",
+      requestType: ERequestType.ADD,
       configurationRequestData: {
         positionName: formValues.generalInformation.values.namePosition,
         descriptionUse:

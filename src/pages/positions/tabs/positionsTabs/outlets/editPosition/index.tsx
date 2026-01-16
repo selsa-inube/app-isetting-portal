@@ -72,7 +72,7 @@ const EditPositions = () => {
       onClosePendingReqModal={handleClosePendingReqModal}
       onButtonClick={onSubmit}
       onReset={handleReset}
-      setSelectedToggle={setSelectedToggle || []}
+      setSelectedToggle={setSelectedToggle ?? []}
       smallScreen={smallScreen}
       roles={roles}
       options={options as IOptionInitialiceEntryApp[]}

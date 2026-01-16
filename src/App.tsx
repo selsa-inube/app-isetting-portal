@@ -9,6 +9,7 @@ import { ThemeProviderWrapper } from "./context/ThemeContext";
 import { useAppData } from "@hooks/staffPortal/usePortalManage";
 import { IUser } from "@ptypes/authAndPortalDataProvider/IUser";
 import { ChangeToRequestTabProvider } from "@context/changeToRequestTab";
+import { AuthWrapper } from "@pages/authWrapper";
 
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
@@ -20,7 +21,7 @@ interface IApp {
   user?: IUser;
 }
 
-const App = (props: IApp) => {
+const AppContent = (props: IApp) => {
   const { code, user, businessUnit } = props;
   const { isLoading, hasError, isAuthenticated, errorCode } = useAppData({
     portalCode,
@@ -57,4 +58,12 @@ const App = (props: IApp) => {
   );
 };
 
-export { App };
+function App(props: IApp) {
+  return (
+    <AuthWrapper>
+      <AppContent {...props} />
+    </AuthWrapper>
+  );
+}
+
+export default App;

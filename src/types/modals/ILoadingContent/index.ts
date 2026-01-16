@@ -1,6 +1,6 @@
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 interface ILoadingContent {
-  appearance?: ComponentAppearance;
+  appearance?: EComponentAppearance;
 }
 
 export type { ILoadingContent };

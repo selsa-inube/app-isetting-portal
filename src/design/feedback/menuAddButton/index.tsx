@@ -3,7 +3,8 @@ import { Icon } from "@inubekit/inubekit";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { disabledModal } from "@config/disabledModal";
 import { IMenuAddButton } from "@ptypes/design/IMenuAddButton";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
+
 import { Menu } from "../menu";
 
 const MenuAddButton = (props: IMenuAddButton) => {
@@ -20,7 +21,7 @@ const MenuAddButton = (props: IMenuAddButton) => {
     <>
       <Icon
         icon={<MdOutlineMoreVert />}
-        appearance={ComponentAppearance.DARK}
+        appearance={EComponentAppearance.DARK}
         onClick={onToggleModal}
         cursorHover
       />
@@ -39,7 +40,7 @@ const MenuAddButton = (props: IMenuAddButton) => {
           description={disabledModal.description}
           subtitle={disabledModal.subtitle}
           onCloseModal={onToggleInfoModal}
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
           onClick={onToggleInfoModal}
           withCancelButton={false}
         />

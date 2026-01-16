@@ -5,7 +5,7 @@ const menuMissionsLinks = [
     description: "Solicitar cargo ",
     path: "/missions/add-mission",
     icon: <MdAdd />,
-     disabled: false,
+    disabled: false,
   },
 ];
 

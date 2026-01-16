@@ -1,13 +1,24 @@
-const IS_PRODUCTION = import.meta.env.PROD;
-const AUTH_REDIRECT_URI = import.meta.env.VITE_AUTH0_REDIRECT_URI;
+const maxRetriesServices = 3;
+const maxRetriesPost = 1;
 const maxRetriesDelete = 1;
+
+const fetchTimeoutServices = 6000;
+
+const mediaQueryMobile = "(max-width: 770px)";
+const mediaQueryTablet = "(max-width: 1281px)";
+const mediaQueryTabletMain = "(max-width: 1000px)";
+const mediaQueryMobileSmall = "(max-width: 450px)";
+
+const maxWidthLineConstruction = "1394px";
+const maxWidthOtherPages = "1064px";
+
 const enviroment = {
   CLIENT_ID: import.meta.env.VITE_AUTH0_CLIENT_ID,
   CLIENT_SECRET: import.meta.env.VITE_AUTH0_CLIENT_SECRET,
   REALM: import.meta.env.VITE_AUTH_REALM,
   PROVIDER: import.meta.env.VITE_AUTH_PROVIDER,
-  REDIRECT_URI: IS_PRODUCTION ? window.location.origin : AUTH_REDIRECT_URI,
-  PORTAL_CATALOG_ID: import.meta.env.VITE_PORTAL_CATALOG_ID,
+  REDIRECT_URI: window.location.origin,
+  PORTAL_CATALOG_CODE: import.meta.env.VITE_PORTAL_CATALOG_CODE,
   ICLIENT_API_URL_QUERY: import.meta.env.VITE_ICLIENT_API_URL_QUERY,
   IPORTAL_CODE: import.meta.env.VITE_PORTAL_CODE,
   ICLIENT_API_URL_QUERY_PROCESS: import.meta.env
@@ -29,15 +40,9 @@ const enviroment = {
   AUTH0_DOMAIN: import.meta.env.VITE_AUTH0_DOMAIN,
   MAX_RETRIES_SERVICES: Number(import.meta.env.VITE_MAX_RETRIES_SERVICES),
   FETCH_TIMEOUT_SERVICES: Number(import.meta.env.VITE_FETCH_TIMEOUT_SERVICES),
-  MEDIA_QUERY_MOBILE: import.meta.env.VITE_MEDIA_QUERY_MOBILE,
   SECRET_KEY_PORTAL_ID: import.meta.env.VITE_SECRET_KEY_PORTAL_ID,
   SECRET_KEY_PORTAL_NAME: import.meta.env.VITE_SECRET_KEY_PORTAL_NAME,
-  IS_MOBILE_580: import.meta.env.VITE_IS_MOBILE_580,
-  IS_MOBILE_743: import.meta.env.VITE_IS_MOBILE_743,
-  IS_MOBILE_849: import.meta.env.VITE_IS_MOBILE_849,
-  IS_MOBILE_970: import.meta.env.VITE_IS_MOBILE_970,
-  IS_MOBILE_1200: import.meta.env.VITE_IS_MOBILE_1200,
-  VITE_LANGUAGE: import.meta.env.VITE_LANGUAGE,
+
   ORIGINATOR_ID: import.meta.env.VITE_ORIGINATOR_ID as string,
   IAUTH_URL: import.meta.env.VITE_IAUTH_URL as string,
   IAUTH_SERVICE_URL: import.meta.env.VITE_IAUTH_SERVICE_URL as string,
@@ -48,4 +53,16 @@ const enviroment = {
   ORIGINATOR_CODE: import.meta.env.VITE_ORIGINATOR_CODE as string,
 };
 
-export { enviroment, maxRetriesDelete };
+export {
+  enviroment,
+  maxRetriesDelete,
+  mediaQueryMobile,
+  mediaQueryTablet,
+  mediaQueryTabletMain,
+  mediaQueryMobileSmall,
+  maxWidthLineConstruction,
+  maxWidthOtherPages,
+  maxRetriesServices,
+  maxRetriesPost,
+  fetchTimeoutServices,
+};

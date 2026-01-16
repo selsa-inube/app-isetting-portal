@@ -7,17 +7,17 @@ import { GeneralInformationForm } from "./forms/generalInformation";
 
 import { DecisionModal } from "@design/modals/decisionModal";
 import { addUserUIConfig } from "@config/users/addUsers/addUserUI";
-import { goBackModal } from "@config/goBackModal";
 import { IAddUserUI } from "@ptypes/users/tabs/userTab/addUser/IAddUserUI";
 import { crumbsAddUser } from "@config/users/addUsers/navigation";
 import { MissionForStaffForm } from "./forms/misionForStaff";
-import { ComponentAppearance } from "@ptypes/aparences.types";
 import { MdOutlineWarningAmber } from "react-icons/md";
 import { ContactDataForm } from "./forms/contactData";
 import { BusinessEntityForm } from "./forms/businessEntity";
 import { PositionByBusinessUnit } from "./forms/positionByBusinessUnit";
 import { RolesByBusinessUnit } from "./forms/rolesByBusinessUnit";
 import { AddUserVerificationForm } from "./forms/verificationForm";
+import { portalId } from "@src/config/portalId";
+import { EComponentAppearance } from "@src/enum/appearances";
 
 const AddUserUI = (props: IAddUserUI) => {
   const {
@@ -27,9 +27,7 @@ const AddUserUI = (props: IAddUserUI) => {
     isCurrentFormValid,
     title,
     steps,
-    showGoBackModal,
     smallScreen,
-    onGoBack,
     handleModal,
     assistedLength,
     onNextStep,
@@ -45,8 +43,18 @@ const AddUserUI = (props: IAddUserUI) => {
     selectPositionsByBusinessUnit,
     rolesByBusinessUnit,
     selectRolesByBusinessUnit,
+    saveUsers,
+    showPendingReqModal,
+    requestSteps,
+    showRequestProcessModal,
+    onCloseRequestStatus,
+    onCloseProcess,
+    onClosePendingReqModal,
+    onSubmit,
+    showModal,
+    modalData,
+    showDecision,
   } = props;
-
   return (
     <Stack
       direction="column"
@@ -100,6 +108,7 @@ const AddUserUI = (props: IAddUserUI) => {
               <ContactDataForm
                 ref={formReferences.contactDataStep}
                 initialValues={initialValues.contactDataStep.values}
+                onFormValid={setIsCurrentFormValid}
                 handleNextStep={onNextStep}
                 handlePreviousStep={onPreviousStep}
               />
@@ -131,15 +140,12 @@ const AddUserUI = (props: IAddUserUI) => {
             {currentStep === addUserUIConfig.verificationStep && (
               <AddUserVerificationForm
                 updatedData={{
-                  generalInformationStep: {
-                    values: initialValues.generalInformationStep.values,
-                  },
-                  missionForStaffStep: {
-                    values: initialValues.missionForStaffStep.values,
-                  },
-                  contactDataStep: {
-                    values: initialValues.contactDataStep.values,
-                  },
+                  generalInformationStep: initialValues.generalInformationStep.values,
+
+                  missionForStaffStep: initialValues.missionForStaffStep.values,
+
+                  contactDataStep: initialValues.contactDataStep.values,
+
                   businessEntityStep: {
                     values: entriesAdditionalBusinessEntity.filter(
                       (e) => e.isActive
@@ -148,27 +154,40 @@ const AddUserUI = (props: IAddUserUI) => {
                   positionByBusinessUnitStep: {
                     values: positionsByBusinessUnit,
                   },
-                  roleByBusinessUnitStep: {
-                    values: rolesByBusinessUnit.filter((e) => e.isActive),
-                  },
+                  roleByBusinessUnitStep:
+                    rolesByBusinessUnit.filter((e) => e.isActive),
+
                 }}
-                isMobile={smallScreen}
                 onPreviousStep={onPreviousStep}
+                handleStepChange={onSubmit}
+                onSubmit={onSubmit}
+                saveUsers={saveUsers}
+                onCloseRequestStatus={onCloseRequestStatus}
+                showPendingReqModal={showPendingReqModal}
+                onCloseProcess={onCloseProcess}
+                onClosePendingReqModal={onClosePendingReqModal}
+                requestSteps={requestSteps}
+                showRequestProcessModal={showRequestProcessModal}
+                showModal={showModal}
                 onToggleModal={onToggleModal}
-                handleStepChange={onNextStep}
               />
             )}
           </Stack>
         </Stack>
       </Stack>
-      {showGoBackModal && (
+      {showDecision && (
         <DecisionModal
-          portalId="portal"
-          title={goBackModal.title}
-          description={goBackModal.description}
-          actionText={goBackModal.actionText}
-          onCloseModal={handleModal}
-          onClick={onGoBack}
+          portalId={portalId}
+          title={modalData.title}
+          description={modalData.description}
+          actionText={modalData.actionText}
+          onCloseModal={modalData.onCloseModal}
+          onClick={modalData.onClick}
+          withCancelButton={modalData.withCancelButton}
+          withIcon={modalData.withIcon}
+          icon={modalData.icon}
+          appearance={modalData.appearance}
+          appearanceButton={modalData.appearanceButton}
         />
       )}
       {showMissionNameModal && (
@@ -182,9 +201,8 @@ const AddUserUI = (props: IAddUserUI) => {
           onClick={onToggleMissionModal}
           withIcon
           icon={<MdOutlineWarningAmber />}
-          appearance={ComponentAppearance.WARNING}
-          withDivider
-          showCancelButton={false}
+          appearance={EComponentAppearance.WARNING}
+          withCancelButton={false}
         />
       )}
     </Stack>

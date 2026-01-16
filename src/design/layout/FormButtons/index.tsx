@@ -1,6 +1,6 @@
 import { Stack, Button } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 
 interface IFormButtons {
   handleReset: () => void;
@@ -38,7 +38,7 @@ const FormButtons = ({
       <Stack direction="column">{children}</Stack>
       <Stack justifyContent="flex-end" gap={basic.spacing.s8}>
         <Button
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
           disabled={disableCancel}
           onClick={handleReset}
           type="reset"
@@ -46,7 +46,7 @@ const FormButtons = ({
           {cancelButtonText}
         </Button>
         <Button
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
           onClick={handleSubmit}
           loading={loading}
           disabled={withDisabledButtons}

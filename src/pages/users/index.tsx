@@ -4,6 +4,8 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { useUserPage } from "@hooks/users/userPage";
 
 import { UsersUI } from "./interface";
+import { menuUsersLinks } from "@src/config/users/menuUsersLinks";
+
 
 const Users = () => {
   const { appData } = useContext(AuthAndData);
@@ -17,6 +19,11 @@ const Users = () => {
     showRequestsInProgressTab,
     userTabs,
     loading,
+    showModal,
+    showInfoModal,
+    onToggleInfoModal,
+    onCloseMenu,
+    onToggleModal,
   } = useUserPage({
     businessManager: appData.businessManager.publicCode,
   });
@@ -30,6 +37,12 @@ const Users = () => {
       showRequestsInProgressTab={showRequestsInProgressTab}
       userTabs={userTabs}
       loading={loading}
+      showModal={showModal}
+      showInfoModal={showInfoModal}
+      options={menuUsersLinks}
+      onToggleInfoModal={onToggleInfoModal}
+      onCloseMenu={onCloseMenu}
+      onToggleModal={onToggleModal}
     />
   );
 };

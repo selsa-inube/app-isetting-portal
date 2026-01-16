@@ -4,7 +4,11 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
 import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
-import { enviroment } from "@config/environment";
+import {
+  mediaQueryMobile,
+  mediaQueryTablet,
+  mediaQueryTabletMain,
+} from "@config/environment";
 import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
 import { requestType } from "@config/requestType";
 import { IUseDetailsRequest } from "@ptypes/hooks/IUseDetailsRequest";
@@ -14,7 +18,7 @@ const useDetailsRequest = (props: IUseDetailsRequest) => {
 
   const [isSelected, setIsSelected] = useState<string>();
   const [showModal, setShowModal] = useState(false);
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_743);
+  const isMobile = useMediaQuery(mediaQueryMobile);
 
   const normalizeData = {
     ...data,
@@ -38,13 +42,13 @@ const useDetailsRequest = (props: IUseDetailsRequest) => {
     requestType[data.request as keyof typeof requestType] ?? data.request
   }`;
 
-  const screenTablet = useMediaQuery(enviroment.IS_MOBILE_1200);
+  const screenTablet = useMediaQuery(mediaQueryTablet);
 
   useEffect(() => {
     eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
 
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const pageLength = 3;
   const columnWidths = [70];
 

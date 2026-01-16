@@ -5,6 +5,7 @@ import { eventBus } from "@events/eventBus";
 import { deleteLabels } from "@config/assignments/details/deleteLabels";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IUseDeleteDetailsAssignments } from "@ptypes/hooks/assignments/IUseDeleteDetailsAssignments";
+import { ERequestType } from "@src/enum/request/requestType";
 
 const useDeleteDetailsAssignments = (props: IUseDeleteDetailsAssignments) => {
   const { data, appData } = props;
@@ -25,6 +26,7 @@ const useDeleteDetailsAssignments = (props: IUseDeleteDetailsAssignments) => {
       entityName: "Assignments",
       requestDate: formatDate(new Date()),
       useCaseName: "DeleteAssignments",
+      requestType: ERequestType.REMOVE,
       configurationRequestData: {
         id: data.id,
         justification: `${deleteLabels.justification} ${appData.user.userAccount}`,
@@ -33,7 +35,7 @@ const useDeleteDetailsAssignments = (props: IUseDeleteDetailsAssignments) => {
     setShowRequestProcessModal(true);
   };
 
-    useEffect(() => {
+  useEffect(() => {
     eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
 

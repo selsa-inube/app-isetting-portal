@@ -1,40 +1,68 @@
-import { useContext, useEffect, useState } from "react";
-
-import { AuthAndData } from "@context/authAndDataProvider";
+import { useEffect, useMemo, useState } from "react";
 
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IUseOptionsBusinessEntity } from "@ptypes/hooks/IUseOptionsBusinessEntity";
-import { optionsUnits } from "@mocks/users/businessUnits";
+import { useBusinessUnits } from "@src/hooks/useBusinessUnits";
 
 const useOptionsBusinessEntity = (props: IUseOptionsBusinessEntity) => {
-  const { formValues } = props;
-  const { appData } = useContext(AuthAndData);
+  const { formValues, setFormValues } = props;
 
   const [entriesAdditionalBusinessEntity, setEntriesAdditionalBusinessEntity] =
     useState<IFormEntry[]>([]);
 
+  const { businessUnits } = useBusinessUnits();
+
   useEffect(() => {
     if (
       entriesAdditionalBusinessEntity.length === 0 &&
-      optionsUnits.length > 0
+      businessUnits.length > 0
     ) {
-      setEntriesAdditionalBusinessEntity([
-        ...formValues.businessUnits.map((value, index) => ({
-          id: index.toString(),
-          value,
-          isActive: true,
-        })),
-        ...optionsUnits.map((unit) => ({
-          id: unit.id!,
-          value: unit.value!,
-          isActive: false,
-        })),
-      ]);
+      const activeIds = new Set(
+        (formValues.businessUnitsStep ?? []).map((e) => e.id)
+      );
+
+      setEntriesAdditionalBusinessEntity(
+        businessUnits.map((unit) => ({
+          id: unit.publicCode!,
+          value: unit.abbreviatedName!,
+          isActive: activeIds.has(unit.publicCode!),
+        }))
+      );
     }
-  }, [formValues.businessUnits, optionsUnits]);
+  }, [
+    businessUnits,
+    entriesAdditionalBusinessEntity.length,
+    formValues.businessUnitsStep,
+  ]);
+
+  const activeEntries = useMemo(
+    () => entriesAdditionalBusinessEntity.filter((e) => e.isActive),
+    [entriesAdditionalBusinessEntity]
+  );
+
+  useEffect(() => {
+    const current = formValues.businessUnitsStep ?? [];
+
+    const currentIds = current.map((e) => e.id).sort();
+    const activeIds = activeEntries.map((e) => e.id).sort();
+
+    const same =
+      currentIds.length === activeIds.length &&
+      currentIds.every((id, i) => id === activeIds[i]);
+
+    if (!same) {
+      setFormValues((prev) => ({
+        ...prev,
+        businessUnitsStep: activeEntries,
+      }));
+    }
+  }, [activeEntries, formValues.businessUnitsStep, setFormValues]);
+
   return {
     setEntriesAdditionalBusinessEntity,
     entriesAdditionalBusinessEntity,
+    activeEntries,
   };
 };
+
 export { useOptionsBusinessEntity };

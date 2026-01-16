@@ -15,8 +15,8 @@ const useHome = () => {
     businessUnitSigla,
     setUseCases,
   } = useContext(AuthAndData);
-  const { logout } = useIAuth();
 
+  const { logout } = useIAuth();
   const { optionsCards, loading } = useOptionsByBusinessUnits({
     staffPortalId: appData.portal.publicCode,
     businessUnit: businessUnitSigla,

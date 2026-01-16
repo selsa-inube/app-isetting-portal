@@ -1,3 +1,4 @@
+import { ERequestType } from "@src/enum/request/requestType";
 
 interface ISaveDataRequest {
   applicationName: string;
@@ -7,7 +8,7 @@ interface ISaveDataRequest {
   description: string;
   entityName: string;
   requestDate: string;
-
+  requestType: ERequestType;
   useCaseName: string;
 }
 

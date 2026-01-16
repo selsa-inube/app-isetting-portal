@@ -2,7 +2,7 @@ import { Grid, Stack, useMediaQuery } from "@inubekit/inubekit";
 
 import { BoxAttribute } from "@design/feedback/boxAttribute";
 import { basic } from "@design/tokens";
-import { enviroment } from "@config/environment";
+import { mediaQueryMobile } from "@config/environment";
 
 import { addUserUIConfig } from "@config/users/addUsers/addUserUI";
 import { IAddUserVerificationBoxes } from "@ptypes/users/tabs/userTab/addUser/forms/verificationForm/IAddUserVerificationBoxes";
@@ -13,7 +13,7 @@ import { AddUserVerificationBoxesLabels } from "@config/users/addUsers/form/veri
 const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
   const { updatedData, stepKey } = props;
 
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isMobile = useMediaQuery(mediaQueryMobile);
 
   const generalInfoStep = stepKey === addUserUIConfig.generalInformationStep;
   const missionForStaffStep = stepKey === addUserUIConfig.misionForStaff;
@@ -31,7 +31,7 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
     updatedData.positionByBusinessUnitStep?.values || [];
 
   const activeRoles =
-    updatedData.roleByBusinessUnitStep?.values.filter((item) => item.isActive) ??
+    updatedData.roleByBusinessUnitStep ??
     [];
 
   return (
@@ -45,30 +45,30 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
         >
           <BoxAttribute
             label={AddUserVerificationBoxesLabels.firstName}
-            value={updatedData.generalInformationStep.values.firstName}
+            value={updatedData.generalInformationStep.firstName}
           />
           <BoxAttribute
             label={AddUserVerificationBoxesLabels.lastName}
-            value={updatedData.generalInformationStep.values.lastName}
+            value={updatedData.generalInformationStep.lastName}
           />
 
           <BoxAttribute
             label={AddUserVerificationBoxesLabels.idType}
-            value={updatedData.generalInformationStep.values.idType}
+            value={updatedData.generalInformationStep.idType}
           />
           <BoxAttribute
             label={AddUserVerificationBoxesLabels.idNumber}
-            value={updatedData.generalInformationStep.values.idNumber}
+            value={updatedData.generalInformationStep.idNumber}
           />
 
           <BoxAttribute
             label={AddUserVerificationBoxesLabels.gender}
-            value={updatedData.generalInformationStep.values.gender}
+            value={updatedData.generalInformationStep.gender}
           />
           <BoxAttribute
             label={AddUserVerificationBoxesLabels.birthDate}
             value={formatDate(
-              String(updatedData.generalInformationStep.values.birthDate),
+              String(updatedData.generalInformationStep.birthDate),
             )}
           />
         </Grid>
@@ -78,11 +78,11 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
         <Stack direction="column" width="100%" gap={basic.spacing.s100}>
           <BoxAttribute
             label={AddUserVerificationBoxesLabels.missionName}
-            value={updatedData.missionForStaffStep.values.missionValue}
+            value={updatedData.missionForStaffStep.missionValue}
           />
           <BoxAttribute
             label={AddUserVerificationBoxesLabels.missionDescription}
-            value={updatedData.missionForStaffStep.values.missionDescription}
+            value={updatedData.missionForStaffStep.missionDescription}
           />
         </Stack>
       )}
@@ -96,11 +96,11 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
         >
           <BoxAttribute
             label={AddUserVerificationBoxesLabels.email}
-            value={updatedData.contactDataStep.values.email}
+            value={updatedData.contactDataStep.email}
           />
           <BoxAttribute
             label={AddUserVerificationBoxesLabels.phone}
-            value={updatedData.contactDataStep.values.phone}
+            value={updatedData.contactDataStep.phone}
           />
         </Grid>
       )}

@@ -5,6 +5,7 @@ import { formatDate } from "@utils/date/formatDate";
 import { deleteLabels } from "@config/assignments/deleteLabels";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IUseDeleteAssignments } from "@ptypes/hooks/assignments/IUseDeleteAssignments";
+import { ERequestType } from "@src/enum/request/requestType";
 
 const useDeleteAssignments = (props: IUseDeleteAssignments) => {
   const { data, appData } = props;
@@ -25,14 +26,15 @@ const useDeleteAssignments = (props: IUseDeleteAssignments) => {
       entityName: "Assignments",
       requestDate: formatDate(new Date()),
       useCaseName: "DeleteAssignments",
+      requestType: ERequestType.REMOVE,
       configurationRequestData: {
-      data
+        data,
       },
     });
     setShowRequestProcessModal(true);
   };
 
-    useEffect(() => {
+  useEffect(() => {
     eventBus.emit(EModalState.SECOND_MODAL_STATE, showModal);
   }, [showModal]);
 

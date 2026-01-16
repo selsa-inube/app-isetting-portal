@@ -1,19 +1,21 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import { StoryFn } from "@storybook/react";
 
-import { SubjectSearchCard, ISubjectSearchCard } from ".";
+import { SubjectSearchCard } from ".";
 
-const story = {
-  component: [SubjectSearchCard],
+const meta: Meta<typeof SubjectSearchCard> = {
+  component: SubjectSearchCard,
   title: "components/cards/SubjectSearchCard",
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
     ),
   ],
 };
+
+export default meta;
 
 const data = {
   username: "David Leonardo Garzón",
@@ -24,13 +26,10 @@ const data = {
   id: 10,
 };
 
-const Template: StoryFn<ISubjectSearchCard> = (args) => (
-  <SubjectSearchCard {...args} />
-);
+type Story = StoryObj<typeof SubjectSearchCard>;
 
-const Default = Template.bind({});
-Default.args = {
-  subjectSearchData: data,
+export const Default: Story = {
+  args: {
+    subjectSearchData: data,
+  },
 };
-export default story;
-export { Default };

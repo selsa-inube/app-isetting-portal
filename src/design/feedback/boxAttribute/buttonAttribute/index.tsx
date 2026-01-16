@@ -1,5 +1,5 @@
 import { Text, Icon, Stack } from "@inubekit/inubekit";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { basic } from "@design/tokens";
 import { StyledContainer } from "./styles";
 
@@ -20,7 +20,7 @@ const ButtonAttribute = (props: IButtonAttribute) => {
           alignItems="center"
           padding={basic.spacing.s025}
         >
-          <Icon icon={icon} appearance={ComponentAppearance.DARK} />
+          <Icon icon={icon} appearance={EComponentAppearance.DARK} />
         </Stack>
       )}
       <Text size="small">{value}</Text>

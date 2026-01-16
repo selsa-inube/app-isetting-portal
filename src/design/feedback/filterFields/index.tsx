@@ -1,7 +1,7 @@
 import { MdOutlineFilterAltOff, MdOutlineFilterAlt } from "react-icons/md";
 import { Button, Stack, Tag, useMediaQuery } from "@inubekit/inubekit";
 import { FilterModal } from "@design/modals/filterModal";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { IFilterFields } from "@ptypes/feedback/filterFields/IFilterFields";
 import { filterFieldsLabels } from "@config/filterFieldsLabels";
 import {
@@ -25,7 +25,7 @@ const FilterFields = (props: IFilterFields) => {
   } = props;
   const isSmallScreen = useMediaQuery("(max-width: 1001px)");
 
-  const disabledButton= selectedOptions.length === options.length
+  const disabledButton = selectedOptions.length === options.length
 
   return (
     <>
@@ -76,7 +76,7 @@ const FilterFields = (props: IFilterFields) => {
         <FilterModal
           actionText={actionText}
           selectedOptions={selectedOptions}
-          appearance={ComponentAppearance.PRIMARY}
+          appearance={EComponentAppearance.PRIMARY}
           isLoading={false}
           portalId="portal"
           title={title}

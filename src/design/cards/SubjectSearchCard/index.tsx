@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdClear } from "react-icons/md";
 import { Stack, Grid, Text, useMediaQuery, Icon } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { StyledSubjectSearchCard, StyledSubjectSearchCardText } from "./styles";
 
 interface ISubjectSearchCard {
@@ -14,7 +14,7 @@ interface ISubjectSearchCard {
 const SubjectSearchCard = (props: ISubjectSearchCard) => {
   const { subjectSearchData, closeIcon } = props;
   const [isActive, setIsActive] = useState(false);
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
 
   const handleToggleModal = () => {
     setIsActive(!isActive);

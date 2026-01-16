@@ -9,6 +9,7 @@ import { formatDate } from "@utils/date/formatDate";
 import { IFormAddMission } from "@ptypes/missions/assisted/IFormAddMission";
 import { IGeneralInformationEntry } from "@ptypes/missions/assisted/IGeneralInformationEntry";
 import { saveDataLabels } from "@config/missions/missionTab/assisted/saveDataLabels";
+import { ERequestType } from "@src/enum/request/requestType";
 
 const useAddMission = () => {
   const initialValues = {
@@ -78,17 +79,16 @@ const useAddMission = () => {
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
       description: saveDataLabels.description,
+      requestType: ERequestType.ADD,
       entityName: "Mission",
       requestDate: formatDate(new Date()),
       useCaseName: "AddMission",
       configurationRequestData: {
         missionName: formValues.generalInformation.values.nameMission,
-        descriptionUse:
-          formValues.generalInformation.values.descriptionMission,
+        descriptionUse: formValues.generalInformation.values.descriptionMission,
       },
     });
   };
-
   return {
     currentStep,
     formValues,

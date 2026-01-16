@@ -8,19 +8,19 @@ import { ICardData } from "@ptypes/home/ICardData";
 
 const useMainNavigation = (props: IUseMainNavigation) => {
 
-  const { optionsCards, logout, location } = props;
+  const { optionsCards, location } = props;
 
-    const createNavLink = (
-  option: ICardData,
-  defaultIcon: React.ReactElement,
-  location?: Location,
-) => ({
-  id: option?.id ?? "",
-  label: option?.publicCode ?? "",
-  icon: option?.icon ?? defaultIcon,
-  path: option?.url ?? "",
-  isActive: location ? location.pathname === option?.url : false,
-});
+  const createNavLink = (
+    option: ICardData,
+    defaultIcon: React.ReactElement,
+    location?: Location,
+  ) => ({
+    id: option?.id ?? "",
+    label: option?.publicCode ?? "",
+    icon: option?.icon ?? defaultIcon,
+    path: option?.url ?? "",
+    isActive: location ? location.pathname === option?.url : false,
+  });
   const linkNav = optionsCards.reduce<Record<string, ILinkNav>>(
     (linkIndex, option) => {
       const navLink = createNavLink(option, <MdOutlineStart />, location);
@@ -48,7 +48,7 @@ const useMainNavigation = (props: IUseMainNavigation) => {
           },
         },
       ],
-      actions: actionsConfig(logout),
+      actions: actionsConfig(),
     },
     breakpoint: "848px",
   };

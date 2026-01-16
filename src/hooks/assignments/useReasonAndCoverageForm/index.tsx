@@ -6,7 +6,7 @@ import { object } from "yup";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
 import { formatDate } from "@utils/date/formatDate";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { addAssignmentsLabels } from "@config/assignments/assisted/addAssignmentsLabels";
 import { IUseReasonAndCoverageForm } from "@ptypes/assignments/assisted/IUseReasonAndCoverageForm";
 
@@ -63,12 +63,12 @@ const useReasonAndCoverageForm = (props: IUseReasonAndCoverageForm) => {
 
   const [isDisabledButton, setIsDisabledButton] = useState(false);
 
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
 
   useImperativeHandle(ref, () => formik);
 
   useEffect(() => {
-    if (formik.values.dateFrom < dateCurrent  ) {
+    if (formik.values.dateFrom < dateCurrent) {
       setDateLimit("");
       formik.setFieldValue("dateTo", "");
     }

@@ -7,7 +7,7 @@ import { eventBus } from "@events/eventBus";
 import { compareObjects } from "@utils/compareObjects";
 import { assignmentLabels } from "@config/assignments/assignmentForm/assigmentLabels";
 import { actionButtonsLabels } from "@config/assignments/assignmentForm/actionButtonsLabels";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IUseBusinessunitForm } from "@ptypes/hooks/assignments/IUseBusinessunitForm";
 import { IBusinessEntry } from "@ptypes/assignments/IBusinessEntry";
 
@@ -21,7 +21,7 @@ const useBusinessUnitForm = (props: IUseBusinessunitForm) => {
   const [isDisabledButton, setIsDisabledButton] = useState(false);
   const [filteredRows, setFilteredRows] = useState<IBusinessEntry[]>(entries);
   const [searchBusinessUnit, setSearchBusinessUnit] = useState("");
-  const isMobile = useMediaQuery(enviroment.IS_MOBILE_970);
+  const isMobile = useMediaQuery(mediaQueryTabletMain);
 
   const handleToggleUnits = () => {
     setShowMenu(!showMenu);

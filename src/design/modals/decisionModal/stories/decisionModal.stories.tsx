@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Meta, StoryFn } from "@storybook/react";
 import { Button } from "@inubekit/inubekit";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { IDecisionModal } from "@ptypes/modals/decisionModal/IDecisionModal";
 import { DecisionModal } from "..";
 
@@ -11,7 +11,7 @@ const meta: Meta<typeof DecisionModal> = {
   title: "modals/DecisionModal",
   component: DecisionModal,
   decorators: [
-    (Story: StoryFn) => (
+    (Story) => (
       <BrowserRouter>
         <Story />
       </BrowserRouter>
@@ -38,7 +38,6 @@ DeleteProcess.args = {
   title: "Eliminar",
   description: "¿Realmente deseas eliminar este roles?",
   actionText: "Eliminar",
-  justificationOfDecision: true,
 };
 
 const EditProcess = Template.bind({});
@@ -58,7 +57,7 @@ WithIcon.args = {
   actionText: "Continuar aún así",
   withIcon: true,
   icon: <MdOutlineWarningAmber />,
-  appearance: ComponentAppearance.WARNING,
+  appearance: EComponentAppearance.WARNING,
 };
 
 export { WithIcon, EditProcess, DeleteProcess };

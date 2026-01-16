@@ -9,7 +9,7 @@ import {
   Stack,
 } from "@inubekit/inubekit";
 import { BorderStack } from "../../layout/borderStack";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { basic } from "@design/tokens";
 import { ISelectBusUnitModal } from "@ptypes/design/ISelectBusUnitModal";
 import { isInvalid } from "@utils/isInvalid";
@@ -61,12 +61,12 @@ const SelectBusUnitModal = (props: ISelectBusUnitModal) => {
           >
             <Button
               spacing="compact"
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
               variant="none"
               onClick={onCloseModal}
               iconAfter={
                 <Icon
-                  appearance={ComponentAppearance.DARK}
+                  appearance={EComponentAppearance.DARK}
                   icon={<MdClear />}
                 />
               }
@@ -97,7 +97,7 @@ const SelectBusUnitModal = (props: ISelectBusUnitModal) => {
         <Stack gap={basic.spacing.s250} justifyContent="flex-end">
           <Button
             spacing="wide"
-            appearance={ComponentAppearance.LIGHT}
+            appearance={EComponentAppearance.LIGHT}
             variant="filled"
             onClick={onCloseModal}
           >
@@ -106,7 +106,7 @@ const SelectBusUnitModal = (props: ISelectBusUnitModal) => {
 
           <Button
             spacing="wide"
-            appearance={ComponentAppearance.PRIMARY}
+            appearance={EComponentAppearance.PRIMARY}
             variant="filled"
             onClick={onClick}
             disabled={disabledButton}

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { ERequestPosition } from "@enum/requestPosition";
-import { enviroment } from "@config/environment";
+import { mediaQueryMobile } from "@config/environment";
 import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 
@@ -16,7 +16,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     useState<string>("");
   const [loading, setLoading] = useState(true);
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_743);
+  const smallScreen = useMediaQuery(mediaQueryMobile);
   const widthFirstColumn = smallScreen ? 70 : 12;
   useEffect(() => {
     const fetchRequestsInProgressData = async () => {

@@ -3,8 +3,8 @@ import { Icon, useMediaQuery, Text } from "@inubekit/inubekit";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { portalId } from "@config/portalId";
 import { deleteLabels } from "@config/deleteLabels";
-import { enviroment } from "@config/environment";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { mediaQueryTabletMain } from "@config/environment";
+import { EComponentAppearance } from "@enum/appearances";
 import { IDelete } from "@ptypes/design/IDelete";
 import { StyledContainerIcon } from "./styles";
 
@@ -16,17 +16,16 @@ const DeleteRecord = (props: IDelete) => {
     withText = true,
     onToggleModal,
     onClick,
-    setJustificationDelete,
   } = props;
 
-  const screenTablet = useMediaQuery(enviroment.IS_MOBILE_970);
+  const screenTablet = useMediaQuery(mediaQueryTabletMain);
 
   const showText = screenTablet && withText;
   return (
     <>
       <StyledContainerIcon onClick={onToggleModal} $isTablet={screenTablet}>
         <Icon
-          appearance={ComponentAppearance.DANGER}
+          appearance={EComponentAppearance.DANGER}
           icon={<MdDeleteOutline />}
           size="16px"
           onClick={onToggleModal}
@@ -45,12 +44,10 @@ const DeleteRecord = (props: IDelete) => {
           title={messageDelete.title}
           actionText={messageDelete.actionText}
           description={messageDelete.description}
-          justificationOfDecision={true}
           onClick={onClick}
           onCloseModal={onToggleModal}
-          setFieldEntered={setJustificationDelete}
-          appearance={ComponentAppearance.DANGER}
-          isLoading={loading}
+          appearance={EComponentAppearance.DANGER}
+          loading={loading}
         />
       )}
     </>

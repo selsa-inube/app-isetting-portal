@@ -9,7 +9,7 @@ import { IOptionInitialiceEntryApp } from "../IOptionInitialiceEntryApp";
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
 interface IAddPositionUI {
   currentStep: number;
-  generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry>>;
+  generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry> | null>;
   initialValues: IFormAddPosition;
   isCurrentFormValid: boolean;
   steps: IAssistedStep[];
@@ -20,9 +20,7 @@ interface IAddPositionUI {
   setIsCurrentFormValid: React.Dispatch<React.SetStateAction<boolean>>;
   selectedToggle: IFormEntry[];
   setCurrentStep: (step: number) => void;
-  setSelectedToggle: React.Dispatch<
-    React.SetStateAction<IFormEntry[] | undefined>
-  >;
+  setSelectedToggle: React.Dispatch<React.SetStateAction<IFormEntry[]>>;
   handlePreviousStep: () => void;
   handleNextStep: () => void;
   formValues: IFormAddPosition;

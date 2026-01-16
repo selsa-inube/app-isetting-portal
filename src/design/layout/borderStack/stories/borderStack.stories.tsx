@@ -1,4 +1,5 @@
-import { Meta, StoryFn } from "@storybook/react/*";
+
+import { Meta, StoryFn } from "@storybook/react";
 import { BorderStack } from "..";
 import { EComponentAppearance } from "@enum/appearances";
 

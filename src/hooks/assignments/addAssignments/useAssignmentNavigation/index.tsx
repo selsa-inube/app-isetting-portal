@@ -8,6 +8,7 @@ import { formatDate } from "@utils/date/formatDate";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { addAssignmentsLabels } from "@config/assignments/assisted/addAssignmentsLabels";
+import { ERequestType } from "@src/enum/request/requestType";
 
 const useAssignmentNavigation = (props: IUseAssignmentNavigation) => {
   const {
@@ -142,6 +143,7 @@ const useAssignmentNavigation = (props: IUseAssignmentNavigation) => {
       entityName: "Assignments",
       requestDate: formatDate(new Date()),
       useCaseName: "AddAssignments",
+      requestType: ERequestType.ADD,
       configurationRequestData: {
         nameOfAbsentStaff: absentOfficial,
         assignmentDate: dateFrom,

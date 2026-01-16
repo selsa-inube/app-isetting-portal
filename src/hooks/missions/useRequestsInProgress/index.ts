@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { ERequestInProgress } from "@enum/requestInProgress";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/missions/requestTab/IRequestsInProgress";
 
@@ -22,7 +22,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     const fetchRequestsInProgressData = async () => {
       setLoading(true);
       try {
-        if(businessManager.length > 0){
+        if (businessManager.length > 0) {
           const data = await getRequestsInProgress(
             ERequestInProgress.MISSIONS,
             businessManager
@@ -54,7 +54,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     setSearchRequestsInProgress(e.target.value);
   };
 
-  const smallScreen = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const widthFirstColumn = smallScreen ? 70 : 15;
 
   const columnWidths = smallScreen

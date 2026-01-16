@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { ERequestAssignments } from "@enum/requestAssignments";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
@@ -54,7 +54,7 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
     setSearchRequestsInProgress(e.target.value);
   };
 
-  const smallScreen = useMediaQuery(enviroment.MEDIA_QUERY_MOBILE);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const widthFirstColumn = smallScreen ? 70 : 12;
 
   const columnWidths = smallScreen

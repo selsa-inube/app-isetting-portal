@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import { MdCheckCircle, MdClear } from "react-icons/md";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import {
   Stack,
   Icon,
@@ -59,12 +59,12 @@ const RequestStatus = (props: IRequestStatus) => {
             <StyledContainerButton>
               <Button
                 spacing="compact"
-                appearance={ComponentAppearance.DARK}
+                appearance={EComponentAppearance.DARK}
                 variant="none"
                 onClick={onCloseModal}
                 iconAfter={
                   <Icon
-                    appearance={ComponentAppearance.DARK}
+                    appearance={EComponentAppearance.DARK}
                     icon={<MdClear />}
                   />
                 }
@@ -79,7 +79,7 @@ const RequestStatus = (props: IRequestStatus) => {
         <Stack alignItems="center" justifyContent="center">
           <Icon
             icon={<MdCheckCircle />}
-            appearance={ComponentAppearance.SUCCESS}
+            appearance={EComponentAppearance.SUCCESS}
             size={isMobile ? "50px" : "68px"}
           />
         </Stack>
@@ -88,7 +88,7 @@ const RequestStatus = (props: IRequestStatus) => {
           <Stack justifyContent="center">
             <Text
               textAlign="center"
-              appearance={ComponentAppearance.DARK}
+              appearance={EComponentAppearance.DARK}
               size="large"
               weight="bold"
             >
@@ -96,7 +96,7 @@ const RequestStatus = (props: IRequestStatus) => {
             </Text>
           </Stack>
 
-          <Text appearance={ComponentAppearance.GRAY} size="medium">
+          <Text appearance={EComponentAppearance.GRAY} size="medium">
             {description}
           </Text>
         </Stack>

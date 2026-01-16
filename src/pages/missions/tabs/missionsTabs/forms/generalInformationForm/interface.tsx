@@ -1,6 +1,6 @@
 import { basic } from "@design/tokens";
 import { Button, Stack, Textarea, Textfield } from "@inubekit/inubekit";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { IGeneralInformationFormUI } from "@ptypes/missions/assisted/IGeneralInformationFormUI";
 import { generalInfoLabels } from "@config/missions/missionTab/generalInfoLabels";
 import { getFieldState } from "@utils/forms";
@@ -70,7 +70,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
             <Button
               onClick={onPreviousStep}
               variant="outlined"
-              appearance={ComponentAppearance.GRAY}
+              appearance={EComponentAppearance.GRAY}
             >
               {labelButtonPrevious}
             </Button>
@@ -80,7 +80,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
             onClick={onButtonClick}
             disabled={isDisabledButton}
             loading={loading}
-            appearance={ComponentAppearance.PRIMARY}
+            appearance={EComponentAppearance.PRIMARY}
           >
             {labelButtonNext}
           </Button>

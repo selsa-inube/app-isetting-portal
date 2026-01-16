@@ -6,12 +6,12 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { ERequestMission } from "@enum/requestMission";
 import { missionsTabsConfig } from "@config/missions/tabs";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IMissionTabsConfig } from "@ptypes/missions/IMissionTabsConfig";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
 const useMissionsTabs = () => {
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const tabs = missionsTabsConfig(smallScreen);
   const [isSelected, setIsSelected] = useState<string>(tabs.roles.id);
   const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);
@@ -56,8 +56,7 @@ const useMissionsTabs = () => {
   useEffect(() => {
     const fetchRequestsInProgressData = async () => {
       try {
-        if(appData.businessManager.publicCode.length > 0){
-
+        if (appData.businessManager.publicCode.length > 0) {
           const data = await getRequestsInProgress(
             ERequestMission.MISSIONS,
             appData.businessManager.publicCode
@@ -120,6 +119,7 @@ const useMissionsTabs = () => {
     onToggleModal,
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
+
     widthFirstColumn,
     showMissionTab,
     showRequestTab,

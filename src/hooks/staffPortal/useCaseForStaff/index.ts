@@ -3,13 +3,8 @@ import { getUseCaseForStaff } from "@services/staffPortal/getUseCaseForStaff";
 import { useState, useEffect } from "react";
 
 const useCaseForStaff = (props: IUseCaseForStaff) => {
-  const {
-    businessUnitPrevious,
-    useCasesByStaff,
-    businessUnit,
-    userAccount,
-    businessManagerCode,
-  } = props;
+  const { useCasesByStaff, businessUnit, userAccount, businessManagerCode } =
+    props;
   const [useCases, setUseCases] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [hasError, setHasError] = useState(false);

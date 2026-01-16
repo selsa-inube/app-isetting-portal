@@ -10,18 +10,18 @@ import {
   StyledLabelRow,
   StyledFieldContainer,
   StyledCountryButton,
+  StyledFlag,
+  StyledDial,
   StyledNumberInput,
   StyledDropdown,
   StyledSearchBox,
   StyledCountryList,
   StyledCountryItem,
-  StyledHelperText,
-  StyledErrorContainer,
-  StyledWarningIcon,
-  StyledFlag,
-  StyledDial,
   StyledCountryName,
   StyledCountryCode,
+  StyledErrorContainer,
+  StyledWarningIcon,
+  StyledHelperText,
 } from "./styles";
 import { phoneFieldTokens } from "./tokens";
 import { CountryOption } from "@ptypes/design/phoneInput/ICountryOption";
@@ -94,6 +94,7 @@ const PhoneNumberFieldUI = (props: IPhoneNumberField) => {
   return (
     <StyledWrapper $fullwidth={fullwidth}>
       {label && (
+
         <StyledLabelRow htmlFor={id} $disabled={disabled}>
           <Text type="label"> {label}</Text>
         </StyledLabelRow>

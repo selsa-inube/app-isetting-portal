@@ -1,4 +1,4 @@
-import { Stack, Textarea, Input, Button } from "@inubekit/inubekit";
+import { Stack, Input, Button } from "@inubekit/inubekit";
 
 import { StyledContainer } from "./styles";
 import { basic } from "@design/tokens";
@@ -15,11 +15,11 @@ const ContactDataFormUI = (props: IContactDataFormUI) => {
     formik,
     loading,
     onNextStep,
-    componentSize,
     mobilePadding,
     labelButtonNext,
     buttonDisabledState,
     handlePreviousStep,
+    componentSize,
   } = props;
 
   return (
@@ -32,7 +32,7 @@ const ContactDataFormUI = (props: IContactDataFormUI) => {
             gap={basic.spacing.s300}
             padding={mobilePadding}
           >
-            <Stack direction="row" width="100%" gap={basic.spacing.s250}>
+            <Stack direction={componentSize} width="100%" gap={basic.spacing.s250}>
               <Input
                 name={contactDataConfig.input.name}
                 id={contactDataConfig.input.id}

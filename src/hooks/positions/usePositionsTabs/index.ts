@@ -10,13 +10,13 @@ import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
 import { ERequestPosition } from "@enum/requestPosition";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { IPositionTabsConfig } from "@ptypes/positions/IPositionTabsConfig";
 import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 
 const usePositionsTabs = () => {
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const tabs = positionsTabsConfig(smallScreen);
   const [isSelected, setIsSelected] = useState<string>(tabs.cargos.id);
   const { changeTab, setChangeTab } = useContext(ChangeToRequestTab);

@@ -4,7 +4,7 @@ import { useMediaQuery } from "@inubekit/inubekit";
 
 import { decrypt } from "@utils/decrypt";
 import { AuthAndData } from "@context/authAndDataProvider";
-import { enviroment } from "@config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 import { usersTabsConfig } from "@config/users/tabs";
 import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 
@@ -17,8 +17,10 @@ import { ERequestUsers } from "@enum/requestUsers";
 
 const useUserPage = (props: IUseUserPage) => {
   const { businessManager } = props;
-  const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
+  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const tabs = usersTabsConfig(smallScreen);
+  const [showModal, setShowModal] = useState(false);
+  const [showInfoModal, setShowInfoModal] = useState(false);
   const [isSelected, setIsSelected] = useState<string>(tabs.staff.id);
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
@@ -95,6 +97,17 @@ const useUserPage = (props: IUseUserPage) => {
 
   const userTabs = Object.values(filteredTabsConfig);
 
+  const onToggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const onToggleInfoModal = () => {
+    setShowInfoModal(!showInfoModal);
+  };
+  const onCloseMenu = () => {
+    setShowModal(!showModal);
+  };
+
   return {
     smallScreen,
     isSelected,
@@ -104,6 +117,11 @@ const useUserPage = (props: IUseUserPage) => {
     showRequestsInProgressTab,
     userTabs,
     loading,
+    showModal,
+    showInfoModal,
+    onToggleInfoModal,
+    onCloseMenu,
+    onToggleModal,
   };
 };
 export { useUserPage };

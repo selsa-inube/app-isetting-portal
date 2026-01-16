@@ -3,7 +3,7 @@ import { Icon, ProgressBar, Stack, Text } from "@inubekit/inubekit";
 import { countVerifiedRequests } from "@utils/countVerifiedRequests";
 import { verifiedErrorRequest } from "@utils/verifiedErrorRequest";
 import { basic } from "@design/tokens";
-import { ComponentAppearance } from "@ptypes/aparences.types";
+import { EComponentAppearance } from "@enum/appearances";
 import { IRequestProcess } from "@ptypes/design/IRequestProcess";
 import {
   StyledContainerFields,
@@ -17,14 +17,14 @@ const RequestProcessBar = (props: IRequestProcess) => {
 
   const appearance =
     requestSteps[stepCurrentIndex].status === "error"
-      ? ComponentAppearance.DANGER
-      : ComponentAppearance.SUCCESS;
+      ? EComponentAppearance.DANGER
+      : EComponentAppearance.SUCCESS;
 
   const isError = requestSteps[stepCurrentIndex].status === "error";
 
   const appearanceProgressBar = verifiedErrorRequest(requestSteps)
-    ? ComponentAppearance.DANGER
-    : ComponentAppearance.SUCCESS;
+    ? EComponentAppearance.DANGER
+    : EComponentAppearance.SUCCESS;
 
   const numberOfSteps = `${stepCurrent}/${requestSteps.length}`;
 
@@ -60,7 +60,7 @@ const RequestProcessBar = (props: IRequestProcess) => {
 
           <Text
             size="medium"
-            appearance={ComponentAppearance.DARK}
+            appearance={EComponentAppearance.DARK}
             weight="bold"
             ellipsis
           >
@@ -69,7 +69,7 @@ const RequestProcessBar = (props: IRequestProcess) => {
         </Stack>
         <Stack width="100%" gap={basic.spacing.s100} alignItems="center">
           <StyledContainerProgressBar
-            $appearance={ComponentAppearance.GRAY}
+            $appearance={EComponentAppearance.GRAY}
             $height="8px"
           >
             <ProgressBar
@@ -82,7 +82,7 @@ const RequestProcessBar = (props: IRequestProcess) => {
             {numberOfSteps}
           </Text>
         </Stack>
-        <Text type="label" size="large" appearance={ComponentAppearance.GRAY}>
+        <Text type="label" size="large" appearance={EComponentAppearance.GRAY}>
           {percentage}
         </Text>
       </Stack>

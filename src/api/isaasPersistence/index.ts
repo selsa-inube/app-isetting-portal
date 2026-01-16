@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { enviroment } from "@config/environment";
+import { enviroment, fetchTimeoutServices } from "@config/environment";
 import { EErrorState } from "@enum/errorState";
 import { eventBus } from "@events/eventBus";
 import { IErrorMessage } from "@ptypes/errors/IErrorMessage";
@@ -8,7 +8,7 @@ import localforage from "localforage";
 
 const isaasPerAxiosInstance: AxiosInstance = axios.create({
   baseURL: enviroment.ISAAS_PERSISTENCE_PROCESS_SERVICE,
-  timeout: enviroment.FETCH_TIMEOUT_SERVICES,
+  timeout: fetchTimeoutServices,
   headers: {
     "Content-type": "application/json; charset=UTF-8",
   },

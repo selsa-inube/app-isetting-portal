@@ -5,10 +5,10 @@ import { IAuthWrapper } from "@ptypes/IAuthWrapper";
 
 const AuthWrapper = ({ children }: IAuthWrapper) => {
   useAuthWrapper();
-
+  // const { appData } = useContext(AuthAndData);
   return (
     <IAuthProvider
-      originatorId={enviroment.ORIGINATOR_ID}
+      // originatorId={appData.businessManager.clientId}
       callbackUrl={enviroment.REDIRECT_URI}
       iAuthUrl={enviroment.IAUTH_URL}
       serviceUrl={enviroment.IAUTH_SERVICE_URL}
@@ -16,7 +16,9 @@ const AuthWrapper = ({ children }: IAuthWrapper) => {
       codeChallenge={enviroment.CODE_CHALLENGE}
       state={enviroment.STATE}
       applicationName={enviroment.APPLICATION_NAME}
+      // originatorCode={appData.businessManager.publicCode}
       originatorCode={enviroment.ORIGINATOR_CODE}
+      originatorId={enviroment.ORIGINATOR_ID}
     >
       {children}
     </IAuthProvider>

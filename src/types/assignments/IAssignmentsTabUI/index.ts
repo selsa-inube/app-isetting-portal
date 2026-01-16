@@ -15,6 +15,9 @@ interface IAssigmentsTabUI {
   absentOfficialOptions: IOption[];
   formik: FormikValues;
   disabledButtonModal: boolean;
+  disabledButton: boolean;
+  showInfoModal: boolean;
+  handleToggleInfoModal: () => void;
   onSelectChange: (name: string, value: string) => void;
   onSelectCheckChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClickModal: () => void;

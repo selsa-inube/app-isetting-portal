@@ -5,7 +5,7 @@ import {
   ActionItemBlock,
   IActionItemBlock,
 } from "@design/cards/actionItemBlock";
-import { enviroment } from "@config/environment";
+import { mediaQueryMobileSmall } from "@config/environment";
 
 interface IContentFrameworkGrid {
   appOptions: IActionItemBlock[];
@@ -14,7 +14,7 @@ interface IContentFrameworkGrid {
 const ContentFrameworkGrid = (props: IContentFrameworkGrid) => {
   const { appOptions } = props;
 
-  const screenMovil = useMediaQuery(enviroment.IS_MOBILE_580);
+  const screenMovil = useMediaQuery(mediaQueryMobileSmall);
 
   return (
     <Grid

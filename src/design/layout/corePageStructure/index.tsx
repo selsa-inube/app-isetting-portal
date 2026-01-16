@@ -19,12 +19,10 @@ import { useErrorManagement } from "@hooks/errorManagement";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { errorModalConfig } from "@config/errorModal";
 import { messageErrorStatusConsultation } from "@utils/messageErrorStatus";
-import { useIAuth } from "@inube/iauth-react";
 
 const CorePageStructure = () => {
   const { appData, businessUnitsToTheStaff, businessUnitSigla } =
     useContext(AuthAndData);
-  const { logout } = useIAuth();
   const { errorModal, errorData, closeErrorModal } = useErrorManagement();
 
   const {
@@ -35,7 +33,7 @@ const CorePageStructure = () => {
     optionsHeader,
     optionsNav,
     setCollapse,
-  } = useCorePageStructure({ businessUnitSigla, logout });
+  } = useCorePageStructure({ businessUnitSigla });
 
   return (
     <StyledAppPage>
@@ -92,7 +90,7 @@ const CorePageStructure = () => {
           withIcon
           icon={<MdOutlineWarningAmber />}
           appearance={EComponentAppearance.WARNING}
-          showCancelButton={false}
+          withCancelButton={false}
           actionText={errorModalConfig.actionText}
           description={messageErrorStatusConsultation(errorData.code)}
           portalId={"portal"}

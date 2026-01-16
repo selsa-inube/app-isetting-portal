@@ -1,3 +1,5 @@
+import { IOptionsByBusinessUnits } from "./staffPortal/IOptionsByBusinessUnits";
+
 interface IOptionsByStaffPortalBusinessManager {
   optionStaffId: string;
   staffPortalCatalogId: string;
@@ -7,13 +9,15 @@ interface IOptionsByStaffPortalBusinessManager {
 interface IStaffPortalByBusinessManager {
   abbreviatedName: string;
   businessManagerCode: string;
+  businessManagerName: string;
   descriptionUse: string;
   publicCode: string;
   staffPortalCatalogCode: string;
   staffPortalId: string;
   url: string;
-  optionsByStaffPortalBusinessManager?: IOptionsByStaffPortalBusinessManager[];
-  [key: string]: string | IOptionsByStaffPortalBusinessManager[] | undefined;
+  brandImageUrl: string;
+  optionsByStaffPortalBusinessManager?: IOptionsByBusinessUnits[];
+  [key: string]: string | IOptionsByBusinessUnits[] | undefined;
 }
 
 export type {

@@ -5,10 +5,10 @@ import { ICardData } from "@ptypes/home/ICardData";
 const createNavLink = (
   option: ICardData,
   defaultIcon: React.ReactNode,
-  location?: Location
+  location?: Location,
 ) => ({
   id: option?.id ?? "",
-  label: option?.label ?? "",
+  label: option?.publicCode ?? "",
   icon: option?.icon ?? defaultIcon,
   path: option?.url ?? "",
   isActive: location ? location.pathname === option?.url : false,

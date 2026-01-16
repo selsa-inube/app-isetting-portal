@@ -2,11 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { object } from "yup";
 import { useFormik } from "formik";
-import { useMediaQuery } from "@inubekit/inubekit";
+import { IOption, useMediaQuery } from "@inubekit/inubekit";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
-import { useOptionsByBusinessUnit } from "@hooks/staffPortal/useOptionsByBusinessUnit";
 import { validationRules } from "@validations/validationRules";
 import { validationMessages } from "@validations/validationMessages";
 import { ERequestPosition } from "@enum/requestPosition";
@@ -14,6 +13,7 @@ import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { enviroment } from "@config/environment";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { IPositionTabsConfig } from "@ptypes/positions/IPositionTabsConfig";
+import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 
 const usePositionsTabs = () => {
   const smallScreen = useMediaQuery(enviroment.IS_MOBILE_970);
@@ -30,7 +30,8 @@ const usePositionsTabs = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const widthFirstColumn = smallScreen ? 60 : 20;
 
-  const { appData, setBusinessUnitSigla } = useContext(AuthAndData);
+  const { appData, setBusinessUnitSigla, businessUnitSigla } =
+    useContext(AuthAndData);
 
   useEffect(() => {
     setBusinessUnitSigla("");
@@ -38,27 +39,22 @@ const usePositionsTabs = () => {
 
   const navigate = useNavigate();
 
-  const {
-    optionsSelectUnits: optionsUnits,
-    optionsBusinessUnit,
-    loading,
-  } = useOptionsByBusinessUnit({
-    publicCode: appData.portal.publicCode,
-    userAccount: appData.user.userAccount,
+  const { optionsCards, loading } = useOptionsByBusinessUnits({
+    staffPortalId: appData.portal.publicCode,
+    businessUnit: businessUnitSigla,
   });
-
   useEffect(() => {
-    if (optionsBusinessUnit.length === 0) return;
-    if (optionsBusinessUnit.length > 1) {
+    if (optionsCards.length === 0) return;
+    if (optionsCards.length > 1) {
       setShowModalUnits(true);
     }
 
-    if (optionsBusinessUnit.length === 1) {
+    if (optionsCards.length === 1) {
       setShowModalUnits(false);
-      const selectJSON = JSON.stringify(optionsBusinessUnit[0]);
+      const selectJSON = JSON.stringify(optionsCards[0]);
       setBusinessUnitSigla(selectJSON);
     }
-  }, [optionsBusinessUnit]);
+  }, [optionsCards]);
 
   const initialValues = {
     businessUnits: "",
@@ -99,7 +95,7 @@ const usePositionsTabs = () => {
   };
 
   const handleClickUnits = () => {
-    const dataBusinessUnit = optionsBusinessUnit.find(
+    const dataBusinessUnit = optionsCards.find(
       (option) => option.publicCode === formik.values.businessUnits
     );
     const selectJSON = JSON.stringify(dataBusinessUnit);
@@ -188,6 +184,12 @@ const usePositionsTabs = () => {
 
   const columnWidths = [widthFirstColumn, 55, 23];
 
+  const optionsUnits: IOption[] = optionsCards.map((card) => ({
+    id: card.id,
+    label: card.publicCode,
+    value: card.id,
+  }));
+
   return {
     isSelected,
     handleTabChange,
@@ -197,8 +199,8 @@ const usePositionsTabs = () => {
     showInfoModal,
     showModalUnits,
     formik,
+    optionsCards,
     optionsUnits,
-    optionsBusinessUnit,
     loading,
     positionTab,
     showPositionsTab,

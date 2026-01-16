@@ -6,7 +6,7 @@ import { decrypt } from "@utils/decrypt";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { enviroment } from "@config/environment";
 import { usersTabsConfig } from "@config/users/tabs";
-import { useOptionsByBusinessunits } from "@hooks/subMenu/useOptionsByBusinessunits";
+import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 
 import { IUseUserPage } from "@ptypes/hooks/IUseUserPage";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
@@ -30,8 +30,8 @@ const useUserPage = (props: IUseUserPage) => {
   const portalId = localStorage.getItem("portalCode");
   const staffPortalId = portalId ? decrypt(portalId) : "";
   const [loading, setLoading] = useState(true);
-  const { optionsCards } = useOptionsByBusinessunits({
-    businessUnitSigla,
+  const { optionsCards } = useOptionsByBusinessUnits({
+    businessUnit: businessUnitSigla,
     staffPortalId,
   });
 

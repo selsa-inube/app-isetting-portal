@@ -1,23 +1,26 @@
-import { IPortalStaff } from "@ptypes/subMenu/types";
+import { IOptionsByBusinessUnits } from "@ptypes/staffPortal/IOptionsByBusinessUnits";
 
-const mapPortalStaffApiToEntity = (
-  portalStaff: Record<string, string | number | object>
-): IPortalStaff => {
-  const builPortalStaff: IPortalStaff = {
-    abbreviatedName: String(portalStaff.abbreviatedName),
-    descriptionUse: String(portalStaff.descriptionUse),
-    optionStaffId: String(portalStaff.optionStaffId),
-    publicCode: String(portalStaff.publicCode),
-    useCaseId: String(portalStaff.useCaseId),
-    subOption: Object(portalStaff.subOption),
+const mapOptionsByBusinessUnitsApiToEntity = (
+  businessUnit: IOptionsByBusinessUnits
+): IOptionsByBusinessUnits => {
+  const businessUnitData: IOptionsByBusinessUnits = {
+    optionStaffId: String(businessUnit.optionStaffId),
+    abbreviatedName: String(businessUnit.abbreviatedName),
+    descriptionUse: String(businessUnit.descriptionUse),
+    publicCode: String(businessUnit.publicCode),
+    useCaseName: String(businessUnit.useCaseName),
+    iconReference: String(businessUnit.iconReference),
   };
-  return builPortalStaff;
+
+  return businessUnitData;
 };
 
 const mapOptionsByBusinessUnitsToEntities = (
-  resend: Record<string, string | number | object>[]
-): IPortalStaff[] => {
-  return resend.map(mapPortalStaffApiToEntity);
+  options: IOptionsByBusinessUnits[]
+): IOptionsByBusinessUnits[] => {
+  return options.map(mapOptionsByBusinessUnitsApiToEntity);
 };
-
-export { mapPortalStaffApiToEntity, mapOptionsByBusinessUnitsToEntities };
+export {
+  mapOptionsByBusinessUnitsToEntities,
+  mapOptionsByBusinessUnitsApiToEntity,
+};

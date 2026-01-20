@@ -23,7 +23,7 @@ const useBusinessManagers = (props: IUseBusinessManagers) => {
       try {
         if (portalPublicCode.businessManagerCode?.length > 0) {
           const newData = await getBusinessManagers(
-            portalPublicCode.businessManagerCode
+            portalPublicCode.businessManagerCode,
           );
           setBusinessManagersData(newData[0]);
         }

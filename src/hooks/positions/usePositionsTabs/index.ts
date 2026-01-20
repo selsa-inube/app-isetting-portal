@@ -13,7 +13,7 @@ import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { mediaQueryTabletMain } from "@config/environment";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { IPositionTabsConfig } from "@ptypes/positions/IPositionTabsConfig";
-import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
+import { useBusinessUnits } from "@src/hooks/useBusinessUnits";
 
 const usePositionsTabs = () => {
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
@@ -30,8 +30,7 @@ const usePositionsTabs = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const widthFirstColumn = smallScreen ? 60 : 20;
 
-  const { appData, setBusinessUnitSigla, businessUnitSigla } =
-    useContext(AuthAndData);
+  const { appData, setBusinessUnitSigla } = useContext(AuthAndData);
 
   useEffect(() => {
     setBusinessUnitSigla("");
@@ -39,22 +38,20 @@ const usePositionsTabs = () => {
 
   const navigate = useNavigate();
 
-  const { optionsCards, loading } = useOptionsByBusinessUnits({
-    staffPortalId: appData.portal.publicCode,
-    businessUnit: businessUnitSigla,
-  });
+  const { businessUnits } = useBusinessUnits();
+
   useEffect(() => {
-    if (optionsCards.length === 0) return;
-    if (optionsCards.length > 1) {
+    if (businessUnits.length === 0) return;
+    if (businessUnits.length > 1) {
       setShowModalUnits(true);
     }
 
-    if (optionsCards.length === 1) {
+    if (businessUnits.length === 1) {
       setShowModalUnits(false);
-      const selectJSON = JSON.stringify(optionsCards[0]);
+      const selectJSON = JSON.stringify(businessUnits[0]);
       setBusinessUnitSigla(selectJSON);
     }
-  }, [optionsCards]);
+  }, [businessUnits]);
 
   const initialValues = {
     businessUnits: "",
@@ -63,7 +60,7 @@ const usePositionsTabs = () => {
   const createValidationSchema = () =>
     object().shape({
       businessUnits: validationRules.string.required(
-        validationMessages.required
+        validationMessages.required,
       ),
     });
 
@@ -78,7 +75,7 @@ const usePositionsTabs = () => {
   });
 
   const comparisonData = Boolean(
-    formik.values.businessUnits === initialValues.businessUnits
+    formik.values.businessUnits === initialValues.businessUnits,
   );
 
   const handleChange = (name: string, value: string) => {
@@ -95,8 +92,8 @@ const usePositionsTabs = () => {
   };
 
   const handleClickUnits = () => {
-    const dataBusinessUnit = optionsCards.find(
-      (option) => option.publicCode === formik.values.businessUnits
+    const dataBusinessUnit = businessUnits.find(
+      (option) => option.publicCode === formik.values.businessUnits,
     );
     const selectJSON = JSON.stringify(dataBusinessUnit);
     setBusinessUnitSigla(selectJSON);
@@ -147,7 +144,7 @@ const usePositionsTabs = () => {
           const data = await getRequestsInProgress(
             ERequestPosition.POSITIONS,
             appData.businessManager.publicCode,
-            appData.businessUnit.publicCode
+            appData.businessUnit.publicCode,
           );
           setRequestsInProgress(data);
         }
@@ -184,10 +181,10 @@ const usePositionsTabs = () => {
 
   const columnWidths = [widthFirstColumn, 55, 23];
 
-  const optionsUnits: IOption[] = optionsCards.map((card) => ({
-    id: card.id,
-    label: card.publicCode,
-    value: card.id,
+  const optionsUnits: IOption[] = businessUnits.map((card) => ({
+    id: card.publicCode,
+    label: card.abbreviatedName,
+    value: card.publicCode,
   }));
 
   return {
@@ -199,9 +196,8 @@ const usePositionsTabs = () => {
     showInfoModal,
     showModalUnits,
     formik,
-    optionsCards,
+    businessUnits,
     optionsUnits,
-    loading,
     positionTab,
     showPositionsTab,
     showRequestTab,

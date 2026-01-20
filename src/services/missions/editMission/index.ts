@@ -1,30 +1,30 @@
 import { AxiosRequestConfig } from "axios";
-import { postWithRetries } from "@services/core/postWithRetries";
-import { mapAddMissionToApi } from "./mappers";
 import { isettingIsaasAxiosInstance } from "@src/api/isettingIsaas";
 import { IRequestMissions } from "@src/types/missions/assisted/IRequestMissions";
+import { mapAddMissionToApi } from "../addMission/postAddMission/mappers";
+import { patchWithRetries } from "@src/services/core/patchWithRetries";
 
-const postAddMission = async (
+const patchMission = async (
   businessUnit: string,
   user: string,
   data: IRequestMissions,
-  businessManagerCode: string
+  businessManagerCode: string,
 ): Promise<IRequestMissions> => {
   const config: AxiosRequestConfig = {
     headers: {
-      "X-Action": "AddMission",
+      "X-Action": "ModifyMission",
       "X-Business-Unit": businessUnit,
       "X-User-Name": user,
     },
   };
-  const newData = await postWithRetries<IRequestMissions>(
+  const newData = await patchWithRetries<IRequestMissions>(
     `/missions`,
     config,
     mapAddMissionToApi(data, businessManagerCode) as unknown as string[],
-    isettingIsaasAxiosInstance
+    isettingIsaasAxiosInstance,
   );
 
   return newData;
 };
 
-export { postAddMission };
+export { patchMission };

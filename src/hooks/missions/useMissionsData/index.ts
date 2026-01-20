@@ -3,9 +3,7 @@ import { IMisionData } from "@ptypes/missions/IMisionData";
 import { getMission } from "@services/missions/getMission";
 
 const useMissionsData = (portalPublicCode?: string) => {
-  const [missionsData, setMissionsData] = useState<
-    IMisionData[]
-  >([]);
+  const [missionsData, setMissionsData] = useState<IMisionData[]>([]);
   const [HasError, SetHasError] = useState(false);
 
   useEffect(() => {

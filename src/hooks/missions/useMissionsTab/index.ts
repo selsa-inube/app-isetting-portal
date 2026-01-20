@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useMemo } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useBusinessManagersId } from "@hooks/positions/useBusinessManageresId";
@@ -7,9 +7,10 @@ import { PrivilegeOptionsConfig } from "@config/positions/tabs";
 import { mediaQueryTabletMain } from "@config/environment";
 import { EUseCaseTypes } from "@src/enum/useCaseTypes";
 import { useValidateUseCase } from "@src/hooks/useValidateUseCase";
+import { IMisionData } from "@src/types/missions/IMisionData";
 
-const useMissionsTab = () => {
-  const [searchPosition, setSearchPosition] = useState<string>("");
+const useMissionsTab = (missionData: IMisionData[]) => {
+  const [searchMission, setSearchMission] = useState<string>("");
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
 
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
@@ -23,8 +24,8 @@ const useMissionsTab = () => {
     businessUnitCode: appData.businessManager.publicCode,
   });
 
-  const handleSearchPositions = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchPosition(e.target.value);
+  const handleSearchMissions = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchMission(e.target.value);
   };
 
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
@@ -41,8 +42,20 @@ const useMissionsTab = () => {
 
   const columnWidths = smallScreen ? [72] : [85];
 
+  const filteredData = useMemo(() => {
+    return missionData
+      .filter((row) =>
+        Object.values(row).some((value) =>
+          value?.toString().toLowerCase().includes(searchMission.toLowerCase())
+        )
+      )
+      .filter((row) => {
+        return row.missionId !== entryDeleted;
+      });
+  }, [missionData, searchMission, entryDeleted]);
+
   return {
-    searchPosition,
+    searchMission,
     smallScreen,
     label,
     businessManagersData,
@@ -50,9 +63,10 @@ const useMissionsTab = () => {
     columnWidths,
     showInfoModal,
     disabledButton,
+    filteredData,
     handleToggleInfoModal,
     setEntryDeleted,
-    handleSearchPositions,
+    handleSearchMissions,
   };
 };
 

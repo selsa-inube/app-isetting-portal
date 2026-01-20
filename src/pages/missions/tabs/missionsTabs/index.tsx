@@ -14,23 +14,25 @@ const MissionsTab = () => {
   const {
     smallScreen,
     label,
-    searchPosition,
+    searchMission,
     columnWidths,
     disabledButton,
     showInfoModal,
+    filteredData,
     handleToggleInfoModal,
-    handleSearchPositions,
-  } = useMissionsTab();
+    handleSearchMissions,
+    setEntryDeleted,
+  } = useMissionsTab(missionsData);
 
   return (
     <MissionsTabUI
-      handleSearchMissions={handleSearchPositions}
-      searchMission={searchPosition}
+      handleSearchMissions={handleSearchMissions}
+      searchMission={searchMission}
       loading={loading}
-      data={missionsData}
+      data={filteredData}
       smallScreen={smallScreen}
       label={label}
-      setEntryDeleted={() => { }}
+      setEntryDeleted={setEntryDeleted}
       columnWidths={columnWidths}
       disabledButton={disabledButton}
       showInfoModal={showInfoModal}

@@ -5,7 +5,7 @@ import { IUseUserEnumerators } from "@ptypes/users/tabs/userTab/addUser/enumerat
 import { getEnumerators } from "@services/users/getEnums";
 
 const useEnumerators = (props: IUseUserEnumerators) => {
-  const { enumKey } = props;
+  const { enumKey, token } = props;
   const [enumerators, setEnumerators] = useState<IUserEnumerators[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -13,7 +13,7 @@ const useEnumerators = (props: IUseUserEnumerators) => {
     const fetchAllUseCases = async () => {
       setLoading(true);
       try {
-        const newData = await getEnumerators(enumKey);
+        const newData = await getEnumerators(enumKey, token);
         setEnumerators(newData);
       } catch (error) {
         console.info(error);

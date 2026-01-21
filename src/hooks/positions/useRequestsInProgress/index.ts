@@ -7,7 +7,7 @@ import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IReque
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 
 const useRequestsInProgress = (props: IUseRequestsInProgress) => {
-  const { businessUnits, businessManager } = props;
+  const { businessUnits, businessManager, token } = props;
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
   >([]);
@@ -26,7 +26,8 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
           const data = await getRequestsInProgress(
             ERequestPosition.POSITIONS,
             businessManager,
-            businessUnits
+            token,
+            businessUnits,
           );
           setRequestsInProgress(data);
         }
@@ -44,13 +45,13 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   useEffect(() => {
     if (entryDeleted) {
       setRequestsInProgress((prev) =>
-        prev.filter((entry) => entry.id !== entryDeleted)
+        prev.filter((entry) => entry.id !== entryDeleted),
       );
     }
   }, [entryDeleted]);
 
   const handleSearchRequestsInProgress = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setSearchRequestsInProgress(e.target.value);
   };

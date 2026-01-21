@@ -4,7 +4,6 @@ const mapAddMissionToApi = (
   data: IRequestMissions,
   businessManagerCode: string,
 ) => {
-  console.log("Mapping mission data for business manager:", data);
   return {
     businessManagerCode: businessManagerCode,
     businessManagerName: businessManagerCode,

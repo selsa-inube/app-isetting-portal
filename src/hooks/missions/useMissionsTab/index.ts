@@ -22,6 +22,7 @@ const useMissionsTab = (missionData: IMisionData[]) => {
   const { appData } = useContext(AuthAndData);
   const { businessManagersData } = useBusinessManagersId({
     businessUnitCode: appData.businessManager.publicCode,
+    token: appData.token,
   });
 
   const handleSearchMissions = (e: React.ChangeEvent<HTMLInputElement>) => {

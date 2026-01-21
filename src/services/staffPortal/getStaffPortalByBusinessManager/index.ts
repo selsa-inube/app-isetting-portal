@@ -10,7 +10,8 @@ import {
 } from "./mappers";
 
 const staffPortalByBusinessManager = async (
-  portalCode: string
+  portalCode: string,
+  token: string,
 ): Promise<IStaffPortalByBusinessManager[]> => {
   const queryParams = new URLSearchParams({
     staffPortalId: portalCode,
@@ -19,13 +20,14 @@ const staffPortalByBusinessManager = async (
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchAllStaffPortalsByBusinessManager",
+      Authorization: token,
     },
   };
 
   const data = await getWithRetries<IStaffPortalByBusinessManagerApi[]>(
     isaasQueryAxiosInstance,
     `/staff-portals-by-business-manager?${queryParams.toString()}`,
-    config
+    config,
   );
 
   return mapStaffPortalByBusinessManagerApiToEntities(data);

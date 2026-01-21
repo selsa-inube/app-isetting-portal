@@ -7,11 +7,13 @@ import { mapRequestsInProgressToEntities } from "./mappers/mapRequestsToEntities
 const getRequestsInProgress = async (
   entity: string,
   businessManagerCode: string,
+  token: string,
   businessUnits?: string,
 ): Promise<IRequestsInProgress[]> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchPendingConfigurationRequest",
+      Authorization: token,
     },
   };
 
@@ -23,7 +25,6 @@ const getRequestsInProgress = async (
     sort: "desc.requestDate",
     businessManagerCode: businessManagerCode,
     businessUnitCode: businessUnits ?? "",
-
   });
   const data = await getWithRetries<IRequestsInProgress[]>(
     queryProcessAxiosInstance,

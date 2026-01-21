@@ -38,7 +38,6 @@ const ErrorPage = (props: IErrorPage) => {
     descriptionError: ["No se proporcionó información sobre el error."],
     solutionError: ["Intenta nuevamente más tarde."],
   };
-
   return (
     <StyledContainer $isTablet={matches["(max-width: 1000px)"]}>
       <Stack direction="column" gap={basic.spacing.s500} height="100%">

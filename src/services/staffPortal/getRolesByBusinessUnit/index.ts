@@ -5,22 +5,26 @@ import { IRolesByBusinessUnit } from "@ptypes/assignments/IRolesByBusinessUnit";
 import { mapRolesByBusinessUnitEntities } from "./mappers";
 
 const getRolesByBusinessUnit = async (
-  businessUnitCode: string
-): Promise<
-  IRolesByBusinessUnit[]
-> => {
+  businessUnitCode: string,
+  token: string,
+): Promise<IRolesByBusinessUnit[]> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchRolesByBusinessUnit",
+      Authorization: token,
     },
   };
   const queryParams = new URLSearchParams({
-    businessUnitPublicCode: businessUnitCode
+    businessUnitPublicCode: businessUnitCode,
   });
 
   const data: IRolesByBusinessUnit[] = await getWithRetries<
     IRolesByBusinessUnit[]
-  >(isettingIsaasAxiosInstance, `/roles-for-staff?${queryParams.toString()}`, config); 
+  >(
+    isettingIsaasAxiosInstance,
+    `/roles-for-staff?${queryParams.toString()}`,
+    config,
+  );
   return Array.isArray(data) ? mapRolesByBusinessUnitEntities(data) : [];
 };
 

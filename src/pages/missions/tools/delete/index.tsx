@@ -33,6 +33,7 @@ const Delete = (props: IDelete) => {
     requestSteps,
     showPendingReqModal,
     loadingSendData,
+    handleCloseProcess,
     handleClosePendingReqModal,
     handleCloseRequestStatus,
   } = useSaveMission({
@@ -68,7 +69,7 @@ const Delete = (props: IDelete) => {
           requestProcessSteps={requestSteps}
           appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={handleCloseRequestStatus}
-          onCloseProcess={() => { }}
+          onCloseProcess={handleCloseProcess}
         />
       )}
 

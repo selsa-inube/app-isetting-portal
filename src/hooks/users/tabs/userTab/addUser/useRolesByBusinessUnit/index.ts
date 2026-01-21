@@ -7,9 +7,9 @@ import { PositionsByBusinessUnitMap } from "@ptypes/users/tabs/userTab/addUser/f
 import { IUseOptionsBusinessEntity } from "@src/types/hooks/IUseOptionsBusinessEntity";
 
 const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
-  const { setFormValues, activeEntries } = props;
+  const { setFormValues, activeEntries, token } = props;
   const [rolesByBusinessUnit, setRolesByBusinessUnit] = useState<IFormEntry[]>(
-    []
+    [],
   );
 
   const [positionsByBusinessUnit, setPositionsByBusinessUnit] =
@@ -32,9 +32,9 @@ const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
 
         const results = await Promise.all(
           activeEntries.map(async (entry) => {
-            const data = await getBusinessManagersId(entry.value);
+            const data = await getBusinessManagersId(entry.value, token);
             return { code: entry.value, data };
-          })
+          }),
         );
 
         const positionsMap: PositionsByBusinessUnitMap = {};

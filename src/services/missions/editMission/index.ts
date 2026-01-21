@@ -9,12 +9,14 @@ const patchMission = async (
   user: string,
   data: IRequestMissions,
   businessManagerCode: string,
+  token: string,
 ): Promise<IRequestMissions> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "ModifyMission",
       "X-Business-Unit": businessUnit,
       "X-User-Name": user,
+      Authorization: token,
     },
   };
   const newData = await patchWithRetries<IRequestMissions>(

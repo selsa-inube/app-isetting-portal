@@ -7,10 +7,8 @@ import { renderLogo } from "@design/layout/renderLogo/logoUtils";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { IHome } from "@ptypes/home/IHome";
 import { userMenu } from "@config/menuMainConfiguration";
-import { mainNavigation } from "@config/nav";
 import {
   StyledCollapseIcon,
-  StyledContainer,
   StyledFooter,
   StyledHeaderContainer,
   StyledLogo,
@@ -34,17 +32,25 @@ const HomeUI = (props: IHome) => {
     username,
     hasData,
     multipleBusinessUnits,
+    optionsHeader,
+    padding,
     handlelogout,
   } = props;
 
   const { appData } = useContext(AuthAndData);
-
   return (
     <>
-      <StyledContainer>
+      <BorderStack
+        width="100%"
+        direction="column"
+        boxSizing="border-box"
+        padding={padding}
+        height="100vh"
+        overflowY="auto"
+      >
         <StyledHeaderContainer>
           <Header
-            navigation={mainNavigation(data)}
+            navigation={optionsHeader}
             logoURL={renderLogo(appData.businessUnit.urlLogo)}
             user={{
               username: appData.user.userName,
@@ -141,7 +147,7 @@ const HomeUI = (props: IHome) => {
         <StyledFooter $isMobile={smallScreen}>
           <StyledLogo src={appData.businessManager.urlBrand} />
         </StyledFooter>
-      </StyledContainer>
+      </BorderStack>
     </>
   );
 };

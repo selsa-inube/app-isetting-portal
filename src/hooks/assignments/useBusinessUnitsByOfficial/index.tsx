@@ -14,7 +14,7 @@ const UseBusinessUnitsByOfficial = (props: IUseUnitsByAbsentOfficial) => {
   const { appData } = useContext(AuthAndData);
 
   const [unitsByAbsentOfficial, setUnitsByAbsentOfficial] = useState<IUsers[]>(
-    []
+    [],
   );
   const [hasError, setHasError] = useState<boolean>(false);
   const [businessUnits, setBusinessUnits] = useState<IAllBusinessUnits[]>([]);
@@ -23,7 +23,8 @@ const UseBusinessUnitsByOfficial = (props: IUseUnitsByAbsentOfficial) => {
   const fetchAllStaffData = async () => {
     try {
       const data = await getIportalStaffUsers(
-        appData.businessManager.publicCode
+        appData.businessManager.publicCode,
+        appData.token,
       );
       setUnitsByAbsentOfficial(data);
     } catch (error) {
@@ -34,7 +35,7 @@ const UseBusinessUnitsByOfficial = (props: IUseUnitsByAbsentOfficial) => {
 
   const fetchBusinessUnits = async () => {
     try {
-      const data = await getAllBusinessUnits();
+      const data = await getAllBusinessUnits(appData.token);
       setBusinessUnits(data);
     } catch (error) {
       console.info(error);
@@ -61,7 +62,10 @@ const UseBusinessUnitsByOfficial = (props: IUseUnitsByAbsentOfficial) => {
     }
   }, [unitsByAbsentOfficial]);
 
-  const { businessUnitsData } = useGetBusinessUnits({ businessUnits });
+  const { businessUnitsData } = useGetBusinessUnits({
+    businessUnits,
+    token: appData.token,
+  });
 
   useEffect(() => {
     if (businessUnits.length > 0 && businessUnitsData) {

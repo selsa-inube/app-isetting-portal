@@ -144,6 +144,7 @@ const usePositionsTabs = () => {
           const data = await getRequestsInProgress(
             ERequestPosition.POSITIONS,
             appData.businessManager.publicCode,
+            appData.token,
             appData.businessUnit.publicCode,
           );
           setRequestsInProgress(data);

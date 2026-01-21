@@ -10,11 +10,13 @@ import { mapCancelRequestInProgressToApi } from "./mappers";
 const cancelRequestInProgress = async (
   businessUnit: string,
   data: ICancelRequestInProgress,
+  token: string,
 ): Promise<ICancelRequestResponse> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "RemoveSettingRequest",
       "X-Business-unit": businessUnit,
+      Authorization: token,
     },
   };
 

@@ -4,16 +4,19 @@ import { iportalStaffAxiosInstance } from "@api/iportalStaff";
 import { IAssignmentsData } from "@ptypes/assignments/IAssignmentsData";
 import { mapAssignmentsToEntities } from "./mappers/mapAssignmentsToEntities";
 
-const getAssignmentsData = async (): Promise<IAssignmentsData[]> => {
+const getAssignmentsData = async (
+  token: string,
+): Promise<IAssignmentsData[]> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchAllTemporaryAssignment",
+      Authorization: token,
     },
   };
   const data: IAssignmentsData[] = await getWithRetries<IAssignmentsData[]>(
     iportalStaffAxiosInstance,
     `/temporary-assignments`,
-    config
+    config,
   );
 
   return mapAssignmentsToEntities(data);

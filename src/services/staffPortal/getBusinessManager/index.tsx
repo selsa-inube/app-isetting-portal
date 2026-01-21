@@ -5,20 +5,26 @@ import { isaasQueryAxiosInstance } from "@api/isaas";
 import { mapBusinessManagerApiToEntity } from "./mappers";
 import { IBusinessManagers } from "@ptypes/staffPortal/IBusinessManagers";
 const getBusinessManagers = async (
-  businessManagerId: string
-): Promise<IBusinessManagers[]> => {
+  publicCode: string,
+  token: string,
+): Promise<IBusinessManagers> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchAllBusinessManager",
+      Authorization: token,
     },
   };
+
+  const queryParams = new URLSearchParams({
+    publicCode: publicCode,
+  });
+
   const data: IBusinessManagers[] = await getWithRetries<IBusinessManagers[]>(
     isaasQueryAxiosInstance,
-    `/business-managers?publicCode=${businessManagerId}`,
-    config
+    `/business-managers?${queryParams}`,
+    config,
   );
-
-  return Array.isArray(data) ? data.map(mapBusinessManagerApiToEntity) : [];
+  return mapBusinessManagerApiToEntity(data[0]);
 };
 
 export { getBusinessManagers };

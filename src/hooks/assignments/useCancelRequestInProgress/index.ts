@@ -10,7 +10,7 @@ import { ICancelRequestInProgress } from "@ptypes/requestsInProgress/ICancelReqI
 import { IUseCancelRequestInProgress } from "@ptypes/hooks/IUseCancelRequestInProgress";
 
 const useCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
-  const { businessUnit, data, userAccount, setEntryCanceled } = props;
+  const { businessUnit, data, userAccount, setEntryCanceled, token } = props;
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -19,7 +19,7 @@ const useCancelRequestInProgress = (props: IUseCancelRequestInProgress) => {
   const fetchCancelRequestData = async (data: ICancelRequestInProgress) => {
     setLoading(true);
     try {
-      await cancelRequestInProgress(businessUnit, data);
+      await cancelRequestInProgress(businessUnit, data, token);
       setEntryCanceled(data.settingRequestId);
       addFlag({
         title: cancelRequestInProgMessage.success.title,

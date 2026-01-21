@@ -15,9 +15,10 @@ const RolesForm = (props: IRolesForm) => {
     editDataOption = false,
   } = props;
 
-  const { appliedFilters, setShowModal } = useFilterRoles({
-    options: options as IEntry[],
-  });
+  const { appliedFilters, setShowModal, formFields, handleFilterChange } =
+    useFilterRoles({
+      options: options as IEntry[],
+    });
 
   const {
     filteredRows,
@@ -59,6 +60,9 @@ const RolesForm = (props: IRolesForm) => {
       showMenu={showMenu}
       smallScreen={smallScreen}
       withFilter={withFilter}
+      formFields={formFields}
+      filterTitle="aplicacion"
+      handleFilterChange={handleFilterChange}
     />
   );
 };

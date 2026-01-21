@@ -2,12 +2,11 @@ import { MdOutlineStart } from "react-icons/md";
 import { Location } from "react-router-dom";
 import { ILinkNav } from "@inubekit/inubekit";
 import { actionsConfig } from "@config/mainActionLogout";
-import { portalId } from '@config/portalId';
+import { portalId } from "@config/portalId";
 import { IUseMainNavigation } from "@ptypes/hooks/IUseMainNavigation";
 import { ICardData } from "@ptypes/home/ICardData";
 
 const useMainNavigation = (props: IUseMainNavigation) => {
-
   const { optionsCards, location } = props;
 
   const createNavLink = (
@@ -41,10 +40,10 @@ const useMainNavigation = (props: IUseMainNavigation) => {
 
           isOpen: false,
           onClose: () => {
-            console.log();
+            void 0;
           },
           onToggle: () => {
-            console.log();
+            void 0;
           },
         },
       ],

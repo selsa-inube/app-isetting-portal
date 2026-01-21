@@ -1,22 +1,43 @@
 import { Button, Stack } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { IVerificationForm } from "@ptypes/verification/IVerificationForm";
+
 import { AddPositionsSteps } from "@config/positions/assisted";
 import { VerificationStepSection } from "./verificationStepSection";
 import { labels } from "@config/verificationTitles";
 import { EComponentAppearance } from "@enum/appearances";
+import { IVerificationForm } from "@src/types/positions/assisted/IVerificationForm";
+import { requestStatusMessage } from "@src/config/positions/requestStatusMessage";
+import { requestProcessMessage } from "@src/config/request/requestProcessMessage";
+import { finishModal } from "@src/config/assignments/assisted/finishModal";
+import { RequestProcess } from "@src/design/feedback/requestProcess";
+import { DecisionModal } from "@src/design/modals/decisionModal";
+import { RequestStatusModal } from "@src/design/modals/requestStatusModal";
 
 const VerificationForm = (props: IVerificationForm) => {
   const {
+    requestSteps,
+    showModal,
+    showRequestProcessModal,
     updatedData,
+    savePositions,
+    showPendingReqModal,
+    loading,
     isMobile,
+    handleStepChange,
+    onFinishForm,
     onPreviousStep,
     onToggleModal,
-    handleStepChange,
+    onCloseRequestStatus,
+    onClosePendingReqModal,
+    onCloseProcess,
   } = props;
+  const canShowRequestProcess = showRequestProcessModal && savePositions;
+
+  const canShowPendingRequest =
+    showPendingReqModal && savePositions && savePositions.requestNumber.length > 0;
 
   const filteredSteps = AddPositionsSteps.filter(
-    (step) => step.name.toLowerCase() !== labels.verification
+    (step) => step.name.toLowerCase() !== labels.verification,
   );
 
   return (
@@ -47,6 +68,46 @@ const VerificationForm = (props: IVerificationForm) => {
           {labels.finally}
         </Button>
       </Stack>
+       {showModal && (
+        <DecisionModal
+          portalId="portal"
+          title={finishModal.title}
+          description={finishModal.description}
+          actionText={finishModal.actionText}
+          onCloseModal={onToggleModal}
+          onClick={onFinishForm}
+        />
+      )}
+      {canShowRequestProcess && (
+        <RequestProcess
+          portalId="portal"
+          saveData={savePositions}
+          descriptionRequestProcess={requestProcessMessage}
+          descriptionRequestStatus={requestStatusMessage}
+          requestProcessSteps={requestSteps}
+          appearance={EComponentAppearance.SUCCESS}
+          onCloseRequestStatus={onCloseRequestStatus}
+          onCloseProcess={onCloseProcess}
+        />
+      )}
+      {canShowPendingRequest && (
+        <RequestStatusModal
+          portalId="portal"
+          title={requestStatusMessage(savePositions.staffName).title}
+          description={
+            requestStatusMessage(savePositions.staffName).description
+          }
+          requestNumber={savePositions.requestNumber}
+          onClick={onClosePendingReqModal}
+          onCloseModal={onClosePendingReqModal}
+
+          actionText={
+            requestStatusMessage(savePositions.staffName).actionText
+          }
+          appearance={EComponentAppearance.PRIMARY}
+          loading={loading}
+        />
+      )}
     </Stack>
   );
 };

@@ -36,7 +36,6 @@ const useSaveMission = (props: IUseSaveMission) => {
     setErrorFetchSaveData,
     setEntryDeleted,
   } = props;
-  console.log(data);
   const [saveMission, setsaveMission] = useState<ISaveDataResponse>();
   const [statusRequest, setStatusRequest] = useState<string>();
   const { addFlag } = useFlag();
@@ -54,7 +53,7 @@ const useSaveMission = (props: IUseSaveMission) => {
   const fetchSaveMissionData = async () => {
     setLoadingSendData(true);
     try {
-      const saveData = await postSaveRequest(userAccount, data);
+      const saveData = await postSaveRequest(userAccount, data, appData.token);
       setsaveMission(saveData);
     } catch (error) {
       console.info(error);
@@ -100,6 +99,7 @@ const useSaveMission = (props: IUseSaveMission) => {
           userAccount,
           requestConfiguration as unknown as IRequestMissions,
           appData.businessManager.publicCode,
+          appData.token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
@@ -108,6 +108,7 @@ const useSaveMission = (props: IUseSaveMission) => {
           appData.businessUnit.publicCode,
           userAccount,
           requestConfiguration as unknown as IRequestDeleteMissions,
+          appData.token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
         setShowRequestProcessModal(true);
@@ -127,6 +128,7 @@ const useSaveMission = (props: IUseSaveMission) => {
           userAccount,
           requestConfiguration as unknown as IRequestMissions,
           appData.businessManager.publicCode,
+          appData.token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
@@ -272,7 +274,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     if (useCase !== EUseCase.DELETE) {
       setTimeout(() => {
         navigate(navigatePage);
-      }, 3000);
+      }, 300);
     }
     if (
       setEntryDeleted &&
@@ -282,7 +284,7 @@ const useSaveMission = (props: IUseSaveMission) => {
       setTimeout(() => {
         setEntryDeleted(
           data.configurationRequestData
-            .payrollForDeductionAgreementId as string,
+            .missionId as string,
         );
       }, 3000);
     }

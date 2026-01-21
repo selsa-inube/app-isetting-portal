@@ -6,7 +6,7 @@ interface IChangeToRequestTab {
 }
 
 const ChangeToRequestTab = createContext<IChangeToRequestTab>(
-  {} as IChangeToRequestTab
+  {} as IChangeToRequestTab,
 );
 
 interface IChangeToRequestTabProvider {
@@ -22,7 +22,7 @@ const ChangeToRequestTabProvider = (props: IChangeToRequestTabProvider) => {
       changeTab,
       setChangeTab,
     }),
-    [changeTab, setChangeTab]
+    [changeTab, setChangeTab],
   );
 
   return (

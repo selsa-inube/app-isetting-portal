@@ -39,11 +39,13 @@ const DeleteDetails = (props: IDelete) => {
     useCase: EUseCase.DELETE,
     businessUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
-     sendData: showRequestProcessModal,
+    sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
     setShowModal,
-   setEntryDeleted }
+    setEntryDeleted,
+    token: appData.token,
+  }
   );
 
   const showRequestProcess =  showRequestProcessModal && saveAssignments

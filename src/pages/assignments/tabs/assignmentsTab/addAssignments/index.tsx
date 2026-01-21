@@ -50,6 +50,7 @@ const AddAssignments = () => {
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
     setShowModal,
+    token: appData.token,
   });
 
   return (

@@ -46,7 +46,10 @@ const useMissionForUserForm = (props: IUseAddUserMissionForStaffStep) => {
     }
   }, [formik.values, onFormValid]);
 
-  const { missionsData } = useMissionsData(appData.businessManager.publicCode);
+  const { missionsData } = useMissionsData(
+    appData.token,
+    appData.businessManager.publicCode,
+  );
 
   const optionMission: IOption[] = [
     missionForStaffConfig.addMission,
@@ -70,12 +73,12 @@ const useMissionForUserForm = (props: IUseAddUserMissionForStaffStep) => {
       setDynamicValidationSchema(
         validationSchema.shape({
           missionName: validationRules.string.required(
-            validationMessages.required
+            validationMessages.required,
           ),
           missionDescription: validationRules.string.required(
-            validationMessages.required
+            validationMessages.required,
           ),
-        })
+        }),
       );
     } else {
       formik.setFieldValue("missionName", "");

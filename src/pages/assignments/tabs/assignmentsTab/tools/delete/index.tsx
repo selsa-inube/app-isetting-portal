@@ -44,6 +44,7 @@ const Delete = (props: IDelete) => {
     setSendData: setShowRequestProcessModal,
     setShowModal,
     setEntryDeleted,
+    token: appData.token,
   });
 
   const showRequestProcess = showRequestProcessModal && saveAssignments;

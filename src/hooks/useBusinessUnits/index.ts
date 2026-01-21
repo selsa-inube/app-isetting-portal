@@ -13,7 +13,8 @@ const useBusinessUnits = () => {
       setLoading(true);
       try {
         const data = await getBusinessUnits(
-          appData.portal.businessManagerCode!
+          appData.portal.businessManagerCode!,
+          appData.token,
         );
         setBusinessUnits(data);
       } catch (error) {

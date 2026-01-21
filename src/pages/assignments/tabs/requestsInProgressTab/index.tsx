@@ -18,6 +18,7 @@ const RequestsInProgressTab = () => {
     setEntryCanceled,
   } = useRequestsInProgress({
     businessManager: appData.businessManager.publicCode,
+    token: appData.token,
   });
 
   const pageLength = usePageLength();

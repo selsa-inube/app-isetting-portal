@@ -8,11 +8,15 @@ import { addStaffRolesSteps } from "@config/positions/addPositions/assisted";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
-import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
 import { AddPositionUI } from "./interface";
+import { EUseCase } from "@src/enum/useCase";
+import { IOptionInitialiceEntry } from "@src/types/positions/assisted/IOptionInitialiceEntry";
+import { useModalAddGeneral } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
 
 const AddPosition = () => {
-  const { rolesStaff } = useFetchRolesStaff();
+  const { appData } = useContext(AuthAndData);
+
+  const { rolesStaff } = useFetchRolesStaff(appData.token);
   const {
     currentStep,
     formValues,
@@ -25,7 +29,6 @@ const AddPosition = () => {
     handleToggleModalApplication,
     setIsCurrentFormValid,
     handleSubmitClick,
-    handleSubmitClickApplication,
     showModalApplicationStatus,
     showModal,
     setSelectedToggle,
@@ -40,33 +43,48 @@ const AddPosition = () => {
     navigate,
     setShowMultipurposeModal,
     showMultipurposeModal,
-  } = useAddStaffRoles({rolesData:rolesStaff});
+    onGoBack,
+    handleGoBackModal,
+  } = useAddStaffRoles({ rolesData: rolesStaff });
 
-  const { appData } = useContext(AuthAndData);
   const {
     savePositions,
-    requestSteps,
-    loading,
+   requestSteps,
+    showPendingReqModal,
     handleCloseRequestStatus,
     handleClosePendingReqModal,
-    showPendingReqModal,
+    errorFetchRequest,
+    networkError,
+    loadingSendData,
+    hasError,
+    errorData,
+    handleToggleErrorModal,
   } = useSavePositions({
-   businessUnits: appData.businessUnit.publicCode,
+        useCase: EUseCase.ADD,
+    businessUnits: appData.businessUnit.publicCode,
+    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
+    token: appData.token,
     setSendData: setShowRequestProcessModal,
-    setShowModal
+    setShowModal,
+
   });
 
-  const { options } = useFetchAplicationStaff();
+ const { modalData, showDecision } = useModalAddGeneral({
+    showGoBackModal: showModalApplicationStatus,
+    loading: loadingSendData,
+    hasError,
+    errorData,
+    networkError,
+    errorFetchRequest,
+    handleCloseModal: handleGoBackModal,
+    handleGoBack: onGoBack,
+    handleToggleErrorModal,
+  });
 
-  const shouldShowRequestProcessModal =
-    showRequestProcessModal && savePositions;
-
-  const showPendingReqModals = !!(
-    showPendingReqModal && savePositions?.requestNumber
-  );
+  const { options } = useFetchAplicationStaff(appData.token);
 
   return (
     <AddPositionUI
@@ -76,7 +94,6 @@ const AddPosition = () => {
       requestSteps={requestSteps}
       showRequestProcessModal={showRequestProcessModal}
       onFinishForm={handleSubmitClick}
-      onFinishFormApplicationStatus={handleSubmitClickApplication}
       showModal={showModal}
       currentStep={currentStep}
       setCurrentStep={setCurrentStep}
@@ -94,20 +111,18 @@ const AddPosition = () => {
       setSelectedToggle={setSelectedToggle}
       smallScreen={smallScreen}
       roles={roles}
+      loading={loadingSendData}
       disabled={disabled}
       onToggleModal={handleToggleModal}
       onToggleApplicationStatus={handleToggleModalApplication}
-      loading={loading}
       onCloseRequestStatus={handleCloseRequestStatus}
       showMultipurposeModal={showMultipurposeModal}
       setShowMultipurposeModal={setShowMultipurposeModal}
-      options={options as IOptionInitialiceEntryApp[]}
+      options={options as IOptionInitialiceEntry[]}
       showPendingReqModal={showPendingReqModal}
       onClosePendingReqModal={handleClosePendingReqModal}
-      shouldShowRequestProcessModal={
-        shouldShowRequestProcessModal as ISaveDataResponse
-      }
-      showPendingReqModals={showPendingReqModals}
+       modalData={modalData}
+      showDecision={showDecision}
     />
   );
 };

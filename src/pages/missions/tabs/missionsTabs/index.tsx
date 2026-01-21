@@ -8,7 +8,8 @@ const MissionsTab = () => {
   const loading = false;
   const { appData } = useContext(AuthAndData);
   const { missionsData } = useMissionsData(
-    appData.businessManager.publicCode
+    appData.token,
+    appData.businessManager.publicCode,
   );
 
   const {

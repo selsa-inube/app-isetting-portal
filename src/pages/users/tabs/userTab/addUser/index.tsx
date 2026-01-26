@@ -97,6 +97,7 @@ const AddUser = () => {
     handleGoBack: onGoBack,
     handleToggleErrorModal,
   });
+  console.log("render AddUser",formValues);
   return (
     <AddUserUI
       currentStep={currentStep}

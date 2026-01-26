@@ -21,6 +21,8 @@ interface IStyledFlex {
   $overflowY?: string;
   $minHeight?: string;
   $maxHeight?: string;
+    $maxWidth?: string;
+  $minWidth?: string;
 }
 
 const StyledBorderFlex = styled.div<IStyledFlex>`
@@ -49,5 +51,7 @@ const StyledBorderFlex = styled.div<IStyledFlex>`
   min-height: ${({ $minHeight }) => $minHeight};
   max-height: ${({ $maxHeight }) => $maxHeight};
   overflow-x: ${({ $overflowY }) => $overflowY && "hidden"};
+    max-width: ${({ $maxWidth }) => $maxWidth};
+  min-width: ${({ $minWidth }) => $minWidth};
 `;
 export { StyledBorderFlex };

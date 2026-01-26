@@ -9,6 +9,8 @@ interface IBorderStack extends IStack {
   overflowY?: string;
   minHeight?: string;
   maxHeight?: string;
+    maxWidth?: string;
+  minWidth?: string;
 }
 
 export type { IBorderStack };

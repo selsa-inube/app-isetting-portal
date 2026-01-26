@@ -7,6 +7,7 @@ import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPorta
 const getBusinessManagersId = async (
   businessUnitCode: string,
   token: string,
+  positionId?: string,
 ): Promise<IBusinessUnitsPortalStaff[]> => {
   const config: AxiosRequestConfig = {
     headers: {
@@ -16,6 +17,7 @@ const getBusinessManagersId = async (
   };
   const queryParams = new URLSearchParams({
     businessUnitCode: businessUnitCode,
+    positionId: positionId ?? "",
   });
 
   const data: IBusinessUnitsPortalStaff[] = await getWithRetries<

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { basic } from "@design/tokens";
+import { basic } from "@src/design/tokens";
 
 interface IStyledCollapseIcon {
   $collapse: boolean;
@@ -8,8 +8,7 @@ interface IStyledCollapseIcon {
   $smallScreen?: boolean;
 }
 interface IStyledContainer {
-  $smallScreen?: boolean;
-  $typeTabs?: boolean;
+   $isTablet: boolean;
 }
 interface IStyledFooter {
   $isMobile: boolean;
@@ -39,16 +38,18 @@ const StyledLogo = styled.img`
 `;
 
 const StyledTitle = styled.div<IStyledContainer>`
+   padding: ${({ $isTablet }) =>
+    $isTablet
+      ? `var(--spacing-S200, ${basic.spacing.s200})`
+      : `${basic.spacing.s400} ${basic.spacing.s0} ${basic.spacing.s200}`};
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--spacing-S300, ${basic.spacing.s300});
-  align-self: stretch;
-
-  padding: ${(props) =>
-    props.$smallScreen
-      ? ` ${(basic.spacing.s200, basic.spacing.s16)} `
-      : `${basic.spacing.s600} ${basic.spacing.s1600} ${basic.spacing.s1000} `};
+  align-items: ${({ $isTablet }) => $isTablet && "flex-start"};
+  gap: ${({ $isTablet }) =>
+    $isTablet
+      ? `var(--spacing-S300, ${basic.spacing.s300})`
+      : `${basic.spacing.s0}`};
+  align-self: ${({ $isTablet }) => $isTablet && "stretch"};
 `;
 
 const StyledFooter = styled.footer<IStyledFooter>`

@@ -55,7 +55,6 @@ const useGeneralInformationUserForm = (
     enumKey: `${ESelectOptions.GENDER},${ESelectOptions.ID_TYPE}`,
     token: appData.token,
   });
-
   const optionGender: IOption[] =
     enumerators
       ?.find((enumItem) => enumItem.key === ESelectOptions.GENDER)
@@ -71,7 +70,7 @@ const useGeneralInformationUserForm = (
       ?.items.map((item) => ({
         label: item.i18n[appData.language as keyof II18n],
         id: item.code,
-        value: item.i18n[appData.language as keyof II18n],
+        value: item.code,
       })) || [];
   const labelButtonNext = generalInformationConfig.buttonLabel;
   const buttonDisabledState = isDisabledButton;

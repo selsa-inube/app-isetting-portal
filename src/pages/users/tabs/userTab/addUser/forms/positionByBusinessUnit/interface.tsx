@@ -28,6 +28,7 @@ const PositionByBusinessUnitUI = (props: IPositionsByBusinessUnitFormUI) => {
       <Stack gap={basic.spacing.s20}>
         {Object.entries(businessUnits).map(([unitKey, businessUnit]) => (
           <PositionCardByBusinessUnit
+            key={unitKey}
             id={unitKey}
             businessUnit={unitKey}
             onSelectChange={setSelectedChange}

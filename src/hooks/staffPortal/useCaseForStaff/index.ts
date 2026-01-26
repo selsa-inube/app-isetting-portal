@@ -21,8 +21,8 @@ const useCaseForStaff = (props: IUseCaseForStaff) => {
       const shouldValidateChange = useCasesByStaff.length === 0;
 
       try {
-        if (shouldValidateChange && businessManagerCode) {
-          if (businessManagerCode) {
+        if (shouldValidateChange && businessManagerCode ) {
+          if (businessManagerCode && businessUnit) {
             const data = await getUseCaseForStaff(
               userAccount,
               businessManagerCode,

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
-import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
+
 import { enviroment } from "@config/environment";
 import { useCaseForStaff } from "@hooks/staffPortal/useCaseForStaff";
 import { useIAuth } from "@inube/iauth-react";
@@ -27,20 +27,16 @@ const useHome = () => {
 
   const { optionsHeader } = mainNavigation(optionsCards);
   const [Collapse, SetCollapse] = useState(false);
-  const [SelectedClient, SetSelectedClient] = useState<string>("");
+
   const CollapseMenuRef = useRef<HTMLDivElement>(null);
   const BusinessUnitChangeRef = useRef<HTMLDivElement>(null);
   const IsTablet = useMediaQuery("(max-width: 944px)");
   const SmallScreen = useMediaQuery("(max-width: 532px)");
 
-  useEffect(() => {
-    if (appData.businessUnit.publicCode) {
-      SetSelectedClient(appData.businessUnit.abbreviatedName);
-    }
-  }, [appData]);
 
-  const HandleLogoClick = (BusinessUnit: IBusinessUnitsPortalStaff) => {
-    SetSelectedClient(BusinessUnit.abbreviatedName);
+
+  const HandleLogoClick = () => {
+
     SetCollapse(false);
   };
 
@@ -83,8 +79,6 @@ const useHome = () => {
   return {
     Collapse,
     SetCollapse,
-    SelectedClient,
-    SetSelectedClient,
     CollapseMenuRef,
     BusinessUnitChangeRef,
     IsTablet,

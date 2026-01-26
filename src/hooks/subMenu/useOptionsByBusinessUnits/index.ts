@@ -16,7 +16,7 @@ const useOptionsByBusinessUnits = (props: IUseOptionsByBusinessUnit) => {
   const [hasError, setHasError] = useState(false);
   useEffect(() => {
     const fetchOptionBusinessUnitData = async () => {
-      if (staffPortalId.length === 0) {
+      if (staffPortalId.length === 0 || businessUnit.length === 0) {
         setOptionsBusinessUnit([]);
         setHasError(false);
         setLoading(false);

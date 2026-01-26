@@ -47,7 +47,7 @@ const useRequest = (props: IUseUserRequest) => {
       return step;
     });
   };
-console.log("statusRequest", statusRequest);  
+ 
   const isStatusCloseModal = (): boolean => {
     return statusRequest ? statusCloseModal.includes(statusRequest) : false;
   };
@@ -61,7 +61,7 @@ console.log("statusRequest", statusRequest);
   const changeRequestSteps = () => {
     setTimeout(() => {
       if (errorFetchRequest) {
-        console.log("errorFetchRequest", errorFetchRequest);
+    
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
@@ -121,7 +121,7 @@ console.log("statusRequest", statusRequest);
   };
 
   useEffect(() => {
-    console.log("networkError", networkError);
+  
     if (!networkError?.code?.length) {
       return;
     }

@@ -84,7 +84,6 @@ const useEditPositions = (props: IUseEditPositions) => {
       roleName: role.value,
       transactionOperation: role.isActive ? "Insert" : "Delete",
     }));
-console.log(rolesDataEndpoint,formValues);
   useEffect(() => {
     if (rolesData && rolesData.length > 0) {
       const transformedRolesData = rolesData?.map((role) => ({

@@ -5,6 +5,7 @@ interface IUseCancelRequestInProgress {
   data: IEntry;
   userAccount: string;
   setEntryCanceled: (id: string | number) => void;
+  token: string;
 }
 
 export type { IUseCancelRequestInProgress };

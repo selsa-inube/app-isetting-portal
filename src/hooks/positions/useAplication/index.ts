@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getApplicationCatalog } from "@services/positions/getApplicationCatalog";
 import { IAplicationCatalog } from "@ptypes/applicationCatalog";
 
-const useFetchAplicationStaff = () => {
+const useFetchAplicationStaff = (token: string) => {
   const [AplicationStaff, setAplicationStaff] =
     useState<IAplicationCatalog[]>();
   const [hasError, setHasError] = useState(false);
@@ -10,7 +10,7 @@ const useFetchAplicationStaff = () => {
   useEffect(() => {
     const fetchAplicaionStaff = async () => {
       try {
-        const data = await getApplicationCatalog();
+        const data = await getApplicationCatalog(token);
         setAplicationStaff(data);
       } catch (error) {
         console.info(error);

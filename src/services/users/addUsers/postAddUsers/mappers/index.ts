@@ -5,7 +5,6 @@ const mapAddUsersToApi = (data: IRequestUsers, businessManagerCode: string) => {
   const mission = data.configurationRequestData.missionForStaffStep;
   const contact = data.configurationRequestData.contactDataStep;
   const UnitAndRole = data.configurationRequestData.roleByBusinessUnitStep;
-  console.log("Mapping data:", data, businessManagerCode);
   return {
     biologicalSex: general.gender,
     birthDay: String(general.birthDate),

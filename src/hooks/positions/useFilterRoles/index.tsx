@@ -1,4 +1,4 @@
-import { MdApps, MdOutlineApps } from "react-icons/md";
+import {  MdOutlineApps } from "react-icons/md";
 import { useCallback, useMemo, useState } from "react";
 import { IOption } from "@inubekit/inubekit";
 import { IFilterTag } from "@isettingkit/business-rules";
@@ -16,7 +16,7 @@ const useFilterRoles = (props: IUseFilter) => {
       ...option,
       [index]: item.value,
     }),
-    {} as Record<string, string>
+    {} as Record<string, string>,
   );
 
   const handleToggleModal = () => {
@@ -32,7 +32,7 @@ const useFilterRoles = (props: IUseFilter) => {
       setFilters((prev) => ({ ...prev, application: next }));
       setAppliedValues((prev) => ({ ...prev, application: next }));
     },
-    [filters.application]
+    [filters.application],
   );
 
   const appliedFilters: IFilterTag[] = useMemo(() => {
@@ -64,19 +64,11 @@ const useFilterRoles = (props: IUseFilter) => {
     setAppliedValues({ application: "" });
   }, []);
 
-  const formFields = [
-    {
-      icon: <MdApps />,
-      label: "Aplicaciones",
-      name: "application",
-      options: Object.keys(optionsRecord).map((key) => ({
-        id: key,
-        value: key,
-        label: optionsRecord[key],
-      })) as IOption[],
-      values: filters.application,
-    },
-  ];
+  const formFields = options.map((opt) => ({
+    id: opt.id,
+    value: opt.value,
+    label: opt.value,
+  })) as IOption[];
 
   return {
     appliedFilters,

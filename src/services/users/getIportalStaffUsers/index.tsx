@@ -5,11 +5,13 @@ import { IUsers } from "@ptypes/users/tabs/userTab/usersTable/IUsers";
 import { mapUsersPortalStaffEntities } from "./mappers";
 
 const getIportalStaffUsers = async (
-  businessManager: string
+  businessManager: string,
+  token: string,
 ): Promise<IUsers[]> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchAllStaff",
+      Authorization: token,
     },
   };
   const queryParams = new URLSearchParams({
@@ -18,7 +20,7 @@ const getIportalStaffUsers = async (
   const data: IUsers[] = await getWithRetries<IUsers[]>(
     iportalStaffAxiosInstance,
     `/staffs?${queryParams.toString()}`,
-    config
+    config,
   );
   return Array.isArray(data) ? mapUsersPortalStaffEntities(data) : [];
 };

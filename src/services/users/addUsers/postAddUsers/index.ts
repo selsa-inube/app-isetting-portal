@@ -8,20 +8,22 @@ const postAddUsers = async (
   businessUnit: string,
   user: string,
   data: IRequestUsers,
-  businessManagerCode: string
+  businessManagerCode: string,
+  token: string,
 ): Promise<IRequestUsers> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "AddStaff",
       "X-Business-Unit": businessUnit,
       "X-User-Name": user,
+      Authorization: token,
     },
   };
   const newData = await postWithRetries<IRequestUsers>(
     `/staff`,
     config,
     mapAddUsersToApi(data, businessManagerCode) as unknown as string[],
-    isettingIsaasAxiosInstance
+    isettingIsaasAxiosInstance,
   );
 
   return newData;

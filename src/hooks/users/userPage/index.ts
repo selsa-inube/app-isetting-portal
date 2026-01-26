@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 
 import { useMediaQuery } from "@inubekit/inubekit";
 
-import { decrypt } from "@utils/decrypt";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { mediaQueryTabletMain } from "@config/environment";
 import { usersTabsConfig } from "@config/users/tabs";
@@ -28,13 +27,14 @@ const useUserPage = (props: IUseUserPage) => {
   const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);
   };
-  const { businessUnitSigla } = useContext(AuthAndData);
-  const portalId = localStorage.getItem("portalCode");
-  const staffPortalId = portalId ? decrypt(portalId) : "";
+  const { businessUnitSigla, appData } = useContext(AuthAndData);
+
   const [loading, setLoading] = useState(true);
   const { optionsCards } = useOptionsByBusinessUnits({
     businessUnit: businessUnitSigla,
-    staffPortalId,
+    staffPortalId: appData.portal.publicCode,
+    user: appData.user.userAccount,
+    token: appData.token,
   });
 
   const title = optionsCards[3]?.publicCode;
@@ -61,7 +61,8 @@ const useUserPage = (props: IUseUserPage) => {
         if (businessManager.length > 0) {
           const data = await getRequestsInProgress(
             ERequestUsers.STAFF,
-            businessManager
+            businessManager,
+            appData.token,
           );
           setRequestsInProgress(data);
         }

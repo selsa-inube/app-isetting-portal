@@ -21,6 +21,9 @@ import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { IRequestMissions } from "@src/types/missions/assisted/IRequestMissions";
 import { AuthAndData } from "@src/context/authAndDataProvider";
 import { postAddMission } from "@src/services/missions/addMission/postAddMission";
+import { deleteMission } from "@src/services/missions/deleteMission";
+import { IRequestDeleteMissions } from "@src/types/missions/assisted/IRequestMissions/IDeleteDataMission";
+import { patchMission } from "@src/services/missions/editMission";
 
 const useSaveMission = (props: IUseSaveMission) => {
   const {
@@ -33,7 +36,6 @@ const useSaveMission = (props: IUseSaveMission) => {
     setErrorFetchSaveData,
     setEntryDeleted,
   } = props;
-
   const [saveMission, setsaveMission] = useState<ISaveDataResponse>();
   const [statusRequest, setStatusRequest] = useState<string>();
   const { addFlag } = useFlag();
@@ -51,7 +53,7 @@ const useSaveMission = (props: IUseSaveMission) => {
   const fetchSaveMissionData = async () => {
     setLoadingSendData(true);
     try {
-      const saveData = await postSaveRequest(userAccount, data);
+      const saveData = await postSaveRequest(userAccount, data, appData.token);
       setsaveMission(saveData);
     } catch (error) {
       console.info(error);
@@ -96,13 +98,39 @@ const useSaveMission = (props: IUseSaveMission) => {
           appData.businessUnit.publicCode,
           userAccount,
           requestConfiguration as unknown as IRequestMissions,
-          appData.businessManager.publicCode
+          appData.businessManager.publicCode,
+          appData.token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
       if (useCase === EUseCase.DELETE) {
+        const newData = await deleteMission(
+          appData.businessUnit.publicCode,
+          userAccount,
+          requestConfiguration as unknown as IRequestDeleteMissions,
+          appData.token,
+        );
+        setStatusRequest(newData.settingRequest?.requestStatus);
+        setShowRequestProcessModal(true);
+
+        if (
+          setEntryDeleted &&
+          newData?.settingRequest?.requestStatus &&
+          statusRequestFinished.includes(newData?.settingRequest?.requestStatus)
+        ) {
+          setEntryDeleted(data.configurationRequestData.missionId as string);
+        }
       }
       if (useCase === EUseCase.EDIT) {
+        setShowRequestProcessModal(true);
+        const newData = await patchMission(
+          appData.businessUnit.publicCode,
+          userAccount,
+          requestConfiguration as unknown as IRequestMissions,
+          appData.businessManager.publicCode,
+          appData.token,
+        );
+        setStatusRequest(newData.settingRequest?.requestStatus);
       }
     } catch (error) {
       console.info(error);
@@ -122,7 +150,7 @@ const useSaveMission = (props: IUseSaveMission) => {
   const updateRequestSteps = (
     steps: IRequestSteps[],
     stepName: string,
-    newStatus: ERequestStepsStatus
+    newStatus: ERequestStepsStatus,
   ): IRequestSteps[] => {
     return steps.map((step) => {
       if (step.name === stepName) {
@@ -152,8 +180,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.requestFilled,
-            ERequestStepsStatus.ERROR
-          )
+            ERequestStepsStatus.ERROR,
+          ),
         );
         setSendData(false);
       } else {
@@ -161,8 +189,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.requestFilled,
-            ERequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
       }
     }, 1500);
@@ -172,8 +200,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            ERequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
       }
 
@@ -182,15 +210,15 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            ERequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
             requestStepsNames.requestAdded,
-            ERequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
       }
 
@@ -199,8 +227,8 @@ const useSaveMission = (props: IUseSaveMission) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            ERequestStepsStatus.ERROR
-          )
+            ERequestStepsStatus.ERROR,
+          ),
         );
       }
     }, 2000);
@@ -222,16 +250,16 @@ const useSaveMission = (props: IUseSaveMission) => {
       if (isStatusRequestFinished()) {
         addFlag({
           title: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes]
+            operationTypes[useCase as keyof typeof operationTypes],
           ).successfulCreateRequest.title,
           description: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes]
+            operationTypes[useCase as keyof typeof operationTypes],
           ).successfulCreateRequest.description,
           appearance: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes]
+            operationTypes[useCase as keyof typeof operationTypes],
           ).successfulCreateRequest.appearance as IFlagAppearance,
           duration: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes]
+            operationTypes[useCase as keyof typeof operationTypes],
           ).successfulCreateRequest.duration,
         });
       }
@@ -246,7 +274,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     if (useCase !== EUseCase.DELETE) {
       setTimeout(() => {
         navigate(navigatePage);
-      }, 3000);
+      }, 300);
     }
     if (
       setEntryDeleted &&
@@ -255,7 +283,8 @@ const useSaveMission = (props: IUseSaveMission) => {
     ) {
       setTimeout(() => {
         setEntryDeleted(
-          data.configurationRequestData.payrollForDeductionAgreementId as string
+          data.configurationRequestData
+            .missionId as string,
         );
       }, 3000);
     }

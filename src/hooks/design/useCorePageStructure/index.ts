@@ -14,10 +14,11 @@ const useCorePageStructure = (props: IUseCorePageStructure) => {
   const collapseMenuRef = useRef<HTMLDivElement>(null);
   const isTablet = useMediaQuery(mediaQueryTabletMain);
   const isTabletMain = useMediaQuery(mediaQueryTabletMain);
-
   const { optionsCards } = useOptionsByBusinessUnits({
     staffPortalId: appData.portal.publicCode,
     businessUnit: businessUnitSigla,
+    user: appData.user.userAccount,
+    token: appData.token,
   });
 
   const location = useLocation();

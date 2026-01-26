@@ -47,6 +47,7 @@ const AddUser = () => {
   } = useOptionsBusinessEntity({
     formValues,
     setFormValues,
+    token: appData.token,
   });
 
   const {
@@ -54,7 +55,12 @@ const AddUser = () => {
     setRolesByBusinessUnit,
     selectPositionsByBusinessUnit,
     positionsByBusinessUnit,
-  } = useRolesByBusinessUnit({ formValues, setFormValues, activeEntries });
+  } = useRolesByBusinessUnit({
+    formValues,
+    setFormValues,
+    token: appData.token,
+    activeEntries,
+  });
   const {
     saveUsers,
     requestSteps,
@@ -63,7 +69,8 @@ const AddUser = () => {
     handleCloseProcess,
     handleClosePendingReqModal,
     errorFetchRequest,
-    networkError, loadingSendData,
+    networkError,
+    loadingSendData,
     hasError,
     errorData,
     handleToggleErrorModal,
@@ -74,6 +81,7 @@ const AddUser = () => {
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
+    token: appData.token,
     setSendData: setShowRequestProcessModal,
     setShowModal,
   });
@@ -127,6 +135,5 @@ const AddUser = () => {
     />
   );
 };
-
 
 export { AddUser };

@@ -26,26 +26,28 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
-  } = useDeleteMission({data, appData});
+  } = useDeleteMission({ data, appData });
 
   const {
     saveMission,
     requestSteps,
     showPendingReqModal,
     loadingSendData,
+    handleCloseProcess,
     handleClosePendingReqModal,
     handleCloseRequestStatus,
   } = useSaveMission({
     useCase: EUseCase.DELETE,
     businessUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
-     sendData: showRequestProcessModal,
+    sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
-    setShowModal}
+    setShowModal
+  }
   );
 
-  const showRequestProcess =  showRequestProcessModal && saveMission
+  const showRequestProcess = showRequestProcessModal && saveMission
 
   const showRequestStatusModal = showPendingReqModal && saveMission?.requestNumber
 
@@ -58,7 +60,7 @@ const Delete = (props: IDelete) => {
         onClick={handleClick}
         loading={loadingSendData}
       />
-      { showRequestProcess && (
+      {showRequestProcess && (
         <RequestProcess
           portalId={portalId}
           saveData={saveMission}
@@ -67,11 +69,11 @@ const Delete = (props: IDelete) => {
           requestProcessSteps={requestSteps}
           appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={handleCloseRequestStatus}
-          onCloseProcess={() => {}}
+          onCloseProcess={handleCloseProcess}
         />
       )}
 
-      { showRequestStatusModal && (
+      {showRequestStatusModal && (
         <RequestStatusModal
           portalId={portalId}
           title={requestStatusMessage(saveMission.staffName).title}

@@ -16,7 +16,7 @@ import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { ERequestType } from "@src/enum/request/requestType";
 
-const useAddStaffRoles = (props: IUseAddStaffRoles) => {
+const   useAddStaffRoles = (props: IUseAddStaffRoles) => {
   const { rolesData } = props;
   const { appData } = useContext(AuthAndData);
   const [currentStep, setCurrentStep] = useState(1);
@@ -57,6 +57,10 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
   });
 
   const navigate = useNavigate();
+
+  const onGoBack = () => {
+    navigate(-1);
+  };
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
 
   const [isCurrentFormValid, setIsCurrentFormValid] = useState(false);
@@ -80,7 +84,6 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
       applicationStaff: applicationStaff?.applicationName,
     };
   });
-
   useEffect(() => {
     if (rolesData && rolesData.length > 0) {
       const transformedRolesData = rolesData.map((role) => ({
@@ -90,8 +93,8 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
       }));
 
       const transformedApplicationData = rolesData.map((role) => ({
-        id: role.application?.appId ?? "",
-        value: role.application?.applicationName ?? "",
+        id: role.roleId ?? "",
+        value: role.applicationName ?? "",
         isActive: role.isActive ?? false,
       }));
       setFormValues((prev) => ({
@@ -99,7 +102,8 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
         rolesStaff: {
           ...prev.rolesStaff,
           isValid: true,
-          values: selectedToggle ? selectedToggle : transformedRolesData,
+          values:
+            selectedToggle.length > 0 ? selectedToggle : transformedRolesData,
         },
         applicationStaff: {
           isValid: true,
@@ -166,7 +170,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
       description: saveDataLabels.description,
-      entityName: "Position",
+      entityName: "PositionStaff",
       requestDate: formatDate(new Date()),
       useCaseName: "AddPosition",
       requestType: ERequestType.ADD,
@@ -179,12 +183,9 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
     });
   };
 
-  const handleSubmitClickApplication = () => {
-    handleToggleModal();
-    setShowModalApplicationStatus(!showRequestProcessModal);
-    navigate("/positions");
+   const handleGoBackModal = () => {
+    setShowMultipurposeModal(!showMultipurposeModal);
   };
-
   return {
     currentStep,
     formValues,
@@ -200,7 +201,6 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
     handlePreviousStep,
     setIsCurrentFormValid,
     setSelectedToggle,
-    handleSubmitClickApplication,
     setCurrentStep,
     showRequestProcessModal,
     saveData,
@@ -213,6 +213,8 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
     showMultipurposeModal,
     setShowMultipurposeModal,
     dataToAssignmentFormEntry,
+    onGoBack,
+    handleGoBackModal,
   };
 };
 

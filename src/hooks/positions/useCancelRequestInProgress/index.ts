@@ -10,7 +10,8 @@ const useCancelRequestInProgress = (
   businessUnit: string,
   data: IEntry,
   userAccount: string,
-  setEntryCanceled: (id: string | number) => void
+  setEntryCanceled: (id: string | number) => void,
+  token: string,
 ) => {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,7 +21,7 @@ const useCancelRequestInProgress = (
   const fetchCancelRequestData = async (data: ICancelRequestInProgress) => {
     setLoading(true);
     try {
-      await cancelRequestInProgress(businessUnit, data);
+      await cancelRequestInProgress(businessUnit, data, token);
       setEntryCanceled(data.settingRequestId);
       addFlag({
         title: cancelRequestInProgMessage.success.title,

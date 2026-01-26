@@ -2,10 +2,8 @@ import { useState, useEffect } from "react";
 import { IMisionData } from "@ptypes/missions/IMisionData";
 import { getMission } from "@services/missions/getMission";
 
-const useMissionsData = (portalPublicCode?: string) => {
-  const [missionsData, setMissionsData] = useState<
-    IMisionData[]
-  >([]);
+const useMissionsData = (token: string, portalPublicCode: string) => {
+  const [missionsData, setMissionsData] = useState<IMisionData[]>([]);
   const [HasError, SetHasError] = useState(false);
 
   useEffect(() => {
@@ -15,7 +13,7 @@ const useMissionsData = (portalPublicCode?: string) => {
         return;
       }
       try {
-        const NewData = await getMission();
+        const NewData = await getMission(token);
         setMissionsData(NewData);
       } catch (Error) {
         console.info(Error);

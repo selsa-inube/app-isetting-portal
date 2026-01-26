@@ -27,13 +27,14 @@ const Assignments = () => {
     handleTabChange,
   } = useAssignmentsPage({
     businessManager: appData.businessManager.publicCode,
-    businessUnitSigla
+    businessUnitSigla,
+    user: appData.user.userAccount,
+    token: appData.token,
   });
   return (
     <AssignmentsUI
       isSelected={
-        isSelected ??
-        assignmentsTabsConfig(smallScreen).assigments.id
+        isSelected ?? assignmentsTabsConfig(smallScreen).assigments.id
       }
       handleTabChange={handleTabChange}
       descriptionOptions={descriptionOptions as ICardData}

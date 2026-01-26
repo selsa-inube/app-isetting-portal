@@ -59,7 +59,8 @@ const useMissionsTabs = () => {
         if (appData.businessManager.publicCode.length > 0) {
           const data = await getRequestsInProgress(
             ERequestMission.MISSIONS,
-            appData.businessManager.publicCode
+            appData.businessManager.publicCode,
+            appData.token,
           );
           setRequestsInProgress(data);
         }

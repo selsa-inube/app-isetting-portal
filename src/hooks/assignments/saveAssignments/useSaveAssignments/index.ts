@@ -13,8 +13,15 @@ import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { useRequest } from "../useRequest";
 
 const useSaveAssignments = (props: IUseSaveAssignments) => {
-  const { userAccount, data, setSendData, sendData, setShowModal, useCase } =
-    props;
+  const {
+    userAccount,
+    data,
+    setSendData,
+    sendData,
+    setShowModal,
+    useCase,
+    token,
+  } = props;
 
   const [saveAssignments, setSaveAssignments] = useState<ISaveDataResponse>();
   const [statusRequest, setStatusRequest] = useState<string>();
@@ -31,7 +38,7 @@ const useSaveAssignments = (props: IUseSaveAssignments) => {
   const fetchSaveAssignmentData = async () => {
     setLoadingSendData(true);
     try {
-      const saveData = await postSaveRequest(userAccount, data);
+      const saveData = await postSaveRequest(userAccount, data, token);
       setSaveAssignments(saveData);
     } catch (error) {
       console.info(error);

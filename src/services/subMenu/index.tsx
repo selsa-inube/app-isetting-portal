@@ -6,15 +6,15 @@ import { mapOptionsByBusinessUnitsToEntities } from "./mappers";
 import { iportalStaffAxiosInstance } from "@api/iportalStaff";
 
 const getStaffPortalByBusinessManager = async (
-
   staffPortalId: string,
   userAccount: string,
-  _businessUnitPublicCode?: string,
+  token: string,
 ): Promise<IOptionsByBusinessUnits[]> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchOptionForStaff",
       "X-User-Name": userAccount,
+      Authorization: token,
     },
   };
 
@@ -25,8 +25,7 @@ const getStaffPortalByBusinessManager = async (
   const data: IOptionsByBusinessUnits[] = await getWithRetries<
     IOptionsByBusinessUnits[]
   >(iportalStaffAxiosInstance, `/staffs?${queryParams.toString()}`, config);
-  return mapOptionsByBusinessUnitsToEntities(
-    data);
+  return mapOptionsByBusinessUnitsToEntities(data);
 };
 
 export { getStaffPortalByBusinessManager };

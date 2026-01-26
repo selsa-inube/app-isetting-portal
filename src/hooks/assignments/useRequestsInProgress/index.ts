@@ -8,7 +8,7 @@ import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
 const useRequestsInProgress = (props: IUseRequestsInProgress) => {
-  const { businessManager } = props;
+  const { businessManager, token } = props;
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
   >([]);
@@ -25,7 +25,8 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
         if (businessManager.length > 0) {
           const data = await getRequestsInProgress(
             ERequestAssignments.ASSIGNMENTS,
-            businessManager
+            businessManager,
+            token,
           );
           setRequestsInProgress(data);
         }
@@ -43,13 +44,13 @@ const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   useEffect(() => {
     if (entryCanceled) {
       setRequestsInProgress((prev) =>
-        prev.filter((entry) => entry.id !== entryCanceled)
+        prev.filter((entry) => entry.id !== entryCanceled),
       );
     }
   }, [entryCanceled]);
 
   const handleSearchRequestsInProgress = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setSearchRequestsInProgress(e.target.value);
   };

@@ -20,6 +20,7 @@ const useSaveUsers = (props: IUseSaveUsers) => {
     businessManagerCode,
     userAccount,
     data,
+    token,
     setSendData,
     sendData,
     setShowModal,
@@ -42,7 +43,7 @@ const useSaveUsers = (props: IUseSaveUsers) => {
   const fetchSaveGeneralData = async () => {
     setLoadingSendData(true);
     try {
-      const saveData = await postSaveRequest(userAccount, data);
+      const saveData = await postSaveRequest(userAccount, data, token);
       setSaveUsers(saveData);
       setShowModal(false);
     } catch (error) {
@@ -87,7 +88,8 @@ const useSaveUsers = (props: IUseSaveUsers) => {
           businessUnits,
           userAccount,
           requestConfiguration as IRequestUsers,
-          businessManagerCode
+          businessManagerCode,
+          token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
@@ -96,7 +98,8 @@ const useSaveUsers = (props: IUseSaveUsers) => {
           businessUnits,
           userAccount,
           requestConfiguration as IRequestUsers,
-          businessManagerCode
+          businessManagerCode,
+          token,
         );
 
         setStatusRequest(newData.settingRequest?.requestStatus);

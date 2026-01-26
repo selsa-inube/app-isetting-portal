@@ -1,16 +1,22 @@
 import { IBusinessManagers } from "@ptypes/staffPortal/IBusinessManagers";
+import { encrypt } from "@src/utils/encrypt";
 
 const mapBusinessManagerApiToEntity = (
-  businessManager: Record<string, string>
-): IBusinessManagers => ({
-  id: businessManager.businessManagerId,
-  publicCode: businessManager.publicCode,
-  language: businessManager.languageId,
-  abbreviatedName: businessManager.abbreviatedName,
-  description: businessManager.descriptionUse,
-  urlBrand: businessManager.urlBrand,
-  urlLogo: businessManager.urlLogo,
-  customerId: businessManager.customerId,
-});
+  businessManager: Record<string, string>,
+): IBusinessManagers => {
+  const business: IBusinessManagers = {
+    id: String(businessManager.businessManagerCode),
+    publicCode: String(businessManager.publicCode),
+    language: String(businessManager.languageId),
+    abbreviatedName: String(businessManager.abbreviatedName),
+    description: String(businessManager.descriptionUse),
+    urlBrand: String(businessManager.urlBrand),
+    urlLogo: String(businessManager.urlLogo),
+    customerId: String(businessManager.customerId),
+    clientId: String(businessManager.clientId),
+    clientSecret: encrypt(String(businessManager.clientSecret)),
+  };
+  return business;
+};
 
 export { mapBusinessManagerApiToEntity };

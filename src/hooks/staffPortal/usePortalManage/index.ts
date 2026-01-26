@@ -43,7 +43,6 @@ const useAppData = (props: IUseAppData) => {
     hasError: portalError,
     errorCode: errorCodePortal,
   } = usePortalData({ portalCode });
-
   const {
     businessManagersData,
     hasError: businessError,

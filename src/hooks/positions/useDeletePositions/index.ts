@@ -15,21 +15,20 @@ const useDeletePositions = (props: IUseDeletePositions) => {
   const handleToggleModal = () => {
     setShowModal(!showModal);
   };
-
   const handleClick = () => {
     setSaveData({
       applicationName: "istaff",
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
       description: "Solicitud de eliminación de un Cargo",
-      entityName: "Mission",
+      entityName: "PositionStaff",
       requestDate: formatDate(new Date()),
-      useCaseName: "DeleteMission",
+      useCaseName: "DeletePosition",
       requestType: ERequestType.REMOVE,
       configurationRequestData: {
-        positionId: data.missionId,
-        positionName: data.namePosition,
-        justification: `La eliminación del cargo ${appData.user.userAccount}`,
+        positionId: data.positionId,
+        positionName: data.positionName,
+        modifyJustification: `La eliminación del cargo ${appData.user.userAccount}`,
       },
     });
     setShowRequestProcessModal(true);

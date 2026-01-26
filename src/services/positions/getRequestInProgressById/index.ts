@@ -5,12 +5,14 @@ import { queryProcessAxiosInstance } from "@api/isettingProcess";
 import { mapRequestsInProgressToEntity } from "./mappers";
 const getRequestInProgressById = async (
   businessUnits: string,
-  settingRequestId: string
+  settingRequestId: string,
+  token: string,
 ): Promise<IRequestsInProgress> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchByIdConfigurationRequestsByBusinessUnit",
       "X-Business-unit": businessUnits,
+      Authorization: token,
     },
   };
 
@@ -21,7 +23,7 @@ const getRequestInProgressById = async (
   const data = await getWithRetries<IRequestsInProgress>(
     queryProcessAxiosInstance,
     `/requests/business-unit/${businessUnits}/${settingRequestId}?${queryParams.toString()}`,
-    config
+    config,
   );
   return mapRequestsInProgressToEntity(data);
 };

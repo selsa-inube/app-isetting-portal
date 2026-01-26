@@ -9,6 +9,7 @@ import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IUseEditPositions } from "@ptypes/hooks/IUseEditPositions";
 import { ERequestType } from "@src/enum/request/requestType";
+import { useMediaQuery } from "@inubekit/inubekit";
 
 
 const useEditPositions = (props: IUseEditPositions) => {
@@ -59,7 +60,7 @@ const useEditPositions = (props: IUseEditPositions) => {
   const [selectedToggle, setSelectedToggle] = useState<
     IFormEntry[]
   >([]);
-
+ const smallScreen = useMediaQuery("(max-width: 990px)");
   const [initialRoles, setInitialRoles] = useState<
     {
       id: string;
@@ -83,7 +84,7 @@ const useEditPositions = (props: IUseEditPositions) => {
       roleName: role.value,
       transactionOperation: role.isActive ? "Insert" : "Delete",
     }));
-
+console.log(rolesDataEndpoint,formValues);
   useEffect(() => {
     if (rolesData && rolesData.length > 0) {
       const transformedRolesData = rolesData?.map((role) => ({
@@ -155,9 +156,9 @@ const useEditPositions = (props: IUseEditPositions) => {
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
       description: "Solicitud de modificación de un cargo",
-      entityName: "Mission",
+      entityName: "PositionStaff",
       requestDate: formatDate(new Date()),
-      useCaseName: "ModifyMission",
+      useCaseName: "ModifyPosition",
       requestType: ERequestType.MODIFY,
       configurationRequestData: {
         positionId: data.positionId,
@@ -267,6 +268,7 @@ const useEditPositions = (props: IUseEditPositions) => {
     setShowModal,
     setSelectedToggle,
     handleRoleToggle,
+    smallScreen,
     roles,
     showGeneralInformation,
     showRolesForm,

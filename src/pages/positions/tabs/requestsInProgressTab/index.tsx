@@ -17,6 +17,7 @@ const RequestsInProgressTab = () => {
   } = useRequestsInProgress({
     businessUnits: appData.businessUnit.publicCode,
     businessManager: appData.businessManager.publicCode,
+    token: appData.token,
   });
 
   return (

@@ -18,6 +18,7 @@ const RequestInProgress = () => {
   } = useUserManageSearchUsers({
     entityName: ERequestUsers.STAFF,
     businessManager: appData.businessManager.publicCode,
+    token: appData.token,
   });
 
   return (

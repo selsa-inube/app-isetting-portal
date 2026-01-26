@@ -6,12 +6,14 @@ import { isaasPerAxiosInstance } from "@api/isaasPersistence";
 import { mapSavePositionsEntityToApi } from "./mappers";
 const postSaveRequest = async (
   userAccount: string,
-  data: ISaveDataRequest
+  data: ISaveDataRequest,
+  token: string,
 ): Promise<ISaveDataResponse> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SaveSettingRequest",
       "X-User-Name": userAccount,
+      Authorization: token,
     },
   };
 
@@ -19,7 +21,7 @@ const postSaveRequest = async (
     `/requests`,
     config,
     mapSavePositionsEntityToApi(data) as unknown as string[],
-    isaasPerAxiosInstance
+    isaasPerAxiosInstance,
   );
 
   return saveData;

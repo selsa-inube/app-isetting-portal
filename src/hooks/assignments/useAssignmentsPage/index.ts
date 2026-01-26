@@ -5,7 +5,7 @@ import { getRequestsInProgress } from "@services/requestInProgress/getRequestsIn
 import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 import { EOptionsByBusinessunits } from "@enum/optionsByBusinessunits";
 import { ERequestAssignments } from "@enum/requestAssignments";
-import { decrypt } from "@utils/decrypt";
+import { AuthAndData } from "@context/authAndDataProvider";
 import { mediaQueryTabletMain } from "@config/environment";
 import { assignmentsTabsConfig } from "@config/assignments/tabs";
 import { IUseAssignmentsPage } from "@ptypes/hooks/assignments/IUseAssignmentsPage";
@@ -13,10 +13,8 @@ import { IAssignmentsTabsConfig } from "@ptypes/assignments/IAssignmentsTabsConf
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
 const useAssignmentsPage = (props: IUseAssignmentsPage) => {
-  const { businessUnitSigla, businessManager } = props;
-  const portalId = localStorage.getItem("portalCode");
-  const staffPortalId = portalId ? decrypt(portalId) : "";
-
+  const { businessUnitSigla, businessManager, user, token } = props;
+  const { appData } = useContext(AuthAndData);
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
 
   const tabs = assignmentsTabsConfig(smallScreen);
@@ -31,7 +29,9 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
 
   const { descriptionOptions } = useOptionsByBusinessUnits({
     businessUnit: businessUnitSigla,
-    staffPortalId,
+    staffPortalId: appData.portal.publicCode,
+    user: user,
+    token: token,
     optionName: EOptionsByBusinessunits.ASSIGNMENTS,
   });
 
@@ -52,7 +52,8 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
         if (businessManager.length > 0) {
           const data = await getRequestsInProgress(
             ERequestAssignments.ASSIGNMENTS,
-            businessManager
+            businessManager,
+            token,
           );
           setRequestsInProgress(data);
         }

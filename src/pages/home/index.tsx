@@ -12,8 +12,10 @@ const Home = () => {
     Username,
     optionsCards,
     loading,
-    hasData,
+    padding,
+    dataExists,
     multipleBusinessUnits,
+    optionsHeader,
     handlelogout,
   } = useHome();
   return (
@@ -26,9 +28,11 @@ const Home = () => {
       smallScreen={SmallScreen}
       username={Username}
       loading={loading}
-      hasData={hasData}
+      hasData={dataExists}
       multipleBusinessUnits={multipleBusinessUnits}
       handlelogout={handlelogout}
+      optionsHeader={optionsHeader}
+      padding={padding}
     />
   );
 };

@@ -22,6 +22,7 @@ const useAddMission = () => {
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [showModalApplicationStatus, setShowModalApplicationStatus] =
     useState(false);
+    const [showGoBackModal, setShowGoBackModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [formValues, setFormValues] = useState<IFormAddMission>({
     generalInformation: {
@@ -71,6 +72,10 @@ const useAddMission = () => {
     setShowModalApplicationStatus(!showModalApplicationStatus);
   };
 
+   const handleGoBackModal = () => {
+    setShowGoBackModal(!showGoBackModal);
+  };
+
   const handleSubmitClick = () => {
     handleToggleModal();
     setShowRequestProcessModal(!showRequestProcessModal);
@@ -103,6 +108,8 @@ const useAddMission = () => {
     handlePreviousStep,
     setIsCurrentFormValid,
     setCurrentStep,
+    showGoBackModal,
+    handleGoBackModal,
     showRequestProcessModal,
     saveData,
     smallScreen,

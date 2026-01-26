@@ -37,11 +37,11 @@ const MissionsUI = (props: IMissionsUI) => {
         }
       >
         <Stack
-          gap={smallScreen ? basic.spacing.s200 : basic.spacing.s600}
+          gap={smallScreen ? basic.spacing.s200 : basic.spacing.s300}
           direction="column"
         >
           <Stack gap={basic.spacing.s300} direction="column">
-            <Stack gap={basic.spacing.s300} direction="column">
+
               <Breadcrumbs crumbs={crumbMissions} />
               <Grid
                 gap={basic.spacing.s200}
@@ -53,6 +53,7 @@ const MissionsUI = (props: IMissionsUI) => {
                   title={missionTitle.title}
                   description={missionTitle.description}
                   navigatePage="/"
+                  sizeTitle="large"
                 />
                 {smallScreen && (
                   <StyledMenuContainer>
@@ -68,7 +69,6 @@ const MissionsUI = (props: IMissionsUI) => {
                 )}
               </Grid>
             </Stack>
-          </Stack>
           <Stack gap={basic.spacing.s300} direction="column">
             <Tabs
               tabs={missionsTabs}

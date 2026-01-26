@@ -6,6 +6,7 @@ import { IAppData } from "@ptypes/authAndDataProvider/IAppData";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { useLanguage } from "@hooks/language";
 import { useIAuth } from "@inube/iauth-react";
+import { useBusinessUnitManagers } from "@src/hooks/staffPortal/useBusinessUnitManager";
 
 const useValidatingLoginInformation = () => {
   const {
@@ -21,7 +22,9 @@ const useValidatingLoginInformation = () => {
   const [businessUnitSigla, setBusinessUnitSigla] = useState(
     localStorage.getItem("businessUnitSigla") ?? "",
   );
-
+const { businessUnitManagersData } = useBusinessUnitManagers({
+    portalPublicCode: portalData,
+  });
   const [useCases, setUseCases] = useState<string>(
     localStorage.getItem("useCasesByStaff") ?? "",
   );
@@ -35,16 +38,7 @@ const useValidatingLoginInformation = () => {
     return savedBusinessUnits ? JSON.parse(savedBusinessUnits) : [];
   });
 
-  let businessUnitData: IBusinessUnitsPortalStaff =
-    {} as IBusinessUnitsPortalStaff;
-  try {
-    businessUnitData = JSON.parse(
-      businessUnitSigla || "{}",
-    ) as IBusinessUnitsPortalStaff;
-  } catch (error) {
-    console.error("Error parsing businessUnitSigla:", error);
-  }
-
+  
   let useCasesData: string[] = [];
   try {
     useCasesData = JSON.parse(useCases || "[]") as string[];
@@ -68,9 +62,12 @@ const useValidatingLoginInformation = () => {
     },
     businessUnit: {
       publicCode: "test",
-      abbreviatedName: businessUnitData?.abbreviatedName ?? "",
-      languageId: businessUnitData?.languageId ?? "",
-      urlLogo: businessUnitData?.urlLogo ?? "",
+      abbreviatedName:  "",
+      languageIso:  "",
+      urlLogo:  "",
+      countryIso:  "",
+      iconUrl:  "",
+
     },
     user: {
       userAccount: user.id || "",
@@ -78,7 +75,7 @@ const useValidatingLoginInformation = () => {
       identificationDocumentNumber: user.id || "",
     },
     useCasesByStaff: useCasesData ?? [],
-    language: businessUnitData?.languageIso || "",
+    language:  "",
     token: "",
   });
   useEffect(() => {
@@ -110,6 +107,30 @@ const useValidatingLoginInformation = () => {
   }, [portalData, portalCode]);
 
   useEffect(() => {
+    
+    if (
+      businessUnitManagersData.publicCode &&
+      businessUnitManagersData.publicCode.length > 0
+    ) {
+      console.log("Updating business unit data in appData",businessUnitManagersData);
+      setAppData((prev) => ({
+        ...prev,
+        businessUnit: {
+          ...prev.businessUnit,
+          publicCode: businessUnitManagersData.publicCode,
+          abbreviatedName: businessUnitManagersData.abbreviatedName,
+          urlLogo: businessUnitManagersData.urlLogo,
+          countryIso: businessUnitManagersData.countryIso,
+          iconUrl: businessUnitManagersData.iconUrl,
+          languageIso: businessUnitManagersData.languageIso || languageBrowser || "es",
+        },
+        language: businessUnitManagersData.languageIso || languageBrowser || "es",
+      }));
+    }
+  }, [businessUnitManagersData]);
+
+
+    useEffect(() => {
     if (!businessManagersData) return;
 
     if (
@@ -129,38 +150,17 @@ const useValidatingLoginInformation = () => {
     }
   }, [businessManagersData]);
 
-  useEffect(() => {
-    localStorage.setItem("businessUnitSigla", businessUnitSigla);
-
-    if (businessUnitsToTheStaff && businessUnitSigla) {
-      const businessUnit = JSON.parse(businessUnitSigla);
-
-      setAppData((prev) => ({
-        ...prev,
-        businessUnit: {
-          ...prev.businessUnit,
-          abbreviatedName: businessUnit?.abbreviatedName,
-          publicCode: businessUnit?.publicCode,
-          languageId: businessUnit?.languageId,
-          urlLogo: businessUnit?.urlLogo,
-        },
-        language:
-          businessUnit?.languageId && businessUnit.languageId !== ""
-            ? businessUnit.languageId
-            : languageBrowser || "es",
-      }));
-    }
-  }, [businessUnitSigla, businessUnitsToTheStaff, languageBrowser]);
+  
 
   useEffect(() => {
     localStorage.setItem("useCasesByStaff", useCases);
 
     if (useCases) {
-      const businessUnit = JSON.parse(useCases);
+      const useCasesData = JSON.parse(useCases);
 
       setAppData((prev) => ({
         ...prev,
-        useCasesByStaff: businessUnit,
+        useCasesByStaff: useCasesData,
       }));
     }
   }, [useCases]);
@@ -190,7 +190,7 @@ const useValidatingLoginInformation = () => {
     };
     obtenerDatos();
   }, [getAccessTokenSilently]);
-
+console.log("appData from useValidatingLoginInformation:", appData);
   const AuthAndData = useMemo(
     () => ({
       appData,

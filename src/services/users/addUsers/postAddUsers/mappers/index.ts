@@ -1,40 +1,50 @@
 import { IRequestUsers } from "@src/types/users/tabs/userTab/addUser/IRequestUsers";
 
-const mapAddUsersToApi = (data: IRequestUsers, businessManagerCode: string) => {
-  const general = data.configurationRequestData.generalInformationStep;
-  const mission = data.configurationRequestData.missionForStaffStep;
-  const contact = data.configurationRequestData.contactDataStep;
-  const UnitAndRole = data.configurationRequestData.roleByBusinessUnitStep;
+const mapAddUsersToApi = (
+  data: IRequestUsers,
+  businessManagerCode: string
+) => {
+  const configurationRequestData = data.configurationRequestData;
+
   return {
-    biologicalSex: general.gender,
-    birthDay: String(general.birthDate),
-    businessManagerCode,
-    identificationNumber: String(general.idNumber),
-    identificationType: general.idType,
-    staffName: general.firstName,
-    staffLastName: general.lastName,
+    biologicalSex: configurationRequestData.biologicalSex,
+    birthDay: configurationRequestData.birthDay,
+    businessManagerCode, 
+    identificationNumber: configurationRequestData.identificationNumber,
+    identificationType: configurationRequestData.identificationType,
+    staffName: configurationRequestData.staffName,
+    staffLastName: configurationRequestData.staffLastName,
 
     missionData: {
-      descriptionUse: mission.missionDescription,
-      missionName: mission.missionName,
+      descriptionUse:
+        configurationRequestData.missionData?.descriptionUse,
+      missionName:
+        configurationRequestData.missionData?.missionName,
     },
-    missionName: mission.missionName,
+    missionName: configurationRequestData.missionName,
 
-    principalEmail: contact.email,
-    principalPhone: contact.phone,
+    principalEmail: configurationRequestData.principalEmail,
+    principalPhone: configurationRequestData.principalPhone,
 
+    
     settingRequest: data.settingRequest
       ? {
           requestNumber: data.settingRequest.requestNumber,
           settingRequestId: data.settingRequest.settingRequestId,
         }
       : undefined,
-    staffByBusinessUnitAndRole: UnitAndRole.map((item) => ({
-      businessUnitCode: item.businessUnitCode,
-      positionName: item.positionName,
-      roleName: item.rolesStaff,
-    })),
+
+    staffByBusinessUnitAndRole:
+      configurationRequestData.staffByBusinessUnitAndRole.map(
+        (item) => ({
+          businessUnitCode: item.businessUnitCode,
+          positionName: item.positionName,
+          roleName: item.roleName,
+        })
+      ),
   };
 };
 
 export { mapAddUsersToApi };
+
+

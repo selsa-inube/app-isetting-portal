@@ -1,23 +1,25 @@
-import type { IContactDataFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IContactData";
-import type { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm";
-import type { IMissionForStaff } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IMissionForStaff";
-
-import type { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
-import type { PositionsByBusinessUnitMap } from "@ptypes/users/tabs/userTab/addUser/forms/ByBusinessUnit/IPositionByBusinessUnit";
+import { IMissionData } from "./IMissionData";
+import { IStaffByBusinessUnitAndRole } from "./IStaffRolesData";
 
 interface IAddUserVerificationData {
-  generalInformationStep: IGeneralInfoForm;
 
-  missionForStaffStep: IMissionForStaff;
+biologicalSex: string;
+  birthDay: string; 
+  businessManagerCode: string;
+  identificationNumber: string;
+  identificationType: string;
+  staffName: string;
+  staffLastName: string;
 
-  contactDataStep: IContactDataFormValues;
+  missionData: IMissionData;
+  missionName: string;
 
-  businessEntityStep: {
-    values: IFormEntry[];
-  };
-  positionByBusinessUnitStep: {
-    values: PositionsByBusinessUnitMap;
-  };
-  roleByBusinessUnitStep: IFormEntry[];
+  principalEmail: string;
+  principalPhone: string;
+
+
+  staffByBusinessUnitAndRole: IStaffByBusinessUnitAndRole[];
+
+
 }
 export type { IAddUserVerificationData };

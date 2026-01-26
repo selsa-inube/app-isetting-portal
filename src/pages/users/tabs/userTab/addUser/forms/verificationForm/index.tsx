@@ -73,7 +73,8 @@ const AddUserVerificationForm = (props: IAddUserVerificationForm) => {
           {labels.finally}
         </Button>
       </Stack>
-      {showModal && (<DecisionModal
+      {showModal && (
+        <DecisionModal
         portalId="portal"
         title={finishModal.title}
         description={finishModal.description}

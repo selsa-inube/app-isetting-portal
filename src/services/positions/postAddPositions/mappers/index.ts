@@ -12,7 +12,7 @@ const mapAddPositionToApi = (
     positionName: data.configurationRequestData?.positionName,
     descriptionUse: data.configurationRequestData?.descriptionUse,
     modifyJustification: data.configurationRequestData?.modifyJustification,
-    positionsByRole: data.configurationRequestData.positionByRole.map(
+    positionsByRole: data.configurationRequestData.positionsByRole.map(
       (position) => ({ roleName: position.roleName, transactionOperation: position.transactionOperation }),
     ),
 

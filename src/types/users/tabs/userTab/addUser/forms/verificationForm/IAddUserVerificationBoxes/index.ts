@@ -1,7 +1,7 @@
-import { IAddUserVerificationData } from "../IAddUserVerificationData";
+import { IAddUserVerificationStep } from "../IAddUserVerificationData/IVerificationStep";
 
 interface IAddUserVerificationBoxes {
-  updatedData: IAddUserVerificationData;
+  updatedData: IAddUserVerificationStep;
   stepKey: number;
 }
 

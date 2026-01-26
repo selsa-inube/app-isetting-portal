@@ -21,7 +21,7 @@ import { errorModalConfig } from "@config/errorModal";
 import { messageErrorStatusConsultation } from "@utils/messageErrorStatus";
 
 const CorePageStructure = () => {
-  const { appData, businessUnitsToTheStaff, businessUnitSigla } =
+  const { appData, businessUnitsToTheStaff } =
     useContext(AuthAndData);
   const { errorModal, errorData, closeErrorModal } = useErrorManagement();
 
@@ -33,7 +33,7 @@ const CorePageStructure = () => {
     optionsHeader,
     optionsNav,
     setCollapse,
-  } = useCorePageStructure({ businessUnitSigla });
+  } = useCorePageStructure();
 
   return (
     <StyledAppPage>

@@ -7,18 +7,14 @@ import { useBusinessManagers } from "../useBusinessManagers";
 import { validateAndTrimString } from "@utils/validateAndTrimString";
 
 const useAppData = (props: IUseAppData) => {
-  const { portalCode, code, user, businessUnit } = props;
-  const { setBusinessUnitSigla, setAppData } = useContext(AuthAndData);
+  const { portalCode, code, user } = props;
+  const {  setAppData } = useContext(AuthAndData);
   const updateAppData = () => {
     if (code) {
       localStorage.setItem("portalCode", code);
     }
 
-    if (businessUnit) {
-      localStorage.setItem("businessUnitSigla", businessUnit);
-      setBusinessUnitSigla(businessUnit);
-    }
-
+  
     if (user) {
       setAppData((prev) => ({
         ...prev,

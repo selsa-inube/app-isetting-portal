@@ -30,11 +30,8 @@ const usePositionsTabs = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const widthFirstColumn = smallScreen ? 60 : 20;
 
-  const { appData, setBusinessUnitSigla } = useContext(AuthAndData);
+  const { appData } = useContext(AuthAndData);
 
-  useEffect(() => {
-    setBusinessUnitSigla("");
-  }, []);
 
   const navigate = useNavigate();
 
@@ -48,8 +45,6 @@ const usePositionsTabs = () => {
 
     if (businessUnits.length === 1) {
       setShowModalUnits(false);
-      const selectJSON = JSON.stringify(businessUnits[0]);
-      setBusinessUnitSigla(selectJSON);
     }
   }, [businessUnits]);
 
@@ -95,8 +90,7 @@ const usePositionsTabs = () => {
     const dataBusinessUnit = businessUnits.find(
       (option) => option.publicCode === formik.values.businessUnits,
     );
-    const selectJSON = JSON.stringify(dataBusinessUnit);
-    setBusinessUnitSigla(selectJSON);
+
     setShowModalUnits(!showModalUnits);
     setUnit(dataBusinessUnit?.publicCode || "");
   };

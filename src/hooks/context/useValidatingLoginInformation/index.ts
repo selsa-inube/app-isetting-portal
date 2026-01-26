@@ -19,9 +19,7 @@ const useValidatingLoginInformation = () => {
   const { businessManagersData } = useBusinessManagers({
     portalPublicCode: portalData,
   });
-  const [businessUnitSigla, setBusinessUnitSigla] = useState(
-    localStorage.getItem("businessUnitSigla") ?? "",
-  );
+
 const { businessUnitManagersData } = useBusinessUnitManagers({
     portalPublicCode: portalData,
   });
@@ -61,7 +59,7 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
       clientId: "",
     },
     businessUnit: {
-      publicCode: "test",
+      publicCode: "",
       abbreviatedName:  "",
       languageIso:  "",
       urlLogo:  "",
@@ -193,15 +191,13 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
   const AuthAndData = useMemo(
     () => ({
       appData,
-      businessUnitSigla,
       businessUnitsToTheStaff,
       useCases,
       setAppData,
-      setBusinessUnitSigla,
       setUseCases,
       setBusinessUnitsToTheStaff,
     }),
-    [appData, businessUnitSigla, businessUnitsToTheStaff, useCases],
+    [appData,  businessUnitsToTheStaff, useCases],
   );
 
   return AuthAndData;

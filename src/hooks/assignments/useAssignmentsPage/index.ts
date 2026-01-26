@@ -30,6 +30,7 @@ const useAssignmentsPage = (props: IUseAssignmentsPage) => {
   const { descriptionOptions } = useOptionsByBusinessUnits({
     businessUnit: businessUnitSigla,
     staffPortalId: appData.portal.publicCode,
+    businessUnitPublicCode: appData.businessUnit.publicCode,
     user: user,
     token: token,
     optionName: EOptionsByBusinessunits.ASSIGNMENTS,

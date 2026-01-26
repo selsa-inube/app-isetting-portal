@@ -7,7 +7,7 @@ import { IOptionsByBusinessUnits } from "@ptypes/staffPortal/IOptionsByBusinessU
 import { normalizeOptionsByPublicCode } from "@utils/optionByBusinessunit";
 
 const useOptionsByBusinessUnits = (props: IUseOptionsByBusinessUnit) => {
-  const { businessUnit, staffPortalId, user, token, optionName } = props;
+  const { businessUnit,businessUnitPublicCode, staffPortalId, user, token, optionName } = props;
 
   const [optionsBusinessUnit, setOptionsBusinessUnit] = useState<
     IOptionsByBusinessUnits[]
@@ -30,6 +30,7 @@ const useOptionsByBusinessUnits = (props: IUseOptionsByBusinessUnit) => {
         const data = await getStaffPortalByBusinessManager(
           staffPortalId,
           user,
+          businessUnitPublicCode,
           token,
         );
         setOptionsBusinessUnit(data);

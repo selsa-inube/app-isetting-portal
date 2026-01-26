@@ -8,7 +8,7 @@ import { ICardData } from "@ptypes/home/ICardData";
 import { AssignmentsUI } from "./interface";
 
 const Assignments = () => {
-  const { businessUnitSigla, appData } = useContext(AuthAndData);
+  const {  appData } = useContext(AuthAndData);
   const {
     isSelected,
     descriptionOptions,
@@ -27,7 +27,7 @@ const Assignments = () => {
     handleTabChange,
   } = useAssignmentsPage({
     businessManager: appData.businessManager.publicCode,
-    businessUnitSigla,
+    businessUnitSigla: appData.businessUnit.publicCode,
     user: appData.user.userAccount,
     token: appData.token,
   });

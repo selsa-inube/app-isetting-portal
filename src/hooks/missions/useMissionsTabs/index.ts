@@ -24,11 +24,9 @@ const useMissionsTabs = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const widthFirstColumn = smallScreen ? 60 : 20;
 
-  const { setBusinessUnitSigla, appData } = useContext(AuthAndData);
+  const {  appData } = useContext(AuthAndData);
 
-  useEffect(() => {
-    setBusinessUnitSigla("");
-  }, []);
+
 
   const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);

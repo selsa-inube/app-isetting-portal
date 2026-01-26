@@ -26,6 +26,7 @@ const useCaseForStaff = (props: IUseCaseForStaff) => {
             const data = await getUseCaseForStaff(
               userAccount,
               businessManagerCode,
+              businessUnit,
               token,
             );
             setUseCases(data);

@@ -27,12 +27,13 @@ const useUserPage = (props: IUseUserPage) => {
   const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);
   };
-  const { businessUnitSigla, appData } = useContext(AuthAndData);
+  const {  appData } = useContext(AuthAndData);
 
   const [loading, setLoading] = useState(true);
   const { optionsCards } = useOptionsByBusinessUnits({
-    businessUnit: businessUnitSigla,
+    businessUnit: appData.businessUnit.publicCode,
     staffPortalId: appData.portal.publicCode,
+    businessUnitPublicCode: appData.businessUnit.publicCode,
     user: appData.user.userAccount,
     token: appData.token,
   });

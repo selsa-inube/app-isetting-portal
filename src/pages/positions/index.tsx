@@ -8,7 +8,7 @@ import { PositionsUI } from "./interface";
 
 const Positions = () => {
 
-  const { businessUnitSigla } =
+  const { appData } =
     useContext(AuthAndData);
   const {
     isSelected,
@@ -51,7 +51,7 @@ const Positions = () => {
       onCloseModalUnits={handleCloseModalUnits}
       comparisonData={comparisonData}
       onChange={handleChange}
-      businessUnitSigla={businessUnitSigla}
+      businessUnitSigla={appData.businessUnit.publicCode}
       selectedUnit={unit}
       positionTab={positionTab}
       showPositionsTab={showPositionsTab}

@@ -8,6 +8,7 @@ import { iportalStaffAxiosInstance } from "@api/iportalStaff";
 const getStaffPortalByBusinessManager = async (
   staffPortalId: string,
   userAccount: string,
+  businessUnitPublicCode: string,
   token: string,
 ): Promise<IOptionsByBusinessUnits[]> => {
   const config: AxiosRequestConfig = {
@@ -20,7 +21,7 @@ const getStaffPortalByBusinessManager = async (
 
   const queryParams = new URLSearchParams({
     portalPublicCode: staffPortalId,
-    businessUnitPublicCode: "test",
+    businessUnitPublicCode: businessUnitPublicCode,
   });
   const data: IOptionsByBusinessUnits[] = await getWithRetries<
     IOptionsByBusinessUnits[]

@@ -13,14 +13,13 @@ const useHome = () => {
   const {
     appData,
     businessUnitsToTheStaff,
-    setBusinessUnitSigla,
-    businessUnitSigla,
     setUseCases,
   } = useContext(AuthAndData);
   const { logout } = useIAuth();
   const { optionsCards, loading, hasError } = useOptionsByBusinessUnits({
     staffPortalId: appData.portal.publicCode,
-    businessUnit: businessUnitSigla,
+    businessUnit: appData.businessUnit.publicCode,
+    businessUnitPublicCode: appData.businessUnit.publicCode,
     user: appData.user.userAccount,
     token: appData.token,
   });
@@ -41,8 +40,6 @@ const useHome = () => {
   }, [appData]);
 
   const HandleLogoClick = (BusinessUnit: IBusinessUnitsPortalStaff) => {
-    const SelectJSON = JSON.stringify(BusinessUnit);
-    setBusinessUnitSigla(SelectJSON);
     SetSelectedClient(BusinessUnit.abbreviatedName);
     SetCollapse(false);
   };
@@ -53,7 +50,7 @@ const useHome = () => {
   const { useCases } = useCaseForStaff({
     businessUnitPrevious: appData.businessUnit.publicCode,
     useCasesByStaff: appData.useCasesByStaff,
-    businessUnit: businessUnitSigla,
+    businessUnit: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
     businessManagerCode: appData.businessManager.publicCode,
     token: appData.token,

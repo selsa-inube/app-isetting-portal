@@ -4,11 +4,10 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 import { useMainNavigation } from "@hooks/useMainNavigation";
 import { mediaQueryTabletMain } from "@config/environment";
-import { IUseCorePageStructure } from "@ptypes/hooks/IUseCorePageStructure";
+
 import { AuthAndData } from "@context/authAndDataProvider";
 
-const useCorePageStructure = (props: IUseCorePageStructure) => {
-  const { businessUnitSigla } = props;
+const useCorePageStructure = () => {
   const { appData } = useContext(AuthAndData);
   const [collapse, setCollapse] = useState(false);
   const collapseMenuRef = useRef<HTMLDivElement>(null);
@@ -16,7 +15,8 @@ const useCorePageStructure = (props: IUseCorePageStructure) => {
   const isTabletMain = useMediaQuery(mediaQueryTabletMain);
   const { optionsCards } = useOptionsByBusinessUnits({
     staffPortalId: appData.portal.publicCode,
-    businessUnit: businessUnitSigla,
+    businessUnit: appData.businessUnit.publicCode,
+      businessUnitPublicCode: appData.businessUnit.publicCode,
     user: appData.user.userAccount,
     token: appData.token,
   });

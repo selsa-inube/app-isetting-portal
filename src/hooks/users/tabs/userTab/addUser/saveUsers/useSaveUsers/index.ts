@@ -74,10 +74,12 @@ const useSaveUsers = (props: IUseSaveUsers) => {
   });
 
   const requestConfiguration = {
-    ...data?.configurationRequestData,
+    configurationRequestData: data?.configurationRequestData,
     settingRequest: {
       requestNumber: saveUsers?.requestNumber,
       settingRequestId: saveUsers?.settingRequestId,
+       requestStatus: saveUsers?.requestStatus,
+      staffName: saveUsers?.staffName,
     },
   };
 
@@ -87,7 +89,7 @@ const useSaveUsers = (props: IUseSaveUsers) => {
         const newData = await postAddUsers(
           businessUnits,
           userAccount,
-          requestConfiguration as IRequestUsers,
+          requestConfiguration as unknown as IRequestUsers,
           businessManagerCode,
           token,
         );
@@ -97,7 +99,7 @@ const useSaveUsers = (props: IUseSaveUsers) => {
         const newData = await postAddUsers(
           businessUnits,
           userAccount,
-          requestConfiguration as IRequestUsers,
+          requestConfiguration as unknown as IRequestUsers,
           businessManagerCode,
           token,
         );

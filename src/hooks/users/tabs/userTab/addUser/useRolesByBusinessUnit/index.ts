@@ -15,7 +15,7 @@ const [rolesByBusinessUnit, setRolesByBusinessUnit] =
   useState<IFormEntry[]>([]);
 
 const [loading, setLoading] = useState(false);
-const [error, setError] = useState<string | null>(null);
+const [error, setError] = useState<boolean | null>(null);
 
 useEffect(() => {
   if (!activeEntries?.length) {
@@ -50,7 +50,7 @@ useEffect(() => {
 
       setPositionsByBusinessUnit(map);
     } catch {
-      setError("Failed to fetch positions");
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -108,8 +108,8 @@ useEffect(() => {
         data.forEach(item => {
           item.positionStaffByRoles.forEach(role => {
             roles.push({
-              id: `${code}-${role.positionId}`,
-              value: code,
+              id: role.positionId,
+              value: role.positionId,
               isActive: true,
               rolesStaff: role.roleName,
               businessUnitCode: code,
@@ -122,7 +122,7 @@ useEffect(() => {
 
       setRolesByBusinessUnit(roles);
     } catch {
-      setError("Failed to fetch roles");
+      setError(true);
     } finally {
       setLoading(false);
     }

@@ -4,26 +4,26 @@ import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
 
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
-import { ERequestStepsStatus } from "@enum/requestStepsStatus";
+
 import { EUseCase } from "@enum/useCase";
-import { flowAutomaticMessages } from "@config/missions/missionTab/generic/flowAutomaticMessages";
-import { interventionHumanMessage } from "@config/missions/missionTab/generic/interventionHumanMessage";
-import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
-import { statusCloseModal } from "@config/status/statusCloseModal";
-import { requestStepsInitial } from "@config/requestSteps";
-import { operationTypes } from "@config/useCase";
-import { requestStepsNames } from "@config/requestStepsNames";
+
+
+
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
 import { requestStatusMessage } from "@config/missions/missionTab/generic/requestStatusMessage";
 import { IUseSaveMission } from "@ptypes/hooks/missions/IUseSaveMission";
-import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
+
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { IRequestMissions } from "@src/types/missions/assisted/IRequestMissions";
-import { AuthAndData } from "@src/context/authAndDataProvider";
+
 import { postAddMission } from "@src/services/missions/addMission/postAddMission";
 import { deleteMission } from "@src/services/missions/deleteMission";
 import { IRequestDeleteMissions } from "@src/types/missions/assisted/IRequestMissions/IDeleteDataMission";
 import { patchMission } from "@src/services/missions/editMission";
+import { errorObject } from "@src/utils/errorObject";
+import { useRequest } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useRequest";
+import { IErrors } from "@src/types/hooks/IErrors";
+import { interventionHumanMessage } from "@src/config/positionsTabs/generics/interventionHumanMessage";
 
 const useSaveMission = (props: IUseSaveMission) => {
   const {
@@ -31,53 +31,58 @@ const useSaveMission = (props: IUseSaveMission) => {
     userAccount,
     sendData,
     data,
+    token,
+    businessUnits,
+    businessManagerCode,
     setSendData,
     setShowModal,
-    setErrorFetchSaveData,
     setEntryDeleted,
   } = props;
   const [saveMission, setsaveMission] = useState<ISaveDataResponse>();
-  const [statusRequest, setStatusRequest] = useState<string>();
+   const [statusRequest, setStatusRequest] = useState<string>();
   const { addFlag } = useFlag();
-  const [requestSteps, setRequestSteps] =
-    useState<IRequestSteps[]>(requestStepsInitial);
-  const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [showPendingReqModal, setShowPendingReqModal] = useState(false);
   const [loadingSendData, setLoadingSendData] = useState(false);
   const [errorFetchRequest, setErrorFetchRequest] = useState(false);
+  const [errorData, setErrorData] = useState<IErrors>({} as IErrors);
+  const [hasError, setHasError] = useState(false);
+  const [networkError, setNetworkError] = useState<IErrors>({} as IErrors);
   const { setChangeTab } = useContext(ChangeToRequestTab);
-  const { appData } = useContext(AuthAndData);
+
   const navigate = useNavigate();
-  const navigatePage = "/missions";
+  const navigatePage = "/users";
 
   const fetchSaveMissionData = async () => {
     setLoadingSendData(true);
     try {
-      const saveData = await postSaveRequest(userAccount, data, appData.token);
+      const saveData = await postSaveRequest(userAccount, data, token);
       setsaveMission(saveData);
+            setShowModal(false);
     } catch (error) {
-      console.info(error);
-      if (setErrorFetchSaveData) {
-        setErrorFetchSaveData(true);
-      }
       setSendData(false);
-      navigate(navigatePage);
-      addFlag({
-        title: flowAutomaticMessages().errorSendingData.title,
-        description: flowAutomaticMessages().errorSendingData.description,
-        appearance: flowAutomaticMessages().errorSendingData
-          .appearance as IFlagAppearance,
-        duration: flowAutomaticMessages().errorSendingData.duration,
-      });
+      setHasError(true);
+      setErrorData(errorObject(error));
     } finally {
       setLoadingSendData(false);
-      setShowModal(false);
     }
   };
 
-  const isStatusIntAutomatic = (status: string | undefined): boolean => {
-    return status ? statusFlowAutomatic.includes(status) : false;
-  };
+  const {
+    requestSteps,
+    changeRequestSteps,
+    handleStatusChange,
+    isStatusCloseModal,
+    isStatusRequestFinished,
+    isStatusInAutomatic,
+  } = useRequest({
+    setSendData,
+    useCase,
+    statusRequest: statusRequest || "",
+    saveUsers: saveMission as ISaveDataResponse,
+    errorFetchRequest,
+    networkError,
+    setHasError,
+  });
 
   const requestConfiguration = {
     configurationRequestData: data?.configurationRequestData,
@@ -92,26 +97,23 @@ const useSaveMission = (props: IUseSaveMission) => {
   const fetchRequestData = async () => {
     try {
       if (useCase === EUseCase.ADD) {
-        setShowRequestProcessModal(true);
-
         const newData = await postAddMission(
-          appData.businessUnit.publicCode,
+          businessUnits,
           userAccount,
           requestConfiguration as unknown as IRequestMissions,
-          appData.businessManager.publicCode,
-          appData.token,
+          businessManagerCode,
+          token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
       if (useCase === EUseCase.DELETE) {
         const newData = await deleteMission(
-          appData.businessUnit.publicCode,
+          businessUnits,
           userAccount,
           requestConfiguration as unknown as IRequestDeleteMissions,
-          appData.token,
+          token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
-        setShowRequestProcessModal(true);
 
         if (
           setEntryDeleted &&
@@ -122,150 +124,22 @@ const useSaveMission = (props: IUseSaveMission) => {
         }
       }
       if (useCase === EUseCase.EDIT) {
-        setShowRequestProcessModal(true);
         const newData = await patchMission(
-          appData.businessUnit.publicCode,
+          businessUnits,
           userAccount,
           requestConfiguration as unknown as IRequestMissions,
-          appData.businessManager.publicCode,
-          appData.token,
+          businessManagerCode,
+          token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
     } catch (error) {
       console.info(error);
       setErrorFetchRequest(true);
-      setSendData(false);
-      addFlag({
-        title: flowAutomaticMessages().errorQueryingData.title,
-        description: flowAutomaticMessages().errorQueryingData.description,
-        appearance: flowAutomaticMessages().errorQueryingData
-          .appearance as IFlagAppearance,
-        duration: flowAutomaticMessages().errorQueryingData.duration,
-      });
+      setNetworkError(errorObject(error));
       setShowModal(false);
     }
   };
-
-  const updateRequestSteps = (
-    steps: IRequestSteps[],
-    stepName: string,
-    newStatus: ERequestStepsStatus,
-  ): IRequestSteps[] => {
-    return steps.map((step) => {
-      if (step.name === stepName) {
-        return {
-          ...step,
-          status: newStatus,
-        };
-      }
-      return step;
-    });
-  };
-
-  const isStatusCloseModal = (): boolean => {
-    return statusRequest ? statusCloseModal.includes(statusRequest) : false;
-  };
-
-  const isStatusRequestFinished = (): boolean => {
-    return statusRequest
-      ? statusRequestFinished.includes(statusRequest)
-      : false;
-  };
-
-  const changeRequestSteps = () => {
-    setTimeout(() => {
-      if (errorFetchRequest) {
-        setRequestSteps((prev) =>
-          updateRequestSteps(
-            prev,
-            requestStepsNames.requestFilled,
-            ERequestStepsStatus.ERROR,
-          ),
-        );
-        setSendData(false);
-      } else {
-        setRequestSteps((prev) =>
-          updateRequestSteps(
-            prev,
-            requestStepsNames.requestFilled,
-            ERequestStepsStatus.COMPLETED,
-          ),
-        );
-      }
-    }, 1500);
-    setTimeout(() => {
-      if (isStatusIntAutomatic(statusRequest)) {
-        setRequestSteps((prev) =>
-          updateRequestSteps(
-            prev,
-            requestStepsNames.adding,
-            ERequestStepsStatus.COMPLETED,
-          ),
-        );
-      }
-
-      if (isStatusRequestFinished()) {
-        setRequestSteps((prev) =>
-          updateRequestSteps(
-            prev,
-            requestStepsNames.adding,
-            ERequestStepsStatus.COMPLETED,
-          ),
-        );
-        setRequestSteps((prev) =>
-          updateRequestSteps(
-            prev,
-            requestStepsNames.requestAdded,
-            ERequestStepsStatus.COMPLETED,
-          ),
-        );
-      }
-
-      if (isStatusCloseModal()) {
-        setRequestSteps((prev) =>
-          updateRequestSteps(
-            prev,
-            requestStepsNames.adding,
-            ERequestStepsStatus.ERROR,
-          ),
-        );
-      }
-    }, 2000);
-  };
-
-  const handleStatusChange = () => {
-    if (isStatusIntAutomatic(saveMission?.requestStatus)) {
-      if (isStatusCloseModal()) {
-        setChangeTab(true);
-        addFlag({
-          title: flowAutomaticMessages().errorCreateRequest.title,
-          description: flowAutomaticMessages().errorCreateRequest.description,
-          appearance: flowAutomaticMessages().errorCreateRequest
-            .appearance as IFlagAppearance,
-          duration: flowAutomaticMessages().errorCreateRequest.duration,
-        });
-      }
-
-      if (isStatusRequestFinished()) {
-        addFlag({
-          title: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes],
-          ).successfulCreateRequest.title,
-          description: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes],
-          ).successfulCreateRequest.description,
-          appearance: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes],
-          ).successfulCreateRequest.appearance as IFlagAppearance,
-          duration: flowAutomaticMessages(
-            operationTypes[useCase as keyof typeof operationTypes],
-          ).successfulCreateRequest.duration,
-        });
-      }
-    }
-  };
-
   const handleCloseProcess = () => {
     setSendData(false);
     if (isStatusCloseModal() || isStatusRequestFinished()) {
@@ -274,73 +148,38 @@ const useSaveMission = (props: IUseSaveMission) => {
     if (useCase !== EUseCase.DELETE) {
       setTimeout(() => {
         navigate(navigatePage);
-      }, 300);
-    }
-    if (
-      setEntryDeleted &&
-      statusRequest &&
-      statusRequestFinished.includes(statusRequest)
-    ) {
-      setTimeout(() => {
-        setEntryDeleted(
-          data.configurationRequestData
-            .missionId as string,
-        );
       }, 3000);
     }
   };
-
+  
   useEffect(() => {
     if (!sendData) return;
     fetchSaveMissionData();
   }, [sendData]);
 
   useEffect(() => {
-    if (!saveMission?.requestStatus) return;
-
-    const status = saveMission.requestStatus;
-
-    if (isStatusIntAutomatic(status)) {
+    if (isStatusInAutomatic(saveMission?.requestStatus)) {
       fetchRequestData();
-    } else {
-      setShowPendingReqModal(true);
-    }
-  }, [saveMission?.requestStatus]);
-
-  useEffect(() => {
-    if (showRequestProcessModal) {
-      changeRequestSteps();
-    }
-    if (isStatusCloseModal() || isStatusRequestFinished()) {
-      setTimeout(() => {
-        handleStatusChange();
-        setSendData(false);
-      }, 30000);
-    }
-  }, [statusRequest]);
-
-  useEffect(() => {
-    if (isStatusIntAutomatic(saveMission?.requestStatus)) {
-      setStatusRequest("");
     }
   }, [saveMission]);
 
-  useEffect(() => {
+   useEffect(() => {
     changeRequestSteps();
   }, [statusRequest]);
 
-  const handleCloseRequestStatus = () => {
+ const handleCloseRequestStatus = () => {
+  console.log('handleCloseRequestStatus called');
     setSendData(false);
+        navigate(navigatePage);
     setChangeTab(true);
-    navigate(navigatePage);
     addFlag({
-      title: interventionHumanMessage.successfulCreateRequestIntHuman.title,
+      title: interventionHumanMessage.SuccessfulCreateRequestIntHuman.title,
       description:
-        interventionHumanMessage.successfulCreateRequestIntHuman.description,
-      appearance: interventionHumanMessage.successfulCreateRequestIntHuman
+        interventionHumanMessage.SuccessfulCreateRequestIntHuman.description,
+      appearance: interventionHumanMessage.SuccessfulCreateRequestIntHuman
         .appearance as IFlagAppearance,
       duration:
-        interventionHumanMessage.successfulCreateRequestIntHuman.duration,
+        interventionHumanMessage.SuccessfulCreateRequestIntHuman.duration,
     });
   };
 
@@ -350,8 +189,19 @@ const useSaveMission = (props: IUseSaveMission) => {
     navigate(navigatePage);
   };
 
-  const showRequestProcess = sendData && saveMission;
-  const showRequestStatus = showPendingReqModal && saveMission?.requestNumber;
+  const handleToggleErrorModal = () => {
+    setHasError(!hasError);
+    setShowModal(false);
+    if (errorFetchRequest && hasError) {
+      setChangeTab(true);
+    }
+    if (useCase !== EUseCase.DELETE) {
+      navigate(navigatePage);
+    }
+  };
+
+  const isRequestStatusModal =
+    showPendingReqModal && saveMission?.requestNumber ? true : false;
 
   const {
     title: titleRequest,
@@ -363,15 +213,18 @@ const useSaveMission = (props: IUseSaveMission) => {
     requestSteps,
     showPendingReqModal,
     loadingSendData,
-    showRequestProcess,
-    showRequestStatus,
-    titleRequest,
-    descriptionRequest,
-    actionTextRequest,
-    setShowRequestProcessModal,
+    isRequestStatusModal,
+    hasError,
+    errorData,
+    networkError,
+    errorFetchRequest,
+    handleToggleErrorModal,
     handleCloseProcess,
     handleCloseRequestStatus,
     handleClosePendingReqModal,
+    titleRequest,
+    descriptionRequest,
+    actionTextRequest,
   };
 };
 

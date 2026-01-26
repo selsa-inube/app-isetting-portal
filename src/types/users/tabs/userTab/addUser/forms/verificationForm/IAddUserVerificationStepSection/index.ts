@@ -1,9 +1,9 @@
 import type { IAssistedStep } from "@inubekit/inubekit";
-import type { IAddUserVerificationData } from "../IAddUserVerificationData";
+import { IAddUserVerificationStep } from "../IAddUserVerificationData/IVerificationStep";
 
 interface IAddUserVerificationStepSection {
   step: IAssistedStep;
-  updatedData: IAddUserVerificationData;
+  updatedData: IAddUserVerificationStep;
   onStepChange: (stepNumber: number) => void;
 }
 

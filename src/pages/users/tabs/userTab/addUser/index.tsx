@@ -61,6 +61,7 @@ const AddUser = () => {
     token: appData.token,
     activeEntries,
   });
+
   const {
     saveUsers,
     requestSteps,
@@ -97,7 +98,6 @@ const AddUser = () => {
     handleGoBack: onGoBack,
     handleToggleErrorModal,
   });
-  console.log("render AddUser",formValues);
   return (
     <AddUserUI
       currentStep={currentStep}

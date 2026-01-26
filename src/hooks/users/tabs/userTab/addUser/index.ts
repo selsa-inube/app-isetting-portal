@@ -152,28 +152,49 @@ const useAddUser = () => {
     setShowMissionNameModal(!showMissionNameModal);
   };
   const handleSubmit = () => {
-    setSaveData({
-      applicationName: requestConfig.applicationName,
-      requestType: ERequestType.ADD,
+  const general = formValues.generalInformationStep.values;
+  const mission = formValues.missionForStaffStep.values;
+  const contact = formValues.contactDataStep.values;
+  const roles = formValues.roleByBusinessUnitStep;
+
+  setSaveData({
+    applicationName: requestConfig.applicationName,
+    requestType: ERequestType.ADD,
+    businessManagerCode: appData.businessManager.publicCode,
+    businessUnitCode: appData.businessUnit.publicCode,
+    description: "Solicitud de creación de un funcionario nuevo",
+    entityName: "Staff",
+    requestDate: formatDate(new Date()),
+    useCaseName: EUserRequest.ADD_USER,
+    configurationRequestData: {
+      biologicalSex: general.gender,
+      birthDay: String(general.birthDate),
       businessManagerCode: appData.businessManager.publicCode,
-      businessUnitCode: appData.businessUnit.publicCode,
-      description: "Solicitud de creación de politicas generales de credito",
-      entityName: "GeneralCreditPolicies",
-      requestDate: formatDate(new Date()),
-      useCaseName: EUserRequest.ADD_USER,
-      configurationRequestData: {
-        configurationRequestData: {
-          generalInformationStep: formValues.generalInformationStep.values,
-          missionForStaffStep: formValues.missionForStaffStep.values,
-          contactDataStep: formValues.contactDataStep.values,
-          businessUnits: formValues.businessUnitsStep,
-          positionByBusinessUnitStep: formValues.positionByBusinessUnitStep,
-          roleByBusinessUnitStep: formValues.roleByBusinessUnitStep,
-        },
+      identificationNumber: String(general.idNumber),
+      identificationType: general.idType,
+      staffName: general.firstName,
+      staffLastName: general.lastName,
+
+      missionData: {
+        descriptionUse: mission.missionDescription,
+        missionName: mission.missionName,
       },
-    });
-    setShowRequestProcessModal(!showRequestProcessModal);
-  };
+      missionName: mission.missionName,
+
+      principalEmail: contact.email,
+      principalPhone: contact.phone,
+
+      staffByBusinessUnitAndRole: roles.map((item) => ({
+        businessUnitCode: item.businessUnitCode,
+        positionName: item.positionName,
+        roleName: item.rolesStaff,
+      })),
+    },
+  });
+
+  setShowRequestProcessModal(true);
+};
+
   return {
     currentStep,
     formReferences,

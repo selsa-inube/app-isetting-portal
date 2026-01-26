@@ -7,6 +7,8 @@ import { controlsAssisted } from "@config/controlsAssisted";
 import { IAddMissionUI } from "@ptypes/missions/assisted/IAddMissionUI";
 import { VerificationForm } from "../forms/verificationForm";
 import { GeneralInformationForm } from "../forms/generalInformationForm";
+import { portalId } from "@src/config/portalId";
+import { DecisionModal } from "@src/design/modals/decisionModal";
 
 const AddMissionUI = (props: IAddMissionUI) => {
   const {
@@ -30,9 +32,12 @@ const AddMissionUI = (props: IAddMissionUI) => {
     disabled,
     formValues,
     onClosePendingReqModal,
+    onCloseProcess,
     showPendingReqModals,
     showRequestProcessModal,
     loading,
+       modalData,
+    showDecision,
   } = props;
 
   return (
@@ -90,13 +95,29 @@ const AddMissionUI = (props: IAddMissionUI) => {
                 onToggleModal={onToggleModal}
                 onCloseRequestStatus={onCloseRequestStatus}
                 onClosePendingReqModal={onClosePendingReqModal}
-                onCloseProcess={onClosePendingReqModal}
+                onCloseProcess={onCloseProcess}
                 loading={loading}
+                
               />
             )}
           </Stack>
         </Stack>
       </Stack>
+        {showDecision && (
+        <DecisionModal
+          portalId={portalId}
+          title={modalData.title}
+          description={modalData.description}
+          actionText={modalData.actionText}
+          onCloseModal={modalData.onCloseModal}
+          onClick={modalData.onClick}
+          withCancelButton={modalData.withCancelButton}
+          withIcon={modalData.withIcon}
+          icon={modalData.icon}
+          appearance={modalData.appearance}
+          appearanceButton={modalData.appearanceButton}
+        />
+      )}
     </Stack>
   );
 };

@@ -178,7 +178,7 @@ const   useAddStaffRoles = (props: IUseAddStaffRoles) => {
         positionName: formValues.generalInformation.values.namePosition,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
-        positionByRole: rolesDataEndpoint,
+        positionsByRole: rolesDataEndpoint,
       },
     });
   };

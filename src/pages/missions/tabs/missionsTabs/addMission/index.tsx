@@ -7,6 +7,7 @@ import { assistedSteps } from "@config/missions/missionTab/assisted/assistedStep
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AddMissionUI } from "./interface";
+import { useModalAddGeneral } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
 
 const AddMission = () => {
 
@@ -31,26 +32,49 @@ const AddMission = () => {
     setIsCurrentFormValid,
     handleSubmitClick,
     navigate,
+    showGoBackModal,
+    handleGoBackModal,
   } = useAddMission();
 
   const { appData } = useContext(AuthAndData);
   const {
     saveMission,
     requestSteps,
-    loadingSendData,
-    handleCloseRequestStatus,
-    handleClosePendingReqModal,
     showPendingReqModal,
+    errorFetchRequest,
+    networkError,
+    loadingSendData,
+    hasError,
+    errorData,
+    handleToggleErrorModal,
+    handleCloseRequestStatus,
+    handleCloseProcess,
+    handleClosePendingReqModal,
   } = useSaveMission({
-      useCase: EUseCase.ADD,
+    useCase: EUseCase.ADD,
     businessUnits: appData.businessUnit.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
-    setShowModal}
+    setShowModal,
+    token: appData.token,
+    businessManagerCode: appData.businessManager.publicCode,
+  }
   );
 
+
+  const { modalData, showDecision } = useModalAddGeneral({
+    showGoBackModal,
+    loading: loadingSendData,
+    hasError,
+    errorData,
+    networkError,
+    errorFetchRequest,
+    handleCloseModal: handleGoBackModal,
+    handleGoBack: handlePreviousStep,
+    handleToggleErrorModal,
+  });
   return (
     <AddMissionUI
       navigate={navigate}
@@ -81,6 +105,9 @@ const AddMission = () => {
       onClosePendingReqModal={handleClosePendingReqModal}
       showPendingReqModals={showPendingReqModal}
       loading={loadingSendData}
+       modalData={modalData}
+      showDecision={showDecision}
+       onCloseProcess={handleCloseProcess}
     />
   );
 };

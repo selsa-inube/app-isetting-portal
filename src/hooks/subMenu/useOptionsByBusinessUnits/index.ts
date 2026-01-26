@@ -1,16 +1,14 @@
-import { useState, useEffect, useMemo, useContext } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import { getStaffPortalByBusinessManager } from "@services/subMenu";
 import { IUseOptionsByBusinessUnit } from "@ptypes/hooks/IUseOptionsByBusinessunits";
 import { getIcon } from "@utils/getIcon";
 import { IOptionsByBusinessUnits } from "@ptypes/staffPortal/IOptionsByBusinessUnits";
 import { normalizeOptionsByPublicCode } from "@utils/optionByBusinessunit";
-import { AuthAndData } from "@context/authAndDataProvider";
 
 const useOptionsByBusinessUnits = (props: IUseOptionsByBusinessUnit) => {
-  const { businessUnit, staffPortalId, optionName } = props;
+  const { businessUnit, staffPortalId, user, token, optionName } = props;
 
-  const { appData } = useContext(AuthAndData);
   const [optionsBusinessUnit, setOptionsBusinessUnit] = useState<
     IOptionsByBusinessUnits[]
   >([]);
@@ -27,10 +25,12 @@ const useOptionsByBusinessUnits = (props: IUseOptionsByBusinessUnit) => {
 
       setLoading(true);
       setHasError(false);
+
       try {
         const data = await getStaffPortalByBusinessManager(
           staffPortalId,
-          appData.user.userAccount
+          user,
+          token,
         );
         setOptionsBusinessUnit(data);
       } catch (error) {
@@ -43,7 +43,7 @@ const useOptionsByBusinessUnits = (props: IUseOptionsByBusinessUnit) => {
     };
 
     fetchOptionBusinessUnitData();
-  }, [businessUnit, staffPortalId, appData.user]);
+  }, [businessUnit, staffPortalId, user, token]);
 
   const optionsCards = useMemo(() => {
     if (hasError) {
@@ -54,7 +54,7 @@ const useOptionsByBusinessUnits = (props: IUseOptionsByBusinessUnit) => {
       .filter((option) => normalizeOptionsByPublicCode(option.publicCode))
       .map((option) => {
         const normalizedOption = normalizeOptionsByPublicCode(
-          option.publicCode
+          option.publicCode,
         );
         return {
           id: option.publicCode,
@@ -73,7 +73,13 @@ const useOptionsByBusinessUnits = (props: IUseOptionsByBusinessUnit) => {
       : undefined;
   }, [optionName, optionsCards]);
 
-  return { optionsCards, hasError, loading, descriptionOptions };
+  return {
+    optionsCards,
+    optionsBusinessUnit,
+    descriptionOptions,
+    loading,
+    hasError,
+  };
 };
 
 export { useOptionsByBusinessUnits };

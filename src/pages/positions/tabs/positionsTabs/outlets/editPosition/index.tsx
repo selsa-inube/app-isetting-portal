@@ -8,14 +8,15 @@ import { useSavePositions } from "@hooks/positions/useSavePositions";
 import { editPositionTabsConfig } from "@config/positions/editPositions/tabs";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
-import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
 import { EditPositionsUI } from "./interface";
+import { EUseCase } from "@src/enum/useCase";
+import { IOptionInitialiceEntry } from "@src/types/positions/assisted/IOptionInitialiceEntry";
 
 const EditPositions = () => {
   const location = useLocation();
   const { data } = location.state || {};
   const { appData } = useContext(AuthAndData);
-  const { rolesStaff } = useFetchRolesStaff();
+  const { rolesStaff } = useFetchRolesStaff(appData.token);
 
   const {
     formValues,
@@ -25,6 +26,7 @@ const EditPositions = () => {
     showRequestProcessModal,
     showGeneralInformation,
     showRolesForm,
+    smallScreen,
     onSubmit,
     handleReset,
     setIsCurrentFormValid,
@@ -32,29 +34,34 @@ const EditPositions = () => {
     setShowModal,
     setSelectedToggle,
     roles,
+    setShowRequestProcessModal,
   } = useEditPositions({ data, appData, rolesData: rolesStaff });
 
   const {
     savePositions,
     requestSteps,
-    loading,
-    showPendingReqModal,
+    loadingSendData,
     handleCloseRequestStatus,
     handleClosePendingReqModal,
-    smallScreen,
+    handleCloseProcess,
+    showPendingReqModal,
   } = useSavePositions({
     businessUnits: appData.businessUnit.publicCode,
+    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
-    setSendData: setShowModal,
+    token: appData.token,
+    setSendData: setShowRequestProcessModal,
+    useCase: EUseCase.EDIT,
+    setShowModal,
   });
-  const { options } = useFetchAplicationStaff();
+  const { options } = useFetchAplicationStaff(appData.token);
 
   const showRequestProcess = Boolean(showRequestProcessModal && savePositions);
 
   const showRequestStatusModal = Boolean(
-    showPendingReqModal && savePositions?.requestNumber
+    showPendingReqModal && savePositions?.requestNumber,
   );
 
   return (
@@ -67,7 +74,7 @@ const EditPositions = () => {
       setIsCurrentFormValid={setIsCurrentFormValid}
       savePositions={savePositions as ISaveDataResponse}
       requestSteps={requestSteps}
-      loading={loading}
+      loading={loadingSendData}
       onCloseRequestStatus={handleCloseRequestStatus}
       onClosePendingReqModal={handleClosePendingReqModal}
       onButtonClick={onSubmit}
@@ -75,11 +82,12 @@ const EditPositions = () => {
       setSelectedToggle={setSelectedToggle ?? []}
       smallScreen={smallScreen}
       roles={roles}
-      options={options as IOptionInitialiceEntryApp[]}
+      options={options as IOptionInitialiceEntry[]}
       showGeneralInformation={showGeneralInformation}
       showRolesForm={showRolesForm}
       showRequestProcess={showRequestProcess}
       showRequestStatusModal={showRequestStatusModal}
+      onCloseProcess={handleCloseProcess}
     />
   );
 };

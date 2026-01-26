@@ -1,184 +1,154 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import { IFlagAppearance, useFlag, useMediaQuery } from "@inubekit/inubekit";
+import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
-import { getRequestInProgressById } from "@services/positions/getRequestInProgressById";
-import { ERequestStepsStatus } from "@enum/requestStepsStatus";
-import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
-import { mediaQueryTabletMain } from "@config/environment";
-import { requestStepsInitial } from "@config/positions/addPositions/requestSteps";
-import { flowAutomaticMessages } from "@config/positionsTabs/generics/flowAutomaticMessages";
-import { statusCloseModal } from "@config/status/statusCloseModal";
+
+
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
-import { interventionHumanMessage } from "@config/positionsTabs/generics/interventionHumanMessage";
-import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
+
 import { ISaveDataResponse } from "@ptypes/requestsInProgress/saveData/ISaveDataResponse";
 import { IUseSavePositions } from "@ptypes/hooks/IUseSavePositions";
 
+import { EUseCase } from "@src/enum/useCase";
+
+import { requestStatusMessage } from "@src/config/positions/requestStatusMessage";
+
+import { postAddPositions } from "@src/services/positions/postAddPositions";
+import { IRequestPositions } from "@src/types/positions/assisted/IRequestPositions";
+import { deletePositions } from "@src/services/positions/deletePositons";
+import { errorObject } from "@src/utils/errorObject";
+import { useRequest } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useRequest";
+import { IErrors } from "@src/types/hooks/IErrors";
+import { interventionHumanMessage } from "@src/config/positionsTabs/generics/interventionHumanMessage";
+import { patchPosition } from "@src/services/positions/editPositions";
+
 const useSavePositions = (props: IUseSavePositions) => {
   const {
-    businessUnits,
+   businessUnits,
+    businessManagerCode,
     userAccount,
-    sendData,
     data,
-    setSendData,
-    setShowPendingReq,
+    token,
+    sendData,
+    useCase,
+        setSendData,
     setShowModal,
+    setEntryDeleted,
   } = props;
   const [savePositions, setSavePositions] = useState<ISaveDataResponse>();
-  const [showPendingReqModal, setShowPendingReqModal] = useState(false);
   const [statusRequest, setStatusRequest] = useState<string>();
-  const [loading, setLoading] = useState(false);
-  const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const { addFlag } = useFlag();
-  const [requestSteps, setRequestSteps] =
-    useState<IRequestSteps[]>(requestStepsInitial);
-
+  const [showPendingReqModal, setShowPendingReqModal] = useState(false);
+  const [loadingSendData, setLoadingSendData] = useState(false);
+  const [errorFetchRequest, setErrorFetchRequest] = useState(false);
+  const [errorData, setErrorData] = useState<IErrors>({} as IErrors);
+  const [hasError, setHasError] = useState(false);
+  const [networkError, setNetworkError] = useState<IErrors>({} as IErrors);
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
   const navigatePage = "/positions";
 
   const fetchSavePositionsData = async () => {
-    setLoading(true);
+    setLoadingSendData(true);
     try {
-      const saveData = await postSaveRequest(userAccount, data);
+      const saveData = await postSaveRequest(userAccount, data, token);
       setSavePositions(saveData);
+   setShowModal(false);
     } catch (error) {
       console.info(error);
       setSendData(false);
-      addFlag({
-        title: flowAutomaticMessages.errorSendingData.title,
-        description: flowAutomaticMessages.errorSendingData.description,
-        appearance: flowAutomaticMessages.errorSendingData
-          .appearance as IFlagAppearance,
-        duration: flowAutomaticMessages.errorSendingData.duration,
-      });
+      setHasError(true);
+      setErrorData(errorObject(error));
     } finally {
-      setLoading(false);
-      if (setShowModal) setShowModal(false);
+      setLoadingSendData(false);
     }
   };
+  
+  const {
+    requestSteps,
+    changeRequestSteps,
+    handleStatusChange,
+    isStatusCloseModal,
+    isStatusRequestFinished,
+    isStatusInAutomatic,
+  } = useRequest({
+    setSendData,
+    useCase,
+    statusRequest: statusRequest || "",
+    saveUsers: savePositions as ISaveDataResponse,
+    errorFetchRequest,
+    networkError,
+    setHasError,
+  });
 
-  const fetchRequestInProgressData = async () => {
+
+    const requestConfiguration = {
+    configurationRequestData:data?.configurationRequestData,
+    settingRequest: {
+      requestNumber: savePositions?.requestNumber,
+      settingRequestId: savePositions?.settingRequestId,
+    },
+  };
+  const fetchRequestData = async () => {
     try {
-      if (!isStatusIntAutomatic(savePositions?.requestStatus)) return;
+      if (useCase === EUseCase.ADD) {
+        const newData = await postAddPositions(
+          businessUnits,
+          userAccount,
+          requestConfiguration as unknown as IRequestPositions,
+          businessManagerCode,
+          token,
+        );
+        setStatusRequest(newData.settingRequest?.requestStatus);
+      }
+      if (useCase === EUseCase.EDIT) {
+        const newData = await patchPosition(
+          businessUnits,
+          userAccount,
+          requestConfiguration  as unknown as IRequestPositions,
+          businessManagerCode,
+          token,
+        );
 
-      const data = await getRequestInProgressById(
-        businessUnits,
-        savePositions?.settingRequestId || ""
-      );
-      setStatusRequest(data.requestStatus);
+        setStatusRequest(newData.settingRequest?.requestStatus);
+      }
+      if (useCase === EUseCase.DELETE) {
+        const newData = await deletePositions(
+          businessUnits,
+          userAccount,
+          requestConfiguration as unknown as IRequestPositions,
+          token,
+        );
+
+
+        if (
+          setEntryDeleted &&
+          newData?.settingRequest?.requestStatus &&
+          statusRequestFinished.includes(newData?.settingRequest?.requestStatus)
+        ) {
+          setEntryDeleted(data.configurationRequestData.missionId as string);
+        }
+      }
     } catch (error) {
       console.info(error);
-      addFlag({
-        title: flowAutomaticMessages.errorQueryingData.title,
-        description: flowAutomaticMessages.errorQueryingData.description,
-        appearance: flowAutomaticMessages.errorQueryingData
-          .appearance as IFlagAppearance,
-        duration: flowAutomaticMessages.errorQueryingData.duration,
-      });
+      setErrorFetchRequest(true);
+      setNetworkError(errorObject(error));
+      setShowModal(false);
     }
   };
 
-  const updateRequestSteps = (
-    steps: IRequestSteps[],
-    stepName: string,
-    newStatus: ERequestStepsStatus
-  ): IRequestSteps[] => {
-    return steps.map((step) => {
-      if (step.name === stepName) {
-        return {
-          ...step,
-          status: newStatus,
-        };
-      }
-      return step;
-    });
-  };
-
-  const isStatusIntAutomatic = (status: string | undefined): boolean => {
-    return status ? statusFlowAutomatic.includes(status) : false;
-  };
-
-  const isStatusCloseModal = (): boolean => {
-    return statusRequest ? statusCloseModal.includes(statusRequest) : false;
-  };
-
-  const isStatusRequestFinished = (): boolean => {
-    return statusRequest
-      ? statusRequestFinished.includes(statusRequest)
-      : false;
-  };
-
-  const changeRequestSteps = () => {
-    if (isStatusIntAutomatic(statusRequest)) {
-      setRequestSteps((prev) =>
-        updateRequestSteps(
-          prev,
-          requestStepsInitial[1].name,
-          ERequestStepsStatus.COMPLETED
-        )
-      );
+const handleCloseProcess = () => {
+    setSendData(false);
+    if (isStatusCloseModal() || isStatusRequestFinished()) {
+      handleStatusChange();
     }
-
-    if (isStatusRequestFinished()) {
-      setRequestSteps((prev) =>
-        updateRequestSteps(
-          prev,
-          requestStepsInitial[1].name,
-          ERequestStepsStatus.COMPLETED
-        )
-      );
-      setRequestSteps((prev) =>
-        updateRequestSteps(
-          prev,
-          requestStepsInitial[2].name,
-          ERequestStepsStatus.COMPLETED
-        )
-      );
+    if (useCase !== EUseCase.DELETE) {
+      setTimeout(() => {
+        navigate(navigatePage);
+      }, 3000);
     }
-
-    if (isStatusCloseModal()) {
-      setRequestSteps((prev) =>
-        updateRequestSteps(
-          prev,
-          requestStepsInitial[1].name,
-          ERequestStepsStatus.ERROR
-        )
-      );
-    }
-  };
-
-  const handleStatusChange = () => {
-    setTimeout(() => {
-      if (isStatusIntAutomatic(savePositions?.requestStatus)) {
-        if (isStatusCloseModal()) {
-          setChangeTab(true);
-          navigate(navigatePage);
-          addFlag({
-            title: flowAutomaticMessages.errorCreateRequest.title,
-            description: flowAutomaticMessages.errorCreateRequest.description,
-            appearance: flowAutomaticMessages.errorCreateRequest
-              .appearance as IFlagAppearance,
-            duration: flowAutomaticMessages.errorCreateRequest.duration,
-          });
-        }
-
-        if (isStatusRequestFinished()) {
-          navigate(navigatePage);
-          addFlag({
-            title: flowAutomaticMessages.SuccessfulCreateRequest.title,
-            description:
-              flowAutomaticMessages.SuccessfulCreateRequest.description,
-            appearance: flowAutomaticMessages.SuccessfulCreateRequest
-              .appearance as IFlagAppearance,
-            duration: flowAutomaticMessages.SuccessfulCreateRequest.duration,
-          });
-        }
-      }
-    }, 3000);
   };
 
   useEffect(() => {
@@ -187,50 +157,20 @@ const useSavePositions = (props: IUseSavePositions) => {
   }, [sendData]);
 
   useEffect(() => {
-    if (isStatusIntAutomatic(savePositions?.requestStatus)) {
-      setRequestSteps((prev) =>
-        updateRequestSteps(
-          prev,
-          requestStepsInitial[0].name,
-          ERequestStepsStatus.COMPLETED
-        )
-      );
-
-      const timer = setInterval(() => {
-        const checkRequestStatus = async () => {
-          if (isStatusCloseModal() || isStatusRequestFinished()) {
-            changeRequestSteps();
-            clearInterval(timer);
-            setTimeout(() => {
-              setSendData(false);
-            }, 1500);
-          } else {
-            await fetchRequestInProgressData();
-            changeRequestSteps();
-          }
-        };
-        checkRequestStatus();
-      }, 2000);
-
-      const timeout = setTimeout(() => {
-        clearInterval(timer);
-        setSendData(false);
-        setShowPendingReqModal(true);
-        if (setShowPendingReq) {
-          setShowPendingReq(!showPendingReqModal);
-        }
-      }, 60000);
-
-      return () => {
-        clearInterval(timer);
-        clearTimeout(timeout);
-      };
+    if (isStatusInAutomatic(savePositions?.requestStatus)) {
+      fetchRequestData();
     }
-  }, [savePositions, statusRequest]);
+  }, [savePositions]);
+
+  useEffect(() => {
+    changeRequestSteps();
+  }, [statusRequest]);
+  
+
 
   const handleCloseRequestStatus = () => {
-    setChangeTab(true);
     setSendData(false);
+    setChangeTab(true);
     navigate(navigatePage);
     addFlag({
       title: interventionHumanMessage.SuccessfulCreateRequestIntHuman.title,
@@ -243,23 +183,48 @@ const useSavePositions = (props: IUseSavePositions) => {
     });
   };
 
-  useEffect(() => {
-    handleStatusChange();
-  }, [statusRequest]);
-
   const handleClosePendingReqModal = () => {
-    setChangeTab(true);
     setShowPendingReqModal(false);
+    setChangeTab(true);
     navigate(navigatePage);
   };
+
+  const handleToggleErrorModal = () => {
+    setHasError(!hasError);
+    setShowModal(false);
+    if (errorFetchRequest && hasError) {
+      setChangeTab(true);
+    }
+    if (useCase !== EUseCase.DELETE) {
+      navigate(navigatePage);
+    }
+  };
+
+  const isRequestStatusModal =
+    showPendingReqModal && savePositions?.requestNumber ? true : false;
+    
+  const {
+    title: titleRequest,
+    description: descriptionRequest,
+    actionText: actionTextRequest,
+  } = requestStatusMessage(savePositions?.staffName);
   return {
     savePositions,
-    requestSteps,
-    loading,
+     requestSteps,
+    showPendingReqModal,
+    loadingSendData,
+    isRequestStatusModal,
+    hasError,
+    errorData,
+    networkError,
+    errorFetchRequest,
+    handleToggleErrorModal,
+    handleCloseProcess,
     handleCloseRequestStatus,
     handleClosePendingReqModal,
-    showPendingReqModal,
-    smallScreen,
+    titleRequest,
+    descriptionRequest,
+    actionTextRequest,
   };
 };
 

@@ -37,6 +37,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
     onReset,
     options,
     roles,
+    onCloseProcess,
   } = props;
 
   return (
@@ -99,7 +100,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
           requestProcessSteps={requestSteps}
           appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={onCloseRequestStatus}
-          onCloseProcess={() => {}}
+          onCloseProcess={onCloseProcess}
         />
       )}
 

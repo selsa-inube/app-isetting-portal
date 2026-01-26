@@ -8,29 +8,32 @@ const MissionsTab = () => {
   const loading = false;
   const { appData } = useContext(AuthAndData);
   const { missionsData } = useMissionsData(
-    appData.businessManager.publicCode
+    appData.token,
+    appData.businessManager.publicCode,
   );
 
   const {
     smallScreen,
     label,
-    searchPosition,
+    searchMission,
     columnWidths,
     disabledButton,
     showInfoModal,
+    filteredData,
     handleToggleInfoModal,
-    handleSearchPositions,
-  } = useMissionsTab();
+    handleSearchMissions,
+    setEntryDeleted,
+  } = useMissionsTab(missionsData);
 
   return (
     <MissionsTabUI
-      handleSearchMissions={handleSearchPositions}
-      searchMission={searchPosition}
+      handleSearchMissions={handleSearchMissions}
+      searchMission={searchMission}
       loading={loading}
-      data={missionsData}
+      data={filteredData}
       smallScreen={smallScreen}
       label={label}
-      setEntryDeleted={() => { }}
+      setEntryDeleted={setEntryDeleted}
       columnWidths={columnWidths}
       disabledButton={disabledButton}
       showInfoModal={showInfoModal}

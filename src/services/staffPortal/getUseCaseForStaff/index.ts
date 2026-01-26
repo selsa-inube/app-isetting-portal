@@ -7,12 +7,13 @@ import { iportalStaffAxiosInstance } from "@api/iportalStaff";
 const getUseCaseForStaff = async (
   userAccount: string,
   businessManagerCode: string,
-  _businessUnit?: string
+  token: string,
 ): Promise<string[]> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchUseCaseForStaff",
       "X-User-Name": userAccount,
+      Authorization: token,
     },
   };
 
@@ -24,7 +25,7 @@ const getUseCaseForStaff = async (
   const data: IGetUseCaseForStaff = await getWithRetries<IGetUseCaseForStaff>(
     iportalStaffAxiosInstance,
     `/staffs?${queryParams.toString()}`,
-    config
+    config,
   );
   return Array.isArray(data.listOfUseCases) ? data.listOfUseCases : [];
 };

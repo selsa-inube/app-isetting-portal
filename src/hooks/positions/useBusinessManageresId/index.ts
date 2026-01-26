@@ -5,7 +5,7 @@ import { IUseBusinessManagersId } from "@ptypes/hooks/IUseBusinessManagersId";
 
 const useBusinessManagersId = ( props: IUseBusinessManagersId ) => {
 
-  const {businessUnitCode, portalPublicCode} = props;
+  const {businessUnitCode, portalPublicCode,token} = props;
   const [businessManagersData, SetbusinessManagersData] = useState<
     IBusinessUnitsPortalStaff[]
   >([]);
@@ -18,7 +18,7 @@ const useBusinessManagersId = ( props: IUseBusinessManagersId ) => {
         return;
       }
       try {
-        const NewData = await getBusinessManagersId(businessUnitCode);
+        const NewData = await getBusinessManagersId(businessUnitCode,token);
         SetbusinessManagersData(NewData);
       } catch (Error) {
         console.info(Error);

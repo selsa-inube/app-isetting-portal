@@ -1,6 +1,8 @@
 interface IUseOptionsByBusinessUnit {
   businessUnit: string;
   staffPortalId: string;
+  user: string;
+  token: string;
   optionName?: string;
 }
 

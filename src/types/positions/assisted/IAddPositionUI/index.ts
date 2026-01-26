@@ -5,8 +5,10 @@ import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import { IAssistedStep } from "@inubekit/inubekit";
 import { IFormAddPosition } from "../IFormAddPosition";
 import { IOptionInitialiceEntry } from "../IOptionInitialiceEntry";
-import { IOptionInitialiceEntryApp } from "../IOptionInitialiceEntryApp";
+
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
+import { IOptionInitialiceEntryApp } from "@src/types/forms/verificationForm/IOptionInitialiceEntryApp";
+import { IModalData } from "@src/types/users/tabs/userTab/addUser/IModalData";
 interface IAddPositionUI {
   currentStep: number;
   generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry> | null>;
@@ -28,7 +30,6 @@ interface IAddPositionUI {
   disabled: boolean;
   roles: IOptionInitialiceEntryApp[];
   onFinishForm: () => void;
-  onFinishFormApplicationStatus: () => void;
   showModal: boolean;
   showModalApplicationStatus: boolean;
   savePositions: ISaveDataResponse;
@@ -41,9 +42,9 @@ interface IAddPositionUI {
   setShowMultipurposeModal: React.Dispatch<React.SetStateAction<boolean>>;
   onClosePendingReqModal: () => void;
   options: IOptionInitialiceEntry[];
-  requestSteps: IRequestSteps[];
-  shouldShowRequestProcessModal: ISaveDataResponse;
-  showPendingReqModals: boolean;
+  requestSteps: IRequestSteps[]; 
+   modalData: IModalData;
+  showDecision: boolean;
 }
 
 export type { IAddPositionUI };

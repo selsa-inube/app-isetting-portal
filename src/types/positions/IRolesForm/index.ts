@@ -1,5 +1,5 @@
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
-import { IOptionInitialiceEntryApp } from "@ptypes/positions/assisted/IOptionInitialiceEntryApp";
+import { IOptionInitialiceEntryApp } from "@src/types/forms/verificationForm/IOptionInitialiceEntryApp";
 
 interface IRolesForm {
   entries: IFormEntry[];

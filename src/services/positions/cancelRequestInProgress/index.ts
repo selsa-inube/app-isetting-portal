@@ -7,12 +7,14 @@ import { mapCancelRequestInProgressToApi } from "./mappers";
 
 const cancelRequestInProgress = async (
   businessUnit: string,
-  data: ICancelRequestInProgress
+  data: ICancelRequestInProgress,
+  token: string,
 ): Promise<ICancelRequestResponse> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "RemoveSettingRequest",
       "X-Business-unit": businessUnit,
+      Authorization: token,
     },
   };
 
@@ -20,7 +22,7 @@ const cancelRequestInProgress = async (
     `/requests`,
     config,
     mapCancelRequestInProgressToApi(data) as unknown as string[],
-    isaasPerAxiosInstance
+    isaasPerAxiosInstance,
   );
 
   return deleteData;

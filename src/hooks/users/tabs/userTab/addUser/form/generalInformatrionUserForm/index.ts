@@ -14,7 +14,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { II18n } from "@ptypes/users/tabs/userTab/addUser/enumerators/enumeItem/i18n";
 
 const useGeneralInformationUserForm = (
-  props: IUseAddUserGeneralInformationStep
+  props: IUseAddUserGeneralInformationStep,
 ) => {
   const { initialValues, ref, onSubmit, onFormValid } = props;
   const { appData } = useContext(AuthAndData);
@@ -53,6 +53,7 @@ const useGeneralInformationUserForm = (
 
   const { enumerators } = useEnumerators({
     enumKey: `${ESelectOptions.GENDER},${ESelectOptions.ID_TYPE}`,
+    token: appData.token,
   });
 
   const optionGender: IOption[] =

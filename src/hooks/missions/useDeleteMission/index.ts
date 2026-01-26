@@ -28,8 +28,8 @@ const useDeleteMission = (props: IUseDeleteMission) => {
       useCaseName: "DeleteMission",
       requestType: ERequestType.REMOVE,
       configurationRequestData: {
-        positionId: data.missionId,
-        positionName: data.namePosition,
+        missionId: data.missionId,
+        missionName: data.missionName,
         justification: `${deleteLabels.justification} ${appData.user.userAccount}`,
       },
     });

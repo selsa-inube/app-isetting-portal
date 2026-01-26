@@ -72,6 +72,7 @@ const useEditMission = (props: IUseEditMission) => {
     setSaveData({
       applicationName: "istaff",
       businessManagerCode: appData.businessManager.publicCode,
+      businessUnitCode: appData.businessUnit.publicCode,
       description: "Solicitud de modificación de un cargo del operador",
       entityName: "Mission",
       requestDate: formatDate(new Date()),

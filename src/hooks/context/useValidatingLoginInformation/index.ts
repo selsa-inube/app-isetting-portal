@@ -8,18 +8,22 @@ import { useLanguage } from "@hooks/language";
 import { useIAuth } from "@inube/iauth-react";
 
 const useValidatingLoginInformation = () => {
-  const { user, isLoading: isIAuthLoading } = useIAuth();
+  const {
+    user,
+    isLoading: isIAuthLoading,
+    getAccessTokenSilently,
+  } = useIAuth();
   const portalCode = decrypt(localStorage.getItem("portalCode") ?? "");
   const { portalData } = usePortalData({ portalCode });
   const { businessManagersData } = useBusinessManagers({
     portalPublicCode: portalData,
   });
   const [businessUnitSigla, setBusinessUnitSigla] = useState(
-    localStorage.getItem("businessUnitSigla") ?? ""
+    localStorage.getItem("businessUnitSigla") ?? "",
   );
 
   const [useCases, setUseCases] = useState<string>(
-    localStorage.getItem("useCasesByStaff") ?? ""
+    localStorage.getItem("useCasesByStaff") ?? "",
   );
 
   const { languageBrowser } = useLanguage();
@@ -35,7 +39,7 @@ const useValidatingLoginInformation = () => {
     {} as IBusinessUnitsPortalStaff;
   try {
     businessUnitData = JSON.parse(
-      businessUnitSigla || "{}"
+      businessUnitSigla || "{}",
     ) as IBusinessUnitsPortalStaff;
   } catch (error) {
     console.error("Error parsing businessUnitSigla:", error);
@@ -75,6 +79,7 @@ const useValidatingLoginInformation = () => {
     },
     useCasesByStaff: useCasesData ?? [],
     language: businessUnitData?.languageIso || "",
+    token: "",
   });
   useEffect(() => {
     if (!isIAuthLoading) {
@@ -92,8 +97,6 @@ const useValidatingLoginInformation = () => {
     }
   }, [user, isIAuthLoading]);
   useEffect(() => {
-    if (!businessManagersData) return;
-
     setAppData((prev) => ({
       ...prev,
       portal: {
@@ -104,7 +107,7 @@ const useValidatingLoginInformation = () => {
         publicCode: portalData?.publicCode || "",
       },
     }));
-  }, [businessManagersData, portalData, portalCode]);
+  }, [portalData, portalCode]);
 
   useEffect(() => {
     if (!businessManagersData) return;
@@ -121,7 +124,6 @@ const useValidatingLoginInformation = () => {
           abbreviatedName: businessManagersData.abbreviatedName,
           urlBrand: businessManagersData.urlBrand,
           urlLogo: businessManagersData.urlLogo,
-          clientId: businessManagersData.clientId,
         },
       }));
     }
@@ -142,9 +144,13 @@ const useValidatingLoginInformation = () => {
           languageId: businessUnit?.languageId,
           urlLogo: businessUnit?.urlLogo,
         },
+        language:
+          businessUnit?.languageId && businessUnit.languageId !== ""
+            ? businessUnit.languageId
+            : languageBrowser || "es",
       }));
     }
-  }, [businessUnitSigla, businessUnitsToTheStaff]);
+  }, [businessUnitSigla, businessUnitsToTheStaff, languageBrowser]);
 
   useEffect(() => {
     localStorage.setItem("useCasesByStaff", useCases);
@@ -162,7 +168,7 @@ const useValidatingLoginInformation = () => {
   useEffect(() => {
     localStorage.setItem(
       "businessUnitsToTheStaff",
-      JSON.stringify(businessUnitsToTheStaff)
+      JSON.stringify(businessUnitsToTheStaff),
     );
   }, [businessUnitsToTheStaff]);
 
@@ -171,11 +177,19 @@ const useValidatingLoginInformation = () => {
   }, [useCases]);
 
   useEffect(() => {
-    setAppData((prev) => ({
-      ...prev,
-      language: languageBrowser ?? appData.language,
-    }));
-  }, [languageBrowser]);
+    const obtenerDatos = async () => {
+      try {
+        const tokenData = await getAccessTokenSilently();
+        setAppData((prev) => ({
+          ...prev,
+          token: tokenData,
+        }));
+      } catch (error) {
+        console.error("Error Token:", error);
+      }
+    };
+    obtenerDatos();
+  }, [getAccessTokenSilently]);
 
   const AuthAndData = useMemo(
     () => ({
@@ -184,11 +198,11 @@ const useValidatingLoginInformation = () => {
       businessUnitsToTheStaff,
       useCases,
       setAppData,
-      setUseCases,
       setBusinessUnitSigla,
+      setUseCases,
       setBusinessUnitsToTheStaff,
     }),
-    [appData, businessUnitSigla, businessUnitsToTheStaff]
+    [appData, businessUnitSigla, businessUnitsToTheStaff, useCases],
   );
 
   return AuthAndData;

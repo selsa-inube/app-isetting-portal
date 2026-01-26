@@ -4,6 +4,7 @@ import { getBusinessManagers } from "@services/staffPortal/getBusinessManager";
 
 import { IUseBusinessManagers } from "@ptypes/hooks/IUseBusinessManagers";
 import { IBusinessManagers } from "@ptypes/staffPortal/IBusinessManagers";
+import { storeEncryptedData } from "@src/utils/storeEncryptedData";
 
 const useBusinessManagers = (props: IUseBusinessManagers) => {
   const { portalPublicCode } = props;
@@ -19,13 +20,23 @@ const useBusinessManagers = (props: IUseBusinessManagers) => {
         setErrorCode(1000);
         return;
       }
-
       try {
-        if (portalPublicCode.businessManagerCode?.length > 0) {
+        if (
+          portalPublicCode.businessManagerCode &&
+          portalPublicCode.businessManagerCode.length > 0
+        ) {
           const newData = await getBusinessManagers(
-            portalPublicCode.businessManagerCode
+            portalPublicCode.businessManagerCode,
+            "",
           );
-          setBusinessManagersData(newData[0]);
+
+          storeEncryptedData({
+            originatorId: newData.clientId,
+            originatorCode: newData.publicCode,
+            aplicationName: portalPublicCode.publicCode,
+          });
+
+          setBusinessManagersData(newData);
         }
       } catch (error) {
         console.info(error);

@@ -14,14 +14,15 @@ const useSearchAndPageControlUser = () => {
   const [searchService, setSearchService] = useState<string>("");
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
   const { userData, loading } = useUserConsult(
-    appData.businessManager.publicCode
+    appData.businessManager.publicCode,
+    appData.token,
   );
   const filteredData = useMemo(() => {
     return userData
       .filter((row) =>
         Object.values(row).some((value) =>
-          value?.toString().toLowerCase().includes(searchService.toLowerCase())
-        )
+          value?.toString().toLowerCase().includes(searchService.toLowerCase()),
+        ),
       )
       .filter((row) => row.staffId !== entryDeleted)
       .map((row) => ({

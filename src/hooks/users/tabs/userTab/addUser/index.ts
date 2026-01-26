@@ -85,7 +85,10 @@ const useAddUser = () => {
   const handleGoBackModal = () => {
     setShowGoBackModal(!showGoBackModal);
   };
-  const { missionsData } = useMissionsData(appData.businessManager.publicCode);
+  const { missionsData } = useMissionsData(
+    appData.token,
+    appData.businessManager.publicCode,
+  );
   const handleNextStep = () => {
     if (currentStep < addUserHookConfig.maxSteps) {
       if (generalInformationRef.current) {
@@ -100,7 +103,7 @@ const useAddUser = () => {
       if (missionForStaffRef.current) {
         const { values } = missionForStaffRef.current;
         const isDuplicatedMission = missionsData.some(
-          (mission) => mission.missionName === values.missionName
+          (mission) => mission.missionName === values.missionName,
         );
 
         if (isDuplicatedMission) {
@@ -108,7 +111,7 @@ const useAddUser = () => {
           return;
         }
         const selectedMission = missionsData.find(
-          (mission) => mission.missionName === values.missionValue
+          (mission) => mission.missionName === values.missionValue,
         );
         setFormValues((prev) => ({
           ...prev,

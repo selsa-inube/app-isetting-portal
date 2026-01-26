@@ -5,13 +5,13 @@ import { mapBusinessManagersIdEntities } from "./mappers/mapBusinessManagersIdEn
 import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPortalStaff";
 
 const getBusinessManagersId = async (
-  businessUnitCode: string
-): Promise<
-  IBusinessUnitsPortalStaff[]
-> => {
+  businessUnitCode: string,
+  token: string,
+): Promise<IBusinessUnitsPortalStaff[]> => {
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "SearchAllPositionStaff",
+      Authorization: token,
     },
   };
   const queryParams = new URLSearchParams({
@@ -20,7 +20,11 @@ const getBusinessManagersId = async (
 
   const data: IBusinessUnitsPortalStaff[] = await getWithRetries<
     IBusinessUnitsPortalStaff[]
-  >(iportalStaffAxiosInstance, `/positions-staff?${queryParams.toString()}`, config);
+  >(
+    iportalStaffAxiosInstance,
+    `/positions-staff?${queryParams.toString()}`,
+    config,
+  );
 
   return Array.isArray(data) ? mapBusinessManagersIdEntities(data) : [];
 };

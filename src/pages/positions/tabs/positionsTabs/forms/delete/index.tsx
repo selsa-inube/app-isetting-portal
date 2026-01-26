@@ -12,6 +12,7 @@ import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { DecisionModalLabel } from "@config/positions/decisionModalText";
 import { IDelete } from "@ptypes/positions/actions/IDelete";
+import { EUseCase } from "@src/enum/useCase";
 
 const Delete = (props: IDelete) => {
   const { data } = props;
@@ -29,18 +30,22 @@ const Delete = (props: IDelete) => {
 
   const {
     savePositions,
-    requestSteps,
+   requestSteps,
     showPendingReqModal,
-    loading,
+    loadingSendData,
+    handleCloseProcess,
     handleClosePendingReqModal,
     handleCloseRequestStatus,
   } = useSavePositions({
     businessUnits: appData.businessUnit.publicCode,
+    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
+    token: appData.token,
     setSendData: setShowRequestProcessModal,
-    setShowModal
+    setShowModal,
+    useCase: EUseCase.DELETE,
   });
 
   const showRequestProcess = showRequestProcessModal && savePositions;
@@ -54,7 +59,7 @@ const Delete = (props: IDelete) => {
         showModal={showModal}
         onToggleModal={handleToggleModal}
         onClick={handleClick}
-        loading={loading}
+        loading={loadingSendData}
       />
       {showRequestProcess && (
         <RequestProcess
@@ -65,7 +70,7 @@ const Delete = (props: IDelete) => {
           requestProcessSteps={requestSteps}
           appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={handleCloseRequestStatus}
-          onCloseProcess={() => { }}
+          onCloseProcess={handleCloseProcess}
         />
       )}
 

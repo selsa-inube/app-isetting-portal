@@ -5,19 +5,14 @@ import { VerificationForm } from "@pages/positions/tabs/positionsTabs/forms/veri
 import { GeneralInformationForm } from "@pages/positions/tabs/positionsTabs/forms/generalInformationForm";
 import { PageTitle } from "@design/label/PageTitle";
 import { basic } from "@design/tokens";
-import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { DecisionModal } from "@design/modals/decisionModal";
-import { RequestProcess } from "@design/feedback/requestProcess";
 import { EComponentAppearance } from "@enum/appearances";
-import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { DecisionModalLabel } from "@config/positions/decisionModalText";
-import { requestStatusMessage } from "@config/positions/requestStatusMessage";
-import { FinishModal } from "@config/positions/verificationForm";
 import { crumbsAddPosition } from "@config/positions/addPositions/navigation";
 import { addPositionTitle } from "@config/positions/addPositions/addPositionTitle";
 import { controlsAssisted } from "@config/controlsAssisted";
-import { portalId } from "@config/portalId";
 import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
+import { portalId } from "@src/config/portalId";
 
 const AddPositionUI = (props: IAddPositionUI) => {
   const {
@@ -44,11 +39,13 @@ const AddPositionUI = (props: IAddPositionUI) => {
     disabled,
     formValues,
     showMultipurposeModal,
+    showRequestProcessModal,
+    showPendingReqModal,
+    loading,
     setShowMultipurposeModal,
     onClosePendingReqModal,
-
-    shouldShowRequestProcessModal,
-    showPendingReqModals,
+    modalData,
+    showDecision,
   } = props;
 
   return (
@@ -113,29 +110,40 @@ const AddPositionUI = (props: IAddPositionUI) => {
                     values: formValues.rolesStaff.values,
                   },
                 }}
-                requestSteps={[]}
-                showModal={false}
+                savePositions={savePositions}
+                requestSteps={requestSteps}
+                showModal={showModal}
                 isMobile={smallScreen}
-                showRequestProcessModal={false}
+                showRequestProcessModal={showRequestProcessModal}
+                onClosePendingReqModal={onClosePendingReqModal}
                 handleStepChange={(stepId) => setCurrentStep(stepId)}
+                onCloseRequestStatus={onCloseRequestStatus}
                 onPreviousStep={handlePreviousStep}
-                onToggleModal={onToggleModal}
-              />
+                onToggleModal={onToggleModal} 
+                showPendingReqModal={showPendingReqModal}
+                 loading={loading}
+                  onFinishForm={onFinishForm}
+                   onCloseProcess={onCloseRequestStatus} 
+                                />
             )}
           </Stack>
         </Stack>
 
-        {showModal && (
-          <DecisionModal
-            portalId={DecisionModalLabel.portalId}
-            title={FinishModal.title}
-            description={FinishModal.description}
-            actionText={FinishModal.actionText}
-            onCloseModal={onToggleModal}
-            onClick={onFinishForm}
-          />
-        )}
-
+ {showDecision && (
+        <DecisionModal
+          portalId={portalId}
+          title={modalData.title}
+          description={modalData.description}
+          actionText={modalData.actionText}
+          onCloseModal={modalData.onCloseModal}
+          onClick={modalData.onClick}
+          withCancelButton={modalData.withCancelButton}
+          withIcon={modalData.withIcon}
+          icon={modalData.icon}
+          appearance={modalData.appearance}
+          appearanceButton={modalData.appearanceButton}
+        />
+      )}
         {showMultipurposeModal && (
           <DecisionModal
             portalId={DecisionModalLabel.portalId}
@@ -149,36 +157,6 @@ const AddPositionUI = (props: IAddPositionUI) => {
               handleNextStep();
             }}
             withIcon
-          />
-        )}
-        {shouldShowRequestProcessModal && (
-          <RequestProcess
-            portalId={DecisionModalLabel.portalId}
-            saveData={savePositions}
-            descriptionRequestProcess={requestProcessMessage}
-            descriptionRequestStatus={requestStatusMessage}
-            requestProcessSteps={requestSteps}
-            appearance={EComponentAppearance.SUCCESS}
-            onCloseRequestStatus={onCloseRequestStatus}
-            onCloseProcess={() => {}}
-          />
-        )}
-
-        {showPendingReqModals && (
-          <RequestStatusModal
-            portalId={portalId}
-            title={requestStatusMessage(savePositions.responsible).title}
-            description={
-              requestStatusMessage(savePositions.responsible).description
-            }
-            requestNumber={savePositions.requestNumber}
-            onClick={onClosePendingReqModal}
-            onCloseModal={onClosePendingReqModal}
-            loading={false}
-            actionText={
-              requestStatusMessage(savePositions.responsible).actionText
-            }
-            appearance={EComponentAppearance.PRIMARY}
           />
         )}
       </Stack>

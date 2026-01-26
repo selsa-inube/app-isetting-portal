@@ -4,6 +4,7 @@ import { IFormEntry } from "@src/types/assignments/assignmentForm/IFormEntry";
 interface IUseOptionsBusinessEntity {
   formValues: IGeneralUserFormValues;
   setFormValues: React.Dispatch<React.SetStateAction<IGeneralUserFormValues>>;
+  token: string;
   activeEntries?: IFormEntry[];
 }
 export type { IUseOptionsBusinessEntity };

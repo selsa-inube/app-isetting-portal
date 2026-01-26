@@ -6,7 +6,7 @@ import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgr
 import { requestInProgressActionsConfig } from "@config/users/requestInProgress/actions";
 
 const useUserManageSearchUsers = (props: IUseUserManageSearch) => {
-  const { entityName, businessManager } = props;
+  const { entityName, businessManager, token } = props;
   const [entryDeleted, setEntryDeleted] = useState<string | number>("");
   const actions = requestInProgressActionsConfig(setEntryDeleted);
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,11 @@ const useUserManageSearchUsers = (props: IUseUserManageSearch) => {
       setLoading(true);
       try {
         if (businessManager.length > 0) {
-          const data = await getRequestsInProgress(entityName, businessManager);
+          const data = await getRequestsInProgress(
+            entityName,
+            businessManager,
+            token,
+          );
           setRequestsInProgress(data);
         }
       } catch (error) {
@@ -37,13 +41,13 @@ const useUserManageSearchUsers = (props: IUseUserManageSearch) => {
   useEffect(() => {
     if (entryDeleted) {
       setRequestsInProgress((prev) =>
-        prev.filter((entry) => entry.id !== entryDeleted)
+        prev.filter((entry) => entry.id !== entryDeleted),
       );
     }
   }, [entryDeleted]);
 
   const handleSearchRequestsInProgress = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setSearchRequestsInProgress(e.target.value);
   };

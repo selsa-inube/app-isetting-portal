@@ -6,6 +6,8 @@ import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPor
 import { enviroment } from "@config/environment";
 import { useCaseForStaff } from "@hooks/staffPortal/useCaseForStaff";
 import { useIAuth } from "@inube/iauth-react";
+import { mainNavigation } from "@src/config/nav";
+import { basic } from "@src/design/tokens";
 
 const useHome = () => {
   const {
@@ -15,12 +17,16 @@ const useHome = () => {
     businessUnitSigla,
     setUseCases,
   } = useContext(AuthAndData);
-
   const { logout } = useIAuth();
-  const { optionsCards, loading } = useOptionsByBusinessUnits({
+  const { optionsCards, loading, hasError } = useOptionsByBusinessUnits({
     staffPortalId: appData.portal.publicCode,
     businessUnit: businessUnitSigla,
+    user: appData.user.userAccount,
+    token: appData.token,
   });
+  const [dataExists, setDataExists] = useState<boolean>(false);
+
+  const { optionsHeader } = mainNavigation(optionsCards);
   const [Collapse, SetCollapse] = useState(false);
   const [SelectedClient, SetSelectedClient] = useState<string>("");
   const CollapseMenuRef = useRef<HTMLDivElement>(null);
@@ -43,8 +49,6 @@ const useHome = () => {
 
   const Username = appData.user.userName.split(" ")[0];
 
-  const hasData = optionsCards && optionsCards?.length > 0;
-
   const multipleBusinessUnits = businessUnitsToTheStaff.length > 1;
   const { useCases } = useCaseForStaff({
     businessUnitPrevious: appData.businessUnit.publicCode,
@@ -52,6 +56,7 @@ const useHome = () => {
     businessUnit: businessUnitSigla,
     userAccount: appData.user.userAccount,
     businessManagerCode: appData.businessManager.publicCode,
+    token: appData.token,
   });
 
   useEffect(() => {
@@ -64,6 +69,19 @@ const useHome = () => {
   const handlelogout = () => {
     logout({ logoutParams: { returnTo: enviroment.REDIRECT_URI } });
   };
+  useEffect(() => {
+    if (hasError) {
+      setDataExists(false);
+    }
+
+    if (optionsCards && optionsCards?.length > 0) {
+      setDataExists(true);
+    }
+  }, [optionsCards, hasError]);
+
+  const padding = !dataExists
+    ? basic.spacing.s0
+    : `${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s500}`;
 
   return {
     Collapse,
@@ -79,9 +97,11 @@ const useHome = () => {
     HandleLogoClick,
     optionsCards,
     loading,
-    hasData,
+    dataExists,
     multipleBusinessUnits,
     handlelogout,
+    optionsHeader,
+    padding,
   };
 };
 

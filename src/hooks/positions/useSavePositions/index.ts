@@ -91,7 +91,6 @@ const useSavePositions = (props: IUseSavePositions) => {
       settingRequestId: savePositions?.settingRequestId,
     },
   };
-  console.log("requestConfiguration",requestConfiguration);
   const fetchRequestData = async () => {
     try {
       if (useCase === EUseCase.ADD) {

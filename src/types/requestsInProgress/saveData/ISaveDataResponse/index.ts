@@ -1,8 +1,7 @@
 interface ISaveDataResponse {
-  settingRequestId: string;
+    settingRequestId: string;
   requestNumber: string;
-  requestStatus?: string;
-  responsible?: string;
+  requestStatus: string;
   staffName?: string;
 }
 

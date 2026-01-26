@@ -5,7 +5,6 @@ interface IBusinessesUnit {
     countryIso:string;
     descriptionUse:string;
     firstMonthOfFiscalYear: string;
-    
     iconUrl: string;
     languageIso: string;
     publicCode: string;

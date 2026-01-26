@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
-import { Header, Icon, Stack } from "@inubekit/inubekit";
+import { Header, Icon } from "@inubekit/inubekit";
 import { Title } from "@design/label/Title";
 
 import { renderLogo } from "@design/layout/renderLogo/logoUtils";
@@ -76,17 +76,21 @@ const HomeUI = (props: IHome) => {
             </>
           )}
         </StyledHeaderContainer>
-        <Stack justifyContent="center">
+        <BorderStack alignItems="center"
+          justifyContent="center"
+          gap={basic.spacing.s600}
+          boxSizing="border-box"
+          padding={basic.spacing.s200}>
           <BorderStack
             direction="column"
-            padding={
-              smallScreen ? `${basic.spacing.s200}` : `${basic.spacing.s0}`
-            }
-            gap={smallScreen ? `${basic.spacing.s300}` : `${basic.spacing.s0}`}
-            boxSizing="initial"
-            width="70%"
+            gap={
+              smallScreen ? `${basic.spacing.s300}` : `${basic.spacing.s0}`
+            } 
+             maxWidth="1064px"
+            minWidth="328px"
+            boxSizing="border-box"
           >
-            <StyledTitle $smallScreen={smallScreen}>
+            <StyledTitle  $isTablet={isTablet}>
               <Title
                 title={`Bienvenid@, ${username}`}
                 description="Selecciona una opción para empezar a ajustar la configuración."
@@ -95,14 +99,20 @@ const HomeUI = (props: IHome) => {
               />
             </StyledTitle>
             <BorderStack
-              direction="row"
+             direction="row"
               boxSizing="border-box"
-              padding={
-                smallScreen ? `${basic.spacing.s4}` : `${basic.spacing.s16} `
-              }
-              justifyContent={smallScreen ? "center" : "flex-start"}
+              justifyContent={isTablet ? "center" : "flex-start"}
               wrap="wrap"
-              gap={basic.spacing.s20}
+              gap={basic.spacing.s400}
+            >
+            <BorderStack
+              direction="row"
+                boxSizing="border-box"
+                padding={basic.spacing.s200}
+                justifyContent={isTablet ? "center" : "flex-start"}
+                wrap="wrap"
+                width="100%"
+                gap={basic.spacing.s250}
               borderRadius={basic.spacing.s8}
               border={EComponentAppearance.DARK}
             >
@@ -143,10 +153,13 @@ const HomeUI = (props: IHome) => {
               )}
             </BorderStack>
           </BorderStack>
-        </Stack>
+          </BorderStack>
+        </BorderStack>
+        {hasData && (
         <StyledFooter $isMobile={smallScreen}>
           <StyledLogo src={appData.businessManager.urlBrand} />
         </StyledFooter>
+        )}
       </BorderStack>
     </>
   );

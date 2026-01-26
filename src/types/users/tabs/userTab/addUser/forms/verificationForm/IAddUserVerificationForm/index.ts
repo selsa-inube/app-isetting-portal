@@ -1,9 +1,10 @@
 import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
-import { IAddUserVerificationData } from "../IAddUserVerificationData";
+
 import { IRequestSteps } from "@src/types/requestsInProgress/IRequestSteps";
+import { IAddUserVerificationStep } from "../IAddUserVerificationData/IVerificationStep";
 
 interface IAddUserVerificationForm {
-  updatedData: IAddUserVerificationData;
+  updatedData: IAddUserVerificationStep;
   requestSteps: IRequestSteps[];
   saveUsers: ISaveDataResponse;
   showPendingReqModal: boolean;

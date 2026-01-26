@@ -51,6 +51,8 @@ const EditMission = () => {
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
     setShowModal,
+    token: appData.token,
+    businessManagerCode: appData.businessManager.publicCode,
   });
 
   const showRequestProcess = Boolean(showRequestProcessModal && saveMission);

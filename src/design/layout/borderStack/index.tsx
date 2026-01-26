@@ -22,6 +22,8 @@ const BorderStack = (props: IBorderStack) => {
     overflowY,
     minHeight,
     maxHeight,
+     maxWidth,
+    minWidth,
   } = props;
 
   return (
@@ -44,6 +46,8 @@ const BorderStack = (props: IBorderStack) => {
       $overflowY={overflowY}
            $minHeight={minHeight}
       $maxHeight={maxHeight}
+           $maxWidth={maxWidth}
+      $minWidth={minWidth}
     >
       {children}
     </StyledBorderFlex>

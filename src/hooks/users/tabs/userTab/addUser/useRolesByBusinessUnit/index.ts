@@ -7,102 +7,164 @@ import { PositionsByBusinessUnitMap } from "@ptypes/users/tabs/userTab/addUser/f
 import { IUseOptionsBusinessEntity } from "@src/types/hooks/IUseOptionsBusinessEntity";
 
 const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
-  const { setFormValues, activeEntries, token } = props;
-  const [rolesByBusinessUnit, setRolesByBusinessUnit] = useState<IFormEntry[]>(
-    [],
+  const { setFormValues,formValues, activeEntries, token } = props;
+  const [positionsByBusinessUnit, setPositionsByBusinessUnit] =
+  useState<PositionsByBusinessUnitMap>({});
+
+const [rolesByBusinessUnit, setRolesByBusinessUnit] =
+  useState<IFormEntry[]>([]);
+
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState<boolean | null>(null);
+
+useEffect(() => {
+  if (!activeEntries?.length) {
+    setPositionsByBusinessUnit({});
+    return;
+  }
+
+  const fetchPositions = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const results = await Promise.all(
+        activeEntries.map(async (entry) => ({
+          code: entry.value,
+          data: await getBusinessManagersId(entry.value, token),
+        }))
+      );
+
+      const map: PositionsByBusinessUnitMap = {};
+
+      results.forEach(({ code, data }) => {
+        map[code] = {
+          value: "",
+          options: data.map((item: IBusinessUnitsPortalStaff) => ({
+            id: item.positionId,
+            label: item.positionName,
+            value: item.positionId,
+          })),
+        };
+      });
+
+      setPositionsByBusinessUnit(map);
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchPositions();
+}, [activeEntries, token]);
+
+
+
+
+
+useEffect(() => {
+  if (
+    !activeEntries?.length ||
+    !formValues.positionByBusinessUnitStep?.length
+  ) {
+    setRolesByBusinessUnit([]);
+    return;
+  }
+
+  const businessUnitKeys = formValues.businessUnitsStep.map(
+    bu => bu.value
   );
 
-  const [positionsByBusinessUnit, setPositionsByBusinessUnit] =
-    useState<PositionsByBusinessUnitMap>({});
+  const selectedPositionIds = formValues.positionByBusinessUnitStep
+    .flatMap(step =>
+      businessUnitKeys
+        .map(key => step[key]?.value)
+        .filter(Boolean)
+    );
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<null | string>(null);
+  if (!selectedPositionIds.length) {
+    setRolesByBusinessUnit([]);
+    return;
+  }
 
-  useEffect(() => {
-    if (!activeEntries || activeEntries.length === 0) {
-      setRolesByBusinessUnit([]);
-      setPositionsByBusinessUnit({});
-      return;
-    }
+  const fetchRoles = async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-    const fetchAll = async () => {
-      try {
-        setLoading(true);
-        setError(null);
+      const ids = selectedPositionIds.join(',');
 
-        const results = await Promise.all(
-          activeEntries.map(async (entry) => {
-            const data = await getBusinessManagersId(entry.value, token);
-            return { code: entry.value, data };
-          }),
-        );
+      const results = await Promise.all(
+        activeEntries.map(async (entry) => ({
+          code: entry.value,
+          data: await getBusinessManagersId(entry.value, token, ids),
+        }))
+      );
 
-        const positionsMap: PositionsByBusinessUnitMap = {};
-        const rolesEntries: IFormEntry[] = [];
+      const roles: IFormEntry[] = [];
 
-        results.forEach(({ code, data }) => {
-          positionsMap[code] = {
-            value: "",
-            options: data.map((item: IBusinessUnitsPortalStaff) => ({
-              id: item.positionId,
-              label: item.positionName,
-              value: item.positionId,
-            })),
-          };
-
-          data.forEach((item: IBusinessUnitsPortalStaff) => {
-            item.positionStaffByRoles.forEach((role) => {
-              rolesEntries.push({
-                id: `${code}-${role.positionId}`,
-                value: code,
-                isActive: true,
-                rolesStaff: role.roleName,
-                businessUnitCode: code,
-                positionId: item.positionId,
-                positionName: item.positionName,
-              });
+      results.forEach(({ code, data }) => {
+        data.forEach(item => {
+          item.positionStaffByRoles.forEach(role => {
+            roles.push({
+              id: role.positionId,
+              value: role.positionId,
+              isActive: true,
+              rolesStaff: role.roleName,
+              businessUnitCode: code,
+              positionId: item.positionId,
+              positionName: item.positionName,
             });
           });
         });
+      });
 
-        setPositionsByBusinessUnit(positionsMap);
-        setRolesByBusinessUnit(rolesEntries);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to fetch roles");
-      } finally {
-        setLoading(false);
-      }
-    };
+      setRolesByBusinessUnit(roles);
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchAll();
-  }, [activeEntries]);
+  fetchRoles();
+}, [
+  activeEntries,
+  formValues.businessUnitsStep,
+  formValues.positionByBusinessUnitStep,
+  token,
+]);
 
-  const selectPositionsByBusinessUnit = (name: string, value: string) => {
-    setPositionsByBusinessUnit((prev) => ({
+const selectPositionsByBusinessUnit = (name: string, value: string) => {
+  setPositionsByBusinessUnit(prev => {
+    if (!prev[name]) return prev;
+
+    return {
       ...prev,
       [name]: {
         ...prev[name],
         value,
       },
-    }));
-  };
+    };
+  });
+};
 
-  useEffect(() => {
-    setFormValues((prev) => ({
-      ...prev,
-      positionByBusinessUnitStep: [positionsByBusinessUnit],
-    }));
-  }, [positionsByBusinessUnit, setFormValues]);
+useEffect(() => {
+  setFormValues(prev => ({
+    ...prev,
+    positionByBusinessUnitStep: [positionsByBusinessUnit],
+  }));
+}, [positionsByBusinessUnit, setFormValues]);
 
-  useEffect(() => {
-    const activeRoles = rolesByBusinessUnit.filter((role) => role.isActive);
+useEffect(() => {
+  const activeRoles = rolesByBusinessUnit.filter(r => r.isActive);
 
-    setFormValues((prev) => ({
-      ...prev,
-      roleByBusinessUnitStep: activeRoles,
-    }));
-  }, [rolesByBusinessUnit, setFormValues]);
+  setFormValues(prev => ({
+    ...prev,
+    roleByBusinessUnitStep: activeRoles,
+  }));
+}, [rolesByBusinessUnit, setFormValues]);
 
   return {
     rolesByBusinessUnit,

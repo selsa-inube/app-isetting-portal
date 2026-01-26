@@ -43,9 +43,10 @@ const Delete = (props: IDelete) => {
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
-    setShowModal
-  }
-  );
+    setShowModal,
+    token: appData.token,
+    businessManagerCode: appData.businessManager.publicCode
+  });
 
   const showRequestProcess = showRequestProcessModal && saveMission
 

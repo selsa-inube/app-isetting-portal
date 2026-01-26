@@ -14,6 +14,7 @@ import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
 import { disabledModal } from "@src/config/disabledModal";
 import { portalId } from "@config/portalId";
 import { DecisionModal } from "@design/modals/decisionModal";
+import { StyledContainer } from "./styles";
 
 const MissionsTabUI = (props: IMissionsTabUI) => {
   const {
@@ -30,8 +31,20 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
   } = props;
 
   return (
-    <Stack direction="column" width="-webkit-fill-available">
-      <Stack direction="column" gap={basic.spacing.s150}>
+    <StyledContainer $smallScreen={smallScreen}>
+      <Stack
+        width="-webkit-fill-available"
+        direction="column"
+        gap={basic.spacing.s250}
+        padding={
+          smallScreen ? `${basic.spacing.s150}` : `${basic.spacing.s300}`
+        }
+        justifyContent={smallScreen ? "center" : "normal"}
+      >
+        <Stack
+          gap={smallScreen ? basic.spacing.s150 : basic.spacing.s400}
+          direction="column"
+        >
         {smallScreen && (
           <Stack>
             <Text
@@ -45,13 +58,16 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
           </Stack>
         )}
         <Stack
-          gap={smallScreen ? basic.spacing.s150 : basic.spacing.s200}
-          direction="column"
+         justifyContent={smallScreen ? "center" : "space-between"}
+            direction={smallScreen ? "column-reverse" : "row"}
+            gap={
+              smallScreen ? `${basic.spacing.s150}` : `${basic.spacing.s0}`
+            }
+            width="100%"
         >
           <Stack
-            justifyContent="space-between"
-            alignItems="center"
-            width={smallScreen ? "100%" : "auto"}
+             justifyContent="center"
+              width={smallScreen ? "100%" : "auto"}
           >
             <Searchfield
               name="searchMission"
@@ -65,15 +81,17 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
               }
               fullwidth={smallScreen}
             />
-
+ </Stack>
             {!smallScreen && (
               <Stack alignItems="center">
                 <Button
                   iconBefore={<MdPersonAddAlt />}
                   spacing="wide"
                   type="link"
+                  variant="filled"
                   path="/missions/add-mission"
                   disabled={disabledButton}
+                  fullwidth={smallScreen}
                 >
                   {missionsTabLabels.buttonLabel}
                 </Button>
@@ -127,7 +145,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
           withCancelButton={false}
         />
       )}
-    </Stack>
+    </StyledContainer>
   );
 };
 

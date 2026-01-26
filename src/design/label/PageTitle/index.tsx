@@ -1,65 +1,81 @@
-import { useState } from "react";
+
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { Stack, useMediaQuery, Text, Icon } from "@inubekit/inubekit";
+import { Stack, useMediaQuery, Text, Icon, ITextSize } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { mediaQueryMobileSmall } from "@config/environment";
-import { DecisionModal } from "@design/modals/decisionModal";
-import { portalId } from "@config/portalId";
-import { goBackModal } from "@config/goBackModal";
-import { EComponentAppearance } from "@enum/appearances";
+import { mediaQueryMobile } from "@config/environment";
+
+import { StyledContainerText } from "../Title/styles";
 
 interface IPageTitle {
   title: string;
   icon?: React.ReactNode;
   description?: string;
   navigatePage?: string;
+    sizeTitle?: ITextSize;
+      onClick?: () => void;
 }
 
-const PageTitle = ({ title, icon, description, navigatePage }: IPageTitle) => {
-  const smallScreen = useMediaQuery(mediaQueryMobileSmall);
-  const navigate = useNavigate();
-  const [showCancelModal, setShowCancelModal] = useState(false);
+const PageTitle = ({ 
+  title,
+   icon, 
+      sizeTitle = "medium",
+       description,
+        navigatePage,
+        onClick, 
+      }: IPageTitle) => {
+  const smallScreen = useMediaQuery(mediaQueryMobile);
 
-  const confirmCancel = () => {
-    setShowCancelModal(false);
-    navigatePage ? navigate(navigatePage) : navigate(-1);
+  const navigate = useNavigate();
+
+  const onGoBack = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      if (navigatePage) {
+        navigate(navigatePage);
+      } else {
+        navigate(-1);
+      }
+    }
   };
 
   return (
     <>
-      <Stack gap={basic.spacing.s8} direction="column">
-        <Stack gap={basic.spacing.s8} alignItems="center">
-          <Icon
-            appearance={EComponentAppearance.DARK}
-            cursorHover={true}
-            icon={icon || <MdArrowBack />}
-            spacing="narrow"
-            size="20px"
-            onClick={() => setShowCancelModal(true)}
-          />
-          <Text as="h1" type="title" size={smallScreen ? "medium" : "large"}>
-            {title}
-          </Text>
+      <Stack gap={basic.spacing.s100} direction="column">
+        <Stack gap={basic.spacing.s100} alignItems="center">
+          {icon ? (
+            <Icon
+              appearance="dark"
+              cursorHover={true}
+              icon={icon}
+              spacing="narrow"
+              size="20px"
+            />
+          ) : (
+            <Icon
+              appearance="dark"
+              cursorHover={true}
+              icon={<MdArrowBack />}
+              spacing="narrow"
+              size="20px"
+              onClick={onGoBack}
+            />
+          )}
+          <StyledContainerText>
+            <Text
+              type="title"
+              size={smallScreen ? "small" : `${sizeTitle}`}
+              weight="bold"
+            >
+              {title}
+            </Text>
+          </StyledContainerText>
         </Stack>
-        <Text
-          appearance={EComponentAppearance.GRAY}
-          size={smallScreen ? "small" : "medium"}
-        >
+        <Text appearance="gray" size={smallScreen ? "small" : "medium"}>
           {description}
         </Text>
       </Stack>
-
-      {showCancelModal && (
-        <DecisionModal
-          portalId={portalId}
-          title={goBackModal.title}
-          description={goBackModal.description}
-          actionText={goBackModal.actionText}
-          onCloseModal={() => setShowCancelModal(false)}
-          onClick={confirmCancel}
-        />
-      )}
     </>
   );
 };

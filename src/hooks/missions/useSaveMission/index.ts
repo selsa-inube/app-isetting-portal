@@ -168,7 +168,6 @@ const useSaveMission = (props: IUseSaveMission) => {
   }, [statusRequest]);
 
  const handleCloseRequestStatus = () => {
-  console.log('handleCloseRequestStatus called');
     setSendData(false);
         navigate(navigatePage);
     setChangeTab(true);

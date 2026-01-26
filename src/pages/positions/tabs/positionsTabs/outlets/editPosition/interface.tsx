@@ -107,16 +107,16 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
       {showRequestStatusModal && (
         <RequestStatusModal
           portalId={portalId}
-          title={requestStatusMessage(savePositions.responsible).title}
+          title={requestStatusMessage(savePositions.staffName).title}
           description={
-            requestStatusMessage(savePositions.responsible).description
+            requestStatusMessage(savePositions.staffName).description
           }
           requestNumber={savePositions.requestNumber}
           onClick={onClosePendingReqModal}
           onCloseModal={onClosePendingReqModal}
           loading={false}
           actionText={
-            requestStatusMessage(savePositions.responsible).actionText
+            requestStatusMessage(savePositions.staffName).actionText
           }
           appearance={EComponentAppearance.PRIMARY}
         />

@@ -77,16 +77,16 @@ const Delete = (props: IDelete) => {
       {showReuestStatus && (
         <RequestStatusModal
           portalId="portal"
-          title={requestStatusMessage(savePositions.responsible).title}
+          title={requestStatusMessage(savePositions.staffName).title}
           description={
-            requestStatusMessage(savePositions.responsible).description
+            requestStatusMessage(savePositions.staffName).description
           }
           requestNumber={savePositions.requestNumber}
           onClick={handleClosePendingReqModal}
           onCloseModal={handleClosePendingReqModal}
           loading={false}
           actionText={
-            requestStatusMessage(savePositions.responsible).actionText
+            requestStatusMessage(savePositions.staffName).actionText
           }
           appearance={EComponentAppearance.PRIMARY}
         />

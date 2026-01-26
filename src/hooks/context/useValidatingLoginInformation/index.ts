@@ -112,7 +112,7 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
       businessUnitManagersData.publicCode &&
       businessUnitManagersData.publicCode.length > 0
     ) {
-      console.log("Updating business unit data in appData",businessUnitManagersData);
+      
       setAppData((prev) => ({
         ...prev,
         businessUnit: {
@@ -190,7 +190,6 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
     };
     obtenerDatos();
   }, [getAccessTokenSilently]);
-console.log("appData from useValidatingLoginInformation:", appData);
   const AuthAndData = useMemo(
     () => ({
       appData,

@@ -122,15 +122,15 @@ const EditMissionUI = (props: IEditMissionUI) => {
       {showRequestStatus && (
         <RequestStatusModal
           portalId={portalId}
-          title={requestStatusMessage(saveMission.responsible).title}
+          title={requestStatusMessage(saveMission.staffName).title}
           description={
-            requestStatusMessage(saveMission.responsible).description
+            requestStatusMessage(saveMission.staffName).description
           }
           requestNumber={saveMission.requestNumber}
           onClick={onClosePendingReqModal}
           onCloseModal={onClosePendingReqModal}
           loading={false}
-          actionText={requestStatusMessage(saveMission.responsible).actionText}
+          actionText={requestStatusMessage(saveMission.staffName).actionText}
           appearance={EComponentAppearance.PRIMARY}
         />
       )}

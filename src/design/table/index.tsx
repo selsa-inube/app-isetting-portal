@@ -1,19 +1,22 @@
-import { Stack, useMediaQueries, useMediaQuery } from "@inubekit/inubekit";
+import { useMediaQueries, useMediaQuery } from "@inubekit/inubekit";
 
 import { useMemo, useState } from "react";
 import { filterEntries } from "@utils/table/filterEntries";
+
 import { nextPage } from "@utils/table/pagination/nextPage";
 import { prevPage } from "@utils/table/pagination/prevPage";
 import { getPagination } from "@utils/table/pagination/getPagination";
 import { goToFirstPage } from "@utils/table/pagination/goToFirstPage";
 import { goToEndPage } from "@utils/table/pagination/goToEndPage";
 import { getPageEntries } from "@utils/table/pagination/getPageEntries";
-import { useTitleColumns } from "@hooks/titleColumns";
-import { findCurrentMediaQuery } from "@utils/table/findCurrentMediaQuery";
+
+import { mediaQueryTablet } from "@config/environment";
 import { ITable } from "@ptypes/design/table/ITable";
 import { TableUI } from "./interface";
-import { StyledContainerTable } from "./styles";
-import { useGetQueriesArray } from "@hooks/useGetQueriesArray";
+import { StyledContainerTable, StyledTableOverflow } from "./styles";
+import { getQueriesArray } from "@src/utils/table/breakpoint/getQueriesArray";
+import { findCurrentMediaQuery } from "@src/utils/table/findCurrentMediaQuery";
+import { titleColumns } from "@src/utils/table/titleColumns";
 
 const Table = (props: ITable) => {
   const {
@@ -38,25 +41,30 @@ const Table = (props: ITable) => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const mediaQueries = useMediaQueries(useGetQueriesArray(breakpoints));
-  const mediaActionOpen = useMediaQuery("(max-width: 1200px)");
-  const screenTablet = useMediaQuery("(max-width: 1200px)");
+  const mediaQueries = useMediaQueries(getQueriesArray(breakpoints));
+  const mediaActionOpen = useMediaQuery(mediaQueryTablet);
+  const screenTablet = useMediaQuery(mediaQueryTablet);
 
-  const media = useMediaQueries(useGetQueriesArray(breakpoints) || []);
+  const media = useMediaQueries(getQueriesArray(breakpoints) || []);
+
   const filteredEntries = useMemo(
     () => filterEntries(entries, filter, titles),
-    [entries, filter, titles]
+    [entries, filter, titles],
   );
 
   const { totalPages, firstEntry, lastEntry } = getPagination(
     currentPage,
     pageLength,
-    filteredEntries.length
+    filteredEntries.length,
   );
 
   const numberActions = actions ? actions.length : 1;
 
   const findCurrentMedia = findCurrentMediaQuery(media);
+
+  const hasEntries = entries.length > 0;
+
+  const isPaginated = filteredEntries.length > pageLength;
 
   return (
     <StyledContainerTable
@@ -64,9 +72,8 @@ const Table = (props: ITable) => {
       $pageLength={pageLength}
       $entriesLength={entries.length}
       $isTablet={screenTablet}
-      $withGeneralizedTitle={withGeneralizedTitle}
     >
-      <Stack direction="column">
+      <StyledTableOverflow>
         <TableUI
           titles={titles}
           actions={actions}
@@ -75,14 +82,13 @@ const Table = (props: ITable) => {
           loading={loading}
           mediaActionOpen={mediaActionOpen}
           numberActions={numberActions}
-          TitleColumns={useTitleColumns(
+          TitleColumns={titleColumns(
             titles,
             breakpoints,
             mediaQueries,
-            findCurrentMedia
+            findCurrentMedia,
           )}
           mobileTitle={mobileTitle}
-          pageLength={pageLength}
           firstEntryInPage={firstEntry}
           lastEntryInPage={lastEntry}
           goToFirstPage={() => goToFirstPage(setCurrentPage)}
@@ -98,8 +104,10 @@ const Table = (props: ITable) => {
           ellipsisCell={ellipsisCell}
           withActionMobile={withActionMobile}
           withGeneralizedTitle={withGeneralizedTitle}
+          hasEntries={hasEntries}
+          isPaginated={isPaginated}
         />
-      </Stack>
+      </StyledTableOverflow>
     </StyledContainerTable>
   );
 };

@@ -16,6 +16,7 @@ import { RequestProcess } from "@design/feedback/requestProcess";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { finishModal } from "@config/missions/missionTab/assisted/finishModal";
 import { VerificationBoxes } from "./verificationBoxes";
+import { portalId } from "@src/config/portalId";
 
 const VerificationForm = (props: IVerificationForm) => {
   const {
@@ -104,7 +105,7 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowRequestProcess && (
         <RequestProcess
-          portalId="portal"
+          portalId={portalId}
           saveData={saveMission}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
@@ -116,7 +117,7 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowPendingRequest && (
         <RequestStatusModal
-          portalId="portal"
+          portalId={portalId}
           title={requestStatusMessage(saveMission.staffName).title}
           description={
             requestStatusMessage(saveMission.staffName).description

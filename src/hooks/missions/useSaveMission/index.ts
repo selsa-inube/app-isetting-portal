@@ -50,7 +50,7 @@ const useSaveMission = (props: IUseSaveMission) => {
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
-  const navigatePage = "/users";
+  const navigatePage = "/missions";
 
   const fetchSaveMissionData = async () => {
     setLoadingSendData(true);
@@ -114,14 +114,6 @@ const useSaveMission = (props: IUseSaveMission) => {
           token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
-
-        if (
-          setEntryDeleted &&
-          newData?.settingRequest?.requestStatus &&
-          statusRequestFinished.includes(newData?.settingRequest?.requestStatus)
-        ) {
-          setEntryDeleted(data.configurationRequestData.missionId as string);
-        }
       }
       if (useCase === EUseCase.EDIT) {
         const newData = await patchMission(
@@ -136,6 +128,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     } catch (error) {
       console.info(error);
       setErrorFetchRequest(true);
+            setHasError(true);
       setNetworkError(errorObject(error));
       setShowModal(false);
     }
@@ -150,8 +143,18 @@ const useSaveMission = (props: IUseSaveMission) => {
         navigate(navigatePage);
       }, 3000);
     }
-  };
-  
+    if (
+      setEntryDeleted &&
+      statusRequest &&
+      statusRequestFinished.includes(statusRequest)
+    ) {
+      setTimeout(() => {
+        setEntryDeleted(
+          data.configurationRequestData.missionId as string,
+        );
+      }, 3000);
+    }
+  };  
   useEffect(() => {
     if (!sendData) return;
     fetchSaveMissionData();

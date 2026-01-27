@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import { mapDeleteMissionToApi } from "./mappers";
-import { isettingIsaasAxiosInstance } from "@src/api/isettingIsaas";
 import { deleteWithRetries } from "@src/services/core/deleteWithRetries";
 import { IRequestDeleteMissions } from "@src/types/missions/assisted/IRequestMissions/IDeleteDataMission";
+import { isettingIsaasHttp } from "@src/api/isettingIsaas/commands";
 
 const deleteMission = async (
   businessUnit: string,
@@ -22,7 +22,8 @@ const deleteMission = async (
     `/missions`,
     config,
     mapDeleteMissionToApi(data) as unknown as string[],
-    isettingIsaasAxiosInstance,
+    isettingIsaasHttp
+,
   );
 
   return newData;

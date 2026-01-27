@@ -8,7 +8,7 @@ const mapAddMissionToApi = (
     businessManagerCode: businessManagerCode,
     businessManagerName: businessManagerCode,
     missionId: data.configurationRequestData?.missionId,
-    descriptionUse: data.configurationRequestData?.descriptionUse,
+    descriptionnUse: data.configurationRequestData?.descriptionUse,
     missionName: data.configurationRequestData?.missionName,
     modifyJustification: data.configurationRequestData?.modifyJustification,
     settingRequest: data.settingRequest

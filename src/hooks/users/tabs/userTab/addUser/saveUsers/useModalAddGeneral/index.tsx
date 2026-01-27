@@ -7,7 +7,7 @@ import { errorModal } from "@src/config/request/errorModal";
 import { messageErrorStatusRequest } from "@src/utils/messageErrorStatusRequest";
 import { getDescriptionError } from "@src/utils/getDescriptionError";
 import { messageErrorUseCases } from "@src/utils/messageErrorUseCases";
-import { usersTitle } from "@src/config/users/usersTitle";
+import { missionTitle } from "@src/config/missions/missionTab/missionTitle";
 
 const useModalAddGeneral = (props: IUseModalAddData) => {
   const {
@@ -67,8 +67,8 @@ const useModalAddGeneral = (props: IUseModalAddData) => {
           messageErrorUseCases(
             networkError.status,
             operationTypes.addError,
-            usersTitle.title,
-            getDescriptionError(errorData.response),
+            missionTitle.title,
+            getDescriptionError(networkError.response),
           ),
         ),
         onCloseModal: handleToggleErrorModal,

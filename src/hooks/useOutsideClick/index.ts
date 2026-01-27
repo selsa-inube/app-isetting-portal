@@ -1,5 +1,5 @@
+import { IUseOutsideClick } from "@src/types/design/IUseOutsideClick";
 import { useEffect } from "react";
-import { IUseOutsideClick } from "@ptypes/design/IUseOutsideClick";
 
 const useOutsideClick = (props: IUseOutsideClick) => {
   const { primaryRef, isSecondModalOpen, isThirdModalOpen, callback } = props;

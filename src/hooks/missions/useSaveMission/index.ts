@@ -7,8 +7,6 @@ import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 
 import { EUseCase } from "@enum/useCase";
 
-
-
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
 import { requestStatusMessage } from "@config/missions/missionTab/generic/requestStatusMessage";
 import { IUseSaveMission } from "@ptypes/hooks/missions/IUseSaveMission";
@@ -39,7 +37,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     setEntryDeleted,
   } = props;
   const [saveMission, setsaveMission] = useState<ISaveDataResponse>();
-   const [statusRequest, setStatusRequest] = useState<string>();
+  const [statusRequest, setStatusRequest] = useState<string>();
   const { addFlag } = useFlag();
   const [showPendingReqModal, setShowPendingReqModal] = useState(false);
   const [loadingSendData, setLoadingSendData] = useState(false);
@@ -57,7 +55,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     try {
       const saveData = await postSaveRequest(userAccount, data, token);
       setsaveMission(saveData);
-            setShowModal(false);
+      setShowModal(false);
     } catch (error) {
       setSendData(false);
       setHasError(true);
@@ -106,15 +104,6 @@ const useSaveMission = (props: IUseSaveMission) => {
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
-      if (useCase === EUseCase.DELETE) {
-        const newData = await deleteMission(
-          businessUnits,
-          userAccount,
-          requestConfiguration as unknown as IRequestDeleteMissions,
-          token,
-        );
-        setStatusRequest(newData.settingRequest?.requestStatus);
-      }
       if (useCase === EUseCase.EDIT) {
         const newData = await patchMission(
           businessUnits,
@@ -125,10 +114,19 @@ const useSaveMission = (props: IUseSaveMission) => {
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
+      if (useCase === EUseCase.DELETE) {
+        const newData = await deleteMission(
+          businessUnits,
+          userAccount,
+          requestConfiguration as unknown as IRequestDeleteMissions,
+          token,
+        );
+        setStatusRequest(newData.settingRequest?.requestStatus);
+      }
     } catch (error) {
       console.info(error);
       setErrorFetchRequest(true);
-            setHasError(true);
+      setHasError(true);
       setNetworkError(errorObject(error));
       setShowModal(false);
     }
@@ -149,12 +147,10 @@ const useSaveMission = (props: IUseSaveMission) => {
       statusRequestFinished.includes(statusRequest)
     ) {
       setTimeout(() => {
-        setEntryDeleted(
-          data.configurationRequestData.missionId as string,
-        );
+        setEntryDeleted(data.configurationRequestData.missionId as string);
       }, 3000);
     }
-  };  
+  };
   useEffect(() => {
     if (!sendData) return;
     fetchSaveMissionData();
@@ -166,13 +162,13 @@ const useSaveMission = (props: IUseSaveMission) => {
     }
   }, [saveMission]);
 
-   useEffect(() => {
+  useEffect(() => {
     changeRequestSteps();
   }, [statusRequest]);
 
- const handleCloseRequestStatus = () => {
+  const handleCloseRequestStatus = () => {
     setSendData(false);
-        navigate(navigatePage);
+    navigate(navigatePage);
     setChangeTab(true);
     addFlag({
       title: interventionHumanMessage.SuccessfulCreateRequestIntHuman.title,

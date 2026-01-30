@@ -3,9 +3,8 @@ import { getBusinessManagersId } from "@services/staffPortal/getBusinessManagers
 import { IBusinessUnitsPortalStaff } from "@ptypes/positions/IBusinessUnitsPortalStaff";
 import { IUseBusinessManagersId } from "@ptypes/hooks/IUseBusinessManagersId";
 
-const useBusinessManagersId = ( props: IUseBusinessManagersId ) => {
-
-  const {businessUnitCode, portalPublicCode,token} = props;
+const useBusinessManagersId = (props: IUseBusinessManagersId) => {
+  const { businessUnitCode, portalPublicCode, token } = props;
   const [businessManagersData, SetbusinessManagersData] = useState<
     IBusinessUnitsPortalStaff[]
   >([]);
@@ -18,7 +17,7 @@ const useBusinessManagersId = ( props: IUseBusinessManagersId ) => {
         return;
       }
       try {
-        const NewData = await getBusinessManagersId(businessUnitCode,token);
+        const NewData = await getBusinessManagersId(businessUnitCode, token);
         SetbusinessManagersData(NewData);
       } catch (Error) {
         console.info(Error);
@@ -27,7 +26,7 @@ const useBusinessManagersId = ( props: IUseBusinessManagersId ) => {
     };
 
     FetchBusinessManagers();
-  }, [portalPublicCode]);
+  }, [portalPublicCode, businessUnitCode]);
 
   return { businessManagersData, HasError };
 };

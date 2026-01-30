@@ -68,11 +68,10 @@ const breakPoints = [
   { breakpoint: "(max-width: 744px)", totalColumns: 1 },
 ];
 
-
 export {
   actionsConfig,
   labelsOptions,
   titlesOptions,
   positionsBreakPointsConfig,
-  breakPoints
+  breakPoints,
 };

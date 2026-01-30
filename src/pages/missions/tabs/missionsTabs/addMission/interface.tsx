@@ -36,7 +36,7 @@ const AddMissionUI = (props: IAddMissionUI) => {
     showPendingReqModals,
     showRequestProcessModal,
     loading,
-       modalData,
+    modalData,
     showDecision,
   } = props;
 
@@ -97,13 +97,12 @@ const AddMissionUI = (props: IAddMissionUI) => {
                 onClosePendingReqModal={onClosePendingReqModal}
                 onCloseProcess={onCloseProcess}
                 loading={loading}
-                
               />
             )}
           </Stack>
         </Stack>
       </Stack>
-        {showDecision && (
+      {showDecision && (
         <DecisionModal
           portalId={portalId}
           title={modalData.title}

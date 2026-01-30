@@ -8,7 +8,6 @@ const patchPosition = async (
   businessUnit: string,
   user: string,
   data: IRequestPositions,
-  businessManagerCode: string,
   token: string,
 ): Promise<IRequestPositions> => {
   const config: AxiosRequestConfig = {
@@ -22,7 +21,7 @@ const patchPosition = async (
   const newData = await patchWithRetries<IRequestPositions>(
     `/position-staff`,
     config,
-    mapAddPositionToApi(data, businessManagerCode,businessUnit) as unknown as string[],
+    mapAddPositionToApi(data) as unknown as string[],
     isettingIsaasAxiosInstance,
   );
 

@@ -84,7 +84,6 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
                 setSelectedToggle={setSelectedToggle}
                 onButtonClick={onButtonClick}
                 onReset={onReset}
-                withFilter
               />
             )}
           </Stack>
@@ -115,9 +114,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
           onClick={onClosePendingReqModal}
           onCloseModal={onClosePendingReqModal}
           loading={false}
-          actionText={
-            requestStatusMessage(savePositions.staffName).actionText
-          }
+          actionText={requestStatusMessage(savePositions.staffName).actionText}
           appearance={EComponentAppearance.PRIMARY}
         />
       )}

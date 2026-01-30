@@ -7,7 +7,6 @@ import { BorderStack } from "@design/layout/borderStack";
 import { searchLabels } from "@config/searchLabels";
 import { EComponentAppearance } from "@enum/appearances";
 import { Checkpicker } from "@inubekit/inubekit";
-import { ToggleTableGroup } from "./tableGroup";
 
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const {
@@ -32,12 +31,11 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     withFilter,
     filterTitle,
     filterPlaceholder,
-    columnsTitles,
   } = props;
 
   const showFilter = !!(withFilter && filterTitle && onFilterChange && fields);
-  const optiosWithSearch = showFilter && smallScreen;
-  const directionValue = optiosWithSearch ? "column" : "row";
+  const OptiosWithSearch = showFilter && smallScreen;
+  const directionValue = OptiosWithSearch ? "column" : "row";
   return (
     <BorderStack
       gap={basic.spacing.s250}
@@ -45,7 +43,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
       boxSizing="border-box"
     >
       <BorderStack
-        border="dark"
+        border={"dark"}
         borderRadius={basic.spacing.s100}
         padding={basic.spacing.s300}
         gap={basic.spacing.s250}
@@ -76,7 +74,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
             <Stack
               alignItems="end"
               gap={smallScreen ? basic.spacing.s4 : basic.spacing.s32}
-              width={!optiosWithSearch ? "" : smallScreen ? "100%" : "65%"}
+              width={!OptiosWithSearch ? "" : smallScreen ? "100%" : "65%"}
               justifyContent="space-between"
             >
               {showFilter && (
@@ -109,20 +107,12 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
             padding={basic.spacing.s200}
             gap={basic.spacing.s200}
             height="300px"
-            overflowY="auto"
+            overflowY="true"
           >
-            {columnsTitles && columnsTitles.length > 0 ? (
-              <ToggleTableGroup
-                entries={filteredEntries}
-                onSelectCheckChange={onSelectCheckChange}
-                columnsTitles={columnsTitles}
-              />
-            ) : (
-              <ToggleGroup
-                entries={filteredEntries}
-                onSelectCheckChange={onSelectCheckChange}
-              />
-            )}
+            <ToggleGroup
+              entries={filteredEntries}
+              onSelectCheckChange={onSelectCheckChange}
+            />
           </BorderStack>
         </Stack>
       </BorderStack>

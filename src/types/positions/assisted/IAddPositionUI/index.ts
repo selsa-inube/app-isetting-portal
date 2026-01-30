@@ -7,7 +7,6 @@ import { IFormAddPosition } from "../IFormAddPosition";
 import { IOptionInitialiceEntry } from "../IOptionInitialiceEntry";
 
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
-import { IOptionInitialiceEntryApp } from "@src/types/forms/verificationForm/IOptionInitialiceEntryApp";
 import { IModalData } from "@src/types/users/tabs/userTab/addUser/IModalData";
 interface IAddPositionUI {
   currentStep: number;
@@ -28,7 +27,7 @@ interface IAddPositionUI {
   formValues: IFormAddPosition;
   smallScreen: boolean;
   disabled: boolean;
-  roles: IOptionInitialiceEntryApp[];
+  roles: IFormEntry[];
   onFinishForm: () => void;
   showModal: boolean;
   showModalApplicationStatus: boolean;
@@ -42,9 +41,10 @@ interface IAddPositionUI {
   setShowMultipurposeModal: React.Dispatch<React.SetStateAction<boolean>>;
   onClosePendingReqModal: () => void;
   options: IOptionInitialiceEntry[];
-  requestSteps: IRequestSteps[]; 
-   modalData: IModalData;
+  requestSteps: IRequestSteps[];
+  modalData: IModalData;
   showDecision: boolean;
+  onCloseProcess: () => void;
 }
 
 export type { IAddPositionUI };

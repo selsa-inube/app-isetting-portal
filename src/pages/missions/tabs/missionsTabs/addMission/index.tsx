@@ -10,7 +10,6 @@ import { AddMissionUI } from "./interface";
 import { useModalAddGeneral } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
 
 const AddMission = () => {
-
   const {
     currentStep,
     formValues,
@@ -53,16 +52,14 @@ const AddMission = () => {
   } = useSaveMission({
     useCase: EUseCase.ADD,
     businessUnits: appData.businessUnit.publicCode,
+    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
     setShowModal,
     token: appData.token,
-    businessManagerCode: appData.businessManager.publicCode,
-  }
-  );
-
+  });
 
   const { modalData, showDecision } = useModalAddGeneral({
     showGoBackModal,
@@ -105,9 +102,9 @@ const AddMission = () => {
       onClosePendingReqModal={handleClosePendingReqModal}
       showPendingReqModals={showPendingReqModal}
       loading={loadingSendData}
-       modalData={modalData}
+      modalData={modalData}
       showDecision={showDecision}
-       onCloseProcess={handleCloseProcess}
+      onCloseProcess={handleCloseProcess}
     />
   );
 };

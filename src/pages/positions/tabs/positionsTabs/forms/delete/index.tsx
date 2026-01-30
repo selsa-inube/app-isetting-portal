@@ -30,7 +30,7 @@ const Delete = (props: IDelete) => {
 
   const {
     savePositions,
-   requestSteps,
+    requestSteps,
     showPendingReqModal,
     loadingSendData,
     handleCloseProcess,
@@ -38,7 +38,6 @@ const Delete = (props: IDelete) => {
     handleCloseRequestStatus,
   } = useSavePositions({
     businessUnits: appData.businessUnit.publicCode,
-    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
@@ -85,9 +84,7 @@ const Delete = (props: IDelete) => {
           onClick={handleClosePendingReqModal}
           onCloseModal={handleClosePendingReqModal}
           loading={false}
-          actionText={
-            requestStatusMessage(savePositions.staffName).actionText
-          }
+          actionText={requestStatusMessage(savePositions.staffName).actionText}
           appearance={EComponentAppearance.PRIMARY}
         />
       )}

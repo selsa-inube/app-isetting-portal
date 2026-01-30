@@ -95,7 +95,7 @@ const VerificationForm = (props: IVerificationForm) => {
 
       {showModal && (
         <DecisionModal
-          portalId="portal"
+          portalId={portalId}
           title={finishModal.title}
           description={finishModal.description}
           actionText={finishModal.actionText}
@@ -119,16 +119,11 @@ const VerificationForm = (props: IVerificationForm) => {
         <RequestStatusModal
           portalId={portalId}
           title={requestStatusMessage(saveMission.staffName).title}
-          description={
-            requestStatusMessage(saveMission.staffName).description
-          }
+          description={requestStatusMessage(saveMission.staffName).description}
           requestNumber={saveMission.requestNumber}
           onClick={onClosePendingReqModal}
           onCloseModal={onClosePendingReqModal}
-
-          actionText={
-            requestStatusMessage(saveMission.staffName).actionText
-          }
+          actionText={requestStatusMessage(saveMission.staffName).actionText}
           appearance={EComponentAppearance.PRIMARY}
           loading={loading}
         />

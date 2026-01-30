@@ -14,6 +14,7 @@ import { mediaQueryTabletMain } from "@config/environment";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { IPositionTabsConfig } from "@ptypes/positions/IPositionTabsConfig";
 import { useBusinessUnits } from "@src/hooks/useBusinessUnits";
+import { useStore } from "../usePositionBusinessUnit";
 
 const usePositionsTabs = () => {
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
@@ -26,12 +27,10 @@ const usePositionsTabs = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModalUnits, setShowModalUnits] = useState(false);
-  const [unit, setUnit] = useState<string>("");
   const [showInfoModal, setShowInfoModal] = useState(false);
   const widthFirstColumn = smallScreen ? 60 : 20;
-
+  const setValue = useStore((s) => s.setBusinessUnitCode);
   const { appData } = useContext(AuthAndData);
-
 
   const navigate = useNavigate();
 
@@ -92,7 +91,7 @@ const usePositionsTabs = () => {
     );
 
     setShowModalUnits(!showModalUnits);
-    setUnit(dataBusinessUnit?.publicCode || "");
+    setValue(dataBusinessUnit?.publicCode || "");
   };
 
   const handleTabChange = (tabId: string) => {
@@ -206,7 +205,6 @@ const usePositionsTabs = () => {
     handleChange,
     columnWidths,
     comparisonData,
-    unit,
   };
 };
 

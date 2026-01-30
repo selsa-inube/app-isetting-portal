@@ -12,6 +12,7 @@ import { finishModal } from "@src/config/assignments/assisted/finishModal";
 import { RequestProcess } from "@src/design/feedback/requestProcess";
 import { DecisionModal } from "@src/design/modals/decisionModal";
 import { RequestStatusModal } from "@src/design/modals/requestStatusModal";
+import { portalId } from "@src/config/portalId";
 
 const VerificationForm = (props: IVerificationForm) => {
   const {
@@ -34,7 +35,9 @@ const VerificationForm = (props: IVerificationForm) => {
   const canShowRequestProcess = showRequestProcessModal && savePositions;
 
   const canShowPendingRequest =
-    showPendingReqModal && savePositions && savePositions.requestNumber.length > 0;
+    showPendingReqModal &&
+    savePositions &&
+    savePositions.requestNumber.length > 0;
 
   const filteredSteps = AddPositionsSteps.filter(
     (step) => step.name.toLowerCase() !== labels.verification,
@@ -68,9 +71,9 @@ const VerificationForm = (props: IVerificationForm) => {
           {labels.finally}
         </Button>
       </Stack>
-       {showModal && (
+      {showModal && (
         <DecisionModal
-          portalId="portal"
+          portalId={portalId}
           title={finishModal.title}
           description={finishModal.description}
           actionText={finishModal.actionText}
@@ -80,7 +83,7 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowRequestProcess && (
         <RequestProcess
-          portalId="portal"
+          portalId={portalId}
           saveData={savePositions}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
@@ -100,10 +103,7 @@ const VerificationForm = (props: IVerificationForm) => {
           requestNumber={savePositions.requestNumber}
           onClick={onClosePendingReqModal}
           onCloseModal={onClosePendingReqModal}
-
-          actionText={
-            requestStatusMessage(savePositions.staffName).actionText
-          }
+          actionText={requestStatusMessage(savePositions.staffName).actionText}
           appearance={EComponentAppearance.PRIMARY}
           loading={loading}
         />

@@ -3,6 +3,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { MissionsTabUI } from "./interface";
 import { useMissionsTab } from "@hooks/missions/useMissionsTab";
 import { useMissionsData } from "@hooks/missions/useMissionsData";
+import { IEntry } from "@src/types/design/table/IEntry";
 
 const MissionsTab = () => {
   const loading = false;
@@ -30,7 +31,7 @@ const MissionsTab = () => {
       handleSearchMissions={handleSearchMissions}
       searchMission={searchMission}
       loading={loading}
-      data={filteredData}
+      data={filteredData as IEntry[]}
       smallScreen={smallScreen}
       label={label}
       setEntryDeleted={setEntryDeleted}

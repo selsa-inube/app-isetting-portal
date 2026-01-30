@@ -18,7 +18,6 @@ const RolesForm = (props: IRolesForm) => {
     useFilterRoles({
       options: options as IEntry[],
     });
-  console.log(entries, options, appliedFilters, filters);
   const {
     filteredRows,
     filterValue,

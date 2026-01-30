@@ -15,7 +15,7 @@ import { IDelete } from "@ptypes/positions/actions/IDelete";
 import { EUseCase } from "@src/enum/useCase";
 
 const Delete = (props: IDelete) => {
-  const { data } = props;
+  const { data, setEntryDeleted } = props;
   const { appData } = useContext(AuthAndData);
 
   const {
@@ -44,6 +44,7 @@ const Delete = (props: IDelete) => {
     token: appData.token,
     setSendData: setShowRequestProcessModal,
     setShowModal,
+    setEntryDeleted,
     useCase: EUseCase.DELETE,
   });
 

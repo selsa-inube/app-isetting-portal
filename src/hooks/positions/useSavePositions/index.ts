@@ -144,8 +144,8 @@ const useSavePositions = (props: IUseSavePositions) => {
       statusRequestFinished.includes(statusRequest)
     ) {
       setTimeout(() => {
-        setEntryDeleted(data.configurationRequestData.missionId as string);
-      }, 3000);
+        setEntryDeleted(data.configurationRequestData.positionId as string);
+      }, 2000);
     }
   };
 

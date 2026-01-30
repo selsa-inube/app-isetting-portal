@@ -49,7 +49,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
       values: initalValuesPositions.rolesStaff.values,
     },
   });
-  console.log(formValues);
+
   const businessUnitCode = useStore((s) => s.businessUnitCode);
   const navigate = useNavigate();
 

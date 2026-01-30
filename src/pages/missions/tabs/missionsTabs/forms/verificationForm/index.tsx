@@ -14,9 +14,10 @@ import { IVerificationForm } from "@ptypes/missions/assisted/IVerificationForm";
 import { requestStatusMessage } from "@config/request/requestStatusMessage";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
-import { finishModal } from "@config/missions/missionTab/assisted/finishModal";
+
 import { VerificationBoxes } from "./verificationBoxes";
 import { portalId } from "@src/config/portalId";
+import { finishModal } from "@src/config/assignments/assisted/finishModal";
 
 const VerificationForm = (props: IVerificationForm) => {
   const {

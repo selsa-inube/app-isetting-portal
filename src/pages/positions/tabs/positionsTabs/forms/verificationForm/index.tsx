@@ -95,7 +95,7 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowPendingRequest && (
         <RequestStatusModal
-          portalId="portal"
+          portalId={portalId}
           title={requestStatusMessage(savePositions.staffName).title}
           description={
             requestStatusMessage(savePositions.staffName).description

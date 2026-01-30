@@ -16,7 +16,7 @@ const useMissionsTab = (missionData: IMisionData[]) => {
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const location = useLocation();
   const label = PrivilegeOptionsConfig.find(
-    (item) => item.url === location.pathname
+    (item) => item.url === location.pathname,
   );
 
   const { appData } = useContext(AuthAndData);
@@ -47,8 +47,8 @@ const useMissionsTab = (missionData: IMisionData[]) => {
     return missionData
       .filter((row) =>
         Object.values(row).some((value) =>
-          value?.toString().toLowerCase().includes(searchMission.toLowerCase())
-        )
+          value?.toString().toLowerCase().includes(searchMission.toLowerCase()),
+        ),
       )
       .filter((row) => {
         return row.missionId !== entryDeleted;

@@ -25,9 +25,14 @@ const positionsBreakPointsConfig = [
 
 const labelsOptions = [
   {
-    id: "positionId",
-    labelName: "Código",
-    type: "table",
+    id: "positionName",
+    labelName: "Nombre",
+    type: "text",
+  },
+  {
+    id: "businessUnitCode",
+    labelName: "Unidad de negocio",
+    type: "text",
   },
   {
     id: "descriptionUse",

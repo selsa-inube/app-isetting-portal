@@ -81,6 +81,7 @@ const EditPositionsUI = (props: IEditPositionsUI) => {
               <RolesForm
                 entries={roles}
                 options={options}
+                editDataOption
                 setSelectedToggle={setSelectedToggle}
                 onButtonClick={onButtonClick}
                 onReset={onReset}

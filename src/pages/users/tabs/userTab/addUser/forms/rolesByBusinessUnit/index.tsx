@@ -31,7 +31,6 @@ const RolesByBusinessUnit = (props: IRolesByBusinessUnitProps) => {
     entries,
     setSelectedToggle,
     editDataOption,
-    withFilter: false,
   });
 
   return (

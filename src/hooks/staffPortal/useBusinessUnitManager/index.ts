@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 import { IUseBusinessManagers } from "@ptypes/hooks/IUseBusinessManagers";
 
-import { getBusinessUnitManager } from "@src/services/staffPortal/getBusinessUnitManager";
-import { IBusinessesUnit } from "@src/types/staffPortal/IBusinessesUnit";
+import { getBusinessUnitManager } from "@services/staffPortal/getBusinessUnitManager";
+import { IBusinessesUnit } from "@ptypes/staffPortal/IBusinessesUnit";
 
 const useBusinessUnitManagers = (props: IUseBusinessManagers) => {
   const { portalPublicCode } = props;
@@ -28,7 +28,6 @@ const useBusinessUnitManagers = (props: IUseBusinessManagers) => {
             portalPublicCode.businessManagerCode,
             "",
           );
-
 
           setBusinessUnitManagersData(newData);
         }

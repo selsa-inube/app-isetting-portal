@@ -10,7 +10,7 @@ const useEditPositionsModal = (props: IUseEditPositionsModal) => {
     positionId: data.positionId,
     positionName: data.positionName,
     descriptionUse: data.descriptionUse,
-    positionByRole: data.positionByRole,
+    positionsByRole: data.positionStaffByRoles,
   };
 
   const handleEdit = () => {

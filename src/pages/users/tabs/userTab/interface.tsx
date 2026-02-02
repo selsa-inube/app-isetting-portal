@@ -31,7 +31,7 @@ const UserTabUI = (props: IUserTabUI) => {
 
   return (
     <BorderStack
-      border="dark"
+      border={EComponentAppearance.DARK}
       borderRadius={basic.spacing.s100}
       direction="column"
       gap={basic.spacing.s20}

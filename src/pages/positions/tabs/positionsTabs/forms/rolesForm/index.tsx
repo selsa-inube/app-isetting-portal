@@ -8,18 +8,16 @@ const RolesForm = (props: IRolesForm) => {
   const {
     entries,
     options,
-    withFilter,
     setSelectedToggle,
     onButtonClick,
     onReset,
     editDataOption = false,
   } = props;
 
-  const { appliedFilters, setShowModal, formFields, handleFilterChange } =
+  const { appliedFilters, optionsMapped, handleFilterChange, filters } =
     useFilterRoles({
       options: options as IEntry[],
     });
-
   const {
     filteredRows,
     filterValue,
@@ -30,6 +28,7 @@ const RolesForm = (props: IRolesForm) => {
     menuOptions,
     smallScreen,
     showMenu,
+    withFilter,
     handleFilterInput,
     handleToggleAllEntries,
     handleToggleRol,
@@ -37,13 +36,13 @@ const RolesForm = (props: IRolesForm) => {
   } = useAssignmentForm({
     entries,
     setSelectedToggle,
+    filters,
     editDataOption,
-    setShowModal,
-    withFilter,
-    appliedFilters,
   });
   return (
     <AssignmentForm
+      appliedFilters={appliedFilters}
+      formFields={optionsMapped}
       filteredRows={filteredRows}
       filterValue={filterValue}
       handleFilterInput={handleFilterInput}
@@ -55,14 +54,14 @@ const RolesForm = (props: IRolesForm) => {
       loading={loading}
       menuOptions={menuOptions}
       onButtonClick={onButtonClick}
-      onHandleSelectCheckChange={onHandleSelectCheckChange}
+      handleFilterChange={handleFilterChange}
       onReset={onReset}
-      showMenu={showMenu}
+      onHandleSelectCheckChange={onHandleSelectCheckChange}
       smallScreen={smallScreen}
       withFilter={withFilter}
-      formFields={formFields}
-      filterTitle="aplicacion"
-      handleFilterChange={handleFilterChange}
+      showMenu={showMenu}
+      filterTitle="applicationStaff"
+      filterPlaceholder="Selecciona de la lista"
     />
   );
 };

@@ -8,13 +8,14 @@ import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInf
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IUseEditPositions } from "@ptypes/hooks/IUseEditPositions";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 import { useMediaQuery } from "@inubekit/inubekit";
-
+import { useStore } from "../usePositionBusinessUnit";
+import { normalizeString } from "@utils/normalizeRoles";
 
 const useEditPositions = (props: IUseEditPositions) => {
   const { data, appData, rolesData } = props;
-
+  const businessUnitCode = useStore((store) => store.businessUnitCode);
   const normalizeGeneralData = {
     positionId: data.positionId,
     namePosition: data.positionName,
@@ -30,25 +31,11 @@ const useEditPositions = (props: IUseEditPositions) => {
       isValid: false,
       values: [],
     },
-    applicationStaff: {
-      isValid: false,
-      values:
-        rolesData?.map((role) => ({
-          id: role.application?.appId ?? "",
-          value: role.application?.applicationName ?? "",
-          isActive: role.isActive ?? false,
-        })) ?? [],
-    },
   };
 
   const [isSelected, setIsSelected] = useState<string>(
-    editPositionTabsConfig.generalInformation.id
+    editPositionTabsConfig.generalInformation.id,
   );
-  const transformedApplicationData = rolesData?.map((role) => ({
-    id: role.application?.appId ?? "",
-    value: role.application?.applicationName ?? "",
-    isActive: role.isActive ?? false,
-  }));
 
   const [formValues, setFormValues] =
     useState<IFormAddPosition>(initialFormValues);
@@ -57,10 +44,8 @@ const useEditPositions = (props: IUseEditPositions) => {
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
   const [errorFetchSaveData, setErrorFetchSaveData] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [selectedToggle, setSelectedToggle] = useState<
-    IFormEntry[]
-  >([]);
- const smallScreen = useMediaQuery("(max-width: 990px)");
+  const [selectedToggle, setSelectedToggle] = useState<IFormEntry[]>([]);
+  const smallScreen = useMediaQuery("(max-width: 990px)");
   const [initialRoles, setInitialRoles] = useState<
     {
       id: string;
@@ -68,22 +53,43 @@ const useEditPositions = (props: IUseEditPositions) => {
       isActive: boolean;
     }[]
   >([]);
-  const roles = formValues.rolesStaff.values.map((role) => {
-    const applicationStaff = rolesData?.find((app) => app.roleId === role.id);
-    return {
-      ...role,
-      applicationStaff: applicationStaff?.applicationName,
-    };
-  });
+  const roles = formValues.rolesStaff.values;
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationEntry>>(null);
 
+  const dataRoleNames = new Set(
+    data.positionsByRole.map((role) => normalizeString(role.roleName)),
+  );
   const rolesDataEndpoint = formValues.rolesStaff.values
     .filter((role) => role.isActive !== undefined)
-    .map((role) => ({
-      roleName: role.value,
-      transactionOperation: role.isActive ? "Insert" : "Delete",
-    }));
+    .map((role) => {
+      const roleNameNormalized = normalizeString(role.value);
+      const isActiveInBackend = dataRoleNames.has(roleNameNormalized);
+
+      if (role.isActive && !isActiveInBackend) {
+        return {
+          roleName: role.value,
+          transactionOperation: "Insert" as const,
+        };
+      }
+
+      if (!role.isActive && isActiveInBackend) {
+        return {
+          roleName: role.value,
+          transactionOperation: "Delete" as const,
+        };
+      }
+
+      return null;
+    })
+    .filter(
+      (
+        item,
+      ): item is {
+        roleName: string;
+        transactionOperation: "Insert" | "Delete";
+      } => item !== null,
+    );
   useEffect(() => {
     if (rolesData && rolesData.length > 0) {
       const transformedRolesData = rolesData?.map((role) => ({
@@ -92,20 +98,11 @@ const useEditPositions = (props: IUseEditPositions) => {
         isActive: role.isActive ?? false,
       }));
 
-      const roles = transformedRolesData?.map((role) => {
-        const applicationStaff = transformedApplicationData?.find(
-          (app) => app.id !== role.id
-        );
-        return {
-          ...role,
-          applicationStaff: applicationStaff?.value,
-        };
-      });
-
+      const roles = transformedRolesData;
       const rolesInitial = roles?.map((role) => {
         const active =
-          Array.isArray(data.positionByRole) &&
-          data.positionByRole.find((app) => app.roleName === role.value);
+          Array.isArray(data.positionsByRole) &&
+          data.positionsByRole.find((app) => app.roleName === role.value);
 
         return {
           ...role,
@@ -119,10 +116,6 @@ const useEditPositions = (props: IUseEditPositions) => {
           ...prev.rolesStaff,
           isValid: true,
           values: rolesInitial ?? [],
-        },
-        applicationStaff: {
-          isValid: true,
-          values: transformedApplicationData ?? [],
         },
       }));
     }
@@ -142,7 +135,7 @@ const useEditPositions = (props: IUseEditPositions) => {
       (generalInformationRef.current?.values.namePosition !==
         data.positionName ||
         generalInformationRef.current?.values.descriptionPosition !==
-        data.descriptionUse)
+          data.descriptionUse)
     ) {
       configurationRequestData.abbreviatedName =
         generalInformationRef.current?.values.namePosition ?? "";
@@ -162,10 +155,11 @@ const useEditPositions = (props: IUseEditPositions) => {
       configurationRequestData: {
         positionId: data.positionId,
         positionName: formValues.generalInformation.values.namePosition,
+        businessManagerCode: appData.businessManager.publicCode,
+        businessUnitCode: businessUnitCode,
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
-        positionByRole: rolesDataEndpoint,
-
+        positionsByRole: rolesDataEndpoint,
       },
     });
     setShowRequestProcessModal(true);
@@ -225,7 +219,7 @@ const useEditPositions = (props: IUseEditPositions) => {
         setSelectedToggle((prev) =>
           updatedRole.isActive
             ? (prev ?? []).concat(updatedRole)
-            : (prev ?? []).filter((item) => item.id !== updatedRole.id)
+            : (prev ?? []).filter((item) => item.id !== updatedRole.id),
         );
 
         return updatedRole;
@@ -245,9 +239,10 @@ const useEditPositions = (props: IUseEditPositions) => {
     formValues.rolesStaff.values = selectedToggle;
   }
 
-  const showGeneralInformation = isSelected === editPositionTabsConfig.generalInformation.id;
+  const showGeneralInformation =
+    isSelected === editPositionTabsConfig.generalInformation.id;
 
-  const showRolesForm = isSelected === editPositionTabsConfig.selectionRoles.id
+  const showRolesForm = isSelected === editPositionTabsConfig.selectionRoles.id;
 
   return {
     formValues,

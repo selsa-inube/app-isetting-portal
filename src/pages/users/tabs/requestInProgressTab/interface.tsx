@@ -45,7 +45,12 @@ const RequestInProgressUI = (props: IRequestInProgressTabUI) => {
           }
         />
       </Stack>
-      <Text type="title" size="medium" appearance="dark" weight="normal">
+      <Text
+        type="title"
+        size="medium"
+        appearance={EComponentAppearance.DARK}
+        weight="normal"
+      >
         {tabLabels.description}
       </Text>
       <Table

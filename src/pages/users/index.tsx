@@ -4,8 +4,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { useUserPage } from "@hooks/users/userPage";
 
 import { UsersUI } from "./interface";
-import { menuUsersLinks } from "@src/config/users/menuUsersLinks";
-
+import { menuUsersLinks } from "@config/users/menuUsersLinks";
 
 const Users = () => {
   const { appData } = useContext(AuthAndData);

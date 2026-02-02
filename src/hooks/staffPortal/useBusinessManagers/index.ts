@@ -4,7 +4,7 @@ import { getBusinessManagers } from "@services/staffPortal/getBusinessManager";
 
 import { IUseBusinessManagers } from "@ptypes/hooks/IUseBusinessManagers";
 import { IBusinessManagers } from "@ptypes/staffPortal/IBusinessManagers";
-import { storeEncryptedData } from "@src/utils/storeEncryptedData";
+import { storeEncryptedData } from "@utils/storeEncryptedData";
 
 const useBusinessManagers = (props: IUseBusinessManagers) => {
   const { portalPublicCode } = props;

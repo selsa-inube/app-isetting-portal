@@ -12,7 +12,7 @@ import { crumbsAddPosition } from "@config/positions/addPositions/navigation";
 import { addPositionTitle } from "@config/positions/addPositions/addPositionTitle";
 import { controlsAssisted } from "@config/controlsAssisted";
 import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
-import { portalId } from "@src/config/portalId";
+import { portalId } from "@config/portalId";
 
 const AddPositionUI = (props: IAddPositionUI) => {
   const {
@@ -46,6 +46,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
     onClosePendingReqModal,
     modalData,
     showDecision,
+    onCloseProcess,
   } = props;
 
   return (
@@ -95,7 +96,6 @@ const AddPositionUI = (props: IAddPositionUI) => {
                 setSelectedToggle={setSelectedToggle}
                 onButtonClick={onNextStep}
                 onReset={handlePreviousStep}
-                withFilter
               />
             )}
             {currentStep === 3 && (
@@ -119,31 +119,31 @@ const AddPositionUI = (props: IAddPositionUI) => {
                 handleStepChange={(stepId) => setCurrentStep(stepId)}
                 onCloseRequestStatus={onCloseRequestStatus}
                 onPreviousStep={handlePreviousStep}
-                onToggleModal={onToggleModal} 
+                onToggleModal={onToggleModal}
                 showPendingReqModal={showPendingReqModal}
-                 loading={loading}
-                  onFinishForm={onFinishForm}
-                   onCloseProcess={onCloseRequestStatus} 
-                                />
+                loading={loading}
+                onFinishForm={onFinishForm}
+                onCloseProcess={onCloseProcess}
+              />
             )}
           </Stack>
         </Stack>
 
- {showDecision && (
-        <DecisionModal
-          portalId={portalId}
-          title={modalData.title}
-          description={modalData.description}
-          actionText={modalData.actionText}
-          onCloseModal={modalData.onCloseModal}
-          onClick={modalData.onClick}
-          withCancelButton={modalData.withCancelButton}
-          withIcon={modalData.withIcon}
-          icon={modalData.icon}
-          appearance={modalData.appearance}
-          appearanceButton={modalData.appearanceButton}
-        />
-      )}
+        {showDecision && (
+          <DecisionModal
+            portalId={portalId}
+            title={modalData.title}
+            description={modalData.description}
+            actionText={modalData.actionText}
+            onCloseModal={modalData.onCloseModal}
+            onClick={modalData.onClick}
+            withCancelButton={modalData.withCancelButton}
+            withIcon={modalData.withIcon}
+            icon={modalData.icon}
+            appearance={modalData.appearance}
+            appearanceButton={modalData.appearanceButton}
+          />
+        )}
         {showMultipurposeModal && (
           <DecisionModal
             portalId={DecisionModalLabel.portalId}

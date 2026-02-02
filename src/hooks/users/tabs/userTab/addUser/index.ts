@@ -10,11 +10,11 @@ import { IGeneralUserFormValues } from "@ptypes/users/tabs/userTab/addUser/forms
 import { IFormsAddUserGeneralFormRefs } from "@ptypes/users/tabs/userTab/addUser/forms/IGeneralFormValues/ref";
 import { IGeneralInfoForm } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IGeneralInfoForm";
 import { IMissionForStaff } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IMissionForStaff";
-import { requestConfig } from "@src/config/request/requestsConfig";
-import { ERequestType } from "@src/enum/request/requestType";
-import { EUserRequest } from "@src/enum/user/usersRequest";
-import { ISaveDataRequest } from "@src/types/saveData/ISaveDataRequest";
-import { formatDate } from "@src/utils/date/formatDate";
+import { requestConfig } from "@config/request/requestsConfig";
+import { ERequestType } from "@enum/request/requestType";
+import { EUserRequest } from "@enum/user/usersRequest";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
+import { formatDate } from "@utils/date/formatDate";
 import { FormikProps } from "formik";
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -152,48 +152,48 @@ const useAddUser = () => {
     setShowMissionNameModal(!showMissionNameModal);
   };
   const handleSubmit = () => {
-  const general = formValues.generalInformationStep.values;
-  const mission = formValues.missionForStaffStep.values;
-  const contact = formValues.contactDataStep.values;
-  const roles = formValues.roleByBusinessUnitStep;
+    const general = formValues.generalInformationStep.values;
+    const mission = formValues.missionForStaffStep.values;
+    const contact = formValues.contactDataStep.values;
+    const roles = formValues.roleByBusinessUnitStep;
 
-  setSaveData({
-    applicationName: requestConfig.applicationName,
-    requestType: ERequestType.ADD,
-    businessManagerCode: appData.businessManager.publicCode,
-    businessUnitCode: appData.businessUnit.publicCode,
-    description: "Solicitud de creación de un funcionario nuevo",
-    entityName: "Staff",
-    requestDate: formatDate(new Date()),
-    useCaseName: EUserRequest.ADD_USER,
-    configurationRequestData: {
-      biologicalSex: general.gender,
-      birthDay: String(general.birthDate),
+    setSaveData({
+      applicationName: requestConfig.applicationName,
+      requestType: ERequestType.ADD,
       businessManagerCode: appData.businessManager.publicCode,
-      identificationNumber: String(general.idNumber),
-      identificationType: general.idType,
-      staffName: general.firstName,
-      staffLastName: general.lastName,
+      businessUnitCode: appData.businessUnit.publicCode,
+      description: "Solicitud de creación de un funcionario nuevo",
+      entityName: "Staff",
+      requestDate: formatDate(new Date()),
+      useCaseName: EUserRequest.ADD_USER,
+      configurationRequestData: {
+        biologicalSex: general.gender,
+        birthDay: String(general.birthDate),
+        businessManagerCode: appData.businessManager.publicCode,
+        identificationNumber: String(general.idNumber),
+        identificationType: general.idType,
+        staffName: general.firstName,
+        staffLastName: general.lastName,
 
-      missionData: {
-        descriptionUse: mission.missionDescription,
+        missionData: {
+          descriptionUse: mission.missionDescription,
+          missionName: mission.missionName,
+        },
         missionName: mission.missionName,
+
+        principalEmail: contact.email,
+        principalPhone: contact.phone,
+
+        staffByBusinessUnitAndRole: roles.map((item) => ({
+          businessUnitCode: item.businessUnitCode,
+          positionName: item.positionName,
+          roleName: item.rolesStaff,
+        })),
       },
-      missionName: mission.missionName,
+    });
 
-      principalEmail: contact.email,
-      principalPhone: contact.phone,
-
-      staffByBusinessUnitAndRole: roles.map((item) => ({
-        businessUnitCode: item.businessUnitCode,
-        positionName: item.positionName,
-        roleName: item.rolesStaff,
-      })),
-    },
-  });
-
-  setShowRequestProcessModal(true);
-};
+    setShowRequestProcessModal(true);
+  };
 
   return {
     currentStep,

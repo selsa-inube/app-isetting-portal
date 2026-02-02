@@ -6,7 +6,7 @@ interface IUseEditPositions {
     positionId: string;
     positionName: string;
     descriptionUse: string;
-    positionByRole: IRoleForStaff[];
+    positionsByRole: IRoleForStaff[];
   };
   appData: IAppData;
   rolesData: IRoleForStaff[] | undefined;

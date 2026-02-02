@@ -11,7 +11,7 @@ import { missionsTabLabels } from "@config/missions/missionTab/missionsTabLabels
 import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
 
 import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
-import { disabledModal } from "@src/config/disabledModal";
+import { disabledModal } from "@config/disabledModal";
 import { portalId } from "@config/portalId";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { StyledContainer } from "./styles";
@@ -45,43 +45,41 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
           gap={smallScreen ? basic.spacing.s150 : basic.spacing.s400}
           direction="column"
         >
-        {smallScreen && (
-          <Stack>
-            <Text
-              type="title"
-              size="medium"
-              appearance={EComponentAppearance.DARK}
-              ellipsis
-            >
-              {missionsTabLabels.description}
-            </Text>
-          </Stack>
-        )}
-        <Stack
-         justifyContent={smallScreen ? "center" : "space-between"}
-            direction={smallScreen ? "column-reverse" : "row"}
-            gap={
-              smallScreen ? `${basic.spacing.s150}` : `${basic.spacing.s0}`
-            }
-            width="100%"
-        >
+          {smallScreen && (
+            <Stack>
+              <Text
+                type="title"
+                size="medium"
+                appearance={EComponentAppearance.DARK}
+                ellipsis
+              >
+                {missionsTabLabels.description}
+              </Text>
+            </Stack>
+          )}
           <Stack
-             justifyContent="center"
-              width={smallScreen ? "100%" : "auto"}
+            justifyContent={smallScreen ? "center" : "space-between"}
+            direction={smallScreen ? "column-reverse" : "row"}
+            gap={smallScreen ? `${basic.spacing.s150}` : `${basic.spacing.s0}`}
+            width="100%"
           >
-            <Searchfield
-              name="searchMission"
-              id="searchMission"
-              label={smallScreen ? "" : tabLabels.search}
-              placeholder={tabLabels.placeholderSearch}
-              size="compact"
-              value={searchMission}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleSearchMissions(e)
-              }
-              fullwidth={smallScreen}
-            />
- </Stack>
+            <Stack
+              justifyContent="center"
+              width={smallScreen ? "100%" : "auto"}
+            >
+              <Searchfield
+                name="searchMission"
+                id="searchMission"
+                label={smallScreen ? "" : tabLabels.search}
+                placeholder={tabLabels.placeholderSearch}
+                size="compact"
+                value={searchMission}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleSearchMissions(e)
+                }
+                fullwidth={smallScreen}
+              />
+            </Stack>
             {!smallScreen && (
               <Stack alignItems="center">
                 <Button
@@ -124,7 +122,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
           <Table
             id="portal"
             titles={titlesOptions}
-            entries={data ?? []}
+            entries={data}
             actions={actionsConfig(setEntryDeleted, detailsLabels.titleDetails)}
             breakpoints={breakPoints}
             filter={searchMission}

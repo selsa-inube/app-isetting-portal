@@ -1,5 +1,5 @@
 import { IBusinessManagers } from "@ptypes/staffPortal/IBusinessManagers";
-import { encrypt } from "@src/utils/encrypt";
+import { encrypt } from "@utils/encrypt";
 
 const mapBusinessManagerApiToEntity = (
   businessManager: Record<string, string>,

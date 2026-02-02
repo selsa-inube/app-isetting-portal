@@ -14,6 +14,7 @@ import { mediaQueryMobileSmall } from "@config/environment";
 
 import { StyledAppCard } from "./styles";
 import { IAppCard } from "@ptypes/design/IAppCard";
+import { EComponentAppearance } from "@enum/appearances";
 
 const AppCard = (props: IAppCard) => {
   const { label, description, icon, url, loading } = props;
@@ -54,7 +55,7 @@ const AppCard = (props: IAppCard) => {
         </Text>
         <Icon
           icon={icon}
-          appearance="dark"
+          appearance={EComponentAppearance.DARK}
           size={basic.spacing.s24}
           cursorHover
         />

@@ -1,6 +1,6 @@
 import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
-import { IFormAddPosition } from "@src/types/forms/verificationForm/IFormAddPosition";
-import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
+import { IFormAddPosition } from "@ptypes/forms/verificationForm/IFormAddPosition";
+import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 
 interface IVerificationForm {
   requestSteps: IRequestSteps[];

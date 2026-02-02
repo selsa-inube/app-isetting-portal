@@ -12,10 +12,10 @@ import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { DecisionModalLabel } from "@config/positions/decisionModalText";
 import { IDelete } from "@ptypes/positions/actions/IDelete";
-import { EUseCase } from "@src/enum/useCase";
+import { EUseCase } from "@enum/useCase";
 
 const Delete = (props: IDelete) => {
-  const { data } = props;
+  const { data, setEntryDeleted } = props;
   const { appData } = useContext(AuthAndData);
 
   const {
@@ -30,7 +30,7 @@ const Delete = (props: IDelete) => {
 
   const {
     savePositions,
-   requestSteps,
+    requestSteps,
     showPendingReqModal,
     loadingSendData,
     handleCloseProcess,
@@ -38,13 +38,13 @@ const Delete = (props: IDelete) => {
     handleCloseRequestStatus,
   } = useSavePositions({
     businessUnits: appData.businessUnit.publicCode,
-    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
     token: appData.token,
     setSendData: setShowRequestProcessModal,
     setShowModal,
+    setEntryDeleted,
     useCase: EUseCase.DELETE,
   });
 
@@ -85,9 +85,7 @@ const Delete = (props: IDelete) => {
           onClick={handleClosePendingReqModal}
           onCloseModal={handleClosePendingReqModal}
           loading={false}
-          actionText={
-            requestStatusMessage(savePositions.staffName).actionText
-          }
+          actionText={requestStatusMessage(savePositions.staffName).actionText}
           appearance={EComponentAppearance.PRIMARY}
         />
       )}

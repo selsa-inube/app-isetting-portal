@@ -1,29 +1,35 @@
-
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { Stack, useMediaQuery, Text, Icon, ITextSize } from "@inubekit/inubekit";
+import {
+  Stack,
+  useMediaQuery,
+  Text,
+  Icon,
+  ITextSize,
+} from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { mediaQueryMobile } from "@config/environment";
 
 import { StyledContainerText } from "../Title/styles";
+import { EComponentAppearance } from "@enum/appearances";
 
 interface IPageTitle {
   title: string;
   icon?: React.ReactNode;
   description?: string;
   navigatePage?: string;
-    sizeTitle?: ITextSize;
-      onClick?: () => void;
+  sizeTitle?: ITextSize;
+  onClick?: () => void;
 }
 
-const PageTitle = ({ 
+const PageTitle = ({
   title,
-   icon, 
-      sizeTitle = "medium",
-       description,
-        navigatePage,
-        onClick, 
-      }: IPageTitle) => {
+  icon,
+  sizeTitle = "medium",
+  description,
+  navigatePage,
+  onClick,
+}: IPageTitle) => {
   const smallScreen = useMediaQuery(mediaQueryMobile);
 
   const navigate = useNavigate();
@@ -46,7 +52,7 @@ const PageTitle = ({
         <Stack gap={basic.spacing.s100} alignItems="center">
           {icon ? (
             <Icon
-              appearance="dark"
+              appearance={EComponentAppearance.DARK}
               cursorHover={true}
               icon={icon}
               spacing="narrow"
@@ -54,7 +60,7 @@ const PageTitle = ({
             />
           ) : (
             <Icon
-              appearance="dark"
+              appearance={EComponentAppearance.DARK}
               cursorHover={true}
               icon={<MdArrowBack />}
               spacing="narrow"

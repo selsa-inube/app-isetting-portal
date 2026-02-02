@@ -30,7 +30,6 @@ const BusinessEntityForm = (props: IBusinessEntityForm) => {
     entries,
     setSelectedToggle,
     editDataOption,
-    withFilter: false,
   });
   return (
     <AssignmentForm

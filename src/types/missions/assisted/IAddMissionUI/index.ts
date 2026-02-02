@@ -4,7 +4,7 @@ import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import { IAssistedStep } from "@inubekit/inubekit";
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
 import { IFormAddMission } from "../IFormAddMission";
-import { IModalData } from "@src/types/users/tabs/userTab/addUser/IModalData";
+import { IModalData } from "@ptypes/users/tabs/userTab/addUser/IModalData";
 
 interface IAddMissionUI {
   currentStep: number;
@@ -35,7 +35,7 @@ interface IAddMissionUI {
   onClosePendingReqModal: () => void;
   requestSteps: IRequestSteps[];
   showPendingReqModals: boolean;
-    modalData: IModalData;
+  modalData: IModalData;
   showDecision: boolean;
   onCloseProcess: () => void;
 }

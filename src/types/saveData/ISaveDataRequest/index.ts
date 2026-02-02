@@ -1,4 +1,4 @@
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 
 interface ISaveDataRequest {
   applicationName: string;

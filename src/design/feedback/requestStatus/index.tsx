@@ -44,7 +44,7 @@ const RequestStatus = (props: IRequestStatus) => {
 
   if (!node) {
     throw new Error(
-      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
+      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly.",
     );
   }
 
@@ -53,7 +53,12 @@ const RequestStatus = (props: IRequestStatus) => {
       <StyledModal $smallScreen={isMobile}>
         <Stack direction="column" gap={basic.spacing.s200}>
           <Stack alignItems="center" justifyContent="space-between">
-            <Text type="headline" size="small" weight="bold" appearance="dark">
+            <Text
+              type="headline"
+              size="small"
+              weight="bold"
+              appearance={EComponentAppearance.DARK}
+            >
               {title}
             </Text>
             <StyledContainerButton>
@@ -114,7 +119,7 @@ const RequestStatus = (props: IRequestStatus) => {
         </Stack>
       </StyledModal>
     </Blanket>,
-    node
+    node,
   );
 };
 

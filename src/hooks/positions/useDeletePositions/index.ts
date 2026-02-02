@@ -4,10 +4,12 @@ import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IUseDeletePositions } from "@ptypes/hooks/IUseDeletePositions";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
+import { useStore } from "../usePositionBusinessUnit";
 
 const useDeletePositions = (props: IUseDeletePositions) => {
   const { data, appData } = props;
+  const businessUnitCode = useStore((store) => store.businessUnitCode);
   const [showModal, setShowModal] = useState(false);
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
@@ -28,6 +30,8 @@ const useDeletePositions = (props: IUseDeletePositions) => {
       configurationRequestData: {
         positionId: data.positionId,
         positionName: data.positionName,
+        businessManagerCode: appData.businessManager.publicCode,
+        businessUnitCode: businessUnitCode,
         modifyJustification: `La eliminación del cargo ${appData.user.userAccount}`,
       },
     });

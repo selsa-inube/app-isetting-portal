@@ -1,23 +1,22 @@
 import { useManageSearchAndPageControl } from "@hooks/positions/useManageSearchAndPageControl";
-import { IPositionTab } from "@ptypes/positions/IPositionTab";
 import { PositionsTabUI } from "./interface";
+import { useStore } from "@hooks/positions/usePositionBusinessUnit";
 
-const PositionsTab = (props: IPositionTab) => {
-  const {businessUnitCode} = props;
+const PositionsTab = () => {
   const loading = false;
-
-  
-
+  const businessUnitCode = useStore((store) => store.businessUnitCode);
   const {
     smallScreen,
     label,
     searchPosition,
     columnWidths,
     filteredData,
+    disabledButton,
+    showInfoModal,
     setEntryDeleted,
+    handleToggleInfoModal,
     handleSearchPositions,
   } = useManageSearchAndPageControl(businessUnitCode);
-
   return (
     <PositionsTabUI
       handleSearchPositions={handleSearchPositions}
@@ -27,7 +26,10 @@ const PositionsTab = (props: IPositionTab) => {
       smallScreen={smallScreen}
       label={label}
       setEntryDeleted={setEntryDeleted}
-      columnWidths={columnWidths} 
+      columnWidths={columnWidths}
+      disabledButton={disabledButton}
+      showInfoModal={showInfoModal}
+      handleToggleInfoModal={handleToggleInfoModal}
     />
   );
 };

@@ -7,8 +7,8 @@ import { controlsAssisted } from "@config/controlsAssisted";
 import { IAddMissionUI } from "@ptypes/missions/assisted/IAddMissionUI";
 import { VerificationForm } from "../forms/verificationForm";
 import { GeneralInformationForm } from "../forms/generalInformationForm";
-import { portalId } from "@src/config/portalId";
-import { DecisionModal } from "@src/design/modals/decisionModal";
+import { portalId } from "@config/portalId";
+import { DecisionModal } from "@design/modals/decisionModal";
 
 const AddMissionUI = (props: IAddMissionUI) => {
   const {
@@ -36,7 +36,7 @@ const AddMissionUI = (props: IAddMissionUI) => {
     showPendingReqModals,
     showRequestProcessModal,
     loading,
-       modalData,
+    modalData,
     showDecision,
   } = props;
 
@@ -97,13 +97,12 @@ const AddMissionUI = (props: IAddMissionUI) => {
                 onClosePendingReqModal={onClosePendingReqModal}
                 onCloseProcess={onCloseProcess}
                 loading={loading}
-                
               />
             )}
           </Stack>
         </Stack>
       </Stack>
-        {showDecision && (
+      {showDecision && (
         <DecisionModal
           portalId={portalId}
           title={modalData.title}

@@ -2,6 +2,7 @@ import { Icon, Text, Stack } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { MenuItemSpacingType } from "@ptypes/navigation/menuItem/ImenuItemSpacing";
 import { StyledMenuItemLink } from "./styles";
+import { EComponentAppearance } from "@enum/appearances";
 
 interface IMenuItem {
   title: string;
@@ -38,7 +39,7 @@ const MenuItem = (props: IMenuItem) => {
             icon={iconBefore}
             spacing="narrow"
             size="24px"
-            appearance="dark"
+            appearance={EComponentAppearance.DARK}
             disabled={isDisabled}
           />
         )}
@@ -61,7 +62,7 @@ const MenuItem = (props: IMenuItem) => {
           icon={iconAfter}
           spacing="narrow"
           size="24px"
-          appearance="dark"
+          appearance={EComponentAppearance.DARK}
           disabled={isDisabled}
         />
       )}

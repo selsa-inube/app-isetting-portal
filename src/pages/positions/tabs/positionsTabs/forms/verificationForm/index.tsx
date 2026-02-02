@@ -5,13 +5,14 @@ import { AddPositionsSteps } from "@config/positions/assisted";
 import { VerificationStepSection } from "./verificationStepSection";
 import { labels } from "@config/verificationTitles";
 import { EComponentAppearance } from "@enum/appearances";
-import { IVerificationForm } from "@src/types/positions/assisted/IVerificationForm";
-import { requestStatusMessage } from "@src/config/positions/requestStatusMessage";
-import { requestProcessMessage } from "@src/config/request/requestProcessMessage";
-import { finishModal } from "@src/config/assignments/assisted/finishModal";
-import { RequestProcess } from "@src/design/feedback/requestProcess";
-import { DecisionModal } from "@src/design/modals/decisionModal";
-import { RequestStatusModal } from "@src/design/modals/requestStatusModal";
+import { IVerificationForm } from "@ptypes/positions/assisted/IVerificationForm";
+import { requestStatusMessage } from "@config/positions/requestStatusMessage";
+import { requestProcessMessage } from "@config/request/requestProcessMessage";
+import { finishModal } from "@config/assignments/assisted/finishModal";
+import { RequestProcess } from "@design/feedback/requestProcess";
+import { DecisionModal } from "@design/modals/decisionModal";
+import { RequestStatusModal } from "@design/modals/requestStatusModal";
+import { portalId } from "@config/portalId";
 
 const VerificationForm = (props: IVerificationForm) => {
   const {
@@ -34,7 +35,9 @@ const VerificationForm = (props: IVerificationForm) => {
   const canShowRequestProcess = showRequestProcessModal && savePositions;
 
   const canShowPendingRequest =
-    showPendingReqModal && savePositions && savePositions.requestNumber.length > 0;
+    showPendingReqModal &&
+    savePositions &&
+    savePositions.requestNumber.length > 0;
 
   const filteredSteps = AddPositionsSteps.filter(
     (step) => step.name.toLowerCase() !== labels.verification,
@@ -68,9 +71,9 @@ const VerificationForm = (props: IVerificationForm) => {
           {labels.finally}
         </Button>
       </Stack>
-       {showModal && (
+      {showModal && (
         <DecisionModal
-          portalId="portal"
+          portalId={portalId}
           title={finishModal.title}
           description={finishModal.description}
           actionText={finishModal.actionText}
@@ -80,7 +83,7 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowRequestProcess && (
         <RequestProcess
-          portalId="portal"
+          portalId={portalId}
           saveData={savePositions}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
@@ -92,7 +95,7 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowPendingRequest && (
         <RequestStatusModal
-          portalId="portal"
+          portalId={portalId}
           title={requestStatusMessage(savePositions.staffName).title}
           description={
             requestStatusMessage(savePositions.staffName).description
@@ -100,10 +103,7 @@ const VerificationForm = (props: IVerificationForm) => {
           requestNumber={savePositions.requestNumber}
           onClick={onClosePendingReqModal}
           onCloseModal={onClosePendingReqModal}
-
-          actionText={
-            requestStatusMessage(savePositions.staffName).actionText
-          }
+          actionText={requestStatusMessage(savePositions.staffName).actionText}
           appearance={EComponentAppearance.PRIMARY}
           loading={loading}
         />

@@ -10,10 +10,9 @@ interface IPositionsUI {
   showModal: boolean;
   showInfoModal: boolean;
   options: IMenuOptions[];
-  selectedUnit: string;
   businessUnitSigla: string;
   comparisonData: boolean;
-  positionTab:  ITab[];
+  positionTab: ITab[];
   showPositionsTab: boolean;
   showRequestTab: boolean;
   onToggleInfoModal: () => void;

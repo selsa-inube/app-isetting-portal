@@ -9,6 +9,9 @@ interface IPositionsTabUI {
   smallScreen: boolean;
   columnWidths: number[];
   label: (typeof PrivilegeOptionsConfig)[number] | undefined;
+  disabledButton: boolean;
+  showInfoModal: boolean;
+  handleToggleInfoModal: () => void;
   setEntryDeleted: (id: string | number) => void;
 }
 

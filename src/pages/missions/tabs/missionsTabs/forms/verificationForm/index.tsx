@@ -14,8 +14,10 @@ import { IVerificationForm } from "@ptypes/missions/assisted/IVerificationForm";
 import { requestStatusMessage } from "@config/request/requestStatusMessage";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
-import { finishModal } from "@config/missions/missionTab/assisted/finishModal";
+
 import { VerificationBoxes } from "./verificationBoxes";
+import { portalId } from "@config/portalId";
+import { finishModal } from "@config/assignments/assisted/finishModal";
 
 const VerificationForm = (props: IVerificationForm) => {
   const {
@@ -94,7 +96,7 @@ const VerificationForm = (props: IVerificationForm) => {
 
       {showModal && (
         <DecisionModal
-          portalId="portal"
+          portalId={portalId}
           title={finishModal.title}
           description={finishModal.description}
           actionText={finishModal.actionText}
@@ -104,7 +106,7 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowRequestProcess && (
         <RequestProcess
-          portalId="portal"
+          portalId={portalId}
           saveData={saveMission}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
@@ -116,18 +118,13 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowPendingRequest && (
         <RequestStatusModal
-          portalId="portal"
+          portalId={portalId}
           title={requestStatusMessage(saveMission.staffName).title}
-          description={
-            requestStatusMessage(saveMission.staffName).description
-          }
+          description={requestStatusMessage(saveMission.staffName).description}
           requestNumber={saveMission.requestNumber}
           onClick={onClosePendingReqModal}
           onCloseModal={onClosePendingReqModal}
-
-          actionText={
-            requestStatusMessage(saveMission.staffName).actionText
-          }
+          actionText={requestStatusMessage(saveMission.staffName).actionText}
           appearance={EComponentAppearance.PRIMARY}
           loading={loading}
         />

@@ -1,5 +1,5 @@
 import { ITab } from "@inubekit/inubekit";
-import { IMenuOptions } from "@src/types/design/IMenuOptions";
+import { IMenuOptions } from "@ptypes/design/IMenuOptions";
 
 interface IUsersUI {
   isSelected: string;

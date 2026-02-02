@@ -7,13 +7,13 @@ import { EComponentAppearance } from "@enum/appearances";
 import { AddUserVerificationStepSection } from "./VerificationStepSection";
 import { IAddUserVerificationForm } from "@ptypes/users/tabs/userTab/addUser/forms/verificationForm/IAddUserVerificationForm";
 import { addUserSteps } from "@config/users/addUsers/assisted/steps";
-import { useVerificationForm } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useVerificationForm";
-import { requestStatusMessage } from "@src/config/positions/requestStatusMessage";
-import { requestProcessMessage } from "@src/config/request/requestProcessMessage";
-import { RequestProcess } from "@src/design/feedback/requestProcess";
-import { RequestStatusModal } from "@src/design/modals/requestStatusModal";
-import { DecisionModal } from "@src/design/modals/decisionModal";
-import { finishModal } from "@src/config/assignments/assisted/finishModal";
+import { useVerificationForm } from "@hooks/users/tabs/userTab/addUser/saveUsers/useVerificationForm";
+import { requestStatusMessage } from "@config/positions/requestStatusMessage";
+import { requestProcessMessage } from "@config/request/requestProcessMessage";
+import { RequestProcess } from "@design/feedback/requestProcess";
+import { RequestStatusModal } from "@design/modals/requestStatusModal";
+import { DecisionModal } from "@design/modals/decisionModal";
+import { finishModal } from "@config/assignments/assisted/finishModal";
 
 const AddUserVerificationForm = (props: IAddUserVerificationForm) => {
   const {
@@ -32,18 +32,15 @@ const AddUserVerificationForm = (props: IAddUserVerificationForm) => {
     onSubmit,
   } = props;
   const filteredSteps = addUserSteps.filter(
-    (step) => step.name.toLowerCase() !== labels.verification
+    (step) => step.name.toLowerCase() !== labels.verification,
   );
 
-  const {
-    isMobile,
-    canShowRequestProcess,
-    canShowPendingRequest,
-  } = useVerificationForm({
-    showRequestProcessModal,
-    saveUsers,
-    showPendingReqModal,
-  });
+  const { isMobile, canShowRequestProcess, canShowPendingRequest } =
+    useVerificationForm({
+      showRequestProcessModal,
+      saveUsers,
+      showPendingReqModal,
+    });
 
   return (
     <Stack direction="column" gap={basic.spacing.s300}>
@@ -75,13 +72,14 @@ const AddUserVerificationForm = (props: IAddUserVerificationForm) => {
       </Stack>
       {showModal && (
         <DecisionModal
-        portalId="portal"
-        title={finishModal.title}
-        description={finishModal.description}
-        actionText={finishModal.actionText}
-        onCloseModal={onToggleModal}
-        onClick={onSubmit}
-      />)}
+          portalId="portal"
+          title={finishModal.title}
+          description={finishModal.description}
+          actionText={finishModal.actionText}
+          onCloseModal={onToggleModal}
+          onClick={onSubmit}
+        />
+      )}
 
       {canShowRequestProcess && (
         <RequestProcess
@@ -93,23 +91,18 @@ const AddUserVerificationForm = (props: IAddUserVerificationForm) => {
           appearance={EComponentAppearance.SUCCESS}
           onCloseRequestStatus={onCloseRequestStatus}
           onCloseProcess={onCloseProcess}
-
         />
       )}
       {canShowPendingRequest && (
         <RequestStatusModal
           portalId="portal"
           title={requestStatusMessage(saveUsers.staffName).title}
-          description={
-            requestStatusMessage(saveUsers.staffName).description
-          }
+          description={requestStatusMessage(saveUsers.staffName).description}
           requestNumber={saveUsers.requestNumber}
           onClick={onClosePendingReqModal}
           onCloseModal={onClosePendingReqModal}
           loading={false}
-          actionText={
-            requestStatusMessage(saveUsers.staffName).actionText
-          }
+          actionText={requestStatusMessage(saveUsers.staffName).actionText}
           appearance={EComponentAppearance.PRIMARY}
         />
       )}

@@ -1,9 +1,9 @@
 import { AxiosRequestConfig } from "axios";
 import { getWithRetries } from "@services/core/getWithRetries";
 import { mapBusinessUnitFromApi } from "./mappers";
-import { IBusinessUnit } from "@src/types/authAndDataProvider/IBusinessUnit";
+import { IBusinessUnit } from "@ptypes/authAndDataProvider/IBusinessUnit";
 
-import { isettingIsaasAxiosInstance } from "@src/api/isettingIsaas";
+import { isettingIsaasAxiosInstance } from "@api/isettingIsaas";
 
 const getBusinessUnits = async (
   businessManager: string,

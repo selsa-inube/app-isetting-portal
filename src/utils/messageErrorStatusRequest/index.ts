@@ -1,4 +1,4 @@
-import { errorStatusRequest } from "@src/config/errorStatusRequest";
+import { errorStatusRequest } from "@config/errorStatusRequest";
 
 const messageErrorStatusRequest = (status: number, description?: string) => {
   switch (status) {

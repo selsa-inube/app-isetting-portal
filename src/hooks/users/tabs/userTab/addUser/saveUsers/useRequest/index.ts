@@ -8,10 +8,10 @@ import { statusFlowAutomatic } from "@config/status/statusFlowAutomatic";
 import { requestStepsNames } from "@config/requestStepsNames";
 import { requestStepsInitial } from "@config/requestSteps";
 
-import { IRequestSteps } from "@src/types/requestsInProgress/IRequestSteps";
-import { ChangeToRequestTab } from "@src/context/changeToRequestTab";
-import { flowAutomaticMessages } from "@src/config/missions/missionTab/generic/flowAutomaticMessages";
-import { IUseUserRequest } from "@src/types/users/tabs/userTab/addUser/IUseRequest";
+import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
+import { ChangeToRequestTab } from "@context/changeToRequestTab";
+import { flowAutomaticMessages } from "@config/missions/missionTab/generic/flowAutomaticMessages";
+import { IUseUserRequest } from "@ptypes/users/tabs/userTab/addUser/IUseRequest";
 
 const useRequest = (props: IUseUserRequest) => {
   const {
@@ -35,7 +35,7 @@ const useRequest = (props: IUseUserRequest) => {
   const updateRequestSteps = (
     steps: IRequestSteps[],
     stepName: string,
-    newStatus: ERequestStepsStatus
+    newStatus: ERequestStepsStatus,
   ): IRequestSteps[] => {
     return steps.map((step) => {
       if (step.name === stepName) {
@@ -47,7 +47,7 @@ const useRequest = (props: IUseUserRequest) => {
       return step;
     });
   };
- 
+
   const isStatusCloseModal = (): boolean => {
     return statusRequest ? statusCloseModal.includes(statusRequest) : false;
   };
@@ -61,13 +61,12 @@ const useRequest = (props: IUseUserRequest) => {
   const changeRequestSteps = () => {
     setTimeout(() => {
       if (errorFetchRequest) {
-    
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
             requestStepsNames.requestFilled,
-            ERequestStepsStatus.ERROR
-          )
+            ERequestStepsStatus.ERROR,
+          ),
         );
         setSendData(false);
       } else {
@@ -75,8 +74,8 @@ const useRequest = (props: IUseUserRequest) => {
           updateRequestSteps(
             prev,
             requestStepsNames.requestFilled,
-            ERequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
       }
     }, 1500);
@@ -86,8 +85,8 @@ const useRequest = (props: IUseUserRequest) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            ERequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
       }
 
@@ -96,15 +95,15 @@ const useRequest = (props: IUseUserRequest) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            ERequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
         setRequestSteps((prev) =>
           updateRequestSteps(
             prev,
             requestStepsNames.requestAdded,
-            ERequestStepsStatus.COMPLETED
-          )
+            ERequestStepsStatus.COMPLETED,
+          ),
         );
       }
 
@@ -113,15 +112,14 @@ const useRequest = (props: IUseUserRequest) => {
           updateRequestSteps(
             prev,
             requestStepsNames.adding,
-            ERequestStepsStatus.ERROR
-          )
+            ERequestStepsStatus.ERROR,
+          ),
         );
       }
     }, 2000);
   };
 
   useEffect(() => {
-  
     if (!networkError?.code?.length) {
       return;
     }
@@ -129,8 +127,8 @@ const useRequest = (props: IUseUserRequest) => {
       updateRequestSteps(
         prev,
         requestStepsNames.requestFilled,
-        ERequestStepsStatus.COMPLETED
-      )
+        ERequestStepsStatus.COMPLETED,
+      ),
     );
 
     const timeout1 = setTimeout(() => {
@@ -138,8 +136,8 @@ const useRequest = (props: IUseUserRequest) => {
         updateRequestSteps(
           prev,
           requestStepsNames.adding,
-          ERequestStepsStatus.ERROR
-        )
+          ERequestStepsStatus.ERROR,
+        ),
       );
     }, 1000);
 

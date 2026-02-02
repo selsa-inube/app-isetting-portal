@@ -4,7 +4,7 @@ import { eventBus } from "@events/eventBus";
 import { EModalState } from "@enum/modalState";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IUseDeletePositions } from "@ptypes/hooks/IUseDeletePositions";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 
 const useDeletePositions = (props: IUseDeletePositions) => {
   const { data, appData } = props;

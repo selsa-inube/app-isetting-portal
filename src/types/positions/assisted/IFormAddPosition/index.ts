@@ -1,4 +1,4 @@
-import { IOptionInitialiceEntryApp } from "@src/types/forms/verificationForm/IOptionInitialiceEntryApp";
+import { IOptionInitialiceEntryApp } from "@ptypes/forms/verificationForm/IOptionInitialiceEntryApp";
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
 import { IOptionInitialiceEntry } from "../IOptionInitialiceEntry";
 

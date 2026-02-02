@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
-import { deleteWithRetries } from "@src/services/core/deleteWithRetries";
-import { isettingIsaasAxiosInstance } from "@src/api/isettingIsaas";
-import { IRequestPositions } from "@src/types/positions/assisted/IRequestPositions";
+import { deleteWithRetries } from "@services/core/deleteWithRetries";
+import { isettingIsaasAxiosInstance } from "@api/isettingIsaas";
+import { IRequestPositions } from "@ptypes/positions/assisted/IRequestPositions";
 import { mapDeletePositionToApi } from "./mapper";
 
 const deletePositions = async (
@@ -21,9 +21,7 @@ const deletePositions = async (
   const newData = await deleteWithRetries<IRequestPositions>(
     `/position-staff`,
     config,
-    mapDeletePositionToApi(
-      data,
-    ) as unknown as string[],
+    mapDeletePositionToApi(data) as unknown as string[],
     isettingIsaasAxiosInstance,
   );
 

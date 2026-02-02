@@ -2,13 +2,13 @@ import { useAddUser } from "@hooks/users/tabs/userTab/addUser";
 import { AddUserUI } from "./interface";
 import { useOptionsBusinessEntity } from "@hooks/users/tabs/userTab/addUser/optionsBusinessUnit";
 import { useRolesByBusinessUnit } from "@hooks/users/tabs/userTab/addUser/useRolesByBusinessUnit";
-import { EUseCase } from "@src/enum/useCase";
-import { AuthAndData } from "@src/context/authAndDataProvider";
+import { EUseCase } from "@enum/useCase";
+import { AuthAndData } from "@context/authAndDataProvider";
 import { useContext } from "react";
-import { useSaveUsers } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useSaveUsers";
-import { ISaveDataRequest } from "@src/types/saveData/ISaveDataRequest";
-import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
-import { useModalAddGeneral } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
+import { useSaveUsers } from "@hooks/users/tabs/userTab/addUser/saveUsers/useSaveUsers";
+import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
+import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
+import { useModalAddGeneral } from "@hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
 
 const AddUser = () => {
   const { appData } = useContext(AuthAndData);

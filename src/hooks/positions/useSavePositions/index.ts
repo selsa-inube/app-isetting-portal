@@ -4,35 +4,34 @@ import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
 import { ChangeToRequestTab } from "@context/changeToRequestTab";
 import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 
-
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
 
 import { ISaveDataResponse } from "@ptypes/requestsInProgress/saveData/ISaveDataResponse";
 import { IUseSavePositions } from "@ptypes/hooks/IUseSavePositions";
 
-import { EUseCase } from "@src/enum/useCase";
+import { EUseCase } from "@enum/useCase";
 
-import { requestStatusMessage } from "@src/config/positions/requestStatusMessage";
+import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 
-import { postAddPositions } from "@src/services/positions/postAddPositions";
-import { IRequestPositions } from "@src/types/positions/assisted/IRequestPositions";
-import { deletePositions } from "@src/services/positions/deletePositons";
-import { errorObject } from "@src/utils/errorObject";
-import { useRequest } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useRequest";
-import { IErrors } from "@src/types/hooks/IErrors";
-import { interventionHumanMessage } from "@src/config/positionsTabs/generics/interventionHumanMessage";
-import { patchPosition } from "@src/services/positions/editPositions";
+import { postAddPositions } from "@services/positions/postAddPositions";
+import { IRequestPositions } from "@ptypes/positions/assisted/IRequestPositions";
+import { deletePositions } from "@services/positions/deletePositons";
+import { errorObject } from "@utils/errorObject";
+import { useRequest } from "@hooks/users/tabs/userTab/addUser/saveUsers/useRequest";
+import { IErrors } from "@ptypes/hooks/IErrors";
+import { interventionHumanMessage } from "@config/positionsTabs/generics/interventionHumanMessage";
+import { patchPosition } from "@services/positions/editPositions";
 
 const useSavePositions = (props: IUseSavePositions) => {
   const {
-   businessUnits,
+    businessUnits,
     businessManagerCode,
     userAccount,
     data,
     token,
     sendData,
     useCase,
-        setSendData,
+    setSendData,
     setShowModal,
     setEntryDeleted,
   } = props;
@@ -55,7 +54,7 @@ const useSavePositions = (props: IUseSavePositions) => {
     try {
       const saveData = await postSaveRequest(userAccount, data, token);
       setSavePositions(saveData);
-   setShowModal(false);
+      setShowModal(false);
     } catch (error) {
       console.info(error);
       setSendData(false);
@@ -65,7 +64,7 @@ const useSavePositions = (props: IUseSavePositions) => {
       setLoadingSendData(false);
     }
   };
-  
+
   const {
     requestSteps,
     changeRequestSteps,
@@ -83,9 +82,8 @@ const useSavePositions = (props: IUseSavePositions) => {
     setHasError,
   });
 
-
-    const requestConfiguration = {
-    configurationRequestData:data?.configurationRequestData,
+  const requestConfiguration = {
+    configurationRequestData: data?.configurationRequestData,
     settingRequest: {
       requestNumber: savePositions?.requestNumber,
       settingRequestId: savePositions?.settingRequestId,
@@ -107,7 +105,7 @@ const useSavePositions = (props: IUseSavePositions) => {
         const newData = await patchPosition(
           businessUnits,
           userAccount,
-          requestConfiguration  as unknown as IRequestPositions,
+          requestConfiguration as unknown as IRequestPositions,
           businessManagerCode,
           token,
         );
@@ -121,7 +119,6 @@ const useSavePositions = (props: IUseSavePositions) => {
           requestConfiguration as unknown as IRequestPositions,
           token,
         );
-
 
         if (
           setEntryDeleted &&
@@ -139,7 +136,7 @@ const useSavePositions = (props: IUseSavePositions) => {
     }
   };
 
-const handleCloseProcess = () => {
+  const handleCloseProcess = () => {
     setSendData(false);
     if (isStatusCloseModal() || isStatusRequestFinished()) {
       handleStatusChange();
@@ -165,8 +162,6 @@ const handleCloseProcess = () => {
   useEffect(() => {
     changeRequestSteps();
   }, [statusRequest]);
-  
-
 
   const handleCloseRequestStatus = () => {
     setSendData(false);
@@ -202,7 +197,7 @@ const handleCloseProcess = () => {
 
   const isRequestStatusModal =
     showPendingReqModal && savePositions?.requestNumber ? true : false;
-    
+
   const {
     title: titleRequest,
     description: descriptionRequest,
@@ -210,7 +205,7 @@ const handleCloseProcess = () => {
   } = requestStatusMessage(savePositions?.staffName);
   return {
     savePositions,
-     requestSteps,
+    requestSteps,
     showPendingReqModal,
     loadingSendData,
     isRequestStatusModal,

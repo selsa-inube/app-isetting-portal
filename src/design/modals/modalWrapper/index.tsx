@@ -102,6 +102,8 @@ const ModalWrapper = (props: IModalWrapper) => {
             height="100%"
             width="100%"
             overflowY={overflowY}
+            direction="column"
+               gap={basic.spacing.s200}
             margin={`${basic.spacing.s300} ${basic.spacing.s0}`}
           >
             {children}

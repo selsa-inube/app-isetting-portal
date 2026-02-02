@@ -6,15 +6,12 @@ import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUn
 import { enviroment } from "@config/environment";
 import { useCaseForStaff } from "@hooks/staffPortal/useCaseForStaff";
 import { useIAuth } from "@inube/iauth-react";
-import { mainNavigation } from "@src/config/nav";
-import { basic } from "@src/design/tokens";
+import { mainNavigation } from "@config/nav";
+import { basic } from "@design/tokens";
 
 const useHome = () => {
-  const {
-    appData,
-    businessUnitsToTheStaff,
-    setUseCases,
-  } = useContext(AuthAndData);
+  const { appData, businessUnitsToTheStaff, setUseCases } =
+    useContext(AuthAndData);
   const { logout } = useIAuth();
   const { optionsCards, loading, hasError } = useOptionsByBusinessUnits({
     staffPortalId: appData.portal.publicCode,
@@ -33,10 +30,7 @@ const useHome = () => {
   const IsTablet = useMediaQuery("(max-width: 944px)");
   const SmallScreen = useMediaQuery("(max-width: 532px)");
 
-
-
   const HandleLogoClick = () => {
-
     SetCollapse(false);
   };
 

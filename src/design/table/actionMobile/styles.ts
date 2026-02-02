@@ -12,4 +12,10 @@ const StyledContainer = styled.div`
   justify-content: center;
 `;
 
-export { StyledContainerIcon, StyledContainer };
+const StyledActionModal = styled.div`
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 22px;
+`;
+
+export { StyledActionModal, StyledContainerIcon, StyledContainer };

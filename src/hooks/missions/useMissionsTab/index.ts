@@ -5,9 +5,9 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { useBusinessManagersId } from "@hooks/positions/useBusinessManageresId";
 import { PrivilegeOptionsConfig } from "@config/positions/tabs";
 import { mediaQueryTabletMain } from "@config/environment";
-import { EUseCaseTypes } from "@src/enum/useCaseTypes";
-import { useValidateUseCase } from "@src/hooks/useValidateUseCase";
-import { IMisionData } from "@src/types/missions/IMisionData";
+import { EUseCaseTypes } from "@enum/useCaseTypes";
+import { useValidateUseCase } from "@hooks/useValidateUseCase";
+import { IMisionData } from "@ptypes/missions/IMisionData";
 
 const useMissionsTab = (missionData: IMisionData[]) => {
   const [searchMission, setSearchMission] = useState<string>("");
@@ -16,7 +16,7 @@ const useMissionsTab = (missionData: IMisionData[]) => {
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const location = useLocation();
   const label = PrivilegeOptionsConfig.find(
-    (item) => item.url === location.pathname
+    (item) => item.url === location.pathname,
   );
 
   const { appData } = useContext(AuthAndData);
@@ -47,8 +47,8 @@ const useMissionsTab = (missionData: IMisionData[]) => {
     return missionData
       .filter((row) =>
         Object.values(row).some((value) =>
-          value?.toString().toLowerCase().includes(searchMission.toLowerCase())
-        )
+          value?.toString().toLowerCase().includes(searchMission.toLowerCase()),
+        ),
       )
       .filter((row) => {
         return row.missionId !== entryDeleted;

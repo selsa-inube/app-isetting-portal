@@ -1,6 +1,6 @@
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IAssignmentFormEntry } from "@ptypes/positions/forms";
-import { IOptionInitialiceEntryApp } from "@src/types/forms/verificationForm/IOptionInitialiceEntryApp";
+import { IOptionInitialiceEntryApp } from "@ptypes/forms/verificationForm/IOptionInitialiceEntryApp";
 
 interface IIUseInitializerForm {
   dataOptionsForms: IAssignmentFormEntry[];

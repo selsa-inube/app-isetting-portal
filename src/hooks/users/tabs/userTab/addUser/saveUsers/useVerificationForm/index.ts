@@ -1,5 +1,5 @@
 import { useMediaQuery } from "@inubekit/inubekit";
-import { IUseVerificationForm } from "@src/types/users/tabs/userTab/addUser/forms/verificationForm/IUseVerificationForm";
+import { IUseVerificationForm } from "@ptypes/users/tabs/userTab/addUser/forms/verificationForm/IUseVerificationForm";
 
 const useVerificationForm = (props: IUseVerificationForm) => {
   const { showRequestProcessModal, saveUsers, showPendingReqModal } = props;

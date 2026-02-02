@@ -7,23 +7,21 @@ import { postSaveRequest } from "@services/saveRequest/postSaveRequest";
 
 import { EUseCase } from "@enum/useCase";
 
-
-
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
 import { requestStatusMessage } from "@config/missions/missionTab/generic/requestStatusMessage";
 import { IUseSaveMission } from "@ptypes/hooks/missions/IUseSaveMission";
 
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
-import { IRequestMissions } from "@src/types/missions/assisted/IRequestMissions";
+import { IRequestMissions } from "@ptypes/missions/assisted/IRequestMissions";
 
-import { postAddMission } from "@src/services/missions/addMission/postAddMission";
-import { deleteMission } from "@src/services/missions/deleteMission";
-import { IRequestDeleteMissions } from "@src/types/missions/assisted/IRequestMissions/IDeleteDataMission";
-import { patchMission } from "@src/services/missions/editMission";
-import { errorObject } from "@src/utils/errorObject";
-import { useRequest } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useRequest";
-import { IErrors } from "@src/types/hooks/IErrors";
-import { interventionHumanMessage } from "@src/config/positionsTabs/generics/interventionHumanMessage";
+import { postAddMission } from "@services/missions/addMission/postAddMission";
+import { deleteMission } from "@services/missions/deleteMission";
+import { IRequestDeleteMissions } from "@ptypes/missions/assisted/IRequestMissions/IDeleteDataMission";
+import { patchMission } from "@services/missions/editMission";
+import { errorObject } from "@utils/errorObject";
+import { useRequest } from "@hooks/users/tabs/userTab/addUser/saveUsers/useRequest";
+import { IErrors } from "@ptypes/hooks/IErrors";
+import { interventionHumanMessage } from "@config/positionsTabs/generics/interventionHumanMessage";
 
 const useSaveMission = (props: IUseSaveMission) => {
   const {
@@ -39,7 +37,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     setEntryDeleted,
   } = props;
   const [saveMission, setsaveMission] = useState<ISaveDataResponse>();
-   const [statusRequest, setStatusRequest] = useState<string>();
+  const [statusRequest, setStatusRequest] = useState<string>();
   const { addFlag } = useFlag();
   const [showPendingReqModal, setShowPendingReqModal] = useState(false);
   const [loadingSendData, setLoadingSendData] = useState(false);
@@ -50,14 +48,14 @@ const useSaveMission = (props: IUseSaveMission) => {
   const { setChangeTab } = useContext(ChangeToRequestTab);
 
   const navigate = useNavigate();
-  const navigatePage = "/users";
+  const navigatePage = "/missions";
 
   const fetchSaveMissionData = async () => {
     setLoadingSendData(true);
     try {
       const saveData = await postSaveRequest(userAccount, data, token);
       setsaveMission(saveData);
-            setShowModal(false);
+      setShowModal(false);
     } catch (error) {
       setSendData(false);
       setHasError(true);
@@ -114,14 +112,6 @@ const useSaveMission = (props: IUseSaveMission) => {
           token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
-
-        if (
-          setEntryDeleted &&
-          newData?.settingRequest?.requestStatus &&
-          statusRequestFinished.includes(newData?.settingRequest?.requestStatus)
-        ) {
-          setEntryDeleted(data.configurationRequestData.missionId as string);
-        }
       }
       if (useCase === EUseCase.EDIT) {
         const newData = await patchMission(
@@ -136,6 +126,7 @@ const useSaveMission = (props: IUseSaveMission) => {
     } catch (error) {
       console.info(error);
       setErrorFetchRequest(true);
+      setHasError(true);
       setNetworkError(errorObject(error));
       setShowModal(false);
     }
@@ -150,8 +141,16 @@ const useSaveMission = (props: IUseSaveMission) => {
         navigate(navigatePage);
       }, 3000);
     }
+    if (
+      setEntryDeleted &&
+      statusRequest &&
+      statusRequestFinished.includes(statusRequest)
+    ) {
+      setTimeout(() => {
+        setEntryDeleted(data.configurationRequestData.missionId as string);
+      }, 3000);
+    }
   };
-  
   useEffect(() => {
     if (!sendData) return;
     fetchSaveMissionData();
@@ -163,13 +162,13 @@ const useSaveMission = (props: IUseSaveMission) => {
     }
   }, [saveMission]);
 
-   useEffect(() => {
+  useEffect(() => {
     changeRequestSteps();
   }, [statusRequest]);
 
- const handleCloseRequestStatus = () => {
+  const handleCloseRequestStatus = () => {
     setSendData(false);
-        navigate(navigatePage);
+    navigate(navigatePage);
     setChangeTab(true);
     addFlag({
       title: interventionHumanMessage.SuccessfulCreateRequestIntHuman.title,

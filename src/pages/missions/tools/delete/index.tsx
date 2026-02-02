@@ -15,7 +15,7 @@ import { IDelete } from "@ptypes/positions/actions/IDelete";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
 const Delete = (props: IDelete) => {
-  const { data } = props;
+  const { data,setEntryDeleted } = props;
   const { appData } = useContext(AuthAndData);
 
   const {
@@ -44,6 +44,7 @@ const Delete = (props: IDelete) => {
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
     setShowModal,
+    setEntryDeleted,
     token: appData.token,
     businessManagerCode: appData.businessManager.publicCode
   });

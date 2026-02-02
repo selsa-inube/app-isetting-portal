@@ -28,7 +28,8 @@ const TableUI = (props: ITableUI) => {
     firstEntryInPage,
     loading,
     lastEntryInPage,
-    pageLength,
+    hasEntries,
+    isPaginated,
     titles,
     widthPercentageTotalColumns,
     columnWidths,
@@ -85,7 +86,7 @@ const TableUI = (props: ITableUI) => {
                     type="label"
                     size={mediaActionOpen ? "medium" : "large"}
                     appearance={EComponentAppearance.DARK}
-                    ellipsis
+                    textAlign="center"
                   >
                     {emptyDataMessage
                       ? `${emptyDataMessage}`
@@ -95,18 +96,22 @@ const TableUI = (props: ITableUI) => {
               </Tr>
             ) : (
               <>
-                {entries.length > 0 ? (
+                {hasEntries ? (
                   entries.map((entry, index) => (
-                    <Tr key={index} zebra={index % 2 === 1} border="top">
+                    <Tr key={index} zebra={index % 2 === 1} border="bottom">
                       {TitleColumns.map((title, index) => (
                         <Td
                           key={`${index}-${entry[title.id]}`}
                           align={getAlignment(title.id, entry[title.id])}
                           type="custom"
                         >
-                          <Text size="small" ellipsis={ellipsisCell}>
-                            {entry[title.id]}
-                          </Text>
+                          {typeof entry[title.id] !== "string" ? (
+                            entry[title.id]
+                          ) : (
+                            <Text size="small" ellipsis={ellipsisCell}>
+                              {entry[title.id]}
+                            </Text>
+                          )}
                         </Td>
                       ))}
                       {ShowAction({
@@ -124,7 +129,7 @@ const TableUI = (props: ITableUI) => {
                         type="label"
                         size="large"
                         appearance={EComponentAppearance.DARK}
-                        ellipsis={mediaActionOpen}
+                        ellipsis
                       >
                         {tableLabels.emptySearch}
                       </Text>
@@ -137,12 +142,14 @@ const TableUI = (props: ITableUI) => {
         )}
       </Tbody>
 
-      {filteredEntries.length > pageLength && (
+      {isPaginated && (
         <Tfoot>
-          <Tr border="bottom">
+          <Tr>
             <Td
               colSpan={
-                mediaActionOpen ? titles.length : titles.length + actions.length
+                mediaActionOpen
+                  ? titles.length + 1
+                  : titles.length + actions.length
               }
               type="custom"
               align="left"

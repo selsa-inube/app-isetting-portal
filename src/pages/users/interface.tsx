@@ -8,8 +8,8 @@ import { usersTitle } from "@config/users/usersTitle";
 import { IUsersUI } from "@ptypes/users/IUsersUI";
 import { UsersTab } from "./tabs/userTab";
 import { RequestInProgress } from "./tabs/requestInProgressTab";
-import { MenuAddButton } from "@src/design/feedback/menuAddButton";
-import { StyledMenuContainer } from "@src/design/navigation/styles";
+import { MenuAddButton } from "@design/feedback/menuAddButton";
+import { StyledMenuContainer } from "@design/navigation/styles";
 
 const UsersUI = (props: IUsersUI) => {
   const {

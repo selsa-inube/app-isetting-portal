@@ -5,7 +5,7 @@ import { formatDate } from "@utils/date/formatDate";
 import { deleteLabels } from "@config/assignments/deleteLabels";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IUseDeleteAssignments } from "@ptypes/hooks/assignments/IUseDeleteAssignments";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 
 const useDeleteAssignments = (props: IUseDeleteAssignments) => {
   const { data, appData } = props;

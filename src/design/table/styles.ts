@@ -1,16 +1,23 @@
 import styled from "styled-components";
+import { basic } from "../tokens";
 
 interface IStyledContainer {
   $multipleTables?: boolean;
   $pageLength?: number;
   $entriesLength?: number;
   $isTablet?: boolean;
-  $withGeneralizedTitle?: boolean;
 }
 
 const StyledContainerTable = styled.div<IStyledContainer>`
   position: relative;
   width: 100%;
+  border-radius: 8px;
+
+  td {
+    padding: ${({ $isTablet }) =>
+      $isTablet ? `${basic.spacing.s100}` : `${basic.spacing.s200}`};
+  }
+
   & > td,
   & > div {
     justify-content: center;
@@ -19,21 +26,24 @@ const StyledContainerTable = styled.div<IStyledContainer>`
   ${({ $isTablet }) =>
     $isTablet &&
     `
-  
-    & > td {
+    &: > td {
       justify-content: flex-start;
+ 
     }
 
-  `}
-
-  ${({ $withGeneralizedTitle, $isTablet }) =>
-    $isTablet &&
-    !$withGeneralizedTitle &&
-    `
-    & > div > div {
-       overflow: auto;
+    &: > div > div {
+     overflow: auto;
   }
   `}
 `;
 
-export { StyledContainerTable };
+const StyledTableOverflow = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  & > div {
+    overflow: visible !important;
+  }
+`;
+export { StyledContainerTable, StyledTableOverflow };

@@ -1,4 +1,4 @@
-import { EComponentAppearance } from "@src/enum/appearances";
+import { EComponentAppearance } from "@enum/appearances";
 
 interface IModalWrapper {
   children: React.ReactNode;

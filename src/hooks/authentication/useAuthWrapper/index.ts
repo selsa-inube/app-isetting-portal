@@ -1,5 +1,5 @@
-import { decrypt } from "@src/utils/decrypt";
-import { encrypt } from "@src/utils/encrypt";
+import { decrypt } from "@utils/decrypt";
+import { encrypt } from "@utils/encrypt";
 import { useEffect } from "react";
 
 const useAuthWrapper = () => {

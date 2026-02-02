@@ -9,9 +9,9 @@ import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { AddPositionUI } from "./interface";
-import { EUseCase } from "@src/enum/useCase";
-import { IOptionInitialiceEntry } from "@src/types/positions/assisted/IOptionInitialiceEntry";
-import { useModalAddGeneral } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
+import { EUseCase } from "@enum/useCase";
+import { IOptionInitialiceEntry } from "@ptypes/positions/assisted/IOptionInitialiceEntry";
+import { useModalAddGeneral } from "@hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
 
 const AddPosition = () => {
   const { appData } = useContext(AuthAndData);
@@ -49,7 +49,7 @@ const AddPosition = () => {
 
   const {
     savePositions,
-   requestSteps,
+    requestSteps,
     showPendingReqModal,
     handleCloseRequestStatus,
     handleClosePendingReqModal,
@@ -60,7 +60,7 @@ const AddPosition = () => {
     errorData,
     handleToggleErrorModal,
   } = useSavePositions({
-        useCase: EUseCase.ADD,
+    useCase: EUseCase.ADD,
     businessUnits: appData.businessUnit.publicCode,
     businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
@@ -69,10 +69,9 @@ const AddPosition = () => {
     token: appData.token,
     setSendData: setShowRequestProcessModal,
     setShowModal,
-
   });
 
- const { modalData, showDecision } = useModalAddGeneral({
+  const { modalData, showDecision } = useModalAddGeneral({
     showGoBackModal: showModalApplicationStatus,
     loading: loadingSendData,
     hasError,
@@ -121,7 +120,7 @@ const AddPosition = () => {
       options={options as IOptionInitialiceEntry[]}
       showPendingReqModal={showPendingReqModal}
       onClosePendingReqModal={handleClosePendingReqModal}
-       modalData={modalData}
+      modalData={modalData}
       showDecision={showDecision}
     />
   );

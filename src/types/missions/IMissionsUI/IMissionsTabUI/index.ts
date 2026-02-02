@@ -1,10 +1,10 @@
 import { PrivilegeOptionsConfig } from "@config/positions/tabs";
-import { IMisionData } from "@ptypes/missions/IMisionData";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 interface IMissionsTabUI {
   handleSearchMissions: (e: React.ChangeEvent<HTMLInputElement>) => void;
   searchMission: string;
-  data: IMisionData[];
+  data: IEntry[];
   loading: boolean;
   smallScreen: boolean;
   columnWidths: number[];

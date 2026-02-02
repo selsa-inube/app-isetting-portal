@@ -7,9 +7,7 @@ import { catalogName } from "@config/positions/catalogName";
 import { PositionsUI } from "./interface";
 
 const Positions = () => {
-
-  const { appData } =
-    useContext(AuthAndData);
+  const { appData } = useContext(AuthAndData);
   const {
     isSelected,
     handleTabChange,
@@ -20,7 +18,6 @@ const Positions = () => {
     formik,
     optionsUnits,
     comparisonData,
-    unit,
     positionTab,
     showPositionsTab,
     showRequestTab,
@@ -52,13 +49,11 @@ const Positions = () => {
       comparisonData={comparisonData}
       onChange={handleChange}
       businessUnitSigla={appData.businessUnit.publicCode}
-      selectedUnit={unit}
       positionTab={positionTab}
       showPositionsTab={showPositionsTab}
       showRequestTab={showRequestTab}
     />
   );
-}
-
+};
 
 export { Positions };

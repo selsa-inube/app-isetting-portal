@@ -15,6 +15,7 @@ import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAs
 import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { ERequestType } from "@enum/request/requestType";
+import { useStore } from "../usePositionBusinessUnit";
 
 const useAddStaffRoles = (props: IUseAddStaffRoles) => {
   const { rolesData } = props;
@@ -27,9 +28,6 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
       descriptionPosition: "",
     },
     rolesStaff: {
-      values: [],
-    },
-    applicationStaff: {
       values: [],
     },
   };
@@ -50,12 +48,9 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
       isValid: false,
       values: initalValuesPositions.rolesStaff.values,
     },
-    applicationStaff: {
-      isValid: false,
-      values: initalValuesPositions.applicationStaff.values,
-    },
   });
 
+  const businessUnitCode = useStore((store) => store.businessUnitCode);
   const navigate = useNavigate();
 
   const onGoBack = () => {
@@ -179,6 +174,8 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
         positionsByRole: rolesDataEndpoint,
+        businessManagerCode: appData.businessManager.publicCode,
+        businessUnitCode: businessUnitCode,
       },
     });
   };

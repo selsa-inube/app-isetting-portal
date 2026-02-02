@@ -24,13 +24,12 @@ import { patchPosition } from "@services/positions/editPositions";
 
 const useSavePositions = (props: IUseSavePositions) => {
   const {
-    businessUnits,
-    businessManagerCode,
+    useCase,
     userAccount,
+    businessUnits,
     data,
     token,
     sendData,
-    useCase,
     setSendData,
     setShowModal,
     setEntryDeleted,
@@ -56,7 +55,6 @@ const useSavePositions = (props: IUseSavePositions) => {
       setSavePositions(saveData);
       setShowModal(false);
     } catch (error) {
-      console.info(error);
       setSendData(false);
       setHasError(true);
       setErrorData(errorObject(error));
@@ -64,7 +62,6 @@ const useSavePositions = (props: IUseSavePositions) => {
       setLoadingSendData(false);
     }
   };
-
   const {
     requestSteps,
     changeRequestSteps,
@@ -87,6 +84,8 @@ const useSavePositions = (props: IUseSavePositions) => {
     settingRequest: {
       requestNumber: savePositions?.requestNumber,
       settingRequestId: savePositions?.settingRequestId,
+      requestStatus: savePositions?.requestStatus,
+      staffName: savePositions?.staffName,
     },
   };
   const fetchRequestData = async () => {
@@ -96,7 +95,6 @@ const useSavePositions = (props: IUseSavePositions) => {
           businessUnits,
           userAccount,
           requestConfiguration as unknown as IRequestPositions,
-          businessManagerCode,
           token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
@@ -106,7 +104,6 @@ const useSavePositions = (props: IUseSavePositions) => {
           businessUnits,
           userAccount,
           requestConfiguration as unknown as IRequestPositions,
-          businessManagerCode,
           token,
         );
 
@@ -120,17 +117,12 @@ const useSavePositions = (props: IUseSavePositions) => {
           token,
         );
 
-        if (
-          setEntryDeleted &&
-          newData?.settingRequest?.requestStatus &&
-          statusRequestFinished.includes(newData?.settingRequest?.requestStatus)
-        ) {
-          setEntryDeleted(data.configurationRequestData.missionId as string);
-        }
+        setStatusRequest(newData.settingRequest?.requestStatus);
       }
     } catch (error) {
       console.info(error);
       setErrorFetchRequest(true);
+      setHasError(true);
       setNetworkError(errorObject(error));
       setShowModal(false);
     }
@@ -145,6 +137,15 @@ const useSavePositions = (props: IUseSavePositions) => {
       setTimeout(() => {
         navigate(navigatePage);
       }, 3000);
+    }
+    if (
+      setEntryDeleted &&
+      statusRequest &&
+      statusRequestFinished.includes(statusRequest)
+    ) {
+      setTimeout(() => {
+        setEntryDeleted(data.configurationRequestData.positionId as string);
+      }, 2000);
     }
   };
 

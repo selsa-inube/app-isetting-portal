@@ -2,6 +2,7 @@ import { MdOutlineRemoveRedEye, MdOutlineDelete } from "react-icons/md";
 import { Stack, Icon, Divider } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { StyledCard, StyledContainer } from "./styles";
+import { EComponentAppearance } from "@enum/appearances";
 
 interface IRulesViewCard {
   children: React.ReactNode;
@@ -29,7 +30,7 @@ const RulesViewCard = (props: IRulesViewCard) => {
         <Divider />
         <Stack gap={basic.spacing.s16} justifyContent="end">
           <Icon
-            appearance="dark"
+            appearance={EComponentAppearance.DARK}
             size="24px"
             cursorHover
             icon={<MdOutlineRemoveRedEye />}
@@ -39,7 +40,7 @@ const RulesViewCard = (props: IRulesViewCard) => {
           />
           <Icon
             cursorHover
-            appearance="dark"
+            appearance={EComponentAppearance.DARK}
             size="24px"
             icon={<MdOutlineDelete />}
             onClick={() => {

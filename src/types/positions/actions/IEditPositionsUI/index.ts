@@ -7,7 +7,6 @@ import { IRequestSteps } from "@ptypes/feedback/requestProcess/IRequestSteps";
 import { IOptionInitialiceEntry } from "@ptypes/positions/assisted/IOptionInitialiceEntry";
 
 import { ISaveDataResponse } from "@ptypes/requestsInProgress/saveData/ISaveDataResponse";
-import { IOptionInitialiceEntryApp } from "@ptypes/forms/verificationForm/IOptionInitialiceEntryApp";
 
 interface IEditPositionsUI {
   editPositionTabsConfig: IEditPositionsTabsConfig;
@@ -30,7 +29,7 @@ interface IEditPositionsUI {
   smallScreen: boolean;
   options: IOptionInitialiceEntry[];
   setSelectedToggle: React.Dispatch<React.SetStateAction<IFormEntry[]>>;
-  roles: IOptionInitialiceEntryApp[];
+  roles: IFormEntry[];
   onCloseProcess: () => void;
 }
 

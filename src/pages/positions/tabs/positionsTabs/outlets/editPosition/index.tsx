@@ -16,8 +16,8 @@ const EditPositions = () => {
   const location = useLocation();
   const { data } = location.state || {};
   const { appData } = useContext(AuthAndData);
-  const { rolesStaff } = useFetchRolesStaff(appData.token);
 
+  const { rolesStaff } = useFetchRolesStaff(appData.token);
   const {
     formValues,
     generalInformationRef,
@@ -47,7 +47,6 @@ const EditPositions = () => {
     showPendingReqModal,
   } = useSavePositions({
     businessUnits: appData.businessUnit.publicCode,
-    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,

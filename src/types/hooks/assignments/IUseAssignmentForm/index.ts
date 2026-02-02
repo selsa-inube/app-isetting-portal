@@ -1,13 +1,11 @@
-import { IFilterTag } from "@isettingkit/business-rules";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
+import { ILabels } from "../filter/ILabel";
 
 interface IUseAssignmentForm {
   entries: IFormEntry[];
   setSelectedToggle: React.Dispatch<React.SetStateAction<IFormEntry[]>>;
   editDataOption: boolean;
-  setShowModal?: React.Dispatch<React.SetStateAction<boolean>>;
-  withFilter: boolean;
-  appliedFilters?: IFilterTag[];
+  filters?: ILabels;
 }
 
 export type { IUseAssignmentForm };

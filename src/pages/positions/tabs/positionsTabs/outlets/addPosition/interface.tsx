@@ -46,6 +46,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
     onClosePendingReqModal,
     modalData,
     showDecision,
+    onCloseProcess,
   } = props;
 
   return (
@@ -95,7 +96,6 @@ const AddPositionUI = (props: IAddPositionUI) => {
                 setSelectedToggle={setSelectedToggle}
                 onButtonClick={onNextStep}
                 onReset={handlePreviousStep}
-                withFilter
               />
             )}
             {currentStep === 3 && (
@@ -123,7 +123,7 @@ const AddPositionUI = (props: IAddPositionUI) => {
                 showPendingReqModal={showPendingReqModal}
                 loading={loading}
                 onFinishForm={onFinishForm}
-                onCloseProcess={onCloseRequestStatus}
+                onCloseProcess={onCloseProcess}
               />
             )}
           </Stack>

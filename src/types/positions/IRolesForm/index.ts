@@ -1,13 +1,12 @@
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
-import { IOptionInitialiceEntryApp } from "@ptypes/forms/verificationForm/IOptionInitialiceEntryApp";
+import { IOptionRolesInitialiceEntry } from "../assisted/IOptionRolesInitialiceEntry";
 
 interface IRolesForm {
   entries: IFormEntry[];
-  withFilter: boolean;
   onReset: () => void;
   onButtonClick: () => void;
   setSelectedToggle: React.Dispatch<React.SetStateAction<IFormEntry[]>>;
-  options: IOptionInitialiceEntryApp[];
+  options: IOptionRolesInitialiceEntry[];
   readOnly?: boolean;
   editDataOption?: boolean;
 }

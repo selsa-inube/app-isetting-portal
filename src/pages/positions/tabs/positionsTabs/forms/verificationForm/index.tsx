@@ -12,6 +12,7 @@ import { finishModal } from "@config/assignments/assisted/finishModal";
 import { RequestProcess } from "@design/feedback/requestProcess";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { RequestStatusModal } from "@design/modals/requestStatusModal";
+import { portalId } from "@config/portalId";
 
 const VerificationForm = (props: IVerificationForm) => {
   const {
@@ -72,7 +73,7 @@ const VerificationForm = (props: IVerificationForm) => {
       </Stack>
       {showModal && (
         <DecisionModal
-          portalId="portal"
+          portalId={portalId}
           title={finishModal.title}
           description={finishModal.description}
           actionText={finishModal.actionText}
@@ -82,7 +83,7 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowRequestProcess && (
         <RequestProcess
-          portalId="portal"
+          portalId={portalId}
           saveData={savePositions}
           descriptionRequestProcess={requestProcessMessage}
           descriptionRequestStatus={requestStatusMessage}
@@ -94,7 +95,7 @@ const VerificationForm = (props: IVerificationForm) => {
       )}
       {canShowPendingRequest && (
         <RequestStatusModal
-          portalId="portal"
+          portalId={portalId}
           title={requestStatusMessage(savePositions.staffName).title}
           description={
             requestStatusMessage(savePositions.staffName).description

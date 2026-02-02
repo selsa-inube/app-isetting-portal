@@ -26,9 +26,8 @@ const PositionsUI = (props: IPositionsUI) => {
     formik,
     optionsUnits,
     comparisonData,
-    selectedUnit,
     businessUnitSigla,
-    positionTab, 
+    positionTab,
     showPositionsTab,
     showRequestTab,
     onChange,
@@ -106,12 +105,8 @@ const PositionsUI = (props: IPositionsUI) => {
                 onChange={handleTabChange}
               />
 
-              {showPositionsTab && (
-                <PositionsTab businessUnitCode={selectedUnit} />
-              )}
-              { showRequestTab && (
-                <RequestsInProgressTab />
-              )}
+              {showPositionsTab && <PositionsTab />}
+              {showRequestTab && <RequestsInProgressTab />}
             </Stack>
           </Stack>
         </Stack>

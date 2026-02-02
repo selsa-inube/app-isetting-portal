@@ -12,7 +12,6 @@ import { AddPositionUI } from "./interface";
 import { EUseCase } from "@enum/useCase";
 import { IOptionInitialiceEntry } from "@ptypes/positions/assisted/IOptionInitialiceEntry";
 import { useModalAddGeneral } from "@hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
-
 const AddPosition = () => {
   const { appData } = useContext(AuthAndData);
 
@@ -51,18 +50,18 @@ const AddPosition = () => {
     savePositions,
     requestSteps,
     showPendingReqModal,
-    handleCloseRequestStatus,
-    handleClosePendingReqModal,
     errorFetchRequest,
     networkError,
     loadingSendData,
     hasError,
     errorData,
     handleToggleErrorModal,
+    handleCloseRequestStatus,
+    handleClosePendingReqModal,
+    handleCloseProcess,
   } = useSavePositions({
     useCase: EUseCase.ADD,
     businessUnits: appData.businessUnit.publicCode,
-    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
@@ -122,6 +121,7 @@ const AddPosition = () => {
       onClosePendingReqModal={handleClosePendingReqModal}
       modalData={modalData}
       showDecision={showDecision}
+      onCloseProcess={handleCloseProcess}
     />
   );
 };

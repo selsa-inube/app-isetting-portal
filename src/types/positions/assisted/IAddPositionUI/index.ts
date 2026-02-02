@@ -7,7 +7,6 @@ import { IFormAddPosition } from "../IFormAddPosition";
 import { IOptionInitialiceEntry } from "../IOptionInitialiceEntry";
 
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
-import { IOptionInitialiceEntryApp } from "@ptypes/forms/verificationForm/IOptionInitialiceEntryApp";
 import { IModalData } from "@ptypes/users/tabs/userTab/addUser/IModalData";
 interface IAddPositionUI {
   currentStep: number;
@@ -28,7 +27,7 @@ interface IAddPositionUI {
   formValues: IFormAddPosition;
   smallScreen: boolean;
   disabled: boolean;
-  roles: IOptionInitialiceEntryApp[];
+  roles: IFormEntry[];
   onFinishForm: () => void;
   showModal: boolean;
   showModalApplicationStatus: boolean;
@@ -45,6 +44,7 @@ interface IAddPositionUI {
   requestSteps: IRequestSteps[];
   modalData: IModalData;
   showDecision: boolean;
+  onCloseProcess: () => void;
 }
 
 export type { IAddPositionUI };

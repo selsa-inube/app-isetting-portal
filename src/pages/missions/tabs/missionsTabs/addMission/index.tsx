@@ -52,13 +52,13 @@ const AddMission = () => {
   } = useSaveMission({
     useCase: EUseCase.ADD,
     businessUnits: appData.businessUnit.publicCode,
+    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
     setSendData: setShowRequestProcessModal,
     setShowModal,
     token: appData.token,
-    businessManagerCode: appData.businessManager.publicCode,
   });
 
   const { modalData, showDecision } = useModalAddGeneral({

@@ -122,7 +122,7 @@ const MissionsTabUI = (props: IMissionsTabUI) => {
           <Table
             id="portal"
             titles={titlesOptions}
-            entries={data ?? []}
+            entries={data}
             actions={actionsConfig(setEntryDeleted, detailsLabels.titleDetails)}
             breakpoints={breakPoints}
             filter={searchMission}

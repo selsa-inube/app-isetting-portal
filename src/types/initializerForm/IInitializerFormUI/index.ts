@@ -1,10 +1,8 @@
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import { IAssignmentFormEntry, IMessageState } from "@ptypes/positions/forms";
-import { IOptionInitialiceEntryApp } from "@ptypes/forms/verificationForm/IOptionInitialiceEntryApp";
 
 interface IInitializerFormUI {
   dataOptionsForms: IAssignmentFormEntry[];
-  dataOptionsValueSelect: IOptionInitialiceEntryApp[];
   isLoading: boolean;
   handleSubmitForm: () => void;
   handleReset: () => void;

@@ -7,7 +7,6 @@ import { BorderStack } from "@design/layout/borderStack";
 import { searchLabels } from "@config/searchLabels";
 import { EComponentAppearance } from "@enum/appearances";
 import { Checkpicker } from "@inubekit/inubekit";
-import { ToggleTableGroup } from "./tableGroup";
 
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const {
@@ -32,7 +31,6 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     withFilter,
     filterTitle,
     filterPlaceholder,
-    columnsTitles,
   } = props;
 
   const showFilter = !!(withFilter && filterTitle && onFilterChange && fields);
@@ -45,7 +43,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
       boxSizing="border-box"
     >
       <BorderStack
-        border="dark"
+        border={EComponentAppearance.DARK}
         borderRadius={basic.spacing.s100}
         padding={basic.spacing.s300}
         gap={basic.spacing.s250}
@@ -104,25 +102,17 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
           </Stack>
           <BorderStack
             direction="column"
-            border="dark"
+            border={EComponentAppearance.DARK}
             borderRadius={basic.spacing.s100}
             padding={basic.spacing.s200}
             gap={basic.spacing.s200}
             height="300px"
-            overflowY="auto"
+            overflowY="true"
           >
-            {columnsTitles && columnsTitles.length > 0 ? (
-              <ToggleTableGroup
-                entries={filteredEntries}
-                onSelectCheckChange={onSelectCheckChange}
-                columnsTitles={columnsTitles}
-              />
-            ) : (
-              <ToggleGroup
-                entries={filteredEntries}
-                onSelectCheckChange={onSelectCheckChange}
-              />
-            )}
+            <ToggleGroup
+              entries={filteredEntries}
+              onSelectCheckChange={onSelectCheckChange}
+            />
           </BorderStack>
         </Stack>
       </BorderStack>

@@ -15,7 +15,7 @@ import { IDelete } from "@ptypes/positions/actions/IDelete";
 import { EUseCase } from "@enum/useCase";
 
 const Delete = (props: IDelete) => {
-  const { data } = props;
+  const { data, setEntryDeleted } = props;
   const { appData } = useContext(AuthAndData);
 
   const {
@@ -38,13 +38,13 @@ const Delete = (props: IDelete) => {
     handleCloseRequestStatus,
   } = useSavePositions({
     businessUnits: appData.businessUnit.publicCode,
-    businessManagerCode: appData.businessManager.publicCode,
     userAccount: appData.user.userAccount,
     sendData: showRequestProcessModal,
     data: saveData as ISaveDataRequest,
     token: appData.token,
     setSendData: setShowRequestProcessModal,
     setShowModal,
+    setEntryDeleted,
     useCase: EUseCase.DELETE,
   });
 

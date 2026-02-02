@@ -104,21 +104,21 @@ const useSaveMission = (props: IUseSaveMission) => {
         );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
-      if (useCase === EUseCase.DELETE) {
-        const newData = await deleteMission(
-          businessUnits,
-          userAccount,
-          requestConfiguration as unknown as IRequestDeleteMissions,
-          token,
-        );
-        setStatusRequest(newData.settingRequest?.requestStatus);
-      }
       if (useCase === EUseCase.EDIT) {
         const newData = await patchMission(
           businessUnits,
           userAccount,
           requestConfiguration as unknown as IRequestMissions,
           businessManagerCode,
+          token,
+        );
+        setStatusRequest(newData.settingRequest?.requestStatus);
+      }
+      if (useCase === EUseCase.DELETE) {
+        const newData = await deleteMission(
+          businessUnits,
+          userAccount,
+          requestConfiguration as unknown as IRequestDeleteMissions,
           token,
         );
         setStatusRequest(newData.settingRequest?.requestStatus);

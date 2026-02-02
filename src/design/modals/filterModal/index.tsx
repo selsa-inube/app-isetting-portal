@@ -42,12 +42,13 @@ const FilterModal = (props: IFilterModal) => {
 
   if (!node) {
     throw new Error(
-      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
+      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly.",
     );
   }
   const filterSelectedOptions = () => {
     return options.filter(
-      (option) => !selectedOptions.some((selected) => selected.id === option.id)
+      (option) =>
+        !selectedOptions.some((selected) => selected.id === option.id),
     );
   };
 
@@ -61,7 +62,11 @@ const FilterModal = (props: IFilterModal) => {
       <StyledModal $smallScreen={isMobile}>
         <Stack direction="column" gap={basic.spacing.s200}>
           <Stack alignItems="center" justifyContent="space-between">
-            <Text type="headline" size="small" appearance="dark">
+            <Text
+              type="headline"
+              size="small"
+              appearance={EComponentAppearance.DARK}
+            >
               {title}
             </Text>
             <StyledContainerButton>
@@ -96,7 +101,7 @@ const FilterModal = (props: IFilterModal) => {
                   removable
                   onClose={() =>
                     setSelectedOptions(
-                      selectedOptions.filter((item) => item.id !== option.id)
+                      selectedOptions.filter((item) => item.id !== option.id),
                     )
                   }
                 />
@@ -143,7 +148,7 @@ const FilterModal = (props: IFilterModal) => {
         </Stack>
       </StyledModal>
     </Blanket>,
-    node
+    node,
   );
 };
 

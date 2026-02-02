@@ -1,10 +1,10 @@
-import { errorStatusUseCases } from "@src/config/errorStatusUseCases";
+import { errorStatusUseCases } from "@config/errorStatusUseCases";
 
 const messageErrorUseCases = (
   status: number,
   useCase: string,
   option: string,
-  description: string
+  description: string,
 ) => {
   switch (status) {
     case 400:

@@ -12,16 +12,16 @@ import { requestStatusMessage } from "@config/missions/missionTab/generic/reques
 import { IUseSaveMission } from "@ptypes/hooks/missions/IUseSaveMission";
 
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
-import { IRequestMissions } from "@src/types/missions/assisted/IRequestMissions";
+import { IRequestMissions } from "@ptypes/missions/assisted/IRequestMissions";
 
-import { postAddMission } from "@src/services/missions/addMission/postAddMission";
-import { deleteMission } from "@src/services/missions/deleteMission";
-import { IRequestDeleteMissions } from "@src/types/missions/assisted/IRequestMissions/IDeleteDataMission";
-import { patchMission } from "@src/services/missions/editMission";
-import { errorObject } from "@src/utils/errorObject";
-import { useRequest } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useRequest";
-import { IErrors } from "@src/types/hooks/IErrors";
-import { interventionHumanMessage } from "@src/config/positionsTabs/generics/interventionHumanMessage";
+import { postAddMission } from "@services/missions/addMission/postAddMission";
+import { deleteMission } from "@services/missions/deleteMission";
+import { IRequestDeleteMissions } from "@ptypes/missions/assisted/IRequestMissions/IDeleteDataMission";
+import { patchMission } from "@services/missions/editMission";
+import { errorObject } from "@utils/errorObject";
+import { useRequest } from "@hooks/users/tabs/userTab/addUser/saveUsers/useRequest";
+import { IErrors } from "@ptypes/hooks/IErrors";
+import { interventionHumanMessage } from "@config/positionsTabs/generics/interventionHumanMessage";
 
 const useSaveMission = (props: IUseSaveMission) => {
   const {

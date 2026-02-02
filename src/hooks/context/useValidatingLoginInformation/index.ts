@@ -6,7 +6,7 @@ import { IAppData } from "@ptypes/authAndDataProvider/IAppData";
 import { IBusinessUnitsPortalStaff } from "@ptypes/staffPortal/IBusinessUnitsPortalStaff";
 import { useLanguage } from "@hooks/language";
 import { useIAuth } from "@inube/iauth-react";
-import { useBusinessUnitManagers } from "@src/hooks/staffPortal/useBusinessUnitManager";
+import { useBusinessUnitManagers } from "@hooks/staffPortal/useBusinessUnitManager";
 
 const useValidatingLoginInformation = () => {
   const {
@@ -20,7 +20,7 @@ const useValidatingLoginInformation = () => {
     portalPublicCode: portalData,
   });
 
-const { businessUnitManagersData } = useBusinessUnitManagers({
+  const { businessUnitManagersData } = useBusinessUnitManagers({
     portalPublicCode: portalData,
   });
   const [useCases, setUseCases] = useState<string>(
@@ -36,7 +36,6 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
     return savedBusinessUnits ? JSON.parse(savedBusinessUnits) : [];
   });
 
-  
   let useCasesData: string[] = [];
   try {
     useCasesData = JSON.parse(useCases || "[]") as string[];
@@ -60,12 +59,11 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
     },
     businessUnit: {
       publicCode: "",
-      abbreviatedName:  "",
-      languageIso:  "",
-      urlLogo:  "",
-      countryIso:  "",
-      iconUrl:  "",
-
+      abbreviatedName: "",
+      languageIso: "",
+      urlLogo: "",
+      countryIso: "",
+      iconUrl: "",
     },
     user: {
       userAccount: user.id || "",
@@ -73,7 +71,7 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
       identificationDocumentNumber: user.id || "",
     },
     useCasesByStaff: useCasesData ?? [],
-    language:  "",
+    language: "",
     token: "",
   });
   useEffect(() => {
@@ -105,12 +103,10 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
   }, [portalData, portalCode]);
 
   useEffect(() => {
-    
     if (
       businessUnitManagersData.publicCode &&
       businessUnitManagersData.publicCode.length > 0
     ) {
-      
       setAppData((prev) => ({
         ...prev,
         businessUnit: {
@@ -120,15 +116,16 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
           urlLogo: businessUnitManagersData.urlLogo,
           countryIso: businessUnitManagersData.countryIso,
           iconUrl: businessUnitManagersData.iconUrl,
-          languageIso: businessUnitManagersData.languageIso || languageBrowser || "es",
+          languageIso:
+            businessUnitManagersData.languageIso || languageBrowser || "es",
         },
-        language: businessUnitManagersData.languageIso || languageBrowser || "es",
+        language:
+          businessUnitManagersData.languageIso || languageBrowser || "es",
       }));
     }
   }, [businessUnitManagersData]);
 
-
-    useEffect(() => {
+  useEffect(() => {
     if (!businessManagersData) return;
 
     if (
@@ -147,8 +144,6 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
       }));
     }
   }, [businessManagersData]);
-
-  
 
   useEffect(() => {
     localStorage.setItem("useCasesByStaff", useCases);
@@ -197,7 +192,7 @@ const { businessUnitManagersData } = useBusinessUnitManagers({
       setUseCases,
       setBusinessUnitsToTheStaff,
     }),
-    [appData,  businessUnitsToTheStaff, useCases],
+    [appData, businessUnitsToTheStaff, useCases],
   );
 
   return AuthAndData;

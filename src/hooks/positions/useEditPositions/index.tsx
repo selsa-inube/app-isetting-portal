@@ -8,10 +8,10 @@ import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInf
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IUseEditPositions } from "@ptypes/hooks/IUseEditPositions";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { useStore } from "../usePositionBusinessUnit";
-import { normalizeString } from "@src/utils/normalizeRoles";
+import { normalizeString } from "@utils/normalizeRoles";
 
 const useEditPositions = (props: IUseEditPositions) => {
   const { data, appData, rolesData } = props;

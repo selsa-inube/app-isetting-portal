@@ -4,7 +4,7 @@ import { IAssignmentsData } from "@ptypes/assignments/IAssignmentsData";
 import { IEnumerators } from "@ptypes/IEnumerators";
 import { getAssignmentsData } from "@services/assignments/getAssignments";
 import { optionsFromEnumerators } from "@utils/optionsFromEnumerators";
-import { AuthAndData } from "@src/context/authAndDataProvider";
+import { AuthAndData } from "@context/authAndDataProvider";
 
 const useAssignmentsData = () => {
   const [loading, setLoading] = useState(true);

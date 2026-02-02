@@ -9,18 +9,18 @@ import { statusRequestFinished } from "@config/status/statusRequestFinished";
 import { ISaveDataResponse } from "@ptypes/requestsInProgress/saveData/ISaveDataResponse";
 import { IUseSavePositions } from "@ptypes/hooks/IUseSavePositions";
 
-import { EUseCase } from "@src/enum/useCase";
+import { EUseCase } from "@enum/useCase";
 
-import { requestStatusMessage } from "@src/config/positions/requestStatusMessage";
+import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 
-import { postAddPositions } from "@src/services/positions/postAddPositions";
-import { IRequestPositions } from "@src/types/positions/assisted/IRequestPositions";
-import { deletePositions } from "@src/services/positions/deletePositons";
-import { errorObject } from "@src/utils/errorObject";
-import { useRequest } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useRequest";
-import { IErrors } from "@src/types/hooks/IErrors";
-import { interventionHumanMessage } from "@src/config/positionsTabs/generics/interventionHumanMessage";
-import { patchPosition } from "@src/services/positions/editPositions";
+import { postAddPositions } from "@services/positions/postAddPositions";
+import { IRequestPositions } from "@ptypes/positions/assisted/IRequestPositions";
+import { deletePositions } from "@services/positions/deletePositons";
+import { errorObject } from "@utils/errorObject";
+import { useRequest } from "@hooks/users/tabs/userTab/addUser/saveUsers/useRequest";
+import { IErrors } from "@ptypes/hooks/IErrors";
+import { interventionHumanMessage } from "@config/positionsTabs/generics/interventionHumanMessage";
+import { patchPosition } from "@services/positions/editPositions";
 
 const useSavePositions = (props: IUseSavePositions) => {
   const {

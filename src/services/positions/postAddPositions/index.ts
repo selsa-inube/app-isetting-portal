@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import { postWithRetries } from "@services/core/postWithRetries";
 import { mapAddPositionToApi } from "./mappers";
-import { isettingIsaasAxiosInstance } from "@src/api/isettingIsaas";
-import { IRequestPositions } from "@src/types/positions/assisted/IRequestPositions";
+import { isettingIsaasAxiosInstance } from "@api/isettingIsaas";
+import { IRequestPositions } from "@ptypes/positions/assisted/IRequestPositions";
 
 const postAddPositions = async (
   businessUnit: string,

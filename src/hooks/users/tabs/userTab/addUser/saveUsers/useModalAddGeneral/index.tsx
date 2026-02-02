@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { EComponentAppearance } from "@enum/appearances";
 import { operationTypes } from "@config/useCase";
 import { goBackModal } from "@config/goBackModal";
-import { IUseModalAddData } from "@src/types/hooks/IUseModalAddPayroll";
-import { errorModal } from "@src/config/request/errorModal";
-import { messageErrorStatusRequest } from "@src/utils/messageErrorStatusRequest";
-import { getDescriptionError } from "@src/utils/getDescriptionError";
-import { messageErrorUseCases } from "@src/utils/messageErrorUseCases";
-import { missionTitle } from "@src/config/missions/missionTab/missionTitle";
+import { IUseModalAddData } from "@ptypes/hooks/IUseModalAddPayroll";
+import { errorModal } from "@config/request/errorModal";
+import { messageErrorStatusRequest } from "@utils/messageErrorStatusRequest";
+import { getDescriptionError } from "@utils/getDescriptionError";
+import { messageErrorUseCases } from "@utils/messageErrorUseCases";
+import { missionTitle } from "@config/missions/missionTab/missionTitle";
 
 const useModalAddGeneral = (props: IUseModalAddData) => {
   const {

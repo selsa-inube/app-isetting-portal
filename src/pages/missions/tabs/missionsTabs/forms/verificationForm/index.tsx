@@ -16,8 +16,8 @@ import { RequestProcess } from "@design/feedback/requestProcess";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
 
 import { VerificationBoxes } from "./verificationBoxes";
-import { portalId } from "@src/config/portalId";
-import { finishModal } from "@src/config/assignments/assisted/finishModal";
+import { portalId } from "@config/portalId";
+import { finishModal } from "@config/assignments/assisted/finishModal";
 
 const VerificationForm = (props: IVerificationForm) => {
   const {

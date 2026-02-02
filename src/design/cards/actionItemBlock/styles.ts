@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { inube } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
-import { mediaQueryTabletMain } from "@src/config/environment";
+import { mediaQueryTabletMain } from "@config/environment";
 
 const StyledActionItemBlock = styled(Link)`
   box-sizing: border-box;

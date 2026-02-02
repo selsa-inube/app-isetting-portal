@@ -8,7 +8,7 @@ import { formatDate } from "@utils/date/formatDate";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { addAssignmentsLabels } from "@config/assignments/assisted/addAssignmentsLabels";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 
 const useAssignmentNavigation = (props: IUseAssignmentNavigation) => {
   const {
@@ -66,7 +66,7 @@ const useAssignmentNavigation = (props: IUseAssignmentNavigation) => {
     const compare = compareObjects(initialValues, formValues);
     const compareOfficialCharge = compareObjects(
       officialInChargeRef.current?.initialValues,
-      officialInChargeRef.current?.values
+      officialInChargeRef.current?.values,
     );
     if (!compare || !compareOfficialCharge) {
       setShowGoBackModal(true);
@@ -95,7 +95,7 @@ const useAssignmentNavigation = (props: IUseAssignmentNavigation) => {
         (officialInChargeRef.current &&
           !compareObjects(
             officialInChargeRef.current.initialValues,
-            officialInChargeRef.current.values
+            officialInChargeRef.current.values,
           ));
 
       if (hasUnsavedChanges) {
@@ -113,7 +113,7 @@ const useAssignmentNavigation = (props: IUseAssignmentNavigation) => {
   }, [formValues, initialValues, officialInChargeRef, canRefresh]);
 
   const validateSelectedToggle = selectedToggle?.some(
-    (unit) => unit.isActive === true
+    (unit) => unit.isActive === true,
   );
 
   const handleSubmitClick = () => {

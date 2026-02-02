@@ -11,8 +11,8 @@ import { IAbsenceEntry } from "@ptypes/assignments/IAbsenceEntry";
 import { IAssignmentsData } from "@ptypes/assignments/IAssignmentsData";
 import { IUseAssignmentsTab } from "@ptypes/hooks/IUseAssignmentsTab";
 import { useAssignmentsData } from "../useAssignmentsData";
-import { EUseCaseTypes } from "@src/enum/useCaseTypes";
-import { useValidateUseCase } from "@src/hooks/useValidateUseCase";
+import { EUseCaseTypes } from "@enum/useCaseTypes";
+import { useValidateUseCase } from "@hooks/useValidateUseCase";
 
 const useAssignmentsTab = (props: IUseAssignmentsTab) => {
   const { showAbsenceModal } = props;
@@ -72,7 +72,7 @@ const useAssignmentsTab = (props: IUseAssignmentsTab) => {
   useEffect(() => {
     if (entryDeleted) {
       setAssingments((prev) =>
-        prev.filter((entry) => entry.id !== entryDeleted)
+        prev.filter((entry) => entry.id !== entryDeleted),
       );
     }
   }, [entryDeleted]);
@@ -84,9 +84,9 @@ const useAssignmentsTab = (props: IUseAssignmentsTab) => {
         validationSchema.shape({
           isActive: validationRules.boolean,
           absentOfficial: validationRules.string.required(
-            validationMessages.required
+            validationMessages.required,
           ),
-        })
+        }),
       );
       setDisabledButtonModal(disabledButton);
     } else {
@@ -106,7 +106,7 @@ const useAssignmentsTab = (props: IUseAssignmentsTab) => {
   };
 
   const handleSelectCheckChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const { name, checked } = event.target;
     formik.setFieldValue(name, checked);

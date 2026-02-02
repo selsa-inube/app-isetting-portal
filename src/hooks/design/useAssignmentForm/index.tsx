@@ -7,8 +7,8 @@ import { EComponentAppearance } from "@enum/appearances";
 import { actionButtonsLabels } from "@config/assignments/assignmentForm/actionButtonsLabels";
 import { IUseAssignmentForm } from "@ptypes/hooks/assignments/IUseAssignmentForm";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
-import { assignmentLabels } from "@src/config/assignments/assignmentForm/assigmentLabels";
-import { mediaQueryMobile } from "@src/config/environment";
+import { assignmentLabels } from "@config/assignments/assignmentForm/assigmentLabels";
+import { mediaQueryMobile } from "@config/environment";
 
 const useAssignmentForm = (props: IUseAssignmentForm) => {
   const { entries, setSelectedToggle, filters, editDataOption } = props;

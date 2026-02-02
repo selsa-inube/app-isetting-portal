@@ -5,7 +5,7 @@ import { eventBus } from "@events/eventBus";
 import { deleteLabels } from "@config/assignments/details/deleteLabels";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IUseDeleteDetailsAssignments } from "@ptypes/hooks/assignments/IUseDeleteDetailsAssignments";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 
 const useDeleteDetailsAssignments = (props: IUseDeleteDetailsAssignments) => {
   const { data, appData } = props;

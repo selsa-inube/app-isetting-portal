@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import { postWithRetries } from "@services/core/postWithRetries";
 import { mapAddUsersToApi } from "./mappers";
-import { isettingIsaasAxiosInstance } from "@src/api/isettingIsaas";
-import { IRequestUsers } from "@src/types/users/tabs/userTab/addUser/IRequestUsers";
+import { isettingIsaasAxiosInstance } from "@api/isettingIsaas";
+import { IRequestUsers } from "@ptypes/users/tabs/userTab/addUser/IRequestUsers";
 
 const postAddUsers = async (
   businessUnit: string,

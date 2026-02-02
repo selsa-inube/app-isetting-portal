@@ -7,7 +7,7 @@ import { IFormAddPosition } from "../IFormAddPosition";
 import { IOptionInitialiceEntry } from "../IOptionInitialiceEntry";
 
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
-import { IModalData } from "@src/types/users/tabs/userTab/addUser/IModalData";
+import { IModalData } from "@ptypes/users/tabs/userTab/addUser/IModalData";
 interface IAddPositionUI {
   currentStep: number;
   generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry> | null>;

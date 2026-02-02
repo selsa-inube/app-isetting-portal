@@ -1,5 +1,5 @@
 import { IGeneralUserFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IGeneralFormValues";
-import { IFormEntry } from "@src/types/assignments/assignmentForm/IFormEntry";
+import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 
 interface IUseOptionsBusinessEntity {
   formValues: IGeneralUserFormValues;

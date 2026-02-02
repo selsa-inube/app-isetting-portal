@@ -4,8 +4,8 @@ import { IGeneralUserFormValues } from "../forms/IGeneralFormValues";
 import { IFormEntry } from "@ptypes/assignments/assignmentForm/IFormEntry";
 import React, { Dispatch, SetStateAction } from "react";
 import { IPositionByBusinessUnit } from "../forms/ByBusinessUnit/IPositionByBusinessUnit";
-import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
-import { IRequestSteps } from "@src/types/requestsInProgress/IRequestSteps";
+import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
+import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
 import { IModalData } from "../IModalData";
 
 interface IAddUserUI {

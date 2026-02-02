@@ -13,7 +13,7 @@ import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { mediaQueryTabletMain } from "@config/environment";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { IPositionTabsConfig } from "@ptypes/positions/IPositionTabsConfig";
-import { useBusinessUnits } from "@src/hooks/useBusinessUnits";
+import { useBusinessUnits } from "@hooks/useBusinessUnits";
 import { useStore } from "../usePositionBusinessUnit";
 
 const usePositionsTabs = () => {

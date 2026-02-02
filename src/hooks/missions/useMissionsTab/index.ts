@@ -5,9 +5,9 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { useBusinessManagersId } from "@hooks/positions/useBusinessManageresId";
 import { PrivilegeOptionsConfig } from "@config/positions/tabs";
 import { mediaQueryTabletMain } from "@config/environment";
-import { EUseCaseTypes } from "@src/enum/useCaseTypes";
-import { useValidateUseCase } from "@src/hooks/useValidateUseCase";
-import { IMisionData } from "@src/types/missions/IMisionData";
+import { EUseCaseTypes } from "@enum/useCaseTypes";
+import { useValidateUseCase } from "@hooks/useValidateUseCase";
+import { IMisionData } from "@ptypes/missions/IMisionData";
 
 const useMissionsTab = (missionData: IMisionData[]) => {
   const [searchMission, setSearchMission] = useState<string>("");

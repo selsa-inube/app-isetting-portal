@@ -14,9 +14,9 @@ import { mediaQueryTablet } from "@config/environment";
 import { ITable } from "@ptypes/design/table/ITable";
 import { TableUI } from "./interface";
 import { StyledContainerTable, StyledTableOverflow } from "./styles";
-import { getQueriesArray } from "@src/utils/table/breakpoint/getQueriesArray";
-import { findCurrentMediaQuery } from "@src/utils/table/findCurrentMediaQuery";
-import { titleColumns } from "@src/utils/table/titleColumns";
+import { getQueriesArray } from "@utils/table/breakpoint/getQueriesArray";
+import { findCurrentMediaQuery } from "@utils/table/findCurrentMediaQuery";
+import { titleColumns } from "@utils/table/titleColumns";
 
 const Table = (props: ITable) => {
   const {

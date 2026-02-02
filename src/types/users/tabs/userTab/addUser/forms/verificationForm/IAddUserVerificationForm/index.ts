@@ -1,6 +1,6 @@
-import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
+import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 
-import { IRequestSteps } from "@src/types/requestsInProgress/IRequestSteps";
+import { IRequestSteps } from "@ptypes/requestsInProgress/IRequestSteps";
 import { IAddUserVerificationStep } from "../IAddUserVerificationData/IVerificationStep";
 
 interface IAddUserVerificationForm {

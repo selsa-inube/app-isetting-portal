@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 import { IUseFilter } from "@ptypes/hooks/positions/IUseFilter";
-import { ILabels } from "@src/types/hooks/assignments/filter/ILabel";
+import { ILabels } from "@ptypes/hooks/assignments/filter/ILabel";
 
 const useFilterRoles = (props: IUseFilter) => {
   const { options } = props;

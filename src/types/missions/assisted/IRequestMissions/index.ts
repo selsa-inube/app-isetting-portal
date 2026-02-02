@@ -1,4 +1,4 @@
-import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
+import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDataMission } from "./ISaveDataMission";
 
 interface IRequestMissions {

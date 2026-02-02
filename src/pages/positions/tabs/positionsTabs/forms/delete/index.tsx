@@ -12,7 +12,7 @@ import { RequestStatusModal } from "@design/modals/requestStatusModal";
 import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { DecisionModalLabel } from "@config/positions/decisionModalText";
 import { IDelete } from "@ptypes/positions/actions/IDelete";
-import { EUseCase } from "@src/enum/useCase";
+import { EUseCase } from "@enum/useCase";
 
 const Delete = (props: IDelete) => {
   const { data, setEntryDeleted } = props;

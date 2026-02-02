@@ -5,8 +5,8 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { useBusinessManagersId } from "@hooks/positions/useBusinessManageresId";
 import { PrivilegeOptionsConfig } from "@config/positions/tabs";
 import { mediaQueryTabletMain } from "@config/environment";
-import { useValidateUseCase } from "@src/hooks/useValidateUseCase";
-import { EUseCaseTypes } from "@src/enum/useCaseTypes";
+import { useValidateUseCase } from "@hooks/useValidateUseCase";
+import { EUseCaseTypes } from "@enum/useCaseTypes";
 
 const useManageSearchAndPageControl = (businessUnitCode: string) => {
   const [searchPosition, setSearchPosition] = useState<string>("");

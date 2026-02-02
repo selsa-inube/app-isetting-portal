@@ -1,6 +1,6 @@
 import { useManageSearchAndPageControl } from "@hooks/positions/useManageSearchAndPageControl";
 import { PositionsTabUI } from "./interface";
-import { useStore } from "@src/hooks/positions/usePositionBusinessUnit";
+import { useStore } from "@hooks/positions/usePositionBusinessUnit";
 
 const PositionsTab = () => {
   const loading = false;

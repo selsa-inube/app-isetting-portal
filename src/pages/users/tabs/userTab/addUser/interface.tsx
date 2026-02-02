@@ -16,8 +16,8 @@ import { BusinessEntityForm } from "./forms/businessEntity";
 import { PositionByBusinessUnit } from "./forms/positionByBusinessUnit";
 import { RolesByBusinessUnit } from "./forms/rolesByBusinessUnit";
 import { AddUserVerificationForm } from "./forms/verificationForm";
-import { portalId } from "@src/config/portalId";
-import { EComponentAppearance } from "@src/enum/appearances";
+import { portalId } from "@config/portalId";
+import { EComponentAppearance } from "@enum/appearances";
 
 const AddUserUI = (props: IAddUserUI) => {
   const {
@@ -140,7 +140,8 @@ const AddUserUI = (props: IAddUserUI) => {
             {currentStep === addUserUIConfig.verificationStep && (
               <AddUserVerificationForm
                 updatedData={{
-                  generalInformationStep: initialValues.generalInformationStep.values,
+                  generalInformationStep:
+                    initialValues.generalInformationStep.values,
 
                   missionForStaffStep: initialValues.missionForStaffStep.values,
 
@@ -148,15 +149,15 @@ const AddUserUI = (props: IAddUserUI) => {
 
                   businessEntityStep: {
                     values: entriesAdditionalBusinessEntity.filter(
-                      (e) => e.isActive
+                      (e) => e.isActive,
                     ),
                   },
                   positionByBusinessUnitStep: {
                     values: positionsByBusinessUnit,
                   },
-                  roleByBusinessUnitStep:
-                    rolesByBusinessUnit.filter((e) => e.isActive),
-
+                  roleByBusinessUnitStep: rolesByBusinessUnit.filter(
+                    (e) => e.isActive,
+                  ),
                 }}
                 onPreviousStep={onPreviousStep}
                 handleStepChange={onSubmit}

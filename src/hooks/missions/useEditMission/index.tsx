@@ -11,7 +11,7 @@ import { IFormAddMission } from "@ptypes/missions/assisted/IFormAddMission";
 import { IUseEditMission } from "@ptypes/hooks/missions/IUseEditMission";
 import { IGeneralInformationEntry } from "@ptypes/missions/assisted/IGeneralInformationEntry";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 
 const useEditMission = (props: IUseEditMission) => {
   const { data, appData } = props;
@@ -29,7 +29,7 @@ const useEditMission = (props: IUseEditMission) => {
   };
 
   const [isSelected, setIsSelected] = useState<string>(
-    editMissionTabsConfig.generalInformation.id
+    editMissionTabsConfig.generalInformation.id,
   );
 
   const [formValues, setFormValues] =
@@ -61,7 +61,7 @@ const useEditMission = (props: IUseEditMission) => {
       generalInformationRef.current?.values.nameMission !== undefined &&
       (generalInformationRef.current?.values.nameMission !== data.missionName ||
         generalInformationRef.current?.values.descriptionMission !==
-        data.descriptionUse)
+          data.descriptionUse)
     ) {
       configurationRequestData.abbreviatedName =
         generalInformationRef.current?.values.nameMission ?? "";
@@ -114,7 +114,7 @@ const useEditMission = (props: IUseEditMission) => {
 
   const handleToggleEditedModal = () => {
     setShowEditedModal(!showEditedModal);
-  }
+  };
 
   const handleReset = () => {
     setShowGoBackModal(true);

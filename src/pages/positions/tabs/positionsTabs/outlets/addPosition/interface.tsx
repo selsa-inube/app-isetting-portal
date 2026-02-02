@@ -12,7 +12,7 @@ import { crumbsAddPosition } from "@config/positions/addPositions/navigation";
 import { addPositionTitle } from "@config/positions/addPositions/addPositionTitle";
 import { controlsAssisted } from "@config/controlsAssisted";
 import { IAddPositionUI } from "@ptypes/positions/assisted/IAddPositionUI";
-import { portalId } from "@src/config/portalId";
+import { portalId } from "@config/portalId";
 
 const AddPositionUI = (props: IAddPositionUI) => {
   const {

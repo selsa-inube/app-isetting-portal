@@ -14,7 +14,7 @@ import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IDataToAssignmentFormEntry } from "@ptypes/positions/assisted/IDataToAssignmentFormEntry";
 import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 import { useStore } from "../usePositionBusinessUnit";
 
 const useAddStaffRoles = (props: IUseAddStaffRoles) => {

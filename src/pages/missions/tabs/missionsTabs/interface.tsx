@@ -11,7 +11,7 @@ import { missionsTabLabels } from "@config/missions/missionTab/missionsTabLabels
 import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
 
 import { IMissionsTabUI } from "@ptypes/missions/IMissionsUI/IMissionsTabUI";
-import { disabledModal } from "@src/config/disabledModal";
+import { disabledModal } from "@config/disabledModal";
 import { portalId } from "@config/portalId";
 import { DecisionModal } from "@design/modals/decisionModal";
 import { StyledContainer } from "./styles";

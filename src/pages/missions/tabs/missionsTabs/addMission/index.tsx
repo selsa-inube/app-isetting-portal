@@ -7,7 +7,7 @@ import { assistedSteps } from "@config/missions/missionTab/assisted/assistedStep
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { AddMissionUI } from "./interface";
-import { useModalAddGeneral } from "@src/hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
+import { useModalAddGeneral } from "@hooks/users/tabs/userTab/addUser/saveUsers/useModalAddGeneral";
 
 const AddMission = () => {
   const {

@@ -3,7 +3,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { MissionsTabUI } from "./interface";
 import { useMissionsTab } from "@hooks/missions/useMissionsTab";
 import { useMissionsData } from "@hooks/missions/useMissionsData";
-import { IEntry } from "@src/types/design/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 const MissionsTab = () => {
   const loading = false;

@@ -13,9 +13,9 @@ import { Table } from "@design/table";
 import { IEntry } from "@ptypes/design/table/IEntry";
 import { EComponentAppearance } from "@enum/appearances";
 import { StyledContainer } from "./styles";
-import { disabledModal } from "@src/config/disabledModal";
-import { portalId } from "@src/config/portalId";
-import { DecisionModal } from "@src/design/modals/decisionModal";
+import { disabledModal } from "@config/disabledModal";
+import { portalId } from "@config/portalId";
+import { DecisionModal } from "@design/modals/decisionModal";
 
 const PositionsTabUI = (props: IPositionsTabUI) => {
   const {

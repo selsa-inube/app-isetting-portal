@@ -1,5 +1,5 @@
 import { inube } from "@inubekit/inubekit";
-import { basic } from "@src/design/tokens";
+import { basic } from "@design/tokens";
 import styled from "styled-components";
 interface IStyledContainer {
   $smallScreen: boolean;

@@ -1,4 +1,4 @@
-import { IUseOutsideClick } from "@src/types/design/IUseOutsideClick";
+import { IUseOutsideClick } from "@ptypes/design/IUseOutsideClick";
 import { useEffect } from "react";
 
 const useOutsideClick = (props: IUseOutsideClick) => {

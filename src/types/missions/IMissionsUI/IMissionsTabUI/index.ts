@@ -1,5 +1,5 @@
 import { PrivilegeOptionsConfig } from "@config/positions/tabs";
-import { IEntry } from "@src/types/design/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 interface IMissionsTabUI {
   handleSearchMissions: (e: React.ChangeEvent<HTMLInputElement>) => void;

@@ -13,7 +13,7 @@ import { positionsTabsConfig } from "@config/positionsTabs/tabs";
 import { mediaQueryTabletMain } from "@config/environment";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { IPositionTabsConfig } from "@ptypes/positions/IPositionTabsConfig";
-import { useBusinessUnits } from "@src/hooks/useBusinessUnits";
+import { useBusinessUnits } from "@hooks/useBusinessUnits";
 
 const usePositionsTabs = () => {
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
@@ -31,7 +31,6 @@ const usePositionsTabs = () => {
   const widthFirstColumn = smallScreen ? 60 : 20;
 
   const { appData } = useContext(AuthAndData);
-
 
   const navigate = useNavigate();
 

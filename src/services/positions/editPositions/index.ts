@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from "axios";
-import { isettingIsaasAxiosInstance } from "@src/api/isettingIsaas";
-import { patchWithRetries } from "@src/services/core/patchWithRetries";
+import { isettingIsaasAxiosInstance } from "@api/isettingIsaas";
+import { patchWithRetries } from "@services/core/patchWithRetries";
 import { mapAddPositionToApi } from "../postAddPositions/mappers";
-import { IRequestPositions } from "@src/types/positions/assisted/IRequestPositions";
+import { IRequestPositions } from "@ptypes/positions/assisted/IRequestPositions";
 
 const patchPosition = async (
   businessUnit: string,
@@ -22,7 +22,11 @@ const patchPosition = async (
   const newData = await patchWithRetries<IRequestPositions>(
     `/position-staff`,
     config,
-    mapAddPositionToApi(data, businessManagerCode,businessUnit) as unknown as string[],
+    mapAddPositionToApi(
+      data,
+      businessManagerCode,
+      businessUnit,
+    ) as unknown as string[],
     isettingIsaasAxiosInstance,
   );
 

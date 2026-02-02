@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { basic } from "@src/design/tokens";
+import { basic } from "@design/tokens";
 
 interface IStyledCollapseIcon {
   $collapse: boolean;
@@ -8,7 +8,7 @@ interface IStyledCollapseIcon {
   $smallScreen?: boolean;
 }
 interface IStyledContainer {
-   $isTablet: boolean;
+  $isTablet: boolean;
 }
 interface IStyledFooter {
   $isMobile: boolean;
@@ -38,7 +38,7 @@ const StyledLogo = styled.img`
 `;
 
 const StyledTitle = styled.div<IStyledContainer>`
-   padding: ${({ $isTablet }) =>
+  padding: ${({ $isTablet }) =>
     $isTablet
       ? `var(--spacing-S200, ${basic.spacing.s200})`
       : `${basic.spacing.s400} ${basic.spacing.s0} ${basic.spacing.s200}`};

@@ -7,8 +7,8 @@ import { IFormAddPosition } from "../IFormAddPosition";
 import { IOptionInitialiceEntry } from "../IOptionInitialiceEntry";
 
 import { IGeneralInformationEntry } from "../IGeneralInformationEntry";
-import { IOptionInitialiceEntryApp } from "@src/types/forms/verificationForm/IOptionInitialiceEntryApp";
-import { IModalData } from "@src/types/users/tabs/userTab/addUser/IModalData";
+import { IOptionInitialiceEntryApp } from "@ptypes/forms/verificationForm/IOptionInitialiceEntryApp";
+import { IModalData } from "@ptypes/users/tabs/userTab/addUser/IModalData";
 interface IAddPositionUI {
   currentStep: number;
   generalInformationRef: React.RefObject<FormikProps<IGeneralInformationEntry> | null>;
@@ -42,8 +42,8 @@ interface IAddPositionUI {
   setShowMultipurposeModal: React.Dispatch<React.SetStateAction<boolean>>;
   onClosePendingReqModal: () => void;
   options: IOptionInitialiceEntry[];
-  requestSteps: IRequestSteps[]; 
-   modalData: IModalData;
+  requestSteps: IRequestSteps[];
+  modalData: IModalData;
   showDecision: boolean;
 }
 

@@ -5,7 +5,7 @@ import { eventBus } from "@events/eventBus";
 import { deleteLabels } from "@config/missions/deleteLabels";
 import { IUseDeleteMission } from "@ptypes/hooks/missions/IUseDeleteMission";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 
 const useDeleteMission = (props: IUseDeleteMission) => {
   const { data, appData } = props;

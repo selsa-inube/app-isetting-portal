@@ -1,4 +1,4 @@
-import { IBusinessUnit } from "@src/types/authAndDataProvider/IBusinessUnit";
+import { IBusinessUnit } from "@ptypes/authAndDataProvider/IBusinessUnit";
 
 const mapBusinessUnitFromApi = (data: IBusinessUnit[]) => {
   return data.map((item) => ({

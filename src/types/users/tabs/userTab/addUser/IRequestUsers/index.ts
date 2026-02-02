@@ -1,4 +1,4 @@
-import { ISaveDataResponse } from "@src/types/saveData/ISaveDataResponse";
+import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { IAddUserVerificationData } from "../forms/verificationForm/IAddUserVerificationData";
 
 interface IRequestUsers {

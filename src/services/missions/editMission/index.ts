@@ -1,8 +1,8 @@
 import { AxiosRequestConfig } from "axios";
-import { isettingIsaasHttp } from "@src/api/isettingIsaas/commands";
-import { IRequestMissions } from "@src/types/missions/assisted/IRequestMissions";
+import { isettingIsaasHttp } from "@api/isettingIsaas/commands";
+import { IRequestMissions } from "@ptypes/missions/assisted/IRequestMissions";
 import { mapAddMissionToApi } from "../addMission/postAddMission/mappers";
-import { patchWithRetries } from "@src/services/core/patchWithRetries";
+import { patchWithRetries } from "@services/core/patchWithRetries";
 
 const patchMission = async (
   businessUnit: string,
@@ -23,8 +23,7 @@ const patchMission = async (
     `/missions`,
     config,
     mapAddMissionToApi(data, businessManagerCode) as unknown as string[],
-    isettingIsaasHttp
-,
+    isettingIsaasHttp,
   );
 
   return newData;

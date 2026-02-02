@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdPending } from "react-icons/md";
 import { Icon } from "@inubekit/inubekit";
 
@@ -12,14 +12,11 @@ import {
   StyledContainer,
   StyledContainerIcon,
 } from "./styles";
-import { IModalPos } from "@src/types/design/table/IModalPos";
-;
 
 const ActionMobile = (props: IActionMobile) => {
   const { actions, entry } = props;
 
   const [showModal, setShowModal] = useState(false);
-  const [modalPos, seIModalPos] = useState<IModalPos>({ top: 0, left: 0 });
 
   const modalRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
@@ -42,43 +39,11 @@ const ActionMobile = (props: IActionMobile) => {
     };
   }, []);
 
-  const calculateModalPos = () => {
-    const iconEl = iconRef.current;
-    if (!iconEl) return;
-
-    const rect = iconEl.getBoundingClientRect();
-
-    const GAP_PX = 8;
-    const ALIGN_LEFT = 22;
-    const top = rect.bottom + GAP_PX;
-    const left = rect.left + ALIGN_LEFT;
-
-    seIModalPos({ top, left });
-  };
-
   const handleToggleModal = () => {
     setShowModal(true);
   };
 
   const handleCloseModal = () => setShowModal(false);
-
-  useLayoutEffect(() => {
-    if (!showModal) return;
-    calculateModalPos();
-  }, [showModal]);
-
-  useEffect(() => {
-    if (!showModal) return;
-
-    const onUpdate = () => calculateModalPos();
-    window.addEventListener("resize", onUpdate);
-    window.addEventListener("scroll", onUpdate, true);
-
-    return () => {
-      window.removeEventListener("resize", onUpdate);
-      window.removeEventListener("scroll", onUpdate, true);
-    };
-  }, [showModal]);
 
   useOutsideClick({
     primaryRef: modalRef,
@@ -102,12 +67,7 @@ const ActionMobile = (props: IActionMobile) => {
       </StyledContainerIcon>
 
       {showModal && (
-        <StyledActionModal
-          id="actionModal"
-          ref={modalRef}
-          top={modalPos.top}
-          left={modalPos.left}
-        >
+        <StyledActionModal id="actionModal" ref={modalRef}>
           <ActionsModal
             actions={actions}
             entry={entry}

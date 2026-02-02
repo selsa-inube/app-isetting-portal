@@ -8,9 +8,8 @@ import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInf
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IFormAddPosition } from "@ptypes/positions/assisted/IFormAddPosition";
 import { IUseEditPositions } from "@ptypes/hooks/IUseEditPositions";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 import { useMediaQuery } from "@inubekit/inubekit";
-
 
 const useEditPositions = (props: IUseEditPositions) => {
   const { data, appData, rolesData } = props;
@@ -42,7 +41,7 @@ const useEditPositions = (props: IUseEditPositions) => {
   };
 
   const [isSelected, setIsSelected] = useState<string>(
-    editPositionTabsConfig.generalInformation.id
+    editPositionTabsConfig.generalInformation.id,
   );
   const transformedApplicationData = rolesData?.map((role) => ({
     id: role.application?.appId ?? "",
@@ -57,10 +56,8 @@ const useEditPositions = (props: IUseEditPositions) => {
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
   const [errorFetchSaveData, setErrorFetchSaveData] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [selectedToggle, setSelectedToggle] = useState<
-    IFormEntry[]
-  >([]);
- const smallScreen = useMediaQuery("(max-width: 990px)");
+  const [selectedToggle, setSelectedToggle] = useState<IFormEntry[]>([]);
+  const smallScreen = useMediaQuery("(max-width: 990px)");
   const [initialRoles, setInitialRoles] = useState<
     {
       id: string;
@@ -94,7 +91,7 @@ const useEditPositions = (props: IUseEditPositions) => {
 
       const roles = transformedRolesData?.map((role) => {
         const applicationStaff = transformedApplicationData?.find(
-          (app) => app.id !== role.id
+          (app) => app.id !== role.id,
         );
         return {
           ...role,
@@ -142,7 +139,7 @@ const useEditPositions = (props: IUseEditPositions) => {
       (generalInformationRef.current?.values.namePosition !==
         data.positionName ||
         generalInformationRef.current?.values.descriptionPosition !==
-        data.descriptionUse)
+          data.descriptionUse)
     ) {
       configurationRequestData.abbreviatedName =
         generalInformationRef.current?.values.namePosition ?? "";
@@ -165,7 +162,6 @@ const useEditPositions = (props: IUseEditPositions) => {
         descriptionUse:
           formValues.generalInformation.values.descriptionPosition,
         positionByRole: rolesDataEndpoint,
-
       },
     });
     setShowRequestProcessModal(true);
@@ -225,7 +221,7 @@ const useEditPositions = (props: IUseEditPositions) => {
         setSelectedToggle((prev) =>
           updatedRole.isActive
             ? (prev ?? []).concat(updatedRole)
-            : (prev ?? []).filter((item) => item.id !== updatedRole.id)
+            : (prev ?? []).filter((item) => item.id !== updatedRole.id),
         );
 
         return updatedRole;
@@ -245,9 +241,10 @@ const useEditPositions = (props: IUseEditPositions) => {
     formValues.rolesStaff.values = selectedToggle;
   }
 
-  const showGeneralInformation = isSelected === editPositionTabsConfig.generalInformation.id;
+  const showGeneralInformation =
+    isSelected === editPositionTabsConfig.generalInformation.id;
 
-  const showRolesForm = isSelected === editPositionTabsConfig.selectionRoles.id
+  const showRolesForm = isSelected === editPositionTabsConfig.selectionRoles.id;
 
   return {
     formValues,

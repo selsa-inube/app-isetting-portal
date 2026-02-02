@@ -9,8 +9,8 @@ import { editPositionTabsConfig } from "@config/positions/editPositions/tabs";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { EditPositionsUI } from "./interface";
-import { EUseCase } from "@src/enum/useCase";
-import { IOptionInitialiceEntry } from "@src/types/positions/assisted/IOptionInitialiceEntry";
+import { EUseCase } from "@enum/useCase";
+import { IOptionInitialiceEntry } from "@ptypes/positions/assisted/IOptionInitialiceEntry";
 
 const EditPositions = () => {
   const location = useLocation();

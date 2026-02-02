@@ -9,7 +9,7 @@ import { formatDate } from "@utils/date/formatDate";
 import { IFormAddMission } from "@ptypes/missions/assisted/IFormAddMission";
 import { IGeneralInformationEntry } from "@ptypes/missions/assisted/IGeneralInformationEntry";
 import { saveDataLabels } from "@config/missions/missionTab/assisted/saveDataLabels";
-import { ERequestType } from "@src/enum/request/requestType";
+import { ERequestType } from "@enum/request/requestType";
 
 const useAddMission = () => {
   const initialValues = {
@@ -22,7 +22,7 @@ const useAddMission = () => {
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [showModalApplicationStatus, setShowModalApplicationStatus] =
     useState(false);
-    const [showGoBackModal, setShowGoBackModal] = useState(false);
+  const [showGoBackModal, setShowGoBackModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [formValues, setFormValues] = useState<IFormAddMission>({
     generalInformation: {
@@ -72,7 +72,7 @@ const useAddMission = () => {
     setShowModalApplicationStatus(!showModalApplicationStatus);
   };
 
-   const handleGoBackModal = () => {
+  const handleGoBackModal = () => {
     setShowGoBackModal(!showGoBackModal);
   };
 

@@ -1,6 +1,6 @@
 import { IUseCase } from "@ptypes/IUseCase";
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
-import { IErrors } from "@src/types/hooks/IErrors";
+import { IErrors } from "@ptypes/hooks/IErrors";
 
 interface IUseUserRequest {
   setSendData: React.Dispatch<React.SetStateAction<boolean>>;

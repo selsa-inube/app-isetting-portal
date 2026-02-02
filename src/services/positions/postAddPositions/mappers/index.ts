@@ -1,4 +1,4 @@
-import { IRequestPositions } from "@src/types/positions/assisted/IRequestPositions";
+import { IRequestPositions } from "@ptypes/positions/assisted/IRequestPositions";
 
 const mapAddPositionToApi = (
   data: IRequestPositions,
@@ -13,7 +13,10 @@ const mapAddPositionToApi = (
     descriptionUse: data.configurationRequestData?.descriptionUse,
     modifyJustification: data.configurationRequestData?.modifyJustification,
     positionsByRole: data.configurationRequestData.positionsByRole.map(
-      (position) => ({ roleName: position.roleName, transactionOperation: position.transactionOperation }),
+      (position) => ({
+        roleName: position.roleName,
+        transactionOperation: position.transactionOperation,
+      }),
     ),
 
     settingRequest: data.settingRequest

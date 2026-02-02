@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 
-import { IBusinessUnit } from "@src/types/authAndDataProvider/IBusinessUnit";
-import { getBusinessUnits } from "@src/services/users/getBusinessUnits";
-import { AuthAndData } from "@src/context/authAndDataProvider";
+import { IBusinessUnit } from "@ptypes/authAndDataProvider/IBusinessUnit";
+import { getBusinessUnits } from "@services/users/getBusinessUnits";
+import { AuthAndData } from "@context/authAndDataProvider";
 
 const useBusinessUnits = () => {
   const [businessUnits, setBusinessUnits] = useState<IBusinessUnit[]>([]);

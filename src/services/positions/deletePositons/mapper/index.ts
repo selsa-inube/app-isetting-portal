@@ -1,4 +1,4 @@
-import { IRequestPositions } from "@src/types/positions/assisted/IRequestPositions";
+import { IRequestPositions } from "@ptypes/positions/assisted/IRequestPositions";
 
 const mapDeletePositionToApi = (data: IRequestPositions) => {
   return {

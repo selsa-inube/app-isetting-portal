@@ -11,7 +11,7 @@ import { mediaQueryMobile } from "@config/environment";
 import { basic } from "@design/tokens";
 
 import { ModalWrapper } from "../modalWrapper";
-import { IDecisionModal } from "@src/types/modals/decisionModal/IDecisionModal";
+import { IDecisionModal } from "@ptypes/modals/decisionModal/IDecisionModal";
 
 const DecisionModal = (props: IDecisionModal) => {
   const {

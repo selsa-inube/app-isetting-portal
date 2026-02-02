@@ -12,6 +12,7 @@ import { OptionItemChecked } from "./OptionItem";
 import { OptionList } from "./OptionList";
 import { StyledContainer, StyledInputContainer, StyledInput } from "./styles";
 import { ISelectCheck } from ".";
+import { EComponentAppearance } from "@enum/appearances";
 
 interface ISelectCheckUI extends ISelectCheck {
   displayList: boolean;
@@ -26,7 +27,7 @@ const getTypo = (size: Size) => {
 };
 
 const Message = (
-  props: Pick<ISelectCheck, "disabled" | "status"> & { message?: string }
+  props: Pick<ISelectCheck, "disabled" | "status"> & { message?: string },
 ) => {
   const { disabled, status, message } = props;
 
@@ -106,7 +107,11 @@ const SelectCheckUI = forwardRef<HTMLDivElement, ISelectCheckUI>(
             )}
 
             {required && !disabled && (
-              <Text type="body" size="small" appearance="dark">
+              <Text
+                type="body"
+                size="small"
+                appearance={EComponentAppearance.DARK}
+              >
                 (Requerido)
               </Text>
             )}
@@ -142,7 +147,7 @@ const SelectCheckUI = forwardRef<HTMLDivElement, ISelectCheckUI>(
 
             {!readonly && (
               <Icon
-                appearance="dark"
+                appearance={EComponentAppearance.DARK}
                 icon={<MdOutlineArrowDropDown />}
                 size="24px"
                 spacing="narrow"
@@ -171,7 +176,7 @@ const SelectCheckUI = forwardRef<HTMLDivElement, ISelectCheckUI>(
         )}
       </StyledContainer>
     );
-  }
+  },
 );
 
 SelectCheckUI.displayName = "SelectCheckUI";

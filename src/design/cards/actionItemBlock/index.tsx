@@ -1,6 +1,7 @@
 import { Stack, Text, Icon } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { StyledActionItemBlock } from "./styles";
+import { EComponentAppearance } from "@enum/appearances";
 
 interface IActionItemBlock {
   id: number;
@@ -18,7 +19,7 @@ const ActionItemBlock = (props: IActionItemBlock) => {
       <StyledActionItemBlock to={url}>
         <Stack gap={basic.spacing.s4} alignItems="center" direction="column">
           <Icon
-            appearance="dark"
+            appearance={EComponentAppearance.DARK}
             cursorHover={true}
             icon={icon}
             spacing="narrow"

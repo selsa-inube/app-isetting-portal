@@ -4,6 +4,7 @@ import { Stack, Grid, Text, useMediaQuery, Icon } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";
 import { mediaQueryTabletMain } from "@config/environment";
 import { StyledSubjectSearchCard, StyledSubjectSearchCardText } from "./styles";
+import { EComponentAppearance } from "@enum/appearances";
 
 interface ISubjectSearchCard {
   subjectSearchData: { [key: string]: string | number };
@@ -38,7 +39,11 @@ const SubjectSearchCard = (props: ISubjectSearchCard) => {
               justifyContent="end"
               padding={`${basic.spacing.s8} ${basic.spacing.s16} ${basic.spacing.s0} ${basic.spacing.s0}`}
             >
-              <Icon icon={<MdClear />} appearance="dark" size="16px" />
+              <Icon
+                icon={<MdClear />}
+                appearance={EComponentAppearance.DARK}
+                size="16px"
+              />
             </Stack>
           )}
         </Grid>

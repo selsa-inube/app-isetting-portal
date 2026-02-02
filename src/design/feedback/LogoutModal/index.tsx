@@ -12,6 +12,7 @@ import { mediaQueryMobile } from "@config/environment";
 import { basic } from "@design/tokens";
 
 import { StyledBackdropBlanket, StyledModal } from "./styles";
+import { EComponentAppearance } from "@enum/appearances";
 
 interface ILogoutModal {
   handleShowBlanket: () => void;
@@ -36,12 +37,12 @@ const LogoutModal = (props: ILogoutModal) => {
                 <Text
                   type="title"
                   size={smallScreen ? "small" : "medium"}
-                  appearance="dark"
+                  appearance={EComponentAppearance.DARK}
                 >
                   Cerrar sesión
                 </Text>
                 <Icon
-                  appearance="dark"
+                  appearance={EComponentAppearance.DARK}
                   icon={<MdClose />}
                   size={smallScreen ? "20px" : "24px"}
                   onClick={handleShowBlanket}

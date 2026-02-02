@@ -4,7 +4,7 @@ import { useStore } from "@hooks/positions/usePositionBusinessUnit";
 
 const PositionsTab = () => {
   const loading = false;
-  const businessUnitCode = useStore((s) => s.businessUnitCode);
+  const businessUnitCode = useStore((store) => store.businessUnitCode);
   const {
     smallScreen,
     label,

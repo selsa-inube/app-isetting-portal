@@ -15,7 +15,7 @@ import { normalizeString } from "@utils/normalizeRoles";
 
 const useEditPositions = (props: IUseEditPositions) => {
   const { data, appData, rolesData } = props;
-  const businessUnitCode = useStore((s) => s.businessUnitCode);
+  const businessUnitCode = useStore((store) => store.businessUnitCode);
   const normalizeGeneralData = {
     positionId: data.positionId,
     namePosition: data.positionName,

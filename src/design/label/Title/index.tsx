@@ -5,6 +5,7 @@ import { mediaQueryMobile } from "@config/environment";
 import { basic } from "@design/tokens";
 import { StyledContainerText } from "./styles";
 import { ITitle } from "@ptypes/ITitle";
+import { EComponentAppearance } from "@enum/appearances";
 
 const Title = (props: ITitle) => {
   const {
@@ -37,7 +38,7 @@ const Title = (props: ITitle) => {
         <Stack gap={basic.spacing.s100} alignItems="center">
           {icon ? (
             <Icon
-              appearance="dark"
+              appearance={EComponentAppearance.DARK}
               cursorHover={true}
               icon={icon}
               spacing="narrow"
@@ -45,7 +46,7 @@ const Title = (props: ITitle) => {
             />
           ) : (
             <Icon
-              appearance="dark"
+              appearance={EComponentAppearance.DARK}
               cursorHover={true}
               icon={<MdArrowBack />}
               spacing="narrow"

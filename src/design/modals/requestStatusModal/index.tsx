@@ -44,7 +44,12 @@ const RequestStatusModal = (props: IRequestStatusModal) => {
       <StyledModal $smallScreen={isMobile}>
         <Stack direction="column" gap={basic.spacing.s200}>
           <Stack alignItems="center" justifyContent="space-between">
-            <Text type="headline" size="small" weight="bold" appearance="dark">
+            <Text
+              type="headline"
+              size="small"
+              weight="bold"
+              appearance={EComponentAppearance.DARK}
+            >
               {title}
             </Text>
 

@@ -4,6 +4,7 @@ import { useDetailsModal } from "@hooks/positions/useDetailsModal";
 import { IDetailsModal } from "@ptypes/positions/details/IDetailsModal";
 import { StyledContainerIcon } from "./styles";
 import { DetailsMissionModal } from "./detailsMissionModal";
+import { EComponentAppearance } from "@enum/appearances";
 
 const DetailsModal = (props: IDetailsModal) => {
   const { data, title, labelsOptions } = props;
@@ -16,12 +17,12 @@ const DetailsModal = (props: IDetailsModal) => {
         <Icon
           icon={<MdOutlineRemoveRedEye />}
           size="16px"
-          appearance="dark"
+          appearance={EComponentAppearance.DARK}
           cursorHover
         />
         {screenTablet && (
           <Text type="body" size="medium">
-           {title}
+            {title}
           </Text>
         )}
       </StyledContainerIcon>

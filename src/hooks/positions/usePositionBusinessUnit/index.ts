@@ -1,12 +1,12 @@
 import { create } from "zustand";
 
-type Store = {
+type IStore = {
   businessUnitCode: string;
-  setBusinessUnitCode: (v: string) => void;
+  setBusinessUnitCode: (value: string) => void;
 };
-const useStore = create<Store>((set) => ({
+const useStore = create<IStore>((set) => ({
   businessUnitCode: "",
-  setBusinessUnitCode: (v) => set({ businessUnitCode: v }),
+  setBusinessUnitCode: (value) => set({ businessUnitCode: value }),
 }));
 
 export { useStore };

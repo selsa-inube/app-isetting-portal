@@ -9,7 +9,7 @@ import { useStore } from "../usePositionBusinessUnit";
 
 const useDeletePositions = (props: IUseDeletePositions) => {
   const { data, appData } = props;
-  const businessUnitCode = useStore((s) => s.businessUnitCode);
+  const businessUnitCode = useStore((store) => store.businessUnitCode);
   const [showModal, setShowModal] = useState(false);
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [saveData, setSaveData] = useState<ISaveDataRequest>();

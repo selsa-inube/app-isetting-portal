@@ -4,7 +4,7 @@ import { formatDateTable } from "@utils/date/formatDateTable";
 import { EModalState } from "@enum/modalState";
 import { eventBus } from "@events/eventBus";
 import { mediaQueryTabletMain } from "@config/environment";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 const useDetailsRequestInProgress = (data: IEntry) => {
   const [showModal, setShowModal] = useState(false);
@@ -30,14 +30,14 @@ const useDetailsRequestInProgress = (data: IEntry) => {
         actionExecuted: traceability.actionExecuted,
         userWhoExecuted: traceability.userWhoExecutedAction,
         description: traceability.description,
-      })
+      }),
     ),
   };
   const dataTable = Array.isArray(data?.configurationRequestData.missionByRole)
     ? data.configurationRequestData.missionByRole.map(
         (item: { roleName: string }) => ({
           Roles: item.roleName,
-        })
+        }),
       )
     : [];
 

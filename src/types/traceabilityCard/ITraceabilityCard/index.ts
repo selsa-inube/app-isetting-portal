@@ -1,4 +1,4 @@
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 import { ILabel } from "@ptypes/details/ILabel";
 interface ITraceabilityCard {
   data: IEntry;

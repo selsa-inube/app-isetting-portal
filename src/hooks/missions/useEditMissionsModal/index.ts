@@ -1,4 +1,4 @@
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 import { useNavigate } from "react-router-dom";
 
 const useEditMissionsModal = (data: IEntry) => {

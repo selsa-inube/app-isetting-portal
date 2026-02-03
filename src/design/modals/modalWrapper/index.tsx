@@ -48,6 +48,7 @@ const ModalWrapper = (props: IModalWrapper) => {
     loadingThirdButton,
     fullwidthbutton = false,
     changeZIndex = false,
+    overflowY = "unset",
     onClickThirdButton,
     onClick,
     onCloseModal,
@@ -111,14 +112,15 @@ const ModalWrapper = (props: IModalWrapper) => {
             <Divider dashed={dashed} />
           </Stack>
 
-          <Stack
+          <BorderStack
             height="100%"
             width="100%"
             direction="column"
             gap={basic.spacing.s200}
+            overflowY={overflowY}
           >
             {children}
-          </Stack>
+          </BorderStack>
 
           <Stack
             gap={basic.spacing.s250}

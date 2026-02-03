@@ -1,7 +1,7 @@
 import { DetailsModal } from "@pages/users/tabs/userTab/tools/detailsModal";
-import { IAction } from "@ptypes/table/IAction";
+import { IAction } from "@ptypes/design/table/IAction";
 
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from '@ptypes/design/table/IEntry';
 import { MdDeleteOutline, MdOutlineCreate, MdGroup } from "react-icons/md";
 
 const labelsOptions = {

@@ -51,7 +51,7 @@ const DetailsUI = (props: IDetailsUI) => {
         <RequestsInProcess
           data={data}
           title={title}
-          labelsOfRequest={labelsOfRequest}
+          labelsOfRequest={labelsOfRequestDetails}
           labelsOfTraceability={labelsOfTraceability}
           onCloseModal={onToggleModal}
           isMobile={isMobile}
@@ -70,7 +70,7 @@ const DetailsUI = (props: IDetailsUI) => {
       )}
 
       {showMoreDetailsModal && (
-          <MoreDetails
+        <MoreDetails
           data={normalizeDataMoreDetails as IEntry}
           labelsDetails={moreLabelsDetails}
           isMobile={smallScreen}

@@ -1,12 +1,12 @@
 import { Cancel } from "@pages/missions/tabs/requestsInProgressTab/tools/cancel";
 import { Details } from "@pages/missions/tabs/requestsInProgressTab/tools/details";
-import { IAction } from "@ptypes/table/IAction";
+import { IAction } from "@ptypes/design/table/IAction";
 
 const actionsConfig = (setEntryCanceled: (value: string | number) => void, title: string) => {
   const actions: IAction[] = [
     {
       id: "Details",
-      content: (entry) => <Details data={entry}  titleMoreDetails={title}/>,
+      content: (entry) => <Details data={entry} titleMoreDetails={title} />,
     },
 
     {
@@ -16,7 +16,7 @@ const actionsConfig = (setEntryCanceled: (value: string | number) => void, title
       ),
     },
 
-    
+
   ];
 
   return actions;

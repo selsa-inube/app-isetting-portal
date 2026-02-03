@@ -39,7 +39,7 @@ const AbsenceModal = (props: IAbsenceModal) => {
       onCloseModal={onCloseModal}
       onClick={onClick}
       overflowY="initial"
-      disabled={disabled}
+      disabledActionButton={disabled}
     >
       <Stack
         direction="column"

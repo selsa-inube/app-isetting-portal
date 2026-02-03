@@ -1,6 +1,6 @@
 import { IField } from "@ptypes/interactiveModal/IField";
 import { IPosition } from "@ptypes/positions/assisted/IPosition";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 interface IFeedbackModal {
   onClose: () => void;
   smallScreen: boolean;

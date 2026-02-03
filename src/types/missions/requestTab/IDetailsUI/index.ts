@@ -1,6 +1,5 @@
-
 import { ILabel } from "@ptypes/ILabel";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 interface IDetailsUI {
   data: IEntry;

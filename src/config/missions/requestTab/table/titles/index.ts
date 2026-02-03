@@ -1,4 +1,4 @@
-import { ITitle } from "@ptypes/table/ITitle";
+import { ITitle } from "@ptypes/design/table/ITitle";
 
 const titles: ITitle[] = [
   {

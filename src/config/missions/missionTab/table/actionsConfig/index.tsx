@@ -1,7 +1,7 @@
 import { Edit } from "@pages/missions/tools/edit";
 import { Delete } from "@pages/missions/tools/delete";
-import { IEntry } from "@ptypes/table/IEntry";
-import { IAction } from "@ptypes/table/IAction";
+import { IEntry } from '@ptypes/design/table/IEntry';
+import { IAction } from "@ptypes/design/table/IAction";
 import { IMission } from "@ptypes/missions/assisted/IMission";
 import { DetailsModal } from "@pages/missions/tools/detailsModal";
 import { labelsOptions } from "../labelsOptions";

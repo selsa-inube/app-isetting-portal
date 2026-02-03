@@ -1,12 +1,13 @@
-const appearenceBorderStack =[
-    'light',
-    'gray',
-    'dark',
-]as const ;
+const appearenceBoxContainer = [
+  "light",
+  "gray",
+  "dark",
+  "help",
+  "warning",
+  "danger",
+] as const;
 
-type IAppearenceBorderStack = (typeof appearenceBorderStack)[number];
+type IAppearenceBoxContainer = (typeof appearenceBoxContainer)[number];
 
-export type { IAppearenceBorderStack };
-export { appearenceBorderStack };
-
-
+export type { IAppearenceBoxContainer };
+export { appearenceBoxContainer };

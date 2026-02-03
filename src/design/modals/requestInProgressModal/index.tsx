@@ -4,10 +4,11 @@ import { ModalWrapper } from "@design/modals/modalWrapper";
 import { EComponentAppearance } from "@enum/appearances";
 
 import { portalId } from "@config/portalId";
+
+import { TrazabilityTab } from "./trazabilityTab";
+import { ErrorTab } from "./errorTab";
 import { IRequestsInProcess } from "@ptypes/requestsInProgress/IRequestsInProcess";
 import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
-import { TrazabilityTab } from "@design/modals/requestInProgressModal/trazabilityTab";
-import { ErrorTab } from "@design/modals/requestInProgressModal/errorTab";
 
 const RequestsInProcess = (props: IRequestsInProcess) => {
   const {

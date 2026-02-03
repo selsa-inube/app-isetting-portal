@@ -2,8 +2,6 @@ import { useContext } from "react";
 import { MdOutlineChevronRight, MdOutlineDoorFront } from "react-icons/md";
 import { Header, Icon } from "@inubekit/inubekit";
 import { Title } from "@design/label/Title";
-
-import { renderLogo } from "@design/layout/renderLogo/logoUtils";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { IHome } from "@ptypes/home/IHome";
 import { userMenu } from "@config/menuMainConfiguration";
@@ -19,6 +17,7 @@ import { BorderStack } from "@design/layout/borderStack";
 import { ErrorPage } from "@design/layout/ErrorPage";
 import { basic } from "@design/tokens";
 import { EComponentAppearance } from "@enum/appearances";
+import { RenderLogo } from "@design/feedback/renderLogo";
 
 const HomeUI = (props: IHome) => {
   const {
@@ -51,7 +50,7 @@ const HomeUI = (props: IHome) => {
         <StyledHeaderContainer>
           <Header
             navigation={optionsHeader}
-            logoURL={renderLogo(appData.businessUnit.urlLogo)}
+            logoURL={<RenderLogo imgUrl={appData.businessUnit.urlLogo} />}
             user={{
               username: appData.user.userName,
               breakpoint: "848px",
@@ -66,6 +65,7 @@ const HomeUI = (props: IHome) => {
                 $isTablet={isTablet}
                 ref={collapseMenuRef}
               >
+                <p>ascascsa</p>
                 <Icon
                   icon={<MdOutlineChevronRight />}
                   appearance="primary"
@@ -76,21 +76,21 @@ const HomeUI = (props: IHome) => {
             </>
           )}
         </StyledHeaderContainer>
-        <BorderStack alignItems="center"
+        <BorderStack
+          alignItems="center"
           justifyContent="center"
           gap={basic.spacing.s600}
           boxSizing="border-box"
-          padding={basic.spacing.s200}>
+          padding={basic.spacing.s200}
+        >
           <BorderStack
             direction="column"
-            gap={
-              smallScreen ? `${basic.spacing.s300}` : `${basic.spacing.s0}`
-            } 
-             maxWidth="1064px"
+            gap={smallScreen ? `${basic.spacing.s300}` : `${basic.spacing.s0}`}
+            maxWidth="1064px"
             minWidth="328px"
             boxSizing="border-box"
           >
-            <StyledTitle  $isTablet={isTablet}>
+            <StyledTitle $isTablet={isTablet}>
               <Title
                 title={`Bienvenid@, ${username}`}
                 description="Selecciona una opción para empezar a ajustar la configuración."
@@ -99,66 +99,66 @@ const HomeUI = (props: IHome) => {
               />
             </StyledTitle>
             <BorderStack
-             direction="row"
+              direction="row"
               boxSizing="border-box"
               justifyContent={isTablet ? "center" : "flex-start"}
               wrap="wrap"
               gap={basic.spacing.s400}
             >
-            <BorderStack
-              direction="row"
+              <BorderStack
+                direction="row"
                 boxSizing="border-box"
                 padding={basic.spacing.s200}
                 justifyContent={isTablet ? "center" : "flex-start"}
                 wrap="wrap"
                 width="100%"
                 gap={basic.spacing.s250}
-              borderRadius={basic.spacing.s8}
-              border={EComponentAppearance.DARK}
-            >
-              {loading ? (
-                <AppCard
-                  label={""}
-                  description={""}
-                  icon={""}
-                  url={""}
-                  loading
-                />
-              ) : (
-                <>
-                  {hasData ? (
-                    <>
-                      {data?.map((card) => (
-                        <AppCard
-                          key={card.id}
-                          label={card.publicCode}
-                          description={card.description}
-                          icon={card.icon}
-                          url={card.url}
-                          loading={false}
-                        />
-                      ))}
-                    </>
-                  ) : (
-                    <BorderStack
-                      direction="column"
-                      boxSizing="border-box"
-                      width="100%"
-                      height="80vh"
-                    >
-                      <ErrorPage errorCode={500} onClick={handlelogout} />
-                    </BorderStack>
-                  )}
-                </>
-              )}
+                borderRadius={basic.spacing.s8}
+                border={EComponentAppearance.DARK}
+              >
+                {loading ? (
+                  <AppCard
+                    label={""}
+                    description={""}
+                    icon={""}
+                    url={""}
+                    loading
+                  />
+                ) : (
+                  <>
+                    {hasData ? (
+                      <>
+                        {data?.map((card) => (
+                          <AppCard
+                            key={card.id}
+                            label={card.publicCode}
+                            description={card.description}
+                            icon={card.icon}
+                            url={card.url}
+                            loading={false}
+                          />
+                        ))}
+                      </>
+                    ) : (
+                      <BorderStack
+                        direction="column"
+                        boxSizing="border-box"
+                        width="100%"
+                        height="80vh"
+                      >
+                        <ErrorPage errorCode={500} onClick={handlelogout} />
+                      </BorderStack>
+                    )}
+                  </>
+                )}
+              </BorderStack>
             </BorderStack>
-          </BorderStack>
           </BorderStack>
         </BorderStack>
         {hasData && (
-        <StyledFooter $isMobile={smallScreen}>
-          <StyledLogo src={appData.businessManager.urlBrand} />
-        </StyledFooter>
+          <StyledFooter $isMobile={smallScreen}>
+            <StyledLogo src={appData.businessManager.urlBrand} />
+          </StyledFooter>
         )}
       </BorderStack>
     </>

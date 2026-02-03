@@ -2,7 +2,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { Icon, Text } from "@inubekit/inubekit";
 import { detailsLabels } from "@config/assignments/requestTab/table/generic/detailsLabels";
 import { labelsOfTraceability } from "@config/requestsInProgressTab/details/labelsOfTraceability";
-import { RequestsInProcess } from "./requestsInProcess";
+
 import { MoreDetails } from "@pages/assignments/moreDetails";
 import { portalId } from "@config/portalId";
 import { IEntry } from "@ptypes/design/table/IEntry";
@@ -11,6 +11,7 @@ import { moreDetailsModal } from "@config/assignments/details/moreDetailsModal";
 import { IDetailsUI } from "@ptypes/assignments/request/IDetailsUI";
 import { EComponentAppearance } from "@enum/appearances";
 import { StyledContainerIcon } from "./styles";
+import { RequestsInProcess } from "@design/modals/requestInProgressModal";
 
 const DetailsUI = (props: IDetailsUI) => {
   const {
@@ -50,11 +51,21 @@ const DetailsUI = (props: IDetailsUI) => {
         <RequestsInProcess
           data={data}
           title={title}
-          labelsOfRequest={labelsOfRequestDetails}
+          labelsOfRequest={labelsOfRequest}
           labelsOfTraceability={labelsOfTraceability}
           onCloseModal={onToggleModal}
           isMobile={isMobile}
-          onClick={handleMoreDetails}
+          onClick={onMoreDetails}
+          isSelected={isSelectedRequest}
+          filteredTabs={filteredTabs}
+          showTrazabilityData={showTrazabilityData}
+          showErrorData={showErrorData}
+          onTabChange={onTabRequestChange}
+          withErrorRequest={withErrorRequest}
+          onThirdClick={onClick}
+          loading={loading}
+          labelButton={labelButton}
+          iconButton={iconButton}
         />
       )}
 

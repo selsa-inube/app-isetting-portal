@@ -1,43 +1,43 @@
 import { Divider, Stack, Text } from "@inubekit/inubekit";
-
-import { TraceabilityCard } from "@design/feedback/traceabilityCard";
-import { ModalWrapper } from "@design/modals/modalWrapper";
 import { DetailBox } from "@design/feedback/detailBox";
-import { IEntry } from "@ptypes/design/table/IEntry";
+import { TraceabilityCard } from "@design/feedback/traceabilityCard";
+
 import { basic } from "@design/tokens";
-import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
-import { IRequestsInProcess } from "@ptypes/requestsInProgress/IRequestsInProcess";
 import { EComponentAppearance } from "@enum/appearances";
+
+import { IEntry } from "@ptypes/design/table/IEntry";
+import { ITrazabilityTab } from "@ptypes/design/ITrazabilityTab";
 import { BorderStack } from "@design/layout/borderStack";
-import { portalId } from "@config/portalId";
+import { detailsRequestInProgressModal } from "@config/requestsInProgressTab/details/detailsRequestInProgressModal";
 
-const RequestsInProcess = (props: IRequestsInProcess) => {
-  const {
-    data,
-    title,
-    labelsOfRequest,
-    labelsOfTraceability,
-    isMobile,
-    onCloseModal,
-    onClick,
-  } = props;
+const TrazabilityTab = (props: ITrazabilityTab) => {
+  const { data, title, isMobile, labelsOfRequest, labelsOfTraceability } =
+    props;
 
+  const labelsOfRequestDetails = labelsOfRequest.filter(
+    (field) => data[field.id],
+  );
   return (
-    <ModalWrapper
-      portalId={portalId}
-      width={isMobile ? "335px" : "600px"}
-      isMobile={isMobile}
-      labelActionButton={detailsRequestInProgressModal.labelActionButton}
-      labelCloseButton={detailsRequestInProgressModal.labelCloseButton}
-      labelCloseModal={detailsRequestInProgressModal.labelCloseModal}
-      iconBeforeButton={detailsRequestInProgressModal.iconBeforeButton}
-      title={detailsRequestInProgressModal.title}
-      withCancelButton={true}
-      onCloseModal={onCloseModal}
-      onClick={onClick}
-    >
+    <Stack direction="column" gap={basic.spacing.s200}>
+      <Stack gap={basic.spacing.s250} direction={isMobile ? "column" : "row"}>
+        {labelsOfRequestDetails.map((field, id) => (
+          <DetailBox
+            key={id}
+            field={field}
+            data={data}
+            id={id}
+            borderRadius={basic.spacing.s100}
+            padding={`${basic.spacing.s075} ${basic.spacing.s150}`}
+            width={isMobile ? "100%" : "240px"}
+            borderColor={EComponentAppearance.DARK}
+            ellipsis
+          />
+        ))}
+      </Stack>
+
       <BorderStack
         direction="column"
+        background={EComponentAppearance.LIGHT}
         borderRadius={basic.spacing.s100}
         border={EComponentAppearance.DARK}
         boxSizing="border-box"
@@ -70,30 +70,13 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
           </Stack>
         </Stack>
         <BorderStack
+          background={EComponentAppearance.LIGHT}
           overflowY="auto"
           boxSizing="border-box"
           wrap="wrap"
           width="100%"
           gap={isMobile ? `${basic.spacing.s075}` : `${basic.spacing.s150}`}
         >
-          <Stack
-            gap={basic.spacing.s250}
-            direction={isMobile ? "column" : "row"}
-          >
-            {labelsOfRequest.map((field, id) => (
-              <DetailBox
-                key={id}
-                field={field}
-                data={data}
-                id={id}
-                borderRadius={basic.spacing.s100}
-                padding={`${basic.spacing.s075} ${basic.spacing.s150}`}
-                width={isMobile ? "253px" : "240px"}
-                ellipsis
-              />
-            ))}
-          </Stack>
-
           <Stack
             margin={`${basic.spacing.s075} ${basic.spacing.s0}`}
             direction="column"
@@ -124,8 +107,8 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
           </Stack>
         </BorderStack>
       </BorderStack>
-    </ModalWrapper>
+    </Stack>
   );
 };
 
-export { RequestsInProcess };
+export { TrazabilityTab };

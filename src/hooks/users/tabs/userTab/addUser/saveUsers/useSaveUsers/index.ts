@@ -67,7 +67,7 @@ const useSaveUsers = (props: IUseSaveUsers) => {
     setSendData,
     useCase,
     statusRequest: statusRequest || "",
-    saveUsers: saveUsers as ISaveDataResponse,
+    saveData: saveUsers as ISaveDataResponse,
     errorFetchRequest,
     networkError,
     setHasError,

@@ -1,37 +1,40 @@
+import { Delete } from "@pages/users/tabs/userTab/tools/delete";
 import { DetailsModal } from "@pages/users/tabs/userTab/tools/detailsModal";
 import { IAction } from "@ptypes/table/IAction";
 
 import { IEntry } from "@ptypes/table/IEntry";
-import { MdDeleteOutline, MdOutlineCreate, MdGroup } from "react-icons/md";
+import { MdOutlineCreate, MdGroup } from "react-icons/md";
 
 const labelsOptions = {
-  "Información personal": [{
-    id: "identificationTypeNaturalPerson",
-    labelName: "Tipo de identificación",
-    type: "table",
-  },
-  {
-    id: "identificationDocumentNumber",
-    labelName: "Número de identificación",
-    type: "table",
-  },
-  {
-    id: "biologicalSex",
-    labelName: "Sexo biológico del funcionario",
-    type: "table",
-  },
-  {
-    id: "birthDay",
-    labelName: "Fecha de nacimiento",
-    type: "table",
-  },
-
+  "Información personal": [
+    {
+      id: "identificationTypeNaturalPerson",
+      labelName: "Tipo de identificación",
+      type: "table",
+    },
+    {
+      id: "identificationDocumentNumber",
+      labelName: "Número de identificación",
+      type: "table",
+    },
+    {
+      id: "biologicalSex",
+      labelName: "Sexo biológico del funcionario",
+      type: "table",
+    },
+    {
+      id: "birthDay",
+      labelName: "Fecha de nacimiento",
+      type: "table",
+    },
   ],
-  "Misión para el operador": [{
-    id: "businessManagerName",
-    labelName: "Nombre",
-    type: "table",
-  },],
+  "Misión para el operador": [
+    {
+      id: "businessManagerName",
+      labelName: "Nombre",
+      type: "table",
+    },
+  ],
   "Datos de contacto": [
     {
       id: "principalEmail",
@@ -43,10 +46,9 @@ const labelsOptions = {
       labelName: "Móvil",
       type: "table",
     },
-
   ],
 };
-const actionsConfig = () => {
+const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
   const actions: IAction[] = [
     {
       id: "details",
@@ -61,9 +63,10 @@ const actionsConfig = () => {
       ),
     },
     {
-      id: "Delete",
+      id: "delete",
+      actionName: "Eliminar",
       content: (entry: IEntry) => (
-        <MdDeleteOutline title={`View ${entry.staffName}`} />
+        <Delete data={entry} setEntryDeleted={setEntryDeleted} />
       ),
     },
     {

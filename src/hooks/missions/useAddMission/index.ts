@@ -85,9 +85,9 @@ const useAddMission = () => {
       businessUnitCode: appData.businessUnit.publicCode,
       description: saveDataLabels.description,
       requestType: ERequestType.ADD,
-      entityName: "Mission",
+      entityName: "User",
       requestDate: formatDate(new Date()),
-      useCaseName: "AddMission",
+      useCaseName: "AddUser",
       configurationRequestData: {
         missionName: formValues.generalInformation.values.nameMission,
         descriptionUse: formValues.generalInformation.values.descriptionMission,

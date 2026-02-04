@@ -3,11 +3,11 @@ import { formatDate } from "@utils/date/formatDate";
 import { EModalState } from "@enum/modalState";
 import { eventBus } from "@events/eventBus";
 import { deleteLabels } from "@config/missions/deleteLabels";
-import { IUseDelete } from "@ptypes/hooks/missions/IUseDeleteMission";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { ERequestType } from "@enum/request/requestType";
+import { IUseDelete } from "@ptypes/hooks/missions/IUseDeleteMission";
 
-const useDeleteMission = (props: IUseDelete) => {
+const useDeleteUser = (props: IUseDelete) => {
   const { data, appData } = props;
   const [showModal, setShowModal] = useState(false);
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
@@ -23,13 +23,13 @@ const useDeleteMission = (props: IUseDelete) => {
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
       description: deleteLabels.descriptionSaveData,
-      entityName: "Mission",
+      entityName: "User",
       requestDate: formatDate(new Date()),
-      useCaseName: "DeleteMission",
+      useCaseName: "DeleteUser",
       requestType: ERequestType.REMOVE,
       configurationRequestData: {
-        missionId: data.missionId,
-        missionName: data.missionName,
+        missionId: data.userId,
+        missionName: data.UserName,
         justification: `${deleteLabels.justification} ${appData.user.userAccount}`,
       },
     });
@@ -50,4 +50,4 @@ const useDeleteMission = (props: IUseDelete) => {
     setShowModal,
   };
 };
-export { useDeleteMission };
+export { useDeleteUser };

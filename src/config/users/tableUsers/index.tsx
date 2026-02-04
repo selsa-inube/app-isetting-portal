@@ -46,7 +46,7 @@ const labelsOptions = {
 
   ],
 };
-const actionsConfig = () => {
+const actionsConfig = (setEntryDeleted: string) => {
   const actions: IAction[] = [
     {
       id: "details",

@@ -13,6 +13,8 @@ import { interventionHumanMessage } from "@config/positionsTabs/generics/interve
 import { IUseSaveUsers } from "@ptypes/users/tabs/userTab/addUser/IUseSaveUsers";
 import { postAddUsers } from "@services/users/addUsers/postAddUsers";
 import { IRequestUsers } from "@ptypes/users/tabs/userTab/addUser/IRequestUsers";
+import { ISaveDeleteUsers } from "@ptypes/users/tabs/userTab/deleteUser/IRequestDeleteUser";
+import { deleteUser } from "@services/users/deleteUser";
 
 const useSaveUsers = (props: IUseSaveUsers) => {
   const {
@@ -104,6 +106,15 @@ const useSaveUsers = (props: IUseSaveUsers) => {
           token,
         );
 
+        setStatusRequest(newData.settingRequest?.requestStatus);
+      }
+      if (useCase === EUseCase.DELETE) {
+        const newData = await deleteUser(
+          businessUnits,
+          userAccount,
+          requestConfiguration as unknown as ISaveDeleteUsers,
+          token,
+        );
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
     } catch (error) {

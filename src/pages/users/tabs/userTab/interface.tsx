@@ -19,7 +19,7 @@ const UserTabUI = (props: IUserTabUI) => {
     handleSearchService,
     loading,
     entries,
-    // setEntryDeleted,
+    setEntryDeleted,
     smallScreen,
     // direction,
     disabledButton,
@@ -80,7 +80,7 @@ const UserTabUI = (props: IUserTabUI) => {
         id="portal"
         titles={titlesUsers}
         entries={entries}
-        actions={actionsConfig()}
+        actions={actionsConfig(setEntryDeleted)}
         breakpoints={breakPointsUsers}
         filter={searchService}
         loading={loading}

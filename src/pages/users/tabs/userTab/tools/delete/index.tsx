@@ -17,7 +17,6 @@ import { IDelete } from "@ptypes/positions/actions/IDelete";
 const Delete = (props: IDelete) => {
   const { data, setEntryDeleted } = props;
   const { appData } = useContext(AuthAndData);
-
   const {
     showModal,
     saveData,
@@ -46,12 +45,13 @@ const Delete = (props: IDelete) => {
     setShowModal,
     setEntryDeleted,
     token: appData.token,
-    businessManagerCode: appData.businessManager.publicCode
+    businessManagerCode: appData.businessManager.publicCode,
   });
 
-  const showRequestProcess = showRequestProcessModal && saveUsers
+  const showRequestProcess = showRequestProcessModal && saveUsers;
 
-  const showRequestStatusModal = showPendingReqModal && saveUsers?.requestNumber
+  const showRequestStatusModal =
+    showPendingReqModal && saveUsers?.requestNumber;
 
   return (
     <>
@@ -79,16 +79,12 @@ const Delete = (props: IDelete) => {
         <RequestStatusModal
           portalId={portalId}
           title={requestStatusMessage(saveUsers.staffName).title}
-          description={
-            requestStatusMessage(saveUsers.staffName).description
-          }
+          description={requestStatusMessage(saveUsers.staffName).description}
           requestNumber={saveUsers.requestNumber}
           onClick={handleClosePendingReqModal}
           onCloseModal={handleClosePendingReqModal}
           loading={false}
-          actionText={
-            requestStatusMessage(saveUsers.staffName).actionText
-          }
+          actionText={requestStatusMessage(saveUsers.staffName).actionText}
           appearance={EComponentAppearance.PRIMARY}
         />
       )}

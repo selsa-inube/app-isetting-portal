@@ -23,13 +23,13 @@ const useDeleteUser = (props: IUseDelete) => {
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
       description: deleteLabels.descriptionSaveData,
-      entityName: "User",
+      entityName: "Staff",
       requestDate: formatDate(new Date()),
-      useCaseName: "DeleteUser",
+      useCaseName: "DeleteStaff",
       requestType: ERequestType.REMOVE,
       configurationRequestData: {
-        missionId: data.userId,
-        missionName: data.UserName,
+        staffId: data.staffId,
+        staffName: data.staffName,
         justification: `${deleteLabels.justification} ${appData.user.userAccount}`,
       },
     });

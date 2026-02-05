@@ -10,8 +10,13 @@ import { IDetailsUserModal } from "@ptypes/users/tabs/userTab/details/IDetailsMo
 
 const DetailsModal = (props: IDetailsUserModal) => {
   const { data, labelsOptions } = props;
-  const { showModal, handleToggleModal, screenTablet, positionsByBusinessUnitRoles, rolesByBusinessUnit } =
-    useDetailsModal({ data });
+  const {
+    showModal,
+    handleToggleModal,
+    screenTablet,
+    positionsByBusinessUnitRoles,
+    rolesByBusinessUnit,
+  } = useDetailsModal({ data });
   return (
     <>
       <Stack gap={basic.spacing.s8} justifyContent="center">

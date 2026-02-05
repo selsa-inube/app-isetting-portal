@@ -4,6 +4,7 @@ import {
   Blanket,
   Button,
   Divider,
+  Grid,
   Icon,
   Stack,
   Text,
@@ -17,32 +18,41 @@ import { StyledModalContainer } from "./styles";
 const ModalWrapper = (props: IModalWrapper) => {
   const {
     appearanceButton = EComponentAppearance.PRIMARY,
+    borderRadius = basic.spacing.s100,
     children,
+    dashed = false,
+    disabledActionButton = false,
     height = "auto",
     iconBeforeButton,
+    isMobile = false,
     labelActionButton,
     labelCloseButton,
     labelCloseModal,
-    portalId,
-    title,
     loading = false,
+    maxHeight,
+    minHeight,
+    padding = basic.spacing.s300,
+    portalId,
+    sizeTitle = "small",
+    subtitle,
+    title,
+    typeTitle = "headline",
+    variantCancel = "filled",
+    weightTitle = "normal",
     width = "auto",
     withCancelButton,
-    minHeight,
-    maxHeight,
-    padding = basic.spacing.s300,
-    overflowY = "auto",
-    disabled = false,
+    fullwidthbutton = false,
     changeZIndex = false,
-    onCloseModal,
+    overflowY = "unset",
     onClick,
+    onCloseModal,
   } = props;
 
   const node = document.getElementById(portalId);
 
   if (!node) {
     throw new Error(
-      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
+      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly.",
     );
   }
 
@@ -50,71 +60,73 @@ const ModalWrapper = (props: IModalWrapper) => {
     <StyledModalContainer changeZIndex={changeZIndex}>
       <Blanket>
         <BorderStack
-          direction="column"
           width={width}
           height={height}
+          direction="column"
           background={EComponentAppearance.LIGHT}
-          borderRadius={basic.spacing.s100}
+          borderRadius={borderRadius}
+          border={EComponentAppearance.DARK}
           padding={padding}
+          gap={isMobile ? `${basic.spacing.s150}` : `${basic.spacing.s250}`}
           boxSizing="border-box"
           minHeight={minHeight}
           maxHeight={maxHeight}
         >
-          <Stack
-            direction="row"
-            gap={basic.spacing.s300}
-            justifyContent="space-between"
-            margin={`${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s16} ${basic.spacing.s0}`}
-          >
-            <Text
-              type="headline"
-              size="small"
-              appearance={EComponentAppearance.DARK}
-              weight="normal"
-            >
-              {title}
-            </Text>
-            <Stack
-              justifyContent="center"
-              alignItems="center"
-              gap={basic.spacing.s8}
-            >
+          <Stack direction="column" gap={basic.spacing.s150}>
+            <Grid templateColumns="1fr auto" templateRows="1fr">
               <Text
-                type="body"
-                size="large"
+                type={typeTitle}
+                size={sizeTitle}
                 appearance={EComponentAppearance.DARK}
-                cursorHover
+                weight={weightTitle}
+              >
+                {title}
+              </Text>
+
+              <Button
+                spacing="compact"
+                appearance={EComponentAppearance.DARK}
+                variant="none"
                 onClick={onCloseModal}
+                iconAfter={
+                  <Icon
+                    appearance={EComponentAppearance.DARK}
+                    icon={<MdClear />}
+                  />
+                }
               >
                 {labelCloseModal}
+              </Button>
+            </Grid>
+            {subtitle && (
+              <Text size="medium" appearance={EComponentAppearance.GRAY}>
+                {subtitle}
               </Text>
-              <Icon
-                appearance={EComponentAppearance.DARK}
-                icon={<MdClear />}
-                cursorHover
-                onClick={onCloseModal}
-              />
-            </Stack>
+            )}
+            <Divider dashed={dashed} />
           </Stack>
-          <Divider />
 
           <BorderStack
             height="100%"
             width="100%"
-            overflowY={overflowY}
             direction="column"
-               gap={basic.spacing.s200}
-            margin={`${basic.spacing.s300} ${basic.spacing.s0}`}
+            gap={basic.spacing.s200}
+            overflowY={overflowY}
           >
             {children}
           </BorderStack>
 
-          <Stack gap={basic.spacing.s250} justifyContent="flex-end">
+          <Stack
+            gap={basic.spacing.s250}
+            justifyContent="flex-end"
+            direction={isMobile && fullwidthbutton ? "column-reverse" : "row"}
+          >
             {withCancelButton && (
               <Button
                 spacing="wide"
-                appearance={EComponentAppearance.LIGHT}
-                variant="filled"
+                appearance={EComponentAppearance.GRAY}
+                fullwidth={isMobile && fullwidthbutton}
+                variant={variantCancel}
                 onClick={onCloseModal}
               >
                 {labelCloseButton}
@@ -123,12 +135,13 @@ const ModalWrapper = (props: IModalWrapper) => {
 
             <Button
               spacing="wide"
-              appearance={appearanceButton ?? EComponentAppearance.PRIMARY}
+              appearance={appearanceButton}
+              fullwidth={isMobile && fullwidthbutton}
               variant="filled"
               onClick={onClick}
               loading={loading}
               iconBefore={iconBeforeButton ?? <></>}
-              disabled={disabled}
+              disabled={disabledActionButton}
             >
               {labelActionButton}
             </Button>
@@ -136,9 +149,8 @@ const ModalWrapper = (props: IModalWrapper) => {
         </BorderStack>
       </Blanket>
     </StyledModalContainer>,
-    node
+    node,
   );
 };
 
 export { ModalWrapper };
-export type { IModalWrapper };

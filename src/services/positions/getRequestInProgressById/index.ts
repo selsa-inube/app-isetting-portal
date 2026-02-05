@@ -1,8 +1,9 @@
 import { AxiosRequestConfig } from "axios";
-import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
+
 import { getWithRetries } from "@services/core/getWithRetries";
 import { queryProcessAxiosInstance } from "@api/isettingProcess";
 import { mapRequestsInProgressToEntity } from "./mappers";
+import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 const getRequestInProgressById = async (
   businessUnits: string,
   settingRequestId: string,

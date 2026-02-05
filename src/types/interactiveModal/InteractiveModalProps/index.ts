@@ -18,6 +18,7 @@ interface IInteractiveModal {
   placeholder?: string;
   setValidateCardRemoved?: React.Dispatch<React.SetStateAction<boolean>>;
   type?: ModalTypes;
+  overflowY?: string;
 }
 
 export type { IInteractiveModal };

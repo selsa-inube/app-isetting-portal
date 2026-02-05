@@ -1,7 +1,7 @@
 const operationTypes = {
   add: "Agregada",
   edit: "Editado",
-  delete: "Eliminada",
+  delete: "Eliminado",
   details: "detalles",
   addError: "agregar",
   editError: "editar",

@@ -1,6 +1,5 @@
-
+import { IEntry } from "@ptypes/design/table/IEntry";
 import { ILabel } from "@ptypes/ILabel";
-import { IEntry } from "@ptypes/table/IEntry";
 
 interface IDetailsUI {
   data: IEntry;
@@ -12,7 +11,7 @@ interface IDetailsUI {
   normalizeDataMoreDetails: IEntry;
   labelsOfRequestDetails: ILabel[];
   title: string;
-    smallScreen: boolean;
+  smallScreen: boolean;
   pageLength: number;
   columnWidths: number[];
   handleMoreDetails: () => void;

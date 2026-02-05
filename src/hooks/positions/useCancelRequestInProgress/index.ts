@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IFlagAppearance, useFlag } from "@inubekit/inubekit";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 import { ICancelRequestInProgress } from "@ptypes/requestsInProgress/ICancelReqInProcRequest";
 import { cancelRequestInProgMessage } from "@config/positionsTabs/requestProcessMessage/cancelRequestInProgMessage";
 import { cancelRequestInProgress } from "@services/positions/cancelRequestInProgress";

@@ -7,6 +7,7 @@ import { EComponentAppearance } from "@enum/appearances";
 import { BorderStack } from "@design/layout/borderStack";
 import { IGeneralInformationFormUI } from "@ptypes/users/tabs/userTab/addUser/forms/initializers/initializeGeneralInformationForm/initializeGeneralInfoUI";
 import { generalInformationConfig } from "@config/users/addUsers/form/generalStep";
+import { getFieldState } from "@utils/forms";
 
 const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
   const {
@@ -19,6 +20,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
     optionIdType,
     handleSelectChange,
   } = props;
+  console.log(formik);
   return (
     <StyledContainer>
       <form>
@@ -108,6 +110,8 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
               fullwidth
               size="compact"
               name={generalInformationConfig.birthDate.name}
+              message={formik.errors.birthDate}
+              status={getFieldState(formik, "birthDate")}
             />
           </Grid>
         </BorderStack>

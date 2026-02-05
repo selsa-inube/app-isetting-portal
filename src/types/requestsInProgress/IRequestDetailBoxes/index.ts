@@ -1,5 +1,5 @@
 import { ILabel } from "@ptypes/details/ILabel";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 interface IRequestDetailBoxes {
   labels: ILabel[];
   data: IEntry;

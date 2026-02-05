@@ -1,8 +1,8 @@
-import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
+import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { formatDateTable } from "@utils/formatDateTable";
 
 const mapRequestsInProgressToEntity = (
-  data: IRequestsInProgress
+  data: IRequestsInProgress,
 ): IRequestsInProgress => {
   const request: IRequestsInProgress = {
     id: String(data.settingRequestId),
@@ -11,7 +11,7 @@ const mapRequestsInProgressToEntity = (
     businessUnitCode: String(data.businessUnitCode),
     configurationRequestData: Object(data.configurationRequestData),
     configurationRequestsTraceability: Object(
-      data.configurationRequestsTraceability
+      data.configurationRequestsTraceability,
     ),
     description: String(data.description),
     entityName: String(data.entityName),
@@ -21,7 +21,7 @@ const mapRequestsInProgressToEntity = (
     settingRequestId: String(data.settingRequestId),
     useCaseName: String(data.useCaseName),
     userManagingConfigurationRequests: Object(
-      data.userManagingConfigurationRequests
+      data.userManagingConfigurationRequests,
     ),
   };
 

@@ -1,20 +1,23 @@
-
+import { ITab } from "@inubekit/inubekit";
 import { ILabel } from "@ptypes/ILabel";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 interface IDetailsUI {
   data: IEntry;
+  filteredTabs: ITab[];
   isMobile: boolean;
-  showModal: boolean;
-  showMoreDetailsModal: boolean;
+  isSelectedRequest: string;
   screenTablet: boolean;
-  abbreviatedName: string;
-  normalizeDataMoreDetails: IEntry;
-  labelsOfRequestDetails: ILabel[];
+  showErrorData: boolean;
+  showModal: boolean;
+  showTrazabilityData: boolean;
   title: string;
-  titleMoreDetails?: string;
-  handleMoreDetails: () => void;
-  onTabChange: (id: string) => void;
+  labelsOfRequest: ILabel[];
+  showMoreDetailsModal: boolean;
+  normalizeDetails: IEntry;
+  onMoreDetails: () => void;
+  onTabRequestChange: (id: string) => void;
+
   onToggleModal: () => void;
 }
 

@@ -41,7 +41,6 @@ const AddUserVerificationForm = (props: IAddUserVerificationForm) => {
       saveUsers,
       showPendingReqModal,
     });
-
   return (
     <Stack direction="column" gap={basic.spacing.s300}>
       {filteredSteps.map((step) => (

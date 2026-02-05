@@ -1,18 +1,26 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { basic } from "@design/tokens";
 
 interface IStyledCollapseIcon {
   $collapse: boolean;
   $isTablet: boolean;
-  $smallScreen?: boolean;
 }
-interface IStyledContainer {
+
+interface IStyledContainerSection {
+  $isMobile: boolean;
+}
+
+interface IStyledTitle {
+  $isTablet: boolean;
+}
+interface IStyledContainerCards {
   $isTablet: boolean;
 }
 interface IStyledFooter {
   $isMobile: boolean;
 }
+
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,6 +28,14 @@ const StyledContainer = styled.div`
   padding-bottom: ${basic.spacing.s500};
   height: 100vh;
   overflow-y: auto;
+`;
+const StyledContainerSection = styled.div<IStyledContainerSection>`
+  display: flex;
+  flex-direction: column;
+  padding: ${({ $isMobile }) =>
+    $isMobile ? `${basic.spacing.s200}` : `${basic.spacing.s0}`};
+  gap: ${({ $isMobile }) =>
+    $isMobile ? `${basic.spacing.s300}` : `${basic.spacing.s0}`};
 `;
 
 const StyledHeaderContainer = styled.div`
@@ -35,9 +51,11 @@ const StyledContentImg = styled(Link)`
 
 const StyledLogo = styled.img`
   max-width: 100px;
+  max-height: 32px;
+  height: auto;
 `;
 
-const StyledTitle = styled.div<IStyledContainer>`
+const StyledTitle = styled.div<IStyledTitle>`
   padding: ${({ $isTablet }) =>
     $isTablet
       ? `var(--spacing-S200, ${basic.spacing.s200})`
@@ -52,11 +70,19 @@ const StyledTitle = styled.div<IStyledContainer>`
   align-self: ${({ $isTablet }) => $isTablet && "stretch"};
 `;
 
+const StyledContainerCards = styled.div<IStyledContainerCards>`
+  display: flex;
+  box-sizing: border-box;
+  justify-content: ${({ $isTablet }) => ($isTablet ? "center" : "flex-start")};
+  flex-wrap: wrap;
+  gap: ${basic.spacing.s400};
+`;
+
 const StyledFooter = styled.footer<IStyledFooter>`
   display: flex;
   margin-top: auto;
+  padding: ${basic.spacing.s0} ${basic.spacing.s1600} ${basic.spacing.s0};
   justify-content: center;
-  padding-top: ${({ $isMobile }) => $isMobile && "50px"};
 `;
 
 const StyledCollapseIcon = styled.div<IStyledCollapseIcon>`
@@ -69,18 +95,14 @@ const StyledCollapseIcon = styled.div<IStyledCollapseIcon>`
   left: ${({ $isTablet }) => ($isTablet ? "150px" : "142px")};
 `;
 
-const StyledCollapse = styled.div`
-  position: absolute;
-  margin-top: 10px;
-`;
-
 export {
   StyledContainer,
   StyledHeaderContainer,
   StyledTitle,
   StyledContentImg,
   StyledLogo,
+  StyledContainerCards,
   StyledFooter,
+  StyledContainerSection,
   StyledCollapseIcon,
-  StyledCollapse,
 };

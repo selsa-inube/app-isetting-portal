@@ -6,7 +6,7 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { userMenu } from "@config/menuMainConfiguration";
 import { actionsConfig } from "@config/mainActionLogout";
 import { useCorePageStructure } from "@hooks/design/useCorePageStructure";
-import { renderLogo } from "../renderLogo/logoUtils";
+import { RenderLogo } from "../renderLogo/logoUtils";
 import {
   StyledAppPage,
   StyledCollapseIcon,
@@ -21,8 +21,7 @@ import { errorModalConfig } from "@config/errorModal";
 import { messageErrorStatusConsultation } from "@utils/messageErrorStatus";
 
 const CorePageStructure = () => {
-  const { appData, businessUnitsToTheStaff } =
-    useContext(AuthAndData);
+  const { appData, businessUnitsToTheStaff } = useContext(AuthAndData);
   const { errorModal, errorData, closeErrorModal } = useErrorManagement();
 
   const {
@@ -41,11 +40,11 @@ const CorePageStructure = () => {
         <StyledHeaderContainer>
           <Header
             navigation={optionsHeader}
+            logoURL={<RenderLogo imgUrl={appData.businessUnit.urlLogo} />}
             user={{
               username: appData.user.userName,
               breakpoint: "848px",
             }}
-            logoURL={renderLogo(appData.businessUnit.urlLogo)}
             menu={userMenu}
           />
         </StyledHeaderContainer>

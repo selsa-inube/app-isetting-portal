@@ -5,11 +5,11 @@ interface IBorderStack extends IStack {
   border?: IAppearenceBorderStack;
   borderRadius?: string;
   boxSizing?: string;
-  boxShadow?: string;
+  boxShadow?: IAppearenceBorderStack;
   overflowY?: string;
   minHeight?: string;
   maxHeight?: string;
-    maxWidth?: string;
+  maxWidth?: string;
   minWidth?: string;
 }
 

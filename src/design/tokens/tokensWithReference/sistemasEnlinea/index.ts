@@ -274,12 +274,18 @@ const sistemasenlinea = {
       background: {
         color: inube.palette.neutral.N0,
       },
+      boxShadow: {
+        color: inube.palette.neutral.N0,
+      },
     },
     gray: {
       border: {
         color: inube.palette.neutral.N10,
       },
       background: {
+        color: inube.palette.neutral.N10,
+      },
+      boxShadow: {
         color: inube.palette.neutral.N10,
       },
     },
@@ -289,6 +295,53 @@ const sistemasenlinea = {
       },
       background: {
         color: inube.palette.neutral.N40,
+      },
+      boxShadow: {
+        color: inube.palette.neutral.N40,
+      },
+    },
+    help: {
+      border: {
+        color: inube.palette.purple.P50,
+      },
+      background: {
+        color: inube.palette.purple.P50,
+      },
+      boxShadow: {
+        color: inube.palette.purple.P50,
+      },
+    },
+    warning: {
+      border: {
+        color: inube.palette.yellow.Y50,
+      },
+      background: {
+        color: inube.palette.yellow.Y50,
+      },
+      boxShadow: {
+        color: inube.palette.yellow.Y50,
+      },
+    },
+    danger: {
+      border: {
+        color: inube.palette.red.R400,
+      },
+      background: {
+        color: inube.palette.red.R50,
+      },
+      boxShadow: {
+        color: inube.palette.red.R50,
+      },
+    },
+    primary: {
+      border: {
+        color: inube.palette.blue.B300,
+      },
+      background: {
+        color: inube.palette.blue.B300,
+      },
+      boxShadow: {
+        color: inube.palette.blue.B300,
       },
     },
   },

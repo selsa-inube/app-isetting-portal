@@ -3,8 +3,8 @@ import { DetailsModal } from "@pages/positions/tabs/positionsTabs/forms/detailsM
 import { Edit } from "@pages/positions/tabs/positionsTabs/forms/edit";
 
 import { Delete } from "@pages/positions/tabs/positionsTabs/forms/delete";
-import { IEntry } from "@ptypes/table/IEntry";
-import { IAction } from "@ptypes/table/IAction";
+import { IEntry } from '@ptypes/design/table/IEntry';
+import { IAction } from "@ptypes/design/table/IAction";
 import { IPosition } from "@ptypes/positions/assisted/IPosition";
 
 const titlesOptions = [

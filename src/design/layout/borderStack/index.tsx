@@ -22,7 +22,7 @@ const BorderStack = (props: IBorderStack) => {
     overflowY,
     minHeight,
     maxHeight,
-     maxWidth,
+    maxWidth,
     minWidth,
   } = props;
 
@@ -44,9 +44,9 @@ const BorderStack = (props: IBorderStack) => {
       $boxSizing={boxSizing}
       $boxShadow={boxShadow}
       $overflowY={overflowY}
-           $minHeight={minHeight}
+      $minHeight={minHeight}
       $maxHeight={maxHeight}
-           $maxWidth={maxWidth}
+      $maxWidth={maxWidth}
       $minWidth={minWidth}
     >
       {children}

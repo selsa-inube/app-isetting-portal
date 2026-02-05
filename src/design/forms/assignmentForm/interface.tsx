@@ -7,6 +7,8 @@ import { BorderStack } from "@design/layout/borderStack";
 import { searchLabels } from "@config/searchLabels";
 import { EComponentAppearance } from "@enum/appearances";
 import { Checkpicker } from "@inubekit/inubekit";
+import { ToggleTableGroup } from "./tableGroup";
+import { StyledToggleContainer } from "./styles";
 
 const AssignmentFormUI = (props: IAssignmentFormUI) => {
   const {
@@ -31,6 +33,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
     withFilter,
     filterTitle,
     filterPlaceholder,
+    columnsTitles,
   } = props;
 
   const showFilter = !!(withFilter && filterTitle && onFilterChange && fields);
@@ -52,6 +55,7 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
           gap={basic.spacing.s200}
           direction="column"
           width="-webkit-fill-available"
+          height=""
         >
           <Stack
             gap={basic.spacing.s400}
@@ -100,20 +104,30 @@ const AssignmentFormUI = (props: IAssignmentFormUI) => {
               />
             </Stack>
           </Stack>
-          <BorderStack
-            direction="column"
-            border={EComponentAppearance.DARK}
-            borderRadius={basic.spacing.s100}
-            padding={basic.spacing.s200}
-            gap={basic.spacing.s200}
-            height="300px"
-            overflowY="true"
-          >
-            <ToggleGroup
-              entries={filteredEntries}
-              onSelectCheckChange={onSelectCheckChange}
-            />
-          </BorderStack>
+          {columnsTitles && columnsTitles.length > 0 ? (
+            <StyledToggleContainer>
+              <ToggleTableGroup
+                entries={filteredEntries}
+                onSelectCheckChange={onSelectCheckChange}
+                columnsTitles={columnsTitles}
+              />
+            </StyledToggleContainer>
+          ) : (
+            <BorderStack
+              direction="column"
+              border={EComponentAppearance.DARK}
+              borderRadius={basic.spacing.s100}
+              padding={basic.spacing.s200}
+              gap={basic.spacing.s200}
+              height="300px"
+              overflowY="true"
+            >
+              <ToggleGroup
+                entries={filteredEntries}
+                onSelectCheckChange={onSelectCheckChange}
+              />
+            </BorderStack>
+          )}
         </Stack>
       </BorderStack>
 

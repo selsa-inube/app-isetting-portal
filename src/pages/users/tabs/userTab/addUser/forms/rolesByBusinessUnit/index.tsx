@@ -12,7 +12,6 @@ const RolesByBusinessUnit = (props: IRolesByBusinessUnitProps) => {
     editDataOption = false,
     withFilter = false,
   } = props;
-
   const {
     filteredRows,
     filterValue,

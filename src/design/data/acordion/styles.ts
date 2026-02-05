@@ -11,7 +11,6 @@ const StyledContainer = styled.div`
   box-sizing: border-box;
   align-items: stretch;
   width: 100%;
-  max-height: 385px;
   border: 1px solid
     ${({ theme }) => theme?.palette?.neutral?.N40 || inube.palette.neutral.N40};
 `;

@@ -15,18 +15,20 @@ import { postAddUsers } from "@services/users/addUsers/postAddUsers";
 import { IRequestUsers } from "@ptypes/users/tabs/userTab/addUser/IRequestUsers";
 import { ISaveDeleteUsers } from "@ptypes/users/tabs/userTab/deleteUser/IRequestDeleteUser";
 import { deleteUser } from "@services/users/deleteUser";
+import { statusRequestFinished } from "@config/status/statusRequestFinished";
 
 const useSaveUsers = (props: IUseSaveUsers) => {
   const {
-    businessUnits,
-    businessManagerCode,
+    useCase,
     userAccount,
+    sendData,
     data,
     token,
+    businessUnits,
+    businessManagerCode,
     setSendData,
-    sendData,
     setShowModal,
-    useCase,
+    setEntryDeleted,
   } = props;
   const [saveUsers, setSaveUsers] = useState<ISaveDataResponse>();
   const [statusRequest, setStatusRequest] = useState<string>();
@@ -69,9 +71,10 @@ const useSaveUsers = (props: IUseSaveUsers) => {
     setSendData,
     useCase,
     statusRequest: statusRequest || "",
-    saveUsers: saveUsers as ISaveDataResponse,
+    saveData: saveUsers as ISaveDataResponse,
     errorFetchRequest,
     networkError,
+    entity: "Funcionario",
     setHasError,
   });
 
@@ -120,6 +123,7 @@ const useSaveUsers = (props: IUseSaveUsers) => {
     } catch (error) {
       console.info(error);
       setErrorFetchRequest(true);
+      setHasError(true);
       setNetworkError(errorObject(error));
       setShowModal(false);
     }
@@ -133,6 +137,15 @@ const useSaveUsers = (props: IUseSaveUsers) => {
     if (useCase !== EUseCase.DELETE) {
       setTimeout(() => {
         navigate(navigatePage);
+      }, 3000);
+    }
+    if (
+      setEntryDeleted &&
+      statusRequest &&
+      statusRequestFinished.includes(statusRequest)
+    ) {
+      setTimeout(() => {
+        setEntryDeleted(data.configurationRequestData.staffId as string);
       }, 3000);
     }
   };
@@ -154,8 +167,8 @@ const useSaveUsers = (props: IUseSaveUsers) => {
 
   const handleCloseRequestStatus = () => {
     setSendData(false);
-    setChangeTab(true);
     navigate(navigatePage);
+    setChangeTab(true);
     addFlag({
       title: interventionHumanMessage.SuccessfulCreateRequestIntHuman.title,
       description:

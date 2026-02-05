@@ -6,9 +6,10 @@ interface IUseUserRequest {
   setSendData: React.Dispatch<React.SetStateAction<boolean>>;
   useCase: IUseCase;
   statusRequest: string;
-  saveUsers: ISaveDataResponse;
+  saveData: ISaveDataResponse;
   errorFetchRequest: boolean;
   networkError: IErrors;
+  entity: string;
   setHasError: (value: React.SetStateAction<boolean>) => void;
 }
 

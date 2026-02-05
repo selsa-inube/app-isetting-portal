@@ -1,43 +1,49 @@
 import { DetailsUI } from "./interface";
 import { IDetails } from "@ptypes/requestsInProgress/IDetails";
-import { useDetailsMission } from "@hooks/missions/useDetailsMission";
+
 import { useDetailsRequestInProgress } from "@hooks/missions/useDetailsRequestInProgress";
+import { labelsOfRequest } from "@config/requestsInProgressTab/details/labelsOfRequest";
 
 const Details = (props: IDetails) => {
-  const { data, titleMoreDetails } = props;
-
-  const { showModal, screenTablet, normalizeData, handleToggleModal } =
-    useDetailsRequestInProgress({ data });
-
+  const { data } = props;
   const {
-    normalizeData: normalizeDataMoreDetails,
-    isMobile,
+    showModal,
+    screenTablet,
+    normalizeData,
+    filteredRequestTabs,
+    showTrazabilityData,
+    showErrorData,
     title,
-    labelsOfRequestDetails,
-    showModal: showMoreDetailsModal,
-    handleTabChange,
-    handleToggleModal: onToggleMoreDetailsModal,
-  } = useDetailsMission({
-    data: normalizeData,
+    isMobile,
+    isSelected: isSelectedRequest,
+    defaultSelectedTab: defaultSelectedRequestTab,
+    showMoreDetailsModal,
+    normalizeDetails,
+    onMoreDetails,
+    handleToggleModal,
+    handleTabRequestChange,
+  } = useDetailsRequestInProgress({
+    data,
   });
-
 
   return (
     <DetailsUI
       data={normalizeData}
       showModal={showModal}
       onToggleModal={handleToggleModal}
-      showMoreDetailsModal={showMoreDetailsModal}
       isMobile={isMobile}
       screenTablet={screenTablet}
-      abbreviatedName={data.configurationRequestData.abbreviatedName ?? ""}
-      onTabChange={handleTabChange}
-      normalizeDataMoreDetails={normalizeDataMoreDetails}
-      labelsOfRequestDetails={labelsOfRequestDetails}
       title={title}
-      titleMoreDetails={titleMoreDetails}
-      handleMoreDetails={onToggleMoreDetailsModal}    
- />
+      labelsOfRequest={labelsOfRequest}
+      filteredTabs={filteredRequestTabs}
+      showTrazabilityData={showTrazabilityData}
+      showErrorData={showErrorData}
+      onTabRequestChange={handleTabRequestChange}
+      isSelectedRequest={isSelectedRequest ?? defaultSelectedRequestTab ?? ""}
+      showMoreDetailsModal={showMoreDetailsModal}
+      onMoreDetails={onMoreDetails}
+      normalizeDetails={normalizeDetails}
+    />
   );
 };
 

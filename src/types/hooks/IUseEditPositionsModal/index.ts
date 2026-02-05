@@ -1,7 +1,7 @@
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 interface IUseEditPositionsModal {
-data: IEntry
+  data: IEntry;
 }
 
-export type {IUseEditPositionsModal}
+export type { IUseEditPositionsModal };

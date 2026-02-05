@@ -6,22 +6,27 @@ import { IDetailsUI } from "@ptypes/missions/requestTab/IDetailsUI";
 import { detailsLabels } from "@config/missions/requestTab/table/generic/detailsLabels";
 import { labelsOfTraceability } from "@config/requestsInProgressTab/details/labelsOfTraceability";
 import { StyledContainerIcon } from "./styles";
-import { RequestsInProcess } from "./requestsInProcess";
-import { labelsOptions } from "@config/missions/missionTab/table/labelsOptions";
+
+import { RequestsInProcess } from "@design/modals/requestInProgressModal";
 import { DetailsMissionModal } from "@pages/missions/tools/detailsModal/detailsMissionModal";
+import { labelsOptions } from "@config/missions/missionTab/table/labelsOptions";
 
 const DetailsUI = (props: IDetailsUI) => {
   const {
     data,
+    filteredTabs,
     isMobile,
-    showModal,
-    showMoreDetailsModal,
+    isSelectedRequest,
+    labelsOfRequest,
     screenTablet,
-    labelsOfRequestDetails,
-    normalizeDataMoreDetails,
+    showErrorData,
+    showModal,
+    showTrazabilityData,
     title,
-    titleMoreDetails,
-    handleMoreDetails,
+    showMoreDetailsModal,
+    normalizeDetails,
+    onMoreDetails,
+    onTabRequestChange,
     onToggleModal,
   } = props;
 
@@ -46,21 +51,25 @@ const DetailsUI = (props: IDetailsUI) => {
         <RequestsInProcess
           data={data}
           title={title}
-          labelsOfRequest={labelsOfRequestDetails}
+          labelsOfRequest={labelsOfRequest}
           labelsOfTraceability={labelsOfTraceability}
           onCloseModal={onToggleModal}
           isMobile={isMobile}
-          onClick={handleMoreDetails}
+          onClick={onMoreDetails}
+          isSelected={isSelectedRequest}
+          filteredTabs={filteredTabs}
+          showTrazabilityData={showTrazabilityData}
+          showErrorData={showErrorData}
+          onTabChange={onTabRequestChange}
         />
       )}
 
       {showMoreDetailsModal && (
         <DetailsMissionModal
-          infoData={normalizeDataMoreDetails ?? {}}
+          infoData={normalizeDetails ?? {}}
           labels={labelsOptions}
-          onClose={handleMoreDetails}
+          onClose={onMoreDetails}
           smallScreen={screenTablet}
-          title={titleMoreDetails}
         />
       )}
     </>

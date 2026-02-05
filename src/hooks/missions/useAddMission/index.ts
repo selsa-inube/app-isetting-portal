@@ -10,6 +10,8 @@ import { IFormAddMission } from "@ptypes/missions/assisted/IFormAddMission";
 import { IGeneralInformationEntry } from "@ptypes/missions/assisted/IGeneralInformationEntry";
 import { saveDataLabels } from "@config/missions/missionTab/assisted/saveDataLabels";
 import { ERequestType } from "@enum/request/requestType";
+import { EMisions } from "@enum/missions";
+import { EAplication } from "@enum/aplication";
 
 const useAddMission = () => {
   const initialValues = {
@@ -80,14 +82,14 @@ const useAddMission = () => {
     handleToggleModal();
     setShowRequestProcessModal(!showRequestProcessModal);
     setSaveData({
-      applicationName: "istaff",
+      applicationName: EAplication.NAME,
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
       description: saveDataLabels.description,
       requestType: ERequestType.ADD,
-      entityName: "User",
+      entityName: EMisions.USE_CASE,
       requestDate: formatDate(new Date()),
-      useCaseName: "AddUser",
+      useCaseName: EMisions.USE_CASE_NAME_ADD,
       configurationRequestData: {
         missionName: formValues.generalInformation.values.nameMission,
         descriptionUse: formValues.generalInformation.values.descriptionMission,

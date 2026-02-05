@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useMediaQuery } from "@inubekit/inubekit";
 import { IUseDetailsModal } from "@ptypes/hooks/IUseDetailsModal";
+import { mediaQueryTabletMain } from "@config/environment";
 
 const useDetailsModal = (props: IUseDetailsModal) => {
   const { data } = props;
   const [showModal, setShowModal] = useState<boolean>(false);
-  const screenTablet = useMediaQuery("(max-width: 1200px)");
+  const screenTablet = useMediaQuery(mediaQueryTabletMain);
 
   const handleToggleModal = () => {
     setShowModal((prev) => !prev);

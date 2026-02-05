@@ -76,9 +76,10 @@ const useSaveMission = (props: IUseSaveMission) => {
     setSendData,
     useCase,
     statusRequest: statusRequest || "",
-    saveUsers: saveMission as ISaveDataResponse,
+    saveData: saveMission as ISaveDataResponse,
     errorFetchRequest,
     networkError,
+    entity: "Cargo del operador",
     setHasError,
   });
 

@@ -21,6 +21,7 @@ const useRequest = (props: IUseUserRequest) => {
     errorFetchRequest,
     saveData,
     networkError,
+    entity,
     setHasError,
   } = props;
 
@@ -167,9 +168,9 @@ const useRequest = (props: IUseUserRequest) => {
 
       if (isStatusRequestFinished()) {
         addFlag({
-          title: flowAutomaticMessages(operationTypes[useCase])
+          title: flowAutomaticMessages(operationTypes[useCase], entity)
             .successfulCreateRequest.title,
-          description: flowAutomaticMessages(operationTypes[useCase])
+          description: flowAutomaticMessages(operationTypes[useCase], entity)
             .successfulCreateRequest.description,
           appearance: flowAutomaticMessages(operationTypes[useCase])
             .successfulCreateRequest.appearance as IFlagAppearance,

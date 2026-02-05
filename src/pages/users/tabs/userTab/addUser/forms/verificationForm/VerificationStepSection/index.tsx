@@ -11,7 +11,7 @@ import { AddUserVerificationBoxes } from "../verificationBoxes";
 import { IAddUserVerificationStepSection } from "@ptypes/users/tabs/userTab/addUser/forms/verificationForm/IAddUserVerificationStepSection";
 
 const AddUserVerificationStepSection = (
-  props: IAddUserVerificationStepSection
+  props: IAddUserVerificationStepSection,
 ) => {
   const { step, updatedData, onStepChange } = props;
 

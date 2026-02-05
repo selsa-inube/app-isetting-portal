@@ -1,11 +1,10 @@
-
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { mapRequestsInProgressToEntity } from "../mapRequestsToEntity";
 
 const mapRequestsInProgressToEntities = (
-  enums: IRequestsInProgress[],
+  data: IRequestsInProgress[],
 ): IRequestsInProgress[] => {
-  return enums.map(mapRequestsInProgressToEntity);
+  return data.map(mapRequestsInProgressToEntity);
 };
 
 export { mapRequestsInProgressToEntities };

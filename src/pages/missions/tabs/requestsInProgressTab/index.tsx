@@ -23,7 +23,6 @@ const RequestsInProgressTab = () => {
   });
 
   const pageLength = usePageLength();
-
   return (
     <RequestsInProgressTabUI
       entries={requestsInProgress as IEntry[]}

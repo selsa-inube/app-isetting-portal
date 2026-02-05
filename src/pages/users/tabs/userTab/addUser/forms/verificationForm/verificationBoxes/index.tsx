@@ -30,9 +30,7 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
   const positionsByBusinessUnit =
     updatedData.positionByBusinessUnitStep?.values || [];
 
-  const activeRoles =
-    updatedData.roleByBusinessUnitStep ??
-    [];
+  const activeRoles = updatedData.roleByBusinessUnitStep ?? [];
 
   return (
     <>
@@ -105,23 +103,22 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
         </Grid>
       )}
 
-      {businessEntityStep &&
-        activeBusinessEntities.length > 0 && (
-          <Grid
-            templateColumns={isMobile ? "1fr" : "1fr 1fr"}
-            autoRows="1fr"
-            width="100%"
-            gap={basic.spacing.s100}
-          >
-            {activeBusinessEntities.map((value) => (
-              <BoxAttribute
-                key={value.id}
-                label={AddUserVerificationBoxesLabels.businessEntity}
-                value={value.value}
-              />
-            ))}
-          </Grid>
-        )}
+      {businessEntityStep && activeBusinessEntities.length > 0 && (
+        <Grid
+          templateColumns={isMobile ? "1fr" : "1fr 1fr"}
+          autoRows="1fr"
+          width="100%"
+          gap={basic.spacing.s100}
+        >
+          {activeBusinessEntities.map((value) => (
+            <BoxAttribute
+              key={value.id}
+              label={AddUserVerificationBoxesLabels.businessEntity}
+              value={value.value}
+            />
+          ))}
+        </Grid>
+      )}
 
       {positionByBusinessUnitStep && (
         <Grid
@@ -144,23 +141,22 @@ const AddUserVerificationBoxes = (props: IAddUserVerificationBoxes) => {
         </Grid>
       )}
 
-      {roleByBusinessUnitStep &&
-        activeRoles.length > 0 && (
-          <Grid
-            templateColumns={isMobile ? "1fr" : "1fr 1fr"}
-            autoRows="1fr"
-            width="100%"
-            gap={basic.spacing.s100}
-          >
-            {activeRoles.map((role) => (
-              <BoxAttribute
-                key={role.id}
-                label={role.businessUnitCode}
-                value={role.rolesStaff}
-              />
-            ))}
-          </Grid>
-        )}
+      {roleByBusinessUnitStep && activeRoles.length > 0 && (
+        <Grid
+          templateColumns={isMobile ? "1fr" : "1fr 1fr"}
+          autoRows="auto"
+          width="100%"
+          gap={basic.spacing.s100}
+        >
+          {activeRoles.map((role) => (
+            <BoxAttribute
+              key={role.id}
+              label={role.businessUnitCode}
+              value={role.rolesStaff}
+            />
+          ))}
+        </Grid>
+      )}
     </>
   );
 };

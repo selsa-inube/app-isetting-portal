@@ -41,15 +41,9 @@ const ModalWrapper = (props: IModalWrapper) => {
     weightTitle = "normal",
     width = "auto",
     withCancelButton,
-    withThirdButton,
-    appearanceThirdButton,
-    labelThirdButton,
-    iconThirdButton,
-    loadingThirdButton,
     fullwidthbutton = false,
     changeZIndex = false,
     overflowY = "unset",
-    onClickThirdButton,
     onClick,
     onCloseModal,
   } = props;
@@ -136,19 +130,6 @@ const ModalWrapper = (props: IModalWrapper) => {
                 onClick={onCloseModal}
               >
                 {labelCloseButton}
-              </Button>
-            )}
-            {withThirdButton && (
-              <Button
-                spacing="wide"
-                appearance={appearanceThirdButton}
-                iconBefore={iconThirdButton ?? <></>}
-                fullwidth={isMobile && fullwidthbutton}
-                variant="filled"
-                onClick={onClickThirdButton}
-                loading={loadingThirdButton}
-              >
-                {labelThirdButton}
               </Button>
             )}
 

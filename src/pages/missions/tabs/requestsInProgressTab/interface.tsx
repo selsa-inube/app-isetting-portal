@@ -8,7 +8,7 @@ import { titles } from "@config/missions/requestTab/table/titles";
 import { breakPoints } from "@config/missions/missionTab/table/breakPoints";
 import { IRequestsInProgressTabUI } from "@ptypes/requestsInProgress/IRequestsInProgressTabUI";
 import { actionsConfig } from "@config/missions/requestTab/table/actionsConfig";
-import { detailsLabels } from "@config/missions/missionTab/detailsLabels";
+
 import { EComponentAppearance } from "@enum/appearances";
 
 const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
@@ -59,9 +59,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
           <Stack
             justifyContent={smallScreen ? "center" : "start"}
             direction={smallScreen ? "column" : "row"}
-            gap={
-              smallScreen ? `${basic.spacing.s150}` : `${basic.spacing.s0}`
-            }
+            gap={smallScreen ? `${basic.spacing.s150}` : `${basic.spacing.s0}`}
           >
             <Stack
               justifyContent="center"
@@ -100,7 +98,7 @@ const RequestsInProgressTabUI = (props: IRequestsInProgressTabUI) => {
             tableLayout="auto"
             titles={titles}
             entries={entries}
-            actions={actionsConfig(setEntryCanceled, detailsLabels.titleMoreDetails)}
+            actions={actionsConfig(setEntryCanceled)}
             breakpoints={breakPoints}
             filter={searchRequestProgress}
             loading={loading}

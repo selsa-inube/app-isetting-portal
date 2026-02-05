@@ -27,15 +27,9 @@ interface IModalWrapper {
   dashed?: boolean;
   variantCancel?: IButtonVariant;
   weightTitle?: "normal" | "bold";
-  withThirdButton?: boolean;
-  appearanceThirdButton?: EComponentAppearance;
-  labelThirdButton?: string;
-  iconThirdButton?: React.ReactElement;
-  loadingThirdButton?: boolean;
   fullwidthbutton?: boolean;
   changeZIndex?: boolean;
   overflowY?: string;
-  onClickThirdButton?: () => void;
   onCloseModal?: () => void;
 }
 

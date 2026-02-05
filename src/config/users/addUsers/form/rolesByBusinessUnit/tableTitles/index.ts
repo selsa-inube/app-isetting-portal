@@ -1,6 +1,6 @@
 const rolesByBusinessUnitColumnsTitles = [
   {
-    id: "value",
+    id: "businessUnitCode",
     label: "Unidad de negocio",
   },
   {

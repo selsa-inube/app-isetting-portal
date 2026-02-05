@@ -1,8 +1,6 @@
 import { Tabs } from "@inubekit/inubekit";
 
 import { ModalWrapper } from "@design/modals/modalWrapper";
-import { EComponentAppearance } from "@enum/appearances";
-
 import { portalId } from "@config/portalId";
 
 import { TrazabilityTab } from "./trazabilityTab";
@@ -21,14 +19,9 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
     showTrazabilityData,
     showErrorData,
     isMobile,
-    withErrorRequest,
-    loading,
-    labelButton,
-    iconButton,
     onTabChange,
     onCloseModal,
     onClick,
-    onThirdClick,
   } = props;
 
   return (
@@ -44,12 +37,6 @@ const RequestsInProcess = (props: IRequestsInProcess) => {
       withCancelButton={true}
       onCloseModal={onCloseModal}
       onClick={onClick}
-      withThirdButton={withErrorRequest}
-      appearanceThirdButton={EComponentAppearance.PRIMARY}
-      labelThirdButton={labelButton}
-      onClickThirdButton={onThirdClick}
-      iconThirdButton={iconButton}
-      loadingThirdButton={loading}
       fullwidthbutton
     >
       <Tabs

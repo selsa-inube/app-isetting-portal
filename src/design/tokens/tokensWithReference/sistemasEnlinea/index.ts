@@ -333,6 +333,17 @@ const sistemasenlinea = {
         color: inube.palette.red.R50,
       },
     },
+    primary: {
+      border: {
+        color: inube.palette.blue.B300,
+      },
+      background: {
+        color: inube.palette.blue.B300,
+      },
+      boxShadow: {
+        color: inube.palette.blue.B300,
+      },
+    },
   },
 };
 

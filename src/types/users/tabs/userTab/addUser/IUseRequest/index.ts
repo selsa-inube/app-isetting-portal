@@ -9,6 +9,7 @@ interface IUseUserRequest {
   saveData: ISaveDataResponse;
   errorFetchRequest: boolean;
   networkError: IErrors;
+  entity: string;
   setHasError: (value: React.SetStateAction<boolean>) => void;
 }
 

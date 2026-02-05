@@ -1,20 +1,8 @@
-import { basic } from "@design/tokens";
 import styled from "styled-components";
-
-interface IStyledComponent {
-  $smallScreen: boolean;
-}
 
 const StyledForm = styled.form`
   width: 100%;
   margin-bottom: 50px;
-`;
-
-const StyledEntriesContainer = styled.div`
-  & > div {
-    max-height: 300px;
-    overflow-y: auto;
-  }
 `;
 
 const StyledOptionsContainer = styled.div`
@@ -23,16 +11,11 @@ const StyledOptionsContainer = styled.div`
   text-align: right;
 `;
 
-const StyledToggleContainer = styled.div<IStyledComponent>`
-  margin: ${({ $smallScreen }) => ($smallScreen ? `${basic.spacing.s10}` : `${basic.spacing.s0}`)};
+const StyledToggleContainer = styled.div`
   & > div {
-    justify-content: center;
+    height: 42vh;
+    overflow-y: scroll;
   }
 `;
 
-export {
-  StyledEntriesContainer,
-  StyledForm,
-  StyledOptionsContainer,
-  StyledToggleContainer,
-};
+export { StyledForm, StyledOptionsContainer, StyledToggleContainer };

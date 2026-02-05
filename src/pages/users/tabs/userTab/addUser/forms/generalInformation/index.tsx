@@ -19,7 +19,7 @@ const GeneralInformationForm = forwardRef<
       loading,
       editDataOption = false,
     },
-    ref
+    ref,
   ) => {
     const {
       formik,
@@ -51,7 +51,7 @@ const GeneralInformationForm = forwardRef<
         handleSelectChange={handleSelectChange}
       />
     );
-  }
+  },
 );
 GeneralInformationForm.displayName = "GeneralInformationForm";
 export { GeneralInformationForm };

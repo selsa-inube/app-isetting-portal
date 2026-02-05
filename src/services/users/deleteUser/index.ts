@@ -11,7 +11,6 @@ const deleteUser = async (
   data: ISaveDeleteUsers,
   token: string,
 ): Promise<ISaveDeleteUsers> => {
-  console.log(data);
   const config: AxiosRequestConfig = {
     headers: {
       "X-Action": "RemoveStaff",

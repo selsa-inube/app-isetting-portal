@@ -1,7 +1,7 @@
-import { ERequestStatus } from "@enum/requestStatus";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { formatDateTable } from "@utils/date/formatDateTable";
-
+import { IconRequestError } from "@design/data/iconRequestError";
+import { requestStatus } from "@config/requestStatus";
 const mapRequestsInProgressToEntity = (
   data: IRequestsInProgress,
 ): IRequestsInProgress => {
@@ -10,7 +10,9 @@ const mapRequestsInProgressToEntity = (
     applicationName: String(data.applicationName),
     businessManagerCode: String(data.businessManagerCode),
     businessUnitCode: String(data.businessUnitCode),
-    configurationRequestData: Object(data.configurationRequestData),
+    configurationRequestData: {
+      ...data.configurationRequestData,
+    },
     configurationRequestsTraceability: Object(
       data.configurationRequestsTraceability,
     ),
@@ -18,14 +20,21 @@ const mapRequestsInProgressToEntity = (
     entityName: String(data.entityName),
     requestDate: formatDateTable(new Date(String(data.requestDate))),
     requestNumber: String(data.requestNumber),
-    requestStatus:
-      ERequestStatus[data.requestStatus as keyof typeof ERequestStatus] ??
-      data.requestStatus,
+    requestStatus: (
+      <IconRequestError
+        status={
+          requestStatus[data.requestStatus as string] ?? data.requestStatus
+        }
+        settingRequestError={data.settingRequestError}
+      />
+    ),
+    requestStatusCode: String(data.requestStatus),
     settingRequestId: String(data.settingRequestId),
     useCaseName: String(data.useCaseName),
     userManagingConfigurationRequests: Object(
       data.userManagingConfigurationRequests,
     ),
+    settingRequestError: Object(data.settingRequestError),
   };
 
   return request;

@@ -6,7 +6,7 @@ interface IFeedbackModal {
   smallScreen: boolean;
   labels: Record<string, IField[]>;
   infoData: IPosition;
-  dataTable?: IEntry[];
+
   positionsByBusinessUnitRoles?: IEntry[];
   rolesByBusinessUnit?: IEntry[];
 }

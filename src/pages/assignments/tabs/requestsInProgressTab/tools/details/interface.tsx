@@ -55,17 +55,6 @@ const DetailsUI = (props: IDetailsUI) => {
           labelsOfTraceability={labelsOfTraceability}
           onCloseModal={onToggleModal}
           isMobile={isMobile}
-          onClick={onMoreDetails}
-          isSelected={isSelectedRequest}
-          filteredTabs={filteredTabs}
-          showTrazabilityData={showTrazabilityData}
-          showErrorData={showErrorData}
-          onTabChange={onTabRequestChange}
-          withErrorRequest={withErrorRequest}
-          onThirdClick={onClick}
-          loading={loading}
-          labelButton={labelButton}
-          iconButton={iconButton}
         />
       )}
 

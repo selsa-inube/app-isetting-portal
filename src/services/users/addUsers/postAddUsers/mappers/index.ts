@@ -34,6 +34,8 @@ const mapAddUsersToApi = (data: IRequestUsers, businessManagerCode: string) => {
         positionName: item.positionName,
         roleName: item.roleName,
       })),
+    registrationRedirectUrl:
+      "https://isetting-credicar.inube.online/?portal=148aedb5-d618-4291-8ae7-6bb4cfa36be6",
   };
 };
 

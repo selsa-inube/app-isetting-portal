@@ -2,7 +2,7 @@ import { cancelRequestInProgressModal } from "@config/positionsTabs/requestProce
 import { AuthAndData } from "@context/authAndDataProvider";
 import { CancelRecord } from "@design/feedback/cancelRecord";
 import { useCancelRequestInProgress } from "@hooks/positions/useCancelRequestInProgress";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from '@ptypes/design/table/IEntry';
 import { useContext } from "react";
 
 interface ICancel {

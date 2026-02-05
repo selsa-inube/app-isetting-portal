@@ -3,8 +3,9 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { getRequestsInProgress } from "@services/requestInProgress/getRequestsInProgress";
 import { ERequestPosition } from "@enum/requestPosition";
 import { mediaQueryMobile } from "@config/environment";
-import { IRequestsInProgress } from "@ptypes/positions/requestsInProgress/IRequestsInProgress";
+
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
+import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
 const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   const { businessUnits, businessManager, token } = props;

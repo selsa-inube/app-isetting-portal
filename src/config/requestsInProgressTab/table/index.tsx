@@ -1,7 +1,7 @@
 import { Cancel } from "@pages/positions/tabs/requestsInProgressTab/tools/delete";
 import { Details } from "@pages/positions/tabs/requestsInProgressTab/tools/details";
-import { IAction } from "@ptypes/table/IAction";
-import { ITitle } from "@ptypes/table/ITitle";
+import { IAction } from "@ptypes/design/table/IAction";
+import { ITitle } from "@ptypes/design/table/ITitle";
 
 const titles: ITitle[] = [
   {

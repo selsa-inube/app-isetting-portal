@@ -31,6 +31,7 @@ const useSearchAndPageControlUser = () => {
         ...row,
       }));
   }, [userData, searchService, entryDeleted]);
+
   const handleSearchService = (value: React.ChangeEvent<HTMLInputElement>) => {
     setSearchService(value.target.value);
   };

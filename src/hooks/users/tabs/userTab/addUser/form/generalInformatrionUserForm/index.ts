@@ -19,6 +19,7 @@ const useGeneralInformationUserForm = (
   const { initialValues, ref, onSubmit, onFormValid } = props;
   const { appData } = useContext(AuthAndData);
   const [isDisabledButton, setIsDisableButton] = useState(true);
+
   const createValidationSchema = () =>
     object().shape({
       firstName: validationRules.string.required(validationMessages.required),
@@ -26,9 +27,10 @@ const useGeneralInformationUserForm = (
       idType: validationRules.string.required(validationMessages.required),
       idNumber: validationRules.string.required(validationMessages.required),
       gender: validationRules.string.required(validationMessages.required),
-      birthDate: validationRules.string.required(validationMessages.required),
+      birthDate: validationRules.date
+        .required(validationMessages.required)
+        .max(new Date(), validationMessages.validDate),
     });
-
   const validationSchema = createValidationSchema();
 
   const formik = useFormik({
@@ -61,7 +63,7 @@ const useGeneralInformationUserForm = (
       ?.items.map((item) => ({
         label: item.i18n[appData.language as keyof II18n],
         id: item.code,
-        value: item.value,
+        value: item.i18n[appData.language as keyof II18n],
       })) || [];
 
   const optionIdType: IOption[] =
@@ -70,7 +72,7 @@ const useGeneralInformationUserForm = (
       ?.items.map((item) => ({
         label: item.i18n[appData.language as keyof II18n],
         id: item.code,
-        value: item.code,
+        value: item.i18n[appData.language as keyof II18n],
       })) || [];
   const labelButtonNext = generalInformationConfig.buttonLabel;
   const buttonDisabledState = isDisabledButton;
@@ -78,6 +80,7 @@ const useGeneralInformationUserForm = (
   const handleSelectChange = (name: string, value: string) => {
     formik.setFieldValue(name, value);
   };
+
   return {
     formik,
     mobilePadding,

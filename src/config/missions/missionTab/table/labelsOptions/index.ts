@@ -2,7 +2,7 @@ const labelsOptions = [
   {
     id: "missionName",
     labelName: "Nombre del cargo",
-    type: "table",
+    type: "text",
   },
   {
     id: "descriptionUse",

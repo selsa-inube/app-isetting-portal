@@ -1,6 +1,6 @@
 import { IPosition } from "@ptypes/positions/assisted/IPosition";
 import { IField } from "@ptypes/positions/details/IField";
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 interface IDetails {
   data: IEntry;
   showModal: boolean;

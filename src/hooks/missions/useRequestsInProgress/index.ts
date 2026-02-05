@@ -5,7 +5,7 @@ import { getRequestsInProgress } from "@services/requestInProgress/getRequestsIn
 import { ERequestInProgress } from "@enum/requestInProgress";
 import { mediaQueryTabletMain } from "@config/environment";
 import { IUseRequestsInProgress } from "@ptypes/hooks/IUseRequestsInProgress";
-import { IRequestsInProgress } from "@ptypes/missions/requestTab/IRequestsInProgress";
+import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 
 const useRequestsInProgress = (props: IUseRequestsInProgress) => {
   const { businessManager, token } = props;

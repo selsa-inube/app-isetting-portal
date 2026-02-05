@@ -1,6 +1,8 @@
-import { StyledContentImg, StyledLogo } from "@pages/home/styles";
+import { IRenderLogo } from "@ptypes/design/IRenderLogo";
+import { StyledContentImg, StyledLogo } from "./styles";
 
-const renderLogo = (imgUrl: string) => {
+const RenderLogo = (props: IRenderLogo) => {
+  const { imgUrl } = props;
   return (
     <StyledContentImg to="/">
       <StyledLogo src={imgUrl} />
@@ -8,4 +10,4 @@ const renderLogo = (imgUrl: string) => {
   );
 };
 
-export { renderLogo };
+export { RenderLogo };

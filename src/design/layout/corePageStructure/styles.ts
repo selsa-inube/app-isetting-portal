@@ -39,6 +39,9 @@ const StyledMain = styled.main<IStyledMain>`
 
 const StyledHeaderContainer = styled.div`
   position: relative;
+  & div > div {
+    cursor: pointer;
+  }
 `;
 
 const StyledCollapseIcon = styled.div<IStyledCollapseIcon>`

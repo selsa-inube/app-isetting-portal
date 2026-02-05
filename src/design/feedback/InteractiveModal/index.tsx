@@ -16,14 +16,22 @@ import { BorderStack } from "@design/layout/borderStack";
 import { EComponentAppearance } from "@enum/appearances";
 
 const InteractiveModal = (props: IInteractiveModal) => {
-  const { children, closeModal, title, width, height, portalId, infoText } =
-    props;
+  const {
+    children,
+    closeModal,
+    title,
+    width,
+    height,
+    portalId,
+    infoText,
+    overflowY,
+  } = props;
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
   const node = document.getElementById(portalId);
 
   if (!node) {
     throw new Error(
-      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly."
+      "The portal node is not defined. This can occur when the specific node used to render the portal has not been defined correctly.",
     );
   }
 
@@ -37,10 +45,15 @@ const InteractiveModal = (props: IInteractiveModal) => {
         direction="column"
         padding={smallScreen ? basic.spacing.s16 : basic.spacing.s24}
         gap={basic.spacing.s24}
+        overflowY={overflowY}
       >
         <Stack direction="column" gap={basic.spacing.s20}>
           <Stack alignItems="center" justifyContent="space-between">
-            <Text type="headline" size="small" appearance={EComponentAppearance.DARK}>
+            <Text
+              type="headline"
+              size="small"
+              appearance={EComponentAppearance.DARK}
+            >
               {title}
             </Text>
             <Icon
@@ -62,7 +75,7 @@ const InteractiveModal = (props: IInteractiveModal) => {
         </Stack>
       </BorderStack>
     </Blanket>,
-    node
+    node,
   );
 };
 

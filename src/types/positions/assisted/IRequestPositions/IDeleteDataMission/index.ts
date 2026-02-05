@@ -1,10 +1,10 @@
 import { ISaveDataResponse } from "@ptypes/saveData/ISaveDataResponse";
 import { ISaveDeleteMission } from "./ISaveDeleteMission";
 
-interface IRequestDeleteMissions {
+interface IRequestDeletePositions {
   configurationRequestData: ISaveDeleteMission;
   removalJustification?: string;
   settingRequest?: ISaveDataResponse;
 }
 
-export type { IRequestDeleteMissions };
+export type { IRequestDeletePositions };

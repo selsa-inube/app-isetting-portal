@@ -1,6 +1,6 @@
 import { EComponentAppearance } from "@enum/appearances";
 
-const flowAutomaticMessages = (action?: string) => {
+const flowAutomaticMessages = (action?: string, entity?: string) => {
   const flowAutomatic = {
     errorSendingData: {
       title: "¡Ups! Algo salió mal",
@@ -22,8 +22,8 @@ const flowAutomaticMessages = (action?: string) => {
       duration: 3000,
     },
     successfulCreateRequest: {
-      title: `Cargo del operador ${action} con éxito!`,
-      description: `Cargo del operador fue ${action} con éxito!`,
+      title: `${entity} ${action} con éxito!`,
+      description: `${entity} fue ${action} con éxito!`,
       appearance: EComponentAppearance.SUCCESS,
       duration: 3000,
     },

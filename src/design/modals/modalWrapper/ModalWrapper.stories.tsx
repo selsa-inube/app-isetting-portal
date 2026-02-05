@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Meta, StoryFn } from "@storybook/react";
 import { Button } from "@inubekit/inubekit";
-import { ModalWrapper, IModalWrapper } from ".";
+import { Meta, StoryFn } from "@storybook/react";
+
+import { ModalWrapper } from ".";
+import { IModalWrapper } from "@ptypes/modals/IModalWrapper";
 
 const meta: Meta<typeof ModalWrapper> = {
   title: "modals/ModalWrapper",
   component: ModalWrapper,
   decorators: [
-    (Story) => (
-      <BrowserRouter>
-        <Story />
-      </BrowserRouter>
+    (Story: StoryFn, context) => (
+      <BrowserRouter>{Story(context.args, context)}</BrowserRouter>
     ),
   ],
 };
@@ -36,6 +36,9 @@ Default.args = {
   height: "500px",
   width: "600px",
   isMobile: false,
+  labelActionButton: "Entendido",
+  labelCloseButton: "Cerrar",
+  labelCloseModal: "Cerrar",
   title: "titulo",
   withCancelButton: true,
 };

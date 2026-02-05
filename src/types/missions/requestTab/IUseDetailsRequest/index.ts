@@ -1,4 +1,4 @@
-import { IEntry } from "@ptypes/table/IEntry";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 interface IUseDetailsRequestInProgress {
   data: IEntry;

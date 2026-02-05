@@ -3,14 +3,22 @@ import { basic } from "@design/tokens";
 import { Divider, Stack, Text } from "@inubekit/inubekit";
 import { IFeedbackModal } from "@ptypes/users/tabs/userTab/details/IFeedbackModal";
 import { InputFields } from "./inputFields";
-import { TableUsers } from "./tableUsers";
+
 import { EComponentAppearance } from "@enum/appearances";
 import { BorderStack } from "@design/layout/borderStack";
 import { userDetails } from "@config/users/detailsUsers";
-
+import { TableUsers } from "./tableUsers";
 
 const DetailsUsersModal = (props: IFeedbackModal) => {
-  const { onClose, smallScreen, labels, infoData, dataTable, positionsByBusinessUnitRoles, rolesByBusinessUnit } = props;
+  const {
+    onClose,
+    smallScreen,
+    labels,
+    infoData,
+
+    positionsByBusinessUnitRoles,
+    rolesByBusinessUnit,
+  } = props;
   return (
     <InteractiveModal
       closeModal={onClose}
@@ -18,15 +26,20 @@ const DetailsUsersModal = (props: IFeedbackModal) => {
       title="Detalles del usuario"
       infoText="Cerrar"
       width={smallScreen ? "100%" : "700px"}
+      height="750px"
+      overflowY="scroll"
     >
-
       <InputFields labels={labels} infoData={infoData} />
 
       <Stack direction="column" gap={basic.spacing.s16}>
-
-        {dataTable && <TableUsers dataTable={dataTable} />}
-        {rolesByBusinessUnit &&
-          <BorderStack border={EComponentAppearance.DARK} borderRadius="5px" direction="column" padding={basic.spacing.s200} gap={basic.spacing.s200} >
+        {rolesByBusinessUnit && (
+          <BorderStack
+            border={EComponentAppearance.DARK}
+            borderRadius="5px"
+            direction="column"
+            padding={basic.spacing.s200}
+            gap={basic.spacing.s200}
+          >
             <Text
               type="title"
               size="medium"
@@ -37,11 +50,17 @@ const DetailsUsersModal = (props: IFeedbackModal) => {
             </Text>
             <Divider dashed />
             <TableUsers dataTable={rolesByBusinessUnit} />
-          </BorderStack >
-        }
+          </BorderStack>
+        )}
 
-        {positionsByBusinessUnitRoles &&
-          <BorderStack border={EComponentAppearance.DARK} borderRadius="5px" direction="column" padding={basic.spacing.s200} gap={basic.spacing.s200} >
+        {positionsByBusinessUnitRoles && (
+          <BorderStack
+            border={EComponentAppearance.DARK}
+            borderRadius="5px"
+            direction="column"
+            padding={basic.spacing.s200}
+            gap={basic.spacing.s200}
+          >
             <Text
               type="title"
               size="medium"
@@ -52,11 +71,10 @@ const DetailsUsersModal = (props: IFeedbackModal) => {
             </Text>
             <Divider dashed />
             <TableUsers dataTable={positionsByBusinessUnitRoles} />
-          </BorderStack >
-        }
-
+          </BorderStack>
+        )}
       </Stack>
-    </InteractiveModal >
+    </InteractiveModal>
   );
 };
 

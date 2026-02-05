@@ -1,7 +1,7 @@
 import { IEntry } from "@ptypes/design/table/IEntry";
-import { IAction } from "@ptypes/table/IAction";
+import { IAction } from "@ptypes/design/table/IAction";
 
-import { ITitle } from "@ptypes/table/ITitle";
+import { ITitle } from "@ptypes/design/table/ITitle";
 
 interface IRequestInProgressTabUI {
   searchService: string;

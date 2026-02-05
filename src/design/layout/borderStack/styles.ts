@@ -17,11 +17,11 @@ interface IStyledFlex {
   $padding?: string;
   $borderRadius?: string;
   $boxSizing?: string;
-  $boxShadow?: string;
+  $boxShadow?: IAppearenceBorderStack;
   $overflowY?: string;
   $minHeight?: string;
   $maxHeight?: string;
-    $maxWidth?: string;
+  $maxWidth?: string;
   $minWidth?: string;
 }
 
@@ -44,14 +44,14 @@ const StyledBorderFlex = styled.div<IStyledFlex>`
     `1px solid ${theme?.borderStack?.[$border].border?.color ?? tokensBorderStack[$border].border.color}`};
   border-radius: ${({ $borderRadius }) => $borderRadius};
   box-sizing: ${({ $boxSizing }) => $boxSizing};
-  box-shadow: ${({ $boxShadow, theme }) =>
+  box-shadow: ${({ theme, $boxShadow }) =>
     $boxShadow &&
-    `${$boxShadow} ${theme?.borderStack?.dark.border?.color ?? tokensBorderStack.dark.border.color}`};
+    `1px 1px 4px 2px ${theme?.borderStack?.[$boxShadow].border?.color ?? tokensBorderStack[$boxShadow].border.color}`};
   overflow-y: ${({ $overflowY }) => $overflowY};
   min-height: ${({ $minHeight }) => $minHeight};
   max-height: ${({ $maxHeight }) => $maxHeight};
   overflow-x: ${({ $overflowY }) => $overflowY && "hidden"};
-    max-width: ${({ $maxWidth }) => $maxWidth};
+  max-width: ${({ $maxWidth }) => $maxWidth};
   min-width: ${({ $minWidth }) => $minWidth};
 `;
 export { StyledBorderFlex };

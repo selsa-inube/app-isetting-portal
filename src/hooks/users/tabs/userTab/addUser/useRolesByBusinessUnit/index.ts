@@ -98,9 +98,9 @@ const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
 
         results.forEach(({ code, data }) => {
           data.forEach((item) => {
-            item.positionStaffByRoles.forEach((role) => {
+            item.positionStaffByRoles.forEach((role, index) => {
               roles.push({
-                id: role.positionId,
+                id: String(index),
                 value: role.positionId,
                 isActive: true,
                 rolesStaff: role.roleName,

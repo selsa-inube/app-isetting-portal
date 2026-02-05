@@ -1,27 +1,36 @@
+import { IButtonVariant, ITextSize, ITextType } from "@inubekit/inubekit";
 import { EComponentAppearance } from "@enum/appearances";
 
 interface IModalWrapper {
   children: React.ReactNode;
-  isMobile: boolean;
+  isMobile?: boolean;
   labelActionButton: string;
-  labelCloseButton: string;
   labelCloseModal: string;
   portalId: string;
   title: string;
+  onClick: () => void;
   appearanceButton?: EComponentAppearance;
   iconBeforeButton?: React.ReactElement;
+  labelCloseButton?: string;
   height?: string;
-  loading?: boolean;
   width?: string;
+  loading?: boolean;
   withCancelButton?: boolean;
   minHeight?: string;
   maxHeight?: string;
+  disabledActionButton?: boolean;
   padding?: string;
-  overflowY?: string;
-  disabled?: boolean;
-  onCloseModal?: () => void;
-  onClick?: () => void;
+  subtitle?: string;
+  typeTitle?: ITextType;
+  sizeTitle?: ITextSize;
+  borderRadius?: string;
+  dashed?: boolean;
+  variantCancel?: IButtonVariant;
+  weightTitle?: "normal" | "bold";
+  fullwidthbutton?: boolean;
   changeZIndex?: boolean;
+  overflowY?: string;
+  onCloseModal?: () => void;
 }
 
 export type { IModalWrapper };

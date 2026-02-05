@@ -1,9 +1,10 @@
 import { Delete } from "@pages/users/tabs/userTab/tools/delete";
 import { DetailsModal } from "@pages/users/tabs/userTab/tools/detailsModal";
-import { IAction } from "@ptypes/table/IAction";
+import { Edit } from "@pages/users/tabs/userTab/tools/edit";
+import { Group } from "@pages/users/tabs/userTab/tools/group";
+import { IAction } from "@ptypes/design/table/IAction";
 
-import { IEntry } from "@ptypes/table/IEntry";
-import { MdOutlineCreate, MdGroup } from "react-icons/md";
+import { IEntry } from "@ptypes/design/table/IEntry";
 
 const labelsOptions = {
   "Información personal": [
@@ -58,9 +59,7 @@ const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
     },
     {
       id: "Edit",
-      content: (entry: IEntry) => (
-        <MdOutlineCreate title={`View ${entry.staffName}`} />
-      ),
+      content: () => <Edit />,
     },
     {
       id: "delete",
@@ -71,7 +70,7 @@ const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
     },
     {
       id: "Group",
-      content: (entry: IEntry) => <MdGroup title={`View ${entry.staffName}`} />,
+      content: () => <Group />,
     },
   ];
 

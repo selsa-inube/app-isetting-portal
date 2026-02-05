@@ -18,13 +18,14 @@ const TraceabilityCard = (props: ITraceabilityCard) => {
     <BorderStack
       direction="column"
       background={EComponentAppearance.LIGHT}
+      border={EComponentAppearance.DARK}
       width={isMobile ? "244px" : "400px"}
       height="auto"
       borderRadius={basic.spacing.s100}
       padding={isMobile ? basic.spacing.s150 : basic.spacing.s200}
       gap={isMobile ? basic.spacing.s050 : basic.spacing.s150}
       boxSizing="border-box"
-      boxShadow="1px 0px 3px 1px rgba(0, 0, 0, 0.15)"
+      boxShadow={EComponentAppearance.DARK}
     >
       <Stack
         gap={basic.spacing.s100}

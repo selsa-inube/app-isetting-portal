@@ -26,9 +26,16 @@ const DetailsRequestInProcess = (props: IDetails) => {
     labels,
     infoData,
     dataTable,
+
+    title,
+    isSelectedRequest,
+    showTrazabilityData,
+    filteredTabs,
+    showErrorData,
+    onTabRequestChange,
   } = props;
   const screenTablet = useMediaQuery("(max-width: 1200px)");
-  const { hasLabels } = useModalLabelsAndActions({labels});
+  const { hasLabels } = useModalLabelsAndActions({ labels });
   return (
     <>
       <StyledContainerIcon onClick={onToggleModal} $isTablet={screenTablet}>
@@ -49,11 +56,17 @@ const DetailsRequestInProcess = (props: IDetails) => {
       {showModal && (
         <RequestsInProcess
           data={data}
-          onCloseModal={onToggleModal}
-          labelsOfTraceability={labelsOfTraceability}
+          title={title}
           labelsOfRequest={labelsOfRequest}
-          isMobile={screenTablet}
+          labelsOfTraceability={labelsOfTraceability}
+          onCloseModal={onToggleModal}
+          isMobile={isMobile}
           onClick={onToggleMoreDetailsModal}
+          isSelected={isSelectedRequest}
+          filteredTabs={filteredTabs}
+          showTrazabilityData={showTrazabilityData}
+          showErrorData={showErrorData}
+          onTabChange={onTabRequestChange}
         />
       )}
       {showMoreMission && (

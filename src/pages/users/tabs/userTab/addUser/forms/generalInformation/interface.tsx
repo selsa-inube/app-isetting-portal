@@ -20,7 +20,6 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
     optionIdType,
     handleSelectChange,
   } = props;
-  console.log(formik);
   return (
     <StyledContainer>
       <form>

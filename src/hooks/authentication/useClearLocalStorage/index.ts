@@ -2,7 +2,12 @@ import { useEffect } from "react";
 
 const useClearLocalStorage = () => {
   useEffect(() => {
-    localStorage.clear();
+    const keysToRemove = [
+      "businessUnitSigla",
+      "businessUnitsToTheStaff",
+      "useCasesByStaff",
+    ];
+    keysToRemove.forEach((key) => localStorage.removeItem(key));
   }, []);
 };
 

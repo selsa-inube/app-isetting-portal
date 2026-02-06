@@ -10,6 +10,8 @@ import { useAppData } from "@hooks/staffPortal/usePortalManage";
 import { IUser } from "@ptypes/authAndPortalDataProvider/IUser";
 import { ChangeToRequestTabProvider } from "@context/changeToRequestTab";
 import { AuthWrapper } from "@pages/authWrapper";
+import { encrypt } from "@utils/encrypt";
+import { Loading } from "@pages/login/loading";
 
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
@@ -23,15 +25,17 @@ interface IApp {
 
 const AppContent = (props: IApp) => {
   const { code, user, businessUnit } = props;
+  if (portalCode && portalCode?.length > 0) {
+    localStorage.setItem("portalCode", encrypt(portalCode));
+  }
   const { isLoading, hasError, isAuthenticated, errorCode } = useAppData({
-    portalCode,
     code,
     user: user as IUser,
-    businessUnit
+    businessUnit,
   });
 
   if (isLoading) {
-    return null;
+    return <Loading />;
   }
 
   if (hasError && !isAuthenticated) {
@@ -39,7 +43,7 @@ const AppContent = (props: IApp) => {
   }
 
   if (!isAuthenticated) {
-    return null;
+    return <Loading />;
   }
 
   return (

@@ -4,44 +4,85 @@ import { useIAuth } from "@inube/iauth-react";
 import { useSignOut } from "../useSignOut";
 
 const useAuthRedirect = (props: IUseAuthRedirect) => {
-  const { portalPublicCode, businessManagersData, portalCode } = props;
+  const {
+    portalPublicCode,
+    businessManagersData,
+    portalCode,
+    authConfig,
+    loadingPortalData,
+    loadingBusinessManagers,
+  } = props;
   const { loginWithRedirect, isAuthenticated, isLoading, error } = useIAuth();
-  const [hasRedirected, setHasRedirected] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [errorCode, setErrorCode] = useState<number>(0);
   const { signOut } = useSignOut();
 
-  if (error) {
-    signOut("/error?code=1009");
-  }
+  useEffect(() => {
+    if (error) {
+      signOut("/error?code=1009");
+    }
+  }, [error, signOut]);
 
   useEffect(() => {
-    if (hasRedirected) return;
+    const isLogoutRoute = window.location.pathname === "/logout";
 
-    if (portalPublicCode.abbreviatedName) {
-      if (businessManagersData && !isLoading && !isAuthenticated) {
-        loginWithRedirect();
-      } else if (isAuthenticated) {
-        setHasRedirected(true);
-      } else {
-        setHasError(true);
-        setErrorCode(1001);
+    if (isLogoutRoute) {
+      return;
+    }
+
+    const isLoadingData =
+      loadingPortalData || loadingBusinessManagers || isLoading;
+
+    if (isLoadingData) {
+      if (hasError) {
+        setHasError(false);
+        setErrorCode(0);
       }
-    } else {
+      return;
+    }
+
+    if (!portalPublicCode.abbreviatedName) {
       setHasError(true);
       setErrorCode(1001);
+      return;
+    }
+
+    if (!authConfig) {
+      setHasError(true);
+      setErrorCode(1006);
+      return;
+    }
+
+    if (hasError) {
+      setHasError(false);
+      setErrorCode(0);
+    }
+
+    if (!isAuthenticated) {
+      loginWithRedirect();
     }
   }, [
     portalPublicCode,
     businessManagersData,
     isLoading,
+    authConfig,
     isAuthenticated,
     loginWithRedirect,
-    hasRedirected,
     portalCode,
+    loadingPortalData,
+    loadingBusinessManagers,
+    hasError,
   ]);
 
-  return { hasRedirected, hasError, isLoading, isAuthenticated, errorCode };
+  const isLoadingGlobal =
+    loadingPortalData || loadingBusinessManagers || isLoading;
+
+  return {
+    hasError,
+    isLoading: isLoadingGlobal,
+    isAuthenticated,
+    errorCode,
+  };
 };
 
 export { useAuthRedirect };

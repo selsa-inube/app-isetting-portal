@@ -64,7 +64,6 @@ const useDetailsRequestInProgress = (props: IUseDetailsRequestInProgress) => {
   }, {} as IDetailsRequestTabsConfig);
   const filteredRequestTabs = Object.values(filteredRequestTabsConfig);
   const defaultSelectedTab = getFirstFilteredTab(filteredRequestTabsConfig)?.id;
-  console.log(data);
   const normalizeDetails = {
     id: data.settingRequestId,
     missionName: data.configurationRequestData.missionName,

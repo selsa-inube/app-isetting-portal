@@ -3,7 +3,6 @@ import { useMediaQuery } from "@inubekit/inubekit";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { useOptionsByBusinessUnits } from "@hooks/subMenu/useOptionsByBusinessUnits";
 
-import { enviroment } from "@config/environment";
 import { useCaseForStaff } from "@hooks/staffPortal/useCaseForStaff";
 import { useIAuth } from "@inube/iauth-react";
 import { mainNavigation } from "@config/nav";
@@ -13,6 +12,9 @@ const useHome = () => {
   const { appData, businessUnitsToTheStaff, setUseCases } =
     useContext(AuthAndData);
   const { logout } = useIAuth();
+  const [collapse, setCollapse] = useState(false);
+  const [dataExists, setDataExists] = useState<boolean>(false);
+
   const { optionsCards, loading, hasError } = useOptionsByBusinessUnits({
     staffPortalId: appData.portal.publicCode,
     businessUnit: appData.businessUnit.publicCode,
@@ -20,23 +22,7 @@ const useHome = () => {
     user: appData.user.userAccount,
     token: appData.token,
   });
-  const [dataExists, setDataExists] = useState<boolean>(false);
 
-  const { optionsHeader } = mainNavigation(optionsCards);
-  const [Collapse, SetCollapse] = useState(false);
-
-  const CollapseMenuRef = useRef<HTMLDivElement>(null);
-  const BusinessUnitChangeRef = useRef<HTMLDivElement>(null);
-  const IsTablet = useMediaQuery("(max-width: 944px)");
-  const SmallScreen = useMediaQuery("(max-width: 532px)");
-
-  const HandleLogoClick = () => {
-    SetCollapse(false);
-  };
-
-  const Username = appData.user.userName.split(" ")[0];
-
-  const multipleBusinessUnits = businessUnitsToTheStaff.length > 1;
   const { useCases } = useCaseForStaff({
     businessUnitPrevious: appData.businessUnit.publicCode,
     useCasesByStaff: appData.useCasesByStaff,
@@ -46,6 +32,21 @@ const useHome = () => {
     token: appData.token,
   });
 
+  const { optionsHeader } = mainNavigation(optionsCards);
+
+  const collapseMenuRef = useRef<HTMLDivElement>(null);
+  const BusinessUnitChangeRef = useRef<HTMLDivElement>(null);
+  const IsTablet = useMediaQuery("(max-width: 944px)");
+  const SmallScreen = useMediaQuery("(max-width: 532px)");
+
+  const HandleLogoClick = () => {
+    setCollapse(false);
+  };
+
+  const Username = appData.user.userName.split(" ")[0];
+
+  const multipleBusinessUnits = businessUnitsToTheStaff.length > 1;
+
   useEffect(() => {
     if (useCases.length > 0) {
       const useCasesJSON = JSON.stringify(useCases);
@@ -53,8 +54,8 @@ const useHome = () => {
     }
   }, [useCases]);
 
-  const handlelogout = () => {
-    logout({ logoutParams: { returnTo: enviroment.REDIRECT_URI } });
+  const handlelogout = (redirect?: string) => {
+    logout({ logoutParams: { returnTo: window.location.origin + redirect } });
   };
   useEffect(() => {
     if (hasError) {
@@ -71,9 +72,9 @@ const useHome = () => {
     : `${basic.spacing.s0} ${basic.spacing.s0} ${basic.spacing.s500}`;
 
   return {
-    Collapse,
-    SetCollapse,
-    CollapseMenuRef,
+    collapse,
+    setCollapse,
+    collapseMenuRef,
     BusinessUnitChangeRef,
     IsTablet,
     SmallScreen,

@@ -8,33 +8,31 @@ import { ITabllePositions } from "@ptypes/positions/details/ITabllePositions";
 
 const TableView = (props: ITabllePositions) => {
   const { dataTable } = props;
-  const { rows } = useTableData({dataTable});
+  const { rows } = useTableData({ dataTable });
 
   if (!rows || rows.length === 0) return null;
 
   return (
-    <Fieldset legend={DetailsPosition.rol} spacing="wide" >
+    <Fieldset legend={DetailsPosition.rol} spacing="wide">
       <BorderStack direction="column" gap={basic.spacing.s100} width="100%">
-        {rows.map((row, rowIndex) =>
-          row.map(({ key, value }) => (
-            <BorderStack
-              direction="column"
-              background={EComponentAppearance.LIGHT}
-              key={`${rowIndex}-${key}`}
-              padding={`${basic.spacing.s075} ${basic.spacing.s200}`}
-              borderRadius={basic.spacing.s8}
+        {rows.map((row) => (
+          <BorderStack
+            key={row._rowKey}
+            direction="column"
+            background={EComponentAppearance.LIGHT}
+            padding={`${basic.spacing.s075} ${basic.spacing.s200}`}
+            borderRadius={basic.spacing.s8}
+          >
+            <Text
+              size="medium"
+              type="label"
+              weight="bold"
+              appearance={EComponentAppearance.DARK}
             >
-              <Text
-                size="medium"
-                type="label"
-                weight="bold"
-                appearance={EComponentAppearance.DARK}
-              >
-                {value}
-              </Text>
-            </BorderStack>
-          ))
-        )}
+              {row.roles}
+            </Text>
+          </BorderStack>
+        ))}
       </BorderStack>
     </Fieldset>
   );

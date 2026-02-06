@@ -13,6 +13,14 @@ const Details = (props: IDetails) => {
     onToggleMoreDetailsModal,
     dataTable,
     isMobile,
+
+    title,
+    showTrazabilityData,
+    showErrorData,
+    isSelected: isSelectedRequest,
+    defaultSelectedTab: defaultSelectedRequestTab,
+    handleTabRequestChange,
+    filteredRequestTabs,
   } = useDetailsRequestInProgress(data);
   return (
     <DetailsRequestInProcess
@@ -25,6 +33,12 @@ const Details = (props: IDetails) => {
       labels={labelsOptions}
       infoData={data}
       dataTable={dataTable ?? []}
+      title={title}
+      isSelectedRequest={isSelectedRequest ?? defaultSelectedRequestTab ?? ""}
+      showTrazabilityData={showTrazabilityData}
+      showErrorData={showErrorData}
+      onTabRequestChange={handleTabRequestChange}
+      filteredTabs={filteredRequestTabs}
     />
   );
 };

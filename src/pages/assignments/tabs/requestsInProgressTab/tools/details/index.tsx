@@ -7,8 +7,18 @@ import { DetailsUI } from "./interface";
 const Details = (props: IDetails) => {
   const { data } = props;
 
-  const { showModal, screenTablet, normalizeData, handleToggleModal } =
-    useDetailsRequestInProgress({ data });
+  const {
+    showModal,
+    screenTablet,
+    normalizeData,
+    handleToggleModal,
+    showTrazabilityData,
+    showErrorData,
+    isSelected: isSelectedRequest,
+    defaultSelectedTab: defaultSelectedRequestTab,
+    handleTabRequestChange,
+    filteredRequestTabs,
+  } = useDetailsRequestInProgress({ data });
 
   const {
     normalizeData: normalizeDataMoreDetails,
@@ -42,6 +52,11 @@ const Details = (props: IDetails) => {
       smallScreen={smallScreen}
       pageLength={pageLength}
       columnWidths={columnWidths}
+      isSelectedRequest={isSelectedRequest ?? defaultSelectedRequestTab ?? ""}
+      showTrazabilityData={showTrazabilityData}
+      showErrorData={showErrorData}
+      onTabRequestChange={handleTabRequestChange}
+      filteredTabs={filteredRequestTabs}
     />
   );
 };

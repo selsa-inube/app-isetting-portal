@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { staffPortalByBusinessManager } from "@services/staffPortal/getStaffPortalByBusinessManager";
-import { encrypt } from "@utils/encrypt";
+
 import { enviroment } from "@config/environment";
 import { IStaffPortalByBusinessManager } from "@ptypes/staffPortal.types";
 import { IUsePortalData } from "@ptypes/hooks/IUsePortalData";
@@ -12,6 +12,7 @@ const usePortalData = (props: IUsePortalData) => {
   );
   const [hasError, setHasError] = useState(false);
   const [errorCode, setErrorCode] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (!portalCode) {
@@ -19,11 +20,11 @@ const usePortalData = (props: IUsePortalData) => {
       setErrorCode(1000);
       return;
     }
-    localStorage.setItem("portalCode", encrypt(portalCode));
   }, [portalCode]);
 
   useEffect(() => {
     const fetchPortalData = async () => {
+      setLoading(true);
       try {
         if (!portalCode) {
           return;
@@ -52,12 +53,14 @@ const usePortalData = (props: IUsePortalData) => {
         console.info(error);
         setHasError(true);
         setErrorCode(500);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPortalData();
   }, [portalCode]);
 
-  return { portalData, hasError, errorCode };
+  return { portalData, hasError, errorCode, loading };
 };
 export { usePortalData };

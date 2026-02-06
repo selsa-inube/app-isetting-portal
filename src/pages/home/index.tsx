@@ -4,9 +4,9 @@ import { HomeUI } from "./interface";
 
 const Home = () => {
   const {
-    Collapse,
-    SetCollapse,
-    CollapseMenuRef,
+    collapse,
+    setCollapse,
+    collapseMenuRef,
     IsTablet,
     SmallScreen,
     Username,
@@ -21,9 +21,9 @@ const Home = () => {
   return (
     <HomeUI
       data={optionsCards as ICardData[]}
-      collapse={Collapse}
-      setCollapse={SetCollapse}
-      collapseMenuRef={CollapseMenuRef}
+      collapse={collapse}
+      setCollapse={setCollapse}
+      collapseMenuRef={collapseMenuRef}
       isTablet={IsTablet}
       smallScreen={SmallScreen}
       username={Username}

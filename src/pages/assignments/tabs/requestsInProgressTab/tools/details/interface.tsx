@@ -28,6 +28,12 @@ const DetailsUI = (props: IDetailsUI) => {
     columnWidths,
     handleMoreDetails,
     onToggleModal,
+
+    isSelectedRequest,
+    showTrazabilityData,
+    filteredTabs,
+    showErrorData,
+    onTabRequestChange,
   } = props;
 
   return (
@@ -55,6 +61,12 @@ const DetailsUI = (props: IDetailsUI) => {
           labelsOfTraceability={labelsOfTraceability}
           onCloseModal={onToggleModal}
           isMobile={isMobile}
+          onClick={handleMoreDetails}
+          isSelected={isSelectedRequest}
+          filteredTabs={filteredTabs}
+          showTrazabilityData={showTrazabilityData}
+          showErrorData={showErrorData}
+          onTabChange={onTabRequestChange}
         />
       )}
 

@@ -65,7 +65,6 @@ const HomeUI = (props: IHome) => {
                 $isTablet={isTablet}
                 ref={collapseMenuRef}
               >
-                <p>ascascsa</p>
                 <Icon
                   icon={<MdOutlineChevronRight />}
                   appearance="primary"

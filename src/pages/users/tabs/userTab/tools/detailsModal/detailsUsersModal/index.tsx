@@ -32,7 +32,7 @@ const DetailsUsersModal = (props: IFeedbackModal) => {
       <InputFields labels={labels} infoData={infoData} />
 
       <Stack direction="column" gap={basic.spacing.s16}>
-        {rolesByBusinessUnit && (
+        {positionsByBusinessUnitRoles && (
           <BorderStack
             border={EComponentAppearance.DARK}
             borderRadius="5px"
@@ -49,11 +49,11 @@ const DetailsUsersModal = (props: IFeedbackModal) => {
               {userDetails.rolesByBusinessUnit}
             </Text>
             <Divider dashed />
-            <TableUsers dataTable={rolesByBusinessUnit} />
+            <TableUsers dataTable={positionsByBusinessUnitRoles} />
           </BorderStack>
         )}
 
-        {positionsByBusinessUnitRoles && (
+        {rolesByBusinessUnit && (
           <BorderStack
             border={EComponentAppearance.DARK}
             borderRadius="5px"
@@ -70,7 +70,7 @@ const DetailsUsersModal = (props: IFeedbackModal) => {
               {userDetails.positionsByBusinessUnitRoles}
             </Text>
             <Divider dashed />
-            <TableUsers dataTable={positionsByBusinessUnitRoles} />
+            <TableUsers dataTable={rolesByBusinessUnit} />
           </BorderStack>
         )}
       </Stack>

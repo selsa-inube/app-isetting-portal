@@ -15,36 +15,40 @@ const useDetailsModal = (props: IUseDetailsModal) => {
     data?.staffByBusinessUnitAndRole,
   )
     ? data.staffByBusinessUnitAndRole
-        .map(
-          (
-            item: { positionName: string; businessUnitName: string },
-            index,
-          ) => ({
-            id: String(index),
-            "Unidad de negocio": item.businessUnitName,
-            Rol: item.positionName,
-          }),
-        )
+        .map((item, index) => ({
+          id: String(index),
+          "Unidad de negocio": item.businessUnitName,
+          Posición: item.positionName,
+        }))
         .filter(
           (item, index, self) =>
             index ===
             self.findIndex(
-              (t) =>
-                t["Unidad de negocio"] === item["Unidad de negocio"] &&
-                t.Rol === item.Rol,
+              (other) =>
+                other["Unidad de negocio"] === item["Unidad de negocio"] &&
+                other.Posición === item.Posición,
             ),
         )
     : [];
 
   const rolesByBusinessUnit = Array.isArray(data?.staffByBusinessUnitAndRole)
-    ? data.staffByBusinessUnitAndRole.map(
-        (item: { roleName: string; businessUnitName: string }, index) => ({
+    ? data.staffByBusinessUnitAndRole
+        .map((item, index) => ({
           id: String(index),
           "Unidad de negocio": item.businessUnitName,
-          Cargo: item.roleName,
-        }),
-      )
+          Rol: item.roleName,
+        }))
+        .filter(
+          (item, index, self) =>
+            index ===
+            self.findIndex(
+              (other) =>
+                other["Unidad de negocio"] === item["Unidad de negocio"] &&
+                other.Rol === item.Rol,
+            ),
+        )
     : [];
+
   return {
     showModal,
     handleToggleModal,

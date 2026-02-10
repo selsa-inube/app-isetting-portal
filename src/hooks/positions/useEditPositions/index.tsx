@@ -51,9 +51,11 @@ const useEditPositions = (props: IUseEditPositions) => {
       id: string;
       value: string;
       isActive: boolean;
+      applicationName: string;
     }[]
   >([]);
   const roles = formValues.rolesStaff.values;
+
   const generalInformationRef =
     useRef<FormikProps<IGeneralInformationEntry>>(null);
 
@@ -96,6 +98,7 @@ const useEditPositions = (props: IUseEditPositions) => {
         id: role.roleId,
         value: role.roleName,
         isActive: role.isActive ?? false,
+        applicationName: role.applicationName,
       }));
 
       const roles = transformedRolesData;

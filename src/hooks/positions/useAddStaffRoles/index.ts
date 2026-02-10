@@ -76,7 +76,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
     const applicationStaff = rolesData?.find((app) => app.roleId === role.id);
     return {
       ...role,
-      applicationStaff: applicationStaff?.applicationName,
+      applicationName: applicationStaff?.applicationName,
     };
   });
   useEffect(() => {

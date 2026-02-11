@@ -13,7 +13,6 @@ const RolesForm = (props: IRolesForm) => {
     onReset,
     editDataOption = false,
   } = props;
-
   const { appliedFilters, optionsMapped, handleFilterChange, filters } =
     useFilterRoles({
       options: options as IEntry[],

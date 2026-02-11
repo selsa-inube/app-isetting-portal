@@ -103,8 +103,8 @@ const useAssignmentForm = (props: IUseAssignmentForm) => {
     if (filters?.label && filters.label.length > 0) {
       result = result.filter(
         (entry) =>
-          entry.applicationStaff &&
-          filters.label.includes(entry.applicationStaff),
+          entry.applicationName &&
+          filters.label.includes(entry.applicationName),
       );
     }
 

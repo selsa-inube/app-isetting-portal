@@ -14,6 +14,8 @@ import { ERequestType } from "@enum/request/requestType";
 import { EUserRequest } from "@enum/user/usersRequest";
 import { formatDate } from "@utils/date/formatDate";
 import { IUsers } from "@ptypes/users/tabs/userTab/usersTable/IUsers";
+import { IMissionForStaff } from "@ptypes/users/tabs/userTab/addUser/forms/stepData/IMissionForStaff";
+import { IContactDataFormValues } from "@ptypes/users/tabs/userTab/addUser/forms/IContactData";
 
 const useEditUser = (data: IUsers) => {
     const navigate = useNavigate();
@@ -51,7 +53,7 @@ const useEditUser = (data: IUsers) => {
         },
         businessUnitsStep: [],
         positionByBusinessUnitStep: [],
-        roleByBusinessUnitStep: (data?.staffByBusinessUnitAndRole as any) || [],
+        roleByBusinessUnitStep:  [],
     };
     console.log(initialFormValues)
     const [formValues, setFormValues] = useState<IGeneralUserFormValues>(initialFormValues);
@@ -63,8 +65,8 @@ const useEditUser = (data: IUsers) => {
     const [showEditedModal, setShowEditedModal] = useState(false);
 
     const generalInformationRef = useRef<FormikProps<IGeneralInfoForm>>(null);
-    const missionForStaffRef = useRef<FormikProps<any>>(null);
-    const contactDataRef = useRef<FormikProps<any>>(null);
+    const missionForStaffRef = useRef<FormikProps<IMissionForStaff>>(null);
+    const contactDataRef = useRef<FormikProps<IContactDataFormValues>>(null);
 
     const formReferences = {
         generalInformationStep: generalInformationRef,
@@ -142,12 +144,8 @@ const useEditUser = (data: IUsers) => {
                 staffLastName: general.lastName,
                 principalEmail: formValues.contactDataStep.values.email,
                 principalPhone: formValues.contactDataStep.values.phone,
-                staffByBusinessUnitAndRole: roles.map((item) => ({
-                    businessUnitCode: item.businessUnitCode,
-                    positionName: item.positionName,
-                    roleName: (item as any).rolesStaff || (item as any).roleName,
-                })),
-                modifyJustification: "Actualización de información de funcionario", // This should probably come from a modal/config
+                staffByBusinessUnitAndRole: roles,
+                modifyJustification: "Actualización de información de funcionario",
             },
         });
         setShowRequestProcessModal(true);

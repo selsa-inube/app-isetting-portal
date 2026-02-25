@@ -106,6 +106,7 @@ const EditUserUI = (props: IEditUserUI) => {
                                 onFormValid={setIsCurrentFormValid}
                                 handleNextStep={onNextStep}
                                 handlePreviousStep={onReset}
+                                editDataOption
                             />
                         )}
                         {showContactData && (

@@ -83,7 +83,7 @@ const MissionForStaffFormUI = (props: IMissionForStaffFormUI) => {
                   value={formik.values.missionDescription}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  message={formik.errors.missionName}
+                  message={formik.errors.missionDescription}
                   fullwidth
                   required
                 />

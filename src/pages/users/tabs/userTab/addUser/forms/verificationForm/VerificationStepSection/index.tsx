@@ -1,4 +1,3 @@
-// AddUserVerificationStepSection.tsx
 import { MdOutlineArrowBack } from "react-icons/md";
 import { Stack, Button, useMediaQuery } from "@inubekit/inubekit";
 import { basic } from "@design/tokens";

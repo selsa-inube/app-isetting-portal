@@ -21,7 +21,6 @@ const UserTabUI = (props: IUserTabUI) => {
     entries,
     setEntryDeleted,
     smallScreen,
-    // direction,
     disabledButton,
     showInfoModal,
     handleToggleInfoModal,

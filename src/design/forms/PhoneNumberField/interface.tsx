@@ -5,27 +5,11 @@ import { Text } from "@inubekit/inubekit";
 import { countries as defaultCountries } from "./countries";
 import { PHONE_NUMBER_FIELD_TEXT } from "./constants";
 
-import {
-  StyledWrapper,
-  StyledLabelRow,
-  StyledFieldContainer,
-  StyledCountryButton,
-  StyledFlag,
-  StyledDial,
-  StyledNumberInput,
-  StyledDropdown,
-  StyledSearchBox,
-  StyledCountryList,
-  StyledCountryItem,
-  StyledCountryName,
-  StyledCountryCode,
-  StyledErrorContainer,
-  StyledWarningIcon,
-  StyledHelperText,
-} from "./styles";
+
 import { phoneFieldTokens } from "./tokens";
 import { CountryOption } from "@ptypes/design/phoneInput/ICountryOption";
 import { IPhoneNumberField } from "@ptypes/design/phoneInput/IPhoneNumberField";
+import { StyledCountryButton, StyledCountryCode, StyledCountryItem, StyledCountryList, StyledCountryName, StyledDial, StyledDropdown, StyledErrorContainer, StyledFieldContainer, StyledFlag, StyledHelperText, StyledLabelRow, StyledNumberInput, StyledSearchBox, StyledWarningIcon, StyledWrapper } from "./styles";
 
 const sanitizePhoneValue = (input: string) =>
   input.replace(/[^0-9\s\-()]/g, "");
@@ -94,7 +78,6 @@ const PhoneNumberFieldUI = (props: IPhoneNumberField) => {
   return (
     <StyledWrapper $fullwidth={fullwidth}>
       {label && (
-
         <StyledLabelRow htmlFor={id} $disabled={disabled}>
           <Text type="label"> {label}</Text>
         </StyledLabelRow>
@@ -154,7 +137,7 @@ const PhoneNumberFieldUI = (props: IPhoneNumberField) => {
                 onClick={() => handleCountrySelect(country)}
                 $active={country.code === selectedCountry.code}
               >
-                <StyledFlag $size={18}>
+                <StyledFlag $size={"compact"}>
                   <ReactCountryFlag svg countryCode={country.code} />
                 </StyledFlag>
                 <StyledCountryName>{country.name}</StyledCountryName>

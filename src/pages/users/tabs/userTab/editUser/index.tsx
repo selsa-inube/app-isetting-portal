@@ -98,7 +98,7 @@ const EditUser = () => {
             editUserTabsConfig={editUserTabsConfig}
             isSelected={isSelected}
             onTabChange={handleTabChange}
-            formReferences={formReferences as any}
+            formReferences={formReferences}
             initialValues={formValues}
             setIsCurrentFormValid={setIsCurrentFormValid}
             saveUsers={saveUsers as ISaveDataResponse}

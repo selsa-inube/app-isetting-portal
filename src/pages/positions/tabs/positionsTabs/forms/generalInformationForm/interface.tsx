@@ -44,6 +44,8 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                     message={formik.errors.namePosition}
                     required
                     fullwidth
+                    disabled={editDataOption}
+                    maxLength={50}
                   />
                 </Stack>
               </Stack>

@@ -4,8 +4,8 @@ import { IEdit } from "@ptypes/positions/IEdit";
 
 const Edit = (props: IEdit) => {
   const { data } = props;
-  const { handleEdit } = useEditPositionsModal({ data });
-  return <EditRecord onEdit={handleEdit} />;
+  const { handleEdit, showInfoModal } = useEditPositionsModal({ data });
+  return <EditRecord onEdit={handleEdit} showInfoModal={showInfoModal} />;
 };
 
 export { Edit };

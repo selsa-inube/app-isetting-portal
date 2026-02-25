@@ -16,6 +16,7 @@ import { IUseAddStaffRoles } from "@ptypes/hooks/IUseAddStaffRoles";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { ERequestType } from "@enum/request/requestType";
 import { useStore } from "../usePositionBusinessUnit";
+import { ERequestPosition } from "@enum/requestPosition";
 
 const useAddStaffRoles = (props: IUseAddStaffRoles) => {
   const { rolesData } = props;
@@ -51,6 +52,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
   });
 
   const businessUnitCode = useStore((store) => store.businessUnitCode);
+  console.log("businessUnitCode", businessUnitCode);
   const navigate = useNavigate();
 
   const onGoBack = () => {
@@ -165,7 +167,7 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
       businessManagerCode: appData.businessManager.publicCode,
       businessUnitCode: appData.businessUnit.publicCode,
       description: saveDataLabels.description,
-      entityName: "PositionStaff",
+      entityName: ERequestPosition.POSITIONS,
       requestDate: formatDate(new Date()),
       useCaseName: "AddPosition",
       requestType: ERequestType.ADD,

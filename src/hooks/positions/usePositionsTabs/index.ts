@@ -181,6 +181,10 @@ const usePositionsTabs = () => {
     value: card.publicCode,
   }));
 
+  if (!showModalUnits) {
+    setValue(appData.businessUnit.publicCode);
+  }
+
   return {
     isSelected,
     handleTabChange,

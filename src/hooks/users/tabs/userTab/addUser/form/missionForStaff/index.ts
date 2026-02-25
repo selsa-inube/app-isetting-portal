@@ -61,7 +61,7 @@ const useMissionForUserForm = (props: IUseAddUserMissionForStaffStep) => {
   ];
 
   const buttonDisabledState = isDisabledButton;
-  const [missionSelected, setMissionSelected] = useState("");
+  const [missionSelected, setMissionSelected] = useState(initialValues.missionValue || "");
   const [showForm, setShowForm] = useState(false);
 
   const handleSelectChange = (_name: string, value: string) => {

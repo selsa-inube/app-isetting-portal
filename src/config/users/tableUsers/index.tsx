@@ -59,7 +59,7 @@ const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
     },
     {
       id: "Edit",
-      content: () => <Edit />,
+      content: (entry: IEntry) => <Edit data={entry as IEntry} />,
     },
     {
       id: "delete",

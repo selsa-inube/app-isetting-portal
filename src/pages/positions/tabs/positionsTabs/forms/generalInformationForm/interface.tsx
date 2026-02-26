@@ -18,7 +18,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
     onReset,
     onButtonClick,
   } = props;
-
+  console.log(formik)
   return (
     <StyledContainer>
       <form>
@@ -45,7 +45,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                     required
                     fullwidth
                     disabled={editDataOption}
-                    maxLength={50}
+                    maxLength={labels.maxLengthNamePosition}
                   />
                 </Stack>
               </Stack>

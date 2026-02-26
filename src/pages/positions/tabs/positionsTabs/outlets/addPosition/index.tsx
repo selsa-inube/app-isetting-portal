@@ -45,7 +45,6 @@ const AddPosition = () => {
     onGoBack,
     handleGoBackModal,
   } = useAddStaffRoles({ rolesData: rolesStaff });
-  console.log(appData);
   const {
     savePositions,
     requestSteps,

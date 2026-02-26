@@ -13,6 +13,9 @@ import { getRequestsInProgress } from "@services/requestInProgress/getRequestsIn
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
 import { IUsersTabsConfig } from "@ptypes/hooks/IUseUserPage/tabs";
 import { ERequestUsers } from "@enum/requestUsers";
+import { menuUsersLinks } from "@config/users/menuUsersLinks";
+import { EUseCaseTypes } from "@enum/useCaseTypes";
+import { useValidateUseCase } from "@hooks/useValidateUseCase";
 
 const useUserPage = (props: IUseUserPage) => {
   const { businessManager } = props;
@@ -20,6 +23,7 @@ const useUserPage = (props: IUseUserPage) => {
   const tabs = usersTabsConfig(smallScreen);
   const [showModal, setShowModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [options, setOptions] = useState(menuUsersLinks(false));
   const [isSelected, setIsSelected] = useState<string>(tabs.staff.id);
   const [requestsInProgress, setRequestsInProgress] = useState<
     IRequestsInProgress[]
@@ -27,7 +31,12 @@ const useUserPage = (props: IUseUserPage) => {
   const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);
   };
-  const {  appData } = useContext(AuthAndData);
+
+  const { disabledButton: disabledAdd } = useValidateUseCase({
+    useCase: EUseCaseTypes.ADD_USER,
+  });
+
+  const { appData } = useContext(AuthAndData);
 
   const [loading, setLoading] = useState(true);
   const { optionsCards } = useOptionsByBusinessUnits({
@@ -110,6 +119,12 @@ const useUserPage = (props: IUseUserPage) => {
     setShowModal(!showModal);
   };
 
+  useEffect(() => {
+    const menuOptions = menuUsersLinks(disabledAdd);
+
+    setOptions(menuOptions);
+  }, [disabledAdd]);
+
   return {
     smallScreen,
     isSelected,
@@ -121,6 +136,7 @@ const useUserPage = (props: IUseUserPage) => {
     loading,
     showModal,
     showInfoModal,
+    options,
     onToggleInfoModal,
     onCloseMenu,
     onToggleModal,

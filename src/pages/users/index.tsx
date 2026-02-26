@@ -4,7 +4,6 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { useUserPage } from "@hooks/users/userPage";
 
 import { UsersUI } from "./interface";
-import { menuUsersLinks } from "@config/users/menuUsersLinks";
 
 const Users = () => {
   const { appData } = useContext(AuthAndData);
@@ -23,6 +22,7 @@ const Users = () => {
     onToggleInfoModal,
     onCloseMenu,
     onToggleModal,
+    options,
   } = useUserPage({
     businessManager: appData.businessManager.publicCode,
   });
@@ -38,7 +38,7 @@ const Users = () => {
       loading={loading}
       showModal={showModal}
       showInfoModal={showInfoModal}
-      options={menuUsersLinks}
+      options={options}
       onToggleInfoModal={onToggleInfoModal}
       onCloseMenu={onCloseMenu}
       onToggleModal={onToggleModal}

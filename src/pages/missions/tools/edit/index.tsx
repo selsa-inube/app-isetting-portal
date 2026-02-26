@@ -5,8 +5,8 @@ import { IEdit } from "@ptypes/missions/edit/IEdit";
 const Edit = (props: IEdit) => {
   const { data } = props;
 
-  const { handleEdit } = useEditMissionsModal(data);
-  return <EditRecord onEdit={handleEdit} />;
+  const { handleEdit, showInfoModal } = useEditMissionsModal(data);
+  return <EditRecord onEdit={handleEdit} showInfoModal={showInfoModal} />;
 };
 
 export { Edit };

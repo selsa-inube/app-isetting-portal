@@ -52,7 +52,6 @@ const useAddStaffRoles = (props: IUseAddStaffRoles) => {
   });
 
   const businessUnitCode = useStore((store) => store.businessUnitCode);
-  console.log("businessUnitCode", businessUnitCode);
   const navigate = useNavigate();
 
   const onGoBack = () => {

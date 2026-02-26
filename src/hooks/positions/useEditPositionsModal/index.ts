@@ -16,7 +16,7 @@ const useEditPositionsModal = (props: IUseEditPositionsModal) => {
     positionsByRole: data.positionStaffByRoles,
   };
   const { disabledButton } = useValidateUseCase({
-    useCase: EUseCaseTypes.ADD_USER,
+    useCase: EUseCaseTypes.EDIT_POSITION,
   });
   const handleEdit = () => {
     if (disabledButton) {

@@ -13,6 +13,8 @@ import { useDeleteUser } from "@hooks/users/tabs/userTab/useDeleteUser";
 import { deleteMission } from "@config/missions/missionTab/generic/deleteMission";
 import { requestProcessMessage } from "@config/request/requestProcessMessage";
 import { IDelete } from "@ptypes/positions/actions/IDelete";
+import { disabledModal } from "@config/disabledModal";
+import { DecisionModal } from "@design/modals/decisionModal";
 
 const Delete = (props: IDelete) => {
   const { data, setEntryDeleted } = props;
@@ -25,6 +27,9 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
+    handleToggleInfoModal,
+    showInfoModal,
+
   } = useDeleteUser({ data, appData });
 
   const {
@@ -62,6 +67,18 @@ const Delete = (props: IDelete) => {
         onClick={handleClick}
         loading={loadingSendData}
       />
+      {showInfoModal && (
+        <DecisionModal
+          portalId={portalId}
+          title={disabledModal.title}
+          actionText={disabledModal.actionText}
+          description={disabledModal.description}
+          subtitle={disabledModal.subtitle}
+          onCloseModal={handleToggleInfoModal}
+          onClick={handleToggleInfoModal}
+          withCancelButton={false}
+        />
+      )}
       {showRequestProcess && (
         <RequestProcess
           portalId={portalId}

@@ -6,7 +6,7 @@ const Edit = (props: IEdit) => {
   const { data } = props;
   const { handleEdit } = useEditUsersModal(data);
 
-  return <EditRecord onEdit={handleEdit} />;
+  return <EditRecord onEdit={handleEdit} showInfoModal />;
 };
 
 export { Edit };

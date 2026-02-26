@@ -3,8 +3,8 @@ import { string, boolean, date } from "yup";
 import { validationMessages } from "./validationMessages";
 
 const validationRules = {
-  name: string().max(120, validationMessages.maxCharacters(120)),
-  string: string().max(1000, validationMessages.maxCharacters(1000)),
+  name: string().max(50, validationMessages.maxCharacters(50)),
+  string: string().max(100, validationMessages.maxCharacters(100)),
   boolean: boolean(),
   date: date(),
 };

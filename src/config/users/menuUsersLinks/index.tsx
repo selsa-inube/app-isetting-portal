@@ -1,11 +1,11 @@
 import { MdAdd } from "react-icons/md";
 
-const menuUsersLinks = [
+const menuUsersLinks = (disabled: boolean) => [
   {
     description: "Agregar funcionario ",
     path: "/users/addUser",
     icon: <MdAdd />,
-    disabled: false,
+    disabled: disabled,
   },
 ];
 

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { usePositionsTabs } from "@hooks/positions/usePositionsTabs";
 import { positionsTabsConfig } from "@config/positionsTabs/tabs";
-import { menuPositionLinks } from "@config/positions/menuInvitation";
 import { AuthAndData } from "@context/authAndDataProvider";
 import { catalogName } from "@config/positions/catalogName";
 import { PositionsUI } from "./interface";
@@ -27,6 +26,7 @@ const Positions = () => {
     onCloseMenu,
     onToggleModal,
     handleChange,
+    options,
   } = usePositionsTabs();
 
   return (
@@ -37,7 +37,7 @@ const Positions = () => {
       smallScreen={smallScreen}
       showModal={showModal}
       showInfoModal={showInfoModal}
-      options={menuPositionLinks}
+      options={options}
       onToggleInfoModal={onToggleInfoModal}
       onCloseMenu={onCloseMenu}
       onToggleModal={onToggleModal}

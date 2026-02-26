@@ -6,6 +6,8 @@ import { deleteLabels } from "@config/missions/deleteLabels";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { ERequestType } from "@enum/request/requestType";
 import { IUseDelete } from "@ptypes/hooks/missions/IUseDeleteMission";
+import { EUseCaseTypes } from "@enum/useCaseTypes";
+import { useValidateUseCase } from "@hooks/useValidateUseCase";
 
 const useDeleteUser = (props: IUseDelete) => {
   const { data, appData } = props;
@@ -13,8 +15,21 @@ const useDeleteUser = (props: IUseDelete) => {
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
 
+  const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
+
+  const { disabledButton } = useValidateUseCase({
+    useCase: EUseCaseTypes.DELETE_USER,
+  });
+
   const handleToggleModal = () => {
-    setShowModal(!showModal);
+    if (disabledButton) {
+      setShowInfoModal(!showInfoModal);
+    } else {
+      setShowModal(!showModal);
+    }
+  };
+  const handleToggleInfoModal = () => {
+    setShowInfoModal(!showInfoModal);
   };
 
   const handleClick = () => {
@@ -48,6 +63,8 @@ const useDeleteUser = (props: IUseDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
+    handleToggleInfoModal,
+    showInfoModal,
   };
 };
 export { useDeleteUser };

@@ -13,10 +13,10 @@ const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
   const createValidationSchema = () =>
     object().shape({
       namePosition: validationRules.string.required(
-        validationMessages.required
+        validationMessages.required,
       ),
       descriptionPosition: validationRules.string.required(
-        validationMessages.required
+        validationMessages.required,
       ),
     });
 
@@ -25,7 +25,7 @@ const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    validateOnBlur: false,
+    validateOnBlur: true,
     onSubmit: onSubmit ?? (() => true),
   });
 
@@ -48,14 +48,14 @@ const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
   const isMobile = useMediaQuery(mediaQueryTabletMain);
 
   const valuesEmpty = Object.values(formik.values).every(
-    (value) => value === "" || value === null || value === undefined
+    (value) => value === "" || value === null || value === undefined,
   );
 
   useEffect(() => {
     const updateButton = () => {
       if (editDataOption) {
         setIsDisabledButton(
-          !formik.isValid || valuesEmpty || valuesEqualButton
+          !formik.isValid || valuesEmpty || valuesEqualButton,
         );
       } else {
         setIsDisabledButton(!formik.isValid);

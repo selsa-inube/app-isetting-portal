@@ -19,7 +19,7 @@ const GeneralInformationForm = forwardRef<
       loading,
       editDataOption = false,
     },
-    ref
+    ref,
   ) => {
     const {
       formik,
@@ -49,7 +49,7 @@ const GeneralInformationForm = forwardRef<
         onButtonClick={handleNextStep}
       />
     );
-  }
+  },
 );
 
 GeneralInformationForm.displayName = "GeneralInformationForm";

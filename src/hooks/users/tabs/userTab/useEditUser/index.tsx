@@ -53,9 +53,8 @@ const useEditUser = (data: IUsers) => {
         },
         businessUnitsStep: [],
         positionByBusinessUnitStep: [],
-        roleByBusinessUnitStep:  [],
+        roleByBusinessUnitStep: [],
     };
-    console.log(initialFormValues)
     const [formValues, setFormValues] = useState<IGeneralUserFormValues>(initialFormValues);
     const [isCurrentFormValid, setIsCurrentFormValid] = useState(true);
     const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);

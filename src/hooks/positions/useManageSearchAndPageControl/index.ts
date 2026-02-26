@@ -14,7 +14,7 @@ const useManageSearchAndPageControl = (businessUnitCode: string) => {
   const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
 
   const { disabledButton } = useValidateUseCase({
-    useCase: EUseCaseTypes.ADD_USER,
+    useCase: EUseCaseTypes.ADD_POSITION,
   });
 
   const smallScreen = useMediaQuery(mediaQueryTabletMain);

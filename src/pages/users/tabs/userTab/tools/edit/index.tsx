@@ -3,7 +3,7 @@ import { useEditInConstructionModal } from "@hooks/editInConstruction";
 
 const Edit = () => {
   const { handleEdit } = useEditInConstructionModal();
-  return <EditRecord onEdit={handleEdit} showInfoModal />;
+  return <EditRecord onEdit={handleEdit} showInfoModal={false} />;
 };
 
 export { Edit };

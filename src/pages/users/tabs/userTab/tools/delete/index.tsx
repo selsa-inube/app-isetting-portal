@@ -29,7 +29,6 @@ const Delete = (props: IDelete) => {
     setShowModal,
     handleToggleInfoModal,
     showInfoModal,
-
   } = useDeleteUser({ data, appData });
 
   const {

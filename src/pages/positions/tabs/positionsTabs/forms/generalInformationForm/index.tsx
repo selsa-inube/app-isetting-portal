@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { FormikProps } from "formik";
-import { useGeneralInfoCreditLineForm } from "@hooks/positions/useGeneralInfoRoles";
+import { useGeneralInfoRolesForm } from "@hooks/positions/useGeneralInfoRoles";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 import { IGeneralInformationForm } from "@ptypes/positions/generalInformation/IGeneralInformationForm";
 import { GeneralInformationFormUI } from "./interface";
@@ -27,7 +27,7 @@ const GeneralInformationForm = forwardRef<
       valuesEqualButton,
       labelButtonNext,
       isDisabledButton,
-    } = useGeneralInfoCreditLineForm({
+    } = useGeneralInfoRolesForm({
       initialValues,
       ref,
       onSubmit,

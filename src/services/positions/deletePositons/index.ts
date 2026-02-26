@@ -19,7 +19,7 @@ const deletePositions = async (
     },
   };
   const newData = await deleteWithRetries<IRequestPositions>(
-    `/position-staff`,
+    `/position-staffs`,
     config,
     mapDeletePositionToApi(data) as unknown as string[],
     isettingIsaasAxiosInstance,

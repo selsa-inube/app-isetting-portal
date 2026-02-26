@@ -20,7 +20,7 @@ const postAddUsers = async (
     },
   };
   const newData = await postWithRetries<IRequestUsers>(
-    `/staff`,
+    `/staffs`,
     config,
     mapAddUsersToApi(data, businessManagerCode) as unknown as string[],
     isettingIsaasAxiosInstance,

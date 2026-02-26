@@ -18,7 +18,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
     onReset,
     onButtonClick,
   } = props;
-  console.log(formik)
+
   return (
     <StyledContainer>
       <form>

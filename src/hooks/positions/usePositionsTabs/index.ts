@@ -33,6 +33,7 @@ const usePositionsTabs = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const widthFirstColumn = smallScreen ? 60 : 20;
   const setValue = useStore((s) => s.setBusinessUnitCode);
+  const businessUnitCode = useStore((store) => store.businessUnitCode);
   const { appData } = useContext(AuthAndData);
   const [options, setOptions] = useState(menuPositionLinks(false));
 
@@ -195,7 +196,7 @@ const usePositionsTabs = () => {
     value: card.publicCode,
   }));
 
-  if (!showModalUnits) {
+  if (!showModalUnits && !businessUnitCode) {
     setValue(appData.businessUnit.publicCode);
   }
 

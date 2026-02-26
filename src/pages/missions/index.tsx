@@ -1,42 +1,43 @@
 import { useMissionsTabs } from "@hooks/missions/useMissionsTabs";
-import { menuMissionsLinks } from "@config/missions/missionTab/menuMissionsLinks";
+
 import { missionsTabsConfig } from "@config/missions/tabs";
 import { MissionsUI } from "./interface";
 
-const Missions =() => {
+const Missions = () => {
 
-    const {
-      isSelected,
-      handleTabChange,
-      smallScreen,
-      showModal,
-      showInfoModal,
-      showMissionTab,
-      showRequestTab,
-      missionsTabs, 
-      onToggleInfoModal,
-      onCloseMenu,
-      onToggleModal,
-    } = useMissionsTabs();
+  const {
+    isSelected,
+    handleTabChange,
+    smallScreen,
+    showModal,
+    showInfoModal,
+    showMissionTab,
+    showRequestTab,
+    missionsTabs,
+    onToggleInfoModal,
+    onCloseMenu,
+    onToggleModal,
+    options,
+  } = useMissionsTabs();
 
-    return (
-      <MissionsUI
-        isSelected={isSelected ?? missionsTabsConfig(smallScreen).roles.id}
-        handleTabChange={handleTabChange}
-        catalogName="Privilegios"
-        smallScreen={smallScreen}
-        showModal={showModal}
-        showInfoModal={showInfoModal}
-        options={menuMissionsLinks}
-        onToggleInfoModal={onToggleInfoModal}
-        onCloseMenu={onCloseMenu}
-        onToggleModal={onToggleModal}
-        showMissionTab={showMissionTab}
-        showRequestTab={ showRequestTab}
-        missionsTabs={missionsTabs}
-      />
-    );
-  }
+  return (
+    <MissionsUI
+      isSelected={isSelected ?? missionsTabsConfig(smallScreen).roles.id}
+      handleTabChange={handleTabChange}
+      catalogName="Privilegios"
+      smallScreen={smallScreen}
+      showModal={showModal}
+      showInfoModal={showInfoModal}
+      options={options}
+      onToggleInfoModal={onToggleInfoModal}
+      onCloseMenu={onCloseMenu}
+      onToggleModal={onToggleModal}
+      showMissionTab={showMissionTab}
+      showRequestTab={showRequestTab}
+      missionsTabs={missionsTabs}
+    />
+  );
+}
 
 
 export { Missions };

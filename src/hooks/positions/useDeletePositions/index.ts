@@ -6,6 +6,8 @@ import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { IUseDeletePositions } from "@ptypes/hooks/IUseDeletePositions";
 import { ERequestType } from "@enum/request/requestType";
 import { useStore } from "../usePositionBusinessUnit";
+import { EUseCaseTypes } from "@enum/useCaseTypes";
+import { useValidateUseCase } from "@hooks/useValidateUseCase";
 
 const useDeletePositions = (props: IUseDeletePositions) => {
   const { data, appData } = props;
@@ -13,9 +15,21 @@ const useDeletePositions = (props: IUseDeletePositions) => {
   const [showModal, setShowModal] = useState(false);
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
+  const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
+
+  const { disabledButton } = useValidateUseCase({
+    useCase: EUseCaseTypes.DELETE_POSITION,
+  });
 
   const handleToggleModal = () => {
-    setShowModal(!showModal);
+    if (disabledButton) {
+      setShowInfoModal(!showInfoModal);
+    } else {
+      setShowModal(!showModal);
+    }
+  };
+  const handleToggleInfoModal = () => {
+    setShowInfoModal(!showInfoModal);
   };
   const handleClick = () => {
     setSaveData({
@@ -50,6 +64,8 @@ const useDeletePositions = (props: IUseDeletePositions) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
+    handleToggleInfoModal,
+    showInfoModal,
   };
 };
 export { useDeletePositions };

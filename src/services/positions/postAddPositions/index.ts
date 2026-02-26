@@ -19,7 +19,7 @@ const postAddPositions = async (
     },
   };
   const newData = await postWithRetries<IRequestPositions>(
-    `/position-staff`,
+    `/position-staffs`,
     config,
     mapAddPositionToApi(data) as unknown as string[],
     isettingIsaasAxiosInstance,

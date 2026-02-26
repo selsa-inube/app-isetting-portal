@@ -15,6 +15,9 @@ import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgr
 import { IPositionTabsConfig } from "@ptypes/positions/IPositionTabsConfig";
 import { useBusinessUnits } from "@hooks/useBusinessUnits";
 import { useStore } from "../usePositionBusinessUnit";
+import { menuPositionLinks } from "@config/positions/menuInvitation";
+import { EUseCaseTypes } from "@enum/useCaseTypes";
+import { useValidateUseCase } from "@hooks/useValidateUseCase";
 
 const usePositionsTabs = () => {
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
@@ -30,7 +33,19 @@ const usePositionsTabs = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
   const widthFirstColumn = smallScreen ? 60 : 20;
   const setValue = useStore((s) => s.setBusinessUnitCode);
+  const businessUnitCode = useStore((store) => store.businessUnitCode);
   const { appData } = useContext(AuthAndData);
+  const [options, setOptions] = useState(menuPositionLinks(false));
+
+  const { disabledButton: disabledAdd } = useValidateUseCase({
+    useCase: EUseCaseTypes.ADD_POSITION,
+  });
+
+  useEffect(() => {
+    const menuOptions = menuPositionLinks(disabledAdd);
+
+    setOptions(menuOptions);
+  }, [disabledAdd]);
 
   const navigate = useNavigate();
 
@@ -181,6 +196,10 @@ const usePositionsTabs = () => {
     value: card.publicCode,
   }));
 
+  if (!showModalUnits && !businessUnitCode) {
+    setValue(appData.businessUnit.publicCode);
+  }
+
   return {
     isSelected,
     handleTabChange,
@@ -205,6 +224,7 @@ const usePositionsTabs = () => {
     handleChange,
     columnWidths,
     comparisonData,
+    options,
   };
 };
 

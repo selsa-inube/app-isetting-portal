@@ -6,17 +6,17 @@ import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
 import { labels } from "@config/positions/assistedText";
 import { mediaQueryTabletMain } from "@config/environment";
-import { IUseGeneralInfoCreditLineForm } from "@ptypes/hooks/IUseGeneralInfoCreditLineForm";
+import { IUseGeneralInfoRolesForm } from "@ptypes/hooks/IUseGeneralInfoCreditLineForm";
 
-const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
+const useGeneralInfoRolesForm = (props: IUseGeneralInfoRolesForm) => {
   const { initialValues, ref, onSubmit, onFormValid, editDataOption } = props;
   const createValidationSchema = () =>
     object().shape({
       namePosition: validationRules.string.required(
-        validationMessages.required
+        validationMessages.required,
       ),
       descriptionPosition: validationRules.string.required(
-        validationMessages.required
+        validationMessages.required,
       ),
     });
 
@@ -25,7 +25,7 @@ const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    validateOnBlur: false,
+    validateOnBlur: true,
     onSubmit: onSubmit ?? (() => true),
   });
 
@@ -48,14 +48,14 @@ const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
   const isMobile = useMediaQuery(mediaQueryTabletMain);
 
   const valuesEmpty = Object.values(formik.values).every(
-    (value) => value === "" || value === null || value === undefined
+    (value) => value === "" || value === null || value === undefined,
   );
 
   useEffect(() => {
     const updateButton = () => {
       if (editDataOption) {
         setIsDisabledButton(
-          !formik.isValid || valuesEmpty || valuesEqualButton
+          !formik.isValid || valuesEmpty || valuesEqualButton,
         );
       } else {
         setIsDisabledButton(!formik.isValid);
@@ -77,4 +77,4 @@ const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
   };
 };
 
-export { useGeneralInfoCreditLineForm };
+export { useGeneralInfoRolesForm };

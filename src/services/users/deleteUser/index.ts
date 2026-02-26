@@ -20,7 +20,7 @@ const deleteUser = async (
     },
   };
   const newData = await deleteWithRetries<ISaveDeleteUsers>(
-    `/staff`,
+    `/staffs`,
     config,
     mapDeleteUsersToApi(data) as unknown as string[],
     isettingIsaasHttp,

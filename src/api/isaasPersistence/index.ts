@@ -7,7 +7,7 @@ import { IBackendErrorResponse } from "@ptypes/errors/IErrorMessage/IBackErrorRe
 import localforage from "localforage";
 
 const isaasPerAxiosInstance: AxiosInstance = axios.create({
-  baseURL: enviroment.ISAAS_PERSISTENCE_PROCESS_SERVICE,
+  baseURL: enviroment.ISETTING_PERSISTENCE_PROCESS_SERVICE,
   timeout: fetchTimeoutServices,
   headers: {
     "Content-type": "application/json; charset=UTF-8",
@@ -32,7 +32,7 @@ isaasPerAxiosInstance.interceptors.response.use(
     eventBus.emit(EErrorState.ERROR_MODAL_STATE, true);
 
     return Promise.reject(new Error(JSON.stringify(messageError)));
-  }
+  },
 );
 
 export { isaasPerAxiosInstance };

@@ -19,7 +19,7 @@ const patchPosition = async (
     },
   };
   const newData = await patchWithRetries<IRequestPositions>(
-    `/position-staff`,
+    `/position-staffs`,
     config,
     mapAddPositionToApi(data) as unknown as string[],
     isettingIsaasAxiosInstance,

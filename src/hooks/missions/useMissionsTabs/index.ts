@@ -9,6 +9,9 @@ import { missionsTabsConfig } from "@config/missions/tabs";
 import { mediaQueryTabletMain } from "@config/environment";
 import { IMissionTabsConfig } from "@ptypes/missions/IMissionTabsConfig";
 import { IRequestsInProgress } from "@ptypes/requestsInProgress/IRequestsInProgress";
+import { EUseCaseTypes } from "@enum/useCaseTypes";
+import { useValidateUseCase } from "@hooks/useValidateUseCase";
+import { menuMissionsLinks } from "@config/missions/missionTab/menuMissionsLinks";
 
 const useMissionsTabs = () => {
   const smallScreen = useMediaQuery(mediaQueryTabletMain);
@@ -23,10 +26,11 @@ const useMissionsTabs = () => {
   >([]);
   const [showInfoModal, setShowInfoModal] = useState(false);
   const widthFirstColumn = smallScreen ? 60 : 20;
-
-  const {  appData } = useContext(AuthAndData);
-
-
+  const [options, setOptions] = useState(menuMissionsLinks(false));
+  const { appData } = useContext(AuthAndData);
+  const { disabledButton: disabledAdd } = useValidateUseCase({
+    useCase: EUseCaseTypes.ADD_MISSION,
+  });
 
   const handleTabChange = (tabId: string) => {
     setIsSelected(tabId);
@@ -106,6 +110,12 @@ const useMissionsTabs = () => {
 
   const missionsTabs = Object.values(filteredTabsConfig);
 
+  useEffect(() => {
+    const menuOptions = menuMissionsLinks(disabledAdd);
+
+    setOptions(menuOptions);
+  }, [disabledAdd]);
+
   return {
     isSelected,
     handleTabChange,
@@ -118,7 +128,7 @@ const useMissionsTabs = () => {
     onToggleModal,
     handleToggleMenuInvitation,
     handleCloseMenuInvitation,
-
+    options,
     widthFirstColumn,
     showMissionTab,
     showRequestTab,

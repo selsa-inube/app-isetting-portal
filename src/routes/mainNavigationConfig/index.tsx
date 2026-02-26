@@ -3,7 +3,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { RulesRoutes } from "@routes/rules";
 import { PositionsRoutes } from "@routes/positions";
 import { AssignmentsRoutes } from "@routes/assignments";
 import { MissionsRoutes } from "@routes/missions";
@@ -22,11 +21,10 @@ const router = createBrowserRouter(
         <Route path="missions/*" element={<MissionsRoutes />} />
         <Route path="users/*" element={<UsersRoutes />} />
         <Route path="assignments/*" element={<AssignmentsRoutes />} />
-        <Route path="rules/*" element={<RulesRoutes />} />
       </Route>
       <Route path="logout" element={<Logout />} />
-    </>
-  )
+    </>,
+  ),
 );
 
 export { router };

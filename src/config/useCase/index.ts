@@ -1,5 +1,5 @@
 const operationTypes = {
-  add: "Agregada",
+  add: "Agregado",
   edit: "Editado",
   delete: "Eliminado",
   details: "detalles",

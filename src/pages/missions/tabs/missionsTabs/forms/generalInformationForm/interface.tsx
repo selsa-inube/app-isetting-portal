@@ -43,6 +43,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
                   message={formik.errors.nameMission}
                   required
                   fullwidth
+                  maxLength={50}
                 />
               </Stack>
             </Stack>

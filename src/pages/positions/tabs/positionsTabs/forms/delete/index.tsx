@@ -13,6 +13,9 @@ import { requestStatusMessage } from "@config/positions/requestStatusMessage";
 import { DecisionModalLabel } from "@config/positions/decisionModalText";
 import { IDelete } from "@ptypes/positions/actions/IDelete";
 import { EUseCase } from "@enum/useCase";
+import { disabledModal } from "@config/disabledModal";
+import { portalId } from "@config/portalId";
+import { DecisionModal } from "@design/modals/decisionModal";
 
 const Delete = (props: IDelete) => {
   const { data, setEntryDeleted } = props;
@@ -26,6 +29,8 @@ const Delete = (props: IDelete) => {
     handleClick,
     setShowRequestProcessModal,
     setShowModal,
+    handleToggleInfoModal,
+    showInfoModal
   } = useDeletePositions({ data, appData });
 
   const {
@@ -61,6 +66,18 @@ const Delete = (props: IDelete) => {
         onClick={handleClick}
         loading={loadingSendData}
       />
+      {showInfoModal && (
+        <DecisionModal
+          portalId={portalId}
+          title={disabledModal.title}
+          actionText={disabledModal.actionText}
+          description={disabledModal.description}
+          subtitle={disabledModal.subtitle}
+          onCloseModal={handleToggleInfoModal}
+          onClick={handleToggleInfoModal}
+          withCancelButton={false}
+        />
+      )}
       {showRequestProcess && (
         <RequestProcess
           portalId={DecisionModalLabel.portalId}

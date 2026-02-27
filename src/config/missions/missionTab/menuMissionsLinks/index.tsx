@@ -1,11 +1,11 @@
 import { MdAdd } from "react-icons/md";
 
-const menuMissionsLinks = [
+const menuMissionsLinks = (disabled: boolean) => [
   {
     description: "Solicitar cargo ",
     path: "/missions/add-mission",
     icon: <MdAdd />,
-    disabled: false,
+    disabled: disabled,
   },
 ];
 

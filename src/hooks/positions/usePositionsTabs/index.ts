@@ -53,7 +53,7 @@ const usePositionsTabs = () => {
 
   useEffect(() => {
     if (businessUnits.length === 0) return;
-    if (businessUnits.length > 1) {
+    if (businessUnits.length > 1 && tabs.cargos.id === isSelected) {
       setShowModalUnits(true);
     }
 

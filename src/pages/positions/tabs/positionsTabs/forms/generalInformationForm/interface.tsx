@@ -18,10 +18,7 @@ const GeneralInformationFormUI = (props: IGeneralInformationFormUI) => {
     onReset,
     onButtonClick,
   } = props;
-  console.log(
-    "🚀 ~ file: index.tsx:24 ~ GeneralInformationFormUI ~ valuesEqual:",
-    formik,
-  );
+
   return (
     <StyledContainer>
       <form>

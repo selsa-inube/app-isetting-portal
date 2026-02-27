@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 import { getWithRetries } from "@services/core/getWithRetries";
-import { iportalStaffAxiosInstance } from "@api/iportalStaff";
+import { isettingIsaasAxiosInstance } from "@api/isettingIsaas";
 import { IUsers } from "@ptypes/users/tabs/userTab/usersTable/IUsers";
 import { mapUsersPortalStaffEntities } from "./mappers";
 
@@ -18,7 +18,7 @@ const getIportalStaffUsers = async (
     publicCode: businessManager,
   });
   const data: IUsers[] = await getWithRetries<IUsers[]>(
-    iportalStaffAxiosInstance,
+    isettingIsaasAxiosInstance,
     `/staffs?${queryParams.toString()}`,
     config,
   );

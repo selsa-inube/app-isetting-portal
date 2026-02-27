@@ -3,7 +3,7 @@ interface IStaffByBusinessUnitAndRole {
   roleName: string;
   businessUnitCode: string;
   businessUnitName: string;
-  positionName: string
+  positionName: string;
 }
 
 export type { IStaffByBusinessUnitAndRole };

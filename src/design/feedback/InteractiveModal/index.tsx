@@ -36,45 +36,47 @@ const InteractiveModal = (props: IInteractiveModal) => {
   }
 
   return createPortal(
-    <Blanket>
-      <BorderStack
-        background={EComponentAppearance.GRAY}
-        width={width}
-        height={height}
-        borderRadius={smallScreen ? basic.spacing.s0 : basic.spacing.s8}
-        direction="column"
-        padding={smallScreen ? basic.spacing.s16 : basic.spacing.s24}
-        gap={basic.spacing.s24}
-        overflowY={overflowY}
-      >
-        <Stack direction="column" gap={basic.spacing.s20}>
-          <Stack alignItems="center" justifyContent="space-between">
-            <Text
-              type="headline"
-              size="small"
-              appearance={EComponentAppearance.DARK}
-            >
-              {title}
-            </Text>
-            <Icon
-              appearance={EComponentAppearance.DARK}
-              icon={<MdClear />}
-              spacing="narrow"
-              size="24px"
-              cursorHover
-              onClick={closeModal}
-            />
+    <>
+      <Blanket>
+        <BorderStack
+          background={EComponentAppearance.GRAY}
+          width={width}
+          height={height}
+          borderRadius={smallScreen ? basic.spacing.s0 : basic.spacing.s8}
+          direction="column"
+          padding={smallScreen ? basic.spacing.s16 : basic.spacing.s24}
+          gap={basic.spacing.s24}
+          overflowY={overflowY}
+        >
+          <Stack direction="column" gap={basic.spacing.s20}>
+            <Stack alignItems="center" justifyContent="space-between">
+              <Text
+                type="headline"
+                size="small"
+                appearance={EComponentAppearance.DARK}
+              >
+                {title}
+              </Text>
+              <Icon
+                appearance={EComponentAppearance.DARK}
+                icon={<MdClear />}
+                spacing="narrow"
+                size="24px"
+                cursorHover
+                onClick={closeModal}
+              />
+            </Stack>
+            <Divider dashed />
           </Stack>
-          <Divider dashed />
-        </Stack>
 
-        {children}
+          {children}
 
-        <Stack justifyContent="right">
-          <Button onClick={closeModal}>{infoText}</Button>
-        </Stack>
-      </BorderStack>
-    </Blanket>,
+          <Stack justifyContent="right">
+            <Button onClick={closeModal}>{infoText}</Button>
+          </Stack>
+        </BorderStack>
+      </Blanket>
+    </>,
     node,
   );
 };

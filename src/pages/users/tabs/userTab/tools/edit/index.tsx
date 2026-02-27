@@ -1,9 +1,12 @@
 import { EditRecord } from "@design/feedback/editRecord";
-import { useEditInConstructionModal } from "@hooks/editInConstruction";
+import { useEditUsersModal } from "@hooks/users/tabs/userTab/useEditUsersModal";
+import { IEdit } from "@ptypes/users/tabs/userTab/editUser/IEdit";
 
-const Edit = () => {
-  const { handleEdit } = useEditInConstructionModal();
-  return <EditRecord onEdit={handleEdit} showInfoModal={false} />;
+const Edit = (props: IEdit) => {
+  const { data } = props;
+  const { handleEdit, showInfoModal } = useEditUsersModal(data);
+
+  return <EditRecord onEdit={handleEdit} showInfoModal={showInfoModal} />;
 };
 
 export { Edit };

@@ -1,8 +1,8 @@
+import { enviroment } from "@config/environment";
 import { IRequestUsers } from "@ptypes/users/tabs/userTab/addUser/IRequestUsers";
 
 const mapAddUsersToApi = (data: IRequestUsers, businessManagerCode: string) => {
   const configurationRequestData = data.configurationRequestData;
-
   return {
     biologicalSex: configurationRequestData.biologicalSex,
     birthDay: configurationRequestData.birthDay,
@@ -11,13 +11,12 @@ const mapAddUsersToApi = (data: IRequestUsers, businessManagerCode: string) => {
     identificationType: configurationRequestData.identificationType,
     staffName: configurationRequestData.staffName,
     staffLastName: configurationRequestData.staffLastName,
-
+    staffId: configurationRequestData?.staffId,
     missionData: {
-      descriptionUse: configurationRequestData.missionData?.descriptionUse,
-      missionName: configurationRequestData.missionData?.missionName,
+      missionName: configurationRequestData.missionData.missionName,
     },
-    missionName: configurationRequestData.missionName,
-
+    missionName: configurationRequestData.missionData.missionName,
+    modifyJustification: data.configurationRequestData?.modifyJustification,
     principalEmail: configurationRequestData.principalEmail,
     principalPhone: configurationRequestData.principalPhone,
 
@@ -34,8 +33,7 @@ const mapAddUsersToApi = (data: IRequestUsers, businessManagerCode: string) => {
         positionName: item.positionName,
         roleName: item.roleName,
       })),
-    registrationRedirectUrl:
-      "https://isetting-credicar.inube.online/?portal=148aedb5-d618-4291-8ae7-6bb4cfa36be6",
+    registrationRedirectUrl: enviroment.REGISTRATION_REDIRECT_URL,
   };
 };
 

@@ -31,8 +31,13 @@ const labelsOptions = {
   ],
   "Misión para el operador": [
     {
-      id: "businessManagerName",
+      id: "missionData.missionName",
       labelName: "Nombre",
+      type: "table",
+    },
+    {
+      id: "missionData.descriptionUse",
+      labelName: "Descripción",
       type: "table",
     },
   ],
@@ -59,7 +64,7 @@ const actionsConfig = (setEntryDeleted: (value: string | number) => void) => {
     },
     {
       id: "Edit",
-      content: () => <Edit />,
+      content: (entry: IEntry) => <Edit data={entry as IEntry} />,
     },
     {
       id: "delete",

@@ -13,14 +13,12 @@ import { AuthAndData } from "@context/authAndDataProvider";
 import { missionForStaffConfig } from "@config/users/addUsers/form/missionForStaff";
 
 const useMissionForUserForm = (props: IUseAddUserMissionForStaffStep) => {
-  const { initialValues, ref, onSubmit, onFormValid } = props;
+  const { initialValues, ref, onSubmit, onFormValid, editDataOption } = props;
   const { appData } = useContext(AuthAndData);
   const [isDisabledButton, setIsDisableButton] = useState(true);
 
   const validationSchema = object().shape({
     missionValue: validationRules.string.required(validationMessages.required),
-    missionName: validationRules.string,
-    missionDescription: validationRules.string,
   });
 
   const [dynamicValidationSchema, setDynamicValidationSchema] =
@@ -52,7 +50,7 @@ const useMissionForUserForm = (props: IUseAddUserMissionForStaffStep) => {
   );
 
   const optionMission: IOption[] = [
-    missionForStaffConfig.addMission,
+    ...(!editDataOption ? [missionForStaffConfig.addMission] : []),
     ...(missionsData?.map((mission) => ({
       label: mission.missionName,
       id: mission.missionId,
@@ -61,7 +59,7 @@ const useMissionForUserForm = (props: IUseAddUserMissionForStaffStep) => {
   ];
 
   const buttonDisabledState = isDisabledButton;
-  const [missionSelected, setMissionSelected] = useState("");
+  const [missionSelected, setMissionSelected] = useState(initialValues.missionValue || "");
   const [showForm, setShowForm] = useState(false);
 
   const handleSelectChange = (_name: string, value: string) => {

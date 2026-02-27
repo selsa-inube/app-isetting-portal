@@ -1,21 +1,31 @@
 import styled from "styled-components";
-import { tokensWithReference } from "@design/tokens/tokensWithReference";
 import { phoneFieldTokens } from "./tokens";
 import { basic } from "@design/tokens";
+
+interface IStyledPhoneFieldProps {
+  $fullwidth?: boolean;
+  $disabled?: boolean;
+  $invalid?: boolean;
+  $size?: "compact" | "wide";
+  $open?: boolean;
+  $active?: boolean;
+  $error?: boolean;
+  $round?: boolean;
+}
 
 const fieldHeights = {
   compact: "40px",
   wide: "3rem",
 };
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.div<IStyledPhoneFieldProps>`
   display: flex;
   flex-direction: column;
   width: ${({ $fullwidth }) => ($fullwidth ? "100%" : "")};
   min-width: 0;
 `;
 
-const StyledLabelRow = styled.label`
+const StyledLabelRow = styled.label<IStyledPhoneFieldProps>`
   font-size: 12px;
   font-weight: 500;
   line-height: ${basic.spacing.s16};
@@ -28,24 +38,24 @@ const StyledLabelRow = styled.label`
         phoneFieldTokens.label.color.regular)};
 `;
 
-const StyledFieldContainer = styled.div`
+const StyledFieldContainer = styled.div<IStyledPhoneFieldProps>`
   display: flex;
   align-items: stretch;
   border: 1px solid
-    ${({ invalid, theme }) =>
-      invalid
-        ? (theme?.phoneField?.field?.border?.color?.invalid ??
-          phoneFieldTokens.field.border.color.invalid)
-        : (theme?.phoneField?.field?.border?.color?.regular ??
-          phoneFieldTokens.field.border.color.regular)};
-  background: ${({ disabled, theme }) =>
-    disabled
+    ${({ $invalid, theme }) =>
+    $invalid
+      ? (theme?.phoneField?.field?.border?.color?.invalid ??
+        phoneFieldTokens.field.border.color.invalid)
+      : (theme?.phoneField?.field?.border?.color?.regular ??
+        phoneFieldTokens.field.border.color.regular)};
+  background: ${({ $disabled, theme }) =>
+    $disabled
       ? (theme?.phoneField?.field?.background?.color?.disabled ??
         phoneFieldTokens.field.background.color.disabled)
       : (theme?.phoneField?.field?.background?.color?.regular ??
         phoneFieldTokens.field.background.color.regular)};
   border-radius: ${basic.spacing.s8};
-  height: ${({ size }) => fieldHeights[size]};
+  height: ${({ $size }) => ($size ? fieldHeights[$size] : fieldHeights.compact)};
   overflow: hidden;
   transition: border-color 0.15s ease;
   flex: 1 1 auto;
@@ -53,16 +63,12 @@ const StyledFieldContainer = styled.div`
 
   &:focus-within {
     border-color: ${({ theme }) =>
-      theme?.phoneField?.field?.border?.color?.focus ??
-      phoneFieldTokens.field.border.color.focus};
+    theme?.phoneField?.field?.border?.color?.focus ??
+    phoneFieldTokens.field.border.color.focus};
   }
 `;
-/**
- * @typedef {{ $open?: boolean, $size?: "compact" | "wide" }} CountryButtonProps
- */
 
-/** @type {import("styled-components").IStyledComponent<"web", CountryButtonProps & import("react").ComponentPropsWithRef<"button">>} */
-const StyledCountryButton = styled.button`
+const StyledCountryButton = styled.button<IStyledPhoneFieldProps>`
   display: flex;
   align-items: center;
   gap: ${basic.spacing.s50};
@@ -79,8 +85,8 @@ const StyledCountryButton = styled.button`
   outline: none;
   border-right: 1px solid
     ${({ theme }) =>
-      theme?.phoneField?.countryButton?.border?.color?.regular ??
-      phoneFieldTokens.countryButton.border.color.regular};
+    theme?.phoneField?.countryButton?.border?.color?.regular ??
+    phoneFieldTokens.countryButton.border.color.regular};
 
   ${({ $open, theme }) =>
     $open &&
@@ -88,12 +94,16 @@ const StyledCountryButton = styled.button`
 
   &:hover {
     background: ${({ theme }) =>
-      theme?.phoneField?.countryButton?.background?.color?.hover ??
-      phoneFieldTokens.countryButton.background.color.hover};
+    theme?.phoneField?.countryButton?.background?.color?.hover ??
+    phoneFieldTokens.countryButton.background.color.hover};
+  }
+
+  &:disabled {
+    cursor: default;
   }
 `;
 
-const StyledNumberInput = styled.input`
+const StyledNumberInput = styled.input<IStyledPhoneFieldProps>`
   flex: 1 1 auto;
   width: 100%;
   min-width: 0;
@@ -105,8 +115,8 @@ const StyledNumberInput = styled.input`
 
   &::placeholder {
     color: ${({ theme }) =>
-      theme?.phoneField?.numberInput?.placeholder?.color?.regular ??
-      phoneFieldTokens.numberInput.placeholder.color.regular};
+    theme?.phoneField?.numberInput?.placeholder?.color?.regular ??
+    phoneFieldTokens.numberInput.placeholder.color.regular};
   }
 `;
 
@@ -119,8 +129,8 @@ const StyledDropdown = styled.div`
     phoneFieldTokens.dropdown.background.color};
   border: 1px solid
     ${({ theme }) =>
-      theme?.phoneField?.dropdown?.border?.color ??
-      phoneFieldTokens.dropdown.border.color};
+    theme?.phoneField?.dropdown?.border?.color ??
+    phoneFieldTokens.dropdown.border.color};
   box-shadow: ${({ theme }) =>
     `0 4px 8px ${theme?.phoneField?.dropdown?.shadow?.color ?? phoneFieldTokens.dropdown.shadow.color}`};
   border-radius: ${basic.spacing.s8};
@@ -133,7 +143,7 @@ const StyledDropdown = styled.div`
 const StyledSearchBox = styled.input`
   border: none;
   border-bottom: ${({ theme }) =>
-    `1px solid ${theme?.phoneField?.border?.color?.regular ?? phoneFieldTokens.border.color}`};
+    `1px solid ${theme?.phoneField?.field?.border?.color?.regular ?? phoneFieldTokens.field.border.color.regular}`};
   padding: ${basic.spacing.s8} ${basic.spacing.s12};
   outline: none;
   font-size: 0.85rem;
@@ -147,7 +157,7 @@ const StyledCountryList = styled.ul`
   flex: 1;
 `;
 
-const StyledCountryItem = styled.li`
+const StyledCountryItem = styled.li<IStyledPhoneFieldProps>`
   display: flex;
   align-items: center;
   gap: ${basic.spacing.s8};
@@ -162,12 +172,12 @@ const StyledCountryItem = styled.li`
 
   &:hover {
     background: ${({ theme }) =>
-      theme?.phoneField?.countryItem?.background?.hover ??
-      phoneFieldTokens.countryItem.background.hover};
+    theme?.phoneField?.countryItem?.background?.hover ??
+    phoneFieldTokens.countryItem.background.hover};
   }
 `;
 
-const StyledHelperText = styled.span`
+const StyledHelperText = styled.span<IStyledPhoneFieldProps>`
   margin-top: ${basic.spacing.s4};
   font-size: 0.75rem;
   color: ${({ $error, theme }) =>
@@ -193,10 +203,10 @@ const StyledWarningIcon = styled.figure`
   justify-content: center;
 `;
 
-const StyledFlag = styled.span`
+const StyledFlag = styled.span<IStyledPhoneFieldProps>`
   display: inline-flex;
-  width: ${({ $size = 20 }) => $size}px;
-  height: ${({ $size = 20 }) => $size}px;
+  width: ${({ $size = "compact" }) => ($size === "compact" ? "18px" : "24px")};
+  height: ${({ $size = "compact" }) => ($size === "compact" ? "18px" : "24px")};
   border-radius: ${({ $round = true }) => ($round ? "50%" : "0")};
   overflow: hidden;
   align-items: center;

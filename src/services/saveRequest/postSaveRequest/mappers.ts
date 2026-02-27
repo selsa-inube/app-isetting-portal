@@ -1,7 +1,7 @@
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 
 const mapSavePositionsEntityToApi = (
-  data: ISaveDataRequest
+  data: ISaveDataRequest,
 ): ISaveDataRequest => {
   return {
     applicationName: data.applicationName,

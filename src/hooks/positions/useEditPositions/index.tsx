@@ -125,26 +125,7 @@ const useEditPositions = (props: IUseEditPositions) => {
   }, [rolesData]);
 
   const onSubmit = () => {
-    const configurationRequestData: {
-      positionId: string;
-      abbreviatedName?: string;
-      descriptionUse?: string;
-    } = {
-      positionId: data.positionId,
-    };
-
-    if (
-      generalInformationRef.current?.values.namePosition !== undefined &&
-      (generalInformationRef.current?.values.namePosition !==
-        data.positionName ||
-        generalInformationRef.current?.values.descriptionPosition !==
-          data.descriptionUse)
-    ) {
-      configurationRequestData.abbreviatedName =
-        generalInformationRef.current?.values.namePosition ?? "";
-      configurationRequestData.descriptionUse =
-        generalInformationRef.current?.values.descriptionPosition ?? "";
-    }
+    const currentValues = generalInformationRef.current?.values;
 
     setSaveData({
       applicationName: "istaff",
@@ -157,11 +138,11 @@ const useEditPositions = (props: IUseEditPositions) => {
       requestType: ERequestType.MODIFY,
       configurationRequestData: {
         positionId: data.positionId,
-        positionName: formValues.generalInformation.values.namePosition,
+        positionName: currentValues?.namePosition ?? data.positionName,
         businessManagerCode: appData.businessManager.publicCode,
         businessUnitCode: businessUnitCode,
         descriptionUse:
-          formValues.generalInformation.values.descriptionPosition,
+          currentValues?.descriptionPosition ?? data.descriptionUse,
         positionsByRole: rolesDataEndpoint,
       },
     });
@@ -200,6 +181,11 @@ const useEditPositions = (props: IUseEditPositions) => {
     }
   }, [generalInformationRef.current?.values]);
 
+  console.log(
+    "🚀 ~ file: index.tsx:193 ~ useEffect ~ formValues:",
+    formValues,
+    generalInformationRef,
+  );
   const handleTabChange = (tabId: string) => {
     if (generalInformationRef.current?.values) {
       setFormValues((prev) => ({

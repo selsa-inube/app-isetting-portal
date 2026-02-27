@@ -1,7 +1,7 @@
 import { FormikProps } from "formik";
 import { IGeneralInformationEntry } from "@ptypes/positions/assisted/IGeneralInformationEntry";
 
-interface IUseGeneralInfoCreditLineForm {
+interface IUseGeneralInfoRolesForm {
   initialValues: IGeneralInformationEntry;
   ref: React.ForwardedRef<FormikProps<IGeneralInformationEntry>>;
   onSubmit: ((values: IGeneralInformationEntry) => void) | undefined;
@@ -9,4 +9,4 @@ interface IUseGeneralInfoCreditLineForm {
   editDataOption?: boolean;
 }
 
-export type { IUseGeneralInfoCreditLineForm };
+export type { IUseGeneralInfoRolesForm };

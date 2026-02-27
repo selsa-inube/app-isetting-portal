@@ -6,9 +6,9 @@ import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
 import { labels } from "@config/positions/assistedText";
 import { mediaQueryTabletMain } from "@config/environment";
-import { IUseGeneralInfoCreditLineForm } from "@ptypes/hooks/IUseGeneralInfoCreditLineForm";
+import { IUseGeneralInfoRolesForm } from "@ptypes/hooks/IUseGeneralInfoCreditLineForm";
 
-const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
+const useGeneralInfoRolesForm = (props: IUseGeneralInfoRolesForm) => {
   const { initialValues, ref, onSubmit, onFormValid, editDataOption } = props;
   const createValidationSchema = () =>
     object().shape({
@@ -77,4 +77,4 @@ const useGeneralInfoCreditLineForm = (props: IUseGeneralInfoCreditLineForm) => {
   };
 };
 
-export { useGeneralInfoCreditLineForm };
+export { useGeneralInfoRolesForm };

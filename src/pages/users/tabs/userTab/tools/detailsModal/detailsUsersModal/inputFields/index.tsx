@@ -9,13 +9,16 @@ import { IInputFields } from "@ptypes/users/tabs/userTab/details/IInputFields";
 const InputFields = (props: IInputFields) => {
   const { labels, infoData } = props;
   const sections = useInputFields({ labels, infoData });
-
   return (
     <>
       {Object.entries(sections).map(([sectionName, fields]) => (
         <Fieldset key={sectionName} legend={sectionName}>
           <Grid
-            templateColumns={"repeat(auto-fit, minmax(300px, 1fr))"}
+            templateColumns={
+              sectionName === "Misión para el operador"
+                ? "1fr"
+                : "repeat(auto-fit, minmax(300px, 1fr))"
+            }
             gap={basic.spacing.s16}
             autoRows="auto"
             justifyContent="normal"
@@ -26,6 +29,7 @@ const InputFields = (props: IInputFields) => {
                 key={field.labelName}
                 direction="column"
                 background={EComponentAppearance.GRAY}
+                border={EComponentAppearance.GRAY}
                 gap={basic.spacing.s4}
                 borderRadius={basic.spacing.s100}
                 padding={`${basic.spacing.s075} ${basic.spacing.s200}`}

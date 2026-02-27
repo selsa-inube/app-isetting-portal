@@ -74,7 +74,18 @@ const UserTabUI = (props: IUserTabUI) => {
           </Stack>
         )}
       </Stack>
-      <Text>{UserbuttonText.labelTab}</Text>
+      {!smallScreen && (
+        <Stack>
+          <Text
+            type="title"
+            size={smallScreen ? "small" : "medium"}
+            appearance={EComponentAppearance.DARK}
+            ellipsis
+          >
+            {UserbuttonText.labelTab}
+          </Text>{" "}
+        </Stack>
+      )}
       <Table
         id="portal"
         titles={titlesUsers}

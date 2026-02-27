@@ -4,9 +4,9 @@ import { IEdit } from "@ptypes/users/tabs/userTab/editUser/IEdit";
 
 const Edit = (props: IEdit) => {
   const { data } = props;
-  const { handleEdit } = useEditUsersModal(data);
+  const { handleEdit, showInfoModal } = useEditUsersModal(data);
 
-  return <EditRecord onEdit={handleEdit} showInfoModal />;
+  return <EditRecord onEdit={handleEdit} showInfoModal={showInfoModal} />;
 };
 
 export { Edit };

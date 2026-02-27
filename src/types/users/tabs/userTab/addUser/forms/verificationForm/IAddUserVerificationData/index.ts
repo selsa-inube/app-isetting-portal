@@ -2,9 +2,8 @@ import { IMissionData } from "./IMissionData";
 import { IStaffByBusinessUnitAndRole } from "./IStaffRolesData";
 
 interface IAddUserVerificationData {
-
-biologicalSex: string;
-  birthDay: string; 
+  biologicalSex: string;
+  birthDay: string;
   businessManagerCode: string;
   identificationNumber: string;
   identificationType: string;
@@ -17,9 +16,8 @@ biologicalSex: string;
   principalEmail: string;
   principalPhone: string;
 
-
   staffByBusinessUnitAndRole: IStaffByBusinessUnitAndRole[];
-
-
+  staffId?: string;
+  modifyJustification?: string;
 }
 export type { IAddUserVerificationData };

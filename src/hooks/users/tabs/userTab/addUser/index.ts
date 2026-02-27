@@ -16,8 +16,9 @@ import { EUserRequest } from "@enum/user/usersRequest";
 import { ISaveDataRequest } from "@ptypes/saveData/ISaveDataRequest";
 import { formatDate } from "@utils/date/formatDate";
 import { FormikProps } from "formik";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useBusinessUnits } from "@hooks/useBusinessUnits";
 
 const useAddUser = () => {
   const title = addUserUIConfig.title;
@@ -31,6 +32,7 @@ const useAddUser = () => {
   const { appData } = useContext(AuthAndData);
   const [saveData, setSaveData] = useState<ISaveDataRequest>();
   const [showRequestProcessModal, setShowRequestProcessModal] = useState(false);
+  const { businessUnits } = useBusinessUnits();
 
   const [formValues, setFormValues] = useState<IGeneralUserFormValues>({
     generalInformationStep: {
@@ -139,6 +141,20 @@ const useAddUser = () => {
       setCurrentStep(currentStep + 1);
     }
   };
+
+  useEffect(() => {
+    if (businessUnits.length > 0 && formValues.businessUnitsStep.length === 0) {
+      setFormValues((prev) => ({
+        ...prev,
+        businessUnitsStep: businessUnits.map((unit) => ({
+          id: unit.publicCode,
+          value: unit.abbreviatedName,
+          isActive: false,
+        })),
+      }));
+    }
+  }, [businessUnits]);
+
   const handlePreviousStep = () => {
     if (currentStep > 1) {
       setCurrentStep((prev) => prev - 1);
@@ -194,7 +210,6 @@ const useAddUser = () => {
 
     setShowRequestProcessModal(true);
   };
-
   return {
     currentStep,
     formReferences,

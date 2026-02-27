@@ -28,12 +28,12 @@ const DetailsModal = (props: IDetailsUserModal) => {
           onClick={handleToggleModal}
         />
         {screenTablet && (
-          <Text type="body" size="medium" onClick={handleToggleModal}>
+          <Text type="body" size="medium">
             {UserbuttonText.textDetails}
           </Text>
         )}
       </Stack>
-      {showModal && data && (
+      {showModal && (
         <DetailsUsersModal
           onClose={handleToggleModal}
           infoData={data || {}}

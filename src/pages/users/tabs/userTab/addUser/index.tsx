@@ -40,15 +40,12 @@ const AddUser = () => {
     handleSubmit,
   } = useAddUser();
 
-  const {
-    setEntriesAdditionalBusinessEntity,
-    entriesAdditionalBusinessEntity,
-    activeEntries,
-  } = useOptionsBusinessEntity({
-    formValues,
-    setFormValues,
-    token: appData.token,
-  });
+  const { setSelectedToggle, entriesAdditionalBusinessEntity, activeEntries } =
+    useOptionsBusinessEntity({
+      formValues,
+      setFormValues,
+      token: appData.token,
+    });
 
   const {
     rolesByBusinessUnit,
@@ -116,7 +113,7 @@ const AddUser = () => {
       description={description}
       showMissionNameModal={showMissionNameModal}
       onToggleMissionModal={handleToggleMissionModal}
-      setEntriesAdditionalBusinessEntity={setEntriesAdditionalBusinessEntity}
+      setEntriesAdditionalBusinessEntity={setSelectedToggle}
       entriesAdditionalBusinessEntity={entriesAdditionalBusinessEntity}
       positionsByBusinessUnit={positionsByBusinessUnit}
       selectPositionsByBusinessUnit={selectPositionsByBusinessUnit}

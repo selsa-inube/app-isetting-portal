@@ -181,11 +181,6 @@ const useEditPositions = (props: IUseEditPositions) => {
     }
   }, [generalInformationRef.current?.values]);
 
-  console.log(
-    "🚀 ~ file: index.tsx:193 ~ useEffect ~ formValues:",
-    formValues,
-    generalInformationRef,
-  );
   const handleTabChange = (tabId: string) => {
     if (generalInformationRef.current?.values) {
       setFormValues((prev) => ({

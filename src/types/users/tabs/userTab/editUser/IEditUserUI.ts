@@ -35,7 +35,7 @@ interface IEditUserUI {
   onCloseGoBackModal: () => void;
   onGoBack: () => void;
   onCloseProcess: () => void;
-  setEntriesAdditionalBusinessEntity: React.Dispatch<React.SetStateAction<IFormEntry[]>>;
+  setSelectedToggle: React.Dispatch<React.SetStateAction<IFormEntry[]>>;
   entriesAdditionalBusinessEntity: IFormEntry[];
   positionsByBusinessUnit: PositionsByBusinessUnitMap;
   selectPositionsByBusinessUnit: (name: string, value: string) => void;

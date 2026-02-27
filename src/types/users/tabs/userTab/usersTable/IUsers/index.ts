@@ -1,3 +1,5 @@
+import { IMissionData } from "../../addUser/forms/verificationForm/IAddUserVerificationData/IMissionData";
+import { IBusinessUnitAssigned } from "../IBusinessUnitAssigned";
 import { IStaffByBusinessUnitAndRole } from "../IStaffByBusinessUnitAndRole";
 
 interface IUsers {
@@ -11,10 +13,11 @@ interface IUsers {
   principalPhone: string;
   businessManagerCode: string;
   businessManagerName: string;
-  missionName: string;
   userAccount: string;
+  missionData: IMissionData;
+  businessUnitsAsigned: IBusinessUnitAssigned[];
   staffByBusinessUnitAndRole: IStaffByBusinessUnitAndRole[];
-  staffLastName?: string
+  staffLastName?: string;
   id?: string | number;
 }
 

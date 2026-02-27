@@ -27,53 +27,58 @@ const DetailsUsersModal = (props: IFeedbackModal) => {
       infoText="Cerrar"
       width={smallScreen ? "100%" : "700px"}
       height="750px"
-      overflowY="scroll"
     >
-      <InputFields labels={labels} infoData={infoData} />
+      <BorderStack
+        overflowY="scroll"
+        direction="column"
+        gap={basic.spacing.s24}
+      >
+        <InputFields labels={labels} infoData={infoData} />
 
-      <Stack direction="column" gap={basic.spacing.s16}>
-        {positionsByBusinessUnitRoles && (
-          <BorderStack
-            border={EComponentAppearance.DARK}
-            borderRadius="5px"
-            direction="column"
-            padding={basic.spacing.s200}
-            gap={basic.spacing.s200}
-          >
-            <Text
-              type="title"
-              size="medium"
-              appearance={EComponentAppearance.GRAY}
-              weight="bold"
+        <Stack direction="column" gap={basic.spacing.s16}>
+          {positionsByBusinessUnitRoles && (
+            <BorderStack
+              border={EComponentAppearance.DARK}
+              borderRadius="5px"
+              direction="column"
+              padding={basic.spacing.s200}
+              gap={basic.spacing.s200}
             >
-              {userDetails.rolesByBusinessUnit}
-            </Text>
-            <Divider dashed />
-            <TableUsers dataTable={positionsByBusinessUnitRoles} />
-          </BorderStack>
-        )}
+              <Text
+                type="title"
+                size="medium"
+                appearance={EComponentAppearance.GRAY}
+                weight="bold"
+              >
+                {userDetails.rolesByBusinessUnit}
+              </Text>
+              <Divider dashed />
+              <TableUsers dataTable={positionsByBusinessUnitRoles} />
+            </BorderStack>
+          )}
 
-        {rolesByBusinessUnit && (
-          <BorderStack
-            border={EComponentAppearance.DARK}
-            borderRadius="5px"
-            direction="column"
-            padding={basic.spacing.s200}
-            gap={basic.spacing.s200}
-          >
-            <Text
-              type="title"
-              size="medium"
-              appearance={EComponentAppearance.GRAY}
-              weight="bold"
+          {rolesByBusinessUnit && (
+            <BorderStack
+              border={EComponentAppearance.DARK}
+              borderRadius="5px"
+              direction="column"
+              padding={basic.spacing.s200}
+              gap={basic.spacing.s200}
             >
-              {userDetails.positionsByBusinessUnitRoles}
-            </Text>
-            <Divider dashed />
-            <TableUsers dataTable={rolesByBusinessUnit} />
-          </BorderStack>
-        )}
-      </Stack>
+              <Text
+                type="title"
+                size="medium"
+                appearance={EComponentAppearance.GRAY}
+                weight="bold"
+              >
+                {userDetails.positionsByBusinessUnitRoles}
+              </Text>
+              <Divider dashed />
+              <TableUsers dataTable={rolesByBusinessUnit} />
+            </BorderStack>
+          )}
+        </Stack>
+      </BorderStack>
     </InteractiveModal>
   );
 };

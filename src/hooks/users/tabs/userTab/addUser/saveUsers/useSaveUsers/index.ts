@@ -16,6 +16,7 @@ import { IRequestUsers } from "@ptypes/users/tabs/userTab/addUser/IRequestUsers"
 import { ISaveDeleteUsers } from "@ptypes/users/tabs/userTab/deleteUser/IRequestDeleteUser";
 import { deleteUser } from "@services/users/deleteUser";
 import { statusRequestFinished } from "@config/status/statusRequestFinished";
+import { patchUsers } from "@services/users/editUsers";
 
 const useSaveUsers = (props: IUseSaveUsers) => {
   const {
@@ -87,7 +88,6 @@ const useSaveUsers = (props: IUseSaveUsers) => {
       staffName: saveUsers?.staffName,
     },
   };
-
   const fetchRequestData = async () => {
     try {
       if (useCase === EUseCase.ADD) {
@@ -101,7 +101,7 @@ const useSaveUsers = (props: IUseSaveUsers) => {
         setStatusRequest(newData.settingRequest?.requestStatus);
       }
       if (useCase === EUseCase.EDIT) {
-        const newData = await postAddUsers(
+        const newData = await patchUsers(
           businessUnits,
           userAccount,
           requestConfiguration as unknown as IRequestUsers,

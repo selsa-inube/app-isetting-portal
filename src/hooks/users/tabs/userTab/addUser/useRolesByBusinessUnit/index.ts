@@ -39,8 +39,11 @@ const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
         const map: PositionsByBusinessUnitMap = {};
 
         results.forEach(({ code, data }) => {
+          const positionStep = formValues.positionByBusinessUnitStep?.[0];
           map[code] = {
-            value: "",
+            value:
+              (positionStep?.[code as keyof typeof positionStep]
+                ?.value as string) || "",
             options: data.map((item: IBusinessUnitsPortalStaff) => ({
               id: item.positionId,
               label: item.positionName,
@@ -61,21 +64,20 @@ const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
   }, [activeEntries, token]);
 
   useEffect(() => {
-    if (
-      !activeEntries?.length ||
-      !formValues.positionByBusinessUnitStep?.length
-    ) {
+    if (!activeEntries?.length) {
       setRolesByBusinessUnit([]);
       return;
     }
 
-    const businessUnitKeys = formValues.businessUnitsStep.map((bu) => bu.value);
+    const businessUnitKeys = formValues.businessUnitsStep.map(
+      (businessUnit) => businessUnit.value,
+    );
 
-    const selectedPositionIds = formValues.positionByBusinessUnitStep.flatMap(
+    const selectedPositionids = formValues.positionByBusinessUnitStep.flatMap(
       (step) => businessUnitKeys.map((key) => step[key]?.value).filter(Boolean),
     );
 
-    if (!selectedPositionIds.length) {
+    if (!selectedPositionids.length) {
       setRolesByBusinessUnit([]);
       return;
     }
@@ -85,7 +87,7 @@ const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
         setLoading(true);
         setError(null);
 
-        const ids = selectedPositionIds.join(",");
+        const ids = selectedPositionids.join(",");
 
         const results = await Promise.all(
           activeEntries.map(async (entry) => ({
@@ -93,17 +95,21 @@ const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
             data: await getBusinessManagersId(entry.value, token, ids),
           })),
         );
-
         const roles: IFormEntry[] = [];
 
+        const existingFormRoles = formValues.roleByBusinessUnitStep ?? [];
         results.forEach(({ code, data }) => {
           data.forEach((item) => {
-            item.positionStaffByRoles.forEach((role, index) => {
+            item.positionStaffByRoles.forEach((role) => {
+              const existing = existingFormRoles.find(
+                (r) => r.value === role.roleName && r.businessUnitCode === code,
+              );
+
               roles.push({
-                id: String(index),
-                value: role.positionId,
-                isActive: true,
-                rolesStaff: role.roleName,
+                id: existing?.id ?? role.roleName,
+                value: role.roleName,
+                isActive: existing?.isActive ?? true,
+                roleName: role.roleName,
                 businessUnitCode: code,
                 positionId: item.positionId,
                 positionName: item.positionName,
@@ -112,7 +118,30 @@ const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
           });
         });
 
+        existingFormRoles.forEach((formRole) => {
+          const alreadyExists = roles.some(
+            (r) =>
+              r.value === formRole.value &&
+              r.businessUnitCode === formRole.businessUnitCode,
+          );
+          if (!alreadyExists) {
+            roles.push({
+              id: formRole.id,
+              value: formRole.value,
+              isActive: formRole.isActive ?? true,
+              rolesStaff: formRole.value,
+              roleName: formRole.value,
+              businessUnitCode: formRole.businessUnitCode,
+              positionName: formRole.positionName,
+            });
+          }
+        });
+
         setRolesByBusinessUnit(roles);
+        setFormValues((prev) => ({
+          ...prev,
+          roleByBusinessUnitStep: roles,
+        }));
       } catch {
         setError(true);
       } finally {
@@ -126,37 +155,27 @@ const useRolesByBusinessUnit = (props: IUseOptionsBusinessEntity) => {
     formValues.businessUnitsStep,
     formValues.positionByBusinessUnitStep,
     token,
+    positionsByBusinessUnit,
   ]);
 
   const selectPositionsByBusinessUnit = (name: string, value: string) => {
     setPositionsByBusinessUnit((prev) => {
-      if (!prev[name]) return prev;
-
-      return {
+      const updated = {
         ...prev,
         [name]: {
           ...prev[name],
           value,
         },
       };
+
+      setFormValues((prevForm) => ({
+        ...prevForm,
+        positionByBusinessUnitStep: [updated],
+      }));
+
+      return updated;
     });
   };
-
-  useEffect(() => {
-    setFormValues((prev) => ({
-      ...prev,
-      positionByBusinessUnitStep: [positionsByBusinessUnit],
-    }));
-  }, [positionsByBusinessUnit, setFormValues]);
-
-  useEffect(() => {
-    const activeRoles = rolesByBusinessUnit.filter((r) => r.isActive);
-
-    setFormValues((prev) => ({
-      ...prev,
-      roleByBusinessUnitStep: activeRoles,
-    }));
-  }, [rolesByBusinessUnit, setFormValues]);
 
   return {
     rolesByBusinessUnit,

@@ -31,12 +31,12 @@ const labelsOptions = {
   ],
   "Misión para el operador": [
     {
-      id: "missionName",
+      id: "missionData.missionName",
       labelName: "Nombre",
       type: "table",
     },
     {
-      id: "missionDescription",
+      id: "missionData.descriptionUse",
       labelName: "Descripción",
       type: "table",
     },
